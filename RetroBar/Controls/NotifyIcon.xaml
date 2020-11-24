@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="RetroBar.Controls.NotifyIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="NotifyIcon_OnLoaded">
+    <Border ToolTip="{Binding Path=Title}"
+            MouseUp="NotifyIcon_OnMouseUp"
+            MouseEnter="NotifyIcon_OnMouseEnter"
+            MouseLeave="NotifyIcon_OnMouseLeave"
+            MouseMove="NotifyIcon_OnMouseMove">
+        <Image Source="{Binding Path=Icon, Mode=OneWay}"
+               Style="{StaticResource NotifyIcon}" />
+    </Border>
+</UserControl>

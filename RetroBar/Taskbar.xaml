@@ -1,0 +1,33 @@
+﻿<utilities:AppBarWindow x:Class="RetroBar.Taskbar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:RetroBar.Controls"
+        xmlns:utilities="clr-namespace:RetroBar.Utilities"
+        Title="RetroBar Taskbar"
+        Left="0"
+        LocationChanged="Taskbar_OnLocationChanged"
+        Loaded="Taskbar_OnLoaded"
+        ContextMenuOpening="Taskbar_OnContextMenuOpening"
+        TextOptions.TextFormattingMode="Display"
+        Style="{StaticResource Taskbar}">
+    <Border>
+        <DockPanel>
+            <controls:StartButton DockPanel.Dock="Left" />
+            <GroupBox DockPanel.Dock="Right"
+                      Style="{StaticResource Tray}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:NotifyIconList VerticalAlignment="Center"></controls:NotifyIconList>
+                    <controls:Clock VerticalAlignment="Center"></controls:Clock>
+                </StackPanel>
+            </GroupBox>
+            <controls:TaskList VerticalAlignment="Center"></controls:TaskList>
+        </DockPanel>
+    </Border>
+    <utilities:AppBarWindow.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Task Manager" Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
+            <Separator />
+            <MenuItem Header="Exit RetroBar" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
+        </ContextMenu>
+    </utilities:AppBarWindow.ContextMenu>
+</utilities:AppBarWindow>

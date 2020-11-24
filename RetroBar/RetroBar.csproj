@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>RetroBar.App</StartupObject>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\start9x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Themes\Windows2k.xaml" />
+    <Page Remove="Themes\WindowsXPClassic.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Themes\WindowsXPClassic.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Themes\Windows2k.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ManagedShell.Common\ManagedShell.Common.csproj" />
+    <ProjectReference Include="..\ManagedShell.Configuration\ManagedShell.Configuration.csproj" />
+    <ProjectReference Include="..\ManagedShell.Interop\ManagedShell.Interop.csproj" />
+    <ProjectReference Include="..\ManagedShell.WindowsTasks\ManagedShell.WindowsTasks.csproj" />
+    <ProjectReference Include="..\ManagedShell.WindowsTray\ManagedShell.WindowsTray.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\start9x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\startxpclassic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Windows9x.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
+
+</Project>

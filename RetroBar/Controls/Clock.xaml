@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="RetroBar.Controls.Clock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MouseDoubleClick="Clock_OnMouseDoubleClick">
+    <TextBlock Style="{StaticResource Clock}"
+               Text="{Binding ClockText}"
+               ToolTip="{Binding ClockTip}" />
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Adjust Date/Time" Click="MenuItem_OnClick" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+</UserControl>
