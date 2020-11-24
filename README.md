@@ -1,4 +1,6 @@
-﻿RetroBar
+﻿![alt text](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png "RetroBar")
+
+RetroBar
 ---
 Pining for simpler times? RetroBar teleports you back in time by replacing your modern Windows taskbar with the Windows 95 style.
 

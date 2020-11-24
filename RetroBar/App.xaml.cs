@@ -41,7 +41,7 @@ namespace RetroBar
 
             AppBarHelper.HideWindowsTaskbar();
 
-            SetTheme("Themes\\WindowsXPClassic.xaml");
+            //SetTheme("Themes\\WindowsXPClassic.xaml");
 
             Taskbar taskbar = new Taskbar(Screen.PrimaryScreen);
             taskbar.Show();
