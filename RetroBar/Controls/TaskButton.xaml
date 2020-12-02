@@ -18,10 +18,10 @@
             </Grid.ColumnDefinitions>
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Grid.Column="0"
-                   Style="{StaticResource TaskIcon}" />
+                   Style="{DynamicResource TaskIcon}" />
             <TextBlock Text="{Binding Path=Title}"
                        Grid.Column="1"
-                       Style="{StaticResource TaskLabel}" />
+                       Style="{DynamicResource TaskLabel}" />
         </Grid>
         <Button.ContextMenu>
             <ContextMenu>

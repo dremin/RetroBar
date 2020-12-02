@@ -9,15 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\properties.png" />
+    <None Remove="Resources\properties_noclock.png" />
     <None Remove="Resources\start9x.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Remove="Themes\Windows2k.xaml" />
+    <Page Remove="Themes\WindowsMe.xaml" />
+    <Page Remove="Themes\WindowsXPBlue.xaml" />
     <Page Remove="Themes\WindowsXPClassic.xaml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Themes\WindowsMe.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Themes\WindowsXPBlue.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Themes\WindowsXPClassic.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -38,10 +52,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\properties.png" />
+    <Resource Include="Resources\properties_noclock.png" />
     <Resource Include="Resources\start9x.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Resources\startxpclassic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -26,21 +27,60 @@ namespace RetroBar.Controls
             set { SetValue(ClockTipProperty, value); }
         }
 
+        private DispatcherTimer clock;
+
         public Clock()
         {
             InitializeComponent();
             DataContext = this;
 
-            InitializeClock();
+            Initialize();
         }
 
-        private void InitializeClock()
+        private void Initialize()
         {
-            SetTime();
-            DispatcherTimer clock = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 500), DispatcherPriority.Background, Clock_Tick, Dispatcher);
+            if (Settings.Instance.ShowClock)
+            {
+                StartClock();
+            }
 
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
             Microsoft.Win32.SystemEvents.TimeChanged += TimeChanged;
             Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
+        }
+
+        private void StartClock()
+        {
+            SetTime();
+            clock = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 500), DispatcherPriority.Background, Clock_Tick,
+                Dispatcher);
+            ClockTextBlock.Visibility = Visibility.Visible;
+        }
+
+        private void StopClock()
+        {
+            if (clock != null)
+            {
+                clock.Stop();
+                clock = null;
+            }
+
+            ClockTextBlock.Visibility = Visibility.Collapsed;
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ShowClock")
+            {
+                if (Settings.Instance.ShowClock)
+                {
+                    StartClock();
+                }
+                else
+                {
+                    StopClock();
+                }
+            }
         }
 
         private void Clock_Tick(object sender, EventArgs args)

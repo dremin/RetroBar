@@ -3,7 +3,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Windows.Media;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using RetroBar.Utilities;
@@ -79,6 +78,11 @@ namespace RetroBar
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             Shell.StartTaskManager();
+        }
+
+        private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            PropertiesWindow.Instance.Show();
         }
     }
 }

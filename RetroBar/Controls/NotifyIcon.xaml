@@ -8,6 +8,6 @@
             MouseLeave="NotifyIcon_OnMouseLeave"
             MouseMove="NotifyIcon_OnMouseMove">
         <Image Source="{Binding Path=Icon, Mode=OneWay}"
-               Style="{StaticResource NotifyIcon}" />
+               Style="{DynamicResource NotifyIcon}" />
     </Border>
 </UserControl>

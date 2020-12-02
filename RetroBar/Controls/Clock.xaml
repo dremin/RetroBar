@@ -2,9 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              MouseDoubleClick="Clock_OnMouseDoubleClick">
-    <TextBlock Style="{StaticResource Clock}"
+    <TextBlock Style="{DynamicResource Clock}"
                Text="{Binding ClockText}"
-               ToolTip="{Binding ClockTip}" />
+               ToolTip="{Binding ClockTip}"
+               Name="ClockTextBlock"
+               Visibility="Collapsed" />
     <UserControl.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Adjust Date/Time" Click="MenuItem_OnClick" />

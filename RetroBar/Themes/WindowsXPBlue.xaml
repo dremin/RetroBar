@@ -1,0 +1,103 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:Double x:Key="TaskbarHeight">30</system:Double>
+
+    <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
+
+    <BitmapImage x:Key="StartIconImage"
+                 UriSource="../Resources/startxpclassic.png"/>
+
+    <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
+
+    <Style TargetType="Window"
+           x:Key="Taskbar"
+           BasedOn="{StaticResource Taskbar}">
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Window">
+                    <Border BorderThickness="0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                                 EndPoint="0,1">
+                                <GradientStop Color="#3a54b3"
+                                              Offset="0.0" />
+                                <GradientStop Color="#558ee3"
+                                              Offset="0.07" />
+                                <GradientStop Color="#3b50d1"
+                                              Offset="0.18" />
+                                <GradientStop Color="#3d57d8"
+                                              Offset="0.5" />
+                                <GradientStop Color="#3f5cdc"
+                                              Offset="0.86" />
+                                <GradientStop Color="#3e5ada"
+                                              Offset="0.9" />
+                                <GradientStop Color="#2e3da1"
+                                              Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="GroupBox"
+           x:Key="Tray">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border BorderThickness="0,1"
+                            BorderBrush="#2e54c5">
+                        <Border BorderThickness="1,0,0,0"
+                                BorderBrush="#183251">
+                            <Border BorderThickness="1,0,0,0"
+                                    BorderBrush="#37b4e2">
+                                <Border BorderThickness="1,0,0,0"
+                                        BorderBrush="#39c3f2">
+                                    <Border BorderThickness="1,0,0,0"
+                                            BorderBrush="#36a4eb"
+                                            Padding="7,0,0,0">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0"
+                                                                 EndPoint="0,1">
+                                                <GradientStop Color="#35aaed"
+                                                              Offset="0.0" />
+                                                <GradientStop Color="#36b5f0"
+                                                              Offset="0.07" />
+                                                <GradientStop Color="#3593e8"
+                                                              Offset="0.18" />
+                                                <GradientStop Color="#348ae5"
+                                                              Offset="0.5" />
+                                                <GradientStop Color="#3387e7"
+                                                              Offset="0.5" />
+                                                <GradientStop Color="#349aee"
+                                                              Offset="0.9" />
+                                                <GradientStop Color="#337bd4"
+                                                              Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <ContentPresenter />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="Clock"
+           BasedOn="{StaticResource Clock}">
+        <Setter Property="Margin"
+                Value="14,0" />
+    </Style>
+</ResourceDictionary>

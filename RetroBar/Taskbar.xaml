@@ -8,13 +8,12 @@
         LocationChanged="Taskbar_OnLocationChanged"
         Loaded="Taskbar_OnLoaded"
         ContextMenuOpening="Taskbar_OnContextMenuOpening"
-        TextOptions.TextFormattingMode="Display"
-        Style="{StaticResource Taskbar}">
+        Style="{DynamicResource Taskbar}">
     <Border>
         <DockPanel>
             <controls:StartButton DockPanel.Dock="Left" />
             <GroupBox DockPanel.Dock="Right"
-                      Style="{StaticResource Tray}">
+                      Style="{DynamicResource Tray}">
                 <StackPanel Orientation="Horizontal">
                     <controls:NotifyIconList VerticalAlignment="Center"></controls:NotifyIconList>
                     <controls:Clock VerticalAlignment="Center"></controls:Clock>
@@ -25,8 +24,9 @@
     </Border>
     <utilities:AppBarWindow.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Task Manager" Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
+            <MenuItem Header="Task Manager..." Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
             <Separator />
+            <MenuItem Header="Properties" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
             <MenuItem Header="Exit RetroBar" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
         </ContextMenu>
     </utilities:AppBarWindow.ContextMenu>

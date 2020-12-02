@@ -21,6 +21,12 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png"/>
 
+    <BitmapImage x:Key="PropertiesImage"
+                 UriSource="../Resources/properties.png"/>
+
+    <BitmapImage x:Key="PropertiesImage_NoClock"
+                 UriSource="../Resources/properties_noclock.png"/>
+
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
@@ -32,9 +38,23 @@
     </Style>
 
     <Style TargetType="Window"
+           x:Key="PropertiesWindow">
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode"
+                Value="Display" />
+        <Setter Property="Background"
+                Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+    </Style>
+
+    <Style TargetType="Window"
            x:Key="Taskbar">
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
         <Setter Property="TextOptions.TextRenderingMode"
                 Value="Aliased" />
+        <Setter Property="TextOptions.TextFormattingMode"
+                Value="Display" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Window">

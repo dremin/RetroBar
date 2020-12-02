@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Button ToolTip="{Binding Path=Title}"
             Click="Button_OnClick"
-            Style="{StaticResource StartButton}">
+            Style="{DynamicResource StartButton}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0"
-                   Style="{StaticResource StartIcon}" />
+                   Style="{DynamicResource StartIcon}" />
             <TextBlock Text="Start"
                        Grid.Column="1"
-                       Style="{StaticResource StartLabel}" />
+                       Style="{DynamicResource StartLabel}" />
         </Grid>
         <Button.ContextMenu>
             <ContextMenu>
