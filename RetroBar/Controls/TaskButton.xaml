@@ -1,16 +1,12 @@
 ﻿<UserControl x:Class="RetroBar.Controls.TaskButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:RetroBar.Converters"
-             Loaded="TaskButton_OnLoaded">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <converters:TaskButtonStyleConverter x:Key="styleConverter" />
-        </ResourceDictionary>
-    </UserControl.Resources>
-    <Button ToolTip="{Binding Path=Title}"
-            Click="Button_OnClick"
-            ContextMenuOpening="Button_OnContextMenuOpening" >
+             Loaded="TaskButton_OnLoaded"
+             Unloaded="TaskButton_OnUnloaded">
+    <Button Name="AppButton"
+            ToolTip="{Binding Path=Title}"
+            PreviewMouseDown="AppButton_OnPreviewMouseDown"
+            ContextMenuOpening="AppButton_OnContextMenuOpening" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -73,13 +69,5 @@
                 </MenuItem>
             </ContextMenu>
         </Button.ContextMenu>
-        <Button.Style>
-            <MultiBinding Converter="{StaticResource styleConverter}" 
-                          NotifyOnSourceUpdated="True">
-                <Binding RelativeSource="{RelativeSource Self}" />
-                <Binding Path="State" 
-                         UpdateSourceTrigger="PropertyChanged" />
-            </MultiBinding>
-        </Button.Style>
     </Button>
 </UserControl>

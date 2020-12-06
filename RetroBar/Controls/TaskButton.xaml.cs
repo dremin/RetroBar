@@ -1,7 +1,12 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
+using RetroBar.Converters;
+using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -11,30 +16,38 @@ namespace RetroBar.Controls
     public partial class TaskButton : UserControl
     {
         private ApplicationWindow Window;
+        private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
 
         public TaskButton()
         {
             InitializeComponent();
+            SetStyle();
+        }
+
+        private void SetStyle()
+        {
+            MultiBinding multiBinding = new MultiBinding();
+            multiBinding.Converter = StyleConverter;
+
+            multiBinding.Bindings.Add(new Binding { RelativeSource = RelativeSource.Self });
+            multiBinding.Bindings.Add(new Binding("State"));
+
+            AppButton.SetBinding(StyleProperty, multiBinding);
         }
 
         private void TaskButton_OnLoaded(object sender, RoutedEventArgs e)
         {
             Window = DataContext as ApplicationWindow;
+
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
-        private void Button_OnClick(object sender, RoutedEventArgs e)
+        private void TaskButton_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            if (Window.State == ApplicationWindow.WindowState.Active)
-            {
-                Window.Minimize();
-            }
-            else
-            {
-                Window.BringToFront();
-            }
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
 
-        private void Button_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
+        private void AppButton_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             if (Window != null)
             {
@@ -78,6 +91,29 @@ namespace RetroBar.Controls
         private void MaximizeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             Window?.Maximize();
+        }
+
+        private void AppButton_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                if (Window.State == ApplicationWindow.WindowState.Active)
+                {
+                    Window.Minimize();
+                }
+                else
+                {
+                    Window.BringToFront();
+                }
+            }
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Theme")
+            {
+                SetStyle();
+            }
         }
     }
 }

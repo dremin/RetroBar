@@ -30,6 +30,8 @@
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
+    <system:String x:Key="StartText">Start</system:String>
+
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily"
                 Value="{DynamicResource GlobalFontFamily}" />

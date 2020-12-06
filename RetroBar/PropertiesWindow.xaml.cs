@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 
 namespace RetroBar
@@ -33,7 +34,7 @@ namespace RetroBar
             LoadThemes();
 
             Left = 10;
-            Top = AppBarHelper.PrimaryMonitorDeviceSize.Height - Height - 40;
+            Top = (AppBarHelper.PrimaryMonitorDeviceSize.Height / Shell.DpiScale) - Height - 40;
         }
 
         private void LoadThemes()

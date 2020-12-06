@@ -6,8 +6,6 @@
         Title="RetroBar Taskbar"
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
-        Loaded="Taskbar_OnLoaded"
-        ContextMenuOpening="Taskbar_OnContextMenuOpening"
         Style="{DynamicResource Taskbar}">
     <Border>
         <DockPanel>
