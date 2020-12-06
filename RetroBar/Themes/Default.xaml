@@ -7,16 +7,15 @@
     <system:Double x:Key="TaskButtonMinWidth">45</system:Double>
     <Thickness x:Key="TaskButtonMargin" Right="3" />
 
-    <SolidColorBrush x:Key="ButtonHighlight" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonLight" Color="#dfdfdf" />
-    <SolidColorBrush x:Key="ButtonFace" Color="#c0c0c0" />
-    <SolidColorBrush x:Key="ButtonShadow" Color="#808080" />
-    <SolidColorBrush x:Key="ButtonDarkShadow" Color="#000000" />
-    <SolidColorBrush x:Key="ButtonSelectedFace" Color="#e2e2e2" />
-    <SolidColorBrush x:Key="ButtonFlashingFace" Color="#000080" />
+    <SolidColorBrush x:Key="ButtonHighlight" Color="{x:Static SystemColors.ControlLightLightColor}" />
+    <SolidColorBrush x:Key="ButtonLight" Color="{x:Static SystemColors.ControlLightColor}" />
+    <SolidColorBrush x:Key="ButtonFace" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="ButtonShadow" Color="{x:Static SystemColors.ControlDarkColor}" />
+    <SolidColorBrush x:Key="ButtonDarkShadow" Color="{x:Static SystemColors.ControlDarkDarkColor}" />
+    <SolidColorBrush x:Key="ButtonFlashingFace" Color="{x:Static SystemColors.HighlightColor}" />
 
-    <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
-    <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
+    <SolidColorBrush x:Key="ButtonForeground" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
 
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png"/>
@@ -150,8 +149,6 @@
     <Style TargetType="Button"
            x:Key="TaskButtonActive"
            BasedOn="{StaticResource TaskButton}">
-        <Setter Property="Background"
-                Value="{DynamicResource ButtonSelectedFace}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
         <Setter Property="Template">
@@ -164,10 +161,19 @@
                             <Border BorderThickness="0,0,1,1"
                                     BorderBrush="{DynamicResource ButtonLight}">
                                 <Border BorderThickness="1,1,0,0" 
-                                        BorderBrush="{DynamicResource ButtonShadow}"
-                                        Background="{TemplateBinding Background}"
-                                        Padding="2,2,2,0">
-                                    <ContentPresenter />
+                                        BorderBrush="{DynamicResource ButtonShadow}">
+                                    <Border BorderThickness="0,1,0,0"
+                                            BorderBrush="{DynamicResource ButtonHighlight}"
+                                            Padding="2,1,2,0">
+                                        <Border.Background>
+                                            <DrawingBrush TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
+                                                <DrawingBrush.Drawing>
+                                                    <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}"/>
+                                                </DrawingBrush.Drawing>
+                                            </DrawingBrush>
+                                        </Border.Background>
+                                        <ContentPresenter />
+                                    </Border>
                                 </Border>
                             </Border>
                         </Border>

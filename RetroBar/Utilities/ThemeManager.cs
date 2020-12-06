@@ -1,11 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace RetroBar.Utilities
 {
     public class ThemeManager
     {
+        private const string THEME_DEFAULT = "Default";
+        private const string THEME_FOLDER = "Themes";
+        private const string THEME_EXT = "xaml";
+
+        public static ThemeManager Instance;
+
         public ThemeManager()
         {
             SetThemeFromSettings();
@@ -15,7 +24,8 @@ namespace RetroBar.Utilities
 
         public void SetThemeFromSettings()
         {
-            if (Settings.Instance.Theme != "Default")
+            SetTheme(THEME_DEFAULT);
+            if (Settings.Instance.Theme != THEME_DEFAULT)
             {
                 SetTheme(Settings.Instance.Theme);
             }
@@ -25,16 +35,16 @@ namespace RetroBar.Utilities
         {
             string themeFilePath;
 
-            if (theme == "Default")
+            if (theme == THEME_DEFAULT)
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
-                themeFilePath = "Themes\\Windows9x.xaml";
+                themeFilePath = Path.ChangeExtension(Path.Combine(THEME_FOLDER, THEME_DEFAULT), THEME_EXT);
             }
             else
             {
-                themeFilePath = AppDomain.CurrentDomain.BaseDirectory + "Themes\\" + theme;
+                themeFilePath = Path.ChangeExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, THEME_FOLDER, theme), THEME_EXT);
 
-                if (!System.IO.File.Exists(themeFilePath))
+                if (!File.Exists(themeFilePath))
                 {
                     return;
                 }
@@ -47,11 +57,23 @@ namespace RetroBar.Utilities
             Application.Current.Resources.MergedDictionaries.Add(newRes);
         }
 
+        public List<string> GetThemes()
+        {
+            List<string> themes = new List<string>();
+            themes.Add(THEME_DEFAULT);
+
+            foreach (string subStr in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, THEME_FOLDER)).Where(s => Path.GetExtension(s).Contains(THEME_EXT)))
+            {
+                themes.Add(Path.GetFileNameWithoutExtension(subStr));
+            }
+
+            return themes;
+        }
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Theme")
             {
-                SetTheme("Default");
                 SetThemeFromSettings();
             }
         }

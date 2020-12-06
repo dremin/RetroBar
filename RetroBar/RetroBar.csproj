@@ -15,29 +15,35 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Remove="Themes\Windows2k.xaml" />
-    <Page Remove="Themes\WindowsMe.xaml" />
-    <Page Remove="Themes\WindowsXPBlue.xaml" />
-    <Page Remove="Themes\WindowsXPClassic.xaml" />
+    <Page Remove="Themes\Windows 2000.xaml" />
+    <Page Remove="Themes\Windows 95-98.xaml" />
+    <Page Remove="Themes\Windows Me.xaml" />
+    <Page Remove="Themes\Windows XP Blue.xaml" />
+    <Page Remove="Themes\Windows XP Classic.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Themes\WindowsMe.xaml">
+    <None Include="Themes\Windows 95-98.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Include="Themes\WindowsXPBlue.xaml">
+    <None Include="Themes\Windows Me.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Themes\Windows XP Blue.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Themes\WindowsXPClassic.xaml">
+    <None Include="Themes\Windows XP Classic.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Include="Themes\Windows2k.xaml">
+    <None Include="Themes\Windows 2000.xaml">
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -82,7 +88,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Themes\Windows9x.xaml">
+    <Page Update="Themes\Default.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>

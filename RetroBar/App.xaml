@@ -5,11 +5,11 @@
              Startup="App_OnStartup"
              Exit="App_OnExit"
              SessionEnding="App_OnSessionEnding">
-    <Application.Resources>
+    <!--<Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes\Windows9x.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Application.Resources>
+    </Application.Resources>-->
 </Application>

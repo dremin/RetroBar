@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Theme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default</Value>
+      <Value Profile="(Default)">Windows 95-98</Value>
     </Setting>
     <Setting Name="IsFirstRun" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

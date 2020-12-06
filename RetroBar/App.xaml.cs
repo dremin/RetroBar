@@ -17,11 +17,10 @@ namespace RetroBar
     public partial class App : Application
     {
         public static bool IsShuttingDown;
-        public ThemeManager ThemeManager;
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            ThemeManager = new ThemeManager();
+            ThemeManager.Instance = new ThemeManager();
             SetupManagedShell();
 
             Taskbar taskbar = new Taskbar(Screen.PrimaryScreen);

@@ -5,8 +5,10 @@
     <SolidColorBrush x:Key="ButtonFace" Color="#D4D0C8" />
     <SolidColorBrush x:Key="ButtonShadow" Color="#808080" />
     <SolidColorBrush x:Key="ButtonDarkShadow" Color="#404040" />
-    <SolidColorBrush x:Key="ButtonSelectedFace" Color="#e9e7e3" />
     <SolidColorBrush x:Key="ButtonFlashingFace" Color="#0A246A" />
+
+    <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
+    <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 

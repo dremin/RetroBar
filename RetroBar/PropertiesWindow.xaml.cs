@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Windows;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
@@ -39,11 +36,8 @@ namespace RetroBar
 
         private void LoadThemes()
         {
-            cboThemeSelect.Items.Add("Default");
-
-            foreach (string subStr in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + "\\Themes").Where(s => Path.GetExtension(s).Contains("xaml")))
+            foreach (var theme in ThemeManager.Instance.GetThemes())
             {
-                string theme = Path.GetFileName(subStr);
                 cboThemeSelect.Items.Add(theme);
             }
         }
