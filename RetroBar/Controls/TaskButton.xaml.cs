@@ -17,6 +17,7 @@ namespace RetroBar.Controls
     {
         private ApplicationWindow Window;
         private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
+        private ApplicationWindow.WindowState PressedWindowState = ApplicationWindow.WindowState.Inactive;
 
         public TaskButton()
         {
@@ -93,18 +94,23 @@ namespace RetroBar.Controls
             Window?.Maximize();
         }
 
+        private void AppButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (PressedWindowState == ApplicationWindow.WindowState.Active)
+            {
+                Window.Minimize();
+            }
+            else
+            {
+                Window.BringToFront();
+            }
+        }
+
         private void AppButton_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                if (Window.State == ApplicationWindow.WindowState.Active)
-                {
-                    Window.Minimize();
-                }
-                else
-                {
-                    Window.BringToFront();
-                }
+                PressedWindowState = Window.State;
             }
         }
 

@@ -5,6 +5,7 @@
              Unloaded="TaskButton_OnUnloaded">
     <Button Name="AppButton"
             ToolTip="{Binding Path=Title}"
+            Click="AppButton_OnClick"
             PreviewMouseDown="AppButton_OnPreviewMouseDown"
             ContextMenuOpening="AppButton_OnContextMenuOpening" >
         <Grid>
