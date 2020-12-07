@@ -20,7 +20,7 @@ namespace RetroBar
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            ThemeManager.Instance = new ThemeManager();
+            ThemeManager.Instance.SetThemeFromSettings();
             SetupManagedShell();
 
             Taskbar taskbar = new Taskbar(Screen.PrimaryScreen);

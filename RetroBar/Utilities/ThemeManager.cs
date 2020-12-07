@@ -9,16 +9,14 @@ namespace RetroBar.Utilities
 {
     public class ThemeManager
     {
-        private const string THEME_DEFAULT = "Default";
+        private const string THEME_DEFAULT = "System";
         private const string THEME_FOLDER = "Themes";
         private const string THEME_EXT = "xaml";
 
-        public static ThemeManager Instance;
+        public static ThemeManager Instance = new ThemeManager();
 
         public ThemeManager()
         {
-            SetThemeFromSettings();
-
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 

@@ -88,7 +88,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Themes\Default.xaml">
+    <Page Update="Themes\System.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
