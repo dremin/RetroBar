@@ -41,3 +41,9 @@ jobs:
       with:
         name: RetroBar
         path: RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
+
+    - name: Bump versions
+      uses: SiqiLu/dotnet-bump-version@master
+      with:
+        version_files: "**/*.csproj"
+        github_token: ${{ secrets.GITHUB_TOKEN }}

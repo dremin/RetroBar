@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <StartupObject>RetroBar.App</StartupObject>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
