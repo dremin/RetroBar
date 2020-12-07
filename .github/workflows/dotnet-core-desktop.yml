@@ -39,5 +39,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Executable
+        name: RetroBar
         path: RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
