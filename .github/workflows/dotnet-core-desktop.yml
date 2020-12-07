@@ -45,7 +45,7 @@ jobs:
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     - name: Build the app
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+      run: msbuild $env:Solution_Name /t:Publish /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
         Configuration: ${{ matrix.configuration }}
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
@@ -53,5 +53,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: BuildFolder
-        path: RetroBar\bin\Release\netcoreapp3.1
+        name: Executable
+        path: RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
