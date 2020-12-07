@@ -12,14 +12,12 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Release]
-        targetplatform: [x64]
+        publishprofile: [ ReleaseProfile ]
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: windows-latest
 
     env:
-      Solution_Name: RetroBar.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: RetroBar.sln
 
     steps:
     - name: Checkout
@@ -33,22 +31,10 @@ jobs:
       with:
         dotnet-version: 3.1.101
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+    - name: Publish app
+      run: dotnet publish -p:PublishProfile=$env:Profile
       env:
-        Configuration: ${{ matrix.configuration }}
-        RuntimeIdentifier: win-${{ matrix.targetplatform }}
-
-    - name: Build the app
-      run: msbuild $env:Solution_Name /t:Publish /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
-      env:
-        Configuration: ${{ matrix.configuration }}
-        RuntimeIdentifier: win-${{ matrix.targetplatform }}
+        Profile: ${{ matrix.publishprofile }}
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
