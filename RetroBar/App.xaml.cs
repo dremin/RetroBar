@@ -1,12 +1,10 @@
-﻿using System.Windows;
-using System.Windows.Forms;
-using ManagedShell.Common.Helpers;
+﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Common.Logging.Observers;
-using ManagedShell.Configuration;
-using ManagedShell.WindowsTasks;
-using ManagedShell.WindowsTray;
+using ManagedShell.Management;
 using RetroBar.Utilities;
+using System.Windows;
+using System.Windows.Forms;
 using Application = System.Windows.Application;
 
 namespace RetroBar
@@ -18,12 +16,26 @@ namespace RetroBar
     {
         public static bool IsShuttingDown;
 
+        private readonly ShellManager _shellManager;
+        private readonly ExplorerHelper _explorerHelper;
+        public readonly FullScreenHelper _fullScreenHelper;
+
+        public App()
+        {
+            ThemeManager = new ThemeManager();
+            _fullScreenHelper = new FullScreenHelper();
+
+            _shellManager = new ShellManager();
+            _explorerHelper = new ExplorerHelper(_shellManager);
+        }
+        public ThemeManager ThemeManager { get; }
+
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            ThemeManager.Instance.SetThemeFromSettings();
+            ThemeManager.SetThemeFromSettings();
             SetupManagedShell();
 
-            Taskbar taskbar = new Taskbar(Screen.PrimaryScreen);
+            Taskbar taskbar = new Taskbar(_shellManager, _explorerHelper, _fullScreenHelper, Screen.PrimaryScreen);
             taskbar.Show();
         }
 
@@ -39,29 +51,31 @@ namespace RetroBar
 
         private void SetupManagedShell()
         {
-            ShellSettings.Instance.EnableTaskbar = true;
-            ShellSettings.Instance.TaskbarIconSize = (int)IconSize.Small;
-            ShellSettings.Instance.PinnedNotifyIcons = new[] {
+            _shellManager.ShellSettings.EnableTaskbar = true;
+            _shellManager.ShellSettings.TaskbarIconSize = (int)IconSize.Small;
+            _shellManager.ShellSettings.PinnedNotifyIcons = new[] {
                 "7820ae76-23e3-4229-82c1-e41cb67d5b9c",
                 "7820ae75-23e3-4229-82c1-e41cb67d5b9c",
                 "7820ae74-23e3-4229-82c1-e41cb67d5b9c",
                 "7820ae73-23e3-4229-82c1-e41cb67d5b9c"
             };
 
-            CairoLogger.Instance.Severity = LogSeverity.Debug;
-            CairoLogger.Instance.Attach(new ConsoleLog());
+            CairoLogger.Severity = LogSeverity.Debug;
+            CairoLogger.Attach(new ConsoleLog());
 
-            AppBarHelper.HideWindowsTaskbar();
+            _explorerHelper.HideTaskbar();
         }
 
         private void ExitApp()
         {
-            AppBarHelper.ShowWindowsTaskbar();
+            _explorerHelper.ShowTaskbar();
+
             Shell.DisposeIml();
 
-            FullScreenHelper.Instance.Dispose();
-            NotificationArea.Instance.Dispose();
-            Tasks.Instance.Dispose();
+            _fullScreenHelper.Dispose();
+
+            _shellManager.NotificationArea.Dispose();
+            _shellManager.Tasks.Dispose();
         }
     }
 }

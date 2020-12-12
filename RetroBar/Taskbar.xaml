@@ -13,11 +13,11 @@
             <GroupBox DockPanel.Dock="Right"
                       Style="{DynamicResource Tray}">
                 <StackPanel Orientation="Horizontal">
-                    <controls:NotifyIconList VerticalAlignment="Center"></controls:NotifyIconList>
+                    <controls:NotifyIconList x:Name="notifyIconList"  VerticalAlignment="Center"></controls:NotifyIconList>
                     <controls:Clock VerticalAlignment="Center"></controls:Clock>
                 </StackPanel>
             </GroupBox>
-            <controls:TaskList VerticalAlignment="Center"></controls:TaskList>
+            <controls:TaskList x:Name="taskList" VerticalAlignment="Center"></controls:TaskList>
         </DockPanel>
     </Border>
     <utilities:AppBarWindow.ContextMenu>

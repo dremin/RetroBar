@@ -1,14 +1,15 @@
-﻿using System;
-using System.Text;
-using System.Diagnostics;
-using System.ComponentModel;
-using ManagedShell.Interop;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using ManagedShell.Common.Helpers;
-using System.Threading;
+﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
+using ManagedShell.Configuration;
+using ManagedShell.Interop;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ManagedShell.WindowsTasks
 {
@@ -16,10 +17,14 @@ namespace ManagedShell.WindowsTasks
     public class ApplicationWindow : IEquatable<ApplicationWindow>, INotifyPropertyChanged, IDisposable
     {
         const int TITLE_LENGTH = 1024;
+        private readonly ShellSettings _shellSettings;
+        private readonly TasksService _tasksService;
         StringBuilder titleBuilder = new StringBuilder(TITLE_LENGTH);
 
-        public ApplicationWindow(IntPtr handle)
+        public ApplicationWindow(ShellSettings shellSettings, TasksService tasksService, IntPtr handle)
         {
+            _shellSettings = shellSettings;
+            _tasksService = tasksService;
             Handle = handle;
             State = WindowState.Inactive;
         }
@@ -91,13 +96,18 @@ namespace ManagedShell.WindowsTasks
             }
         }
 
+        public void CloseByTaskService()
+        {
+            _tasksService.CloseWindow(this);
+        }
+
         private string _winFileName = "";
 
         public string WinFileName
         {
             get
             {
-                if(string.IsNullOrEmpty(_winFileName))
+                if (string.IsNullOrEmpty(_winFileName))
                 {
                     _winFileName = Shell.GetPathForHandle(Handle);
                 }
@@ -313,7 +323,7 @@ namespace ManagedShell.WindowsTasks
 
                 if (cloaked > 0)
                 {
-                    CairoLogger.Instance.Debug(string.Format("Cloaked ({0}) window ({1}) hidden from taskbar", cloaked, Title));
+                    CairoLogger.Debug(string.Format("Cloaked ({0}) window ({1}) hidden from taskbar", cloaked, Title));
                     return false;
                 }
 
@@ -324,7 +334,7 @@ namespace ManagedShell.WindowsTasks
                 {
                     if ((ExtendedWindowStyles & (int)NativeMethods.ExtendedWindowStyles.WS_EX_WINDOWEDGE) == 0)
                     {
-                        CairoLogger.Instance.Debug($"Hiding UWP non-window {Title}");
+                        CairoLogger.Debug($"Hiding UWP non-window {Title}");
                         return false;
                     }
                 }
@@ -335,7 +345,7 @@ namespace ManagedShell.WindowsTasks
 
         public void Uncloak()
         {
-            CairoLogger.Instance.Debug($"Uncloak event received for {Title}");
+            CairoLogger.Debug($"Uncloak event received for {Title}");
 
             SetShowInTaskbar();
         }
@@ -355,7 +365,7 @@ namespace ManagedShell.WindowsTasks
                         {
                             BitmapImage img = new BitmapImage();
                             img.BeginInit();
-                            img.UriSource = new Uri(UWPInterop.StoreAppHelper.GetAppIcon(AppUserModelID, Configuration.ShellSettings.Instance.TaskbarIconSize)[0], UriKind.Absolute);
+                            img.UriSource = new Uri(UWPInterop.StoreAppHelper.GetAppIcon(AppUserModelID, _shellSettings.TaskbarIconSize)[0], UriKind.Absolute);
                             img.CacheOption = BitmapCacheOption.OnLoad;
                             img.EndInit();
                             img.Freeze();
@@ -374,7 +384,7 @@ namespace ManagedShell.WindowsTasks
                         uint WM_QUERYDRAGICON = (uint)NativeMethods.WM.QUERYDRAGICON;
                         int GCL_HICON = -14;
                         int GCL_HICONSM = -34;
-                        IconSize sizeSetting = (IconSize)Configuration.ShellSettings.Instance.TaskbarIconSize;
+                        IconSize sizeSetting = (IconSize)_shellSettings.TaskbarIconSize;
 
                         if (sizeSetting == IconSize.Small)
                         {

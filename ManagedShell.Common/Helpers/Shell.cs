@@ -10,6 +10,9 @@ using static ManagedShell.Interop.NativeMethods;
 
 namespace ManagedShell.Common.Helpers
 {
+    // We have too many things in here
+    // Lets focus more on single responsibility
+
     public partial class Shell
     {
         private const int MAX_PATH = 260;

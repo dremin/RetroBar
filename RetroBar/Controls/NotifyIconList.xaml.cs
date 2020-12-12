@@ -10,19 +10,25 @@ namespace RetroBar.Controls
     public partial class NotifyIconList : UserControl
     {
         private bool isLoaded;
+        private NotificationArea _notificationArea;
 
         public NotifyIconList()
         {
             InitializeComponent();
         }
 
+        public void SetNotificationArea(NotificationArea notificationArea)
+        {
+            _notificationArea = notificationArea;
+        }
+
         private void NotifyIconList_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (!isLoaded)
             {
-                NotificationArea.Instance.Initialize();
-                UnpinnedNotifyIconList.ItemsSource = NotificationArea.Instance.UnpinnedIcons;
-                PinnedNotifyIconList.ItemsSource = NotificationArea.Instance.PinnedIcons;
+                _notificationArea.Initialize();
+                UnpinnedNotifyIconList.ItemsSource = _notificationArea.UnpinnedIcons;
+                PinnedNotifyIconList.ItemsSource = _notificationArea.PinnedIcons;
 
                 isLoaded = true;
             }

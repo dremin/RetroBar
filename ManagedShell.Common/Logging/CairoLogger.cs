@@ -1,15 +1,8 @@
-﻿using ManagedShell.Common.DesignPatterns;
-using System;
+﻿using System;
 
 namespace ManagedShell.Common.Logging
 {
-    /// <summary>
-    /// Singleton logger class through which all log events are processed.
-    /// </summary>
-    /// <remarks>
-    /// GoF Design Patterns: Singleton, Observer.
-    /// </remarks>
-    public sealed class CairoLogger : SingletonObject<CairoLogger>
+    public static class CairoLogger
     {
         #region Delegates
 
@@ -31,17 +24,17 @@ namespace ManagedShell.Common.Logging
         #endregion
 
         // These Booleans are used strictly to improve performance.
-        private bool _isDebug;
-        private bool _isError;
-        private bool _isFatal;
-        private bool _isInfo;
-        private bool _isWarning;
-        private LogSeverity _severity;
+        private static bool _isDebug;
+        private static bool _isError;
+        private static bool _isFatal;
+        private static bool _isInfo;
+        private static bool _isWarning;
+        private static LogSeverity _severity;
 
         /// <summary>
         /// Private constructor. Initializes default severity to "Debug".
         /// </summary>
-        private CairoLogger()
+        static CairoLogger()
         {
             // Default severity is Debug level
             Severity = LogSeverity.Debug;
@@ -50,7 +43,7 @@ namespace ManagedShell.Common.Logging
         /// <summary>
         /// Gets and sets the severity level of logging activity.
         /// </summary>
-        public LogSeverity Severity
+        public static LogSeverity Severity
         {
             get { return _severity; }
             set
@@ -71,13 +64,13 @@ namespace ManagedShell.Common.Logging
         /// <summary>
         /// The Log event.
         /// </summary>
-        public event LogEventHandler Log;
+        public static event LogEventHandler Log;
 
         /// <summary>
         /// Log a message when severity level is "Debug" or higher.
         /// </summary>
         /// <param name="message">Log message</param>
-        public void Debug(string message)
+        public static void Debug(string message)
         {
             // if (_isDebug) // Removed due to the same condition exisiting in the DebugIf call
             DebugIf(true, message, null);
@@ -87,7 +80,7 @@ namespace ManagedShell.Common.Logging
         /// Log a message when severity level is "Debug" or higher AND condition is met.
         /// </summary>
         /// <param name="message">Log message</param>
-        public void DebugIf(bool condition, string message)
+        public static void DebugIf(bool condition, string message)
         {
             // if (_isDebug) // Removed due to the same condition exisiting in the DebugIf call
             DebugIf(condition, message, null);
@@ -98,7 +91,7 @@ namespace ManagedShell.Common.Logging
         /// </summary>
         /// <param name="message">Log message.</param>
         /// <param name="exception">Inner exception.</param>
-        public void Debug(string message, Exception exception)
+        public static void Debug(string message, Exception exception)
         {
             // if (_isDebug) // Removed due to the same condition exisiting in the DebugIf call
             DebugIf(true, message, exception);
@@ -109,7 +102,7 @@ namespace ManagedShell.Common.Logging
         /// </summary>
         /// <param name="message">Log message.</param>
         /// <param name="exception">Inner exception.</param>
-        public void DebugIf(bool condition, string message, Exception exception)
+        public static void DebugIf(bool condition, string message, Exception exception)
         {
             if (_isDebug && condition)
                 OnLog(new LogEventArgs(LogSeverity.Debug, message, exception, DateTime.Now));
@@ -121,7 +114,7 @@ namespace ManagedShell.Common.Logging
         /// Log a message when severity level is "Info" or higher.
         /// </summary>
         /// <param name="message">Log message</param>
-        public void Info(string message)
+        public static void Info(string message)
         {
             if (_isInfo)
                 Info(message, null);
@@ -132,7 +125,7 @@ namespace ManagedShell.Common.Logging
         /// </summary>
         /// <param name="message">Log message.</param>
         /// <param name="exception">Inner exception.</param>
-        public void Info(string message, Exception exception)
+        public static void Info(string message, Exception exception)
         {
             if (_isInfo)
                 OnLog(new LogEventArgs(LogSeverity.Info, message, exception, DateTime.Now));
@@ -142,7 +135,7 @@ namespace ManagedShell.Common.Logging
         /// Log a message when severity level is "Warning" or higher.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public void Warning(string message)
+        public static void Warning(string message)
         {
             if (_isWarning)
                 Warning(message, null);
@@ -153,7 +146,7 @@ namespace ManagedShell.Common.Logging
         /// </summary>
         /// <param name="message">Log message.</param>
         /// <param name="exception">Inner exception.</param>
-        public void Warning(string message, Exception exception)
+        public static void Warning(string message, Exception exception)
         {
             if (_isWarning)
                 OnLog(new LogEventArgs(LogSeverity.Warning, message, exception, DateTime.Now));
@@ -163,7 +156,7 @@ namespace ManagedShell.Common.Logging
         /// Log a message when severity level is "Error" or higher.
         /// </summary>
         /// <param name="message">Log message</param>
-        public void Error(string message)
+        public static void Error(string message)
         {
             if (_isError)
                 Error(message, null);
@@ -174,7 +167,7 @@ namespace ManagedShell.Common.Logging
         /// </summary>
         /// <param name="message">Log message.</param>
         /// <param name="exception">Inner exception.</param>
-        public void Error(string message, Exception exception)
+        public static void Error(string message, Exception exception)
         {
             if (_isError)
                 OnLog(new LogEventArgs(LogSeverity.Error, message, exception, DateTime.Now));
@@ -184,7 +177,7 @@ namespace ManagedShell.Common.Logging
         /// Log a message when severity level is "Fatal"
         /// </summary>
         /// <param name="message">Log message</param>
-        public void Fatal(string message)
+        public static void Fatal(string message)
         {
             if (_isFatal)
                 Fatal(message, null);
@@ -195,7 +188,7 @@ namespace ManagedShell.Common.Logging
         /// </summary>
         /// <param name="message">Log message.</param>
         /// <param name="exception">Inner exception.</param>
-        public void Fatal(string message, Exception exception)
+        public static void Fatal(string message, Exception exception)
         {
             if (_isFatal)
                 OnLog(new LogEventArgs(LogSeverity.Fatal, message, exception, DateTime.Now));
@@ -205,11 +198,11 @@ namespace ManagedShell.Common.Logging
         /// Invoke the Log event.
         /// </summary>
         /// <param name="e">Log event parameters.</param>
-        public void OnLog(LogEventArgs e)
+        public static void OnLog(LogEventArgs e)
         {
             if (Log != null)
             {
-                Log(this, e);
+                Log(null, e);
             }
         }
 
@@ -217,7 +210,7 @@ namespace ManagedShell.Common.Logging
         /// Attach a listening observer logging device to logger.
         /// </summary>
         /// <param name="observer">Observer (listening device).</param>
-        public void Attach(ILog observer)
+        public static void Attach(ILog observer)
         {
             Log += observer.Log;
         }
@@ -226,18 +219,18 @@ namespace ManagedShell.Common.Logging
         /// Detach a listening observer logging device from logger.
         /// </summary>
         /// <param name="observer">Observer (listening device).</param>
-        public void Detach(ILog observer)
+        public static void Detach(ILog observer)
         {
             Log -= observer.Log;
         }
 
-        public void Attach(ILog[] observers)
+        public static void Attach(ILog[] observers)
         {
             foreach (var observer in observers)
                 Attach(observer);
         }
 
-        public void Detach(ILog[] observers)
+        public static void Detach(ILog[] observers)
         {
             foreach (var observer in observers)
                 Detach(observer);

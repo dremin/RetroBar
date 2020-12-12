@@ -7,7 +7,6 @@
         Height="400"
         Width="345"
         ResizeMode="NoResize"
-        Closing="PropertiesWindow_OnClosing"
         Style="{DynamicResource PropertiesWindow}">
     <Window.Resources>
         <ResourceDictionary>

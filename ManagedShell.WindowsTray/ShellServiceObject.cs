@@ -22,7 +22,7 @@ namespace ManagedShell.WindowsTray
                 }
                 catch
                 {
-                    CairoLogger.Instance.Debug("ShellServiceObject: Unable to start");
+                    CairoLogger.Debug("ShellServiceObject: Unable to start");
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace ManagedShell.WindowsTray
                 }
                 catch
                 {
-                    CairoLogger.Instance.Debug("ShellServiceObject: Unable to stop");
+                    CairoLogger.Debug("ShellServiceObject: Unable to stop");
                 }
             }
         }

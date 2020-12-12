@@ -1,37 +1,22 @@
-﻿using System;
+﻿using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using ManagedShell.Common.Logging;
-using ManagedShell.Common.Helpers;
 using static ManagedShell.Interop.NativeMethods;
 
 namespace RetroBar.Utilities
 {
     public sealed class FullScreenHelper : IDisposable
     {
-        private static FullScreenHelper instance;
-
-        public static FullScreenHelper Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new FullScreenHelper();
-                }
-
-                return instance;
-            }
-        }
-
         private readonly DispatcherTimer fullscreenCheck;
 
         public ObservableCollection<FullScreenApp> FullScreenApps = new ObservableCollection<FullScreenApp>();
 
-        private FullScreenHelper()
+        public FullScreenHelper()
         {
             fullscreenCheck = new DispatcherTimer(DispatcherPriority.Background, System.Windows.Application.Current.Dispatcher)
             {
@@ -70,7 +55,7 @@ namespace RetroBar.Utilities
             // remove any changed windows we found
             if (removeApps.Count > 0)
             {
-                CairoLogger.Instance.Debug("Removing full screen app(s)");
+                CairoLogger.Debug("Removing full screen app(s)");
                 foreach (FullScreenApp existingApp in removeApps)
                 {
                     FullScreenApps.Remove(existingApp);
@@ -83,7 +68,7 @@ namespace RetroBar.Utilities
                 FullScreenApp appNew = getFullScreenApp(hWnd);
                 if (appNew != null)
                 {
-                    CairoLogger.Instance.Debug("Adding full screen app");
+                    CairoLogger.Debug("Adding full screen app");
                     FullScreenApps.Add(appNew);
                 }
             }
@@ -106,7 +91,7 @@ namespace RetroBar.Utilities
 
             // check if this is a fullscreen app
             Screen screen = Screen.PrimaryScreen;
-            
+
             if (rect.Top == screen.Bounds.Top && rect.Left == screen.Bounds.Left && rect.Bottom == screen.Bounds.Bottom && rect.Right == screen.Bounds.Right)
             {
                 // make sure this is not us

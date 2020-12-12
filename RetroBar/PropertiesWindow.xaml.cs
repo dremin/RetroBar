@@ -1,7 +1,6 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using ManagedShell.Common.Helpers;
+﻿using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
+using System.Windows;
 
 namespace RetroBar
 {
@@ -10,22 +9,12 @@ namespace RetroBar
     /// </summary>
     public partial class PropertiesWindow : Window
     {
-        private static PropertiesWindow _instance;
-        public static PropertiesWindow Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new PropertiesWindow();
-                }
+        private readonly ThemeManager _themeManager;
 
-                return _instance;
-            }
-        }
-
-        public PropertiesWindow()
+        public PropertiesWindow(ThemeManager themeManager)
         {
+            _themeManager = themeManager;
+
             InitializeComponent();
 
             LoadThemes();
@@ -36,15 +25,10 @@ namespace RetroBar
 
         private void LoadThemes()
         {
-            foreach (var theme in ThemeManager.Instance.GetThemes())
+            foreach (var theme in _themeManager.GetThemes())
             {
                 cboThemeSelect.Items.Add(theme);
             }
-        }
-
-        private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)
-        {
-            _instance = null;
         }
 
         private void OK_OnClick(object sender, RoutedEventArgs e)

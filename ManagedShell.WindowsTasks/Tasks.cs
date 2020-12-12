@@ -1,22 +1,23 @@
-﻿using System;
+﻿using ManagedShell.Common.Logging;
+using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
-using ManagedShell.Common.DesignPatterns;
-using ManagedShell.Common.Logging;
 
 namespace ManagedShell.WindowsTasks
 {
-    public class Tasks : SingletonObject<Tasks>, IDisposable
+    public class Tasks : IDisposable
     {
+        private readonly TasksService _tasksService;
         private ICollectionView groupedWindows;
 
         public ICollectionView GroupedWindows => groupedWindows;
 
-        private Tasks()
+        public Tasks(TasksService tasksService)
         {
+            _tasksService = tasksService;
             // prepare collections
-            groupedWindows = CollectionViewSource.GetDefaultView(TasksService.Instance.Windows);
+            groupedWindows = CollectionViewSource.GetDefaultView(_tasksService.Windows);
             groupedWindows.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
             groupedWindows.CollectionChanged += groupedWindows_Changed;
             groupedWindows.Filter = groupedWindows_Filter;
@@ -32,26 +33,16 @@ namespace ManagedShell.WindowsTasks
 
         public void Initialize(ITaskCategoryProvider taskCategoryProvider)
         {
-            if (!TasksService.Instance.IsInitialized)
+            if (!_tasksService.IsInitialized)
             {
-                TasksService.Instance.SetTaskCategoryProvider(taskCategoryProvider);
+                _tasksService.SetTaskCategoryProvider(taskCategoryProvider);
                 Initialize();
             }
         }
 
         public void Initialize()
         {
-            TasksService.Instance.Initialize();
-        }
-
-        public void CloseWindow(ApplicationWindow window)
-        {
-            if (window.Close() != IntPtr.Zero)
-            {
-                CairoLogger.Instance.Debug($"Removing window {window.Title} from collection due to no response");
-                window.Dispose();
-                TasksService.Instance.Windows.Remove(window);
-            }
+            _tasksService.Initialize();
         }
 
         private void groupedWindows_Changed(object sender, NotifyCollectionChangedEventArgs e)
@@ -63,13 +54,13 @@ namespace ManagedShell.WindowsTasks
         {
             if (item is ApplicationWindow window && window.ShowInTaskbar)
                 return true;
-            
+
             return false;
         }
 
         public void Dispose()
         {
-            TasksService.Instance.Dispose();
+            _tasksService.Dispose();
         }
     }
 }

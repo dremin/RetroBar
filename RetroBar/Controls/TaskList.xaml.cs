@@ -1,7 +1,7 @@
-﻿using System;
+﻿using ManagedShell.WindowsTasks;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using ManagedShell.WindowsTasks;
 
 namespace RetroBar.Controls
 {
@@ -17,6 +17,8 @@ namespace RetroBar.Controls
         private double TaskButtonRightMargin;
 
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register("ButtonWidth", typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
+        private Tasks _tasks;
+
         public double ButtonWidth
         {
             get { return (double)GetValue(ButtonWidthProperty); }
@@ -28,14 +30,19 @@ namespace RetroBar.Controls
             InitializeComponent();
         }
 
+        public void SetTasks(Tasks tasks)
+        {
+            _tasks = tasks;
+        }
+
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (!isLoaded)
             {
-                Tasks.Instance.Initialize();
-                TasksList.ItemsSource = Tasks.Instance.GroupedWindows;
-                if (Tasks.Instance.GroupedWindows != null)
-                    Tasks.Instance.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
+                _tasks.Initialize();
+                TasksList.ItemsSource = _tasks.GroupedWindows;
+                if (_tasks.GroupedWindows != null)
+                    _tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
 
                 DefaultButtonWidth = Application.Current.FindResource("TaskButtonWidth") as double? ?? 0;
                 MinButtonWidth = Application.Current.FindResource("TaskButtonMinWidth") as double? ?? 0;
@@ -50,11 +57,11 @@ namespace RetroBar.Controls
 
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Tasks.Instance.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
+            _tasks.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
         }
 
         private void GroupedWindows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
+        {                
             SetTaskButtonWidth();
         }
 

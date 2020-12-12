@@ -1,4 +1,6 @@
-﻿using ManagedShell.Common.Logging;
+﻿using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
+using ManagedShell.Configuration;
 using ManagedShell.Interop;
 using System;
 using System.Collections.ObjectModel;
@@ -6,13 +8,11 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
-using ManagedShell.Common.DesignPatterns;
-using ManagedShell.Common.Helpers;
 using static ManagedShell.Interop.NativeMethods;
 
 namespace ManagedShell.WindowsTray
 {
-    public class NotificationArea : SingletonObject<NotificationArea>, IDisposable
+    public class NotificationArea : DependencyObject, IDisposable
     {
         const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
         NativeMethods.Rect defaultPlacement = new NativeMethods.Rect { Top = 0, Left = GetSystemMetrics(0) - 200, Bottom = 23, Right = 23 };
@@ -24,6 +24,13 @@ namespace ManagedShell.WindowsTray
         public bool IsFailed;
         private ShellServiceObject shellServiceObject;
         private TrayHostSizeData trayHostSizeData = new TrayHostSizeData { edge = (int)ABEdge.ABE_TOP, rc = new NativeMethods.Rect { Top = 0, Left = 0, Bottom = 23, Right = GetSystemMetrics(0) } };
+
+        public NotificationArea(ShellSettings shellSettings, TrayService trayService, ExplorerTrayService explorerTrayService)
+        {
+            _shellSettings = shellSettings;
+            _trayService = trayService;
+            _explorerTrayService = explorerTrayService;
+        }
 
         public ObservableCollection<NotifyIcon> TrayIcons
         {
@@ -66,9 +73,9 @@ namespace ManagedShell.WindowsTray
         }
 
         private static DependencyProperty unpinnedIconsProperty = DependencyProperty.Register("UnpinnedIcons", typeof(ICollectionView), typeof(NotificationArea));
-
-
-        private NotificationArea() { }
+        private ShellSettings _shellSettings;
+        private readonly TrayService _trayService;
+        private readonly ExplorerTrayService _explorerTrayService;
 
         public void Initialize()
         {
@@ -79,14 +86,14 @@ namespace ManagedShell.WindowsTray
                 iconDataDelegate = IconDataCallback;
                 trayHostSizeDelegate = TrayHostSizeCallback;
 
-                ExplorerTrayService.Instance.SetSystrayCallback(trayDelegate);
-                ExplorerTrayService.Instance.Run();
+                _explorerTrayService.SetSystrayCallback(trayDelegate);
+                _explorerTrayService.Run();
 
-                TrayService.Instance.SetSystrayCallback(trayDelegate);
-                TrayService.Instance.SetIconDataCallback(iconDataDelegate);
-                TrayService.Instance.SetTrayHostSizeCallback(trayHostSizeDelegate);
-                Handle = TrayService.Instance.Initialize();
-                TrayService.Instance.Run();
+                _trayService.SetSystrayCallback(trayDelegate);
+                _trayService.SetIconDataCallback(iconDataDelegate);
+                _trayService.SetTrayHostSizeCallback(trayHostSizeDelegate);
+                Handle = _trayService.Initialize();
+                _trayService.Run();
 
                 // load the shell system tray objects (network, power, etc)
                 shellServiceObject = new ShellServiceObject();
@@ -180,7 +187,7 @@ namespace ManagedShell.WindowsTray
             if (nicData.hWnd == IntPtr.Zero)
                 return false;
 
-            NotifyIcon trayIcon = new NotifyIcon(nicData.hWnd);
+            NotifyIcon trayIcon = new NotifyIcon(_shellSettings, this, nicData.hWnd);
             trayIcon.UID = nicData.uID;
 
             lock (_lockObject)
@@ -192,7 +199,7 @@ namespace ManagedShell.WindowsTray
                         bool exists = false;
 
                         // hide icons while we are shell which require UWP support & we have a separate implementation for
-                        if (nicData.guidItem == new Guid(VOLUME_GUID) && ((Shell.IsCairoRunningAsShell && Shell.IsWindows10OrBetter) || GroupPolicyManager.Instance.HideScaVolume))
+                        if (nicData.guidItem == new Guid(VOLUME_GUID) && ((Shell.IsCairoRunningAsShell && Shell.IsWindows10OrBetter) || GroupPolicyHelper.HideScaVolume))
                             return false;
 
                         foreach (NotifyIcon ti in TrayIcons)
@@ -272,7 +279,7 @@ namespace ManagedShell.WindowsTray
                                 trayIcon.Icon = IconImageConverter.GetDefaultIcon();
 
                             TrayIcons.Add(trayIcon);
-                            CairoLogger.Instance.Debug($"NotificationArea: Added: {trayIcon.Title} Path: {trayIcon.Path} Hidden: {trayIcon.IsHidden} GUID: {trayIcon.GUID} UID: {trayIcon.UID} Version: {trayIcon.Version}");
+                            CairoLogger.Debug($"NotificationArea: Added: {trayIcon.Title} Path: {trayIcon.Path} Hidden: {trayIcon.IsHidden} GUID: {trayIcon.GUID} UID: {trayIcon.UID} Version: {trayIcon.Version}");
 
                             if ((NIM)message == NIM.NIM_MODIFY)
                             {
@@ -281,11 +288,11 @@ namespace ManagedShell.WindowsTray
                             }
                         }
                         else
-                            CairoLogger.Instance.Debug($"NotificationArea: Modified: {trayIcon.Title}");
+                            CairoLogger.Debug($"NotificationArea: Modified: {trayIcon.Title}");
                     }
                     catch (Exception ex)
                     {
-                        CairoLogger.Instance.Error("NotificationArea: Unable to modify the icon in the collection.", ex);
+                        CairoLogger.Error("NotificationArea: Unable to modify the icon in the collection.", ex);
                     }
                 }
                 else if ((NIM)message == NIM.NIM_DELETE)
@@ -300,11 +307,11 @@ namespace ManagedShell.WindowsTray
 
                         TrayIcons.Remove(trayIcon);
 
-                        CairoLogger.Instance.Debug($"NotificationArea: Removed: {nicData.szTip}");
+                        CairoLogger.Debug($"NotificationArea: Removed: {nicData.szTip}");
                     }
                     catch (Exception ex)
                     {
-                        CairoLogger.Instance.Error("NotificationArea: Unable to remove the icon from the collection.", ex);
+                        CairoLogger.Error("NotificationArea: Unable to remove the icon from the collection.", ex);
                     }
                 }
                 else if ((NIM)message == NIM.NIM_SETVERSION)
@@ -314,7 +321,7 @@ namespace ManagedShell.WindowsTray
                         if (ti.Equals(nicData))
                         {
                             ti.Version = nicData.uVersion;
-                            CairoLogger.Instance.Debug($"NotificationArea: Modified version to {ti.Version} on: {ti.Title}");
+                            CairoLogger.Debug($"NotificationArea: Modified version to {ti.Version} on: {ti.Title}");
                             break;
                         }
                     }
@@ -335,7 +342,7 @@ namespace ManagedShell.WindowsTray
             if (!IsFailed && trayDelegate != null)
             {
                 shellServiceObject?.Dispose();
-                TrayService.Instance.Dispose();
+                _trayService.Dispose();
             }
         }
     }
