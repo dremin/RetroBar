@@ -1,13 +1,12 @@
-using ManagedShell.Common.DesignPatterns;
-using ManagedShell.Common.Logging;
 using ManagedShell.Common.Helpers;
-using static ManagedShell.Interop.NativeMethods;
+using ManagedShell.Common.Logging;
 using System;
 using System.Runtime.InteropServices;
+using static ManagedShell.Interop.NativeMethods;
 
 namespace ManagedShell.WindowsTray
 {
-    public class TrayService: SingletonObject<TrayService>, IDisposable
+    public class TrayService : IDisposable
     {
         private const string NotifyWndClass = "TrayNotifyWnd";
         private const string TrayWndClass = "Shell_TrayWnd";
@@ -22,7 +21,7 @@ namespace ManagedShell.WindowsTray
         private IntPtr HwndFwd;
         private IntPtr hInstance = Marshal.GetHINSTANCE(typeof(TrayService).Module);
 
-        private TrayService()
+        public TrayService()
         {
 
         }
@@ -66,9 +65,9 @@ namespace ManagedShell.WindowsTray
                 SetWindowsTrayBottommost();
 
                 SetWindowPos(HwndTray, IntPtr.Zero, 0, 0, 0, 0,
-                    (int) SetWindowPosFlags.SWP_NOMOVE |
-                    (int) SetWindowPosFlags.SWP_NOACTIVATE |
-                    (int) SetWindowPosFlags.SWP_NOSIZE);
+                    (int)SetWindowPosFlags.SWP_NOMOVE |
+                    (int)SetWindowPosFlags.SWP_NOACTIVATE |
+                    (int)SetWindowPosFlags.SWP_NOSIZE);
 
                 SendTaskbarCreated();
             }
@@ -79,9 +78,9 @@ namespace ManagedShell.WindowsTray
             // if we go beneath another tray, it will receive messages
             if (HwndTray != IntPtr.Zero)
             {
-                SetWindowPos(HwndTray, (IntPtr) WindowZOrder.HWND_BOTTOM, 0, 0, 0, 0,
-                    (int) SetWindowPosFlags.SWP_NOMOVE | (int) SetWindowPosFlags.SWP_NOACTIVATE |
-                    (int) SetWindowPosFlags.SWP_NOSIZE);
+                SetWindowPos(HwndTray, (IntPtr)WindowZOrder.HWND_BOTTOM, 0, 0, 0, 0,
+                    (int)SetWindowPosFlags.SWP_NOMOVE | (int)SetWindowPosFlags.SWP_NOACTIVATE |
+                    (int)SetWindowPosFlags.SWP_NOSIZE);
             }
         }
 
@@ -101,7 +100,7 @@ namespace ManagedShell.WindowsTray
 
             if (msg > 0)
             {
-                CairoLogger.Instance.Debug("TrayService: Sending TaskbarCreated message");
+                CairoLogger.Debug("TrayService: Sending TaskbarCreated message");
                 SendNotifyMessage(HWND_BROADCAST,
                     (uint)msg, UIntPtr.Zero, IntPtr.Zero);
             }
@@ -113,14 +112,14 @@ namespace ManagedShell.WindowsTray
             {
                 DestroyWindow(HwndNotify);
                 UnregisterClass(NotifyWndClass, hInstance);
-                CairoLogger.Instance.Debug($"TrayService: Unregistered {NotifyWndClass}");
+                CairoLogger.Debug($"TrayService: Unregistered {NotifyWndClass}");
             }
 
             if (HwndTray != IntPtr.Zero)
             {
                 DestroyWindow(HwndTray);
                 UnregisterClass(TrayWndClass, hInstance);
-                CairoLogger.Instance.Debug($"TrayService: Unregistered {TrayWndClass}");
+                CairoLogger.Debug($"TrayService: Unregistered {TrayWndClass}");
             }
         }
 
@@ -139,7 +138,7 @@ namespace ManagedShell.WindowsTray
                 case WM.COPYDATA:
                     if (lParam == IntPtr.Zero)
                     {
-                        CairoLogger.Instance.Debug("TrayService: CopyData is null");
+                        CairoLogger.Debug("TrayService: CopyData is null");
                         break;
                     }
 
@@ -157,18 +156,18 @@ namespace ManagedShell.WindowsTray
 
                                 if (Marshal.SizeOf(typeof(APPBARDATAV2)) != amd.abd.cbSize)
                                 {
-                                    CairoLogger.Instance.Debug("TrayService: Size incorrect for APPBARMSGDATAV3");
+                                    CairoLogger.Debug("TrayService: Size incorrect for APPBARMSGDATAV3");
                                     break;
                                 }
 
                                 if (AppBarMessageAction(amd))
                                 {
-                                    return (IntPtr) 1;
+                                    return (IntPtr)1;
                                 }
                             }
                             else
                             {
-                                CairoLogger.Instance.Debug("TrayService: AppBar message received, but with unknown size");
+                                CairoLogger.Debug("TrayService: AppBar message received, but with unknown size");
                             }
                             break;
                         case 1:
@@ -179,14 +178,14 @@ namespace ManagedShell.WindowsTray
                             {
                                 if (trayDelegate(trayData.dwMessage, new SafeNotifyIconData(trayData.nid)))
                                 {
-                                    return (IntPtr) 1;
+                                    return (IntPtr)1;
                                 }
-                                
-                                CairoLogger.Instance.Debug("TrayService: Ignored notify icon message");
+
+                                CairoLogger.Debug("TrayService: Ignored notify icon message");
                             }
                             else
                             {
-                                CairoLogger.Instance.Info("TrayService: TrayDelegate is null");
+                                CairoLogger.Info("TrayService: TrayDelegate is null");
                             }
                             break;
                         case 3:
@@ -200,10 +199,10 @@ namespace ManagedShell.WindowsTray
                                     iconData.guidItem);
                             }
 
-                            CairoLogger.Instance.Info("TrayService: IconDataDelegate is null");
+                            CairoLogger.Info("TrayService: IconDataDelegate is null");
                             break;
                     }
-                    
+
                     break;
                 case WM.WINDOWPOSCHANGED:
                     WINDOWPOS wndPos = WINDOWPOS.FromMessage(lParam);
@@ -214,7 +213,7 @@ namespace ManagedShell.WindowsTray
                             GetWindowLong(HwndTray, GWL_STYLE) &
                             ~(int)WindowStyles.WS_VISIBLE);
 
-                        CairoLogger.Instance.Debug($"TrayService: {TrayWndClass} became visible; hiding");
+                        CairoLogger.Debug($"TrayService: {TrayWndClass} became visible; hiding");
                     }
                     break;
             }
@@ -239,7 +238,7 @@ namespace ManagedShell.WindowsTray
                     FillTrayHostSizeData(ref abd);
                     Marshal.StructureToPtr(abd, hShared, false);
                     SHUnlockShared(hShared);
-                    CairoLogger.Instance.Debug("TrayService: Responded to ABM_GETTASKBARPOS");
+                    CairoLogger.Debug("TrayService: Responded to ABM_GETTASKBARPOS");
                     return true;
             }
             return false;
@@ -255,7 +254,7 @@ namespace ManagedShell.WindowsTray
             }
             else
             {
-                CairoLogger.Instance.Info("TrayService: TrayHostSizeDelegate is null");
+                CairoLogger.Info("TrayService: TrayHostSizeDelegate is null");
             }
         }
 
@@ -294,7 +293,7 @@ namespace ManagedShell.WindowsTray
             ushort trayClassReg = RegisterWndClass(TrayWndClass);
             if (trayClassReg == 0)
             {
-                CairoLogger.Instance.Info($"TrayService: Error registering {TrayWndClass} class ({Marshal.GetLastWin32Error()})");
+                CairoLogger.Info($"TrayService: Error registering {TrayWndClass} class ({Marshal.GetLastWin32Error()})");
             }
 
             HwndTray = CreateWindowEx(
@@ -306,11 +305,11 @@ namespace ManagedShell.WindowsTray
 
             if (HwndTray == IntPtr.Zero)
             {
-                CairoLogger.Instance.Info($"TrayService: Error creating {TrayWndClass} window ({Marshal.GetLastWin32Error()})");
+                CairoLogger.Info($"TrayService: Error creating {TrayWndClass} window ({Marshal.GetLastWin32Error()})");
             }
             else
             {
-                CairoLogger.Instance.Debug($"TrayService: Created {TrayWndClass}");
+                CairoLogger.Debug($"TrayService: Created {TrayWndClass}");
             }
         }
 
@@ -319,7 +318,7 @@ namespace ManagedShell.WindowsTray
             ushort trayNotifyClassReg = RegisterWndClass(NotifyWndClass);
             if (trayNotifyClassReg == 0)
             {
-                CairoLogger.Instance.Info($"TrayService: Error registering {NotifyWndClass} class ({Marshal.GetLastWin32Error()})");
+                CairoLogger.Info($"TrayService: Error registering {NotifyWndClass} class ({Marshal.GetLastWin32Error()})");
             }
 
             HwndNotify = CreateWindowEx(0, trayNotifyClassReg, null,
@@ -329,11 +328,11 @@ namespace ManagedShell.WindowsTray
 
             if (HwndNotify == IntPtr.Zero)
             {
-                CairoLogger.Instance.Info($"TrayService: Error creating {NotifyWndClass} window ({Marshal.GetLastWin32Error()})");
+                CairoLogger.Info($"TrayService: Error creating {NotifyWndClass} window ({Marshal.GetLastWin32Error()})");
             }
             else
             {
-                CairoLogger.Instance.Debug($"TrayService: Created {NotifyWndClass}");
+                CairoLogger.Debug($"TrayService: Created {NotifyWndClass}");
             }
         }
 
@@ -358,9 +357,9 @@ namespace ManagedShell.WindowsTray
 
             if (taskbarHwnd != IntPtr.Zero)
             {
-                SetWindowPos(taskbarHwnd, (IntPtr) WindowZOrder.HWND_BOTTOM, 0, 0, 0, 0,
-                    (int) SetWindowPosFlags.SWP_NOMOVE | (int) SetWindowPosFlags.SWP_NOSIZE |
-                    (int) SetWindowPosFlags.SWP_NOACTIVATE);
+                SetWindowPos(taskbarHwnd, (IntPtr)WindowZOrder.HWND_BOTTOM, 0, 0, 0, 0,
+                    (int)SetWindowPosFlags.SWP_NOMOVE | (int)SetWindowPosFlags.SWP_NOSIZE |
+                    (int)SetWindowPosFlags.SWP_NOACTIVATE);
             }
         }
 

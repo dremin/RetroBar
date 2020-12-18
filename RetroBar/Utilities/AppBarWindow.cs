@@ -1,19 +1,23 @@
-﻿using System;
+﻿using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
+using ManagedShell.Configuration;
+using ManagedShell.Interop;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using ManagedShell.Common.Logging;
-using ManagedShell.Configuration;
-using ManagedShell.Interop;
-using ManagedShell.Common.Helpers;
 using Application = System.Windows.Application;
 
 namespace RetroBar.Utilities
 {
     public class AppBarWindow : Window
     {
+        private readonly AppBarHelper _appBarHelper;
+        private readonly ShellSettings _shellSettings;
+        private readonly ExplorerHelper _explorerHelper;
+        private readonly FullScreenHelper _fullScreenHelper;
         public System.Windows.Forms.Screen Screen;
         public double dpiScale = 1.0;
         protected bool processScreenChanges;
@@ -31,8 +35,13 @@ namespace RetroBar.Utilities
         public NativeMethods.ABEdge appBarEdge = NativeMethods.ABEdge.ABE_TOP;
         protected bool enableAppBar = true;
 
-        public AppBarWindow()
+        public AppBarWindow(ShellSettings shellSettings, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper)
         {
+            _shellSettings = shellSettings;
+            _explorerHelper = explorerHelper;
+            _fullScreenHelper = fullScreenHelper;
+            _appBarHelper = new AppBarHelper(shellSettings, explorerHelper);
+
             Closing += OnClosing;
             SourceInitialized += OnSourceInitialized;
 
@@ -77,7 +86,7 @@ namespace RetroBar.Utilities
             Shell.HideWindowFromTasks(Handle);
 
             // register for full-screen notifications
-            FullScreenHelper.Instance.FullScreenApps.CollectionChanged += FullScreenApps_CollectionChanged;
+            _fullScreenHelper.FullScreenApps.CollectionChanged += FullScreenApps_CollectionChanged;
 
             PostInit();
         }
@@ -93,7 +102,7 @@ namespace RetroBar.Utilities
                 UnregisterAppBar();
 
                 // unregister full-screen notifications
-                FullScreenHelper.Instance.FullScreenApps.CollectionChanged -= FullScreenApps_CollectionChanged;
+                _fullScreenHelper.FullScreenApps.CollectionChanged -= FullScreenApps_CollectionChanged;
             }
             else
             {
@@ -106,7 +115,7 @@ namespace RetroBar.Utilities
         {
             bool found = false;
 
-            foreach (FullScreenApp app in FullScreenHelper.Instance.FullScreenApps)
+            foreach (FullScreenApp app in _fullScreenHelper.FullScreenApps)
             {
                 if (app.screen.DeviceName == Screen.DeviceName)
                 {
@@ -133,7 +142,7 @@ namespace RetroBar.Utilities
                 switch ((NativeMethods.AppBarNotifications)wParam.ToInt32())
                 {
                     case NativeMethods.AppBarNotifications.PosChanged:
-                        AppBarHelper.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
+                        _appBarHelper.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
                         break;
 
                     case NativeMethods.AppBarNotifications.WindowArrange:
@@ -149,14 +158,14 @@ namespace RetroBar.Utilities
                         break;
 
                     case NativeMethods.AppBarNotifications.FullScreenApp:
-                        AppBarHelper.SetWinTaskbarVisibility((int)NativeMethods.SetWindowPosFlags.SWP_HIDEWINDOW);
+                        _explorerHelper.SetTaskbarVisibility((int)NativeMethods.SetWindowPosFlags.SWP_HIDEWINDOW);
                         break;
                 }
                 handled = true;
             }
             else if (msg == (int)NativeMethods.WM.ACTIVATE && enableAppBar && !Shell.IsCairoRunningAsShell && !App.IsShuttingDown)
             {
-                AppBarHelper.AppBarActivate(hwnd);
+                _appBarHelper.AppBarActivate(hwnd);
             }
             else if (msg == (int)NativeMethods.WM.WINDOWPOSCHANGING)
             {
@@ -174,7 +183,7 @@ namespace RetroBar.Utilities
             }
             else if (msg == (int)NativeMethods.WM.WINDOWPOSCHANGED && enableAppBar && !Shell.IsCairoRunningAsShell && !App.IsShuttingDown)
             {
-                AppBarHelper.AppBarWindowPosChanged(hwnd);
+                _appBarHelper.AppBarWindowPosChanged(hwnd);
             }
             else if (msg == (int)NativeMethods.WM.DPICHANGED)
             {
@@ -231,7 +240,7 @@ namespace RetroBar.Utilities
             }
             else if (enableAppBar)
             {
-                AppBarHelper.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
+                _appBarHelper.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
             }
         }
 
@@ -261,14 +270,14 @@ namespace RetroBar.Utilities
         {
             if (entering)
             {
-                CairoLogger.Instance.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} conceding to full-screen app");
+                CairoLogger.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} conceding to full-screen app");
 
                 Topmost = false;
                 Shell.ShowWindowBottomMost(Handle);
             }
             else
             {
-                CairoLogger.Instance.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} returning to normal state");
+                CairoLogger.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} returning to normal state");
 
                 isRaising = true;
                 Topmost = true;
@@ -288,17 +297,17 @@ namespace RetroBar.Utilities
 
         protected void RegisterAppBar()
         {
-            if (!Shell.IsCairoRunningAsShell && enableAppBar && !AppBarHelper.appBars.Contains(Handle))
+            if (!Shell.IsCairoRunningAsShell && enableAppBar && !AppBarHelper.AppBars.Contains(Handle))
             {
-                appbarMessageId = AppBarHelper.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
+                appbarMessageId = _appBarHelper.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
             }
         }
 
         protected void UnregisterAppBar()
         {
-            if (AppBarHelper.appBars.Contains(Handle))
+            if (AppBarHelper.AppBars.Contains(Handle))
             {
-                AppBarHelper.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale);
+                _appBarHelper.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale);
             }
         }
         #endregion
@@ -307,9 +316,9 @@ namespace RetroBar.Utilities
         internal virtual void AfterAppBarPos(bool isSameCoords, NativeMethods.Rect rect)
         {
             // apparently the TaskBars like to pop up when AppBars change
-            if (ShellSettings.Instance.EnableTaskbar && !App.IsShuttingDown)
+            if (_shellSettings.EnableTaskbar && !App.IsShuttingDown)
             {
-                AppBarHelper.HideWindowsTaskbar();
+                _explorerHelper.HideTaskbar();
             }
 
             if (!isSameCoords)

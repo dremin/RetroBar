@@ -1,12 +1,13 @@
 ﻿#nullable enable
+using ManagedShell.Common.Helpers;
+using ManagedShell.Interop;
+using ManagedShell.Management;
+using ManagedShell.WindowsTray;
+using RetroBar.Utilities;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
-using ManagedShell.Common.Helpers;
-using ManagedShell.Interop;
-using RetroBar.Utilities;
-using ManagedShell.WindowsTray;
 using Application = System.Windows.Application;
 
 namespace RetroBar
@@ -16,9 +17,18 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
-        public Taskbar(Screen screen)
+        private ShellManager _shellManager;
+
+        public Taskbar(ShellManager shellManager, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper, Screen screen)
+            : base(shellManager.ShellSettings, explorerHelper, fullScreenHelper)
         {
+            _shellManager = shellManager;
+
             InitializeComponent();
+
+            taskList.SetTasks(shellManager.Tasks);
+            notifyIconList.SetNotificationArea(shellManager.NotificationArea);
+
             Screen = screen;
 
             appBarEdge = NativeMethods.ABEdge.ABE_BOTTOM;
@@ -36,7 +46,7 @@ namespace RetroBar
             Height = desiredHeight;
             Top = Screen.Bounds.Bottom / dpiScale - Height;
 
-            NotificationArea.Instance.SetTrayHostSizeData(new TrayHostSizeData { edge = (int)appBarEdge, rc = new NativeMethods.Rect { Top = (int)(Top * dpiScale), Left = (int)(Left * dpiScale), Bottom = (int)((Top + Height) * dpiScale), Right = (int)((Left + Width) * dpiScale) } });
+            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData { edge = (int)appBarEdge, rc = new NativeMethods.Rect { Top = (int)(Top * dpiScale), Left = (int)(Left * dpiScale), Bottom = (int)((Top + Height) * dpiScale), Right = (int)((Left + Width) * dpiScale) } });
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -72,7 +82,9 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow.Instance.Show();
+            App app = (App)Application.Current;
+
+            new PropertiesWindow(app.ThemeManager).Show();
         }
     }
 }

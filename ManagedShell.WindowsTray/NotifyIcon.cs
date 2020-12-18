@@ -16,10 +16,14 @@ namespace ManagedShell.WindowsTray
     /// </summary>
     public class NotifyIcon : IEquatable<NotifyIcon>, INotifyPropertyChanged
     {
+        private readonly ShellSettings _shellSettings;
+        private readonly NotificationArea _notificationArea;
+
+
         /// <summary>
         /// Initializes a new instance of the TrayIcon class with no hwnd.
         /// </summary>
-        public NotifyIcon() : this(IntPtr.Zero)
+        public NotifyIcon( ShellSettings shellSettings, NotificationArea notificationArea) : this(shellSettings, notificationArea, IntPtr.Zero)
         {
         }
 
@@ -27,8 +31,10 @@ namespace ManagedShell.WindowsTray
         /// Initializes a new instance of the TrayIcon class with the specified hWnd.
         /// </summary>
         /// <param name="hWnd">The window handle of the icon.</param>
-        public NotifyIcon(IntPtr hWnd)
+        public NotifyIcon(ShellSettings shellSettings, NotificationArea notificationArea, IntPtr hWnd)
         {
+            _shellSettings = shellSettings;
+            _notificationArea = notificationArea;
             HWnd = hWnd;
         }
 
@@ -196,25 +202,25 @@ namespace ManagedShell.WindowsTray
             if (IsPinned && position != PinOrder)
             {
                 // already pinned, just moving
-                List<string> icons = ShellSettings.Instance.PinnedNotifyIcons.ToList();
+                List<string> icons = _shellSettings.PinnedNotifyIcons.ToList();
                 icons.Remove(Identifier);
                 icons.Insert(position, Identifier);
-                ShellSettings.Instance.PinnedNotifyIcons = icons.ToArray();
+                _shellSettings.PinnedNotifyIcons = icons.ToArray();
                 updated = true;
             }
             else if (!IsPinned)
             {
                 // newly pinned. welcome to the party!
-                List<string> icons = ShellSettings.Instance.PinnedNotifyIcons.ToList();
+                List<string> icons = _shellSettings.PinnedNotifyIcons.ToList();
                 icons.Insert(position, Identifier);
-                ShellSettings.Instance.PinnedNotifyIcons = icons.ToArray();
+                _shellSettings.PinnedNotifyIcons = icons.ToArray();
                 updated = true;
             }
 
             if (updated)
             {
                 // update all pinned icons
-                foreach (NotifyIcon notifyIcon in NotificationArea.Instance.TrayIcons)
+                foreach (NotifyIcon notifyIcon in _notificationArea.TrayIcons)
                 {
                     notifyIcon.SetPinValues();
                 }
@@ -225,15 +231,15 @@ namespace ManagedShell.WindowsTray
         {
             if (IsPinned)
             {
-                List<string> icons = ShellSettings.Instance.PinnedNotifyIcons.ToList();
+                List<string> icons = _shellSettings.PinnedNotifyIcons.ToList();
                 icons.Remove(Identifier);
-                ShellSettings.Instance.PinnedNotifyIcons = icons.ToArray();
+                _shellSettings.PinnedNotifyIcons = icons.ToArray();
 
                 IsPinned = false;
                 PinOrder = 0;
 
                 // update all pinned icons
-                foreach (NotifyIcon notifyIcon in NotificationArea.Instance.TrayIcons)
+                foreach (NotifyIcon notifyIcon in _notificationArea.TrayIcons)
                 {
                     notifyIcon.SetPinValues();
                 }
@@ -242,9 +248,9 @@ namespace ManagedShell.WindowsTray
 
         public void SetPinValues()
         {
-            for (int i = 0; i < ShellSettings.Instance.PinnedNotifyIcons.Length; i++)
+            for (int i = 0; i < _shellSettings.PinnedNotifyIcons.Length; i++)
             {
-                string item = ShellSettings.Instance.PinnedNotifyIcons[i].ToLower();
+                string item = _shellSettings.PinnedNotifyIcons[i].ToLower();
                 if (item == GUID.ToString().ToLower() || (GUID == default && item == (Path.ToLower() + ":" + UID.ToString())))
                 {
                     IsPinned = true;
@@ -298,10 +304,10 @@ namespace ManagedShell.WindowsTray
 
         public void IconMouseClick(MouseButton button, uint mouse, int doubleClickTime)
         {
-            CairoLogger.Instance.Debug(string.Format("{0} mouse button clicked icon: {1}", button.ToString(), Title));
+            CairoLogger.Debug(string.Format("{0} mouse button clicked icon: {1}", button.ToString(), Title));
 
             // ensure focus so that menus go away after clicking outside
-            SetForegroundWindow(NotificationArea.Instance.Handle);
+            SetForegroundWindow(_notificationArea.Handle);
             SetForegroundWindow(HWnd);
 
             uint wparam = GetMessageWParam(mouse);
@@ -365,7 +371,7 @@ namespace ManagedShell.WindowsTray
         {
             if (!IsWindow(HWnd))
             {
-                NotificationArea.Instance.TrayIcons.Remove(this);
+                _notificationArea.TrayIcons.Remove(this);
                 return true;
             }
 
