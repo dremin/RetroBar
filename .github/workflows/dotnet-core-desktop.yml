@@ -44,6 +44,7 @@ jobs:
 
     - name: Bump versions
       uses: SiqiLu/dotnet-bump-version@master
+      if: github.event_name == 'push'
       with:
         version_files: "**/*.csproj"
         github_token: ${{ secrets.GITHUB_TOKEN }}
