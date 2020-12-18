@@ -17,7 +17,6 @@ namespace RetroBar.Controls
         private double TaskButtonRightMargin;
 
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register("ButtonWidth", typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
-        private Tasks _tasks;
 
         public double ButtonWidth
         {
@@ -25,39 +24,48 @@ namespace RetroBar.Controls
             set { SetValue(ButtonWidthProperty, value); }
         }
 
+        public static DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(Tasks), typeof(TaskList));
+
+        public Tasks Tasks
+        {
+            get { return (Tasks)GetValue(TasksProperty); }
+            set { SetValue(TasksProperty, value); }
+        }
+
         public TaskList()
         {
             InitializeComponent();
         }
 
-        public void SetTasks(Tasks tasks)
+        private void SetStyles()
         {
-            _tasks = tasks;
+            DefaultButtonWidth = Application.Current.FindResource("TaskButtonWidth") as double? ?? 0;
+            MinButtonWidth = Application.Current.FindResource("TaskButtonMinWidth") as double? ?? 0;
+
+            Thickness buttonMargin = Application.Current.FindResource("TaskButtonMargin") as Thickness? ??
+                new Thickness();
+            TaskButtonLeftMargin = buttonMargin.Left;
+            TaskButtonRightMargin = buttonMargin.Right;
         }
 
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (!isLoaded)
+            if (!isLoaded && Tasks != null)
             {
-                _tasks.Initialize();
-                TasksList.ItemsSource = _tasks.GroupedWindows;
-                if (_tasks.GroupedWindows != null)
-                    _tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
+                Tasks.Initialize();
+                TasksList.ItemsSource = Tasks.GroupedWindows;
+                if (Tasks.GroupedWindows != null)
+                    Tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
 
-                DefaultButtonWidth = Application.Current.FindResource("TaskButtonWidth") as double? ?? 0;
-                MinButtonWidth = Application.Current.FindResource("TaskButtonMinWidth") as double? ?? 0;
-
-                Thickness buttonMargin = Application.Current.FindResource("TaskButtonMargin") as Thickness? ?? new Thickness();
-                TaskButtonLeftMargin = buttonMargin.Left;
-                TaskButtonRightMargin = buttonMargin.Right;
-
+                SetStyles();
+                
                 isLoaded = true;
             }
         }
 
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            _tasks.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
+            Tasks.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
         }
 
         private void GroupedWindows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

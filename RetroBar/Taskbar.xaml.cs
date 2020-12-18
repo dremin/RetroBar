@@ -18,19 +18,20 @@ namespace RetroBar
     public partial class Taskbar : AppBarWindow
     {
         private ShellManager _shellManager;
+        private ExplorerHelper _explorerHelper;
 
         public Taskbar(ShellManager shellManager, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper, Screen screen)
             : base(shellManager.ShellSettings, explorerHelper, fullScreenHelper)
         {
             _shellManager = shellManager;
+            _explorerHelper = explorerHelper;
 
             InitializeComponent();
+            DataContext = _shellManager;
 
-            taskList.SetTasks(shellManager.Tasks);
-            notifyIconList.SetNotificationArea(shellManager.NotificationArea);
-
+            _explorerHelper.HideTaskbar();
+            
             Screen = screen;
-
             appBarEdge = NativeMethods.ABEdge.ABE_BOTTOM;
             desiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
             processScreenChanges = true;
@@ -72,6 +73,7 @@ namespace RetroBar
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            App.IsShuttingDown = true;
             Application.Current.Shutdown();
         }
 
@@ -85,6 +87,14 @@ namespace RetroBar
             App app = (App)Application.Current;
 
             new PropertiesWindow(app.ThemeManager).Show();
+        }
+
+        protected override void CustomClosing()
+        {
+            if (App.IsShuttingDown)
+            {
+                _explorerHelper.ShowTaskbar();
+            }
         }
     }
 }
