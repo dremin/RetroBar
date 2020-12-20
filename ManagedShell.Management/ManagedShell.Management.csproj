@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ManagedShell.Configuration\ManagedShell.Configuration.csproj" />
     <ProjectReference Include="..\ManagedShell.WindowsTasks\ManagedShell.WindowsTasks.csproj" />
     <ProjectReference Include="..\ManagedShell.WindowsTray\ManagedShell.WindowsTray.csproj" />
   </ItemGroup>

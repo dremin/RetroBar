@@ -1,6 +1,5 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell.Configuration;
 using ManagedShell.Interop;
 using System;
 using System.Collections.ObjectModel;
@@ -15,11 +14,11 @@ namespace ManagedShell.WindowsTasks
 {
     public class TasksService : DependencyObject, IDisposable
     {
-        private readonly ShellSettings _shellSettings;
 
         private NativeWindowEx _HookWin;
         private object _windowsLock = new object();
         internal bool IsInitialized;
+        internal IconSize TaskIconSize = IconSize.Small;
 
         private static int WM_SHELLHOOKMESSAGE = -1;
         private static int WM_TASKBARCREATEDMESSAGE = -1;
@@ -31,9 +30,13 @@ namespace ManagedShell.WindowsTasks
         private ITaskCategoryProvider TaskCategoryProvider;
         private TaskCategoryChangeDelegate CategoryChangeDelegate;
 
-        public TasksService(ShellSettings shellSettings)
+        public TasksService() : this(IconSize.Small)
         {
-            _shellSettings = shellSettings;
+        }
+        
+        public TasksService(IconSize iconSize)
+        {
+            TaskIconSize = iconSize;
         }
 
         internal void Initialize()
@@ -112,7 +115,7 @@ namespace ManagedShell.WindowsTasks
         {
             EnumWindows((hwnd, lParam) =>
             {
-                ApplicationWindow win = new ApplicationWindow(_shellSettings, this, hwnd);
+                ApplicationWindow win = new ApplicationWindow(this, hwnd);
 
                 // set window category if provided by shell
                 win.Category = TaskCategoryProvider?.GetCategory(win);
@@ -191,7 +194,7 @@ namespace ManagedShell.WindowsTasks
 
         private ApplicationWindow addWindow(IntPtr hWnd, ApplicationWindow.WindowState initialState = ApplicationWindow.WindowState.Inactive, bool sanityCheck = false)
         {
-            ApplicationWindow win = new ApplicationWindow(_shellSettings, this, hWnd);
+            ApplicationWindow win = new ApplicationWindow(this, hWnd);
 
             // set window category if provided by shell
             win.Category = TaskCategoryProvider?.GetCategory(win);
@@ -400,7 +403,7 @@ namespace ManagedShell.WindowsTasks
                         // SetProgressValue
                         CairoLogger.Debug("ITaskbarList: SetProgressValue HWND:" + msg.WParam + " Progress: " + msg.LParam);
 
-                        win = new ApplicationWindow(_shellSettings, this, msg.WParam);
+                        win = new ApplicationWindow(this, msg.WParam);
                         if (Windows.Contains(win))
                         {
                             win = Windows.First(wnd => wnd.Handle == msg.WParam);
@@ -413,7 +416,7 @@ namespace ManagedShell.WindowsTasks
                         // SetProgressState
                         CairoLogger.Debug("ITaskbarList: SetProgressState HWND:" + msg.WParam + " Flags: " + msg.LParam);
 
-                        win = new ApplicationWindow(_shellSettings, this, msg.WParam);
+                        win = new ApplicationWindow(this, msg.WParam);
                         if (Windows.Contains(win))
                         {
                             win = Windows.First(wnd => wnd.Handle == msg.WParam);

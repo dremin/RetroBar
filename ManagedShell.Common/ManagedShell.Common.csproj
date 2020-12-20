@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ManagedShell.Configuration\ManagedShell.Configuration.csproj" />
     <ProjectReference Include="..\ManagedShell.Interop\ManagedShell.Interop.csproj" />
   </ItemGroup>
 

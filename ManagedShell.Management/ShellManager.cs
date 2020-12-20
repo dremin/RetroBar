@@ -1,5 +1,4 @@
-﻿using ManagedShell.Configuration;
-using ManagedShell.WindowsTasks;
+﻿using ManagedShell.WindowsTasks;
 using ManagedShell.WindowsTray;
 
 namespace ManagedShell.Management
@@ -8,15 +7,13 @@ namespace ManagedShell.Management
     {
         public ShellManager()
         {
-            ShellSettings = new ShellSettings();
             TrayService = new TrayService();
             ExplorerTrayService = new ExplorerTrayService();
-            NotificationArea = new NotificationArea(ShellSettings, TrayService, ExplorerTrayService);
-            TasksService = new TasksService(ShellSettings);
+            NotificationArea = new NotificationArea(TrayService, ExplorerTrayService);
+            TasksService = new TasksService();
             Tasks = new Tasks(TasksService);
         }
-
-        public ShellSettings ShellSettings { get; }
+        
         public NotificationArea NotificationArea { get; }
         public TasksService TasksService { get; }
         public Tasks Tasks { get; }

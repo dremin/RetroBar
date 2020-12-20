@@ -51,15 +51,6 @@ namespace RetroBar
 
         private void SetupManagedShell()
         {
-            _shellManager.ShellSettings.EnableTaskbar = true;
-            _shellManager.ShellSettings.TaskbarIconSize = (int)IconSize.Small;
-            _shellManager.ShellSettings.PinnedNotifyIcons = new[] {
-                "7820ae76-23e3-4229-82c1-e41cb67d5b9c",
-                "7820ae75-23e3-4229-82c1-e41cb67d5b9c",
-                "7820ae74-23e3-4229-82c1-e41cb67d5b9c",
-                "7820ae73-23e3-4229-82c1-e41cb67d5b9c"
-            };
-
             CairoLogger.Severity = LogSeverity.Debug;
             CairoLogger.Attach(new ConsoleLog());
         }

@@ -1,6 +1,5 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell.Configuration;
 using ManagedShell.Interop;
 using System;
 using System.ComponentModel;
@@ -17,13 +16,11 @@ namespace ManagedShell.WindowsTasks
     public class ApplicationWindow : IEquatable<ApplicationWindow>, INotifyPropertyChanged, IDisposable
     {
         const int TITLE_LENGTH = 1024;
-        private readonly ShellSettings _shellSettings;
         private readonly TasksService _tasksService;
         StringBuilder titleBuilder = new StringBuilder(TITLE_LENGTH);
 
-        public ApplicationWindow(ShellSettings shellSettings, TasksService tasksService, IntPtr handle)
+        public ApplicationWindow(TasksService tasksService, IntPtr handle)
         {
-            _shellSettings = shellSettings;
             _tasksService = tasksService;
             Handle = handle;
             State = WindowState.Inactive;
@@ -365,7 +362,7 @@ namespace ManagedShell.WindowsTasks
                         {
                             BitmapImage img = new BitmapImage();
                             img.BeginInit();
-                            img.UriSource = new Uri(UWPInterop.StoreAppHelper.GetAppIcon(AppUserModelID, _shellSettings.TaskbarIconSize)[0], UriKind.Absolute);
+                            img.UriSource = new Uri(UWPInterop.StoreAppHelper.GetAppIcon(AppUserModelID, (int)_tasksService.TaskIconSize)[0], UriKind.Absolute);
                             img.CacheOption = BitmapCacheOption.OnLoad;
                             img.EndInit();
                             img.Freeze();
@@ -384,7 +381,7 @@ namespace ManagedShell.WindowsTasks
                         uint WM_QUERYDRAGICON = (uint)NativeMethods.WM.QUERYDRAGICON;
                         int GCL_HICON = -14;
                         int GCL_HICONSM = -34;
-                        IconSize sizeSetting = (IconSize)_shellSettings.TaskbarIconSize;
+                        IconSize sizeSetting = _tasksService.TaskIconSize;
 
                         if (sizeSetting == IconSize.Small)
                         {

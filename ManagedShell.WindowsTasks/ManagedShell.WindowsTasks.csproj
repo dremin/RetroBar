@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ManagedShell.Common\ManagedShell.Common.csproj" />
-    <ProjectReference Include="..\ManagedShell.Configuration\ManagedShell.Configuration.csproj" />
     <ProjectReference Include="..\ManagedShell.Interop\ManagedShell.Interop.csproj" />
     <ProjectReference Include="..\ManagedShell.UWPInterop\ManagedShell.UWPInterop.csproj" />
   </ItemGroup>

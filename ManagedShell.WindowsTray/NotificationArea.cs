@@ -1,6 +1,5 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell.Configuration;
 using ManagedShell.Interop;
 using System;
 using System.Collections.ObjectModel;
@@ -14,20 +13,32 @@ namespace ManagedShell.WindowsTray
 {
     public class NotificationArea : DependencyObject, IDisposable
     {
+        private static readonly string[] DEFAULT_PINNED = {
+            "7820ae76-23e3-4229-82c1-e41cb67d5b9c",
+            "7820ae75-23e3-4229-82c1-e41cb67d5b9c",
+            "7820ae74-23e3-4229-82c1-e41cb67d5b9c",
+            "7820ae73-23e3-4229-82c1-e41cb67d5b9c"
+        };
+
         const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
         NativeMethods.Rect defaultPlacement = new NativeMethods.Rect { Top = 0, Left = GetSystemMetrics(0) - 200, Bottom = 23, Right = 23 };
         private SystrayDelegate trayDelegate;
         private IconDataDelegate iconDataDelegate;
         private TrayHostSizeDelegate trayHostSizeDelegate;
+        internal string[] PinnedNotifyIcons;
         private object _lockObject = new object();
         public IntPtr Handle;
         public bool IsFailed;
         private ShellServiceObject shellServiceObject;
         private TrayHostSizeData trayHostSizeData = new TrayHostSizeData { edge = (int)ABEdge.ABE_TOP, rc = new NativeMethods.Rect { Top = 0, Left = 0, Bottom = 23, Right = GetSystemMetrics(0) } };
 
-        public NotificationArea(ShellSettings shellSettings, TrayService trayService, ExplorerTrayService explorerTrayService)
+        public NotificationArea(TrayService trayService, ExplorerTrayService explorerTrayService) : this(DEFAULT_PINNED, trayService, explorerTrayService)
         {
-            _shellSettings = shellSettings;
+        }
+        
+        public NotificationArea(string[] savedPinnedIcons, TrayService trayService, ExplorerTrayService explorerTrayService)
+        {
+            PinnedNotifyIcons = savedPinnedIcons;
             _trayService = trayService;
             _explorerTrayService = explorerTrayService;
         }
@@ -73,7 +84,6 @@ namespace ManagedShell.WindowsTray
         }
 
         private static DependencyProperty unpinnedIconsProperty = DependencyProperty.Register("UnpinnedIcons", typeof(ICollectionView), typeof(NotificationArea));
-        private ShellSettings _shellSettings;
         private readonly TrayService _trayService;
         private readonly ExplorerTrayService _explorerTrayService;
 
@@ -102,6 +112,21 @@ namespace ManagedShell.WindowsTray
             catch
             {
                 IsFailed = true;
+            }
+        }
+
+        public void SetPinnedIcons(string[] pinnedIcons)
+        {
+            PinnedNotifyIcons = pinnedIcons;
+            
+            UpdatePinnedIcons();
+        }
+
+        internal void UpdatePinnedIcons()
+        {
+            foreach (NotifyIcon notifyIcon in TrayIcons)
+            {
+                notifyIcon.SetPinValues();
             }
         }
 
@@ -187,7 +212,7 @@ namespace ManagedShell.WindowsTray
             if (nicData.hWnd == IntPtr.Zero)
                 return false;
 
-            NotifyIcon trayIcon = new NotifyIcon(_shellSettings, this, nicData.hWnd);
+            NotifyIcon trayIcon = new NotifyIcon(this, nicData.hWnd);
             trayIcon.UID = nicData.uID;
 
             lock (_lockObject)

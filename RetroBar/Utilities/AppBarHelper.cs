@@ -1,7 +1,4 @@
-using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell.Configuration;
-using ManagedShell.WindowsTray;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -14,12 +11,10 @@ namespace RetroBar.Utilities
     // Lets focus more on single responsibility
     public class AppBarHelper
     {
-        private readonly ShellSettings _shellSettings;
         private readonly ExplorerHelper _explorerHelper;
 
-        public AppBarHelper(ShellSettings shellSettings, ExplorerHelper explorerHelper)
+        public AppBarHelper(ExplorerHelper explorerHelper)
         {
-            _shellSettings = shellSettings;
             _explorerHelper = explorerHelper;
         }
 
@@ -88,7 +83,7 @@ namespace RetroBar.Utilities
             _explorerHelper.ResumeTrayService();
 
             // apparently the TaskBars like to pop up when AppBars change
-            if (_shellSettings.EnableTaskbar)
+            // TODO: if (_shellSettings.EnableTaskbar)
             {
                 _explorerHelper.SetSecondaryTaskbarVisibility((int)SetWindowPosFlags.SWP_HIDEWINDOW);
             }
@@ -107,7 +102,7 @@ namespace RetroBar.Utilities
             _explorerHelper.ResumeTrayService();
 
             // apparently the TaskBars like to pop up when AppBars change
-            if (_shellSettings.EnableTaskbar)
+            // TODO: if (_shellSettings.EnableTaskbar)
             {
                 _explorerHelper.SetSecondaryTaskbarVisibility((int)SetWindowPosFlags.SWP_HIDEWINDOW);
             }

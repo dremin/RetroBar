@@ -21,7 +21,7 @@ namespace RetroBar
         private ExplorerHelper _explorerHelper;
 
         public Taskbar(ShellManager shellManager, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper, Screen screen)
-            : base(shellManager.ShellSettings, explorerHelper, fullScreenHelper)
+            : base(explorerHelper, fullScreenHelper)
         {
             _shellManager = shellManager;
             _explorerHelper = explorerHelper;

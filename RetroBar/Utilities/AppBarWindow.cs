@@ -1,6 +1,5 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell.Configuration;
 using ManagedShell.Interop;
 using System;
 using System.ComponentModel;
@@ -15,7 +14,6 @@ namespace RetroBar.Utilities
     public class AppBarWindow : Window
     {
         private readonly AppBarHelper _appBarHelper;
-        private readonly ShellSettings _shellSettings;
         private readonly ExplorerHelper _explorerHelper;
         private readonly FullScreenHelper _fullScreenHelper;
         public System.Windows.Forms.Screen Screen;
@@ -35,12 +33,11 @@ namespace RetroBar.Utilities
         public NativeMethods.ABEdge appBarEdge = NativeMethods.ABEdge.ABE_TOP;
         protected bool enableAppBar = true;
 
-        public AppBarWindow(ShellSettings shellSettings, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper)
+        public AppBarWindow(ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper)
         {
-            _shellSettings = shellSettings;
             _explorerHelper = explorerHelper;
             _fullScreenHelper = fullScreenHelper;
-            _appBarHelper = new AppBarHelper(shellSettings, explorerHelper);
+            _appBarHelper = new AppBarHelper(explorerHelper);
 
             Closing += OnClosing;
             SourceInitialized += OnSourceInitialized;
@@ -316,7 +313,7 @@ namespace RetroBar.Utilities
         internal virtual void AfterAppBarPos(bool isSameCoords, NativeMethods.Rect rect)
         {
             // apparently the TaskBars like to pop up when AppBars change
-            if (_shellSettings.EnableTaskbar && !App.IsShuttingDown)
+            if (/* TODO: _shellSettings.EnableTaskbar &&*/ !App.IsShuttingDown)
             {
                 _explorerHelper.HideTaskbar();
             }
