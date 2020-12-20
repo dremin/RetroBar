@@ -32,7 +32,7 @@ namespace RetroBar.Utilities
         public void SetTaskbarVisibility(int swp)
         {
             // only run this if our TaskBar is enabled, or if we are showing the Windows TaskBar
-            if (swp != (int)SetWindowPosFlags.SWP_HIDEWINDOW /* TODO: || _shellManager.ShellSettings.EnableTaskbar*/)
+            if (swp != (int)SetWindowPosFlags.SWP_HIDEWINDOW /* TODO: || _shellManager.ShellSettings.EnableTaskbar    Temp change here:*/ || true)
             {
                 IntPtr taskbarHwnd = FindTaskbarHwnd();
                 IntPtr startButtonHwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, (IntPtr)0xC017, null);
