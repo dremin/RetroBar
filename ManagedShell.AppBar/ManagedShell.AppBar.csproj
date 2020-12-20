@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ManagedShell.AppBar\ManagedShell.AppBar.csproj" />
-    <ProjectReference Include="..\ManagedShell.WindowsTasks\ManagedShell.WindowsTasks.csproj" />
+    <ProjectReference Include="..\ManagedShell.Common\ManagedShell.Common.csproj" />
+    <ProjectReference Include="..\ManagedShell.Interop\ManagedShell.Interop.csproj" />
     <ProjectReference Include="..\ManagedShell.WindowsTray\ManagedShell.WindowsTray.csproj" />
   </ItemGroup>
 

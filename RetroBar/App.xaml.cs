@@ -14,20 +14,21 @@ namespace RetroBar
     /// </summary>
     public partial class App : Application
     {
-        public static bool IsShuttingDown;
         public ThemeManager ThemeManager { get; }
 
         private readonly ShellManager _shellManager;
-        private readonly ExplorerHelper _explorerHelper;
-        public readonly FullScreenHelper _fullScreenHelper;
 
         public App()
         {
             ThemeManager = new ThemeManager();
-            _fullScreenHelper = new FullScreenHelper();
 
             _shellManager = new ShellManager();
-            _explorerHelper = new ExplorerHelper(_shellManager);
+        }
+
+        public void ExitGracefully()
+        {
+            _shellManager.AppBarManager.SignalGracefulShutdown();
+            Current.Shutdown();
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e)
@@ -35,7 +36,7 @@ namespace RetroBar
             ThemeManager.SetThemeFromSettings();
             SetupManagedShell();
 
-            Taskbar taskbar = new Taskbar(_shellManager, _explorerHelper, _fullScreenHelper, Screen.PrimaryScreen);
+            Taskbar taskbar = new Taskbar(_shellManager, Screen.PrimaryScreen);
             taskbar.Show();
         }
 
@@ -51,15 +52,15 @@ namespace RetroBar
 
         private void SetupManagedShell()
         {
-            CairoLogger.Severity = LogSeverity.Debug;
-            CairoLogger.Attach(new ConsoleLog());
+            ShellLogger.Severity = LogSeverity.Debug;
+            ShellLogger.Attach(new ConsoleLog());
         }
 
         private void ExitApp()
         {
             Shell.DisposeIml();
 
-            _fullScreenHelper.Dispose();
+            _shellManager.FullScreenHelper.Dispose();
 
             _shellManager.NotificationArea.Dispose();
             _shellManager.Tasks.Dispose();

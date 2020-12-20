@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ManagedShell.Interop;
 
-namespace RetroBar.Utilities
+namespace ManagedShell.AppBar
 {
     public class FullScreenApp
     {

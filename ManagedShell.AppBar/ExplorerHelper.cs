@@ -1,38 +1,62 @@
 ﻿using ManagedShell.Common.Helpers;
-using ManagedShell.Management;
+using ManagedShell.WindowsTray;
 using System;
 using System.Runtime.InteropServices;
 using static ManagedShell.Interop.NativeMethods;
 
-namespace RetroBar.Utilities
+namespace ManagedShell.AppBar
 {
     public class ExplorerHelper
     {
         private static TaskbarState? startupTaskbarState;
+        private NotificationArea _notificationArea;
 
-        private readonly ShellManager _shellManager;
 
-        public ExplorerHelper(ShellManager shellManager)
+        private bool _hideExplorerTaskbar;
+
+        public bool HideExplorerTaskbar
         {
-            _shellManager = shellManager;
+            get => _hideExplorerTaskbar;
+
+            set
+            {
+                if (value != _hideExplorerTaskbar)
+                {
+                    _hideExplorerTaskbar = value;
+
+                    if (_hideExplorerTaskbar)
+                    {
+                        HideTaskbar();
+                    }
+                    else
+                    {
+                        ShowTaskbar();
+                    }
+                }
+            }
+        }
+
+        public ExplorerHelper(NotificationArea notificationArea)
+        {
+            _notificationArea = notificationArea;
         }
 
         public void SuspendTrayService()
         {
             // get shell window back so we can do appbar stuff
-            _shellManager.TrayService.Suspend();
+            _notificationArea.Suspend();
         }
 
         public void ResumeTrayService()
         {
             // take back over
-            _shellManager.TrayService.Resume();
+            _notificationArea.Resume();
         }
 
         public void SetTaskbarVisibility(int swp)
         {
             // only run this if our TaskBar is enabled, or if we are showing the Windows TaskBar
-            if (swp != (int)SetWindowPosFlags.SWP_HIDEWINDOW /* TODO: || _shellManager.ShellSettings.EnableTaskbar    Temp change here:*/ || true)
+            if (swp != (int)SetWindowPosFlags.SWP_HIDEWINDOW || HideExplorerTaskbar)
             {
                 IntPtr taskbarHwnd = FindTaskbarHwnd();
                 IntPtr startButtonHwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, (IntPtr)0xC017, null);
@@ -101,9 +125,9 @@ namespace RetroBar.Utilities
         {
             IntPtr taskbarHwnd = FindWindow("Shell_TrayWnd", "");
 
-            if (_shellManager.NotificationArea.Handle != null && _shellManager.NotificationArea.Handle != IntPtr.Zero)
+            if (_notificationArea.Handle != null && _notificationArea.Handle != IntPtr.Zero)
             {
-                while (taskbarHwnd == _shellManager.NotificationArea.Handle)
+                while (taskbarHwnd == _notificationArea.Handle)
                 {
                     taskbarHwnd = FindWindowEx(IntPtr.Zero, taskbarHwnd, "Shell_TrayWnd", "");
                 }
@@ -121,10 +145,10 @@ namespace RetroBar.Utilities
                     startupTaskbarState = GetTaskbarState();
                 }
 
-                // TODO: if (_shellManager.ShellSettings.EnableTaskbar)
+                if (HideExplorerTaskbar)
                 {
                     SetTaskbarState(TaskbarState.AutoHide);
-                    SetTaskbarVisibility((int)SetWindowPosFlags.SWP_HIDEWINDOW);
+                    SetTaskbarVisibility((int) SetWindowPosFlags.SWP_HIDEWINDOW);
                 }
             }
         }

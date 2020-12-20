@@ -2,7 +2,7 @@
 
 namespace ManagedShell.Common.Logging
 {
-    public static class CairoLogger
+    public static class ShellLogger
     {
         #region Delegates
 
@@ -34,7 +34,7 @@ namespace ManagedShell.Common.Logging
         /// <summary>
         /// Private constructor. Initializes default severity to "Debug".
         /// </summary>
-        static CairoLogger()
+        static ShellLogger()
         {
             // Default severity is Debug level
             Severity = LogSeverity.Debug;

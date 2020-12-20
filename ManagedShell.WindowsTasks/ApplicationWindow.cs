@@ -320,7 +320,7 @@ namespace ManagedShell.WindowsTasks
 
                 if (cloaked > 0)
                 {
-                    CairoLogger.Debug(string.Format("Cloaked ({0}) window ({1}) hidden from taskbar", cloaked, Title));
+                    ShellLogger.Debug(string.Format("Cloaked ({0}) window ({1}) hidden from taskbar", cloaked, Title));
                     return false;
                 }
 
@@ -331,7 +331,7 @@ namespace ManagedShell.WindowsTasks
                 {
                     if ((ExtendedWindowStyles & (int)NativeMethods.ExtendedWindowStyles.WS_EX_WINDOWEDGE) == 0)
                     {
-                        CairoLogger.Debug($"Hiding UWP non-window {Title}");
+                        ShellLogger.Debug($"Hiding UWP non-window {Title}");
                         return false;
                     }
                 }
@@ -342,7 +342,7 @@ namespace ManagedShell.WindowsTasks
 
         public void Uncloak()
         {
-            CairoLogger.Debug($"Uncloak event received for {Title}");
+            ShellLogger.Debug($"Uncloak event received for {Title}");
 
             SetShowInTaskbar();
         }

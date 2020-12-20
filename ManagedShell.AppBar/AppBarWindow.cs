@@ -9,14 +9,14 @@ using System.Windows.Interop;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
 
-namespace RetroBar.Utilities
+namespace ManagedShell.AppBar
 {
     public class AppBarWindow : Window
     {
-        private readonly AppBarHelper _appBarHelper;
-        private readonly ExplorerHelper _explorerHelper;
-        private readonly FullScreenHelper _fullScreenHelper;
-        public System.Windows.Forms.Screen Screen;
+        protected readonly AppBarManager _appBarManager;
+        protected readonly ExplorerHelper _explorerHelper;
+        protected readonly FullScreenHelper _fullScreenHelper;
+        public Screen Screen;
         public double dpiScale = 1.0;
         protected bool processScreenChanges;
 
@@ -24,6 +24,7 @@ namespace RetroBar.Utilities
         private WindowInteropHelper helper;
         private bool isRaising;
         public IntPtr Handle;
+        public bool AllowClose;
         public bool IsClosing;
         protected double desiredHeight;
         private bool enableBlur;
@@ -31,13 +32,14 @@ namespace RetroBar.Utilities
         // AppBar properties
         private int appbarMessageId = -1;
         public NativeMethods.ABEdge appBarEdge = NativeMethods.ABEdge.ABE_TOP;
-        protected bool enableAppBar = true;
+        internal bool enableAppBar = true;
+        protected internal bool requiresScreenEdge;
 
-        public AppBarWindow(ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper)
+        public AppBarWindow(AppBarManager appBarManager, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper)
         {
             _explorerHelper = explorerHelper;
             _fullScreenHelper = fullScreenHelper;
-            _appBarHelper = new AppBarHelper(explorerHelper);
+            _appBarManager = appBarManager;
 
             Closing += OnClosing;
             SourceInitialized += OnSourceInitialized;
@@ -94,7 +96,7 @@ namespace RetroBar.Utilities
 
             CustomClosing();
 
-            if (App.IsShuttingDown)
+            if (AllowClose)
             {
                 UnregisterAppBar();
 
@@ -139,7 +141,7 @@ namespace RetroBar.Utilities
                 switch ((NativeMethods.AppBarNotifications)wParam.ToInt32())
                 {
                     case NativeMethods.AppBarNotifications.PosChanged:
-                        _appBarHelper.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
+                        _appBarManager.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
                         break;
 
                     case NativeMethods.AppBarNotifications.WindowArrange:
@@ -155,14 +157,14 @@ namespace RetroBar.Utilities
                         break;
 
                     case NativeMethods.AppBarNotifications.FullScreenApp:
-                        _explorerHelper.SetTaskbarVisibility((int)NativeMethods.SetWindowPosFlags.SWP_HIDEWINDOW);
+                        _explorerHelper.HideTaskbar();
                         break;
                 }
                 handled = true;
             }
-            else if (msg == (int)NativeMethods.WM.ACTIVATE && enableAppBar && !Shell.IsCairoRunningAsShell && !App.IsShuttingDown)
+            else if (msg == (int)NativeMethods.WM.ACTIVATE && enableAppBar && !Shell.IsCairoRunningAsShell && !AllowClose)
             {
-                _appBarHelper.AppBarActivate(hwnd);
+                _appBarManager.AppBarActivate(hwnd);
             }
             else if (msg == (int)NativeMethods.WM.WINDOWPOSCHANGING)
             {
@@ -178,9 +180,9 @@ namespace RetroBar.Utilities
                     wndPos.UpdateMessage(lParam);
                 }
             }
-            else if (msg == (int)NativeMethods.WM.WINDOWPOSCHANGED && enableAppBar && !Shell.IsCairoRunningAsShell && !App.IsShuttingDown)
+            else if (msg == (int)NativeMethods.WM.WINDOWPOSCHANGED && enableAppBar && !Shell.IsCairoRunningAsShell && !AllowClose)
             {
-                _appBarHelper.AppBarWindowPosChanged(hwnd);
+                _appBarManager.AppBarWindowPosChanged(hwnd);
             }
             else if (msg == (int)NativeMethods.WM.DPICHANGED)
             {
@@ -191,21 +193,21 @@ namespace RetroBar.Utilities
 
                 dpiScale = (wParam.ToInt32() & 0xFFFF) / 96d;
 
-                SetScreenProperties(ScreenSetupReason.DpiChange);
+                ProcessScreenChange(ScreenSetupReason.DpiChange);
             }
             else if (msg == (int)NativeMethods.WM.DISPLAYCHANGE)
             {
-                SetScreenProperties(ScreenSetupReason.DisplayChange);
+                ProcessScreenChange(ScreenSetupReason.DisplayChange);
                 handled = true;
             }
             else if (msg == (int)NativeMethods.WM.DEVICECHANGE && (int)wParam == 0x0007)
             {
-                SetScreenProperties(ScreenSetupReason.DeviceChange);
+                ProcessScreenChange(ScreenSetupReason.DeviceChange);
                 handled = true;
             }
             else if (msg == (int)NativeMethods.WM.DWMCOMPOSITIONCHANGED)
             {
-                SetScreenProperties(ScreenSetupReason.DwmChange);
+                ProcessScreenChange(ScreenSetupReason.DwmChange);
                 handled = true;
             }
 
@@ -228,7 +230,7 @@ namespace RetroBar.Utilities
             };
         }
 
-        internal void SetScreenPosition()
+        protected internal void SetScreenPosition()
         {
             // set our position if running as shell, otherwise let AppBar do the work
             if (Shell.IsCairoRunningAsShell || !enableAppBar)
@@ -237,7 +239,7 @@ namespace RetroBar.Utilities
             }
             else if (enableAppBar)
             {
-                _appBarHelper.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
+                _appBarManager.ABSetPos(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
             }
         }
 
@@ -249,17 +251,14 @@ namespace RetroBar.Utilities
             Height = (rect.Bottom - rect.Top) / dpiScale;
         }
 
-        private void SetScreenProperties(ScreenSetupReason reason)
+        private void ProcessScreenChange(ScreenSetupReason reason)
         {
             // process screen changes if we are on the primary display and the designated window
             // (or any display in the case of a DPI change, since only the changed display receives that message and not all windows receive it reliably)
             // suppress this if we are shutting down (which can trigger this method on multi-dpi setups due to window movements)
-            if (((Screen.Primary && processScreenChanges) || reason == ScreenSetupReason.DpiChange) && !App.IsShuttingDown)
+            if (((Screen.Primary && processScreenChanges) || reason == ScreenSetupReason.DpiChange) && !AllowClose)
             {
-                // use reflection to empty screens cache
-                typeof(Screen).GetField("screens", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).SetValue(null, null);
-                Screen = Screen.PrimaryScreen;
-                SetScreenPosition();
+                SetScreenProperties(reason);
             }
         }
 
@@ -267,14 +266,14 @@ namespace RetroBar.Utilities
         {
             if (entering)
             {
-                CairoLogger.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} conceding to full-screen app");
+                ShellLogger.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} conceding to full-screen app");
 
                 Topmost = false;
                 Shell.ShowWindowBottomMost(Handle);
             }
             else
             {
-                CairoLogger.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} returning to normal state");
+                ShellLogger.Debug($"AppBarWindow: {Name} on {Screen.DeviceName} returning to normal state");
 
                 isRaising = true;
                 Topmost = true;
@@ -294,26 +293,26 @@ namespace RetroBar.Utilities
 
         protected void RegisterAppBar()
         {
-            if (!Shell.IsCairoRunningAsShell && enableAppBar && !AppBarHelper.AppBars.Contains(Handle))
+            if (!Shell.IsCairoRunningAsShell && enableAppBar && !_appBarManager.AppBars.Contains(this))
             {
-                appbarMessageId = _appBarHelper.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
+                appbarMessageId = _appBarManager.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale, appBarEdge);
             }
         }
 
         protected void UnregisterAppBar()
         {
-            if (AppBarHelper.AppBars.Contains(Handle))
+            if (_appBarManager.AppBars.Contains(this))
             {
-                _appBarHelper.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale);
+                _appBarManager.RegisterBar(this, ActualWidth * dpiScale, desiredHeight * dpiScale);
             }
         }
         #endregion
 
         #region Virtual methods
-        internal virtual void AfterAppBarPos(bool isSameCoords, NativeMethods.Rect rect)
+        public virtual void AfterAppBarPos(bool isSameCoords, NativeMethods.Rect rect)
         {
             // apparently the TaskBars like to pop up when AppBars change
-            if (/* TODO: _shellSettings.EnableTaskbar &&*/ !App.IsShuttingDown)
+            if (_explorerHelper.HideExplorerTaskbar && !AllowClose)
             {
                 _explorerHelper.HideTaskbar();
             }
@@ -341,7 +340,15 @@ namespace RetroBar.Utilities
             return IntPtr.Zero;
         }
 
-        internal virtual void SetPosition() { }
+        protected virtual void SetScreenProperties(ScreenSetupReason reason)
+        {
+            // use reflection to empty screens cache
+            typeof(Screen).GetField("screens", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).SetValue(null, null);
+            Screen = Screen.PrimaryScreen;
+            SetScreenPosition();
+        }
+
+        public virtual void SetPosition() { }
         #endregion
     }
 }

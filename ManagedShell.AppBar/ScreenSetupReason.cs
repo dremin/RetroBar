@@ -1,4 +1,4 @@
-﻿namespace RetroBar.Utilities
+﻿namespace ManagedShell.AppBar
 {
     public enum ScreenSetupReason
     {

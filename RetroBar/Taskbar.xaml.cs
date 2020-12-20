@@ -1,9 +1,9 @@
 ﻿#nullable enable
+using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.Management;
 using ManagedShell.WindowsTray;
-using RetroBar.Utilities;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -18,18 +18,16 @@ namespace RetroBar
     public partial class Taskbar : AppBarWindow
     {
         private ShellManager _shellManager;
-        private ExplorerHelper _explorerHelper;
 
-        public Taskbar(ShellManager shellManager, ExplorerHelper explorerHelper, FullScreenHelper fullScreenHelper, Screen screen)
-            : base(explorerHelper, fullScreenHelper)
+        public Taskbar(ShellManager shellManager, Screen screen)
+            : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper)
         {
             _shellManager = shellManager;
-            _explorerHelper = explorerHelper;
 
             InitializeComponent();
             DataContext = _shellManager;
 
-            _explorerHelper.HideTaskbar();
+            _explorerHelper.HideExplorerTaskbar = true;
             
             Screen = screen;
             appBarEdge = NativeMethods.ABEdge.ABE_BOTTOM;
@@ -37,10 +35,10 @@ namespace RetroBar
             processScreenChanges = true;
 
             SetPosition();
-            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+            Utilities.Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
-        internal override void SetPosition()
+        public override void SetPosition()
         {
             Left = Screen.Bounds.Left / dpiScale;
             Width = Screen.Bounds.Width / dpiScale;
@@ -73,8 +71,7 @@ namespace RetroBar
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            App.IsShuttingDown = true;
-            Application.Current.Shutdown();
+            ((App)Application.Current).ExitGracefully();
         }
 
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -91,9 +88,9 @@ namespace RetroBar
 
         protected override void CustomClosing()
         {
-            if (App.IsShuttingDown)
+            if (AllowClose)
             {
-                _explorerHelper.ShowTaskbar();
+                _explorerHelper.HideExplorerTaskbar = false;
             }
         }
     }

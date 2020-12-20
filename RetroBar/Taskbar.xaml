@@ -1,8 +1,8 @@
-﻿<utilities:AppBarWindow x:Class="RetroBar.Taskbar"
+﻿<appbar:AppBarWindow x:Class="RetroBar.Taskbar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:RetroBar.Controls"
-        xmlns:utilities="clr-namespace:RetroBar.Utilities"
+        xmlns:appbar="clr-namespace:ManagedShell.AppBar;assembly=ManagedShell.AppBar"
         Title="RetroBar Taskbar"
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
@@ -22,12 +22,12 @@
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>
     </Border>
-    <utilities:AppBarWindow.ContextMenu>
+    <appbar:AppBarWindow.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Task Manager..." Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
             <Separator />
             <MenuItem Header="Properties" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
             <MenuItem Header="Exit RetroBar" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
         </ContextMenu>
-    </utilities:AppBarWindow.ContextMenu>
-</utilities:AppBarWindow>
+    </appbar:AppBarWindow.ContextMenu>
+</appbar:AppBarWindow>

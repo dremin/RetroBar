@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Windows.Threading;
 using static ManagedShell.Interop.NativeMethods;
 
-namespace RetroBar.Utilities
+namespace ManagedShell.AppBar
 {
     public sealed class FullScreenHelper : IDisposable
     {
@@ -55,7 +55,7 @@ namespace RetroBar.Utilities
             // remove any changed windows we found
             if (removeApps.Count > 0)
             {
-                CairoLogger.Debug("Removing full screen app(s)");
+                ShellLogger.Debug("Removing full screen app(s)");
                 foreach (FullScreenApp existingApp in removeApps)
                 {
                     FullScreenApps.Remove(existingApp);
@@ -68,7 +68,7 @@ namespace RetroBar.Utilities
                 FullScreenApp appNew = getFullScreenApp(hWnd);
                 if (appNew != null)
                 {
-                    CairoLogger.Debug("Adding full screen app");
+                    ShellLogger.Debug("Adding full screen app");
                     FullScreenApps.Add(appNew);
                 }
             }
