@@ -1,5 +1,4 @@
-﻿using ManagedShell.Common.Helpers;
-using ManagedShell.Common.Logging;
+﻿using ManagedShell.Common.Logging;
 using ManagedShell.Common.Logging.Observers;
 using ManagedShell.Management;
 using RetroBar.Utilities;
@@ -58,12 +57,7 @@ namespace RetroBar
 
         private void ExitApp()
         {
-            Shell.DisposeIml();
-
-            _shellManager.FullScreenHelper.Dispose();
-
-            _shellManager.NotificationArea.Dispose();
-            _shellManager.Tasks.Dispose();
+            _shellManager.Dispose();
         }
     }
 }
