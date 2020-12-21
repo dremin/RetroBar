@@ -2,7 +2,7 @@
 using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
-using ManagedShell.Management;
+using ManagedShell;
 using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;

@@ -1,6 +1,6 @@
 ﻿using ManagedShell.Common.Logging;
 using ManagedShell.Common.Logging.Observers;
-using ManagedShell.Management;
+using ManagedShell;
 using RetroBar.Utilities;
 using System.Windows;
 using System.Windows.Forms;
@@ -19,9 +19,9 @@ namespace RetroBar
 
         public App()
         {
+            _shellManager = SetupManagedShell();
+            
             ThemeManager = new ThemeManager();
-
-            _shellManager = new ShellManager();
         }
 
         public void ExitGracefully()
@@ -33,7 +33,6 @@ namespace RetroBar
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             ThemeManager.SetThemeFromSettings();
-            SetupManagedShell();
 
             Taskbar taskbar = new Taskbar(_shellManager, Screen.PrimaryScreen);
             taskbar.Show();
@@ -49,10 +48,17 @@ namespace RetroBar
             ExitApp();
         }
 
-        private void SetupManagedShell()
+        private ShellManager SetupManagedShell()
         {
             ShellLogger.Severity = LogSeverity.Debug;
             ShellLogger.Attach(new ConsoleLog());
+
+            ShellConfig config = ShellManager.DefaultShellConfig;
+
+            config.AutoStartTasksService = false;
+            config.AutoStartTrayService = false;
+
+            return new ShellManager(config);
         }
 
         private void ExitApp()
