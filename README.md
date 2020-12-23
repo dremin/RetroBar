@@ -3,7 +3,7 @@
 # RetroBar
 ![RetroBar](https://github.com/dremin/RetroBar/workflows/RetroBar/badge.svg)
 
-Pining for simpler times? RetroBar teleports you back in time by replacing your modern Windows taskbar with the Windows 95 style.
+Pining for simpler times? RetroBar teleports you back in time by replacing your modern Windows taskbar with the classic Windows 95, 98, Me, 2000, or XP style.
 
 RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for maximum compatibility and performance.
 
