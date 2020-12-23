@@ -9,6 +9,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyVersion>1.0.0.8</AssemblyVersion>
     <FileVersion>1.0.0.8</FileVersion>
+    <ApplicationIcon>Resources\retrobar.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
