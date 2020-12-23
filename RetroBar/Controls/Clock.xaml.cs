@@ -108,7 +108,7 @@ namespace RetroBar.Controls
 
         private void OpenDateTimeCpl()
         {
-            Shell.StartProcess("timedate.cpl");
+            ShellHelper.StartProcess("timedate.cpl");
         }
 
         private void Clock_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

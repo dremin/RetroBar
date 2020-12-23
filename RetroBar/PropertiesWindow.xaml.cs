@@ -20,7 +20,7 @@ namespace RetroBar
             LoadThemes();
 
             Left = 10;
-            Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / Shell.DpiScale) - Height - 40;
+            Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
         }
 
         private void LoadThemes()

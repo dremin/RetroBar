@@ -16,12 +16,12 @@ namespace RetroBar.Controls
 
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
-            Shell.ShowStartMenu();
+            ShellHelper.ShowStartMenu();
         }
 
         private void Explore_OnClick(object sender, RoutedEventArgs e)
         {
-            Shell.StartProcess("explorer.exe");
+            ShellHelper.StartProcess("explorer.exe");
         }
     }
 }

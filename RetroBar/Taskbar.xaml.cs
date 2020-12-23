@@ -2,7 +2,7 @@
 using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
-using ManagedShell.Management;
+using ManagedShell;
 using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;
@@ -76,7 +76,7 @@ namespace RetroBar
 
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Shell.StartTaskManager();
+            ShellHelper.StartTaskManager();
         }
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)

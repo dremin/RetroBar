@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>RetroBar.App</StartupObject>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyVersion>1.0.0.8</AssemblyVersion>
@@ -52,12 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ManagedShell.AppBar\ManagedShell.AppBar.csproj" />
-    <ProjectReference Include="..\ManagedShell.Common\ManagedShell.Common.csproj" />
-    <ProjectReference Include="..\ManagedShell.Interop\ManagedShell.Interop.csproj" />
-    <ProjectReference Include="..\ManagedShell.Management\ManagedShell.Management.csproj" />
-    <ProjectReference Include="..\ManagedShell.WindowsTasks\ManagedShell.WindowsTasks.csproj" />
-    <ProjectReference Include="..\ManagedShell.WindowsTray\ManagedShell.WindowsTray.csproj" />
+    <PackageReference Include="ManagedShell" Version="0.0.15" />
   </ItemGroup>
 
   <ItemGroup>
