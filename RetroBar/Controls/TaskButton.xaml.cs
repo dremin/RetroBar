@@ -66,7 +66,7 @@ namespace RetroBar.Controls
 
         private void CloseMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window.CloseByTaskService();
+            Window.Close();
         }
 
         private void RestoreMenuItem_OnClick(object sender, RoutedEventArgs e)

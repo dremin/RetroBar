@@ -19,20 +19,16 @@ namespace RetroBar
     {
         private ShellManager _shellManager;
 
-        public Taskbar(ShellManager shellManager, Screen screen)
-            : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper)
+        public Taskbar(ShellManager shellManager, Screen screen, NativeMethods.ABEdge edge)
+            : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
             _shellManager = shellManager;
 
             InitializeComponent();
             DataContext = _shellManager;
+            DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
 
             _explorerHelper.HideExplorerTaskbar = true;
-            
-            Screen = screen;
-            appBarEdge = NativeMethods.ABEdge.ABE_BOTTOM;
-            desiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
-            processScreenChanges = true;
 
             SetPosition();
             Utilities.Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -40,12 +36,9 @@ namespace RetroBar
 
         public override void SetPosition()
         {
-            Left = Screen.Bounds.Left / dpiScale;
-            Width = Screen.Bounds.Width / dpiScale;
-            Height = desiredHeight;
-            Top = Screen.Bounds.Bottom / dpiScale - Height;
+            base.SetPosition();
 
-            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData { edge = (int)appBarEdge, rc = new NativeMethods.Rect { Top = (int)(Top * dpiScale), Left = (int)(Left * dpiScale), Bottom = (int)((Top + Height) * dpiScale), Right = (int)((Left + Width) * dpiScale) } });
+            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData { edge = (int)AppBarEdge, rc = new NativeMethods.Rect { Top = (int)(Top * DpiScale), Left = (int)(Left * DpiScale), Bottom = (int)((Top + Height) * DpiScale), Right = (int)((Left + Width) * DpiScale) } });
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -53,9 +46,9 @@ namespace RetroBar
             if (e.PropertyName == "Theme")
             {
                 double newHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
-                if (newHeight != desiredHeight)
+                if (newHeight != DesiredHeight)
                 {
-                    desiredHeight = newHeight;
+                    DesiredHeight = newHeight;
                     SetScreenPosition();
                 }
             }
@@ -64,7 +57,7 @@ namespace RetroBar
         private void Taskbar_OnLocationChanged(object? sender, EventArgs e)
         {
             // primarily for win7/8, they will set up the appbar correctly but then put it in the wrong place
-            double desiredTop = Screen.Bounds.Bottom / dpiScale - Height;
+            double desiredTop = Screen.Bounds.Bottom / DpiScale - Height;
 
             if (Top != desiredTop) Top = desiredTop;
         }
