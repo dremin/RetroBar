@@ -29,8 +29,7 @@ namespace RetroBar
             DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
 
             _explorerHelper.HideExplorerTaskbar = true;
-
-            SetPosition();
+            
             Utilities.Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
@@ -38,7 +37,17 @@ namespace RetroBar
         {
             base.SetPosition();
 
-            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData { edge = (int)AppBarEdge, rc = new NativeMethods.Rect { Top = (int)(Top * DpiScale), Left = (int)(Left * DpiScale), Bottom = (int)((Top + Height) * DpiScale), Right = (int)((Left + Width) * DpiScale) } });
+            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData
+            {
+                edge = AppBarEdge,
+                rc = new NativeMethods.Rect
+                {
+                    Top = (int) (Top * DpiScale),
+                    Left = (int) (Left * DpiScale),
+                    Bottom = (int) ((Top + Height) * DpiScale),
+                    Right = (int) ((Left + Width) * DpiScale)
+                }
+            });
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)

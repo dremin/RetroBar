@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 
 namespace RetroBar.Controls
@@ -25,37 +26,35 @@ namespace RetroBar.Controls
         private void NotifyIcon_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            TrayIcon?.IconMouseClick(e.ChangedButton, getMousePos(), System.Windows.Forms.SystemInformation.DoubleClickTime);
+            TrayIcon?.IconMouseClick(e.ChangedButton, MouseHelper.GetCursorPositionParam(), System.Windows.Forms.SystemInformation.DoubleClickTime);
         }
 
         private void NotifyIcon_OnMouseEnter(object sender, MouseEventArgs e)
         {
-            Decorator sendingDecorator = sender as Decorator;
+            e.Handled = true;
 
             if (TrayIcon != null)
             {
                 // update icon position for Shell_NotifyIconGetRect
+                Decorator sendingDecorator = sender as Decorator;
                 Point location = sendingDecorator.PointToScreen(new Point(0, 0));
                 double dpiScale = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
 
                 TrayIcon.Placement = new NativeMethods.Rect { Top = (int)location.Y, Left = (int)location.X, Bottom = (int)(sendingDecorator.ActualHeight * dpiScale), Right = (int)(sendingDecorator.ActualWidth * dpiScale) };
-                TrayIcon.IconMouseEnter(getMousePos());
+                TrayIcon.IconMouseEnter(MouseHelper.GetCursorPositionParam());
             }
         }
 
         private void NotifyIcon_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            TrayIcon?.IconMouseLeave(getMousePos());
+            e.Handled = true;
+            TrayIcon?.IconMouseLeave(MouseHelper.GetCursorPositionParam());
         }
 
         private void NotifyIcon_OnMouseMove(object sender, MouseEventArgs e)
         {
-            TrayIcon?.IconMouseMove(getMousePos());
-        }
-
-        private uint getMousePos()
-        {
-            return (((uint)System.Windows.Forms.Cursor.Position.Y << 16) | (uint)System.Windows.Forms.Cursor.Position.X);
+            e.Handled = true;
+            TrayIcon?.IconMouseMove(MouseHelper.GetCursorPositionParam());
         }
     }
 }

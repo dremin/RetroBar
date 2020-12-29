@@ -1,9 +1,11 @@
-﻿using ManagedShell.Common.Logging;
+﻿using System;
+using ManagedShell.Common.Logging;
 using ManagedShell.Common.Logging.Observers;
 using ManagedShell;
 using RetroBar.Utilities;
 using System.Windows;
 using System.Windows.Forms;
+using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using Application = System.Windows.Application;
 
@@ -51,6 +53,8 @@ namespace RetroBar
 
         private ShellManager SetupManagedShell()
         {
+            EnvironmentHelper.IsAppRunningAsShell = NativeMethods.GetShellWindow() == IntPtr.Zero;
+            
             ShellLogger.Severity = LogSeverity.Debug;
             ShellLogger.Attach(new ConsoleLog());
 

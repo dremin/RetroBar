@@ -443,7 +443,7 @@
                 Value="True" />
         <Setter Property="Margin"
                 Value="0,0,5,-3" />
-        <Setter Property="Width"
+        <Setter Property="MinWidth"
                 Value="99" />
         <Setter Property="Height"
                 Value="33" />
@@ -515,7 +515,7 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="Margin"
-                Value="0,-1,0,0" />
+                Value="0,-1,26,0" />
         <Setter Property="Effect"
                 Value="{DynamicResource StartLabelShadow}" />
     </Style>
