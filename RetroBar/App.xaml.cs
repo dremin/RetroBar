@@ -4,7 +4,7 @@ using ManagedShell.Common.Logging.Observers;
 using ManagedShell;
 using RetroBar.Utilities;
 using System.Windows;
-using System.Windows.Forms;
+using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using Application = System.Windows.Application;
@@ -37,7 +37,7 @@ namespace RetroBar
         {
             ThemeManager.SetThemeFromSettings();
 
-            Taskbar taskbar = new Taskbar(_shellManager, Screen.PrimaryScreen, NativeMethods.ABEdge.ABE_BOTTOM);
+            Taskbar taskbar = new Taskbar(_shellManager, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
             taskbar.Show();
         }
 

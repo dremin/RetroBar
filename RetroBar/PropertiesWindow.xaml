@@ -81,7 +81,7 @@
                                       SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                         <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
-                            <Label>Show clock</Label>
+                            <Label Content="Show clock" />
                         </CheckBox>
                     </StackPanel>
                 </Grid>
@@ -93,7 +93,8 @@
                     Margin="0,7,0,0">
             <Button MinWidth="73"
                     MinHeight="21"
-                    Click="OK_OnClick">OK</Button>
+                    Content="OK"
+                    Click="OK_OnClick" />
         </StackPanel>
     </Grid>
 </Window>

@@ -7,7 +7,6 @@ using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Forms;
 using Application = System.Windows.Application;
 
 namespace RetroBar
@@ -19,7 +18,7 @@ namespace RetroBar
     {
         private ShellManager _shellManager;
 
-        public Taskbar(ShellManager shellManager, Screen screen, NativeMethods.ABEdge edge)
+        public Taskbar(ShellManager shellManager, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
             _shellManager = shellManager;
@@ -39,7 +38,7 @@ namespace RetroBar
 
             _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData
             {
-                edge = AppBarEdge,
+                edge = (NativeMethods.ABEdge)AppBarEdge,
                 rc = new NativeMethods.Rect
                 {
                     Top = (int) (Top * DpiScale),
