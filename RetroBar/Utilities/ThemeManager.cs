@@ -42,7 +42,13 @@ namespace RetroBar.Utilities
 
                 if (!File.Exists(themeFilePath))
                 {
-                    return;
+                    // custom theme in app directory
+                    themeFilePath = Path.ChangeExtension(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), THEME_FOLDER, theme), THEME_EXT);
+
+                    if (!File.Exists(themeFilePath))
+                    {
+                        return;
+                    }
                 }
             }
 
@@ -62,6 +68,21 @@ namespace RetroBar.Utilities
             {
                 themes.Add(Path.GetFileNameWithoutExtension(subStr));
             }
+
+            // Because RetroBar is published as a single-file app, it gets extracted to a temp directory, so custom themes won't be there.
+            // Get the executable path to find the custom themes directory when not a debug build.
+#if !DEBUG
+            string customThemeDir = Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), THEME_FOLDER);
+
+            if (Directory.Exists(customThemeDir))
+            {
+                foreach (string subStr in Directory.GetFiles(customThemeDir)
+                    .Where(s => Path.GetExtension(s).Contains(THEME_EXT)))
+                {
+                    themes.Add(Path.GetFileNameWithoutExtension(subStr));
+                }
+            }
+#endif
 
             return themes;
         }
