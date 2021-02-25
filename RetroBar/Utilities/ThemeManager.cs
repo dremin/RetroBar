@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using ManagedShell.Common.Logging;
 
 namespace RetroBar.Utilities
 {
@@ -71,8 +72,11 @@ namespace RetroBar.Utilities
 
             // Because RetroBar is published as a single-file app, it gets extracted to a temp directory, so custom themes won't be there.
             // Get the executable path to find the custom themes directory when not a debug build.
+            ShellLogger.Error("BeforeDebugCheck");
 #if !DEBUG
+            ShellLogger.Error("AfterDebugCheck");
             string customThemeDir = Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), THEME_FOLDER);
+            ShellLogger.Error(customThemeDir);
 
             if (Directory.Exists(customThemeDir))
             {
