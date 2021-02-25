@@ -4,6 +4,7 @@
              Loaded="NotifyIcon_OnLoaded">
     <Border ToolTip="{Binding Path=Title}"
             MouseUp="NotifyIcon_OnMouseUp"
+            MouseDown="NotifyIcon_OnMouseDown"
             MouseEnter="NotifyIcon_OnMouseEnter"
             MouseLeave="NotifyIcon_OnMouseLeave"
             MouseMove="NotifyIcon_OnMouseMove">

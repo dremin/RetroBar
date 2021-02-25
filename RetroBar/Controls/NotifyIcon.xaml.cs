@@ -23,10 +23,16 @@ namespace RetroBar.Controls
             TrayIcon = DataContext as ManagedShell.WindowsTray.NotifyIcon;
         }
 
+        private void NotifyIcon_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            TrayIcon?.IconMouseDown(e.ChangedButton, MouseHelper.GetCursorPositionParam(), System.Windows.Forms.SystemInformation.DoubleClickTime);
+        }
+
         private void NotifyIcon_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            TrayIcon?.IconMouseClick(e.ChangedButton, MouseHelper.GetCursorPositionParam(), System.Windows.Forms.SystemInformation.DoubleClickTime);
+            TrayIcon?.IconMouseUp(e.ChangedButton, MouseHelper.GetCursorPositionParam(), System.Windows.Forms.SystemInformation.DoubleClickTime);
         }
 
         private void NotifyIcon_OnMouseEnter(object sender, MouseEventArgs e)
