@@ -58,10 +58,6 @@ namespace RetroBar
             ShellLogger.Severity = LogSeverity.Debug;
             ShellLogger.Attach(new ConsoleLog());
 
-            FileLog fileLog = new FileLog(@"c:\users\johns\desktop\log.txt");
-            fileLog.Open();
-            ShellLogger.Attach(fileLog);
-
             ShellConfig config = ShellManager.DefaultShellConfig;
 
             config.AutoStartTasksService = false;
