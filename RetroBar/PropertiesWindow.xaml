@@ -42,6 +42,16 @@
                 <Setter Property="Padding"
                         Value="0,2,0,0" />
             </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="MinHeight"
+                        Value="21" />
+                <Setter Property="MinWidth"
+                        Value="73" />
+                <Setter Property="Padding"
+                        Value="10,0" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid Margin="7">
@@ -83,6 +93,13 @@
                         <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="Show clock" />
                         </CheckBox>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="Show quick launch" />
+                            </CheckBox>
+                            <Button Content="Set location..."
+                                    Click="SetQuickLaunchLocation_OnClick" />
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -91,9 +108,7 @@
                     HorizontalAlignment="Right"
                     Grid.Row="1"
                     Margin="0,7,0,0">
-            <Button MinWidth="73"
-                    MinHeight="21"
-                    Content="OK"
+            <Button Content="OK"
                     Click="OK_OnClick" />
         </StackPanel>
     </Grid>

@@ -259,4 +259,69 @@
         <Setter Property="Margin"
                 Value="8,0" />
     </Style>
+
+    <Style TargetType="Button"
+           x:Key="ToolbarButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="0,0,1,1"
+                            BorderBrush="{TemplateBinding Background}"
+                            x:Name="ButtonRightBottomBorder">
+                        <Border BorderThickness="1,1,0,0"
+                                BorderBrush="{TemplateBinding Background}"
+                                Background="{TemplateBinding Background}"
+                                Padding="2,1"
+                                x:Name="ButtonLeftTopBorder">
+                            <ContentPresenter />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="ToolbarIcon">
+        <Setter Property="Width"
+                Value="16" />
+        <Setter Property="Height"
+                Value="16" />
+        <Setter Property="Margin"
+                Value="0,0,1,0" />
+    </Style>
+
+    <Style TargetType="ItemsControl"
+           x:Key="ToolbarItems">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="Margin"
+                Value="0,0,4,0" />
+    </Style>
 </ResourceDictionary>

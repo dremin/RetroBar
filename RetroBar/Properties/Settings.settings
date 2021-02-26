@@ -11,5 +11,11 @@
     <Setting Name="ShowClock" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ShowQuickLaunch" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="QuickLaunchPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%appdata%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

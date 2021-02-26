@@ -119,6 +119,36 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool ShowQuickLaunch
+        {
+            get
+            {
+                return settings.ShowQuickLaunch;
+            }
+            set
+            {
+                if (settings.ShowQuickLaunch != value)
+                {
+                    settings.ShowQuickLaunch = value;
+                }
+            }
+        }
+
+        public string QuickLaunchPath
+        {
+            get
+            {
+                return settings.QuickLaunchPath;
+            }
+            set
+            {
+                if (settings.QuickLaunchPath != value)
+                {
+                    settings.QuickLaunchPath = value;
+                }
+            }
+        }
         #endregion
 
         public void Save()

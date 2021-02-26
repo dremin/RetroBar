@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="RetroBar.Controls.Toolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RetroBar.Controls">
+    <ItemsControl x:Name="ToolbarItems"
+                  Style="{DynamicResource ToolbarItems}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal"></StackPanel>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <ItemContainerTemplate>
+                <local:ToolbarButton DataContext="{Binding}"
+                                     PreviewMouseLeftButtonUp="ToolbarIcon_OnPreviewMouseLeftButtonUp"
+                                     PreviewMouseRightButtonUp="ToolbarIcon_OnPreviewMouseRightButtonUp"></local:ToolbarButton>
+            </ItemContainerTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

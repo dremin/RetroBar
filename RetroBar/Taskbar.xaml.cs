@@ -7,6 +7,7 @@ using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using ManagedShell.ShellFolders;
 using Application = System.Windows.Application;
 
 namespace RetroBar
@@ -26,6 +27,7 @@ namespace RetroBar
             InitializeComponent();
             DataContext = _shellManager;
             DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+            SetupQuickLaunch();
 
             _explorerHelper.HideExplorerTaskbar = true;
             
@@ -48,6 +50,22 @@ namespace RetroBar
                 }
             });
         }
+        
+        private void SetupQuickLaunch()
+        {
+            QuickLaunchToolbar.Folder?.Dispose();
+            QuickLaunchToolbar.Folder = null;
+
+            if (Utilities.Settings.Instance.ShowQuickLaunch)
+            {
+                QuickLaunchToolbar.Folder = new ShellFolder(Environment.ExpandEnvironmentVariables(Utilities.Settings.Instance.QuickLaunchPath), IntPtr.Zero, true);
+                QuickLaunchToolbar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
+            }
+        }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -59,6 +77,10 @@ namespace RetroBar
                     DesiredHeight = newHeight;
                     SetScreenPosition();
                 }
+            }
+            else if (e.PropertyName == "ShowQuickLaunch" || e.PropertyName == "QuickLaunchPath")
+            {
+                SetupQuickLaunch();
             }
         }
 
@@ -92,6 +114,8 @@ namespace RetroBar
             if (AllowClose)
             {
                 _explorerHelper.HideExplorerTaskbar = false;
+                
+                QuickLaunchToolbar.Folder?.Dispose();
             }
         }
     }

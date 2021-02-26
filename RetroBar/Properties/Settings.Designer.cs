@@ -58,5 +58,29 @@ namespace RetroBar.Properties {
                 this["ShowClock"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowQuickLaunch {
+            get {
+                return ((bool)(this["ShowQuickLaunch"]));
+            }
+            set {
+                this["ShowQuickLaunch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%appdata%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar")]
+        public string QuickLaunchPath {
+            get {
+                return ((string)(this["QuickLaunchPath"]));
+            }
+            set {
+                this["QuickLaunchPath"] = value;
+            }
+        }
     }
 }

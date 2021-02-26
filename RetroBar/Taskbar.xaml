@@ -10,6 +10,8 @@
     <Border>
         <DockPanel>
             <controls:StartButton DockPanel.Dock="Left" />
+            <controls:Toolbar x:Name="QuickLaunchToolbar"
+                              DockPanel.Dock="Left" />
             <GroupBox DockPanel.Dock="Right"
                       Style="{DynamicResource Tray}">
                 <StackPanel Orientation="Horizontal">

@@ -35,5 +35,19 @@ namespace RetroBar
         {
             Close();
         }
+
+        private void SetQuickLaunchLocation_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
+            fbd.Description = "Quick Launch - Choose a folder";
+            fbd.UseDescriptionForTitle = true;
+            fbd.ShowNewFolderButton = false;
+            fbd.SelectedPath = Settings.Instance.QuickLaunchPath;
+
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Settings.Instance.QuickLaunchPath = fbd.SelectedPath;
+            }
+        }
     }
 }
