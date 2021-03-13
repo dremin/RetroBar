@@ -107,7 +107,7 @@ namespace RetroBar.Controls
                 return false;
             }
             
-            var _ = new ShellItemContextMenu(new ShellItem[] { file }, Folder, IntPtr.Zero, HandleFileAction, isInteractive, new ShellMenuCommandBuilder(), GetFileCommandBuilder(file));
+            var _ = new ShellItemContextMenu(new ShellItem[] { file }, Folder, IntPtr.Zero, HandleFileAction, isInteractive, false, new ShellMenuCommandBuilder(), GetFileCommandBuilder(file));
             return true;
         }
 
