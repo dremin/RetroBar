@@ -54,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ManagedShell" Version="0.0.65" />
+    <PackageReference Include="ManagedShell" Version="0.0.89" />
   </ItemGroup>
 
   <ItemGroup>
