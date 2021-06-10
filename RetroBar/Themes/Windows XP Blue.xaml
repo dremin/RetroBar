@@ -166,6 +166,7 @@
                       Opacity="1" />
 
     <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
     <BitmapImage x:Key="StartIconImage"
@@ -450,6 +451,8 @@
            x:Key="StartButton">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
                 Value="0,0,5,-3" />
         <Setter Property="MinWidth"
