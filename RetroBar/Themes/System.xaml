@@ -15,6 +15,7 @@
     <SolidColorBrush x:Key="ButtonFlashingFace" Color="{x:Static SystemColors.HighlightColor}" />
 
     <SolidColorBrush x:Key="ButtonForeground" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
     <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
 
     <BitmapImage x:Key="StartIconImage"
@@ -100,6 +101,8 @@
                 Value="True" />
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
                 Value="0,0,3,0" />
         <Setter Property="Template">
@@ -188,6 +191,8 @@
            BasedOn="{StaticResource TaskButton}">
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFlashingFace}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonFlashingForeground}" />
     </Style>
 
     <Style TargetType="Button"
@@ -229,8 +234,6 @@
                 Value="{DynamicResource GlobalFontFamily}" />
         <Setter Property="FontSize"
                 Value="{DynamicResource GlobalFontSize}" />
-        <Setter Property="Foreground"
-                Value="{DynamicResource ButtonForeground}" />
         <Setter Property="TextTrimming"
                 Value="CharacterEllipsis" />
         <Setter Property="HorizontalAlignment"

@@ -8,5 +8,6 @@
     <SolidColorBrush x:Key="ButtonFlashingFace" Color="#000080" />
 
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 </ResourceDictionary>
