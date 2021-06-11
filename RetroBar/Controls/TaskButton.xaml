@@ -6,8 +6,11 @@
     <Button Name="AppButton"
             ToolTip="{Binding Path=Title}"
             Click="AppButton_OnClick"
+            MouseUp="AppButton_OnMouseUp"
             PreviewMouseDown="AppButton_OnPreviewMouseDown"
-            ContextMenuOpening="AppButton_OnContextMenuOpening" >
+            ContextMenuOpening="AppButton_OnContextMenuOpening"
+            DragEnter="AppButton_OnDragEnter"
+            DragLeave="AppButton_OnDragLeave">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

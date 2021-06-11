@@ -1,8 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Threading;
+using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
 using RetroBar.Converters;
@@ -41,6 +44,10 @@ namespace RetroBar.Controls
             Window = DataContext as ApplicationWindow;
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+            // drag support - delayed activation using system setting
+            dragTimer = new DispatcherTimer { Interval = SystemParameters.MouseHoverTime };
+            dragTimer.Tick += dragTimer_Tick;
         }
 
         private void TaskButton_OnUnloaded(object sender, RoutedEventArgs e)
@@ -114,6 +121,19 @@ namespace RetroBar.Controls
             }
         }
 
+        private void AppButton_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Middle)
+            {
+                if (Window == null)
+                {
+                    return;
+                }
+
+                ShellHelper.StartProcess(Window.WinFileName);
+            }
+        }
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Theme")
@@ -121,5 +141,38 @@ namespace RetroBar.Controls
                 SetStyle();
             }
         }
+
+        #region Drag
+        private bool inDrag;
+        private DispatcherTimer dragTimer;
+
+        private void dragTimer_Tick(object sender, EventArgs e)
+        {
+            if (inDrag && Window != null)
+            {
+                Window.BringToFront();
+            }
+
+            dragTimer.Stop();
+        }
+
+        private void AppButton_OnDragEnter(object sender, DragEventArgs e)
+        {
+            if (!inDrag)
+            {
+                inDrag = true;
+                dragTimer.Start();
+            }
+        }
+
+        private void AppButton_OnDragLeave(object sender, DragEventArgs e)
+        {
+            if (inDrag)
+            {
+                dragTimer.Stop();
+                inDrag = false;
+            }
+        }
+        #endregion
     }
 }
