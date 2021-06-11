@@ -6,7 +6,8 @@
         Title="RetroBar Taskbar"
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
-        Style="{DynamicResource Taskbar}">
+        Style="{DynamicResource Taskbar}"
+        AllowDrop="True">
     <Border>
         <DockPanel>
             <controls:StartButton DockPanel.Dock="Left" />
