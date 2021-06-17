@@ -31,6 +31,7 @@
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
     <system:String x:Key="StartText">Start</system:String>
+    <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
 
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily"

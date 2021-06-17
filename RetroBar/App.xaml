@@ -1,6 +1,7 @@
 ﻿<Application x:Class="RetroBar.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnExplicitShutdown"
              Startup="App_OnStartup"
              Exit="App_OnExit"
              SessionEnding="App_OnSessionEnding">

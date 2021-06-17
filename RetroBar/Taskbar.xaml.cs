@@ -17,6 +17,7 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
+        private bool _isReopening;
         private ShellManager _shellManager;
 
         public Taskbar(ShellManager shellManager, AppBarScreen screen, AppBarEdge edge)
@@ -27,11 +28,19 @@ namespace RetroBar
             InitializeComponent();
             DataContext = _shellManager;
             DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+            AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
             SetupQuickLaunch();
 
             _explorerHelper.HideExplorerTaskbar = true;
-            
+
             Utilities.Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+        }
+
+        protected override void OnSourceInitialized(object sender, EventArgs e)
+        {
+            base.OnSourceInitialized(sender, e);
+
+            SetBlur(AllowsTransparency);
         }
 
         public override void SetPosition()
@@ -71,7 +80,17 @@ namespace RetroBar
         {
             if (e.PropertyName == "Theme")
             {
+                bool newTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
                 double newHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+
+                if (AllowsTransparency != newTransparency)
+                {
+                    // Transparency cannot be changed on an open window.
+                    _isReopening = true;
+                    ((App)Application.Current).ReopenTaskbar();
+                    return;
+                }
+
                 if (newHeight != DesiredHeight)
                 {
                     DesiredHeight = newHeight;
@@ -113,9 +132,10 @@ namespace RetroBar
         {
             if (AllowClose)
             {
-                _explorerHelper.HideExplorerTaskbar = false;
+                if (!_isReopening) _explorerHelper.HideExplorerTaskbar = false;
                 
                 QuickLaunchToolbar.Folder?.Dispose();
+                Utilities.Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }
         }
     }

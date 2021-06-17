@@ -52,7 +52,6 @@ namespace RetroBar.Controls
         {
             if (!isLoaded && Tasks != null)
             {
-                Tasks.Initialize();
                 TasksList.ItemsSource = Tasks.GroupedWindows;
                 if (Tasks.GroupedWindows != null)
                     Tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
