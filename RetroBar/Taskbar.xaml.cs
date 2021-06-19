@@ -42,6 +42,23 @@ namespace RetroBar
 
             SetBlur(AllowsTransparency);
         }
+        
+        protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            base.WndProc(hwnd, msg, wParam, lParam, ref handled);
+
+            if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
+                    msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
+                Utilities.Settings.Instance.Theme == "System")
+            {
+                handled = true;
+
+                // If the color scheme changes, re-apply the current theme to get updated colors.
+                ((App)Application.Current).ThemeManager.SetThemeFromSettings();
+            }
+
+            return IntPtr.Zero;
+        }
 
         public override void SetPosition()
         {
