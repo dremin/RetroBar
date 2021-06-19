@@ -1,0 +1,304 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="ButtonShadow" Color="#BEBFB9" />
+    <SolidColorBrush x:Key="ButtonBorder" Color="#818181" />
+    <SolidColorBrush x:Key="ButtonLight" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ButtonFace" Color="#F4F4F0" />
+
+    <SolidColorBrush x:Key="ButtonInactiveBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonActiveBorder" Color="#91B1D6" />
+    <SolidColorBrush x:Key="ButtonActiveBackground" Color="#A8D2FF" />
+    <SolidColorBrush x:Key="ButtonHoverBorder" Color="#BBC5D9" />
+    <SolidColorBrush x:Key="ButtonHoverBackground" Color="#D9E9FB" />
+    <SolidColorBrush x:Key="ButtonPressedBorder" Color="#0064B3" />
+    <SolidColorBrush x:Key="ButtonPressedBackground" Color="#006EC3" />
+    <SolidColorBrush x:Key="ButtonFlashingBorder" Color="#0064B3" />
+    <SolidColorBrush x:Key="ButtonFlashingBackground" Color="#006EC3" />
+
+    <SolidColorBrush x:Key="TrayBorder" Color="#CDCBB9" />
+    <SolidColorBrush x:Key="TrayInnerBorder" Color="#EDECE5" />
+
+    <LinearGradientBrush x:Key="StartButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#F1F2EC"
+                      Offset="0.0" />
+        <GradientStop Color="#E0E2DC"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="StartButtonHoverBorder" Color="#6C8CB3" />
+    <SolidColorBrush x:Key="StartButtonHoverBorderLight" Color="#C7DEF7" />
+    <SolidColorBrush x:Key="StartButtonHoverBorderShadow" Color="#84B0E0" />
+    <LinearGradientBrush x:Key="StartButtonHoverBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#B0D1F1"
+                      Offset="0.0" />
+        <GradientStop Color="#99BFE7"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="StartButtonPressedBorder" Color="#6381A5" />
+    <SolidColorBrush x:Key="StartButtonPressedBorderLight" Color="#B7CDE5" />
+    <SolidColorBrush x:Key="StartButtonPressedBorderShadow" Color="#79A2CF" />
+    <LinearGradientBrush x:Key="StartButtonPressedBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#8EB0D5"
+                      Offset="0.0" />
+        <GradientStop Color="#A2C1DE"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
+
+    <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
+
+    <Style TargetType="Window"
+           x:Key="Taskbar"
+           BasedOn="{StaticResource Taskbar}">
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Window">
+                    <Border BorderThickness="0,1,0,0"
+                            BorderBrush="{DynamicResource ButtonBorder}">
+                        <Border BorderThickness="0,1,0,0"
+                                BorderBrush="{DynamicResource ButtonShadow}"
+                                Background="{DynamicResource ButtonFace}"
+                                Padding="2">
+                            <ContentPresenter />
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="GroupBox"
+           x:Key="Tray">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource TrayBorder}"
+                            Margin="-1">
+                        <Border BorderThickness="1,0,1,1"
+                                BorderBrush="{DynamicResource TrayInnerBorder}"
+                                Background="{DynamicResource ButtonFace}"
+                                Padding="2">
+                            <ContentPresenter />
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="TaskButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="Margin"
+                Value="0,0,3,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonInactiveBorder}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ButtonBorder">
+                        <ContentPresenter Margin="3,2"
+                                          x:Name="Content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHoverBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonPressedBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonPressedBackground}" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="4,3,2,1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="TaskButtonActive"
+           BasedOn="{StaticResource TaskButton}">
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonActiveBackground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonActiveBorder}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ButtonBorder">
+                        <ContentPresenter Margin="4,3,2,1"
+                                          x:Name="Content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHoverBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonPressedBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonPressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="TaskButtonFlashing"
+           BasedOn="{StaticResource TaskButton}">
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFlashingFace}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonFlashingForeground}" />
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="StartButton"
+           BasedOn="{StaticResource TaskButton}">
+        <Setter Property="Margin"
+                Value="0,0,4,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonBorder}"
+                            x:Name="ButtonBorder">
+                        <Border BorderThickness="1,1,0,0"
+                                BorderBrush="{DynamicResource ButtonLight}"
+                                x:Name="TopLeftBorder">
+                            <Border BorderThickness="0,0,1,1"
+                                BorderBrush="{DynamicResource ButtonShadow}"
+                                Background="{DynamicResource StartButtonBackground}"
+                                x:Name="BottomRightBorder">
+                                <ContentPresenter Margin="2,1"
+                                                  x:Name="Content" />
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonHoverBorder}" />
+                            <Setter TargetName="TopLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonHoverBorderLight}" />
+                            <Setter TargetName="BottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonHoverBorderShadow}" />
+                            <Setter TargetName="BottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource StartButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonPressedBorder}" />
+                            <Setter TargetName="TopLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonPressedBorderShadow}" />
+                            <Setter TargetName="BottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonPressedBorderLight}" />
+                            <Setter TargetName="BottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource StartButtonPressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="ToolbarButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonInactiveBorder}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ButtonBorder">
+                        <ContentPresenter Margin="3,2"
+                                          x:Name="Content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHoverBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonPressedBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonPressedBackground}" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="4,2,2,2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
