@@ -3,7 +3,7 @@
     <SolidColorBrush x:Key="ButtonShadow" Color="#BEBFB9" />
     <SolidColorBrush x:Key="ButtonBorder" Color="#818181" />
     <SolidColorBrush x:Key="ButtonLight" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="ButtonFace" Color="#F4F4F0" />
+    <SolidColorBrush x:Key="ButtonFace" Color="#EBEBE4" />
 
     <SolidColorBrush x:Key="ButtonInactiveBorder" Color="Transparent" />
     <SolidColorBrush x:Key="ButtonActiveBorder" Color="#91B1D6" />
@@ -12,11 +12,12 @@
     <SolidColorBrush x:Key="ButtonHoverBackground" Color="#D9E9FB" />
     <SolidColorBrush x:Key="ButtonPressedBorder" Color="#0064B3" />
     <SolidColorBrush x:Key="ButtonPressedBackground" Color="#006EC3" />
-    <SolidColorBrush x:Key="ButtonFlashingBorder" Color="#0064B3" />
-    <SolidColorBrush x:Key="ButtonFlashingBackground" Color="#006EC3" />
+    <SolidColorBrush x:Key="ButtonFlashingBorder" Color="#FFA275" />
+    <SolidColorBrush x:Key="ButtonFlashingBackground" Color="#FFB895" />
 
     <SolidColorBrush x:Key="TrayBorder" Color="#CDCBB9" />
     <SolidColorBrush x:Key="TrayInnerBorder" Color="#EDECE5" />
+    <SolidColorBrush x:Key="TrayBackground" Color="#F3F4F0" />
 
     <LinearGradientBrush x:Key="StartButtonBackground"
                          StartPoint="0,0"
@@ -50,7 +51,6 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
-    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
@@ -66,7 +66,7 @@
                     <Border BorderThickness="0,1,0,0"
                             BorderBrush="{DynamicResource ButtonBorder}">
                         <Border BorderThickness="0,1,0,0"
-                                BorderBrush="{DynamicResource ButtonShadow}"
+                                BorderBrush="{DynamicResource ButtonLight}"
                                 Background="{DynamicResource ButtonFace}"
                                 Padding="2">
                             <ContentPresenter />
@@ -89,7 +89,7 @@
                             Margin="-1">
                         <Border BorderThickness="1,0,1,1"
                                 BorderBrush="{DynamicResource TrayInnerBorder}"
-                                Background="{DynamicResource ButtonFace}"
+                                Background="{DynamicResource TrayBackground}"
                                 Padding="2">
                             <ContentPresenter />
                         </Border>
@@ -191,9 +191,28 @@
            x:Key="TaskButtonFlashing"
            BasedOn="{StaticResource TaskButton}">
         <Setter Property="Background"
-                Value="{DynamicResource ButtonFlashingFace}" />
-        <Setter Property="Foreground"
-                Value="{DynamicResource ButtonFlashingForeground}" />
+                Value="{DynamicResource ButtonFlashingBackground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonFlashingBorder}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ButtonBorder">
+                        <ContentPresenter Margin="3,2"
+                                          x:Name="Content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="4,3,2,1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="Button"
@@ -271,7 +290,7 @@
                             BorderBrush="{DynamicResource ButtonInactiveBorder}"
                             Background="{TemplateBinding Background}"
                             x:Name="ButtonBorder">
-                        <ContentPresenter Margin="3,2"
+                        <ContentPresenter Margin="2,1"
                                           x:Name="Content" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -294,7 +313,7 @@
                                     Value="{DynamicResource ButtonPressedBackground}" />
                             <Setter TargetName="Content"
                                     Property="Margin"
-                                    Value="4,2,2,2" />
+                                    Value="3,1,1,1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Themes\Watercolor.xaml" />
     <Page Remove="Themes\Windows 2000.xaml" />
     <Page Remove="Themes\Windows 95-98.xaml" />
     <Page Remove="Themes\Windows Me.xaml" />
@@ -42,6 +43,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Themes\Watercolor.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Include="Themes\Windows XP Classic.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -54,7 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ManagedShell" Version="0.0.95" />
+    <PackageReference Include="ManagedShell" Version="0.0.97" />
   </ItemGroup>
 
   <ItemGroup>
