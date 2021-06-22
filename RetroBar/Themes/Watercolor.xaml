@@ -290,7 +290,7 @@
                             BorderBrush="{DynamicResource ButtonInactiveBorder}"
                             Background="{TemplateBinding Background}"
                             x:Name="ButtonBorder">
-                        <ContentPresenter Margin="2,1"
+                        <ContentPresenter Margin="2"
                                           x:Name="Content" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -313,7 +313,45 @@
                                     Value="{DynamicResource ButtonPressedBackground}" />
                             <Setter TargetName="Content"
                                     Property="Margin"
-                                    Value="3,1,1,1" />
+                                    Value="3,2,1,2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TaskListScrollButton"
+           TargetType="RepeatButton"
+           BasedOn="{StaticResource TaskListScrollButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonInactiveBorder}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ButtonBorder">
+                        <ContentPresenter Margin="4,-4,4,-2"
+                                          x:Name="Content" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHoverBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonPressedBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonPressedBackground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

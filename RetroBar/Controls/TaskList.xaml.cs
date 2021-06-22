@@ -65,6 +65,7 @@ namespace RetroBar.Controls
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
         {
             Tasks.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
+            isLoaded = false;
         }
 
         private void GroupedWindows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

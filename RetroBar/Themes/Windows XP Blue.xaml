@@ -234,11 +234,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="Transparent">
+                    <Border Background="Transparent"
+                            Padding="0,2">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorder}"
                                 CornerRadius="2"
-                                Margin="0,2,0,1"
                                 x:Name="ButtonTopBorder">
                             <Border BorderThickness="1,0,0,0"
                                     BorderBrush="{DynamicResource TaskButtonLeftBorder}"
@@ -341,11 +341,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="Transparent">
+                    <Border Background="Transparent"
+                            Padding="0,2">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorderPressed}"
                                 CornerRadius="2"
-                                Margin="0,2,0,1"
                                 x:Name="ButtonTopBorder">
                             <Border BorderThickness="1,0,0,0"
                                     BorderBrush="{DynamicResource TaskButtonLeftBorderPressed}"
@@ -405,11 +405,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="Transparent">
+                    <Border Background="Transparent"
+                            Padding="0,2">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorderFlashing}"
                                 CornerRadius="2"
-                                Margin="0,2,0,1"
                                 x:Name="ButtonTopBorder">
                             <Border BorderThickness="1,0,0,0"
                                     BorderBrush="{DynamicResource TaskButtonLeftBorderFlashing}"
@@ -453,6 +453,117 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="TaskListScrollButton"
+           TargetType="RepeatButton"
+           BasedOn="{StaticResource TaskListScrollButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent">
+                        <Border BorderThickness="0,1,0,0"
+                                BorderBrush="{DynamicResource TaskButtonTopBorder}"
+                                CornerRadius="2"
+                                x:Name="ButtonTopBorder">
+                            <Border BorderThickness="1,0,0,0"
+                                    BorderBrush="{DynamicResource TaskButtonLeftBorder}"
+                                    CornerRadius="2"
+                                    x:Name="ButtonLeftBorder">
+                                <Border BorderThickness="0,0,0,1"
+                                        BorderBrush="{DynamicResource TaskButtonRightBorder}"
+                                        CornerRadius="2"
+                                        x:Name="ButtonRightBorder">
+                                    <Border BorderThickness="0,0,1,0"
+                                            BorderBrush="{DynamicResource TaskButtonBottomBorder}"
+                                            CornerRadius="2"
+                                            x:Name="ButtonBottomBorder">
+                                        <Border BorderThickness="1,0,0,0"
+                                                BorderBrush="{DynamicResource TaskButtonInnerLeftBorder}"
+                                                Background="{DynamicResource TaskButtonBackground}"
+                                                CornerRadius="2"
+                                                x:Name="ButtonInnerLeftBorder">
+                                            <Border BorderThickness="0,0,1,1"
+                                                    BorderBrush="{DynamicResource TaskButtonBottomRightBorder}"
+                                                    Background="{DynamicResource TaskButtonBackgroundHighlight}"
+                                                    CornerRadius="2"
+                                                    x:Name="ButtonBottomRightBorder">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  Margin="5,-3,3,-1"
+                                                                  x:Name="Content" />
+                                            </Border>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderHover}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonLeftBorderHover}" />
+                            <Setter TargetName="ButtonRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonRightBorderHover}" />
+                            <Setter TargetName="ButtonBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomBorderHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderHover}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomRightBorderHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderPressed}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonLeftBorderPressed}" />
+                            <Setter TargetName="ButtonRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonRightBorderPressed}" />
+                            <Setter TargetName="ButtonBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomBorderPressed}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderPressed}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomRightBorderPressed}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TaskListScrollViewer"
+           TargetType="ScrollViewer"
+           BasedOn="{StaticResource TaskListScrollViewer}">
+        <Setter Property="Margin"
+                Value="0,1,0,0" />
     </Style>
 
     <Style TargetType="Button"
