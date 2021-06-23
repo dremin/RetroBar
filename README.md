@@ -5,7 +5,7 @@
 
 Pining for simpler times? RetroBar teleports you back in time by replacing your modern Windows taskbar with the classic Windows 95, 98, Me, 2000, or XP style.
 
-RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for maximum compatibility and performance.
+RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for great compatibility and performance.
 
 ## Features
 - Replaces default Windows taskbar with classic layout
@@ -16,6 +16,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Theme support
 - Several themes included:
   - System
+  - Watercolor
   - Windows 95-98
   - Windows Me
   - Windows 2000
