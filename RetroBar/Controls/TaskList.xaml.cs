@@ -69,7 +69,7 @@ namespace RetroBar.Controls
         }
 
         private void GroupedWindows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {                
+        {
             SetTaskButtonWidth();
         }
 
@@ -85,9 +85,13 @@ namespace RetroBar.Controls
             double defaultWidth = DefaultButtonWidth + margin;
             double minWidth = MinButtonWidth + margin;
 
-            if (maxWidth > defaultWidth || maxWidth < minWidth)
+            if (maxWidth > defaultWidth)
             {
                 ButtonWidth = DefaultButtonWidth;
+            }
+            else if (maxWidth < minWidth)
+            {
+                ButtonWidth = Math.Ceiling(DefaultButtonWidth / 2);
             }
             else
             {

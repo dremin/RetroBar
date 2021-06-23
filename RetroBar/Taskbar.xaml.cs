@@ -34,6 +34,9 @@ namespace RetroBar
             _explorerHelper.HideExplorerTaskbar = true;
 
             Utilities.Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+            // Layout rounding causes incorrect sizing on non-integer scales
+            if(DpiHelper.DpiScale % 1 != 0) UseLayoutRounding = false;
         }
 
         protected override void OnSourceInitialized(object sender, EventArgs e)

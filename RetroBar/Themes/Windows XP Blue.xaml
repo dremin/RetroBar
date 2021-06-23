@@ -235,7 +235,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Transparent"
-                            Padding="0,2">
+                            Padding="0,3,0,2">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorder}"
                                 CornerRadius="2"
@@ -342,7 +342,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Transparent"
-                            Padding="0,2">
+                            Padding="0,3,0,2">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorderPressed}"
                                 CornerRadius="2"
@@ -406,7 +406,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Transparent"
-                            Padding="0,2">
+                            Padding="0,3,0,2">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorderFlashing}"
                                 CornerRadius="2"
@@ -489,7 +489,8 @@
                                                     CornerRadius="2"
                                                     x:Name="ButtonBottomRightBorder">
                                                 <ContentPresenter HorizontalAlignment="Center"
-                                                                  Margin="5,-3,3,-1"
+                                                                  VerticalAlignment="Center"
+                                                                  Margin="4,-3,4,0"
                                                                   x:Name="Content" />
                                             </Border>
                                         </Border>
@@ -557,13 +558,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style x:Key="TaskListScrollViewer"
-           TargetType="ScrollViewer"
-           BasedOn="{StaticResource TaskListScrollViewer}">
-        <Setter Property="Margin"
-                Value="0,1,0,0" />
     </Style>
 
     <Style TargetType="Button"
