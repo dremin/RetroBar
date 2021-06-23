@@ -28,7 +28,6 @@ namespace RetroBar.Controls
         {
             if (!isLoaded && NotificationArea != null)
             {
-                NotificationArea.Initialize();
                 UnpinnedNotifyIconList.ItemsSource = NotificationArea.UnpinnedIcons;
                 PinnedNotifyIconList.ItemsSource = NotificationArea.PinnedIcons;
 

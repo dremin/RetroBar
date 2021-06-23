@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace RetroBar.Utilities
 {
-    public class ThemeManager
+    public class ThemeManager : IDisposable
     {
         private const string THEME_DEFAULT = "System";
         private const string THEME_FOLDER = "Themes";
@@ -91,6 +91,11 @@ namespace RetroBar.Utilities
             {
                 SetThemeFromSettings();
             }
+        }
+
+        public void Dispose()
+        {
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
     }
 }

@@ -5,7 +5,8 @@
              Loaded="TaskList_OnLoaded"
              Unloaded="TaskList_OnUnloaded"
              SizeChanged="TaskList_OnSizeChanged">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
+                  VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="TasksList"
                       HorizontalAlignment="Stretch">
             <ItemsControl.ItemsPanel>

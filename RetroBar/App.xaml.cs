@@ -18,6 +18,7 @@ namespace RetroBar
     {
         public ThemeManager ThemeManager { get; }
 
+        private Taskbar _taskbar;
         private readonly ShellManager _shellManager;
 
         public App()
@@ -33,12 +34,23 @@ namespace RetroBar
             Current.Shutdown();
         }
 
+        public void ReopenTaskbar()
+        {
+            _taskbar.AllowClose = true;
+            _taskbar?.Close();
+            openTaskbar();
+        }
+
+        private void openTaskbar()
+        {
+            _taskbar = new Taskbar(_shellManager, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
+            _taskbar.Show();
+        }
+
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             ThemeManager.SetThemeFromSettings();
-
-            Taskbar taskbar = new Taskbar(_shellManager, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
-            taskbar.Show();
+            openTaskbar();
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
@@ -58,16 +70,12 @@ namespace RetroBar
             ShellLogger.Severity = LogSeverity.Debug;
             ShellLogger.Attach(new ConsoleLog());
 
-            ShellConfig config = ShellManager.DefaultShellConfig;
-
-            config.AutoStartTasksService = false;
-            config.AutoStartTrayService = false;
-
-            return new ShellManager(config);
+            return new ShellManager(ShellManager.DefaultShellConfig);
         }
 
         private void ExitApp()
         {
+            ThemeManager.Dispose();
             _shellManager.Dispose();
         }
     }
