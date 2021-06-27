@@ -82,5 +82,17 @@ namespace RetroBar.Properties {
                 this["QuickLaunchPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CollapseNotifyIcons {
+            get {
+                return ((bool)(this["CollapseNotifyIcons"]));
+            }
+            set {
+                this["CollapseNotifyIcons"] = value;
+            }
+        }
     }
 }

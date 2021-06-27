@@ -4,8 +4,14 @@
              xmlns:local="clr-namespace:RetroBar.Controls"
              Loaded="NotifyIconList_OnLoaded">
     <StackPanel Orientation="Horizontal">
+        <ToggleButton Name="NotifyIconToggleButton"
+                      Visibility="Collapsed"
+                      Click="NotifyIconToggleButton_OnClick"
+                      ToolTip="Show hidden icons"
+                      Style="{DynamicResource NotifyIconToggleButton}"/>
         <ItemsControl x:Name="UnpinnedNotifyIconList"
-                      HorizontalAlignment="Stretch">
+                      HorizontalAlignment="Stretch"
+                      Visibility="Collapsed">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>

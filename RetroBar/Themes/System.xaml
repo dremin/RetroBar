@@ -489,4 +489,72 @@
         <Setter Property="Margin"
                 Value="0,0,4,0" />
     </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="NotifyIconToggleButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Margin"
+                Value="-2,-3,1,-3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            Padding="0,2">
+                        <Border BorderThickness="0,0,1,1"
+                                BorderBrush="{TemplateBinding Background}"
+                                x:Name="ButtonRightBottomBorder">
+                            <Border BorderThickness="1,1,0,0"
+                                    BorderBrush="{TemplateBinding Background}"
+                                    Background="{TemplateBinding Background}"
+                                    x:Name="ButtonLeftTopBorder">
+                                <StackPanel Orientation="Horizontal"
+                                            Height="6"
+                                            VerticalAlignment="Center"
+                                            Margin="3,2,3,0"
+                                            Name="ArrowPanel">
+                                    <Path Fill="{DynamicResource ButtonForeground}" Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z" RenderOptions.EdgeMode="Aliased" />
+                                    <Path Fill="{DynamicResource ButtonForeground}" Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z" RenderOptions.EdgeMode="Aliased" />
+                                </StackPanel>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ArrowPanel"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.5,0.5" />
+                            <Setter TargetName="ArrowPanel"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1"></ScaleTransform>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
