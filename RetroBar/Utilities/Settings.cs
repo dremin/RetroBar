@@ -149,6 +149,21 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool CollapseNotifyIcons
+        {
+            get
+            {
+                return settings.CollapseNotifyIcons;
+            }
+            set
+            {
+                if (settings.CollapseNotifyIcons != value)
+                {
+                    settings.CollapseNotifyIcons = value;
+                }
+            }
+        }
         #endregion
 
         public void Save()

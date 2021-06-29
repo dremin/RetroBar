@@ -17,5 +17,8 @@
     <Setting Name="QuickLaunchPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">%appdata%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar</Value>
     </Setting>
+    <Setting Name="CollapseNotifyIcons" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
