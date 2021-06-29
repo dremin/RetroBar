@@ -491,7 +491,7 @@
     </Style>
 
     <Style TargetType="ToggleButton"
-           x:Key="NotifyIconToggleButton">
+           x:Key="TrayToggleButton">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
         <Setter Property="Background"
@@ -515,8 +515,12 @@
                                             VerticalAlignment="Center"
                                             Margin="3,2,3,0"
                                             Name="ArrowPanel">
-                                    <Path Fill="{DynamicResource ButtonForeground}" Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z" RenderOptions.EdgeMode="Aliased" />
-                                    <Path Fill="{DynamicResource ButtonForeground}" Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z" RenderOptions.EdgeMode="Aliased" />
+                                    <Path Fill="{DynamicResource ButtonForeground}"
+                                          Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z"
+                                          RenderOptions.EdgeMode="Aliased" />
+                                    <Path Fill="{DynamicResource ButtonForeground}"
+                                          Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z"
+                                          RenderOptions.EdgeMode="Aliased" />
                                 </StackPanel>
                             </Border>
                         </Border>

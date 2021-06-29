@@ -42,6 +42,47 @@
                       Offset="1.0" />
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="TrayToggleBorder"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#10225e"
+                      Offset="0.2" />
+        <GradientStop Color="#ced6e6"
+                      Offset="0.8" />
+    </LinearGradientBrush>
+    <RadialGradientBrush x:Key="TrayToggleBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#8ed6f9"
+                      Offset="0.0" />
+        <GradientStop Color="#0671eb"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayToggleHoverBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#c3e5f9"
+                      Offset="0.0" />
+        <GradientStop Color="#0d98e8"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayTogglePressedBackground"
+                         GradientOrigin="0.1,0.1"
+                         RadiusX="0.6"
+                         RadiusY="0.6">
+        <GradientStop Color="#86caec"
+                      Offset="0.0" />
+        <GradientStop Color="#0147be"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <DropShadowEffect x:Key="TrayToggleArrowShadow"
+                      Color="#077eed"
+                      BlurRadius="4"
+                      ShadowDepth="0" />
+    <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#6dcaf8" />
+
     <SolidColorBrush x:Key="TaskButtonTopBorder" Color="#3172da" />
     <SolidColorBrush x:Key="TaskButtonLeftBorder" Color="#3067dd" />
     <SolidColorBrush x:Key="TaskButtonRightBorder" Color="#264fad" />
@@ -754,6 +795,73 @@
                             <Setter TargetName="Content"
                                     Property="Margin"
                                     Value="3,2,1,2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TaskListScrollViewer"
+           TargetType="ScrollViewer"
+           BasedOn="{StaticResource TaskListScrollViewer}">
+        <Setter Property="Margin"
+                Value="0,0,10,0" />
+    </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="TrayToggleButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource TrayToggleBackground}" />
+        <Setter Property="Margin"
+                Value="-20,1,3,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent">
+                        <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource TrayToggleBorder}"
+                            CornerRadius="10"
+                            Background="{TemplateBinding Background}"
+                            Padding="5,4,6,4"
+                            HorizontalAlignment="Center"
+                            x:Name="ButtonBorder">
+                            <Path Fill="{DynamicResource ButtonForeground}"
+                              Data="M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z"
+                              RenderOptions.EdgeMode="Aliased"
+                              Effect="{DynamicResource TrayToggleArrowShadow}"
+                              x:Name="ToggleArrow" />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TrayToggleHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TrayTogglePressedBackground}" />
+                            <Setter TargetName="ToggleArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource TrayToggleArrowPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ToggleArrow"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.6,0.5" />
+                            <Setter TargetName="ToggleArrow"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1"></ScaleTransform>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

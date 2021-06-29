@@ -51,6 +51,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
+    <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
@@ -89,7 +90,7 @@
                         <Border BorderThickness="1,0,1,1"
                                 BorderBrush="{DynamicResource TrayInnerBorder}"
                                 Background="{DynamicResource TrayBackground}"
-                                Padding="2">
+                                Padding="2,3,2,2">
                             <ContentPresenter />
                         </Border>
                     </Border>
@@ -366,6 +367,79 @@
                             <Setter TargetName="ButtonBorder"
                                     Property="Background"
                                     Value="{DynamicResource ButtonPressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="TrayToggleButton"
+           BasedOn="{StaticResource TrayToggleButton}">
+        <Setter Property="Background"
+                Value="{DynamicResource TrayBackground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            Padding="0,2">
+                        <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ButtonInactiveBorder}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ButtonBorder">
+                            <StackPanel Orientation="Horizontal"
+                                        Height="6"
+                                        VerticalAlignment="Center"
+                                        Margin="3,2,3,0"
+                                        Name="ArrowPanel">
+                                <Path Fill="{DynamicResource ButtonForeground}"
+                                      Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z"
+                                      RenderOptions.EdgeMode="Aliased"
+                                      Name="Arrow1" />
+                                <Path Fill="{DynamicResource ButtonForeground}"
+                                      Data="M 0,2.5 L 2,5 L 4.5,5 L 2,2.5 L 4.5,0 L 2,0 Z"
+                                      RenderOptions.EdgeMode="Aliased"
+                                      Name="Arrow2" />
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHoverBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonPressedBorder}" />
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource ButtonPressedBackground}" />
+                            <Setter TargetName="Arrow1"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                            <Setter TargetName="Arrow2"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ArrowPanel"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.5,0.5" />
+                            <Setter TargetName="ArrowPanel"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1"></ScaleTransform>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

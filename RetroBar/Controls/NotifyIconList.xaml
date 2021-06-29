@@ -8,7 +8,7 @@
                       Visibility="Collapsed"
                       Click="NotifyIconToggleButton_OnClick"
                       ToolTip="Show hidden icons"
-                      Style="{DynamicResource NotifyIconToggleButton}"/>
+                      Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="UnpinnedNotifyIconList"
                       HorizontalAlignment="Stretch"
                       Visibility="Collapsed">
