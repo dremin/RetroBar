@@ -478,7 +478,7 @@
                                 <Border x:Name="IdleBackground" BorderBrush="#FF358335" BorderThickness="1,1,0,0" ClipToBounds="True">
                                     <Border.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                            <GradientStop Offset="0.125" Color="#FF449D44"/>
+                                            <GradientStop Offset="0.125" Color="#FF448D44"/>
                                             <GradientStop Offset="0.75" Color="#FF49B349"/>
                                         </LinearGradientBrush>
                                     </Border.Background>
