@@ -601,7 +601,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button"
+    <Style TargetType="ToggleButton"
            x:Key="StartButton">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
@@ -615,7 +615,7 @@
                 Value="33" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="ToggleButton">
                     <Border x:Name="StartButtonBorder">
                         <Border.Background>
                             <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
@@ -633,6 +633,17 @@
                                     <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
                                                 ViewboxUnits="Absolute"
                                                 Viewbox="198,0,99,33" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="StartButtonBorder"
+                                    Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
+                                                ViewboxUnits="Absolute"
+                                                Viewbox="99,0,99,33" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

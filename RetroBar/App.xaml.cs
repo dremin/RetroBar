@@ -19,10 +19,12 @@ namespace RetroBar
         public ThemeManager ThemeManager { get; }
 
         private Taskbar _taskbar;
+        private readonly CloakMonitor _cloakMonitor;
         private readonly ShellManager _shellManager;
 
         public App()
         {
+            _cloakMonitor = new CloakMonitor();
             _shellManager = SetupManagedShell();
             
             ThemeManager = new ThemeManager();
@@ -43,7 +45,7 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
+            _taskbar = new Taskbar(_shellManager, _cloakMonitor, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
             _taskbar.Show();
         }
 

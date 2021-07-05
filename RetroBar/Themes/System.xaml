@@ -312,14 +312,19 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button"
-           x:Key="StartButton"
-           BasedOn="{StaticResource TaskButton}">
+    <Style TargetType="ToggleButton"
+           x:Key="StartButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
                 Value="0,0,2,0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent"
                             Padding="2">
                         <Border BorderThickness="0,0,1,1"
@@ -343,6 +348,21 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ButtonOuterBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonOuterTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonDarkShadow}" />
+                            <Setter TargetName="ButtonInnerBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonLight}" />
+                            <Setter TargetName="ButtonInnerTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
                             <Setter TargetName="ButtonOuterBottomBorder"
