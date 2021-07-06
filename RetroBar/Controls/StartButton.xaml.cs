@@ -35,7 +35,7 @@ namespace RetroBar.Controls
             pendingOpenTimer.Stop();
         }
 
-        private void Button_OnClick(object sender, RoutedEventArgs e)
+        private void Start_OnClick(object sender, RoutedEventArgs e)
         {
             if (allowOpenStart)
             {
@@ -47,14 +47,14 @@ namespace RetroBar.Controls
             Start.IsChecked = false;
         }
 
-        private void Explore_OnClick(object sender, RoutedEventArgs e)
-        {
-            ShellHelper.StartProcess("explorer.exe");
-        }
-
         private void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             allowOpenStart = Start.IsChecked == false;
+        }
+
+        private void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ShellHelper.ShowStartContextMenu();
         }
     }
 }
