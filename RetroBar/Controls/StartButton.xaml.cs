@@ -54,7 +54,11 @@ namespace RetroBar.Controls
 
         private void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            ShellHelper.ShowStartContextMenu();
+            if (EnvironmentHelper.IsWindows10OrBetter)
+            {
+                ShellHelper.ShowStartContextMenu();
+                e.Handled = true;
+            }
         }
     }
 }
