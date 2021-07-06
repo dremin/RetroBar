@@ -224,14 +224,19 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button"
-           x:Key="StartButton"
-           BasedOn="{StaticResource TaskButton}">
+    <Style TargetType="ToggleButton"
+           x:Key="StartButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
                 Value="0,0,2,0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent"
                             Padding="2">
                         <Border BorderThickness="1"
@@ -265,6 +270,21 @@
                             <Setter TargetName="BottomRightBorder"
                                     Property="Background"
                                     Value="{DynamicResource StartButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonPressedBorder}" />
+                            <Setter TargetName="TopLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonPressedBorderShadow}" />
+                            <Setter TargetName="BottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource StartButtonPressedBorderLight}" />
+                            <Setter TargetName="BottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource StartButtonPressedBackground}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">

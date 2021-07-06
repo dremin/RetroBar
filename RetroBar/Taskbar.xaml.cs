@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using ManagedShell.ShellFolders;
+using RetroBar.Utilities;
 using Application = System.Windows.Application;
 
 namespace RetroBar
@@ -18,11 +19,13 @@ namespace RetroBar
     public partial class Taskbar : AppBarWindow
     {
         private bool _isReopening;
+        private CloakMonitor _cloakMonitor;
         private ShellManager _shellManager;
 
-        public Taskbar(ShellManager shellManager, AppBarScreen screen, AppBarEdge edge)
+        public Taskbar(ShellManager shellManager, CloakMonitor cloakMonitor, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
+            _cloakMonitor = cloakMonitor;
             _shellManager = shellManager;
 
             InitializeComponent();
@@ -33,7 +36,8 @@ namespace RetroBar
 
             _explorerHelper.HideExplorerTaskbar = true;
 
-            Utilities.Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+            _cloakMonitor.PropertyChanged += CloakMonitor_PropertyChanged;
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
             // Layout rounding causes incorrect sizing on non-integer scales
             if(DpiHelper.DpiScale % 1 != 0) UseLayoutRounding = false;
@@ -52,7 +56,7 @@ namespace RetroBar
 
             if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
                     msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
-                Utilities.Settings.Instance.Theme == "System")
+                Settings.Instance.Theme == "System")
             {
                 handled = true;
 
@@ -85,7 +89,7 @@ namespace RetroBar
             QuickLaunchToolbar.Folder?.Dispose();
             QuickLaunchToolbar.Folder = null;
 
-            if (Utilities.Settings.Instance.ShowQuickLaunch)
+            if (Settings.Instance.ShowQuickLaunch)
             {
                 QuickLaunchToolbar.Folder = new ShellFolder(Environment.ExpandEnvironmentVariables(Utilities.Settings.Instance.QuickLaunchPath), IntPtr.Zero, true);
                 QuickLaunchToolbar.Visibility = Visibility.Visible;
@@ -94,6 +98,11 @@ namespace RetroBar
             {
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void CloakMonitor_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            StartButton.SetStartMenuState(!_cloakMonitor.IsStartMenuCloaked);
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -155,7 +164,8 @@ namespace RetroBar
                 if (!_isReopening) _explorerHelper.HideExplorerTaskbar = false;
                 
                 QuickLaunchToolbar.Folder?.Dispose();
-                Utilities.Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+                _cloakMonitor.PropertyChanged -= CloakMonitor_PropertyChanged;
+                Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }
         }
     }

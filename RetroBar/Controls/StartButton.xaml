@@ -1,8 +1,11 @@
 ﻿<UserControl x:Class="RetroBar.Controls.StartButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Button ToolTip="Click here to begin"
-            Click="Button_OnClick"
+    <ToggleButton ToolTip="Click here to begin"
+            Click="Start_OnClick"
+            PreviewMouseLeftButtonDown="Start_OnPreviewMouseLeftButtonDown"
+            MouseRightButtonUp="Start_OnMouseRightButtonUp"
+            Name="Start"
             Style="{DynamicResource StartButton}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -15,10 +18,5 @@
                        Grid.Column="1"
                        Style="{DynamicResource StartLabel}" />
         </Grid>
-        <Button.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Explore" Click="Explore_OnClick" />
-            </ContextMenu>
-        </Button.ContextMenu>
-    </Button>
+    </ToggleButton>
 </UserControl>

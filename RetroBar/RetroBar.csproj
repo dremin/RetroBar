@@ -60,7 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ManagedShell" Version="0.0.99" />
+    <PackageReference Include="ManagedShell" Version="0.0.103" />
   </ItemGroup>
 
   <ItemGroup>

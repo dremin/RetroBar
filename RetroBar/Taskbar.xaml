@@ -10,7 +10,8 @@
         AllowDrop="True">
     <Border>
         <DockPanel>
-            <controls:StartButton DockPanel.Dock="Left" />
+            <controls:StartButton DockPanel.Dock="Left"
+                                  x:Name="StartButton" />
             <controls:Toolbar x:Name="QuickLaunchToolbar"
                               DockPanel.Dock="Left" />
             <GroupBox DockPanel.Dock="Right"
