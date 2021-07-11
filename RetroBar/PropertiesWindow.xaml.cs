@@ -21,9 +21,6 @@ namespace RetroBar
             InitializeComponent();
 
             LoadThemes();
-
-            Left = 10;
-            Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
         }
 
         public static void Open(ThemeManager themeManager)
@@ -69,6 +66,12 @@ namespace RetroBar
         private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)
         {
             _instance = null;
+        }
+
+        private void PropertiesWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Left = 10;
+            Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
         }
     }
 }

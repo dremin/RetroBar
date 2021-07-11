@@ -164,6 +164,21 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool AllowFontSmoothing
+        {
+            get
+            {
+                return settings.AllowFontSmoothing;
+            }
+            set
+            {
+                if (settings.AllowFontSmoothing != value)
+                {
+                    settings.AllowFontSmoothing = value;
+                }
+            }
+        }
         #endregion
 
         public void Save()
@@ -176,6 +191,8 @@ namespace RetroBar.Utilities
             _upgrading = true;
             settings.Upgrade();
             _upgrading = false;
+
+            if (IsFirstRun) IsFirstRun = false;
         }
 
         public object this[string propertyName]
