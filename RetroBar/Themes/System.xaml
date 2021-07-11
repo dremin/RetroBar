@@ -52,8 +52,6 @@
 
     <Style TargetType="Window"
            x:Key="Taskbar">
-        <Setter Property="TextOptions.TextRenderingMode"
-                Value="Aliased" />
         <Setter Property="TextOptions.TextFormattingMode"
                 Value="Display" />
         <Setter Property="Template">

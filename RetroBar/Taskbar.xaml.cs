@@ -7,6 +7,7 @@ using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media;
 using ManagedShell.ShellFolders;
 using RetroBar.Utilities;
 using Application = System.Windows.Application;
@@ -32,6 +33,7 @@ namespace RetroBar
             DataContext = _shellManager;
             DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
+            SetFontSmoothing();
             SetupQuickLaunch();
 
             _explorerHelper.HideExplorerTaskbar = true;
@@ -83,6 +85,11 @@ namespace RetroBar
                 }
             });
         }
+
+        private void SetFontSmoothing()
+        {
+            VisualTextRenderingMode = Settings.Instance.AllowFontSmoothing ? TextRenderingMode.Auto : TextRenderingMode.Aliased;
+        }
         
         private void SetupQuickLaunch()
         {
@@ -129,6 +136,10 @@ namespace RetroBar
             else if (e.PropertyName == "ShowQuickLaunch" || e.PropertyName == "QuickLaunchPath")
             {
                 SetupQuickLaunch();
+            }
+            else if (e.PropertyName == "AllowFontSmoothing")
+            {
+                SetFontSmoothing();
             }
         }
 

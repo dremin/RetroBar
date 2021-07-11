@@ -222,8 +222,6 @@
     <Style TargetType="Window"
            x:Key="Taskbar"
            BasedOn="{StaticResource Taskbar}">
-        <Setter Property="TextOptions.TextRenderingMode"
-                Value="Auto" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Window">

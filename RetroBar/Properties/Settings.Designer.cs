@@ -94,5 +94,17 @@ namespace RetroBar.Properties {
                 this["CollapseNotifyIcons"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AllowFontSmoothing {
+            get {
+                return ((bool)(this["AllowFontSmoothing"]));
+            }
+            set {
+                this["AllowFontSmoothing"] = value;
+            }
+        }
     }
 }
