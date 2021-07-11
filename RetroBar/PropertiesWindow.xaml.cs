@@ -119,8 +119,7 @@ namespace RetroBar
                 }
                 else
                 {
-                    string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                    rKey?.SetValue("RetroBar", exePath);
+                    rKey?.SetValue("RetroBar", ExePath.GetExecutablePath());
                 }
             }
             catch (Exception exception)
