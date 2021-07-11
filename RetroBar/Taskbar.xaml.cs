@@ -154,7 +154,7 @@ namespace RetroBar
         {
             App app = (App)Application.Current;
 
-            new PropertiesWindow(app.ThemeManager).Show();
+            PropertiesWindow.Open(app.ThemeManager);
         }
 
         protected override void CustomClosing()
