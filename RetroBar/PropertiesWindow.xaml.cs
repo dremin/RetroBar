@@ -1,4 +1,5 @@
-﻿using ManagedShell.Common.Helpers;
+﻿using System.ComponentModel;
+using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 using System.Windows;
 
@@ -9,9 +10,11 @@ namespace RetroBar
     /// </summary>
     public partial class PropertiesWindow : Window
     {
+        private static PropertiesWindow _instance;
+
         private readonly ThemeManager _themeManager;
 
-        public PropertiesWindow(ThemeManager themeManager)
+        private PropertiesWindow(ThemeManager themeManager)
         {
             _themeManager = themeManager;
 
@@ -21,6 +24,19 @@ namespace RetroBar
 
             Left = 10;
             Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
+        }
+
+        public static void Open(ThemeManager themeManager)
+        {
+            if (_instance == null)
+            {
+                _instance = new PropertiesWindow(themeManager);
+                _instance.Show();
+            }
+            else
+            {
+                _instance.Activate();
+            }
         }
 
         private void LoadThemes()
@@ -48,6 +64,11 @@ namespace RetroBar
             {
                 Settings.Instance.QuickLaunchPath = fbd.SelectedPath;
             }
+        }
+
+        private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            _instance = null;
         }
     }
 }
