@@ -1,7 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 using System.Windows;
+using System.Windows.Controls;
+using ManagedShell.Common.Logging;
+using Microsoft.Win32;
 
 namespace RetroBar
 {
@@ -20,6 +26,7 @@ namespace RetroBar
 
             InitializeComponent();
 
+            LoadAutoStart();
             LoadThemes();
         }
 
@@ -33,6 +40,31 @@ namespace RetroBar
             else
             {
                 _instance.Activate();
+            }
+        }
+
+        private void LoadAutoStart()
+        {
+            try
+            {
+                RegistryKey rKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", false);
+                List<string> rKeyValueNames = rKey?.GetValueNames().ToList();
+
+                if (rKeyValueNames != null)
+                {
+                    if (rKeyValueNames.Contains("RetroBar"))
+                    {
+                        AutoStartCheckBox.IsChecked = true;
+                    }
+                    else
+                    {
+                        AutoStartCheckBox.IsChecked = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                ShellLogger.Error($"PropertiesWindow: Unable to load autorun setting from registry: {e.Message}");
             }
         }
 
@@ -72,6 +104,29 @@ namespace RetroBar
         {
             Left = 10;
             Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
+        }
+
+        private void AutoStartCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RegistryKey rKey = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                var chkBox = (CheckBox)sender;
+
+                if (chkBox.IsChecked.Equals(false))
+                {
+                    rKey?.DeleteValue("RetroBar");
+                }
+                else
+                {
+                    string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    rKey?.SetValue("RetroBar", exePath);
+                }
+            }
+            catch (Exception exception)
+            {
+                ShellLogger.Error($"PropertiesWindow: Unable to update registry autorun setting: {exception.Message}");
+            }
         }
     }
 }
