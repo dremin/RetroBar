@@ -8,6 +8,7 @@ using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using Application = System.Windows.Application;
+using System.IO;
 
 namespace RetroBar
 {
@@ -18,13 +19,18 @@ namespace RetroBar
     {
         public ThemeManager ThemeManager { get; }
 
+        private string _logPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar"), "Logs");
+        private string _logName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
+        private string _logExt = "log";
+        private LogSeverity _logSeverity = LogSeverity.Debug;
+
         private Taskbar _taskbar;
-        private readonly CloakMonitor _cloakMonitor;
+        private readonly AppVisibilityHelper _appVisibilityHelper;
         private readonly ShellManager _shellManager;
 
         public App()
         {
-            _cloakMonitor = new CloakMonitor();
+            _appVisibilityHelper = new AppVisibilityHelper();
             _shellManager = SetupManagedShell();
             
             ThemeManager = new ThemeManager();
@@ -45,7 +51,7 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, _cloakMonitor, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
+            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
             _taskbar.Show();
         }
 
@@ -69,7 +75,13 @@ namespace RetroBar
         {
             EnvironmentHelper.IsAppRunningAsShell = NativeMethods.GetShellWindow() == IntPtr.Zero;
             
-            ShellLogger.Severity = LogSeverity.Debug;
+            ShellLogger.Severity = _logSeverity;
+
+            string fileName = Path.Combine(_logPath, $"{_logName}.{_logExt}");
+            FileLog fileLog = new FileLog(fileName);
+            fileLog.Open();
+            ShellLogger.Attach(fileLog);
+
             ShellLogger.Attach(new ConsoleLog());
 
             return new ShellManager(ShellManager.DefaultShellConfig);
@@ -79,6 +91,7 @@ namespace RetroBar
         {
             ThemeManager.Dispose();
             _shellManager.Dispose();
+            _appVisibilityHelper.Dispose();
         }
     }
 }

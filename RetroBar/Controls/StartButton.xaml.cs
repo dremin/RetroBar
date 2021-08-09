@@ -31,7 +31,10 @@ namespace RetroBar.Controls
 
         public void SetStartMenuState(bool opened)
         {
-            Start.IsChecked = opened;
+            Dispatcher.Invoke(() =>
+            {
+                Start.IsChecked = opened;
+            });
             pendingOpenTimer.Stop();
         }
 
