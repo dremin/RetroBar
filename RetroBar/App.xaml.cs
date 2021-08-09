@@ -19,20 +19,16 @@ namespace RetroBar
     {
         public ThemeManager ThemeManager { get; }
 
-        private string _logPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar"), "Logs");
-        private string _logName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
-        private string _logExt = "log";
-        private LogSeverity _logSeverity = LogSeverity.Debug;
-
+        private ManagedShellLogger _logger;
         private Taskbar _taskbar;
         private readonly AppVisibilityHelper _appVisibilityHelper;
         private readonly ShellManager _shellManager;
 
         public App()
         {
-            _appVisibilityHelper = new AppVisibilityHelper();
             _shellManager = SetupManagedShell();
-            
+
+            _appVisibilityHelper = new AppVisibilityHelper(true);
             ThemeManager = new ThemeManager();
         }
 
@@ -74,15 +70,8 @@ namespace RetroBar
         private ShellManager SetupManagedShell()
         {
             EnvironmentHelper.IsAppRunningAsShell = NativeMethods.GetShellWindow() == IntPtr.Zero;
-            
-            ShellLogger.Severity = _logSeverity;
 
-            string fileName = Path.Combine(_logPath, $"{_logName}.{_logExt}");
-            FileLog fileLog = new FileLog(fileName);
-            fileLog.Open();
-            ShellLogger.Attach(fileLog);
-
-            ShellLogger.Attach(new ConsoleLog());
+            _logger = new ManagedShellLogger();
 
             return new ShellManager(ShellManager.DefaultShellConfig);
         }
@@ -92,6 +81,7 @@ namespace RetroBar
             ThemeManager.Dispose();
             _shellManager.Dispose();
             _appVisibilityHelper.Dispose();
+            _logger.Dispose();
         }
     }
 }
