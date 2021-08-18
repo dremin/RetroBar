@@ -1,6 +1,4 @@
 ﻿using System;
-using ManagedShell.Common.Logging;
-using ManagedShell.Common.Logging.Observers;
 using ManagedShell;
 using RetroBar.Utilities;
 using System.Windows;
@@ -8,7 +6,6 @@ using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using Application = System.Windows.Application;
-using System.IO;
 
 namespace RetroBar
 {
