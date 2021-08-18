@@ -1,6 +1,4 @@
 ﻿using System;
-using ManagedShell.Common.Logging;
-using ManagedShell.Common.Logging.Observers;
 using ManagedShell;
 using RetroBar.Utilities;
 using System.Windows;
@@ -18,15 +16,16 @@ namespace RetroBar
     {
         public ThemeManager ThemeManager { get; }
 
+        private ManagedShellLogger _logger;
         private Taskbar _taskbar;
-        private readonly CloakMonitor _cloakMonitor;
+        private readonly AppVisibilityHelper _appVisibilityHelper;
         private readonly ShellManager _shellManager;
 
         public App()
         {
-            _cloakMonitor = new CloakMonitor();
             _shellManager = SetupManagedShell();
-            
+
+            _appVisibilityHelper = new AppVisibilityHelper(true);
             ThemeManager = new ThemeManager();
         }
 
@@ -45,7 +44,7 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, _cloakMonitor, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
+            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
             _taskbar.Show();
         }
 
@@ -68,9 +67,8 @@ namespace RetroBar
         private ShellManager SetupManagedShell()
         {
             EnvironmentHelper.IsAppRunningAsShell = NativeMethods.GetShellWindow() == IntPtr.Zero;
-            
-            ShellLogger.Severity = LogSeverity.Debug;
-            ShellLogger.Attach(new ConsoleLog());
+
+            _logger = new ManagedShellLogger();
 
             return new ShellManager(ShellManager.DefaultShellConfig);
         }
@@ -79,6 +77,8 @@ namespace RetroBar
         {
             ThemeManager.Dispose();
             _shellManager.Dispose();
+            _appVisibilityHelper.Dispose();
+            _logger.Dispose();
         }
     }
 }

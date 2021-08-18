@@ -20,13 +20,13 @@ namespace RetroBar
     public partial class Taskbar : AppBarWindow
     {
         private bool _isReopening;
-        private CloakMonitor _cloakMonitor;
+        private AppVisibilityHelper _appVisibilityHelper;
         private ShellManager _shellManager;
 
-        public Taskbar(ShellManager shellManager, CloakMonitor cloakMonitor, AppBarScreen screen, AppBarEdge edge)
+        public Taskbar(ShellManager shellManager, AppVisibilityHelper appVisibilityHelper, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
-            _cloakMonitor = cloakMonitor;
+            _appVisibilityHelper = appVisibilityHelper;
             _shellManager = shellManager;
 
             InitializeComponent();
@@ -38,11 +38,16 @@ namespace RetroBar
 
             _explorerHelper.HideExplorerTaskbar = true;
 
-            _cloakMonitor.PropertyChanged += CloakMonitor_PropertyChanged;
+            _appVisibilityHelper.LauncherVisibilityChanged += AppVisibilityHelper_LauncherVisibilityChanged;
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
             // Layout rounding causes incorrect sizing on non-integer scales
             if(DpiHelper.DpiScale % 1 != 0) UseLayoutRounding = false;
+        }
+
+        private void AppVisibilityHelper_LauncherVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
+        {
+            StartButton.SetStartMenuState(e.Visible);
         }
 
         protected override void OnSourceInitialized(object sender, EventArgs e)
@@ -105,11 +110,6 @@ namespace RetroBar
             {
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
             }
-        }
-
-        private void CloakMonitor_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            StartButton.SetStartMenuState(!_cloakMonitor.IsStartMenuCloaked);
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -175,7 +175,7 @@ namespace RetroBar
                 if (!_isReopening) _explorerHelper.HideExplorerTaskbar = false;
                 
                 QuickLaunchToolbar.Folder?.Dispose();
-                _cloakMonitor.PropertyChanged -= CloakMonitor_PropertyChanged;
+                _appVisibilityHelper.LauncherVisibilityChanged -= AppVisibilityHelper_LauncherVisibilityChanged;
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }
         }
