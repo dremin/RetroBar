@@ -9,7 +9,7 @@
                Visibility="Collapsed" />
     <UserControl.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Adjust Date/Time" Click="MenuItem_OnClick" />
+            <MenuItem Header="Ajuster la date/l'heure" Click="MenuItem_OnClick" />
         </ContextMenu>
     </UserControl.ContextMenu>
 </UserControl>
