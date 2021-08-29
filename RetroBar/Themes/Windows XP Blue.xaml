@@ -217,7 +217,7 @@
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
-    <system:String x:Key="StartText">start</system:String>
+    <system:String x:Key="StartText">démarrer</system:String>
 
     <Style TargetType="Window"
            x:Key="Taskbar"

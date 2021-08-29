@@ -60,7 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ManagedShell" Version="0.0.110" />
+    <PackageReference Include="ManagedShell" Version="0.0.113" />
   </ItemGroup>
 
   <ItemGroup>
@@ -91,6 +91,10 @@
     <None Update="Resources\startxpclassic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Nerdbank.GitVersioning" Version="3.4.231" />
   </ItemGroup>
 
   <ItemGroup>
