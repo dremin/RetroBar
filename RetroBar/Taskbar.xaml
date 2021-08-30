@@ -28,10 +28,10 @@
     </Border>
     <appbar:AppBarWindow.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Task Manager..." Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
+            <MenuItem Header="Gestionnaire des tâches..." Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
             <Separator />
-            <MenuItem Header="Properties" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
-            <MenuItem Header="Exit RetroBar" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
+            <MenuItem Header="Propriétés" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
+            <MenuItem Header="Quitter RetroBar" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
         </ContextMenu>
     </appbar:AppBarWindow.ContextMenu>
 </appbar:AppBarWindow>
