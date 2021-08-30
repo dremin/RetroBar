@@ -82,30 +82,30 @@
                     <CheckBox Checked="AutoStartCheckBox_OnChecked"
                               Unchecked="AutoStartCheckBox_OnChecked"
                               Name="AutoStartCheckBox">
-                        <Label Content="Automatically start at logon" />
+                        <Label Content="Démarrer automatiquement à la connexion" />
                     </CheckBox>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Theme:"
-                                   ToolTip="Install themes in the Themes folder." />
+                                   ToolTip="Installer des thèmes dans le dossier Thèmes." />
                         <ComboBox Name="cboThemeSelect"
                                   IsDropDownOpen="False"
                                   IsEditable="False"
                                   SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="Allow font smoothing" />
+                        <Label Content="Autoriser le lissage des polices" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="Collapse notification area icons" />
+                        <Label Content="Réduire les icônes de la zone de notification" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="Show clock" />
+                        <Label Content="Afficher l'horloge" />
                     </CheckBox>
                     <StackPanel Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="Show quick launch" />
+                            <Label Content="Afficher la barre de lancement rapide" />
                         </CheckBox>
-                        <Button Content="Select location..."
+                        <Button Content="Sélectionnez l'emplacement..."
                                 Click="SetQuickLaunchLocation_OnClick" />
                     </StackPanel>
                 </StackPanel>
