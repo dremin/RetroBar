@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:RetroBar.Controls"
         xmlns:appbar="clr-namespace:ManagedShell.AppBar;assembly=ManagedShell.AppBar"
-        Title="RetroBar Taskbar"
+        Title="{DynamicResource retrobar_title}"
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
         Style="{DynamicResource Taskbar}"
@@ -28,10 +28,10 @@
     </Border>
     <appbar:AppBarWindow.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Task Manager..." Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource show_taskman}" Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
             <Separator />
-            <MenuItem Header="Properties" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
-            <MenuItem Header="Exit RetroBar" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource tray_properties}" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource exit_retrobar}" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
         </ContextMenu>
     </appbar:AppBarWindow.ContextMenu>
 </appbar:AppBarWindow>

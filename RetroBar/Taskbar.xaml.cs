@@ -63,12 +63,12 @@ namespace RetroBar
 
             if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
                     msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
-                Settings.Instance.Theme == "System")
+                Settings.Instance.Theme == DictionaryManager.THEME_DEFAULT)
             {
                 handled = true;
 
                 // If the color scheme changes, re-apply the current theme to get updated colors.
-                ((App)Application.Current).ThemeManager.SetThemeFromSettings();
+                ((App)Application.Current).DictionaryManager.SetThemeFromSettings();
             }
 
             return IntPtr.Zero;
@@ -165,7 +165,7 @@ namespace RetroBar
         {
             App app = (App)Application.Current;
 
-            PropertiesWindow.Open(app.ThemeManager);
+            PropertiesWindow.Open(app.DictionaryManager);
         }
 
         protected override void CustomClosing()

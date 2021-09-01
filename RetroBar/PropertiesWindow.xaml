@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Settings="clr-namespace:RetroBar.Utilities"
         xmlns:converters="clr-namespace:RetroBar.Converters"
-        Title="RetroBar Properties"
+        Title="{DynamicResource retrobar_properties}"
         Height="Auto"
         Width="Auto"
         ResizeMode="NoResize"
@@ -13,8 +13,6 @@
         Loaded="PropertiesWindow_OnLoaded">
     <Window.Resources>
         <ResourceDictionary>
-            <converters:PropertiesImageSourceConverter x:Key="imageConverter" />
-
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="FontFamily"
                         Value="{DynamicResource GlobalFontFamily}" />
@@ -63,49 +61,47 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0">
-            <TabItem Header="Taskbar Options">
+            <TabItem Header="{DynamicResource taskbar_options}">
                 <StackPanel Orientation="Vertical"
                             Margin="20">
                     <Image Width="274"
                            Height="130"
-                           Margin="0,0,0,10">
-                        <Image.Source>
-                            <MultiBinding Converter="{StaticResource imageConverter}"
-                                          NotifyOnSourceUpdated="True">
-                                <Binding RelativeSource="{RelativeSource Self}" />
-                                <Binding Source="{x:Static Settings:Settings.Instance}"
-                                         Path="ShowClock"
-                                         UpdateSourceTrigger="PropertyChanged" />
-                            </MultiBinding>
-                        </Image.Source>
-                    </Image>
+                           Margin="0,0,0,10" />
                     <CheckBox Checked="AutoStartCheckBox_OnChecked"
                               Unchecked="AutoStartCheckBox_OnChecked"
                               Name="AutoStartCheckBox">
-                        <Label Content="Automatically start at logon" />
+                        <Label Content="{DynamicResource autostart}" />
                     </CheckBox>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Theme:"
-                                   ToolTip="Install themes in the Themes folder." />
+                        <TextBlock Text="{DynamicResource language_text}"
+                                   ToolTip="{DynamicResource language_tip}" />
+                        <ComboBox Name="cboLanguageSelect"
+                                  IsDropDownOpen="False"
+                                  IsEditable="False"
+                                  SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource theme_text}"
+                                   ToolTip="{DynamicResource theme_tip}" />
                         <ComboBox Name="cboThemeSelect"
                                   IsDropDownOpen="False"
                                   IsEditable="False"
                                   SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="Allow font smoothing" />
+                        <Label Content="{DynamicResource allow_font_smoothing}" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="Collapse notification area icons" />
+                        <Label Content="{DynamicResource collapse_tray_icons}" />
                     </CheckBox>
-                    <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="Show clock" />
+                    <CheckBox x:Name="cbShowClock" IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{DynamicResource show_clock}" />
                     </CheckBox>
                     <StackPanel Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="Show quick launch" />
+                            <Label Content="{DynamicResource quick_launch}" />
                         </CheckBox>
-                        <Button Content="Select location..."
+                        <Button Content="{DynamicResource select_location}"
                                 Click="SetQuickLaunchLocation_OnClick" />
                     </StackPanel>
                 </StackPanel>
@@ -115,7 +111,7 @@
                     HorizontalAlignment="Right"
                     Grid.Row="1"
                     Margin="0,7,0,0">
-            <Button Content="OK"
+            <Button Content="{DynamicResource ok_dialog}"
                     Click="OK_OnClick" />
         </StackPanel>
     </Grid>

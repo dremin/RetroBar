@@ -83,8 +83,6 @@ namespace RetroBar.Controls
         {
             UnpinnedNotifyIconList.Visibility =
                 NotifyIconToggleButton.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
-
-            NotifyIconToggleButton.ToolTip = NotifyIconToggleButton.IsChecked == true ? "Hide" : "Show hidden icons";
         }
 
         private void SetToggleVisibility()

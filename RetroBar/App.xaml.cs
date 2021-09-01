@@ -14,7 +14,7 @@ namespace RetroBar
     /// </summary>
     public partial class App : Application
     {
-        public ThemeManager ThemeManager { get; }
+        public DictionaryManager DictionaryManager { get; }
 
         private ManagedShellLogger _logger;
         private Taskbar _taskbar;
@@ -26,7 +26,7 @@ namespace RetroBar
             _shellManager = SetupManagedShell();
 
             _appVisibilityHelper = new AppVisibilityHelper(true);
-            ThemeManager = new ThemeManager();
+            DictionaryManager = new DictionaryManager();
         }
 
         public void ExitGracefully()
@@ -50,7 +50,8 @@ namespace RetroBar
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            ThemeManager.SetThemeFromSettings();
+            DictionaryManager.SetLanguageFromSettings();
+            DictionaryManager.SetThemeFromSettings();
             openTaskbar();
         }
 
@@ -75,7 +76,7 @@ namespace RetroBar
 
         private void ExitApp()
         {
-            ThemeManager.Dispose();
+            DictionaryManager.Dispose();
             _shellManager.Dispose();
             _appVisibilityHelper.Dispose();
             _logger.Dispose();

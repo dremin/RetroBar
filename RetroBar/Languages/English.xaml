@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="retrobar_properties">RetroBar Properties</system:String>
+    <system:String x:Key="taskbar_options">Taskbar Options</system:String>
+    <BitmapImage x:Key="classic_properties" UriSource="../Resources/properties.png"/>
+    <BitmapImage x:Key="classic_properties_noclock" UriSource="../Resources/properties_noclock.png"/>
+    <system:String x:Key="autostart">Automatically start at logon</system:String>
+    <system:String x:Key="language_text">Language:</system:String>
+    <system:String x:Key="language_tip">Select the language to use.</system:String>
+    <system:String x:Key="theme_text">Theme:</system:String>
+    <system:String x:Key="theme_tip">Install themes in the Themes folder.</system:String>
+    <system:String x:Key="allow_font_smoothing">Allow font smoothing</system:String>
+    <system:String x:Key="collapse_tray_icons">Collapse notification area icons</system:String>
+    <system:String x:Key="show_clock">Show the clock</system:String>
+    <system:String x:Key="quick_launch">Show Quick Launch</system:String>
+    <system:String x:Key="select_location">Select location...</system:String>
+    <system:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</system:String>
+    <system:String x:Key="ok_dialog">OK</system:String>
+
+    <system:String x:Key="start_text">Start</system:String>
+    <system:String x:Key="start_text_xp">start</system:String>
+    <system:String x:Key="start_button_tip">Click here to begin</system:String>
+
+    <system:String x:Key="retrobar_title">RetroBar Taskbar</system:String>
+    <system:String x:Key="show_taskman">Task Manager...</system:String>
+    <system:String x:Key="tray_properties">Properties</system:String>
+    <system:String x:Key="exit_retrobar">Exit RetroBar</system:String>
+
+    <system:String x:Key="restore">Restore</system:String>
+    <system:String x:Key="move">Move</system:String>
+    <system:String x:Key="size">Size</system:String>
+    <system:String x:Key="minimize">Minimize</system:String>
+    <system:String x:Key="maximize">Maximize</system:String>
+    <system:String x:Key="close">Close</system:String>
+
+    <system:String x:Key="show_hidden">Show hidden icons</system:String>
+    <system:String x:Key="hide">Hide</system:String>
+
+    <system:String x:Key="set_time">Adjust Date/Time</system:String>
+
+</ResourceDictionary>

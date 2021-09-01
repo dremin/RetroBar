@@ -217,8 +217,6 @@
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
-    <system:String x:Key="StartText">start</system:String>
-
     <Style TargetType="Window"
            x:Key="Taskbar"
            BasedOn="{StaticResource Taskbar}">
@@ -683,6 +681,8 @@
     <Style TargetType="TextBlock"
            x:Key="StartLabel"
            BasedOn="{StaticResource StartLabel}">
+        <Setter Property="Text"
+                Value="{DynamicResource start_text_xp}" />
         <Setter Property="FontFamily"
                 Value="Franklin Gothic Medium Italic" />
         <Setter Property="FontSize"
@@ -820,6 +820,14 @@
 
     <Style TargetType="ToggleButton"
            x:Key="TrayToggleButton">
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
+            </Trigger>
+        </Style.Triggers>
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
         <Setter Property="Background"

@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="RetroBar.Controls.StartButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ToggleButton ToolTip="Click here to begin"
+    <ToggleButton ToolTip="{DynamicResource start_button_tip}"
             Click="Start_OnClick"
             PreviewMouseLeftButtonDown="Start_OnPreviewMouseLeftButtonDown"
             MouseRightButtonUp="Start_OnMouseRightButtonUp"
@@ -14,8 +14,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0"
                    Style="{DynamicResource StartIcon}" />
-            <TextBlock Text="{DynamicResource StartText}"
-                       Grid.Column="1"
+            <TextBlock Grid.Column="1"
                        Style="{DynamicResource StartLabel}" />
         </Grid>
     </ToggleButton>

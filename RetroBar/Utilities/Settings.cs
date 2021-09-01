@@ -90,6 +90,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public string Language
+        {
+            get
+            {
+                return settings.Language;
+            }
+            set
+            {
+                if (settings.Language != value)
+                {
+                    settings.Language = value;
+                }
+            }
+        }
+
         public string Theme
         {
             get

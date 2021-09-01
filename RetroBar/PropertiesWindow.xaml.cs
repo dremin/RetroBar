@@ -18,19 +18,20 @@ namespace RetroBar
     {
         private static PropertiesWindow _instance;
 
-        private readonly ThemeManager _themeManager;
+        private readonly DictionaryManager _dictionaryManager;
 
-        private PropertiesWindow(ThemeManager themeManager)
+        private PropertiesWindow(DictionaryManager dictionaryManager)
         {
-            _themeManager = themeManager;
+            _dictionaryManager = dictionaryManager;
 
             InitializeComponent();
 
             LoadAutoStart();
+            LoadLanguages();
             LoadThemes();
         }
 
-        public static void Open(ThemeManager themeManager)
+        public static void Open(DictionaryManager themeManager)
         {
             if (_instance == null)
             {
@@ -68,9 +69,17 @@ namespace RetroBar
             }
         }
 
+        private void LoadLanguages()
+        {
+            foreach (var language in _dictionaryManager.GetLanguages())
+            {
+                cboLanguageSelect.Items.Add(language);
+            }
+        }
+
         private void LoadThemes()
         {
-            foreach (var theme in _themeManager.GetThemes())
+            foreach (var theme in _dictionaryManager.GetThemes())
             {
                 cboThemeSelect.Items.Add(theme);
             }
@@ -84,7 +93,7 @@ namespace RetroBar
         private void SetQuickLaunchLocation_OnClick(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
-            fbd.Description = "Quick Launch - Choose a folder";
+            fbd.Description = (string)FindResource("quick_launch_folder");
             fbd.UseDescriptionForTitle = true;
             fbd.ShowNewFolderButton = false;
             fbd.SelectedPath = Settings.Instance.QuickLaunchPath;
