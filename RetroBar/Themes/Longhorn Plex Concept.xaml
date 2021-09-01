@@ -1,0 +1,1145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:Double x:Key="TaskbarHeight">22</system:Double>
+
+    <SolidColorBrush x:Key="TaskbarBorder" Color="#6da6cd" />
+    <LinearGradientBrush x:Key="TaskbarBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#a06094ca"
+                      Offset="0.0" />
+        <GradientStop Color="#604e82bb"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <!--SolidColorBrush x:Key="TaskbarBorder" Color="#5f8ba9" />
+    <LinearGradientBrush x:Key="TaskbarBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#7f5179a3"
+                      Offset="0.0" />
+        <GradientStop Color="#403f6791"
+                      Offset="1.0" />
+    </LinearGradientBrush-->
+    
+    <DropShadowEffect x:Key="PlexGlow"
+                      Color="#558cd7"
+                      Opacity="1"
+                      BlurRadius="6"
+                      Direction="-45"
+                      ShadowDepth="3" />
+    <DropShadowEffect x:Key="PlexDropShadow"
+                      Color="#000000"
+                      Opacity="0.75"
+                      BlurRadius="6"
+                      Direction="-45"
+                      ShadowDepth="3" />
+
+    <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
+
+
+    <LinearGradientBrush x:Key="TaskButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#548edd"
+                      Offset="0.0" />
+        <GradientStop Color="#5c98e2"
+                      Offset="0.175" />
+        <!--GradientStop Color="#629ee7"
+                      Offset="0.5" /-->
+        <GradientStop Color="#619ee6"
+                      Offset="0.71" />
+        <GradientStop Color="#63a0e7"
+                      Offset="0.8" />
+        <GradientStop Color="#66a4eb"
+                      Offset="0.82" />
+        <GradientStop Color="#5f9ae4"
+                      Offset="0.96" />
+        <GradientStop Color="#5c97e1"
+                      Offset="1.0" />
+        <!--GradientStop Color="#568fdc"
+                      Offset="0.0" />
+        <GradientStop Color="#5b96e1"
+                      Offset="1.0" /-->
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHover"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <!--GradientStop Offset="0" Color="#ff00ff"/-->
+        <!--GradientStop Color="#5791de"
+                      Offset="0.0" />
+        <GradientStop Color="#5c97e1"
+                      Offset="1.0" /-->
+        <GradientStop Color="#68adff"
+                      Offset="0.0" />
+        <GradientStop Color="#88c2ff"
+                      Offset="0.5" />
+        <!--GradientStop Color="#86c1ff"
+                      Offset="0.5" /-->
+        <GradientStop Color="#68adff"
+                      Offset="1.0" />
+        <!--GradientStop Color="#64a9ff"
+                      Offset="1.0" /-->
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundFlashing"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#dca356"
+                      Offset="0.0" />
+        <GradientStop Color="#e1a65b"
+                      Offset="1.0" />
+        <!--GradientStop Color="#ffb843"
+                      Offset="0.0" />
+        <GradientStop Color="#e37a08"
+                      Offset="0.17" /-->
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TaskButtonBottomEdge" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#00558cd7"/>
+        <GradientStop Offset="0.5" Color="#30558cd7"/>
+        <GradientStop Offset="1" Color="#50ffffff"/>
+    </LinearGradientBrush>
+
+    <ControlTemplate x:Key="TaskbarButtonTemplate" TargetType="Button">
+        <Border Background="{TemplateBinding Background}">
+            <Grid>
+                <ContentPresenter x:Name="Content"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Effect="{DynamicResource PlexGlow}"
+                                              UseLayoutRounding="True"
+                                              SnapsToDevicePixels="True"/>
+                <Rectangle Fill="White"
+                                       Height="1"
+                                       Opacity="0.5"
+                                       VerticalAlignment="Top"
+                                       IsHitTestVisible="False"/>
+                <Rectangle Fill="White"
+                                       Width="1"
+                                       Opacity="0.25"
+                                       Margin="0,1"
+                                       HorizontalAlignment="Right"
+                                       IsHitTestVisible="False"/>
+                <Rectangle Height="5"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0,1"
+                                       Fill="{DynamicResource TaskButtonBottomEdge}"
+                                       IsHitTestVisible="False"/>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+
+
+    <Style x:Key="TaskbarBackgroundStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{DynamicResource TaskbarBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TaskbarBorder}"/>
+        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+    </Style>
+
+
+    <BitmapImage x:Key="StartIconImage"
+                 UriSource="../Resources/startplexc1idle.png"/>
+
+
+    <SolidColorBrush x:Key="TrayToggleButtonIdleBackground">#bfcad1</SolidColorBrush>
+    <SolidColorBrush x:Key="TrayToggleButtonHoverBackground">#d7e6f0</SolidColorBrush>
+    <SolidColorBrush x:Key="TrayToggleButtonPressedBackground">#8ca2af</SolidColorBrush>
+
+    <SolidColorBrush x:Key="TrayToggleButtonForeground">#56626b</SolidColorBrush>
+
+
+    <LinearGradientBrush x:Key="ContextMenuBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#67a4e7"/>
+            <GradientStop Offset="0.75" Color="#17283d"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ContextMenuBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#3b5774"/>
+            <GradientStop Offset="0.75" Color="#010101"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="ContextMenuSeparatorBrush"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#00b8f2fb"
+                      Offset="0.0" />
+        <GradientStop Color="#b8f2fb"
+                      Offset="0.5" />
+        <GradientStop Color="#00b8f2fb"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+
+    <SolidColorBrush x:Key="MenuItemHoverBorderBrush">#40000000</SolidColorBrush>
+    <LinearGradientBrush x:Key="MenuItemHoverSecondaryBorderBrush" StartPoint="0,0" EndPoint="0.25,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FF7FBAE2" />
+            <GradientStop Offset="1" Color="#407FBAE2" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <!--SolidColorBrush x:Key="MenuItemHoverTertiaryBackgroundBrush">#FF68A2CC</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuItemHoverTertiaryBorderBrush">#FFB8F2FB</SolidColorBrush-->
+
+
+    <LinearGradientBrush x:Key="MenuItemHoverTertiaryBackgroundBrush" StartPoint="1,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FF68A2CC" />
+            <GradientStop Offset="1" Color="#FFB8F2FB" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="MenuItemHoverTertiaryBorderBrush" StartPoint="0,1" EndPoint="1,0">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FFB8F2FB" />
+            <GradientStop Offset="0.75" Color="#FF58BFEA" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="MenuItemHoverForegroundBrush">#FF00007F</SolidColorBrush>
+
+    <SolidColorBrush x:Key="MenuItemDisabledForegroundBrush">#FFC0C0FF</SolidColorBrush>
+
+
+
+    <!--#region Temporary Luna resources-->
+    <!--SolidColorBrush x:Key="TrayTopBottomBorder" Color="#095bc9" />
+    <SolidColorBrush x:Key="TrayLeftBorder1" Color="#8a000000" />
+    <SolidColorBrush x:Key="TrayLeftBorder2" Color="#22b9e5" />
+    <SolidColorBrush x:Key="TrayLeftBorder3" Color="#22c4f4" />
+    <SolidColorBrush x:Key="TrayLeftBorder4" Color="#3822c4f4" />
+    <LinearGradientBrush x:Key="TrayBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#16adf0"
+                      Offset="0.0" />
+        <GradientStop Color="#19b9f3"
+                      Offset="0.05" />
+        <GradientStop Color="#1290e8"
+                      Offset="0.18" />
+        <GradientStop Color="#0d8dea"
+                      Offset="0.6" />
+        <GradientStop Color="#0fa0ef"
+                      Offset="0.9" />
+        <GradientStop Color="#1582dc"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TrayToggleBorder"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#10225e"
+                      Offset="0.2" />
+        <GradientStop Color="#ced6e6"
+                      Offset="0.8" />
+    </LinearGradientBrush>
+    <RadialGradientBrush x:Key="TrayToggleBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#8ed6f9"
+                      Offset="0.0" />
+        <GradientStop Color="#0671eb"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayToggleHoverBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#c3e5f9"
+                      Offset="0.0" />
+        <GradientStop Color="#0d98e8"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayTogglePressedBackground"
+                         GradientOrigin="0.1,0.1"
+                         RadiusX="0.6"
+                         RadiusY="0.6">
+        <GradientStop Color="#86caec"
+                      Offset="0.0" />
+        <GradientStop Color="#0147be"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <DropShadowEffect x:Key="TrayToggleArrowShadow"
+                      Color="#077eed"
+                      BlurRadius="4"
+                      ShadowDepth="0" />
+    <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#6dcaf8" />
+
+    <SolidColorBrush x:Key="TaskButtonTopBorder" Color="#3172da" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorder" Color="#3067dd" />
+    <SolidColorBrush x:Key="TaskButtonRightBorder" Color="#264fad" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorder" Color="#2652bc" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorder" Color="#5d98f5" />
+    <SolidColorBrush x:Key="TaskButtonBottomRightBorder" Color="#316fe8" />
+    
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlight"
+                         StartPoint="0,0"
+                         EndPoint="0.03,1">
+        <GradientStop Color="#70aafa"
+                      Offset="0.0" />
+        <GradientStop Color="#003980f4"
+                      Offset="0.3" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderHover" Color="#2c5fb2" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderHover" Color="#214ba9" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderHover" Color="#1f408c" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderHover" Color="#1d4196" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderHover" Color="#8bc0ff" />
+    <SolidColorBrush x:Key="TaskButtonBottomRightBorderHover" Color="#2d86ff" />
+    
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightHover"
+                         StartPoint="0,0"
+                         EndPoint="0.03,1">
+        <GradientStop Color="#8bc0ff"
+                      Offset="0.0" />
+        <GradientStop Color="#0059a4ff"
+                      Offset="0.3" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderPressed" Color="#1c62d2" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderPressed" Color="#082970" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderPressed" Color="#0e3c9f" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderPressed" Color="#0c3cae" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressed" Color="#143e95" />
+    <SolidColorBrush x:Key="TaskButtonBottomRightBorderPressed" Color="#07ffffff" />
+    <LinearGradientBrush x:Key="TaskButtonBackgroundPressed"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#123d94"
+                      Offset="0.0" />
+        <GradientStop Color="#1951b9"
+                      Offset="0.05" />
+        <GradientStop Color="#1a50b8"
+                      Offset="0.8" />
+        <GradientStop Color="#2156b7"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightPressed"
+                         StartPoint="0,0"
+                         EndPoint="0.03,1">
+        <GradientStop Color="Transparent"
+                      Offset="0.0" />
+        <GradientStop Color="Transparent"
+                      Offset="0.3" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderPressedHover" Color="#2266d5" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressedHover" Color="#1c51c2" />
+    <SolidColorBrush x:Key="TaskButtonBottomRightBorderPressedHover" Color="#2266d5" />
+    <LinearGradientBrush x:Key="TaskButtonBackgroundPressedHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#1a51c2"
+                      Offset="0.0" />
+        <GradientStop Color="#326fea"
+                      Offset="0.05" />
+        <GradientStop Color="#326ee9"
+                      Offset="0.9" />
+        <GradientStop Color="#2c6de5"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderFlashing" Color="#d37400" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderFlashing" Color="#d37400" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderFlashing" Color="#a35700" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderFlashing" Color="#a35500" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderFlashing" Color="#ffa12b" />
+    <SolidColorBrush x:Key="TaskButtonBottomRightBorderFlashing" Color="Transparent" />
+    
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightFlashing"
+                         StartPoint="0,0"
+                         EndPoint="0.03,1">
+        <GradientStop Color="#ffc96d"
+                      Offset="0.0" />
+        <GradientStop Color="#00e37a08"
+                      Offset="0.3" />
+    </LinearGradientBrush>
+
+    <DropShadowEffect x:Key="StartLabelShadow"
+                      Color="#454c10"
+                      Direction="315"
+                      ShadowDepth="1"
+                      BlurRadius="4"
+                      Opacity="1" />
+
+    <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" /-->
+    <!--#endregion-->
+
+    <FontFamily x:Key="GlobalFontFamily">../Resources/Fonts/#Liberation Sans</FontFamily>
+    <system:Double x:Key="GlobalFontSize">11</system:Double>
+
+    <system:String x:Key="StartText">start</system:String>
+
+    <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
+
+    <Style TargetType="GroupBox"
+           x:Key="Tray">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <!--Setter Property="Background"
+                Value="Transparent"/-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <!--Grid>
+                        <Border Style="{DynamicResource TaskbarBackgroundStyle}">
+                            <Border.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0" Color="Black" />
+                                    <GradientStop Offset="1" Color="#20000000" />
+                                </LinearGradientBrush>
+                            </Border.OpacityMask>
+                        </Border-->
+                        <ContentPresenter />
+                    <!--/Grid-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    <!--Style TargetType="TextBlock"
+           x:Key="TaskLabel">
+        <Setter Property="TextElement.FontSize"
+                Value="11"/>
+        <!-{Binding Path=FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}->
+        <!-Setter Property="TextElement.FontWeight"
+                Value="{Binding Path=FontWeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"/->
+    </Style-->
+
+    <Style TargetType="Button"
+           x:Key="TaskButtonBase"
+           BasedOn="{StaticResource TaskButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Padding"
+                Value="8,0"/>
+        <Setter Property="Height"
+                Value="{DynamicResource TaskbarHeight}" />
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Template" Value="{DynamicResource TaskbarButtonTemplate}"/>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="TaskButton"
+           BasedOn="{StaticResource TaskButtonBase}">
+        <Setter Property="Background" Value="{DynamicResource TaskButtonBackground}"/>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsPressed" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource TaskButtonBackgroundHover}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="TaskButtonActive"
+           BasedOn="{StaticResource TaskButtonBase}">
+        <Setter Property="Background" Value="{DynamicResource TaskButtonBackgroundHover}"/>
+        <Style.Triggers>
+            <Trigger Property="IsPressed"
+                                Value="True">
+                <Setter Property="Background" Value="{DynamicResource TaskButtonBackground}"/>
+            </Trigger>
+        </Style.Triggers>
+        <!--Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent"
+                            Padding="0,3,0,2">
+                        <Border BorderThickness="0,1,0,0"
+                                BorderBrush="{DynamicResource TaskButtonTopBorderPressed}"
+                                CornerRadius="2"
+                                x:Name="ButtonTopBorder">
+                            <Border BorderThickness="1,0,0,0"
+                                    BorderBrush="{DynamicResource TaskButtonLeftBorderPressed}"
+                                    CornerRadius="2"
+                                    x:Name="ButtonLeftBorder">
+                                <Border BorderThickness="0,0,0,1"
+                                        BorderBrush="{DynamicResource TaskButtonRightBorderPressed}"
+                                        CornerRadius="2"
+                                        x:Name="ButtonRightBorder">
+                                    <Border BorderThickness="0,0,1,0"
+                                            BorderBrush="{DynamicResource TaskButtonBottomBorderPressed}"
+                                            CornerRadius="2"
+                                            x:Name="ButtonBottomBorder">
+                                        <Border BorderThickness="1,0,0,0"
+                                                BorderBrush="{DynamicResource TaskButtonInnerLeftBorderPressed}"
+                                                Background="{DynamicResource TaskButtonBackgroundPressed}"
+                                                CornerRadius="2"
+                                                x:Name="ButtonInnerLeftBorder">
+                                            <Border BorderThickness="0,0,1,1"
+                                                    BorderBrush="{DynamicResource TaskButtonBottomRightBorderPressed}"
+                                                    CornerRadius="2"
+                                                    x:Name="ButtonBottomRightBorder">
+                                                <ContentPresenter Margin="9,4,7,2"
+                                                                  x:Name="Content" />
+                                            </Border>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderPressedHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderPressedHover}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomRightBorderPressedHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressedHover}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter-->
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="TaskButtonFlashing"
+           BasedOn="{StaticResource TaskButtonBase}">
+        <Setter Property="Background" Value="{DynamicResource TaskButtonBackgroundFlashing}"/>
+        <!--Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent"
+                            Padding="0,3,0,2">
+                        <Border BorderThickness="0,1,0,0"
+                                BorderBrush="{DynamicResource TaskButtonTopBorderFlashing}"
+                                CornerRadius="2"
+                                x:Name="ButtonTopBorder">
+                            <Border BorderThickness="1,0,0,0"
+                                    BorderBrush="{DynamicResource TaskButtonLeftBorderFlashing}"
+                                    CornerRadius="2"
+                                    x:Name="ButtonLeftBorder">
+                                <Border BorderThickness="0,0,0,1"
+                                        BorderBrush="{DynamicResource TaskButtonRightBorderFlashing}"
+                                        CornerRadius="2"
+                                        x:Name="ButtonRightBorder">
+                                    <Border BorderThickness="0,0,1,0"
+                                            BorderBrush="{DynamicResource TaskButtonBottomBorderFlashing}"
+                                            CornerRadius="2"
+                                            x:Name="ButtonBottomBorder">
+                                        <Border BorderThickness="1,0,0,0"
+                                                BorderBrush="{DynamicResource TaskButtonInnerLeftBorderFlashing}"
+                                                Background="{DynamicResource TaskButtonBackgroundFlashing}"
+                                                CornerRadius="2"
+                                                x:Name="ButtonInnerLeftBorder">
+                                            <Border BorderThickness="0,0,1,1"
+                                                    BorderBrush="{DynamicResource TaskButtonBottomRightBorderFlashing}"
+                                                    Background="{DynamicResource TaskButtonBackgroundHighlightFlashing}"
+                                                    CornerRadius="2"
+                                                    x:Name="ButtonBottomRightBorder">
+                                                <ContentPresenter Margin="8,3"
+                                                                  x:Name="Content" />
+                                            </Border>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="9,4,7,2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter-->
+    </Style>
+
+    <Style x:Key="TaskListScrollButton"
+           TargetType="RepeatButton"
+           BasedOn="{StaticResource TaskListScrollButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent">
+                        <Border BorderThickness="0,1,0,0"
+                                BorderBrush="{DynamicResource TaskButtonTopBorder}"
+                                CornerRadius="2"
+                                x:Name="ButtonTopBorder">
+                            <Border BorderThickness="1,0,0,0"
+                                    BorderBrush="{DynamicResource TaskButtonLeftBorder}"
+                                    CornerRadius="2"
+                                    x:Name="ButtonLeftBorder">
+                                <Border BorderThickness="0,0,0,1"
+                                        BorderBrush="{DynamicResource TaskButtonRightBorder}"
+                                        CornerRadius="2"
+                                        x:Name="ButtonRightBorder">
+                                    <Border BorderThickness="0,0,1,0"
+                                            BorderBrush="{DynamicResource TaskButtonBottomBorder}"
+                                            CornerRadius="2"
+                                            x:Name="ButtonBottomBorder">
+                                        <Border BorderThickness="1,0,0,0"
+                                                BorderBrush="{DynamicResource TaskButtonInnerLeftBorder}"
+                                                Background="{DynamicResource TaskButtonBackground}"
+                                                CornerRadius="2"
+                                                x:Name="ButtonInnerLeftBorder">
+                                            <Border BorderThickness="0,0,1,1"
+                                                    BorderBrush="{DynamicResource TaskButtonBottomRightBorder}"
+                                                    Background="{DynamicResource TaskButtonBackgroundHighlight}"
+                                                    CornerRadius="2"
+                                                    x:Name="ButtonBottomRightBorder">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  Margin="4,-3,4,0"
+                                                                  x:Name="Content" />
+                                            </Border>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderHover}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonLeftBorderHover}" />
+                            <Setter TargetName="ButtonRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonRightBorderHover}" />
+                            <Setter TargetName="ButtonBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomBorderHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderHover}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomRightBorderHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderPressed}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonLeftBorderPressed}" />
+                            <Setter TargetName="ButtonRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonRightBorderPressed}" />
+                            <Setter TargetName="ButtonBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomBorderPressed}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderPressed}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomRightBorderPressed}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBottomRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="StartButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!--Grid>
+                        <Border Style="{DynamicResource TaskbarBackgroundStyle}"/-->
+                        <ContentPresenter Margin="8,0"/>
+                    <!--/Grid-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="TaskIcon"
+           BasedOn="{StaticResource TaskIcon}">
+        <Setter Property="Margin"
+                Value="0,0,4,0" />
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="StartIcon"
+           BasedOn="{StaticResource StartIcon}">
+        <Setter Property="Margin"
+                Value="0,0,5,0" />
+        <Setter Property="Width"
+                Value="18" />
+        <Setter Property="Height"
+                Value="18" />
+        <Setter Property="Stretch"
+                Value="Fill"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ToggleButton}}" Value="True">
+                <Setter Property="Source"
+                        Value="../Resources/startplexc1hover.png"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ToggleButton}}" Value="True">
+                <Setter Property="Source"
+                        Value="../Resources/startplexc1pressed.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="StartLabel"
+           BasedOn="{StaticResource StartLabel}">
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Effect"
+                Value="{DynamicResource PlexGlow}" />
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="Clock"
+           BasedOn="{StaticResource Clock}">
+        <Setter Property="FontSize"
+                Value="{DynamicResource GlobalFontSize}" />
+        <Setter Property="Margin"
+                Value="14,0" />
+        <Setter Property="Effect"
+                Value="{DynamicResource PlexGlow}"/>
+    </Style>
+
+    <Style TargetType="ItemsControl"
+           x:Key="ToolbarItems"
+           BasedOn="{StaticResource ToolbarItems}">
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Padding"
+                Value="4,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ItemsControl">
+                    <!--Grid>
+                        <Border Style="{DynamicResource TaskbarBackgroundStyle}"/-->
+                        <ItemsPresenter Margin="{TemplateBinding Padding}"/>
+                    <!--/Grid-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="ToolbarButton"
+           BasedOn="{StaticResource ToolbarButton}">
+        <Setter Property="Background" Value="{DynamicResource TaskButtonBackground}"/>
+        <Setter Property="Padding"
+                Value="3,0"/>
+        <Setter Property="Template" Value="{DynamicResource TaskbarButtonTemplate}"/>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False"/>
+                    <Condition Property="IsPressed" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter x:Name="Content"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <Trigger Property="IsMouseOver"
+                                 Value="True">
+                <Setter Property="Background" Value="{DynamicResource TaskButtonBackgroundHover}"/>
+            </Trigger>
+            <!--Trigger Property="IsPressed"
+                                 Value="True">
+            </Trigger-->
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TaskListScrollViewer"
+           TargetType="ScrollViewer"
+           BasedOn="{StaticResource TaskListScrollViewer}">
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Border Style="{DynamicResource TaskbarBackgroundStyle}"
+                                Grid.ColumnSpan="2"/-->
+                        
+                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                Value="{TemplateBinding VerticalOffset}"
+                                Maximum="{TemplateBinding ScrollableHeight}"
+                                ViewportSize="{TemplateBinding ViewportHeight}"
+                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                Grid.Column="1"/>
+                        <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                Orientation="Horizontal"
+                                Grid.Row="1"
+                                Value="{TemplateBinding HorizontalOffset}"
+                                Maximum="{TemplateBinding ScrollableWidth}"
+                                ViewportSize="{TemplateBinding ViewportWidth}"
+                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                        <Rectangle x:Name="SizeHelper"
+                                Visibility="Hidden"/>
+                        <Grid HorizontalAlignment="Center"
+                            MaxWidth="{Binding Path=ActualWidth, ElementName=SizeHelper}">
+                            <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                            <Rectangle Fill="White"
+                                       Width="1"
+                                       Opacity="0.25"
+                                       Margin="0,1"
+                                       HorizontalAlignment="Left" IsHitTestVisible="False"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="TrayToggleButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource TrayToggleBackground}" />
+        <Setter Property="Margin"
+                Value="3,0" />
+        <!--Value="-20,1,3,0" /-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!--Border Background="Transparent">
+                        <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource TrayToggleBorder}"
+                            CornerRadius="10"
+                            Background="{TemplateBinding Background}"
+                            Padding="5,4,6,4"
+                            HorizontalAlignment="Center"
+                            x:Name="ButtonBorder">
+                            <Path Fill="{DynamicResource ButtonForeground}"
+                              Data="M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z"
+                              RenderOptions.EdgeMode="Aliased"
+                              Effect="{DynamicResource TrayToggleArrowShadow}"
+                              x:Name="ToggleArrow" />
+                        </Border>
+                    </Border-->
+                    <Border Background="#01000000">
+                        <Grid Width="13" Height="13">
+                            <Ellipse x:Name="BackgroundEllipse" Fill="{DynamicResource TrayToggleButtonIdleBackground}" Effect="{DynamicResource PlexGlow}" UseLayoutRounding="True"/>
+                            <Path x:Name="ArrowPath" Data="M 0 0 L 2 0 L 5.5 3.5 L 2 7 L 0 7 L 0 5 L 2.5 3.5 L 0 2 Z" Fill="{DynamicResource TrayToggleButtonForeground}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.4,0.5">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="180"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="BackgroundEllipse"
+                                    Property="Fill"
+                                    Value="{DynamicResource TrayToggleButtonHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="BackgroundEllipse"
+                                    Property="Fill"
+                                    Value="{DynamicResource TrayToggleButtonPressedBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ArrowPath" Storyboard.TargetProperty="RenderTransform.Angle" To="0" Duration="0:0:0.125"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ArrowPath" Storyboard.TargetProperty="RenderTransform.Angle" To="180" Duration="0:0:0.125"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="MenuItem">
+        <Border Name="Border" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#01000000">
+            <Grid Margin="0,0,10,0">
+                <Border x:Name="HoverBackground" Background="Transparent" BorderBrush="{DynamicResource MenuItemHoverBorderBrush}" BorderThickness="1" CornerRadius="4" Opacity="0" Margin="0,0,-10,0">
+                    <Border BorderThickness="1" CornerRadius="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="{DynamicResource MenuItemHoverSecondaryBorderBrush}">
+                        <Border BorderThickness="0,1,0,2" CornerRadius="2" Background="{DynamicResource MenuItemHoverTertiaryBackgroundBrush}" BorderBrush="{DynamicResource MenuItemHoverTertiaryBorderBrush}"/>
+                    </Border>
+                </Border>
+                <Grid Margin="0,0,7,0">
+                    <ContentPresenter Margin="{TemplateBinding Padding}" ContentSource="Header" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                </Grid>
+                <Path Margin="-7,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Data="M 0 0 L 6 6 L 0 12 L 4 6 Z" Fill="{TemplateBinding Foreground}" />
+
+                <Popup Name="Popup" Placement="Right" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                    <Grid Margin="8,3,3,5">
+                        <Border IsHitTestVisible="False" Background="Black" BorderBrush="Transparent">
+                            <Border.Effect>
+                                <DropShadowEffect x:Name="DropShadow" Color="Black" Direction="230" ShadowDepth="3" BlurRadius="3" Opacity="0.375"/>
+                            </Border.Effect>
+                        </Border>
+                        <Border BorderThickness="1" CornerRadius="0" Margin="0" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{DynamicResource ContextMenuBackgroundBrush}" BorderBrush="{DynamicResource ContextMenuBorderBrush}">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="-7,3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </Grid>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverBackground" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.125" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverBackground" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+                <Setter Property="Foreground" Value="{DynamicResource MenuItemHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MenuItemDisabledForegroundBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="MenuItem">
+        <Border Name="Border" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#01000000">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border x:Name="HoverBackground" Background="Transparent" BorderBrush="{DynamicResource MenuItemHoverBorderBrush}" BorderThickness="1" CornerRadius="4" Opacity="0">
+                    <Border BorderThickness="1" CornerRadius="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="{DynamicResource MenuItemHoverSecondaryBorderBrush}">
+                        <Border BorderThickness="0,1,0,2" CornerRadius="2" Background="{DynamicResource MenuItemHoverTertiaryBackgroundBrush}" BorderBrush="{DynamicResource MenuItemHoverTertiaryBorderBrush}"/>
+                    </Border>
+                </Border>
+                <Label x:Name="Check" FontFamily="Marlett" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0" Foreground="{TemplateBinding Foreground}" Visibility="Hidden">b</Label>
+                <Grid x:Name="CheckOffsetGrid" Margin="0">
+                    <ContentPresenter Name="Content" Margin="{TemplateBinding Padding}" ContentSource="Header" RecognizesAccessKey="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverBackground" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.125" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverBackground" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+                <Setter Property="Foreground" Value="{DynamicResource MenuItemHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MenuItemDisabledForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Check" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsCheckable" Value="True">
+                <Setter TargetName="CheckOffsetGrid" Property="Margin" Value="12,0,0,0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="PlexMenuItemStyle" TargetType="MenuItem">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Height" Value="22" />
+        <Setter Property="MinWidth" Value="175"/>
+        <Setter Property="Background" Value="#01000000" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="#01000000" />
+        <Setter Property="Padding" Value="10,0" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
+                <Setter Property="Grid.IsSharedSizeScope" Value="true"/>
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelItemTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelItemTemplateKey}}"/>
+            </Trigger>
+            <!--DataTrigger Binding="{Binding MenuOpenedWithTouch, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContextMenu}}}" Value="True">
+                <Setter Property="Height" Value="45"/>
+            </DataTrigger-->
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PlexSeparatorStyle" TargetType="Separator">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="{DynamicResource ContextMenuSeparatorBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuSeparatorBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Rectangle Height="1" Fill="{TemplateBinding Background}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="PlexContextMenuStyle" TargetType="ContextMenu">
+        <Style.Resources>
+            <Style x:Key="{x:Type MenuItem}" TargetType="MenuItem" BasedOn="{StaticResource PlexMenuItemStyle}"/>
+        </Style.Resources>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        <Setter Property="Margin" Value="0,0,5,5"/>
+        <Setter Property="Padding" Value="2,2,2,0"/>
+        <Setter Property="HasDropShadow" Value="False" />
+        <Setter Property="MinWidth" Value="50"/>
+        <Setter Property="Background" Value="{DynamicResource ContextMenuBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuBorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Grid Margin="{TemplateBinding Margin}">
+                        <Border BorderThickness="1" CornerRadius="4" Margin="0" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" UseLayoutRounding="True" Effect="{DynamicResource PlexDropShadow}">
+                            <ScrollViewer SnapsToDevicePixels="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" ClipToBounds="True">
+                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type Separator}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
+
+    <Style TargetType="Window"
+           x:Key="Taskbar"
+           BasedOn="{StaticResource Taskbar}">
+        <Style.Resources>
+            <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource PlexContextMenuStyle}"/>
+            <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Window">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Style="{DynamicResource TaskbarBackgroundStyle}" Grid.Column="0"/>
+                        <Border Style="{DynamicResource TaskbarBackgroundStyle}" Grid.Column="1">
+                            <Border.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0" Color="Black" />
+                                    <!--GradientStop Offset="0.667" Color="#7f000000" /-->
+                                    <GradientStop Offset="1" Color="#20000000" />
+                                </LinearGradientBrush>
+                            </Border.OpacityMask>
+                        </Border>
+                        <!--Border>
+                        <Border.Background>
+                            <ImageBrush ImageSource="%windir%\Web\Wallpaper\Windows\img0.jpg" Viewbox="0,1096,1920,24"/>
+                        </Border.Background-->
+                        <ContentPresenter Grid.ColumnSpan="2"/>
+                        <!--/Border-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
