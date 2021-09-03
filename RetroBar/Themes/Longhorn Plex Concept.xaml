@@ -183,30 +183,38 @@
     <SolidColorBrush x:Key="MenuItemHoverBorderBrush">#40000000</SolidColorBrush>
     <LinearGradientBrush x:Key="MenuItemHoverSecondaryBorderBrush" StartPoint="0,0" EndPoint="0.25,1">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Offset="0" Color="#FF7FBAE2" />
-            <GradientStop Offset="1" Color="#407FBAE2" />
+            <GradientStop Offset="0" Color="#7fbae2" />
+            <GradientStop Offset="1" Color="#407fbae2" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
-    <!--SolidColorBrush x:Key="MenuItemHoverTertiaryBackgroundBrush">#FF68A2CC</SolidColorBrush>
-    <SolidColorBrush x:Key="MenuItemHoverTertiaryBorderBrush">#FFB8F2FB</SolidColorBrush-->
 
 
     <LinearGradientBrush x:Key="MenuItemHoverTertiaryBackgroundBrush" StartPoint="1,0" EndPoint="0,1">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Offset="0" Color="#FF68A2CC" />
-            <GradientStop Offset="1" Color="#FFB8F2FB" />
+            <GradientStop Offset="0" Color="#68a2cc" />
+            <GradientStop Offset="1" Color="#b8f2fb" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="MenuItemHoverTertiaryBorderBrush" StartPoint="0,1" EndPoint="1,0">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Offset="0" Color="#FFB8F2FB" />
-            <GradientStop Offset="0.75" Color="#FF58BFEA" />
+            <GradientStop Offset="0" Color="#b8f2fb" />
+            <GradientStop Offset="0.75" Color="#58bfea" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="MenuItemHoverForegroundBrush">#FF00007F</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuItemHoverForegroundBrush">#00007f</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuItemDisabledForegroundBrush">#c0c0ff</SolidColorBrush>
 
-    <SolidColorBrush x:Key="MenuItemDisabledForegroundBrush">#FFC0C0FF</SolidColorBrush>
+
+
+    <LinearGradientBrush x:Key="ToolTipBackground" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#a0d0ff" />
+            <GradientStop Offset="1" Color="#80b0df" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ToolTipBorderBrush">#40709f</SolidColorBrush>
+    <SolidColorBrush x:Key="ToolTipForeground">#00007f</SolidColorBrush>
 
 
 
@@ -931,7 +939,25 @@
 
 
 
-
+    <Style x:Key="PlexToolTipStyle" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource ToolTipBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ToolTipBorderBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ToolTipForeground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="3"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="MenuItem">
@@ -1112,6 +1138,7 @@
         <Style.Resources>
             <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource PlexContextMenuStyle}"/>
             <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
+            <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip" BasedOn="{StaticResource PlexToolTipStyle}"/>
         </Style.Resources>
         <Setter Property="Template">
             <Setter.Value>
@@ -1131,12 +1158,7 @@
                                 </LinearGradientBrush>
                             </Border.OpacityMask>
                         </Border>
-                        <!--Border>
-                        <Border.Background>
-                            <ImageBrush ImageSource="%windir%\Web\Wallpaper\Windows\img0.jpg" Viewbox="0,1096,1920,24"/>
-                        </Border.Background-->
                         <ContentPresenter Grid.ColumnSpan="2"/>
-                        <!--/Border-->
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
