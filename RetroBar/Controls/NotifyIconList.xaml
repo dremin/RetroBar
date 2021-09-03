@@ -11,10 +11,11 @@
                       Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="UnpinnedNotifyIconList"
                       HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
                       Visibility="Collapsed">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
+                    <WrapPanel Orientation="Horizontal"></WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
@@ -24,10 +25,11 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <ItemsControl x:Name="PinnedNotifyIconList"
-                      HorizontalAlignment="Stretch">
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
+                    <WrapPanel Orientation="Horizontal"></WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

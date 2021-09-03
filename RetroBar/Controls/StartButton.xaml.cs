@@ -15,6 +15,14 @@ namespace RetroBar.Controls
         private bool allowOpenStart;
         private readonly DispatcherTimer pendingOpenTimer;
 
+        public static DependencyProperty AppVisibilityHelperProperty = DependencyProperty.Register("AppVisibilityHelper", typeof(AppVisibilityHelper), typeof(StartButton));
+
+        public AppVisibilityHelper AppVisibilityHelper
+        {
+            get { return (AppVisibilityHelper)GetValue(AppVisibilityHelperProperty); }
+            set { SetValue(AppVisibilityHelperProperty, value); }
+        }
+
         public StartButton()
         {
             InitializeComponent();
@@ -62,6 +70,21 @@ namespace RetroBar.Controls
                 ShellHelper.ShowStartContextMenu();
                 e.Handled = true;
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            AppVisibilityHelper.LauncherVisibilityChanged += AppVisibilityHelper_LauncherVisibilityChanged;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            AppVisibilityHelper.LauncherVisibilityChanged -= AppVisibilityHelper_LauncherVisibilityChanged;
+        }
+
+        private void AppVisibilityHelper_LauncherVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
+        {
+            SetStartMenuState(e.Visible);
         }
     }
 }

@@ -219,12 +219,12 @@
 
     <system:String x:Key="StartText">start</system:String>
 
-    <Style TargetType="Window"
+    <Style TargetType="ContentControl"
            x:Key="Taskbar"
            BasedOn="{StaticResource Taskbar}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Window">
+                <ControlTemplate TargetType="ContentControl">
                     <Border BorderThickness="0,1,0,0"
                             BorderBrush="{DynamicResource TaskbarBorder}"
                             Background="{DynamicResource TaskbarBackground}">

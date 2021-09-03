@@ -50,13 +50,13 @@
                 Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
     </Style>
 
-    <Style TargetType="Window"
+    <Style TargetType="ContentControl"
            x:Key="Taskbar">
         <Setter Property="TextOptions.TextFormattingMode"
                 Value="Display" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Window">
+                <ControlTemplate TargetType="ContentControl">
                     <Border BorderThickness="0,1,0,0"
                             BorderBrush="{DynamicResource ButtonLight}">
                         <Border BorderThickness="0,1,0,0"

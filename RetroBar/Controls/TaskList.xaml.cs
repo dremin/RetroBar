@@ -1,4 +1,6 @@
-﻿using ManagedShell.WindowsTasks;
+﻿using ManagedShell.AppBar;
+using ManagedShell.WindowsTasks;
+using RetroBar.Utilities;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -80,6 +82,12 @@ namespace RetroBar.Controls
 
         private void SetTaskButtonWidth()
         {
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
+            {
+                ButtonWidth = Width;
+                return;
+            }
+
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
             double maxWidth = ActualWidth / TasksList.Items.Count;
             double defaultWidth = DefaultButtonWidth + margin;
