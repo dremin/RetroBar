@@ -31,11 +31,11 @@ namespace RetroBar
             LoadThemes();
         }
 
-        public static void Open(DictionaryManager themeManager)
+        public static void Open(DictionaryManager dictionaryManager)
         {
             if (_instance == null)
             {
-                _instance = new PropertiesWindow(themeManager);
+                _instance = new PropertiesWindow(dictionaryManager);
                 _instance.Show();
             }
             else

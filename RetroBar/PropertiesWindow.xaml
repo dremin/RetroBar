@@ -73,16 +73,20 @@
                         <Label Content="{DynamicResource autostart}" />
                     </CheckBox>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{DynamicResource language_text}"
-                                   ToolTip="{DynamicResource language_tip}" />
+                        <Label VerticalAlignment="Center" Target="{Binding ElementName=cboLanguageSelect}">
+                            <AccessText Text="{DynamicResource language_text}"
+                                        ToolTip="{DynamicResource language_tip}"/>
+                        </Label>
                         <ComboBox Name="cboLanguageSelect"
                                   IsDropDownOpen="False"
                                   IsEditable="False"
                                   SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{DynamicResource theme_text}"
-                                   ToolTip="{DynamicResource theme_tip}" />
+                        <Label VerticalAlignment="Center" Target="{Binding ElementName=cboThemeSelect}">
+                            <AccessText Text="{DynamicResource theme_text}"
+                                        ToolTip="{DynamicResource theme_tip}"/>
+                        </Label>
                         <ComboBox Name="cboThemeSelect"
                                   IsDropDownOpen="False"
                                   IsEditable="False"

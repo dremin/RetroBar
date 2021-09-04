@@ -24,6 +24,7 @@
     <Page Remove="Themes\Windows 2000.xaml" />
     <Page Remove="Themes\Windows 95-98.xaml" />
     <Page Remove="Themes\Windows Me.xaml" />
+    <Page Remove="Themes\Windows Vista.xaml" />
     <Page Remove="Themes\Windows XP Blue.xaml" />
     <Page Remove="Themes\Windows XP Classic.xaml" />
   </ItemGroup>
@@ -32,7 +33,7 @@
     <None Include="Languages\español.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator></Generator>
     </None>
     <None Include="Themes\Windows 95-98.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -10,4 +10,6 @@
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
+
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}"/>
 </ResourceDictionary>

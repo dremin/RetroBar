@@ -24,11 +24,11 @@
     <Style TargetType="Image">
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="True">
-                <Setter Property="DataContext" Value="{DynamicResource classic_properties}" />
+                <Setter Property="DataContext" Value="{DynamicResource 95_properties}" />
                 <Setter Property="Source" Value="{Binding}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="False">
-                <Setter Property="DataContext" Value="{DynamicResource classic_properties_noclock}" />
+                <Setter Property="DataContext" Value="{DynamicResource 95_properties_noclock}" />
                 <Setter Property="Source" Value="{Binding}" />
             </DataTrigger>
         </Style.Triggers>
@@ -315,6 +315,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}"/>
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton">

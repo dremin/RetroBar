@@ -9,7 +9,7 @@ namespace RetroBar.Utilities
 {
     public class DictionaryManager : IDisposable
     {
-        private const string DICT_DEFAULT = "System"; // TODO: Localize "System"?
+        private const string DICT_DEFAULT = "System";
         private const string DICT_EXT = "xaml";
 
         private const string LANG_DEFAULT = DICT_DEFAULT;
@@ -17,7 +17,7 @@ namespace RetroBar.Utilities
         private const string LANG_FOLDER = "Languages";
         private const string LANG_EXT = DICT_EXT;
 
-        public const string  THEME_DEFAULT = DICT_DEFAULT;
+        public const string THEME_DEFAULT = DICT_DEFAULT;
         private const string THEME_FOLDER = "Themes";
         private const string THEME_EXT = DICT_EXT;
 
@@ -37,18 +37,18 @@ namespace RetroBar.Utilities
 
         public void SetTheme(string theme)
         {
-            SetDictionary(theme, THEME_FOLDER, THEME_DEFAULT, THEME_EXT);
+            SetDictionary(theme, THEME_FOLDER, THEME_DEFAULT, THEME_EXT, 0);
         }
 
         public void SetLanguageFromSettings()
         {
-            var currentUICulture = System.Globalization.CultureInfo.CurrentUICulture;
-            string systemLanguage = currentUICulture.NativeName;
-            string systemLanguageParent = currentUICulture.Parent.NativeName;
             SetLanguage(LANG_FALLBACK);
             if (Settings.Instance.Language == LANG_DEFAULT)
             {
-                ManagedShell.Common.Logging.ShellLogger.Info($"Loading system language (if available): {systemLanguage}, {systemLanguageParent}");
+                var currentUICulture = System.Globalization.CultureInfo.CurrentUICulture;
+                string systemLanguageParent = currentUICulture.Parent.NativeName;
+                string systemLanguage = currentUICulture.NativeName;
+                ManagedShell.Common.Logging.ShellLogger.Info($"Loading system language (if available): {systemLanguageParent}, {systemLanguage}");
                 SetLanguage(systemLanguageParent);
                 SetLanguage(systemLanguage);
             }
@@ -60,17 +60,15 @@ namespace RetroBar.Utilities
 
         public void SetLanguage(string language)
         {
-            SetDictionary(language, LANG_FOLDER, LANG_FALLBACK, LANG_EXT);
+            SetDictionary(language, LANG_FOLDER, LANG_FALLBACK, LANG_EXT, 1);
         }
 
-        public void SetDictionary(string dictionary, string dictFolder, string dictDefault, string dictExtension)
+        public void SetDictionary(string dictionary, string dictFolder, string dictDefault, string dictExtension, int dictType)
         {
             string dictFilePath;
 
             if (dictionary == dictDefault)
             {
-                // FIXME (clear only theme dictionaries)
-                //Application.Current.Resources.MergedDictionaries.Clear();
                 dictFilePath = Path.ChangeExtension(Path.Combine(dictFolder, dictDefault), dictExtension);
             }
             else
@@ -79,7 +77,7 @@ namespace RetroBar.Utilities
 
                 if (!File.Exists(dictFilePath))
                 {
-                    // custom dictionary in app directory
+                    // Custom dictionary in app directory
                     dictFilePath = Path.ChangeExtension(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder, dictionary), dictExtension);
 
                     if (!File.Exists(dictFilePath))
@@ -93,7 +91,16 @@ namespace RetroBar.Utilities
             {
                 Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
             };
-            Application.Current.Resources.MergedDictionaries.Add(newRes);
+            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+            for (int index = 0; index < mergedDictionaries.Count; ++index)
+            {
+                // Clear the previous theme containing "TaskbarBackground"
+                if (dictType == 0 && mergedDictionaries[index].Contains("TaskbarBackground"))
+                {
+                    mergedDictionaries[index].Clear();
+                }
+            }
+            mergedDictionaries.Add(newRes);
         }
 
         public List<string> GetThemes()
