@@ -104,7 +104,7 @@
 
     <ControlTemplate x:Key="TaskbarButtonTemplate" TargetType="Button">
         <Border Background="{TemplateBinding Background}">
-            <Grid>
+            <Grid Background="#01000000">
                 <ContentPresenter x:Name="Content"
                                               Margin="{TemplateBinding Padding}"
                                               HorizontalAlignment="Center"
@@ -702,10 +702,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <!--Grid>
-                        <Border Style="{DynamicResource TaskbarBackgroundStyle}"/-->
+                    <Grid Background="#01000000">
                         <ContentPresenter Margin="8,0"/>
-                    <!--/Grid-->
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -788,6 +787,7 @@
            x:Key="ToolbarButton"
            BasedOn="{StaticResource ToolbarButton}">
         <Setter Property="Background" Value="{DynamicResource TaskButtonBackground}"/>
+        <Setter Property="Height" Value="{DynamicResource TaskbarHeight}"/>
         <Setter Property="Padding"
                 Value="3,0"/>
         <Setter Property="Template" Value="{DynamicResource TaskbarButtonTemplate}"/>
@@ -800,8 +800,10 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <ContentPresenter x:Name="Content"
-                                              Margin="{TemplateBinding Padding}"/>
+                            <Grid Background="#01000000">
+                                <ContentPresenter x:Name="Content"
+                                                  Margin="{TemplateBinding Padding}"/>
+                            </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
