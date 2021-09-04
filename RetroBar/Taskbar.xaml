@@ -21,7 +21,9 @@
             <controls:StartButton x:Name="StartButton">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
-                             ConverterParameter="leading"/>
+                             ConverterParameter="leading"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:StartButton>
             <controls:Toolbar x:Name="QuickLaunchToolbar"
@@ -29,17 +31,23 @@
                               Path="{Binding Source={x:Static utilities:Settings.Instance}, Path=QuickLaunchPath}">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
-                             ConverterParameter="leading"/>
+                             ConverterParameter="leading"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:Toolbar>
             <GroupBox Style="{DynamicResource Tray}">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
-                             ConverterParameter="trailing"/>
+                             ConverterParameter="trailing"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
                 <StackPanel>
                     <StackPanel.Orientation>
-                        <Binding Converter="{StaticResource edgeOrientationConverter}" />
+                        <Binding Converter="{StaticResource edgeOrientationConverter}"
+                                 Path="Orientation"
+                                 RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
                     <controls:NotifyIconList VerticalAlignment="Center"
                                              NotificationArea="{Binding NotificationArea}"></controls:NotifyIconList>

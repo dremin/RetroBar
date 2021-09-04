@@ -32,14 +32,8 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.AppVisibilityHelper = appVisibilityHelper;
 
-            if (Orientation == Orientation.Vertical)
-            {
-                DesiredWidth = 100;
-            }
-            else
-            {
-                DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
-            }
+            DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+            DesiredWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
 
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
             SetFontSmoothing();
@@ -109,6 +103,9 @@ namespace RetroBar
             {
                 bool newTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
                 double newHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+                double newWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
+                bool heightChanged = newHeight != DesiredHeight;
+                bool widthChanged = newWidth != DesiredWidth;
 
                 if (AllowsTransparency != newTransparency)
                 {
@@ -118,10 +115,17 @@ namespace RetroBar
                     return;
                 }
 
-                if (newHeight != DesiredHeight)
+                DesiredHeight = newHeight;
+                DesiredWidth = newWidth;
+
+                if (Orientation == Orientation.Horizontal && heightChanged)
                 {
-                    DesiredHeight = newHeight;
                     Height = DesiredHeight;
+                    SetScreenPosition();
+                }
+                else if (Orientation == Orientation.Vertical && widthChanged)
+                {
+                    Width = DesiredWidth;
                     SetScreenPosition();
                 }
             }
@@ -139,6 +143,11 @@ namespace RetroBar
                 {
                     QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 }
+            }
+            else if (e.PropertyName == "Edge")
+            {
+                AppBarEdge = Settings.Instance.Edge;
+                SetScreenPosition();
             }
         }
 

@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ManagedShell.Common.Logging;
 using Microsoft.Win32;
+using ManagedShell.AppBar;
 
 namespace RetroBar
 {
@@ -19,6 +20,14 @@ namespace RetroBar
         private static PropertiesWindow _instance;
 
         private readonly ThemeManager _themeManager;
+
+        public IEnumerable<AppBarEdge> AppBarEdgeValues
+        {
+            get
+            {
+                return Enum.GetValues(typeof(AppBarEdge)).Cast<AppBarEdge>();
+            }
+        }
 
         private PropertiesWindow(ThemeManager themeManager)
         {

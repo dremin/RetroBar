@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:Double x:Key="TaskbarHeight">28</system:Double>
+    <system:Double x:Key="TaskbarWidth">100</system:Double>
     <system:Double x:Key="TaskButtonWidth">160</system:Double>
     <system:Double x:Key="TaskButtonMinWidth">45</system:Double>
     <Thickness x:Key="TaskButtonMargin" Right="3" />

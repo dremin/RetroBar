@@ -19,7 +19,9 @@
                 <ItemsPanelTemplate>
                     <WrapPanel>
                         <WrapPanel.Orientation>
-                            <Binding Converter="{StaticResource orientationConverter}" />
+                            <Binding Converter="{StaticResource orientationConverter}"
+                                     Path="Orientation"
+                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                         </WrapPanel.Orientation>
                     </WrapPanel>
                 </ItemsPanelTemplate>

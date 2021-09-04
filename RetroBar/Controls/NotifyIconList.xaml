@@ -11,7 +11,9 @@
     </UserControl.Resources>
     <StackPanel>
         <StackPanel.Orientation>
-            <Binding Converter="{StaticResource edgeOrientationConverter}" />
+            <Binding Converter="{StaticResource edgeOrientationConverter}"
+                     Path="Orientation"
+                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
         </StackPanel.Orientation>
         <ToggleButton Name="NotifyIconToggleButton"
                       Visibility="Collapsed"
