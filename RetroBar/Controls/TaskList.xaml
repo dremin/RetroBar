@@ -14,8 +14,7 @@
     <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
                   VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="TasksList"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch">
+                      HorizontalAlignment="Stretch">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel>

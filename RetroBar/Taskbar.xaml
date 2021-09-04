@@ -8,31 +8,45 @@
         Title="RetroBar Taskbar"
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
-        AllowDrop="True">
+        AllowDrop="True"
+        Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>
         <ResourceDictionary>
-            <converters:EdgeOrientationConverter x:Key="orientationConverter" />
+            <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
+            <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <ContentControl Style="{DynamicResource Taskbar}">
         <DockPanel>
-            <controls:StartButton DockPanel.Dock="Left"
-                                  x:Name="StartButton" />
+            <controls:StartButton x:Name="StartButton">
+                <DockPanel.Dock>
+                    <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="leading"/>
+                </DockPanel.Dock>
+            </controls:StartButton>
             <controls:Toolbar x:Name="QuickLaunchToolbar"
-                              Path="{Binding Source={x:Static utilities:Settings.Instance}, Path=QuickLaunchPath}"
-                              DockPanel.Dock="Left" />
-            <GroupBox DockPanel.Dock="Right"
-                      Style="{DynamicResource Tray}">
+                              Visibility="Collapsed"
+                              Path="{Binding Source={x:Static utilities:Settings.Instance}, Path=QuickLaunchPath}">
+                <DockPanel.Dock>
+                    <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="leading"/>
+                </DockPanel.Dock>
+            </controls:Toolbar>
+            <GroupBox Style="{DynamicResource Tray}">
+                <DockPanel.Dock>
+                    <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="trailing"/>
+                </DockPanel.Dock>
                 <StackPanel>
                     <StackPanel.Orientation>
-                        <Binding Converter="{StaticResource orientationConverter}" />
+                        <Binding Converter="{StaticResource edgeOrientationConverter}" />
                     </StackPanel.Orientation>
                     <controls:NotifyIconList VerticalAlignment="Center"
                                              NotificationArea="{Binding NotificationArea}"></controls:NotifyIconList>
                     <controls:Clock VerticalAlignment="Center"></controls:Clock>
                 </StackPanel>
             </GroupBox>
-            <controls:TaskList VerticalAlignment="Center"
+            <controls:TaskList VerticalAlignment="Top"
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>
     </ContentControl>

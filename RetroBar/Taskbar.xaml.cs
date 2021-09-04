@@ -7,6 +7,7 @@ using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using RetroBar.Utilities;
 using Application = System.Windows.Application;
@@ -31,7 +32,7 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.AppVisibilityHelper = appVisibilityHelper;
 
-            if (AppBarEdge == AppBarEdge.Left || AppBarEdge == AppBarEdge.Right)
+            if (Orientation == Orientation.Vertical)
             {
                 DesiredWidth = 100;
             }
@@ -49,6 +50,11 @@ namespace RetroBar
 
             // Layout rounding causes incorrect sizing on non-integer scales
             if(DpiHelper.DpiScale % 1 != 0) UseLayoutRounding = false;
+
+            if (Settings.Instance.ShowQuickLaunch)
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Visible;
+            }
         }
 
         protected override void OnSourceInitialized(object sender, EventArgs e)
@@ -115,6 +121,7 @@ namespace RetroBar
                 if (newHeight != DesiredHeight)
                 {
                     DesiredHeight = newHeight;
+                    Height = DesiredHeight;
                     SetScreenPosition();
                 }
             }
@@ -122,12 +129,23 @@ namespace RetroBar
             {
                 SetFontSmoothing();
             }
+            else if (e.PropertyName == "ShowQuickLaunch")
+            {
+                if (Settings.Instance.ShowQuickLaunch)
+                {
+                    QuickLaunchToolbar.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    QuickLaunchToolbar.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
         private void Taskbar_OnLocationChanged(object? sender, EventArgs e)
         {
             // primarily for win7/8, they will set up the appbar correctly but then put it in the wrong place
-            if (AppBarEdge == AppBarEdge.Left || AppBarEdge == AppBarEdge.Right)
+            if (Orientation == Orientation.Vertical)
             {
                 double desiredLeft = 0;
 
@@ -173,6 +191,7 @@ namespace RetroBar
             if (AllowClose)
             {
                 if (!_isReopening) _explorerHelper.HideExplorerTaskbar = false;
+                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }

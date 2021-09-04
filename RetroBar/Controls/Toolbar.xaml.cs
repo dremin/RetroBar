@@ -51,17 +51,13 @@ namespace RetroBar.Controls
         private void SetupFolder(string path)
         {
             Folder?.Dispose();
-            Folder = null;
+            Folder = new ShellFolder(Environment.ExpandEnvironmentVariables(path), IntPtr.Zero, true);
+        }
 
-            if (Settings.Instance.ShowQuickLaunch)
-            {
-                Folder = new ShellFolder(Environment.ExpandEnvironmentVariables(path), IntPtr.Zero, true);
-                Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Visibility = Visibility.Collapsed;
-            }
+        private void UnloadFolder()
+        {
+            Folder?.Dispose();
+            Folder = null;
         }
 
         private void SetItemsSource()
@@ -111,15 +107,19 @@ namespace RetroBar.Controls
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            SetupFolder(Path);
-        }
-
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Folder?.Dispose();
-            Folder = null;
+            if (e.NewValue is bool visible)
+            {
+                if (visible)
+                {
+                    SetupFolder(Path);
+                }
+                else
+                {
+                    UnloadFolder();
+                }
+            }
         }
         #endregion
 
