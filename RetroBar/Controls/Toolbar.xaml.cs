@@ -5,6 +5,7 @@ using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.ShellFolders;
 using ManagedShell.ShellFolders.Enums;
+using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -18,9 +19,21 @@ namespace RetroBar.Controls
             OpenParentFolder = CommonContextMenuItem.Paste + 1
         }
 
-        public static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
+        public static DependencyProperty PathProperty = DependencyProperty.Register("Path", typeof(string), typeof(Toolbar));
 
-        public ShellFolder Folder
+        public string Path
+        {
+            get => (string)GetValue(PathProperty);
+            set
+            {
+                SetValue(PathProperty, value);
+                SetupFolder(value);
+            }
+        }
+
+        private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
+
+        private ShellFolder Folder
         {
             get => (ShellFolder)GetValue(FolderProperty);
             set
@@ -29,10 +42,22 @@ namespace RetroBar.Controls
                 SetItemsSource();
             }
         }
-        
+
         public Toolbar()
         {
             InitializeComponent();
+        }
+
+        private void SetupFolder(string path)
+        {
+            Folder?.Dispose();
+            Folder = new ShellFolder(Environment.ExpandEnvironmentVariables(path), IntPtr.Zero, true);
+        }
+
+        private void UnloadFolder()
+        {
+            Folder?.Dispose();
+            Folder = null;
         }
 
         private void SetItemsSource()
@@ -43,6 +68,7 @@ namespace RetroBar.Controls
             }
         }
 
+        #region Events
         private void ToolbarIcon_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ToolbarButton icon = sender as ToolbarButton;
@@ -80,6 +106,24 @@ namespace RetroBar.Controls
                 e.Handled = true;
             }
         }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is bool visible)
+            {
+                if (visible)
+                {
+                    SetupFolder(Path);
+                }
+                else
+                {
+                    UnloadFolder();
+                }
+            }
+        }
+        #endregion
+
+        #region Context menu
         private ShellMenuCommandBuilder GetFileCommandBuilder(ShellFile file)
         {
             if (file == null)
@@ -121,5 +165,6 @@ namespace RetroBar.Controls
 
             return false;
         }
+        #endregion
     }
 }

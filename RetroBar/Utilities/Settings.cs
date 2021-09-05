@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagedShell.AppBar;
+using System;
 using System.ComponentModel;
 using System.Configuration;
 using System.Runtime.CompilerServices;
@@ -176,6 +177,26 @@ namespace RetroBar.Utilities
                 if (settings.AllowFontSmoothing != value)
                 {
                     settings.AllowFontSmoothing = value;
+                }
+            }
+        }
+
+        public AppBarEdge Edge
+        {
+            get
+            {
+                if (settings.Edge >= 0 && settings.Edge <= 3)
+                {
+                    return (AppBarEdge)settings.Edge;
+                }
+
+                return AppBarEdge.Bottom;
+            }
+            set
+            {
+                if (settings.Edge != (int)value)
+                {
+                    settings.Edge = (int)value;
                 }
             }
         }
