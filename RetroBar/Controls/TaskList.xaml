@@ -12,8 +12,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
+                  Focusable="False"
                   VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="TasksList"
+                      Focusable="False"
                       HorizontalAlignment="Stretch">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:RetroBar.Controls"
              IsVisibleChanged="UserControl_IsVisibleChanged">
     <ItemsControl x:Name="ToolbarItems"
+                  Focusable="False"
                   Style="{DynamicResource ToolbarItems}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

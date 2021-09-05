@@ -20,21 +20,8 @@
                       Click="NotifyIconToggleButton_OnClick"
                       ToolTip="Show hidden icons"
                       Style="{DynamicResource TrayToggleButton}"/>
-        <ItemsControl x:Name="UnpinnedNotifyIconList"
-                      HorizontalAlignment="Stretch"
-                      Visibility="Collapsed">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"></WrapPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <ItemContainerTemplate>
-                    <local:NotifyIcon></local:NotifyIcon>
-                </ItemContainerTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <ItemsControl x:Name="PinnedNotifyIconList"
+        <ItemsControl x:Name="NotifyIcons"
+                      Focusable="False"
                       HorizontalAlignment="Stretch">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
