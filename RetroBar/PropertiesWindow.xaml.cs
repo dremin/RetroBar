@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using ManagedShell.Common.Logging;
 using Microsoft.Win32;
 using ManagedShell.AppBar;
+using System.Windows.Forms;
 
 namespace RetroBar
 {
@@ -113,6 +114,23 @@ namespace RetroBar
         {
             Left = 10;
             Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
+
+            switch (Settings.Instance.Edge)
+            {
+                case AppBarEdge.Left:
+                case AppBarEdge.Top:
+                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
+                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
+                    break;
+                case AppBarEdge.Right:
+                    Left = (SystemInformation.WorkingArea.Right / DpiHelper.DpiScale) - Width - 10;
+                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
+                    break;
+                case AppBarEdge.Bottom:
+                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
+                    Top = (SystemInformation.WorkingArea.Bottom / DpiHelper.DpiScale) - Height - 10;
+                    break;
+            }
         }
 
         private void AutoStartCheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -120,7 +138,7 @@ namespace RetroBar
             try
             {
                 RegistryKey rKey = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-                var chkBox = (CheckBox)sender;
+                var chkBox = (System.Windows.Controls.CheckBox)sender;
 
                 if (chkBox.IsChecked.Equals(false))
                 {
