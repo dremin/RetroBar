@@ -22,7 +22,7 @@
                       Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="NotifyIcons"
                       Focusable="False"
-                      HorizontalAlignment="Stretch">
+                      HorizontalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"></WrapPanel>

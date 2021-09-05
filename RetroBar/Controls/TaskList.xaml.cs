@@ -43,9 +43,17 @@ namespace RetroBar.Controls
         {
             DefaultButtonWidth = Application.Current.FindResource("TaskButtonWidth") as double? ?? 0;
             MinButtonWidth = Application.Current.FindResource("TaskButtonMinWidth") as double? ?? 0;
+            Thickness buttonMargin;
 
-            Thickness buttonMargin = Application.Current.FindResource("TaskButtonMargin") as Thickness? ??
-                new Thickness();
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
+            {
+                buttonMargin = Application.Current.FindResource("TaskButtonVerticalMargin") as Thickness? ?? new Thickness();
+            }
+            else
+            {
+                buttonMargin = Application.Current.FindResource("TaskButtonMargin") as Thickness? ?? new Thickness();
+            }
+
             TaskButtonLeftMargin = buttonMargin.Left;
             TaskButtonRightMargin = buttonMargin.Right;
         }
@@ -57,11 +65,11 @@ namespace RetroBar.Controls
                 TasksList.ItemsSource = Tasks.GroupedWindows;
                 if (Tasks.GroupedWindows != null)
                     Tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
-
-                SetStyles();
                 
                 isLoaded = true;
             }
+
+            SetStyles();
         }
 
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
@@ -84,7 +92,7 @@ namespace RetroBar.Controls
         {
             if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
             {
-                ButtonWidth = Width;
+                ButtonWidth = ActualWidth;
                 return;
             }
 
