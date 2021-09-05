@@ -20,8 +20,6 @@
                         Value="{DynamicResource GlobalFontFamily}" />
                 <Setter Property="FontSize"
                         Value="{DynamicResource GlobalFontSize}" />
-                <Setter Property="Margin"
-                        Value="0,5,5,5" />
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
                 <Setter Property="MinWidth"

@@ -5,7 +5,6 @@ using System.Linq;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 using System.Windows;
-using System.Windows.Controls;
 using ManagedShell.Common.Logging;
 using Microsoft.Win32;
 using ManagedShell.AppBar;
@@ -93,7 +92,7 @@ namespace RetroBar
 
         private void SetQuickLaunchLocation_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.Description = "Quick Launch - Choose a folder";
             fbd.UseDescriptionForTitle = true;
             fbd.ShowNewFolderButton = false;
