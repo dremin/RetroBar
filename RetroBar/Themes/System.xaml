@@ -21,15 +21,14 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png"/>
 
-    <Style TargetType="Image">
+    <Style TargetType="Image"
+           x:Key="PropertiesImage">
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="True">
-                <Setter Property="DataContext" Value="{DynamicResource 95_properties}" />
-                <Setter Property="Source" Value="{Binding}" />
+                <Setter Property="Source" Value="{DynamicResource 95_properties}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="False">
-                <Setter Property="DataContext" Value="{DynamicResource 95_properties_noclock}" />
-                <Setter Property="Source" Value="{Binding}" />
+                <Setter Property="Source" Value="{DynamicResource 95_properties_noclock}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

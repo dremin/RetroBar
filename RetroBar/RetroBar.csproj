@@ -24,7 +24,6 @@
     <Page Remove="Themes\Windows 2000.xaml" />
     <Page Remove="Themes\Windows 95-98.xaml" />
     <Page Remove="Themes\Windows Me.xaml" />
-    <Page Remove="Themes\Windows Vista.xaml" />
     <Page Remove="Themes\Windows XP Blue.xaml" />
     <Page Remove="Themes\Windows XP Classic.xaml" />
   </ItemGroup>
@@ -89,10 +88,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Update="Resources\properties_es.png">
+    <None Update="Resources\es\properties.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\properties_noclock_es.png">
+    <None Update="Resources\es\properties_noclock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\startxpblue.png">
