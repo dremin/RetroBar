@@ -7,10 +7,11 @@ using ManagedShell.WindowsTray;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
-using ManagedShell.ShellFolders;
 using RetroBar.Utilities;
 using Application = System.Windows.Application;
+using RetroBar.Controls;
 
 namespace RetroBar
 {
@@ -20,34 +21,34 @@ namespace RetroBar
     public partial class Taskbar : AppBarWindow
     {
         private bool _isReopening;
-        private AppVisibilityHelper _appVisibilityHelper;
         private ShellManager _shellManager;
 
         public Taskbar(ShellManager shellManager, AppVisibilityHelper appVisibilityHelper, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
-            _appVisibilityHelper = appVisibilityHelper;
             _shellManager = shellManager;
 
             InitializeComponent();
             DataContext = _shellManager;
+            StartButton.AppVisibilityHelper = appVisibilityHelper;
+
             DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+            DesiredWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
+
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
             SetFontSmoothing();
-            SetupQuickLaunch();
 
             _explorerHelper.HideExplorerTaskbar = true;
 
-            _appVisibilityHelper.LauncherVisibilityChanged += AppVisibilityHelper_LauncherVisibilityChanged;
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
             // Layout rounding causes incorrect sizing on non-integer scales
             if(DpiHelper.DpiScale % 1 != 0) UseLayoutRounding = false;
-        }
 
-        private void AppVisibilityHelper_LauncherVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
-        {
-            StartButton.SetStartMenuState(e.Visible);
+            if (Settings.Instance.ShowQuickLaunch)
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Visible;
+            }
         }
 
         protected override void OnSourceInitialized(object sender, EventArgs e)
@@ -95,22 +96,6 @@ namespace RetroBar
         {
             VisualTextRenderingMode = Settings.Instance.AllowFontSmoothing ? TextRenderingMode.Auto : TextRenderingMode.Aliased;
         }
-        
-        private void SetupQuickLaunch()
-        {
-            QuickLaunchToolbar.Folder?.Dispose();
-            QuickLaunchToolbar.Folder = null;
-
-            if (Settings.Instance.ShowQuickLaunch)
-            {
-                QuickLaunchToolbar.Folder = new ShellFolder(Environment.ExpandEnvironmentVariables(Utilities.Settings.Instance.QuickLaunchPath), IntPtr.Zero, true);
-                QuickLaunchToolbar.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
-            }
-        }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -118,6 +103,9 @@ namespace RetroBar
             {
                 bool newTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
                 double newHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+                double newWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
+                bool heightChanged = newHeight != DesiredHeight;
+                bool widthChanged = newWidth != DesiredWidth;
 
                 if (AllowsTransparency != newTransparency)
                 {
@@ -127,28 +115,67 @@ namespace RetroBar
                     return;
                 }
 
-                if (newHeight != DesiredHeight)
+                DesiredHeight = newHeight;
+                DesiredWidth = newWidth;
+
+                if (Orientation == Orientation.Horizontal && heightChanged)
                 {
-                    DesiredHeight = newHeight;
+                    Height = DesiredHeight;
                     SetScreenPosition();
                 }
-            }
-            else if (e.PropertyName == "ShowQuickLaunch" || e.PropertyName == "QuickLaunchPath")
-            {
-                SetupQuickLaunch();
+                else if (Orientation == Orientation.Vertical && widthChanged)
+                {
+                    Width = DesiredWidth;
+                    SetScreenPosition();
+                }
             }
             else if (e.PropertyName == "AllowFontSmoothing")
             {
                 SetFontSmoothing();
+            }
+            else if (e.PropertyName == "ShowQuickLaunch")
+            {
+                if (Settings.Instance.ShowQuickLaunch)
+                {
+                    QuickLaunchToolbar.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    QuickLaunchToolbar.Visibility = Visibility.Collapsed;
+                }
+            }
+            else if (e.PropertyName == "Edge")
+            {
+                AppBarEdge = Settings.Instance.Edge;
+                SetScreenPosition();
             }
         }
 
         private void Taskbar_OnLocationChanged(object? sender, EventArgs e)
         {
             // primarily for win7/8, they will set up the appbar correctly but then put it in the wrong place
-            double desiredTop = Screen.Bounds.Bottom / DpiScale - Height;
+            if (Orientation == Orientation.Vertical)
+            {
+                double desiredLeft = 0;
 
-            if (Top != desiredTop) Top = desiredTop;
+                if (AppBarEdge == AppBarEdge.Right)
+                {
+                    desiredLeft = Screen.Bounds.Right / DpiScale - Width;
+                }
+
+                if (Left != desiredLeft) Left = desiredLeft;
+            }
+            else
+            {
+                double desiredTop = 0;
+
+                if (AppBarEdge == AppBarEdge.Bottom)
+                {
+                    desiredTop = Screen.Bounds.Bottom / DpiScale - Height;
+                }
+
+                if (Top != desiredTop) Top = desiredTop;
+            }
         }
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -173,9 +200,8 @@ namespace RetroBar
             if (AllowClose)
             {
                 if (!_isReopening) _explorerHelper.HideExplorerTaskbar = false;
+                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 
-                QuickLaunchToolbar.Folder?.Dispose();
-                _appVisibilityHelper.LauncherVisibilityChanged -= AppVisibilityHelper_LauncherVisibilityChanged;
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }
         }

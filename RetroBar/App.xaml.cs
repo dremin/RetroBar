@@ -44,7 +44,7 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, AppBarScreen.FromPrimaryScreen(), AppBarEdge.Bottom);
+            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, AppBarScreen.FromPrimaryScreen(), Settings.Instance.Edge);
             _taskbar.Show();
         }
 

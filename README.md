@@ -11,8 +11,11 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Replaces default Windows taskbar with classic layout
 - Native notification area
 - Native task list with UWP app support
+- Quick launch toolbar
 - Start button opens modern start menu
 - Ability to show or hide the clock
+- Ability to display on any side of the screen
+- XP-style collapsible notification area
 - Theme support
 - Several themes included:
   - System

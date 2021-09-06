@@ -1,4 +1,6 @@
-﻿using ManagedShell.WindowsTasks;
+﻿using ManagedShell.AppBar;
+using ManagedShell.WindowsTasks;
+using RetroBar.Utilities;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,9 +43,17 @@ namespace RetroBar.Controls
         {
             DefaultButtonWidth = Application.Current.FindResource("TaskButtonWidth") as double? ?? 0;
             MinButtonWidth = Application.Current.FindResource("TaskButtonMinWidth") as double? ?? 0;
+            Thickness buttonMargin;
 
-            Thickness buttonMargin = Application.Current.FindResource("TaskButtonMargin") as Thickness? ??
-                new Thickness();
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
+            {
+                buttonMargin = Application.Current.FindResource("TaskButtonVerticalMargin") as Thickness? ?? new Thickness();
+            }
+            else
+            {
+                buttonMargin = Application.Current.FindResource("TaskButtonMargin") as Thickness? ?? new Thickness();
+            }
+
             TaskButtonLeftMargin = buttonMargin.Left;
             TaskButtonRightMargin = buttonMargin.Right;
         }
@@ -55,11 +65,11 @@ namespace RetroBar.Controls
                 TasksList.ItemsSource = Tasks.GroupedWindows;
                 if (Tasks.GroupedWindows != null)
                     Tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
-
-                SetStyles();
                 
                 isLoaded = true;
             }
+
+            SetStyles();
         }
 
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
@@ -80,6 +90,12 @@ namespace RetroBar.Controls
 
         private void SetTaskButtonWidth()
         {
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
+            {
+                ButtonWidth = ActualWidth;
+                return;
+            }
+
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
             double maxWidth = ActualWidth / TasksList.Items.Count;
             double defaultWidth = DefaultButtonWidth + margin;

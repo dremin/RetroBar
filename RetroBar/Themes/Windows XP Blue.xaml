@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:Double x:Key="TaskbarHeight">30</system:Double>
+    <Thickness x:Key="TaskButtonMargin" />
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
@@ -15,6 +16,20 @@
                       Offset="0.18" />
         <GradientStop Color="#2663e0"
                       Offset="0.9" />
+        <GradientStop Color="#1941a5"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#3888e9"
+                      Offset="0.0" />
+        <GradientStop Color="#4993e6"
+                      Offset="0.01" />
+        <GradientStop Color="#2257d5"
+                      Offset="0.05" />
+        <GradientStop Color="#2663e0"
+                      Offset="0.95" />
         <GradientStop Color="#1941a5"
                       Offset="1.0" />
     </LinearGradientBrush>
@@ -38,6 +53,22 @@
                       Offset="0.6" />
         <GradientStop Color="#0fa0ef"
                       Offset="0.9" />
+        <GradientStop Color="#1582dc"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TrayVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#16adf0"
+                      Offset="0.0" />
+        <GradientStop Color="#19b9f3"
+                      Offset="0.01" />
+        <GradientStop Color="#1290e8"
+                      Offset="0.05" />
+        <GradientStop Color="#0d8dea"
+                      Offset="0.6" />
+        <GradientStop Color="#0fa0ef"
+                      Offset="0.95" />
         <GradientStop Color="#1582dc"
                       Offset="1.0" />
     </LinearGradientBrush>
@@ -217,17 +248,37 @@
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
-    <Style TargetType="Window"
+
+
+    <Style TargetType="ContentControl"
            x:Key="Taskbar"
            BasedOn="{StaticResource Taskbar}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Window">
+                <ControlTemplate TargetType="ContentControl">
                     <Border BorderThickness="0,1,0,0"
                             BorderBrush="{DynamicResource TaskbarBorder}"
-                            Background="{DynamicResource TaskbarBackground}">
-                        <ContentPresenter Margin="0,-1,0,0" />
+                            Background="{DynamicResource TaskbarBackground}"
+                            x:Name="TaskbarBorder">
+                        <ContentPresenter Margin="0,-1,0,0"
+                                          Name="Content" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TaskbarVerticalBackground}" />
+                                <Setter TargetName="TaskbarBorder"
+                                        Property="BorderThickness"
+                                        Value="0" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -241,23 +292,56 @@
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
                     <Border BorderThickness="0,1"
-                            BorderBrush="{DynamicResource TrayTopBottomBorder}">
+                            BorderBrush="{DynamicResource TrayTopBottomBorder}"
+                            Name="TrayOuterBorder">
                         <Border BorderThickness="1,0,0,0"
                                 BorderBrush="{DynamicResource TrayLeftBorder1}"
-                                Background="{DynamicResource TrayBackground}">
+                                Background="{DynamicResource TrayBackground}"
+                                Name="TrayInnerBorder1">
                             <Border BorderThickness="1,0,0,0"
-                                    BorderBrush="{DynamicResource TrayLeftBorder2}">
+                                    BorderBrush="{DynamicResource TrayLeftBorder2}"
+                                    Name="TrayInnerBorder2">
                                 <Border BorderThickness="1,0,0,0"
-                                        BorderBrush="{DynamicResource TrayLeftBorder3}">
+                                        BorderBrush="{DynamicResource TrayLeftBorder3}"
+                                        Name="TrayInnerBorder3">
                                     <Border BorderThickness="1,0,0,0"
                                             BorderBrush="{DynamicResource TrayLeftBorder4}"
-                                            Padding="7,0,0,0">
+                                            Padding="7,0,0,0"
+                                            Name="TrayInnerBorder4">
                                         <ContentPresenter />
                                     </Border>
                                 </Border>
                             </Border>
                         </Border>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TrayOuterBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0" />
+                                <Setter TargetName="TrayInnerBorder1"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder2"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder3"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder4"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder4"
+                                        Property="Padding"
+                                        Value="0,7,0,0" />
+                                <Setter TargetName="TrayInnerBorder1"
+                                        Property="Background"
+                                        Value="{DynamicResource TrayVerticalBackground}" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -266,13 +350,12 @@
     <Style TargetType="Button"
            x:Key="TaskButton"
            BasedOn="{StaticResource TaskButton}">
-        <Setter Property="Margin"
-                Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Transparent"
-                            Padding="0,3,0,2">
+                            Padding="0,3,0,2"
+                            Name="ButtonBorder">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorder}"
                                 CornerRadius="2"
@@ -309,6 +392,40 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="8,6,8,5" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="9,7,7,4" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Padding"
+                                        Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="ButtonTopBorder"
@@ -362,10 +479,20 @@
                             <Setter TargetName="ButtonBottomRightBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
-                            <Setter TargetName="Content"
-                                    Property="Margin"
-                                    Value="9,4,7,2" />
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Horizontal" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="9,4,7,2" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -379,7 +506,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Transparent"
-                            Padding="0,3,0,2">
+                            Padding="0,3,0,2"
+                            Name="ButtonBorder">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorderPressed}"
                                 CornerRadius="2"
@@ -415,6 +543,17 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Padding"
+                                        Value="0" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="8,6,8,5" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="ButtonTopBorder"
@@ -443,7 +582,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="Transparent"
-                            Padding="0,3,0,2">
+                            Padding="0,3,0,2"
+                            Name="ButtonBorder">
                         <Border BorderThickness="0,1,0,0"
                                 BorderBrush="{DynamicResource TaskButtonTopBorderFlashing}"
                                 CornerRadius="2"
@@ -480,12 +620,53 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed"
-                                 Value="True">
-                            <Setter TargetName="Content"
-                                    Property="Margin"
-                                    Value="9,4,7,2" />
-                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="8,6,8,5" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="9,7,7,4" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Padding"
+                                        Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Horizontal" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="9,4,7,2" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -660,6 +841,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Image"
@@ -702,6 +892,36 @@
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
                 Value="14,0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,3,0,9" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="NotifyIcon"
+           BasedOn="{StaticResource NotifyIcon}">
+        <Setter Property="Margin"
+                Value="0,2,4,2" />
+    </Style>
+
+    <Style TargetType="ItemsControl"
+           x:Key="ToolbarItems"
+           BasedOn="{StaticResource ToolbarItems}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,3" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Button"
@@ -740,7 +960,7 @@
                                                     Background="Transparent"
                                                     CornerRadius="2"
                                                     x:Name="ButtonBottomRightBorder">
-                                                <ContentPresenter Margin="2"
+                                                <ContentPresenter Margin="2,3"
                                                                   x:Name="Content" />
                                             </Border>
                                         </Border>
@@ -750,6 +970,14 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonTopBorder"
+                                        Property="Margin"
+                                        Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="ButtonTopBorder"
@@ -818,6 +1046,15 @@
            BasedOn="{StaticResource TaskListScrollViewer}">
         <Setter Property="Margin"
                 Value="0,0,10,0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,0,0,10" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="ToggleButton"
@@ -841,17 +1078,17 @@
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent">
                         <Border BorderThickness="1"
-                            BorderBrush="{DynamicResource TrayToggleBorder}"
-                            CornerRadius="10"
-                            Background="{TemplateBinding Background}"
-                            Padding="5,4,6,4"
-                            HorizontalAlignment="Center"
-                            x:Name="ButtonBorder">
+                                BorderBrush="{DynamicResource TrayToggleBorder}"
+                                CornerRadius="10"
+                                Background="{TemplateBinding Background}"
+                                Padding="5,4,6,4"
+                                HorizontalAlignment="Center"
+                                x:Name="ButtonBorder">
                             <Path Fill="{DynamicResource ButtonForeground}"
-                              Data="M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z"
-                              RenderOptions.EdgeMode="Aliased"
-                              Effect="{DynamicResource TrayToggleArrowShadow}"
-                              x:Name="ToggleArrow" />
+                                  Data="M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z"
+                                  RenderOptions.EdgeMode="Aliased"
+                                  Effect="{DynamicResource TrayToggleArrowShadow}"
+                                  x:Name="ToggleArrow" />
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -886,5 +1123,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,-19,0,1" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

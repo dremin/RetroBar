@@ -18,8 +18,6 @@
                         Value="{DynamicResource GlobalFontFamily}" />
                 <Setter Property="FontSize"
                         Value="{DynamicResource GlobalFontSize}" />
-                <Setter Property="Margin"
-                        Value="0,5,5,5" />
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
                 <Setter Property="MinWidth"
@@ -95,6 +93,15 @@
                                   IsEditable="False"
                                   SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                     </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Location:" />
+                        <ComboBox Name="cboEdgeSelect"
+                                  IsDropDownOpen="False"
+                                  IsEditable="False"
+                                  ItemsSource="{Binding Path=AppBarEdgeValues, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                  SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                         <Label Content="{DynamicResource allow_font_smoothing}" />
                     </CheckBox>
