@@ -20,7 +20,6 @@ namespace RetroBar
         private static PropertiesWindow _instance;
 
         private readonly DictionaryManager _dictionaryManager;
-
         public IEnumerable<AppBarEdge> AppBarEdgeValues
         {
             get
@@ -29,7 +28,7 @@ namespace RetroBar
             }
         }
 
-        private PropertiesWindow(ThemeManager themeManager)
+        private PropertiesWindow(DictionaryManager dictionaryManager)
         {
             _dictionaryManager = dictionaryManager;
 

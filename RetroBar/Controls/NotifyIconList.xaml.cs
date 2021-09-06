@@ -91,8 +91,6 @@ namespace RetroBar.Controls
             {
                 NotifyIcons.ItemsSource = NotificationArea.PinnedIcons;
             }
-
-            NotifyIconToggleButton.ToolTip = NotifyIconToggleButton.IsChecked == true ? "Hide" : "Show hidden icons";
         }
 
         private void SetToggleVisibility()

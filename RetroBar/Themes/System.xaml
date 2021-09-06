@@ -696,14 +696,6 @@
 
     <Style TargetType="ToggleButton"
            x:Key="TrayToggleButton">
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
-            </Trigger>
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
-            </Trigger>
-        </Style.Triggers>
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
         <Setter Property="Background"
@@ -833,6 +825,12 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
+            </Trigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>

@@ -11,6 +11,7 @@
     <s:String x:Key="language_tip">Seleccione el idioma a usar.</s:String>
     <s:String x:Key="theme_text">_Tema:</s:String>
     <s:String x:Key="theme_tip">Instale temas en la carpeta Themes.</s:String>
+    <s:String x:Key="location_text">Po_sición:</s:String>
     <s:String x:Key="allow_font_smoothing">_Permitir suavizado de fuentes</s:String>
     <s:String x:Key="collapse_tray_icons">_Contraer los iconos del área de notificación</s:String>
     <s:String x:Key="show_clock">Mostrar el _reloj</s:String>

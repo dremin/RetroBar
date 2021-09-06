@@ -93,15 +93,17 @@
                                   IsEditable="False"
                                   SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                     </DockPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Location:" />
+                    <DockPanel>
+                        <Label VerticalAlignment="Center" Target="{Binding ElementName=cboEdgeSelect}">
+                            <AccessText Text="{DynamicResource location_text}"/>
+                        </Label>
                         <ComboBox Name="cboEdgeSelect"
+                                  HorizontalAlignment="Right"
                                   IsDropDownOpen="False"
                                   IsEditable="False"
                                   ItemsSource="{Binding Path=AppBarEdgeValues, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                   SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged}" />
-                    </StackPanel>
+                    </DockPanel>
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                         <Label Content="{DynamicResource allow_font_smoothing}" />
                     </CheckBox>
