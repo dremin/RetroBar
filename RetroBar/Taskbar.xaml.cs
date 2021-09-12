@@ -146,7 +146,7 @@ namespace RetroBar
             }
             else if (e.PropertyName == "Edge")
             {
-                AppBarEdge = Settings.Instance.Edge;
+                AppBarEdge = (AppBarEdge)Settings.Instance.Edge;
                 SetScreenPosition();
             }
         }

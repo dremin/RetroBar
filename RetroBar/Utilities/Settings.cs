@@ -196,22 +196,22 @@ namespace RetroBar.Utilities
             }
         }
 
-        public AppBarEdge Edge
+        public int Edge
         {
             get
             {
                 if (settings.Edge >= 0 && settings.Edge <= 3)
                 {
-                    return (AppBarEdge)settings.Edge;
+                    return settings.Edge;
                 }
 
-                return AppBarEdge.Bottom;
+                return (int)AppBarEdge.Bottom;
             }
             set
             {
-                if (settings.Edge != (int)value)
+                if (settings.Edge != value)
                 {
-                    settings.Edge = (int)value;
+                    settings.Edge = value;
                 }
             }
         }

@@ -11,5 +11,7 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 
-    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}"/>
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}" />
+
+    <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>

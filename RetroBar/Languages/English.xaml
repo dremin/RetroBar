@@ -4,14 +4,21 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
     <s:String x:Key="taskbar_options">Taskbar Options</s:String>
-    <BitmapImage x:Key="95_properties" UriSource="../Resources/properties.png"/>
-    <BitmapImage x:Key="95_properties_noclock" UriSource="../Resources/properties_noclock.png"/>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/properties_noclock.png" />
     <s:String x:Key="autostart">Automatically start at _logon</s:String>
     <s:String x:Key="language_text">Lan_guage:</s:String>
     <s:String x:Key="language_tip">Select the language to use.</s:String>
     <s:String x:Key="theme_text">_Theme:</s:String>
     <s:String x:Key="theme_tip">Install themes in the Themes folder.</s:String>
     <s:String x:Key="location_text">Locat_ion:</s:String>
+    <s:String x:Key="location_tip">Change the taskbar location on screen.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Left</s:String>
+        <s:String>Top</s:String>
+        <s:String>Right</s:String>
+        <s:String>Bottom</s:String>
+    </x:Array>
     <s:String x:Key="allow_font_smoothing">_Allow font smoothing</s:String>
     <s:String x:Key="collapse_tray_icons">Collapse _notification area icons</s:String>
     <s:String x:Key="show_clock">Show the _clock</s:String>
@@ -43,4 +50,5 @@
 
     <s:String x:Key="set_time">_Adjust Date/Time</s:String>
 
+    <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 </ResourceDictionary>

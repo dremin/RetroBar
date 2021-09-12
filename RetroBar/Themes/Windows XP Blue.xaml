@@ -242,13 +242,11 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
     <BitmapImage x:Key="StartIconImage"
-                 UriSource="../Resources/startxpblue.png"/>
+                 UriSource="../Resources/startxpblue.png" />
     <BitmapImage x:Key="StartButtonImage"
-                 UriSource="../Resources/startxpbluebutton.png"/>
+                 UriSource="../Resources/startxpbluebutton.png" />
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
-
-
 
     <Style TargetType="ContentControl"
            x:Key="Taskbar"
@@ -778,7 +776,7 @@
         </Setter>
     </Style>
 
-    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}"/>
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton">

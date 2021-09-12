@@ -137,7 +137,7 @@ namespace RetroBar.Controls
             builder.AddCommand(new ShellMenuCommand
             {
                 Flags = MFT.BYCOMMAND,
-                Label = "Open folder",
+                Label = (string)FindResource("open_folder"),
                 UID = (uint)MenuItem.OpenParentFolder
             });
 

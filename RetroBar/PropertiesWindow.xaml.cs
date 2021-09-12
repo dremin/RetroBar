@@ -20,13 +20,6 @@ namespace RetroBar
         private static PropertiesWindow _instance;
 
         private readonly DictionaryManager _dictionaryManager;
-        public IEnumerable<AppBarEdge> AppBarEdgeValues
-        {
-            get
-            {
-                return Enum.GetValues(typeof(AppBarEdge)).Cast<AppBarEdge>();
-            }
-        }
 
         private PropertiesWindow(DictionaryManager dictionaryManager)
         {
@@ -93,6 +86,26 @@ namespace RetroBar
             }
         }
 
+        private void UpdateWindowPosition()
+        {
+            switch (Settings.Instance.Edge)
+            {
+                case (int)AppBarEdge.Left:
+                case (int)AppBarEdge.Top:
+                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
+                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
+                    break;
+                case (int)AppBarEdge.Right:
+                    Left = (SystemInformation.WorkingArea.Right / DpiHelper.DpiScale) - Width - 10;
+                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
+                    break;
+                case (int)AppBarEdge.Bottom:
+                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
+                    Top = (SystemInformation.WorkingArea.Bottom / DpiHelper.DpiScale) - Height - 10;
+                    break;
+            }
+        }
+
         private void OK_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
@@ -121,23 +134,12 @@ namespace RetroBar
         {
             Left = 10;
             Top = (ScreenHelper.PrimaryMonitorDeviceSize.Height / DpiHelper.DpiScale) - Height - 40;
+            UpdateWindowPosition();
+        }
 
-            switch (Settings.Instance.Edge)
-            {
-                case AppBarEdge.Left:
-                case AppBarEdge.Top:
-                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
-                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
-                    break;
-                case AppBarEdge.Right:
-                    Left = (SystemInformation.WorkingArea.Right / DpiHelper.DpiScale) - Width - 10;
-                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
-                    break;
-                case AppBarEdge.Bottom:
-                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
-                    Top = (SystemInformation.WorkingArea.Bottom / DpiHelper.DpiScale) - Height - 10;
-                    break;
-            }
+        private void PropertiesWindow_OnContentRendered(object sender, EventArgs e)
+        {
+            UpdateWindowPosition();
         }
 
         private void AutoStartCheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -159,6 +161,20 @@ namespace RetroBar
             catch (Exception exception)
             {
                 ShellLogger.Error($"PropertiesWindow: Unable to update registry autorun setting: {exception.Message}");
+            }
+        }
+
+        private int oldIndex;
+
+        private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboEdgeSelect.SelectedItem == null)
+            {
+                cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[oldIndex];
+            }
+            else if (cboEdgeSelect.SelectedIndex > -1)
+            {
+                oldIndex = cboEdgeSelect.SelectedIndex;
             }
         }
     }

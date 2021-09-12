@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -35,9 +36,33 @@ namespace RetroBar.Utilities
             }
         }
 
-        public void SetTheme(string theme)
+        private void SetTheme(string theme)
         {
             SetDictionary(theme, THEME_FOLDER, THEME_DEFAULT, THEME_EXT, 0);
+        }
+
+        private static Collection<ResourceDictionary> GetMergedDictionaries()
+        {
+            return Application.Current.Resources.MergedDictionaries;
+        }
+
+        private static ResourceDictionary GetActualThemeDictionary()
+        {
+            foreach (ResourceDictionary rd in GetMergedDictionaries()
+                .Where(rd => rd.Source.ToString().Contains($"{THEME_FOLDER}/")))
+            {
+                return rd;
+            }
+
+            return null;
+        }
+
+        private void ClearPreviousThemes()
+        {
+            if (GetActualThemeDictionary() != null)
+            {
+                _ = GetMergedDictionaries().Remove(GetActualThemeDictionary());
+            }
         }
 
         public void SetLanguageFromSettings()
@@ -48,7 +73,8 @@ namespace RetroBar.Utilities
                 var currentUICulture = System.Globalization.CultureInfo.CurrentUICulture;
                 string systemLanguageParent = currentUICulture.Parent.NativeName;
                 string systemLanguage = currentUICulture.NativeName;
-                ManagedShell.Common.Logging.ShellLogger.Info($"Loading system language (if available): {systemLanguageParent}, {systemLanguage}");
+                ManagedShell.Common.Logging.ShellLogger.Info
+                    ($"Loading system language (if available): {systemLanguageParent}, {systemLanguage}");
                 SetLanguage(systemLanguageParent);
                 SetLanguage(systemLanguage);
             }
@@ -58,12 +84,12 @@ namespace RetroBar.Utilities
             }
         }
 
-        public void SetLanguage(string language)
+        private void SetLanguage(string language)
         {
             SetDictionary(language, LANG_FOLDER, LANG_FALLBACK, LANG_EXT, 1);
         }
 
-        public void SetDictionary(string dictionary, string dictFolder, string dictDefault, string dictExtension, int dictType)
+        private void SetDictionary(string dictionary, string dictFolder, string dictDefault, string dictExtension, int dictType)
         {
             string dictFilePath;
 
@@ -73,12 +99,14 @@ namespace RetroBar.Utilities
             }
             else
             {
-                dictFilePath = Path.ChangeExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder, dictionary), dictExtension);
+                dictFilePath = Path.ChangeExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder, dictionary),
+                                                    dictExtension);
 
                 if (!File.Exists(dictFilePath))
                 {
-                    // Custom dictionary in app directory
-                    dictFilePath = Path.ChangeExtension(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder, dictionary), dictExtension);
+                    dictFilePath = // Custom dictionary in app directory
+                        Path.ChangeExtension(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder, dictionary),
+                                             dictExtension);
 
                     if (!File.Exists(dictFilePath))
                     {
@@ -87,20 +115,15 @@ namespace RetroBar.Utilities
                 }
             }
 
-            ResourceDictionary newRes = new ResourceDictionary()
+            if (dictType == 0)
+            {
+                ClearPreviousThemes();
+            }
+
+            GetMergedDictionaries().Add(new ResourceDictionary()
             {
                 Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
-            };
-            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-            for (int index = 0; index < mergedDictionaries.Count; ++index)
-            {
-                // Clear the previous theme containing "TaskbarBackground"
-                if (dictType == 0 && mergedDictionaries[index].Contains("TaskbarBackground"))
-                {
-                    mergedDictionaries[index].Clear();
-                }
-            }
-            mergedDictionaries.Add(newRes);
+            });
         }
 
         public List<string> GetThemes()
@@ -110,29 +133,28 @@ namespace RetroBar.Utilities
 
         public List<string> GetLanguages()
         {
-            List<string> languages = new List<string>();
-            languages.Add(LANG_DEFAULT);
+            List<string> languages = new List<string> { LANG_DEFAULT };
             languages.AddRange(GetDictionaries(LANG_FALLBACK, LANG_FOLDER, LANG_EXT));
             return languages;
         }
 
-        public List<string> GetDictionaries(string dictDefault, string dictFolder, string dictExtension)
+        private List<string> GetDictionaries(string dictDefault, string dictFolder, string dictExtension)
         {
-            List<string> dictionaries = new List<string>();
-            dictionaries.Add(dictDefault);
+            List<string> dictionaries = new List<string> { dictDefault };
 
-            foreach (string subStr in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder)).Where(s => Path.GetExtension(s).Contains(dictExtension)))
+            foreach (string subStr in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder))
+                                               .Where(s => Path.GetExtension(s).Contains(dictExtension)))
             {
                 dictionaries.Add(Path.GetFileNameWithoutExtension(subStr));
             }
 
             // Because RetroBar is published as a single-file app, it gets extracted to a temp directory, so custom dictionaries won't be there.
             // Get the executable path to find the custom dictionaries directory when not a debug build.
-            string customThemeDir = Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder);
+            string customDictDir = Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder);
 
-            if (Directory.Exists(customThemeDir))
+            if (Directory.Exists(customDictDir))
             {
-                foreach (string subStr in Directory.GetFiles(customThemeDir)
+                foreach (string subStr in Directory.GetFiles(customDictDir)
                     .Where(s => Path.GetExtension(s).Contains(dictExtension) && !dictionaries.Contains(Path.GetFileNameWithoutExtension(s))))
                 {
                     dictionaries.Add(Path.GetFileNameWithoutExtension(subStr));
