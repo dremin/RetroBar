@@ -24,7 +24,7 @@
                        Style="{DynamicResource TaskLabel}" />
         </Grid>
         <Button.ContextMenu>
-            <ContextMenu>
+            <ContextMenu Style="{DynamicResource TaskContext}">
                 <MenuItem Header="{DynamicResource restore}" 
                           Click="RestoreMenuItem_OnClick" 
                           Name="RestoreMenuItem">

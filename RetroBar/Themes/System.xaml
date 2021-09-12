@@ -39,26 +39,32 @@
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
 
-    <Style TargetType="ContextMenu"
-           x:Key="TrayContext">
-        <Setter Property="FontFamily"
+    <Style x:Key="GlobalFonts">
+        <Setter Property="Control.FontFamily"
                 Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
+        <Setter Property="Control.FontSize"
                 Value="{DynamicResource GlobalFontSize}" />
     </Style>
 
+    <Style TargetType="ContextMenu"
+           x:Key="TaskContext"
+           BasedOn="{StaticResource GlobalFonts}">
+    </Style>
+
+    <Style TargetType="ContextMenu"
+           x:Key="TrayContext"
+           BasedOn="{StaticResource GlobalFonts}">
+    </Style>
+
     <Style TargetType="Window"
-           x:Key="PropertiesWindow">
+           x:Key="PropertiesWindow"
+           BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="UseLayoutRounding"
                 Value="True" />
         <Setter Property="TextOptions.TextFormattingMode"
                 Value="Display" />
         <Setter Property="Background"
                 Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-        <Setter Property="FontFamily"
-                        Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
-                        Value="{DynamicResource GlobalFontSize}" />
     </Style>
 
     <Style TargetType="Window"
@@ -568,11 +574,8 @@
     </Style>
 
     <Style TargetType="TextBlock"
-           x:Key="TaskLabel">
-        <Setter Property="FontFamily"
-                Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
-                Value="{DynamicResource GlobalFontSize}" />
+           x:Key="TaskLabel"
+           BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="TextTrimming"
                 Value="CharacterEllipsis" />
         <Setter Property="HorizontalAlignment"
@@ -593,13 +596,10 @@
     </Style>
 
     <Style TargetType="TextBlock"
-           x:Key="Clock">
+           x:Key="Clock"
+           BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="TextOptions.TextRenderingMode"
                 Value="Auto" />
-        <Setter Property="FontFamily"
-                Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
-                Value="{DynamicResource GlobalFontSize}" />
         <Setter Property="Foreground"
                 Value="{DynamicResource ClockForeground}" />
         <Setter Property="Margin"
