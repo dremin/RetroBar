@@ -39,6 +39,14 @@
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
 
+    <Style TargetType="ContextMenu"
+           x:Key="TrayContext">
+        <Setter Property="FontFamily"
+                Value="{DynamicResource GlobalFontFamily}" />
+        <Setter Property="FontSize"
+                Value="{DynamicResource GlobalFontSize}" />
+    </Style>
+
     <Style TargetType="Window"
            x:Key="PropertiesWindow">
         <Setter Property="UseLayoutRounding"

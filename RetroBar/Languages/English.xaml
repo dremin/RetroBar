@@ -34,7 +34,7 @@
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
-    <s:String x:Key="show_taskman">Tas_k Manager</s:String>
+    <s:String x:Key="show_taskman">Tas_k Manager...</s:String>
     <s:String x:Key="tray_properties">P_roperties</s:String>
     <s:String x:Key="exit_retrobar">_Exit RetroBar</s:String>
 
