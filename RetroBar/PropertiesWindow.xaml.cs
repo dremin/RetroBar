@@ -171,6 +171,7 @@ namespace RetroBar
             if (cboEdgeSelect.SelectedItem == null)
             {
                 cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[prevChangeEdgeIndex];
+                cboEdgeSelect.SelectedIndex = prevChangeEdgeIndex;
             }
             else if (cboEdgeSelect.SelectedIndex > -1)
             {
