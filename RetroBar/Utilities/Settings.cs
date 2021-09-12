@@ -200,6 +200,10 @@ namespace RetroBar.Utilities
         {
             get
             {
+                if (settings.Edge == -1)
+                {
+                    return PropertiesWindow.prevChangeEdgeIndex;
+                }
                 if (settings.Edge >= 0 && settings.Edge <= 3)
                 {
                     return settings.Edge;
