@@ -164,7 +164,7 @@ namespace RetroBar
             }
         }
 
-        public static int prevChangeEdgeIndex;
+        private int prevChangeEdgeIndex;
 
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
