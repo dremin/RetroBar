@@ -295,6 +295,8 @@
         </Setter>
     </Style>
 
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}"/>
+
     <Style TargetType="ToggleButton"
            x:Key="StartButton"
            BasedOn="{StaticResource StartButton}">

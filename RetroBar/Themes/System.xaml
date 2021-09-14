@@ -21,29 +21,44 @@
     <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
 
     <BitmapImage x:Key="StartIconImage"
-                 UriSource="../Resources/start9x.png"/>
+                 UriSource="../Resources/start9x.png" />
 
-    <BitmapImage x:Key="PropertiesImage"
-                 UriSource="../Resources/properties.png"/>
+    <Style TargetType="Image"
+           x:Key="PropertiesImage">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="True">
+                <Setter Property="Source" Value="{DynamicResource properties_95}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="False">
+                <Setter Property="Source" Value="{DynamicResource properties_95_noclock}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
-    <BitmapImage x:Key="PropertiesImage_NoClock"
-                 UriSource="../Resources/properties_noclock.png"/>
-
-    <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
-    <system:String x:Key="StartText">Start</system:String>
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
 
-    <Style TargetType="TextBlock">
-        <Setter Property="FontFamily"
+    <Style x:Key="GlobalFonts">
+        <Setter Property="Control.FontFamily"
                 Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
+        <Setter Property="Control.FontSize"
                 Value="{DynamicResource GlobalFontSize}" />
     </Style>
 
+    <Style TargetType="ContextMenu"
+           x:Key="TaskContext"
+           BasedOn="{StaticResource GlobalFonts}">
+    </Style>
+
+    <Style TargetType="ContextMenu"
+           x:Key="TrayContext"
+           BasedOn="{StaticResource GlobalFonts}">
+    </Style>
+
     <Style TargetType="Window"
-           x:Key="PropertiesWindow">
+           x:Key="PropertiesWindow"
+           BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="UseLayoutRounding"
                 Value="True" />
         <Setter Property="TextOptions.TextFormattingMode"
@@ -243,7 +258,7 @@
                                     BorderBrush="{DynamicResource ButtonDarkShadow}">
                                 <Border BorderThickness="0,0,1,1"
                                         BorderBrush="{DynamicResource ButtonLight}">
-                                    <Border BorderThickness="1,1,0,0" 
+                                    <Border BorderThickness="1,1,0,0"
                                             BorderBrush="{DynamicResource ButtonShadow}">
                                         <Border BorderThickness="0,1,0,0"
                                                 BorderBrush="{DynamicResource ButtonHighlight}"
@@ -251,7 +266,7 @@
                                             <Border.Background>
                                                 <DrawingBrush TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
                                                     <DrawingBrush.Drawing>
-                                                        <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}"/>
+                                                        <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}" />
                                                     </DrawingBrush.Drawing>
                                                 </DrawingBrush>
                                             </Border.Background>
@@ -438,6 +453,8 @@
         </Style.Triggers>
     </Style>
 
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
+
     <Style TargetType="ToggleButton"
            x:Key="StartButton">
         <Setter Property="OverridesDefaultStyle"
@@ -557,11 +574,8 @@
     </Style>
 
     <Style TargetType="TextBlock"
-           x:Key="TaskLabel">
-        <Setter Property="FontFamily"
-                Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
-                Value="{DynamicResource GlobalFontSize}" />
+           x:Key="TaskLabel"
+           BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="TextTrimming"
                 Value="CharacterEllipsis" />
         <Setter Property="HorizontalAlignment"
@@ -575,16 +589,17 @@
     <Style TargetType="TextBlock"
            x:Key="StartLabel"
            BasedOn="{StaticResource TaskLabel}">
+        <Setter Property="Text"
+                Value="{DynamicResource start_text}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
     </Style>
 
     <Style TargetType="TextBlock"
-           x:Key="Clock">
-        <Setter Property="FontFamily"
-                Value="{DynamicResource GlobalFontFamily}" />
-        <Setter Property="FontSize"
-                Value="{DynamicResource GlobalFontSize}" />
+           x:Key="Clock"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Auto" />
         <Setter Property="Foreground"
                 Value="{DynamicResource ClockForeground}" />
         <Setter Property="Margin"
@@ -816,6 +831,12 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
+            </Trigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>

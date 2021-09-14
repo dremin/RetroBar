@@ -23,6 +23,9 @@
     <Setting Name="AllowFontSmoothing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">System</Value>
+    </Setting>
     <Setting Name="Edge" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>

@@ -91,6 +91,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public string Language
+        {
+            get
+            {
+                return settings.Language;
+            }
+            set
+            {
+                if (settings.Language != value)
+                {
+                    settings.Language = value;
+                }
+            }
+        }
+
         public string Theme
         {
             get
@@ -181,22 +196,22 @@ namespace RetroBar.Utilities
             }
         }
 
-        public AppBarEdge Edge
+        public int Edge
         {
             get
             {
                 if (settings.Edge >= 0 && settings.Edge <= 3)
                 {
-                    return (AppBarEdge)settings.Edge;
+                    return settings.Edge;
                 }
 
-                return AppBarEdge.Bottom;
+                return (int)AppBarEdge.Bottom;
             }
             set
             {
-                if (settings.Edge != (int)value)
+                if (settings.Edge != value && value >= 0 && value <= 3)
                 {
-                    settings.Edge = (int)value;
+                    settings.Edge = value;
                 }
             }
         }

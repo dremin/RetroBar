@@ -10,4 +10,6 @@
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
+
+    <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>

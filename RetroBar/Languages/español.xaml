@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Propiedades de RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Opciones de la barra de tareas</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/es/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/es/properties_noclock.png" />
+    <s:String x:Key="autostart">_Iniciar automáticamente al iniciar sesión</s:String>
+    <s:String x:Key="language_text">Idi_oma:</s:String>
+    <s:String x:Key="language_tip">Seleccione el idioma a usar.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Instale temas en la carpeta Themes.</s:String>
+    <s:String x:Key="location_text">_Ubicación:</s:String>
+    <s:String x:Key="location_tip">Cambie la ubicación de la barra de tareas en pantalla.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Izquierda</s:String>
+        <s:String>Superior</s:String>
+        <s:String>Derecha</s:String>
+        <s:String>Inferior</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Permitir suavizado de fuentes</s:String>
+    <s:String x:Key="collapse_tray_icons">_Contraer los iconos del área de notificación</s:String>
+    <s:String x:Key="show_clock">Mostrar el _reloj</s:String>
+    <s:String x:Key="quick_launch">Mostrar inicio rápi_do</s:String>
+    <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
+    <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
+    <s:String x:Key="ok_dialog">Aceptar</s:String>
+
+    <s:String x:Key="start_text">Inicio</s:String>
+    <s:String x:Key="start_text_xp">Inicio</s:String>
+    <s:String x:Key="start_button_tip_98">Haga clic aquí para empezar.</s:String>
+    <s:String x:Key="start_button_tip">Haga clic aquí para iniciar</s:String>
+    <s:String x:Key="start_button_tip_vista">Iniciar</s:String>
+
+    <s:String x:Key="retrobar_title">Barra de tareas RetroBar</s:String>
+    <s:String x:Key="show_taskman">Admi_nistrador de tareas...</s:String>
+    <s:String x:Key="tray_properties">_Propiedades</s:String>
+    <s:String x:Key="exit_retrobar">_Salir de RetroBar</s:String>
+
+    <s:String x:Key="restore">_Restaurar</s:String>
+    <s:String x:Key="move">Mover</s:String>
+    <s:String x:Key="size">Tamaño</s:String>
+    <s:String x:Key="minimize">Mi_nimizar</s:String>
+    <s:String x:Key="maximize">Ma_ximizar</s:String>
+    <s:String x:Key="close">_Cerrar</s:String>
+
+    <s:String x:Key="show_hidden">Mostrar iconos ocultos</s:String>
+    <s:String x:Key="hide">Ocultar</s:String>
+
+    <s:String x:Key="set_time">Ajustar _fecha y hora</s:String>
+
+    <s:String x:Key="open_folder">&amp;Abrir carpeta</s:String>
+</ResourceDictionary>

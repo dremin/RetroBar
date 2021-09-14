@@ -5,4 +5,12 @@
              Startup="App_OnStartup"
              Exit="App_OnExit"
              SessionEnding="App_OnSessionEnding">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Languages/English.xaml" />
+                <ResourceDictionary Source="Themes/System.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

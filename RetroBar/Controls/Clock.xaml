@@ -9,7 +9,7 @@
                Visibility="Collapsed" />
     <UserControl.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Adjust Date/Time" Click="MenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource set_time}" Click="MenuItem_OnClick" />
         </ContextMenu>
     </UserControl.ContextMenu>
 </UserControl>

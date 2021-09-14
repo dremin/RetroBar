@@ -14,5 +14,5 @@
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
     <BitmapImage x:Key="StartIconImage"
-                 UriSource="../Resources/startxpclassic.png"/>
+                 UriSource="../Resources/startxpclassic.png" />
 </ResourceDictionary>

@@ -242,13 +242,11 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
     <BitmapImage x:Key="StartIconImage"
-                 UriSource="../Resources/startxpblue.png"/>
+                 UriSource="../Resources/startxpblue.png" />
     <BitmapImage x:Key="StartButtonImage"
-                 UriSource="../Resources/startxpbluebutton.png"/>
+                 UriSource="../Resources/startxpbluebutton.png" />
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
-
-    <system:String x:Key="StartText">start</system:String>
 
     <Style TargetType="ContentControl"
            x:Key="Taskbar"
@@ -778,6 +776,8 @@
         </Setter>
     </Style>
 
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
+
     <Style TargetType="ToggleButton"
            x:Key="StartButton">
         <Setter Property="OverridesDefaultStyle"
@@ -871,6 +871,8 @@
     <Style TargetType="TextBlock"
            x:Key="StartLabel"
            BasedOn="{StaticResource StartLabel}">
+        <Setter Property="Text"
+                Value="{DynamicResource start_text_xp}" />
         <Setter Property="FontFamily"
                 Value="Franklin Gothic Medium Italic" />
         <Setter Property="FontSize"
@@ -1112,6 +1114,12 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
+            </Trigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>

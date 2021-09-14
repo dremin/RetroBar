@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
-    <ToggleButton ToolTip="Click here to begin"
+    <ToggleButton ToolTip="{DynamicResource StartButtonTip}"
             Click="Start_OnClick"
             PreviewMouseLeftButtonDown="Start_OnPreviewMouseLeftButtonDown"
             MouseRightButtonUp="Start_OnMouseRightButtonUp"
@@ -16,8 +16,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0"
                    Style="{DynamicResource StartIcon}" />
-            <TextBlock Text="{DynamicResource StartText}"
-                       Grid.Column="1"
+            <TextBlock Grid.Column="1"
                        Style="{DynamicResource StartLabel}" />
         </Grid>
     </ToggleButton>

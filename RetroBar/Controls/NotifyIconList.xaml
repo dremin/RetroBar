@@ -18,7 +18,6 @@
         <ToggleButton Name="NotifyIconToggleButton"
                       Visibility="Collapsed"
                       Click="NotifyIconToggleButton_OnClick"
-                      ToolTip="Show hidden icons"
                       Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="NotifyIcons"
                       Focusable="False"
