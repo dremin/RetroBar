@@ -59,7 +59,7 @@
         </DockPanel>
     </ContentControl>
     <appbar:AppBarWindow.ContextMenu>
-        <ContextMenu Style="{DynamicResource TrayContext}">
+        <ContextMenu>
             <MenuItem Header="{DynamicResource show_taskman}" Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
             <Separator />
             <MenuItem Header="{DynamicResource tray_properties}" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />

@@ -8,7 +8,7 @@
                Name="ClockTextBlock"
                Visibility="Collapsed" />
     <UserControl.ContextMenu>
-        <ContextMenu Style="{DynamicResource TaskContext}">
+        <ContextMenu>
             <MenuItem Header="{DynamicResource set_time}" Click="MenuItem_OnClick" />
         </ContextMenu>
     </UserControl.ContextMenu>
