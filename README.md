@@ -7,6 +7,10 @@ Pining for simpler times? RetroBar teleports you back in time by replacing your 
 
 RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for great compatibility and performance.
 
+## Requirements
+- Windows 7 or later
+- [.NET Core 3.1 desktop runtime](https://dotnet.microsoft.com/download/dotnet/3.1/runtime) (select the appropriate download button under "Run desktop apps")
+
 ## Features
 - Replaces default Windows taskbar with classic layout
 - Native notification area
@@ -14,9 +18,9 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Quick launch toolbar
 - Start button opens modern start menu
 - Ability to show or hide the clock
-- Ability to display on any side of the screen
+- Display taskbar on any side of the screen (even on Windows 11)
 - XP-style collapsible notification area
-- Theme support
+- Custom theme support
 - Several themes included:
   - System
   - Watercolor
@@ -24,6 +28,9 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Windows Me
   - Windows 2000
   - Windows XP (Blue and Classic)
+- Support for the following languages:
+  - English
+  - Español
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.

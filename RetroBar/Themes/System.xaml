@@ -46,13 +46,13 @@
                 Value="{DynamicResource GlobalFontSize}" />
     </Style>
 
-    <Style TargetType="ContextMenu"
-           x:Key="TaskContext"
+    <Style TargetType="ToolTip"
+           x:Key="{x:Type ToolTip}"
            BasedOn="{StaticResource GlobalFonts}">
     </Style>
 
     <Style TargetType="ContextMenu"
-           x:Key="TrayContext"
+           x:Key="{x:Type ContextMenu}"
            BasedOn="{StaticResource GlobalFonts}">
     </Style>
 

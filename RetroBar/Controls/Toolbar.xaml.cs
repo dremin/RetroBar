@@ -19,7 +19,7 @@ namespace RetroBar.Controls
             OpenParentFolder = CommonContextMenuItem.Paste + 1
         }
 
-        public static DependencyProperty PathProperty = DependencyProperty.Register("Path", typeof(string), typeof(Toolbar));
+        public static DependencyProperty PathProperty = DependencyProperty.Register("Path", typeof(string), typeof(Toolbar), new PropertyMetadata(OnPathChanged));
 
         public string Path
         {
@@ -69,6 +69,14 @@ namespace RetroBar.Controls
         }
 
         #region Events
+        private static void OnPathChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is Toolbar toolbar)
+            {
+                toolbar.SetupFolder((string)e.NewValue);
+            }
+        }
+
         private void ToolbarIcon_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ToolbarButton icon = sender as ToolbarButton;
