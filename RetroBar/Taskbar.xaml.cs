@@ -12,6 +12,7 @@ using System.Windows.Media;
 using RetroBar.Utilities;
 using Application = System.Windows.Application;
 using RetroBar.Controls;
+using System.Diagnostics;
 
 namespace RetroBar
 {
@@ -22,11 +23,13 @@ namespace RetroBar
     {
         private bool _isReopening;
         private ShellManager _shellManager;
+        private Updater _updater;
 
-        public Taskbar(ShellManager shellManager, AppVisibilityHelper appVisibilityHelper, AppBarScreen screen, AppBarEdge edge)
+        public Taskbar(ShellManager shellManager, AppVisibilityHelper appVisibilityHelper, Updater updater, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
             _shellManager = shellManager;
+            _updater = updater;
 
             InitializeComponent();
             DataContext = _shellManager;
@@ -188,6 +191,17 @@ namespace RetroBar
             ShellHelper.StartTaskManager();
         }
 
+        private void UpdateAvailableMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = _updater.DownloadUrl,
+                UseShellExecute = true
+            };
+
+            Process.Start(psi);
+        }
+
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
@@ -203,6 +217,14 @@ namespace RetroBar
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            }
+        }
+
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            if (_updater.IsUpdateAvailable)
+            {
+                UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
         }
     }
