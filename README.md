@@ -8,7 +8,7 @@ Pining for simpler times? RetroBar teleports you back in time by replacing your 
 RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for great compatibility and performance.
 
 ## Requirements
-- Windows 7 or later
+- Windows 7 SP1, Windows 8.1, Windows 10 or later
 - [.NET Core 3.1 desktop runtime](https://dotnet.microsoft.com/download/dotnet/3.1/runtime) (select the appropriate download button under "Run desktop apps")
 
 ## Features
@@ -31,6 +31,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Support for the following languages:
   - English
   - Español
+  - Français
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.
