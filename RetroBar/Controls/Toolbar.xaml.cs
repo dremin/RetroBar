@@ -121,6 +121,11 @@ namespace RetroBar.Controls
             {
                 if (visible)
                 {
+                    if (Folder != null)
+                    {
+                        return;
+                    }
+
                     SetupFolder(Path);
                 }
                 else
