@@ -75,6 +75,12 @@ namespace RetroBar.Controls
             }
         }
 
+        private void NotifyIconList_OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
+            isLoaded = false;
+        }
+
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetToggleVisibility();

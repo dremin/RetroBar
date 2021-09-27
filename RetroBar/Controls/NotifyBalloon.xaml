@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="RetroBar.Controls.NotifyBalloon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Popup Name="BalloonPopup"
+           IsOpen="False"
+           StaysOpen="False"
+           AllowsTransparency="True">
+        <ContentControl Style="{DynamicResource NotifyBalloon}">
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Image Source="{Binding Path=Icon, Mode=OneWay}"
+                       Style="{DynamicResource NotifyBalloonIcon}"
+                       DockPanel.Dock="Left" />
+                    <TextBlock Text="{Binding Title}"
+                           Style="{DynamicResource NotifyBalloonTitle}"
+                           DockPanel.Dock="Left" />
+                    <Button Content="X"
+                        Click="Button_Click"
+                           Style="{DynamicResource NotifyBalloonCloseButton}"
+                        DockPanel.Dock="Right" />
+                </DockPanel>
+                <TextBlock Text="{Binding Info}"
+                       Style="{DynamicResource NotifyBalloonInfo}" />
+            </DockPanel>
+        </ContentControl>
+    </Popup>
+</UserControl>
