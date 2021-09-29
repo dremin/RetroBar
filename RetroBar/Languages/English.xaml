@@ -47,6 +47,7 @@
 
     <s:String x:Key="show_hidden">Show hidden icons</s:String>
     <s:String x:Key="hide">Hide</s:String>
+    <s:String x:Key="close_tip">Close</s:String>
 
     <s:String x:Key="set_time">_Adjust Date/Time</s:String>
 

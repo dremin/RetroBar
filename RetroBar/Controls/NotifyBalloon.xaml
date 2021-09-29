@@ -3,25 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Popup Name="BalloonPopup"
            IsOpen="False"
-           StaysOpen="False"
-           AllowsTransparency="True">
-        <ContentControl Style="{DynamicResource NotifyBalloon}">
-            <DockPanel>
-                <DockPanel DockPanel.Dock="Top">
+           Style="{DynamicResource NotifyBalloonPopup}">
+        <ContentControl Style="{DynamicResource NotifyBalloon}"
+                        MouseLeftButtonUp="ContentControl_MouseLeftButtonUp"
+                        MouseRightButtonUp="ContentControl_MouseRightButtonUp">
+            <StackPanel Orientation="Vertical">
+                <DockPanel>
                     <Image Source="{Binding Path=Icon, Mode=OneWay}"
-                       Style="{DynamicResource NotifyBalloonIcon}"
-                       DockPanel.Dock="Left" />
-                    <TextBlock Text="{Binding Title}"
-                           Style="{DynamicResource NotifyBalloonTitle}"
+                           Style="{DynamicResource NotifyBalloonIcon}"
                            DockPanel.Dock="Left" />
-                    <Button Content="X"
-                        Click="Button_Click"
-                           Style="{DynamicResource NotifyBalloonCloseButton}"
-                        DockPanel.Dock="Right" />
+                    <TextBlock Text="{Binding Title}"
+                               Style="{DynamicResource NotifyBalloonTitle}"
+                               DockPanel.Dock="Left" />
+                    <Button Content="&#x72;"
+                            Click="Button_Click"
+                            Style="{DynamicResource NotifyBalloonCloseButton}"
+                            ToolTip="{DynamicResource close_tip}"
+                            DockPanel.Dock="Right" />
                 </DockPanel>
                 <TextBlock Text="{Binding Info}"
-                       Style="{DynamicResource NotifyBalloonInfo}" />
-            </DockPanel>
+                           Style="{DynamicResource NotifyBalloonInfo}" />
+            </StackPanel>
         </ContentControl>
     </Popup>
 </UserControl>

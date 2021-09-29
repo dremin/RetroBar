@@ -850,6 +850,49 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Popup"
+           x:Key="NotifyBalloonPopup">
+        <Setter Property="AllowsTransparency"
+                Value="True" />
+        <Setter Property="StaysOpen"
+                Value="False" />
+        <Setter Property="PopupAnimation"
+                Value="Fade" />
+        <Setter Property="HorizontalOffset"
+                Value="11" />
+        <Setter Property="VerticalOffset"
+                Value="5" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Left">
+                <DataTrigger.Setters>
+                    <Setter Property="HorizontalOffset"
+                            Value="-1" />
+                    <Setter Property="VerticalOffset"
+                            Value="5" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Right">
+                <DataTrigger.Setters>
+                    <Setter Property="HorizontalOffset"
+                            Value="12" />
+                    <Setter Property="VerticalOffset"
+                            Value="5" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Top">
+                <DataTrigger.Setters>
+                    <Setter Property="HorizontalOffset"
+                            Value="11" />
+                    <Setter Property="VerticalOffset"
+                            Value="-5" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="Image"
            x:Key="NotifyBalloonIcon"
            BasedOn="{StaticResource TaskIcon}">
@@ -872,7 +915,7 @@
            x:Key="NotifyBalloonInfo"
            BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="Margin"
-                Value="0,4,0,0" />
+                Value="0,6,0,0" />
         <Setter Property="TextWrapping"
                 Value="Wrap" />
     </Style>
@@ -880,14 +923,22 @@
     <Style TargetType="Button"
            x:Key="NotifyBalloonCloseButton"
            BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
         <Setter Property="Margin"
-                Value="9,0,-7,0" />
+                Value="9,-2,-7,0" />
         <Setter Property="Height"
-                Value="16" />
+                Value="18" />
         <Setter Property="Width"
-                Value="16" />
+                Value="18" />
+        <Setter Property="FontFamily"
+                Value="Marlett" />
+        <Setter Property="FontSize"
+                Value="13" />
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Aliased" />
         <Setter Property="BorderBrush"
                 Value="{DynamicResource ButtonShadow}" />
         <Setter Property="Background"
@@ -898,8 +949,19 @@
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
                             Background="{TemplateBinding Background}">
-                        <ContentPresenter />
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Name="Content"
+                                          Margin="0,1,0,0"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="1,2,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -917,20 +979,64 @@
                         <Border BorderThickness="1"
                                 BorderBrush="{DynamicResource ToolTipForeground}"
                                 Background="{DynamicResource ToolTipBackground}"
-                                CornerRadius="6"
-                                DockPanel.Dock="Top">
-                            <ContentPresenter Margin="11,4,11,9" />
+                                CornerRadius="8"
+                                RenderOptions.EdgeMode="Aliased"
+                                DockPanel.Dock="Top"
+                                Name="Border">
+                            <ContentPresenter Margin="11,6,11,9" />
                         </Border>
                         <Path Stroke="{DynamicResource ToolTipForeground}"
                               Fill="{DynamicResource ToolTipBackground}"
-                              HorizontalAlignment="Left"
+                              HorizontalAlignment="Right"
                               Width="21"
                               Height="21"
                               StrokeThickness="1"
-                              Margin="10,-1,0,0"
+                              Margin="13,-1,13,0"
                               Data="M 0,0 l 20,20 V 0"
-                              DockPanel.Dock="Bottom" />
+                              DockPanel.Dock="Bottom"
+                              RenderOptions.EdgeMode="Aliased"
+                              Visibility="Visible"
+                              Name="BottomArrow" />
+                        <Path Stroke="{DynamicResource ToolTipForeground}"
+                              Fill="{DynamicResource ToolTipBackground}"
+                              HorizontalAlignment="Right"
+                              Width="21"
+                              Height="21"
+                              StrokeThickness="1"
+                              Margin="13,0,13,-2"
+                              Data="M 0,20 l 20,-20 v 20"
+                              DockPanel.Dock="Top"
+                              RenderOptions.EdgeMode="Aliased"
+                              Visibility="Collapsed"
+                              Name="TopArrow" />
                     </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Left">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="BottomArrow"
+                                        Property="Data"
+                                        Value="M 0,0 V 20 l 20,-20" />
+                                <Setter TargetName="BottomArrow"
+                                        Property="HorizontalAlignment"
+                                        Value="Left" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Top">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="BottomArrow"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                                <Setter TargetName="TopArrow"
+                                        Property="Visibility"
+                                        Value="Visible" />
+                                <Setter TargetName="Border"
+                                        Property="DockPanel.Dock"
+                                        Value="Bottom" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
