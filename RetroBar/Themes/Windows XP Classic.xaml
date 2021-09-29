@@ -11,6 +11,9 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
+
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
     <BitmapImage x:Key="StartIconImage"

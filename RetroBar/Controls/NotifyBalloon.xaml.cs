@@ -1,4 +1,6 @@
-﻿using ManagedShell.WindowsTray;
+﻿using ManagedShell.AppBar;
+using ManagedShell.WindowsTray;
+using RetroBar.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -17,6 +19,8 @@ namespace RetroBar.Controls
         {
             DataContext = new NotificationBalloon();
             InitializeComponent();
+
+            // TODO: Find way to promote ballooned icons while hidden
         }
 
         public void Show(NotificationBalloon balloonInfo, UIElement placementTarget)
@@ -35,17 +39,29 @@ namespace RetroBar.Controls
 
         public CustomPopupPlacement[] PlacePopup(Size popupSize, Size targetSize, Point offset)
         {
-            CustomPopupPlacement placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + offset.X,
-                (popupSize.Height * -1) + offset.Y),
-                PopupPrimaryAxis.Horizontal);
-            CustomPopupPlacement placement2 = new CustomPopupPlacement(new Point(offset.X,
-                (popupSize.Height * -1) + offset.Y),
-                PopupPrimaryAxis.Horizontal);
-            CustomPopupPlacement placement3 = new CustomPopupPlacement(new Point((popupSize.Width * -1) + offset.X,
-                targetSize.Height + offset.Y),
-                PopupPrimaryAxis.Horizontal);
+            CustomPopupPlacement placement;
 
-            return new CustomPopupPlacement[] { placement, placement2, placement3 };
+            switch ((AppBarEdge)Settings.Instance.Edge)
+            {
+                case AppBarEdge.Top:
+                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + offset.X,
+                        targetSize.Height + offset.Y),
+                        PopupPrimaryAxis.Horizontal);
+                    break;
+                case AppBarEdge.Left:
+                    placement = new CustomPopupPlacement(new Point(offset.X,
+                        (popupSize.Height * -1) + offset.Y),
+                        PopupPrimaryAxis.Horizontal);
+                    break;
+                default:
+                    // bottom or right taskbar
+                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + offset.X,
+                        (popupSize.Height * -1) + offset.Y),
+                        PopupPrimaryAxis.Horizontal);
+                    break;
+            }
+
+            return new CustomPopupPlacement[] { placement };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,12 +98,14 @@ namespace RetroBar.Controls
 
         private void ContentControl_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            // Prevent taskbar context menu from appearing
             e.Handled = true;
         }
 
         private void ContentControl_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             (DataContext as NotificationBalloon).Click();
+
             closeBalloon();
             e.Handled = true;
         }

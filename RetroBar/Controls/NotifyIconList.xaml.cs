@@ -65,6 +65,11 @@ namespace RetroBar.Controls
                 {
                     NotifyIcons.ItemsSource = NotificationArea.PinnedIcons;
                     SetToggleVisibility();
+
+                    if (NotifyIconToggleButton.IsChecked == true)
+                    {
+                        NotifyIconToggleButton.IsChecked = false;
+                    }
                 }
                 else
                 {

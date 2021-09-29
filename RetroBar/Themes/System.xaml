@@ -52,6 +52,14 @@
     <Style TargetType="ToolTip"
            x:Key="{x:Type ToolTip}"
            BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="Background"
+                Value="{DynamicResource ToolTipBackground}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ToolTipForeground}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource ToolTipForeground}" />
+        <Setter Property="Padding"
+                Value="2,1,2,1" />
     </Style>
 
     <Style TargetType="ContextMenu"
@@ -862,6 +870,8 @@
                 Value="11" />
         <Setter Property="VerticalOffset"
                 Value="5" />
+        <Setter Property="MaxWidth"
+                Value="300" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Left">
@@ -909,6 +919,8 @@
                 Value="Center" />
         <Setter Property="FontWeight"
                 Value="Bold" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
     </Style>
 
     <Style TargetType="TextBlock"
@@ -928,7 +940,7 @@
         <Setter Property="VerticalAlignment"
                 Value="Center" />
         <Setter Property="Margin"
-                Value="9,-2,-7,0" />
+                Value="9,-4,-7,0" />
         <Setter Property="Height"
                 Value="18" />
         <Setter Property="Width"
@@ -980,7 +992,6 @@
                                 BorderBrush="{DynamicResource ToolTipForeground}"
                                 Background="{DynamicResource ToolTipBackground}"
                                 CornerRadius="8"
-                                RenderOptions.EdgeMode="Aliased"
                                 DockPanel.Dock="Top"
                                 Name="Border">
                             <ContentPresenter Margin="11,6,11,9" />
@@ -996,28 +1007,16 @@
                               DockPanel.Dock="Bottom"
                               RenderOptions.EdgeMode="Aliased"
                               Visibility="Visible"
-                              Name="BottomArrow" />
-                        <Path Stroke="{DynamicResource ToolTipForeground}"
-                              Fill="{DynamicResource ToolTipBackground}"
-                              HorizontalAlignment="Right"
-                              Width="21"
-                              Height="21"
-                              StrokeThickness="1"
-                              Margin="13,0,13,-2"
-                              Data="M 0,20 l 20,-20 v 20"
-                              DockPanel.Dock="Top"
-                              RenderOptions.EdgeMode="Aliased"
-                              Visibility="Collapsed"
-                              Name="TopArrow" />
+                              Name="Arrow" />
                     </DockPanel>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="Left">
                             <DataTrigger.Setters>
-                                <Setter TargetName="BottomArrow"
+                                <Setter TargetName="Arrow"
                                         Property="Data"
                                         Value="M 0,0 V 20 l 20,-20" />
-                                <Setter TargetName="BottomArrow"
+                                <Setter TargetName="Arrow"
                                         Property="HorizontalAlignment"
                                         Value="Left" />
                             </DataTrigger.Setters>
@@ -1025,15 +1024,18 @@
                         <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="Top">
                             <DataTrigger.Setters>
-                                <Setter TargetName="BottomArrow"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                                <Setter TargetName="TopArrow"
-                                        Property="Visibility"
-                                        Value="Visible" />
                                 <Setter TargetName="Border"
                                         Property="DockPanel.Dock"
                                         Value="Bottom" />
+                                <Setter TargetName="Arrow"
+                                        Property="Data"
+                                        Value="M 0,20 l 20,-20 v 20" />
+                                <Setter TargetName="Arrow"
+                                        Property="DockPanel.Dock"
+                                        Value="Top" />
+                                <Setter TargetName="Arrow"
+                                        Property="Margin"
+                                        Value="13,0,13,-2" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
