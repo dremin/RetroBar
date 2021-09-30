@@ -4,6 +4,7 @@ using RetroBar.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace RetroBar.Controls
@@ -39,22 +40,24 @@ namespace RetroBar.Controls
         {
             CustomPopupPlacement placement;
 
+            DpiScale dpiScale = VisualTreeHelper.GetDpi(this);
+
             switch ((AppBarEdge)Settings.Instance.Edge)
             {
                 case AppBarEdge.Top:
-                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + offset.X,
-                        targetSize.Height + offset.Y),
+                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + (offset.X * dpiScale.DpiScaleX),
+                        targetSize.Height + (offset.Y * dpiScale.DpiScaleY)),
                         PopupPrimaryAxis.Horizontal);
                     break;
                 case AppBarEdge.Left:
-                    placement = new CustomPopupPlacement(new Point(offset.X,
-                        (popupSize.Height * -1) + offset.Y),
+                    placement = new CustomPopupPlacement(new Point(offset.X * dpiScale.DpiScaleX,
+                        (popupSize.Height * -1) + (offset.Y * dpiScale.DpiScaleY)),
                         PopupPrimaryAxis.Horizontal);
                     break;
                 default:
                     // bottom or right taskbar
-                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + offset.X,
-                        (popupSize.Height * -1) + offset.Y),
+                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + (offset.X * dpiScale.DpiScaleX),
+                        (popupSize.Height * -1) + (offset.Y * dpiScale.DpiScaleY)),
                         PopupPrimaryAxis.Horizontal);
                     break;
             }
