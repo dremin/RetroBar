@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Page Remove="Languages\español.xaml" />
+    <Page Remove="Languages\français.xaml" />
     <Page Remove="Themes\Watercolor.xaml" />
     <Page Remove="Themes\Windows 2000.xaml" />
     <Page Remove="Themes\Windows 95-98.xaml" />
@@ -29,6 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Languages\français.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Include="Languages\español.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -66,7 +72,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ManagedShell" Version="0.0.116" />
+    <PackageReference Include="ManagedShell" Version="0.0.119" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
