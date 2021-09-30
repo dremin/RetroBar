@@ -13,7 +13,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 
 ## Features
 - Replaces default Windows taskbar with classic layout
-- Native notification area
+- Native notification area with balloon notification support
 - Native task list with UWP app support
 - Quick launch toolbar
 - Start button opens modern start menu

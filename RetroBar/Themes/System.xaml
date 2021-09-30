@@ -863,7 +863,7 @@
         <Setter Property="AllowsTransparency"
                 Value="True" />
         <Setter Property="StaysOpen"
-                Value="False" />
+                Value="True" />
         <Setter Property="PopupAnimation"
                 Value="Fade" />
         <Setter Property="HorizontalOffset"
