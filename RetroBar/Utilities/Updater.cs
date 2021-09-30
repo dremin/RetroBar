@@ -1,6 +1,7 @@
 ﻿using ManagedShell.Common.Logging;
 using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -14,9 +15,9 @@ namespace RetroBar.Utilities
 
         private readonly HttpClient httpClient = new HttpClient();
 
-        private string _versionUrl = "https://cairodesktop.com/retrobarver.txt";
-        private int _initialInterval = 10000;
-        private int _updateInterval = 86400000;
+        private readonly string _versionUrl = "https://dremin.github.io/updates/retrobar.json";
+        private readonly int _initialInterval = 10000;
+        private readonly int _updateInterval = 86400000;
         
         private Version _currentVersion;
         private System.Timers.Timer updateCheck;
@@ -57,9 +58,9 @@ namespace RetroBar.Utilities
         {
             try
             {
-                string newVersionStr = await httpClient.GetStringAsync(_versionUrl);
+                VersionInfo versionInfo = await httpClient.GetFromJsonAsync<VersionInfo>(_versionUrl);
 
-                if (Version.TryParse(newVersionStr, out Version newVersion))
+                if (Version.TryParse(versionInfo.Version, out Version newVersion))
                 {
                     if (newVersion > _currentVersion)
                     {
@@ -68,7 +69,7 @@ namespace RetroBar.Utilities
                 }
                 else
                 {
-                    ShellLogger.Info($"Updater: Unable to parse new version file");
+                    ShellLogger.Info($"Updater: Unable to parse new version");
                 }
 
             }
@@ -79,5 +80,10 @@ namespace RetroBar.Utilities
 
             return false;
         }
+    }
+
+    public class VersionInfo
+    {
+        public string Version { get; set; }
     }
 }

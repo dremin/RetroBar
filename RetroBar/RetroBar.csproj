@@ -67,6 +67,7 @@
 
   <ItemGroup>
     <PackageReference Include="ManagedShell" Version="0.0.116" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
