@@ -1,8 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
+using ManagedShell.WindowsTray;
 
 namespace RetroBar.Controls
 {
@@ -32,6 +35,15 @@ namespace RetroBar.Controls
 
                 TrayIcon.NotificationBalloonShown += TrayIcon_NotificationBalloonShown;
 
+                // If a notification was received before we started listening, it will be here. Show the first one that is not expired.
+                NotificationBalloon firstUnexpiredNotification = TrayIcon.MissedNotifications.FirstOrDefault(balloon => balloon.Received.AddMilliseconds(balloon.Timeout) > DateTime.Now);
+
+                if (firstUnexpiredNotification != null)
+                {
+                    BalloonControl.Show(firstUnexpiredNotification, NotifyIconBorder);
+                    TrayIcon.MissedNotifications.Remove(firstUnexpiredNotification);
+                }
+
                 isLoaded = true;
             }
         }
@@ -45,9 +57,10 @@ namespace RetroBar.Controls
             isLoaded = false;
         }
 
-        private void TrayIcon_NotificationBalloonShown(object sender, ManagedShell.WindowsTray.NotificationBalloonEventArgs e)
+        private void TrayIcon_NotificationBalloonShown(object sender, NotificationBalloonEventArgs e)
         {
             BalloonControl.Show(e.Balloon, NotifyIconBorder);
+            e.Handled = true;
         }
 
         private void NotifyIcon_OnMouseDown(object sender, MouseButtonEventArgs e)

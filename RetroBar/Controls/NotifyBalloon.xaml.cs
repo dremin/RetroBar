@@ -19,8 +19,6 @@ namespace RetroBar.Controls
         {
             DataContext = new NotificationBalloon();
             InitializeComponent();
-
-            // TODO: Find way to promote ballooned icons while hidden
         }
 
         public void Show(NotificationBalloon balloonInfo, UIElement placementTarget)
