@@ -20,6 +20,7 @@ namespace RetroBar
         private Taskbar _taskbar;
         private readonly AppVisibilityHelper _appVisibilityHelper;
         private readonly ShellManager _shellManager;
+        private readonly Updater _updater;
 
         public App()
         {
@@ -27,6 +28,7 @@ namespace RetroBar
 
             _appVisibilityHelper = new AppVisibilityHelper(true);
             DictionaryManager = new DictionaryManager();
+            _updater = new Updater();
         }
 
         public void ExitGracefully()
@@ -44,7 +46,7 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, AppBarScreen.FromPrimaryScreen(), (AppBarEdge)Settings.Instance.Edge);
+            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, _updater, AppBarScreen.FromPrimaryScreen(), (AppBarEdge)Settings.Instance.Edge);
             _taskbar.Show();
         }
 
@@ -79,6 +81,7 @@ namespace RetroBar
             DictionaryManager.Dispose();
             _shellManager.Dispose();
             _appVisibilityHelper.Dispose();
+            _updater.Dispose();
             _logger.Dispose();
         }
     }
