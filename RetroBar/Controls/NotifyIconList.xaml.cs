@@ -118,7 +118,7 @@ namespace RetroBar.Controls
 
             DispatcherTimer unpromoteTimer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMilliseconds(e.Balloon.Timeout + 250) // Keep it around for a few ms for the animation to complete
+                Interval = TimeSpan.FromMilliseconds(e.Balloon.Timeout + 500) // Keep it around for a few ms for the animation to complete
             };
             unpromoteTimer.Tick += (object sender, EventArgs e) =>
             {

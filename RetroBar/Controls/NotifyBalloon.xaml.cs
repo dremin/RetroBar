@@ -1,4 +1,5 @@
 ﻿using ManagedShell.AppBar;
+using ManagedShell.Common.Helpers;
 using ManagedShell.WindowsTray;
 using RetroBar.Utilities;
 using System.Windows;
@@ -14,24 +15,28 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class NotifyBalloon : UserControl
     {
-        private DispatcherTimer closeTimer;
+        private DispatcherTimer _closeTimer;
+        private NotificationBalloon _balloonInfo = new NotificationBalloon();
 
         public NotifyBalloon()
         {
-            DataContext = new NotificationBalloon();
+            DataContext = _balloonInfo;
             InitializeComponent();
         }
 
         public void Show(NotificationBalloon balloonInfo, UIElement placementTarget)
         {
+            _balloonInfo = balloonInfo;
+            DataContext = _balloonInfo;
+
+            playSound(_balloonInfo);
+
             BalloonPopup.PlacementTarget = placementTarget;
             BalloonPopup.Placement = PlacementMode.Custom;
             BalloonPopup.CustomPopupPlacementCallback = new CustomPopupPlacementCallback(PlacePopup);
-
-            DataContext = balloonInfo;
             BalloonPopup.IsOpen = true;
 
-            (DataContext as NotificationBalloon).SetVisibility(BalloonVisibility.Visible);
+            _balloonInfo.SetVisibility(BalloonVisibility.Visible);
 
             startTimer(balloonInfo.Timeout);
         }
@@ -65,36 +70,51 @@ namespace RetroBar.Controls
             return new CustomPopupPlacement[] { placement };
         }
 
+        private void playSound(NotificationBalloon balloonInfo)
+        {
+            if (BalloonPopup.IsOpen)
+            {
+                return;
+            }
+
+            if ((balloonInfo.Flags & ManagedShell.Interop.NativeMethods.NIIF.NOSOUND) != 0)
+            {
+                return;
+            }
+
+            SoundHelper.PlayNotificationSound();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             closeBalloon();
-            (DataContext as NotificationBalloon).SetVisibility(BalloonVisibility.Hidden);
+            _balloonInfo.SetVisibility(BalloonVisibility.Hidden);
             e.Handled = true;
         }
 
         private void closeBalloon()
         {
-            closeTimer?.Stop();
+            _closeTimer?.Stop();
             BalloonPopup.IsOpen = false;
         }
 
         private void startTimer(int timeout)
         {
-            closeTimer?.Stop();
+            _closeTimer?.Stop();
 
-            closeTimer = new DispatcherTimer
+            _closeTimer = new DispatcherTimer
             {
                 Interval = System.TimeSpan.FromMilliseconds(timeout)
             };
 
-            closeTimer.Tick += CloseTimer_Tick;
-            closeTimer.Start();
+            _closeTimer.Tick += CloseTimer_Tick;
+            _closeTimer.Start();
         }
 
         private void CloseTimer_Tick(object sender, System.EventArgs e)
         {
             closeBalloon();
-            (DataContext as NotificationBalloon).SetVisibility(BalloonVisibility.TimedOut);
+            _balloonInfo.SetVisibility(BalloonVisibility.TimedOut);
         }
 
         private void ContentControl_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -105,7 +125,7 @@ namespace RetroBar.Controls
 
         private void ContentControl_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            (DataContext as NotificationBalloon).Click();
+            _balloonInfo.Click();
 
             closeBalloon();
             e.Handled = true;
