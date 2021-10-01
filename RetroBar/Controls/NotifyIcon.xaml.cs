@@ -1,8 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
+using ManagedShell.WindowsTray;
 
 namespace RetroBar.Controls
 {
@@ -11,6 +14,7 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class NotifyIcon : UserControl
     {
+        private bool isLoaded;
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
         public NotifyIcon()
@@ -20,7 +24,43 @@ namespace RetroBar.Controls
 
         private void NotifyIcon_OnLoaded(object sender, RoutedEventArgs e)
         {
-            TrayIcon = DataContext as ManagedShell.WindowsTray.NotifyIcon;
+            if (!isLoaded)
+            {
+                TrayIcon = DataContext as ManagedShell.WindowsTray.NotifyIcon;
+
+                if (TrayIcon == null)
+                {
+                    return;
+                }
+
+                TrayIcon.NotificationBalloonShown += TrayIcon_NotificationBalloonShown;
+
+                // If a notification was received before we started listening, it will be here. Show the first one that is not expired.
+                NotificationBalloon firstUnexpiredNotification = TrayIcon.MissedNotifications.FirstOrDefault(balloon => balloon.Received.AddMilliseconds(balloon.Timeout) > DateTime.Now);
+
+                if (firstUnexpiredNotification != null)
+                {
+                    BalloonControl.Show(firstUnexpiredNotification, NotifyIconBorder);
+                    TrayIcon.MissedNotifications.Remove(firstUnexpiredNotification);
+                }
+
+                isLoaded = true;
+            }
+        }
+
+        private void NotifyIcon_OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (TrayIcon != null)
+            {
+                TrayIcon.NotificationBalloonShown -= TrayIcon_NotificationBalloonShown;
+            }
+            isLoaded = false;
+        }
+
+        private void TrayIcon_NotificationBalloonShown(object sender, NotificationBalloonEventArgs e)
+        {
+            BalloonControl.Show(e.Balloon, NotifyIconBorder);
+            e.Handled = true;
         }
 
         private void NotifyIcon_OnMouseDown(object sender, MouseButtonEventArgs e)

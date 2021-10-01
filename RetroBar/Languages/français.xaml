@@ -31,6 +31,7 @@
 
     <s:String x:Key="show_hidden">Afficher les icônes masquées</s:String>
     <s:String x:Key="hide">Cacher</s:String>
+    <s:String x:Key="close_tip">Fermer</s:String>
 
     <s:String x:Key="set_time">Ajuster la _date/l'heure</s:String>
 </ResourceDictionary>

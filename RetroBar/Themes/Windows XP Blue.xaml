@@ -241,6 +241,53 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
+
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveBackground" Color="#FFFFF5" />
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveBorder" Color="#C7BEA6" />
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveForeground" Color="#AA9C87" />
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveShadow" Color="Transparent" />
+
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveBorder" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveForeground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveShadowLight" Color="#F3F3D6" />
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveShadowDark" Color="#B8B8A2" />
+
+    <SolidColorBrush x:Key="BalloonCloseButtonHoverInnerLight" Color="#11000000" />
+    <SolidColorBrush x:Key="BalloonCloseButtonHoverInnerDark" Color="#33000000" />
+
+    <RadialGradientBrush x:Key="BalloonCloseButtonHoverBackground"
+                         GradientOrigin="1.0,1.0"
+                         RadiusX="0.8"
+                         RadiusY="0.8">
+        <GradientStop Color="#ffde17"
+                      Offset="0.0" />
+        <GradientStop Color="#ffad31"
+                      Offset="0.5" />
+        <GradientStop Color="#ffad31"
+                      Offset="0.6" />
+        <GradientStop Color="#ffd9a1"
+                      Offset="1.0" />
+    </RadialGradientBrush>
+
+    <SolidColorBrush x:Key="BalloonCloseButtonPressedInnerLight" Color="#08000000" />
+    <SolidColorBrush x:Key="BalloonCloseButtonPressedInnerDark" Color="#33000000" />
+
+    <RadialGradientBrush x:Key="BalloonCloseButtonPressedBackground"
+                         GradientOrigin="1.0,1.0"
+                         RadiusX="0.8"
+                         RadiusY="0.8">
+        <GradientStop Color="#d89500"
+                      Offset="0.0" />
+        <GradientStop Color="#cc7900"
+                      Offset="0.5" />
+        <GradientStop Color="#cc7900"
+                      Offset="0.6" />
+        <GradientStop Color="#a96000"
+                      Offset="1.0" />
+    </RadialGradientBrush>
+
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/startxpblue.png" />
     <BitmapImage x:Key="StartButtonImage"
@@ -1128,5 +1175,118 @@
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="NotifyBalloonCloseButton"
+           BasedOn="{StaticResource NotifyBalloonCloseButton}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource BalloonCloseButtonInactiveForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="3"
+                            Name="BorderShadowDark">
+                        <Border BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                                BorderThickness="1,1,0,0"
+                                CornerRadius="3"
+                                Name="BorderShadowLight">
+                            <Border BorderBrush="{DynamicResource BalloonCloseButtonInactiveBorder}"
+                                    BorderThickness="1"
+                                    CornerRadius="2"
+                                    Background="{DynamicResource BalloonCloseButtonInactiveBackground}"
+                                    Name="Border">
+                                <Border BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                                        BorderThickness="0,0,1,1"
+                                        CornerRadius="2"
+                                        Name="BorderInnerDark">
+                                    <Border BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                                            BorderThickness="1"
+                                            CornerRadius="2"
+                                            Padding="3,3,0,0"
+                                            Name="BorderInnerLight">
+                                        <Grid x:Name="Content">
+                                            <Path Stroke="{TemplateBinding Foreground}"
+                                                  StrokeEndLineCap="Round"
+                                                  StrokeStartLineCap="Round"
+                                                  Width="8"
+                                                  Height="8"
+                                                  StrokeThickness="2"
+                                                  Data="M 0,0 l 6,6" />
+                                            <Path Stroke="{TemplateBinding Foreground}"
+                                                  StrokeEndLineCap="Round"
+                                                  StrokeStartLineCap="Round"
+                                                  Width="8"
+                                                  Height="8"
+                                                  StrokeThickness="2"
+                                                  Data="M 0,6 l 6,-6" />
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="BorderShadowDark"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonActiveShadowDark}" />
+                            <Setter TargetName="BorderShadowLight"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonActiveShadowLight}" />
+                            <Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonActiveBorder}" />
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource BalloonCloseButtonHoverBackground}" />
+                            <Setter TargetName="BorderInnerDark"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonHoverInnerDark}" />
+                            <Setter TargetName="BorderInnerLight"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonHoverInnerLight}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource BalloonCloseButtonActiveForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="BorderShadowDark"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonActiveShadowDark}" />
+                            <Setter TargetName="BorderShadowLight"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonActiveShadowLight}" />
+                            <Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonActiveBorder}" />
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource BalloonCloseButtonPressedBackground}" />
+                            <Setter TargetName="BorderInnerDark"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonPressedInnerDark}" />
+                            <Setter TargetName="BorderInnerLight"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource BalloonCloseButtonPressedInnerLight}" />
+                            <Setter TargetName="BorderInnerDark"
+                                    Property="BorderThickness"
+                                    Value="1,1,0,0" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource BalloonCloseButtonActiveForeground}" />
+                            <Setter TargetName="Content"
+                                    Property="Opacity"
+                                    Value="0.5" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="-1,-1,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

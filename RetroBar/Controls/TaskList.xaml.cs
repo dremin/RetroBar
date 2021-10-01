@@ -97,7 +97,7 @@ namespace RetroBar.Controls
             }
 
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
-            double maxWidth = ActualWidth / TasksList.Items.Count;
+            double maxWidth = TasksList.ActualWidth / TasksList.Items.Count;
             double defaultWidth = DefaultButtonWidth + margin;
             double minWidth = MinButtonWidth + margin;
 
@@ -111,7 +111,7 @@ namespace RetroBar.Controls
             }
             else
             {
-                ButtonWidth = Math.Floor(maxWidth) - margin;
+                ButtonWidth = Math.Floor(maxWidth);
             }
         }
     }

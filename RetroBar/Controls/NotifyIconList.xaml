@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
-             Loaded="NotifyIconList_OnLoaded">
+             Loaded="NotifyIconList_OnLoaded"
+             Unloaded="NotifyIconList_OnUnloaded">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
