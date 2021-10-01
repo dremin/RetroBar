@@ -59,9 +59,13 @@
         </DockPanel>
     </ContentControl>
     <appbar:AppBarWindow.ContextMenu>
-        <ContextMenu>
+        <ContextMenu Opened="ContextMenu_Opened">
             <MenuItem Header="{DynamicResource show_taskman}" Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
             <Separator />
+            <MenuItem Header="{DynamicResource update_available}"
+                      Name="UpdateAvailableMenuItem"
+                      Click="UpdateAvailableMenuItem_OnClick"
+                      Visibility="Collapsed" />
             <MenuItem Header="{DynamicResource tray_properties}" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
             <MenuItem Header="{DynamicResource exit_retrobar}" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
         </ContextMenu>
