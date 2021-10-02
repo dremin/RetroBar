@@ -910,6 +910,15 @@
                 Value="0,0,8,0" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Icon}"
+                         Value="{x:Null}">
+                <DataTrigger.Setters>
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock"
@@ -919,8 +928,10 @@
                 Value="Center" />
         <Setter Property="FontWeight"
                 Value="Bold" />
+        <Setter Property="TextTrimming"
+                Value="CharacterEllipsis" />
         <Setter Property="TextWrapping"
-                Value="Wrap" />
+                Value="NoWrap" />
     </Style>
 
     <Style TargetType="TextBlock"

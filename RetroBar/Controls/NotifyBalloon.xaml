@@ -12,14 +12,13 @@
                     <Image Source="{Binding Path=Icon, Mode=OneWay}"
                            Style="{DynamicResource NotifyBalloonIcon}"
                            DockPanel.Dock="Left" />
-                    <TextBlock Text="{Binding Title}"
-                               Style="{DynamicResource NotifyBalloonTitle}"
-                               DockPanel.Dock="Left" />
                     <Button Content="&#x72;"
                             Click="Button_Click"
                             Style="{DynamicResource NotifyBalloonCloseButton}"
                             ToolTip="{DynamicResource close_tip}"
                             DockPanel.Dock="Right" />
+                    <TextBlock Text="{Binding Title}"
+                               Style="{DynamicResource NotifyBalloonTitle}" />
                 </DockPanel>
                 <TextBlock Text="{Binding Info}"
                            Style="{DynamicResource NotifyBalloonInfo}" />
