@@ -38,10 +38,21 @@ namespace RetroBar.Utilities
 
         private void poller_Tick(object sender, EventArgs e)
         {
-            setVisibility(EnvironmentHelper.IsWindows8OrBetter ? isStartMenuOpen8() : isStartMenuOpen7());
+            if (EnvironmentHelper.IsWindows8OrBetter)
+            {
+                // Windows 8+
+                setVisibility(isModernStartMenuOpen());
+            }
 
             if (!_isVisible)
             {
+                // Windows 7, StartIsBack, Start8+
+                setVisibility(isClassicStartMenuOpen());
+            }
+
+            if (!_isVisible)
+            {
+                // Open Shell Menu
                 setVisibility(isOpenShellMenuOpen());
             }
         }
@@ -63,7 +74,7 @@ namespace RetroBar.Utilities
             StartMenuVisibilityChanged?.Invoke(this, args);
         }
 
-        private bool isStartMenuOpen8()
+        private bool isModernStartMenuOpen()
         {
             if (_appVisibilityHelper == null)
             {
@@ -74,7 +85,7 @@ namespace RetroBar.Utilities
             return _appVisibilityHelper.IsLauncherVisible();
         }
 
-        private bool isStartMenuOpen7()
+        private bool isClassicStartMenuOpen()
         {
             return isVisibleByClass("DV2ControlHost");
         }
