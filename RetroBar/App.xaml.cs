@@ -18,7 +18,7 @@ namespace RetroBar
 
         private ManagedShellLogger _logger;
         private Taskbar _taskbar;
-        private readonly AppVisibilityHelper _appVisibilityHelper;
+        private readonly StartMenuMonitor _startMenuMonitor;
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
@@ -26,7 +26,7 @@ namespace RetroBar
         {
             _shellManager = SetupManagedShell();
 
-            _appVisibilityHelper = new AppVisibilityHelper(true);
+            _startMenuMonitor = new StartMenuMonitor(new AppVisibilityHelper(false));
             DictionaryManager = new DictionaryManager();
             _updater = new Updater();
         }
@@ -46,7 +46,7 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, _appVisibilityHelper, _updater, AppBarScreen.FromPrimaryScreen(), (AppBarEdge)Settings.Instance.Edge);
+            _taskbar = new Taskbar(_shellManager, _startMenuMonitor, _updater, AppBarScreen.FromPrimaryScreen(), (AppBarEdge)Settings.Instance.Edge);
             _taskbar.Show();
         }
 
@@ -80,7 +80,7 @@ namespace RetroBar
         {
             DictionaryManager.Dispose();
             _shellManager.Dispose();
-            _appVisibilityHelper.Dispose();
+            _startMenuMonitor.Dispose();
             _updater.Dispose();
             _logger.Dispose();
         }

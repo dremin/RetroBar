@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -15,12 +16,12 @@ namespace RetroBar.Controls
         private bool allowOpenStart;
         private readonly DispatcherTimer pendingOpenTimer;
 
-        public static DependencyProperty AppVisibilityHelperProperty = DependencyProperty.Register("AppVisibilityHelper", typeof(AppVisibilityHelper), typeof(StartButton));
+        public static DependencyProperty StartMenuMonitorProperty = DependencyProperty.Register("StartMenuMonitor", typeof(StartMenuMonitor), typeof(StartButton));
 
-        public AppVisibilityHelper AppVisibilityHelper
+        public StartMenuMonitor StartMenuMonitor
         {
-            get { return (AppVisibilityHelper)GetValue(AppVisibilityHelperProperty); }
-            set { SetValue(AppVisibilityHelperProperty, value); }
+            get { return (StartMenuMonitor)GetValue(StartMenuMonitorProperty); }
+            set { SetValue(StartMenuMonitorProperty, value); }
         }
 
         public StartButton()
@@ -74,15 +75,15 @@ namespace RetroBar.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            AppVisibilityHelper.LauncherVisibilityChanged += AppVisibilityHelper_LauncherVisibilityChanged;
+            StartMenuMonitor.StartMenuVisibilityChanged += AppVisibilityHelper_StartMenuVisibilityChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            AppVisibilityHelper.LauncherVisibilityChanged -= AppVisibilityHelper_LauncherVisibilityChanged;
+            StartMenuMonitor.StartMenuVisibilityChanged -= AppVisibilityHelper_StartMenuVisibilityChanged;
         }
 
-        private void AppVisibilityHelper_LauncherVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
+        private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
         {
             SetStartMenuState(e.Visible);
         }

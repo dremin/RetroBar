@@ -25,7 +25,7 @@ namespace RetroBar
         private ShellManager _shellManager;
         private Updater _updater;
 
-        public Taskbar(ShellManager shellManager, AppVisibilityHelper appVisibilityHelper, Updater updater, AppBarScreen screen, AppBarEdge edge)
+        public Taskbar(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
             _shellManager = shellManager;
@@ -33,7 +33,7 @@ namespace RetroBar
 
             InitializeComponent();
             DataContext = _shellManager;
-            StartButton.AppVisibilityHelper = appVisibilityHelper;
+            StartButton.StartMenuMonitor = startMenuMonitor;
 
             DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
             DesiredWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
