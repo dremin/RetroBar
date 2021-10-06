@@ -120,5 +120,13 @@ namespace RetroBar.Controls
         {
             OpenDateTimeCpl();
         }
+
+        private void Clock_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (EnvironmentHelper.IsWindows11OrBetter)
+            {
+                ShellHelper.ShowNotificationCenter();
+            }
+        }
     }
 }
