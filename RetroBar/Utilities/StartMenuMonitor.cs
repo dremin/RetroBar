@@ -44,7 +44,7 @@ namespace RetroBar.Utilities
                 setVisibility(isModernStartMenuOpen());
             }
 
-            if (!_isVisible)
+            if (!EnvironmentHelper.IsWindows8OrBetter || !_isVisible)
             {
                 // Windows 7, StartIsBack, Start8+
                 setVisibility(isClassicStartMenuOpen());
