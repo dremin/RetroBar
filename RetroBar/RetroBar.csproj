@@ -21,6 +21,7 @@
   <ItemGroup>
     <Page Remove="Languages\español.xaml" />
     <Page Remove="Languages\français.xaml" />
+    <Page Remove="Languages\português.xaml" />
     <Page Remove="Themes\Watercolor.xaml" />
     <Page Remove="Themes\Windows 2000.xaml" />
     <Page Remove="Themes\Windows 95-98.xaml" />
@@ -30,6 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Languages\português.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </None>
     <None Include="Languages\français.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -99,6 +105,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\es\properties_noclock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\pt\properties.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\pt\properties_noclock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\startxpblue.png">
