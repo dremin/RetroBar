@@ -38,6 +38,12 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="MenuItem"
+           x:Key="TaskManMenuItem">
+        <Setter Property="Header"
+                Value="{DynamicResource show_taskman_2k}" />
+    </Style>
+
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>

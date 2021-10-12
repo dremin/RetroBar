@@ -17,7 +17,7 @@ using System.Diagnostics;
 namespace RetroBar
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Taskbar.xaml
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
@@ -181,11 +181,6 @@ namespace RetroBar
             }
         }
 
-        private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            ((App)Application.Current).ExitGracefully();
-        }
-
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ShellHelper.StartTaskManager();
@@ -204,9 +199,12 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            App app = (App)Application.Current;
+            PropertiesWindow.Open(((App)Application.Current).DictionaryManager);
+        }
 
-            PropertiesWindow.Open(app.DictionaryManager);
+        private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).ExitGracefully();
         }
 
         protected override void CustomClosing()

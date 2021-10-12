@@ -293,6 +293,12 @@
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxpbluebutton.png" />
 
+    <Style TargetType="MenuItem"
+           x:Key="TaskManMenuItem">
+        <Setter Property="Header"
+                Value="{DynamicResource show_taskman}" />
+    </Style>
+
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
     <Style TargetType="ContentControl"
@@ -843,8 +849,8 @@
                     <Border x:Name="StartButtonBorder">
                         <Border.Background>
                             <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
-                                        ViewboxUnits="Absolute"
-                                        Viewbox="0,0,99,33" />
+                                        ViewboxUnits="RelativeToBoundingBox"
+                                        Viewbox="0,0,1,0.3333" />
                         </Border.Background>
                         <ContentPresenter Margin="0,-3,0,0" />
                     </Border>
@@ -855,8 +861,8 @@
                                     Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
-                                                ViewboxUnits="Absolute"
-                                                Viewbox="198,0,99,33" />
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.3333,1,0.3333" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -866,8 +872,8 @@
                                     Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
-                                                ViewboxUnits="Absolute"
-                                                Viewbox="99,0,99,33" />
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.6666,1,0.3333" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -877,8 +883,8 @@
                                     Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
-                                                ViewboxUnits="Absolute"
-                                                Viewbox="99,0,99,33" />
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.6666,1,0.3333" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

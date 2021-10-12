@@ -113,7 +113,7 @@
                     <DockPanel>
                         <CheckBox x:Name="cbShowQuickLaunch"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource quick_launch}" />
+                            <Label Content="{DynamicResource show_quick_launch}" />
                         </CheckBox>
                         <Button HorizontalAlignment="Right"
                                 Content="{DynamicResource select_location}"

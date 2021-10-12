@@ -22,7 +22,7 @@
     <s:String x:Key="allow_font_smoothing">_Permitir suavização das fontes</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar ícones _inativos</s:String>
     <s:String x:Key="show_clock">Mostrar o _relógio</s:String>
-    <s:String x:Key="quick_launch">Mostrar barra 'Iniciali_zação rápida'</s:String>
+    <s:String x:Key="show_quick_launch">Mostrar barra 'Iniciali_zação rápida'</s:String>
     <s:String x:Key="select_location">_Selecionar local...</s:String>
     <s:String x:Key="quick_launch_folder">Inicialização rápida - Escolha uma pasta</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
@@ -34,6 +34,10 @@
     <s:String x:Key="start_button_tip_vista">Iniciar</s:String>
 
     <s:String x:Key="retrobar_title">Barra de tarefas RetroBar</s:String>
+    <s:String x:Key="toolbars">_Barras de ferramentas</s:String>
+    <s:String x:Key="quick_launch">_Inicialização rápida</s:String>
+    <s:String x:Key="new_toolbar">_Nova barra de ferramentas...</s:String>
+    <s:String x:Key="show_taskman_2k">_Gerenciador de tarefas...</s:String>
     <s:String x:Key="show_taskman">_Gerenciador de tarefas</s:String>
     <s:String x:Key="tray_properties">P_ropriedades</s:String>
     <s:String x:Key="update_available">_Atualização disponível...</s:String>
@@ -48,7 +52,6 @@
 
     <s:String x:Key="show_hidden">Mostrar ícones ocultos</s:String>
     <s:String x:Key="hide">Ocultar</s:String>
-    <s:String x:Key="close_tip">Fechar</s:String>
 
     <s:String x:Key="set_time">Aj_ustar data/hora</s:String>
 

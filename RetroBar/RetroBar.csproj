@@ -22,12 +22,14 @@
     <Page Remove="Languages\español.xaml" />
     <Page Remove="Languages\français.xaml" />
     <Page Remove="Languages\português.xaml" />
+    <Page Remove="Languages\中文%28简体%29.xaml" />
     <Page Remove="Themes\Watercolor.xaml" />
     <Page Remove="Themes\Windows 2000.xaml" />
     <Page Remove="Themes\Windows 95-98.xaml" />
     <Page Remove="Themes\Windows Me.xaml" />
     <Page Remove="Themes\Windows XP Blue.xaml" />
     <Page Remove="Themes\Windows XP Classic.xaml" />
+    <Page Remove="Themes\Windows XP Silver.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,7 +41,7 @@
     <None Include="Languages\français.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator></Generator>
     </None>
     <None Include="Languages\español.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -83,6 +85,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Languages\中文(简体).xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Resource Include="Resources\properties.png" />
     <Resource Include="Resources\properties_noclock.png" />
     <Resource Include="Resources\start9x.png" />
@@ -107,6 +112,12 @@
     <None Update="Resources\es\properties_noclock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\fr\properties.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\fr\properties_noclock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\pt\properties.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -120,6 +131,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\startxpclassic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\zh\properties.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\zh\properties_noclock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

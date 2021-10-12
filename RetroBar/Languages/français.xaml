@@ -2,14 +2,30 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
+    <s:String x:Key="retrobar_properties">Propriétés de RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Barre des tâches</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/fr/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/fr/properties_noclock.png" />
     <s:String x:Key="autostart">_Démarrer automatiquement à la connexion</s:String>
-    <s:String x:Key="theme_text">_Theme:</s:String>
-    <s:String x:Key="theme_tip">Installer des thèmes dans le dossier Thèmes.</s:String>
+    <s:String x:Key="language_text">Lan_gue:</s:String>
+    <s:String x:Key="language_tip">Sélectionnez la langue à utiliser.</s:String>
+    <s:String x:Key="theme_text">_Thème:</s:String>
+    <s:String x:Key="theme_tip">Installez les thèmes dans le dossier Themes.</s:String>
+    <s:String x:Key="location_text">Posit_ion:</s:String>
+    <s:String x:Key="location_tip">Modifiez l'emplacement de la barre des tâches à l'écran.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>À gauche</s:String>
+        <s:String>En haut</s:String>
+        <s:String>À droite</s:String>
+        <s:String>En bas</s:String>
+    </x:Array>
     <s:String x:Key="allow_font_smoothing">_Autoriser le lissage des polices</s:String>
     <s:String x:Key="collapse_tray_icons">_Réduire les icônes de la zone de notification</s:String>
     <s:String x:Key="show_clock">Afficher l'_horloge</s:String>
-    <s:String x:Key="quick_launch">Afficher la barre de _lancement rapide</s:String>
-    <s:String x:Key="select_location">_Sélectionnez l'emplacement...</s:String>
+    <s:String x:Key="show_quick_launch">Afficher la zone de _Lancement rapide</s:String>
+    <s:String x:Key="select_location">_Changer de dossier...</s:String>
+    <s:String x:Key="quick_launch_folder">Lancement rapide - Choisir un dossier</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Démarrer</s:String>
     <s:String x:Key="start_text_xp">démarrer</s:String>
@@ -17,21 +33,27 @@
     <s:String x:Key="start_button_tip">Cliquez ici pour commencer</s:String>
     <s:String x:Key="start_button_tip_vista">Démarrer</s:String>
 
-    <s:String x:Key="retrobar_title">Barra de tareas RetroBar</s:String>
-    <s:String x:Key="show_taskman">_Gestionnaire des tâches...</s:String>
-    <s:String x:Key="tray_properties">_Propriétés</s:String>
+    <s:String x:Key="retrobar_title">Barre des tâches RetroBar</s:String>
+    <s:String x:Key="toolbars">Barres d'ou_tils</s:String>
+    <s:String x:Key="quick_launch">Lancement _rapide</s:String>
+    <s:String x:Key="new_toolbar">_Nouvelle barre d'outils...</s:String>
+    <s:String x:Key="show_taskman_2k">_Gestionnaire des tâches...</s:String>
+    <s:String x:Key="show_taskman">_Gestionnaire des tâches</s:String>
+    <s:String x:Key="tray_properties">P_ropriétés</s:String>
+    <s:String x:Key="update_available">_Mise à jour disponible...</s:String>
     <s:String x:Key="exit_retrobar">_Quitter RetroBar</s:String>
 
     <s:String x:Key="restore">_Restaurer</s:String>
-    <s:String x:Key="move">Déplacer</s:String>
-    <s:String x:Key="size">Taille</s:String>
-    <s:String x:Key="minimize">Mi_nimiser</s:String>
-    <s:String x:Key="maximize">Ma_ximiser</s:String>
+    <s:String x:Key="move">Dép_lacer</s:String>
+    <s:String x:Key="size">_Taille</s:String>
+    <s:String x:Key="minimize">Réd_uire</s:String>
+    <s:String x:Key="maximize">Agra_ndir</s:String>
     <s:String x:Key="close">_Fermer</s:String>
 
-    <s:String x:Key="show_hidden">Afficher les icônes masquées</s:String>
-    <s:String x:Key="hide">Cacher</s:String>
-    <s:String x:Key="close_tip">Fermer</s:String>
+    <s:String x:Key="show_hidden">Afficher les icônes cachées</s:String>
+    <s:String x:Key="hide">Masquer</s:String>
 
     <s:String x:Key="set_time">Ajuster la _date/l'heure</s:String>
+
+    <s:String x:Key="open_folder">&amp;Ouvrir le dossier</s:String>
 </ResourceDictionary>
