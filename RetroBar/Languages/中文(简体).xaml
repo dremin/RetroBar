@@ -29,8 +29,8 @@
 
     <s:String x:Key="start_text">开始</s:String>
     <s:String x:Key="start_text_xp">开始</s:String>
-    <s:String x:Key="start_button_tip_98">单击此处开始。</s:String>
-    <s:String x:Key="start_button_tip">单击此处开始</s:String>
+    <s:String x:Key="start_button_tip_98">单击这里开始</s:String>
+    <s:String x:Key="start_button_tip">单击这里开始</s:String>
     <s:String x:Key="start_button_tip_vista">开始</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar 任务栏</s:String>

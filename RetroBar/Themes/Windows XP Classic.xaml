@@ -18,4 +18,10 @@
 
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/startxpclassic.png" />
+
+    <Style TargetType="MenuItem"
+           x:Key="TaskManMenuItem">
+        <Setter Property="Header"
+                Value="{DynamicResource show_taskman}" />
+    </Style>
 </ResourceDictionary>

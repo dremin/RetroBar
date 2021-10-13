@@ -29,7 +29,6 @@
     <Page Remove="Themes\Windows Me.xaml" />
     <Page Remove="Themes\Windows XP Blue.xaml" />
     <Page Remove="Themes\Windows XP Classic.xaml" />
-    <Page Remove="Themes\Windows XP Silver.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +46,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
       <Generator></Generator>
+    </None>
+    <None Include="Languages\中文(简体).xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Themes\Windows 95-98.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -85,9 +88,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Languages\中文(简体).xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Resource Include="Resources\properties.png" />
     <Resource Include="Resources\properties_noclock.png" />
     <Resource Include="Resources\start9x.png" />
