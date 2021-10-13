@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar 属性</s:String>
+    <s:String x:Key="taskbar_options">任务栏选项</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/zh/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/zh/properties_noclock.png" />
+    <s:String x:Key="autostart">登录时自动启动(_L)</s:String>
+    <s:String x:Key="language_text">语言(_G)：</s:String>
+    <s:String x:Key="language_tip">选择要使用的语言。</s:String>
+    <s:String x:Key="theme_text">主题(_T)</s:String>
+    <s:String x:Key="theme_tip">在 Themes 文件夹中安装主题。</s:String>
+    <s:String x:Key="location_text">位置(_I)：</s:String>
+    <s:String x:Key="location_tip">更改屏幕上的任务栏位置。</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>左侧</s:String>
+        <s:String>顶部</s:String>
+        <s:String>右侧</s:String>
+        <s:String>底部</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">允许字体平滑(_A)</s:String>
+    <s:String x:Key="collapse_tray_icons">收起通知区域图标(_N)</s:String>
+    <s:String x:Key="show_clock">显示时钟(_C)</s:String>
+    <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
+    <s:String x:Key="select_location">选择位置(_S)...</s:String>
+    <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
+    <s:String x:Key="ok_dialog">确定</s:String>
+
+    <s:String x:Key="start_text">开始</s:String>
+    <s:String x:Key="start_text_xp">开始</s:String>
+    <s:String x:Key="start_button_tip_98">单击这里开始</s:String>
+    <s:String x:Key="start_button_tip">单击这里开始</s:String>
+    <s:String x:Key="start_button_tip_vista">开始</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar 任务栏</s:String>
+    <s:String x:Key="toolbars">工具栏(_T)</s:String>
+    <s:String x:Key="quick_launch">快速启动(_Q)</s:String>
+    <s:String x:Key="new_toolbar">新建工具栏(_N)...</s:String>
+    <s:String x:Key="show_taskman_2k">任务管理器(_K)...</s:String>
+    <s:String x:Key="show_taskman">任务管理器(_K)</s:String>
+    <s:String x:Key="tray_properties">属性(_R)</s:String>
+    <s:String x:Key="update_available">更新可用(_U)...</s:String>
+    <s:String x:Key="exit_retrobar">退出 RetroBar(_E)</s:String>
+
+    <s:String x:Key="restore">恢复(_R)</s:String>
+    <s:String x:Key="move">移动(_M)</s:String>
+    <s:String x:Key="size">大小(_S)</s:String>
+    <s:String x:Key="minimize">最小化(_N)</s:String>
+    <s:String x:Key="maximize">最大化(_X)</s:String>
+    <s:String x:Key="close">关闭(_C)</s:String>
+
+    <s:String x:Key="show_hidden">显示隐藏的图标</s:String>
+    <s:String x:Key="hide">隐藏</s:String>
+
+    <s:String x:Key="set_time">调整日期/时间(_A)</s:String>
+
+    <s:String x:Key="open_folder">&amp;打开文件夹</s:String>
+</ResourceDictionary>

@@ -95,6 +95,10 @@ namespace RetroBar.Utilities
 
             if (dictionary == dictDefault)
             {
+                if (dictType == 0)
+                {
+                    ClearPreviousThemes();
+                }
                 dictFilePath = Path.ChangeExtension(Path.Combine(dictFolder, dictDefault), dictExtension);
             }
             else
@@ -113,11 +117,6 @@ namespace RetroBar.Utilities
                         return;
                     }
                 }
-            }
-
-            if (dictType == 0)
-            {
-                ClearPreviousThemes();
             }
 
             GetMergedDictionaries().Add(new ResourceDictionary()

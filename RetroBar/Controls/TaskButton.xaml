@@ -63,6 +63,7 @@
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="{DynamicResource close}" 
+                          FontWeight="Bold"
                           Click="CloseMenuItem_OnClick">
                     <MenuItem.Icon>
                         <TextBlock FontFamily="Marlett" 

@@ -22,7 +22,7 @@
     <s:String x:Key="allow_font_smoothing">_Permitir suavizado de fuentes</s:String>
     <s:String x:Key="collapse_tray_icons">_Contraer los iconos del área de notificación</s:String>
     <s:String x:Key="show_clock">Mostrar el _reloj</s:String>
-    <s:String x:Key="quick_launch">Mostrar inicio rápi_do</s:String>
+    <s:String x:Key="show_quick_launch">Mostrar inicio rápi_do</s:String>
     <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
@@ -34,20 +34,24 @@
     <s:String x:Key="start_button_tip_vista">Iniciar</s:String>
 
     <s:String x:Key="retrobar_title">Barra de tareas RetroBar</s:String>
-    <s:String x:Key="show_taskman">Admi_nistrador de tareas...</s:String>
+    <s:String x:Key="toolbars">_Barras de herramientas</s:String>
+    <s:String x:Key="quick_launch">Inicio _rápido</s:String>
+    <s:String x:Key="new_toolbar">_Nueva barra de herramientas...</s:String>
+    <s:String x:Key="show_taskman_2k">Admi_nistrador de tareas...</s:String>
+    <s:String x:Key="show_taskman">Admi_nistrador de tareas</s:String>
     <s:String x:Key="tray_properties">_Propiedades</s:String>
+    <s:String x:Key="update_available">_Actualización disponible...</s:String>
     <s:String x:Key="exit_retrobar">_Salir de RetroBar</s:String>
 
     <s:String x:Key="restore">_Restaurar</s:String>
-    <s:String x:Key="move">Mover</s:String>
-    <s:String x:Key="size">Tamaño</s:String>
+    <s:String x:Key="move">_Mover</s:String>
+    <s:String x:Key="size">_Tamaño</s:String>
     <s:String x:Key="minimize">Mi_nimizar</s:String>
     <s:String x:Key="maximize">Ma_ximizar</s:String>
     <s:String x:Key="close">_Cerrar</s:String>
 
     <s:String x:Key="show_hidden">Mostrar iconos ocultos</s:String>
     <s:String x:Key="hide">Ocultar</s:String>
-    <s:String x:Key="close_tip">Cerrar</s:String>
 
     <s:String x:Key="set_time">Ajustar _fecha y hora</s:String>
 

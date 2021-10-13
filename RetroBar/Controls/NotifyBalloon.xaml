@@ -15,7 +15,6 @@
                     <Button Content="&#x72;"
                             Click="Button_Click"
                             Style="{DynamicResource NotifyBalloonCloseButton}"
-                            ToolTip="{DynamicResource close_tip}"
                             DockPanel.Dock="Right" />
                     <TextBlock Text="{Binding Title}"
                                Style="{DynamicResource NotifyBalloonTitle}" />

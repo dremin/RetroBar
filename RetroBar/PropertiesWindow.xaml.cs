@@ -164,18 +164,11 @@ namespace RetroBar
             }
         }
 
-        private int prevChangeEdgeIndex;
-
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboEdgeSelect.SelectedItem == null)
             {
-                cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[prevChangeEdgeIndex];
-                cboEdgeSelect.SelectedIndex = prevChangeEdgeIndex;
-            }
-            else if (cboEdgeSelect.SelectedIndex > -1)
-            {
-                prevChangeEdgeIndex = cboEdgeSelect.SelectedIndex;
+                cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[Settings.Instance.Edge];
             }
         }
     }
