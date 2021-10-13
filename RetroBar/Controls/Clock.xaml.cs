@@ -27,7 +27,8 @@ namespace RetroBar.Controls
             set { SetValue(ClockTipProperty, value); }
         }
 
-        private DispatcherTimer clock;
+        private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
+        private readonly DispatcherTimer singleClick = new DispatcherTimer(DispatcherPriority.Input);
 
         public Clock()
         {
@@ -52,18 +53,20 @@ namespace RetroBar.Controls
         private void StartClock()
         {
             SetTime();
-            clock = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 500), DispatcherPriority.Background, Clock_Tick,
-                Dispatcher);
+
+            clock.Interval = TimeSpan.FromMilliseconds(500);
+            clock.Tick += Clock_Tick;
+            clock.Start();
+
+            singleClick.Interval = TimeSpan.FromMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime);
+            singleClick.Tick += SingleClick_Tick;
+
             ClockTextBlock.Visibility = Visibility.Visible;
         }
 
         private void StopClock()
         {
-            if (clock != null)
-            {
-                clock.Stop();
-                clock = null;
-            }
+            clock.Stop();
 
             ClockTextBlock.Visibility = Visibility.Collapsed;
         }
@@ -86,6 +89,15 @@ namespace RetroBar.Controls
         private void Clock_Tick(object sender, EventArgs args)
         {
             SetTime();
+        }
+
+        private void SingleClick_Tick(object sender, EventArgs args)
+        {
+            // Windows 11 single-click action
+            // A double-click will cancel the timer so that this doesn't run
+
+            singleClick.Stop();
+            ShellHelper.ShowNotificationCenter();
         }
 
         private void TimeChanged(object sender, EventArgs e)
@@ -111,22 +123,25 @@ namespace RetroBar.Controls
             ShellHelper.StartProcess("timedate.cpl");
         }
 
+        private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (EnvironmentHelper.IsWindows11OrBetter)
+            {
+                singleClick.Start();
+            }
+        }
+
         private void Clock_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            singleClick.Stop();
             OpenDateTimeCpl();
+
+            e.Handled = true;
         }
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             OpenDateTimeCpl();
-        }
-
-        private void Clock_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (EnvironmentHelper.IsWindows11OrBetter)
-            {
-                ShellHelper.ShowNotificationCenter();
-            }
         }
     }
 }
