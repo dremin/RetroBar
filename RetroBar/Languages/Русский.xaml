@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Свойства RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Параметры панели задач</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/ru/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/ru/properties_noclock.png" />
+    <s:String x:Key="autostart">Запускать при при _входе в систему</s:String>
+    <s:String x:Key="language_text">_Язык:</s:String>
+    <s:String x:Key="language_tip">Выберите язык, который хотите использовать.</s:String>
+    <s:String x:Key="theme_text">_Тема оформления:</s:String>
+    <s:String x:Key="theme_tip">Устанавливайте темы оформления в папку Themes.</s:String>
+    <s:String x:Key="location_text">Рас_положение:</s:String>
+    <s:String x:Key="location_tip">Изменение положения панели задач на экране.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Слева</s:String>
+        <s:String>Вверху</s:String>
+        <s:String>Справа</s:String>
+        <s:String>Внизу</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Пр_именять сглаживание шрифтов</s:String>
+    <s:String x:Key="collapse_tray_icons">Скр_ывать неиспользуемые значки панели уведомлений</s:String>
+    <s:String x:Key="show_clock">Отображать _часы</s:String>
+    <s:String x:Key="show_quick_launch">Отображать панель _быстого запуска</s:String>
+    <s:String x:Key="select_location">_Настроить папку...</s:String>
+    <s:String x:Key="quick_launch_folder">Панель быстого запуска - выберите папку</s:String>
+    <s:String x:Key="ok_dialog">ОК</s:String>
+
+    <s:String x:Key="start_text">Пуск</s:String>
+    <s:String x:Key="start_text_xp">пуск</s:String>
+    <s:String x:Key="start_button_tip_98">Начните работу с нажатия этой кнопки.</s:String>
+    <s:String x:Key="start_button_tip">Начните работу с нажатия этой кнопки</s:String>
+    <s:String x:Key="start_button_tip_vista">Пуск</s:String>
+
+    <s:String x:Key="retrobar_title">Панель задач RetroBar</s:String>
+    <s:String x:Key="toolbars">_Панели инструментов</s:String>
+    <s:String x:Key="quick_launch">_Быстрый запуск</s:String>
+    <s:String x:Key="new_toolbar">Созд_ать панель инструментов...</s:String>
+    <s:String x:Key="show_taskman_2k">Д_испетчер задач...</s:String>
+    <s:String x:Key="show_taskman">Д_испетчер задач</s:String>
+    <s:String x:Key="tray_properties">Сво_йства</s:String>
+    <s:String x:Key="update_available">Доступно _обновление...</s:String>
+    <s:String x:Key="exit_retrobar">В_ыйти из RetroBar</s:String>
+
+    <s:String x:Key="restore">_Восстановить</s:String>
+    <s:String x:Key="move">_Переместить</s:String>
+    <s:String x:Key="size">Разм_ер</s:String>
+    <s:String x:Key="minimize">_Свернуть</s:String>
+    <s:String x:Key="maximize">_Развернуть</s:String>
+    <s:String x:Key="close">_Закрыть</s:String>
+
+    <s:String x:Key="show_hidden">Отображать скрытые значки</s:String>
+    <s:String x:Key="hide">Скрыть</s:String>
+
+    <s:String x:Key="set_time">Настройка _даты/времени</s:String>
+
+    <s:String x:Key="open_folder">&amp;Открыть папку</s:String>
+</ResourceDictionary>
