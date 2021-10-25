@@ -26,8 +26,14 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
 
+    <Style x:Key="DefaultDirection">
+        <Setter Property="Control.FlowDirection"
+                        Value="LeftToRight" />
+    </Style>
+
     <Style TargetType="Image"
-           x:Key="PropertiesImage">
+           x:Key="PropertiesImage"
+           BasedOn="{StaticResource DefaultDirection}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="True">
                 <Setter Property="Source" Value="{DynamicResource properties_95}" />
@@ -161,6 +167,11 @@
 
     <Style TargetType="GroupBox"
            x:Key="Tray">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
         <Setter Property="Template">
@@ -556,7 +567,8 @@
     </Style>
 
     <Style TargetType="Image"
-           x:Key="TaskIcon">
+           x:Key="TaskIcon"
+           BasedOn="{StaticResource DefaultDirection}">
         <Setter Property="Width"
                 Value="16" />
         <Setter Property="Height"
