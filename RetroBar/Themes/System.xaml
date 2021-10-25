@@ -167,11 +167,6 @@
 
     <Style TargetType="GroupBox"
            x:Key="Tray">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Cursor" Value="Hand"/>
-            </Trigger>
-        </Style.Triggers>
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
         <Setter Property="Template">
