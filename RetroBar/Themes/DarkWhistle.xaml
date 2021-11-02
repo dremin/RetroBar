@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="ToolTipBackground" Color="#1b1b1b"/>
     <SolidColorBrush x:Key="ToolTipForeground" Color="#ffffff"/>
+    <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff"/>
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}"/>
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
     <Style TargetType="ToggleButton" x:Key="StartButton">

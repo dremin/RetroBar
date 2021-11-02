@@ -1,10 +1,5 @@
-﻿<UserControl x:Class="RetroBar.Controls.ActionCenter"
-              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             xmlns:local="clr-namespace:RetroBar.Controls"
-             xmlns:converters="clr-namespace:RetroBar.Converters">
-    <Button ToolTip="{Binding Path=DisplayName}"
-            Style="{DynamicResource ToolbarButton}" Click="Button_Click">
-        <Image Style="{DynamicResource ActionIcon}" />
+﻿<UserControl x:Class="RetroBar.Controls.ActionCenter" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:RetroBar.Controls" xmlns:converters="clr-namespace:RetroBar.Converters">
+    <Button ToolTip="{Binding Path=DisplayName}" Style="{DynamicResource ToolbarButton}" Click="Button_Click">
+        <Image Style="{DynamicResource ActionIcon}" Width="16" Height="16"/>
     </Button>
 </UserControl>
