@@ -16,7 +16,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0"
                    Style="{DynamicResource StartIcon}" />
-            <TextBlock Grid.Column="1"
+            <TextBlock Grid.Column="1" Foreground="{DynamicResource ToolTipForeground}"
                        Style="{DynamicResource StartLabel}" />
         </Grid>
     </ToggleButton>

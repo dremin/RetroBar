@@ -129,6 +129,10 @@ namespace RetroBar.Controls
             {
                 singleClick.Start();
             }
+            else
+            {
+                MessageBox.Show("Meh!");
+            }
         }
 
         private void Clock_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

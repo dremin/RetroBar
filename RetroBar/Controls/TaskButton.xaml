@@ -20,6 +20,7 @@
                    Grid.Column="0"
                    Style="{DynamicResource TaskIcon}" />
             <TextBlock Text="{Binding Path=Title}"
+                       Foreground="{DynamicResource ToolTipForeground}"
                        Grid.Column="1"
                        Style="{DynamicResource TaskLabel}" />
         </Grid>

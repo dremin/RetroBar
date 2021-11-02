@@ -4,6 +4,7 @@
              MouseLeftButtonDown="Clock_OnMouseLeftButtonDown"
              MouseDoubleClick="Clock_OnMouseDoubleClick">
     <TextBlock Style="{DynamicResource Clock}"
+               Foreground="{DynamicResource ToolTipForeground}"
                Text="{Binding ClockText}"
                ToolTip="{Binding ClockTip}"
                Name="ClockTextBlock"

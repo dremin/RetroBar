@@ -26,6 +26,9 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
 
+    <BitmapImage x:Key="ActionCenterImage"
+                 UriSource="../Resources/bell.png" />
+
     <Style TargetType="Image"
            x:Key="PropertiesImage">
         <Style.Triggers>
@@ -572,6 +575,14 @@
                 Value="0,0,2,0" />
         <Setter Property="Source"
                 Value="{DynamicResource StartIconImage}" />
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="ActionIcon">
+        <Setter Property="Margin"
+                Value="0,0,2,0" />
+        <Setter Property="Source"
+                Value="{DynamicResource ActionCenterImage}" />
     </Style>
 
     <Style TargetType="Image"

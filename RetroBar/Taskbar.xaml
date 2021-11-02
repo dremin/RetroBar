@@ -52,6 +52,7 @@
                     <controls:NotifyIconList VerticalAlignment="Center"
                                              NotificationArea="{Binding NotificationArea}"></controls:NotifyIconList>
                     <controls:Clock VerticalAlignment="Center"></controls:Clock>
+                <controls:ActionCenter></controls:ActionCenter>
                 </StackPanel>
             </GroupBox>
             <controls:TaskList VerticalAlignment="Top"

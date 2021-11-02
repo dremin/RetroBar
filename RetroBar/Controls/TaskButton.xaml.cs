@@ -10,6 +10,7 @@ using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
 using RetroBar.Converters;
 using RetroBar.Utilities;
+using Windows.UI.Notifications.Management;
 
 namespace RetroBar.Controls
 {
@@ -37,6 +38,9 @@ namespace RetroBar.Controls
 
             multiBinding.Bindings.Add(new Binding { RelativeSource = RelativeSource.Self });
             multiBinding.Bindings.Add(new Binding("State"));
+
+            //UserNotificationListener listener = UserNotificationListener.Current;
+            //listener.RequestAccessAsync().GetResults();
 
             AppButton.SetBinding(StyleProperty, multiBinding);
         }

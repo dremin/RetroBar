@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage x:Key="StartIconImage"
+                 UriSource="../Resources/startwhistle.png" />
+
+    <SolidColorBrush x:Key="ButtonHighlight" Color="#c2c2c2" />
+    <SolidColorBrush x:Key="ButtonLight" Color="#222222" />
+    <SolidColorBrush x:Key="ButtonFace" Color="#7e7e7e" />
+    <SolidColorBrush x:Key="ButtonShadow" Color="#6e6d6d" />
+    <SolidColorBrush x:Key="ButtonDarkShadow" Color="#000000" />
+    <SolidColorBrush x:Key="ButtonFlashingFace" Color="#045c85" />
+
+
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
+
+    
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#1b1b1b" />
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#ffffff" />
+
+    <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}" />
+
+    <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
+</ResourceDictionary>

@@ -45,6 +45,7 @@
     <Resource Include="Resources\properties.png" />
     <Resource Include="Resources\properties_noclock.png" />
     <Resource Include="Resources\start9x.png" />
+    <Resource Include="Resources\startwhistler.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,9 +65,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\*\properties_noclock.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\startwhistler.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\startxpblue.png">

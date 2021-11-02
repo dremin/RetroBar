@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
              Loaded="NotifyIconList_OnLoaded"
-             Unloaded="NotifyIconList_OnUnloaded">
+             Unloaded="NotifyIconList_OnUnloaded" >
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
@@ -34,5 +34,6 @@
                 </ItemContainerTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
     </StackPanel>
 </UserControl>
