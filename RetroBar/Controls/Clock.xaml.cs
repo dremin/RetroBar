@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
+using RetroBar;
 
 namespace RetroBar.Controls
 {
@@ -131,7 +133,11 @@ namespace RetroBar.Controls
             }
             else
             {
-                MessageBox.Show("Meh!");
+                var point = PointToScreen(Mouse.GetPosition(this));
+                var window = new CalendarWindow();
+                window.Left = point.X - window.Width;
+                window.Top = point.Y - window.Height;
+                window.Show();
             }
         }
 
