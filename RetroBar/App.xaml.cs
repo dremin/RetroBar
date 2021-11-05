@@ -6,6 +6,7 @@ using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using Application = System.Windows.Application;
+using System.Collections.Generic;
 
 namespace RetroBar
 {
@@ -46,8 +47,13 @@ namespace RetroBar
 
         private void openTaskbar()
         {
-            _taskbar = new Taskbar(_shellManager, _startMenuMonitor, _updater, AppBarScreen.FromPrimaryScreen(), (AppBarEdge)Settings.Instance.Edge);
-            _taskbar.Show();
+            foreach (var screen in AppBarScreen.FromAllScreens())
+            {
+                _taskbar = new Taskbar(_shellManager, _startMenuMonitor, _updater, screen, (AppBarEdge)Settings.Instance.Edge);
+                _taskbar.Show();
+            }
+
+
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e)
