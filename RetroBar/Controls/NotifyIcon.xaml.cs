@@ -17,6 +17,14 @@ namespace RetroBar.Controls
         private bool isLoaded;
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(NotifyIcon));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
+
         public NotifyIcon()
         {
             InitializeComponent();
@@ -66,6 +74,7 @@ namespace RetroBar.Controls
         private void NotifyIcon_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+            Host?.SetTrayHost();
             TrayIcon?.IconMouseDown(e.ChangedButton, MouseHelper.GetCursorPositionParam(), System.Windows.Forms.SystemInformation.DoubleClickTime);
         }
 

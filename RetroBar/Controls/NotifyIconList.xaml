@@ -30,7 +30,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <ItemContainerTemplate>
-                    <local:NotifyIcon></local:NotifyIcon>
+                    <local:NotifyIcon Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"></local:NotifyIcon>
                 </ItemContainerTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

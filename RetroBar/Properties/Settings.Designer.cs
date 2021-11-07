@@ -130,5 +130,17 @@ namespace RetroBar.Properties {
                 this["Edge"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowMultiMon {
+            get {
+                return ((bool)(this["ShowMultiMon"]));
+            }
+            set {
+                this["ShowMultiMon"] = value;
+            }
+        }
     }
 }
