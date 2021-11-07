@@ -205,7 +205,7 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow.Open(((App)Application.Current).DictionaryManager);
+            PropertiesWindow.Open(((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
         }
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)

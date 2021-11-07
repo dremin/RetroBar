@@ -19,11 +19,17 @@ namespace RetroBar
     {
         private static PropertiesWindow _instance;
 
+        private readonly double _barSize;
         private readonly DictionaryManager _dictionaryManager;
+        private readonly double _dpiScale;
+        private readonly AppBarScreen _screen;
 
-        private PropertiesWindow(DictionaryManager dictionaryManager)
+        private PropertiesWindow(DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
+            _barSize = barSize;
             _dictionaryManager = dictionaryManager;
+            _dpiScale = dpiScale;
+            _screen = screen;
 
             InitializeComponent();
 
@@ -32,11 +38,11 @@ namespace RetroBar
             LoadThemes();
         }
 
-        public static void Open(DictionaryManager dictionaryManager)
+        public static void Open(DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             if (_instance == null)
             {
-                _instance = new PropertiesWindow(dictionaryManager);
+                _instance = new PropertiesWindow(dictionaryManager, screen, dpiScale, barSize);
                 _instance.Show();
             }
             else
@@ -91,17 +97,20 @@ namespace RetroBar
             switch (Settings.Instance.Edge)
             {
                 case (int)AppBarEdge.Left:
+                    Left = (_screen.Bounds.Left / _dpiScale) + _barSize + 10;
+                    Top = (_screen.WorkingArea.Top / _dpiScale) + 10;
+                    break;
                 case (int)AppBarEdge.Top:
-                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
-                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
+                    Left = (_screen.WorkingArea.Left / _dpiScale) + 10;
+                    Top = (_screen.Bounds.Top / _dpiScale) + _barSize + 10;
                     break;
                 case (int)AppBarEdge.Right:
-                    Left = (SystemInformation.WorkingArea.Right / DpiHelper.DpiScale) - Width - 10;
-                    Top = (SystemInformation.WorkingArea.Top / DpiHelper.DpiScale) + 10;
+                    Left = (_screen.Bounds.Right / _dpiScale) - _barSize - Width - 10;
+                    Top = (_screen.WorkingArea.Top / _dpiScale) + 10;
                     break;
                 case (int)AppBarEdge.Bottom:
-                    Left = (SystemInformation.WorkingArea.Left / DpiHelper.DpiScale) + 10;
-                    Top = (SystemInformation.WorkingArea.Bottom / DpiHelper.DpiScale) - Height - 10;
+                    Left = (_screen.WorkingArea.Left / _dpiScale) + 10;
+                    Top = (_screen.Bounds.Bottom / _dpiScale) - _barSize - Height - 10;
                     break;
             }
         }
