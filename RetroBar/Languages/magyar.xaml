@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar tulajdonságok</s:String>
+    <s:String x:Key="taskbar_options">Tálca Beállítások</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/hu/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/hu/properties_noclock.png" />
+    <s:String x:Key="autostart">Automatikus indítás _bejelentkezéskor</s:String>
+    <s:String x:Key="language_text">_Nyelv:</s:String>
+    <s:String x:Key="language_tip">Vélaszd ki a használni kívánt nyelvet.</s:String>
+    <s:String x:Key="theme_text">_Téma:</s:String>
+    <s:String x:Key="theme_tip">A témákat a témák mappába telepítsd.</s:String>
+    <s:String x:Key="location_text">H_ely:</s:String>
+    <s:String x:Key="location_tip">Change the taskbar location on screen.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Bal oldalt</s:String>
+        <s:String>Fent</s:String>
+        <s:String>Jobb oldalt</s:String>
+        <s:String>Lent</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Betűsimítás engedélyezése</s:String>
+    <s:String x:Key="collapse_tray_icons">Az _értesítési terület ikonjainak összecsukása</s:String>
+    <s:String x:Key="show_clock">Mutasd az _órát</s:String>
+    <s:String x:Key="show_quick_launch">Mutasd a _Gyorsindítást</s:String>
+    <s:String x:Key="select_location">Hely ki_választása...</s:String>
+    <s:String x:Key="quick_launch_folder">Gyorsindítás – Válasszon ki egy mappát</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Kattintson ide a kezdéshez.</s:String>
+    <s:String x:Key="start_button_tip">Kattintson ide a kezdéshez</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Tálca</s:String>
+    <s:String x:Key="toolbars">_Eszköztárak</s:String>
+    <s:String x:Key="quick_launch">_Gyorsindítás</s:String>
+    <s:String x:Key="new_toolbar">_Új eszköztár...</s:String>
+    <s:String x:Key="show_taskman_2k">F_eladatkezelő...</s:String>
+    <s:String x:Key="show_taskman">F_eladatkezelő</s:String>
+    <s:String x:Key="tray_properties">_Tulajdonságok</s:String>
+    <s:String x:Key="update_available">_Frissítés elérhető...</s:String>
+    <s:String x:Key="exit_retrobar">_Kilépés a RetroBarból</s:String>
+
+    <s:String x:Key="restore">_Visszaállítás</s:String>
+    <s:String x:Key="move">_Áthelyezés</s:String>
+    <s:String x:Key="size">_Méret</s:String>
+    <s:String x:Key="minimize">Mi_nimalizálás</s:String>
+    <s:String x:Key="maximize">Ma_ximalizálás</s:String>
+    <s:String x:Key="close">_Bezárás</s:String>
+
+    <s:String x:Key="show_hidden">Rejtett ikonok mutatása</s:String>
+    <s:String x:Key="hide">Elrejtés</s:String>
+
+    <s:String x:Key="set_time">_Dátum/Idő beállítása</s:String>
+
+    <s:String x:Key="open_folder">&amp;Mappa megnyitása</s:String>
+</ResourceDictionary>
