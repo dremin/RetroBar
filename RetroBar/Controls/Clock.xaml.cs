@@ -93,11 +93,18 @@ namespace RetroBar.Controls
 
         private void SingleClick_Tick(object sender, EventArgs args)
         {
-            // Windows 11 single-click action
+            // Windows 10-11 single-click action
             // A double-click will cancel the timer so that this doesn't run
 
             singleClick.Stop();
-            ShellHelper.ShowNotificationCenter();
+            if (EnvironmentHelper.IsWindows11OrBetter)
+            {
+                ShellHelper.ShowNotificationCenter();
+            }
+            else
+            {
+                ShellHelper.ShowActionCenter();
+            }
         }
 
         private void TimeChanged(object sender, EventArgs e)
@@ -125,7 +132,7 @@ namespace RetroBar.Controls
 
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (EnvironmentHelper.IsWindows11OrBetter)
+            if (EnvironmentHelper.IsWindows10OrBetter)
             {
                 singleClick.Start();
             }
