@@ -34,6 +34,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - French (français)
   - Portuguese (português)
   - Simplified Chinese (简体中文)
+- On Win10 or later - Ability to open the action center
 - [WIP] Calendar
   - [WIP] Themed support  
   - On Win10 or later - Ability to read appointments 
