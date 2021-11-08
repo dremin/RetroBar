@@ -45,10 +45,12 @@ namespace RetroBar
             opts.FetchProperties.Add(AppointmentProperties.AllDay);
 
             var filterOffset = offset ?? DateTimeOffset.Now;
+            var endOfDay = new TimeSpan((24 - filterOffset.Hour) - 1, (60 - filterOffset.Minute) - 1, (60 - filterOffset.Second) - 1);
+            var meetings = await appointmentStore.FindAppointmentsAsync(filterOffset, endOfDay, opts);
 
-            var meetings = await appointmentStore.FindAppointmentsAsync(filterOffset, new TimeSpan(1, 0, 0, -1), opts);
             AppointmentList.DataContext = meetings;
             var bind = new Binding();
+
             AppointmentList.SetBinding(ItemsControl.ItemsSourceProperty, bind);
         }
 
@@ -67,7 +69,7 @@ namespace RetroBar
         private async void AppointmentCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             var calendar = (Calendar)sender;
-            if(calendar.SelectedDate.HasValue)
+            if (calendar.SelectedDate.HasValue)
             {
                 DateTimeOffset date = new DateTimeOffset(calendar.SelectedDate.Value.ToUniversalTime());
                 await GetCalendarItems(date);
