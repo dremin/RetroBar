@@ -36,7 +36,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Simplified Chinese (简体中文)
 - [WIP] Calendar
   - [WIP] Themed support  
-  - >= Win10 - Ability to read appointments 
+  - On Win10 or later - Ability to read appointments 
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.
