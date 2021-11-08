@@ -1,1 +1,36 @@
-<Window x:Class="RetroBar.CalendarWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Settings="clr-namespace:RetroBar.Utilities" Width="250" Height="250" WindowStyle="None" ShowInTaskbar="False" Background="{DynamicResource ButtonFace}" ResizeMode="NoResize" Topmost="True"><StackPanel Orientation="Vertical"><Viewbox Height="170" Stretch="Uniform"><Calendar></Calendar></Viewbox><ScrollViewer Height="80"><Label Foreground="{DynamicResource ButtonForeground}">No Calendar Items To Display</Label></ScrollViewer></StackPanel></Window>
+<Window 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:Settings="clr-namespace:RetroBar.Utilities" 
+    xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" 
+    x:Class="RetroBar.CalendarWindow" 
+    Width="250" Height="400" WindowStyle="None" ShowInTaskbar="False" 
+    Background="{DynamicResource ButtonFace}" ResizeMode="NoResize" Topmost="True"
+    Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="AppointmentTemplate">
+            <StackPanel Orientation="Vertical">
+                <StackPanel.ToolTip>
+                    <ToolTip Background="{DynamicResource ToolTipBackground}" Foreground="{DynamicResource ToolTipForeGround}">
+                        <Label Content="{Binding Subject}" Foreground="{DynamicResource ToolTipForeGround}"/>
+                    </ToolTip>
+                </StackPanel.ToolTip>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding StartTime, ConverterCulture=en-GB, StringFormat=d}" />
+                    <Label Content="-"/>
+                    <Label Content="{Binding Duration}"/>
+                </StackPanel>
+                <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Subject}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <Viewbox Height="170" Stretch="Uniform">
+            <Calendar x:Name="AppointmentCalendar" SelectedDatesChanged="AppointmentCalendar_SelectedDatesChanged" />
+        </Viewbox>
+        <ScrollViewer PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Height="230">
+            <ListBox x:Name="AppointmentList" ItemTemplate="{StaticResource AppointmentTemplate}" av:ItemsSource="{av:SampleData ItemCount=5}"/>
+        </ScrollViewer>
+    </StackPanel>
+</Window>
