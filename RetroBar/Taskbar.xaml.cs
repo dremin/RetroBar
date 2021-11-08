@@ -21,15 +21,16 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
-        private bool _isReopening;
         private ShellManager _shellManager;
         private Updater _updater;
+        private WindowManager _windowManager;
 
-        public Taskbar(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge)
+        public Taskbar(WindowManager windowManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
         {
             _shellManager = shellManager;
             _updater = updater;
+            _windowManager = windowManager;
 
             InitializeComponent();
             DataContext = _shellManager;
@@ -41,16 +42,17 @@ namespace RetroBar
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
             SetFontSmoothing();
 
-            _explorerHelper.HideExplorerTaskbar = true;
-
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
-
-            // Layout rounding causes incorrect sizing on non-integer scales
-            if(DpiHelper.DpiScale % 1 != 0) UseLayoutRounding = false;
 
             if (Settings.Instance.ShowQuickLaunch)
             {
                 QuickLaunchToolbar.Visibility = Visibility.Visible;
+            }
+
+            // Hide the start button on secondary display(s)
+            if (!Screen.Primary)
+            {
+                StartButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -58,6 +60,7 @@ namespace RetroBar
         {
             base.OnSourceInitialized(sender, e);
 
+            SetLayoutRounding();
             SetBlur(AllowsTransparency);
         }
         
@@ -78,21 +81,17 @@ namespace RetroBar
             return IntPtr.Zero;
         }
 
-        public override void SetPosition()
+        private void SetLayoutRounding()
         {
-            base.SetPosition();
-
-            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData
+            // Layout rounding causes incorrect sizing on non-integer scales
+            if (DpiScale % 1 != 0)
             {
-                edge = (NativeMethods.ABEdge)AppBarEdge,
-                rc = new NativeMethods.Rect
-                {
-                    Top = (int) (Top * DpiScale),
-                    Left = (int) (Left * DpiScale),
-                    Bottom = (int) ((Top + Height) * DpiScale),
-                    Right = (int) ((Left + Width) * DpiScale)
-                }
-            });
+                UseLayoutRounding = false;
+            }
+            else
+            {
+                UseLayoutRounding = true;
+            }
         }
 
         private void SetFontSmoothing()
@@ -110,11 +109,10 @@ namespace RetroBar
                 bool heightChanged = newHeight != DesiredHeight;
                 bool widthChanged = newWidth != DesiredWidth;
 
-                if (AllowsTransparency != newTransparency)
+                if (AllowsTransparency != newTransparency && Screen.Primary)
                 {
                     // Transparency cannot be changed on an open window.
-                    _isReopening = true;
-                    ((App)Application.Current).ReopenTaskbar();
+                    _windowManager.ReopenTaskbars();
                     return;
                 }
 
@@ -161,7 +159,11 @@ namespace RetroBar
             {
                 double desiredLeft = 0;
 
-                if (AppBarEdge == AppBarEdge.Right)
+                if (AppBarEdge == AppBarEdge.Left)
+                {
+                    desiredLeft = Screen.Bounds.Left / DpiScale;
+                }
+                else if (AppBarEdge == AppBarEdge.Right)
                 {
                     desiredLeft = Screen.Bounds.Right / DpiScale - Width;
                 }
@@ -172,7 +174,11 @@ namespace RetroBar
             {
                 double desiredTop = 0;
 
-                if (AppBarEdge == AppBarEdge.Bottom)
+                if (AppBarEdge == AppBarEdge.Top)
+                {
+                    desiredTop = Screen.Bounds.Top / DpiScale;
+                }
+                else if (AppBarEdge == AppBarEdge.Bottom)
                 {
                     desiredTop = Screen.Bounds.Bottom / DpiScale - Height;
                 }
@@ -199,7 +205,7 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow.Open(((App)Application.Current).DictionaryManager);
+            PropertiesWindow.Open(((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
         }
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -211,10 +217,31 @@ namespace RetroBar
         {
             if (AllowClose)
             {
-                if (!_isReopening) _explorerHelper.HideExplorerTaskbar = false;
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            }
+        }
+
+        protected override void SetScreenProperties(ScreenSetupReason reason)
+        {
+            if (reason == ScreenSetupReason.DpiChange)
+            {
+                // DPI change is per-monitor, update ourselves
+                SetScreenPosition();
+                SetLayoutRounding();
+                return;
+            }
+
+            if (Settings.Instance.ShowMultiMon)
+            {
+                // Re-create RetroBar windows based on new screen setup
+                _windowManager.NotifyDisplayChange(reason);
+            }
+            else
+            {
+                // Update window as necessary
+                base.SetScreenProperties(reason);
             }
         }
 
@@ -224,6 +251,21 @@ namespace RetroBar
             {
                 UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
+        }
+
+        public void SetTrayHost()
+        {
+            _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData
+            {
+                edge = (NativeMethods.ABEdge)AppBarEdge,
+                rc = new NativeMethods.Rect
+                {
+                    Top = (int)(Top * DpiScale),
+                    Left = (int)(Left * DpiScale),
+                    Bottom = (int)((Top + Height) * DpiScale),
+                    Right = (int)((Left + Width) * DpiScale)
+                }
+            });
         }
     }
 }

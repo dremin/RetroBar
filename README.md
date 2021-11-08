@@ -4,7 +4,7 @@
 ![windows 95 theme](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png "RetroBar")
 
 # RetroBar
-![RetroBar](https://github.com/dremin/RetroBar/workflows/RetroBar/badge.svg)
+[![Current release](https://img.shields.io/github/v/release/dremin/RetroBar)](https://github.com/dremin/RetroBar/releases/latest) ![Build status](https://github.com/dremin/RetroBar/workflows/RetroBar/badge.svg)
 
 Pining for simpler times? RetroBar teleports you back in time by replacing your modern Windows taskbar with the classic Windows 95, 98, Me, 2000, or XP style.
 
@@ -22,6 +22,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Start button opens modern start menu
 - Ability to show or hide the clock
 - Display taskbar on any side of the screen (even on Windows 11)
+- Option to display the taskbar, notification area, and clock on multiple monitors
 - XP-style collapsible notification area
 - Custom theme support
 - Several themes included:
@@ -37,10 +38,14 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - French (français)
   - Portuguese (português)
   - Simplified Chinese (简体中文)
+  - Russian (русский)
+
 - On Win10 or later - Ability to open the action center
 - [WIP] Calendar
   - [WIP] Themed support  
   - On Win10 or later - Ability to read appointments 
+
+
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.
