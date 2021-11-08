@@ -1,4 +1,7 @@
-﻿![alt text](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png "RetroBar")
+![dark theme](https://user-images.githubusercontent.com/75317253/140670850-71d6ce04-ed2d-403e-801f-4bebb6929035.png)
+
+
+![windows 95 theme](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png "RetroBar")
 
 # RetroBar
 ![RetroBar](https://github.com/dremin/RetroBar/workflows/RetroBar/badge.svg)
