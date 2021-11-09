@@ -5,6 +5,8 @@ using System.Windows;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using Application = System.Windows.Application;
+using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace RetroBar
 {
@@ -39,6 +41,7 @@ namespace RetroBar
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             DictionaryManager.SetLanguageFromSettings();
             DictionaryManager.SetThemeFromSettings();
             _windowManager = new WindowManager(_shellManager, _startMenuMonitor, _updater);
