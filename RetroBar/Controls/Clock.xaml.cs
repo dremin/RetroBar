@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using Microsoft.Win32;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -40,13 +42,15 @@ namespace RetroBar.Controls
 
         private void Initialize()
         {
+            SetCurrentCulture();
             if (Settings.Instance.ShowClock)
             {
                 StartClock();
             }
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
-            Microsoft.Win32.SystemEvents.TimeChanged += TimeChanged;
+            SystemEvents.TimeChanged += TimeChanged;
+            SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
             Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
         }
 
@@ -112,9 +116,35 @@ namespace RetroBar.Controls
             TimeZoneInfo.ClearCachedData();
         }
 
+        private void SetCurrentCulture()
+        {
+            try
+            {
+                RegistryKey iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", true);
+                var iCI = (CultureInfo)CultureInfo.GetCultureInfo((string)iKey.GetValue("LocaleName")).Clone();
+                iCI.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
+                iCI.DateTimeFormat.LongDatePattern = (string)iKey.GetValue("sLongDate");
+                CultureInfo.CurrentCulture = iCI;
+            }
+            catch (Exception exception)
+            {
+                ManagedShell.Common.Logging.ShellLogger.Error
+                    ($"Clock: Unable to set the current culture: {exception.Message}");
+            }
+        }
+
+        private void UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            if (e.Category == UserPreferenceCategory.Locale)
+            {
+                SetCurrentCulture();
+            }
+        }
+
         private void Dispatcher_ShutdownStarted(object sender, EventArgs e)
         {
-            Microsoft.Win32.SystemEvents.TimeChanged -= TimeChanged;
+            SystemEvents.TimeChanged -= TimeChanged;
+            SystemEvents.UserPreferenceChanged -= UserPreferenceChanged;
         }
 
         private void SetTime()
