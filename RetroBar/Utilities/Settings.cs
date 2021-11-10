@@ -136,6 +136,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool ShowMultiMon
+        {
+            get
+            {
+                return settings.ShowMultiMon;
+            }
+            set
+            {
+                if (settings.ShowMultiMon != value)
+                {
+                    settings.ShowMultiMon = value;
+                }
+            }
+        }
+
         public bool ShowQuickLaunch
         {
             get

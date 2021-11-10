@@ -22,7 +22,8 @@
                       Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="NotifyIcons"
                       Focusable="False"
-                      HorizontalAlignment="Center">
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"></WrapPanel>
@@ -30,7 +31,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <ItemContainerTemplate>
-                    <local:NotifyIcon></local:NotifyIcon>
+                    <local:NotifyIcon Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"></local:NotifyIcon>
                 </ItemContainerTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

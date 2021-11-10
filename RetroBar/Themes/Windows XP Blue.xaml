@@ -1118,6 +1118,8 @@
                 Value="{DynamicResource TrayToggleBackground}" />
         <Setter Property="Margin"
                 Value="-20,1,3,0" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">

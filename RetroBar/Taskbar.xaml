@@ -50,8 +50,7 @@
                                  Path="Orientation"
                                  RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
-                    <controls:NotifyIconList VerticalAlignment="Center"
-                                             NotificationArea="{Binding NotificationArea}"></controls:NotifyIconList>
+                    <controls:NotifyIconList NotificationArea="{Binding NotificationArea}"></controls:NotifyIconList>
                     <controls:Clock VerticalAlignment="Center"></controls:Clock>
                 </StackPanel>
             </GroupBox>
