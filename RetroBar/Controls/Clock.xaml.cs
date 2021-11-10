@@ -120,7 +120,7 @@ namespace RetroBar.Controls
         {
             try
             {
-                RegistryKey iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", true);
+                RegistryKey iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", false);
                 var iCI = (CultureInfo)CultureInfo.GetCultureInfo((string)iKey.GetValue("LocaleName")).Clone();
                 iCI.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
                 iCI.DateTimeFormat.LongDatePattern = (string)iKey.GetValue("sLongDate");
