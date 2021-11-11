@@ -4,9 +4,7 @@
 
     <s:String x:Key="retrobar_properties">Tinh chỉnh RetroBar</s:String>
     <s:String x:Key="taskbar_options">Tùy chọn thanh tác vụ</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/properties_noclock.png" />
-    <s:String x:Key="autostart">Tự động khởi động khi đăng nhập(_L)</s:String>
+    <s:String x:Key="autostart">Tự động khởi động khi đăng nhập</s:String>
     <s:String x:Key="language_text">Ngôn ngữ:</s:String>
     <s:String x:Key="language_tip">Chọn ngôn ngữ để bắt đầu sử dụng.</s:String>
     <s:String x:Key="theme_text">Chủ đề:</s:String>
