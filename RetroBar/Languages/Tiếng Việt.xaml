@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Tinh chỉnh RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Tùy chọn thanh tác vụ</s:String>
+    <s:String x:Key="autostart">Tự động khởi động khi đăng nhập</s:String>
+    <s:String x:Key="language_text">Ngôn ngữ:</s:String>
+    <s:String x:Key="language_tip">Chọn ngôn ngữ để bắt đầu sử dụng.</s:String>
+    <s:String x:Key="theme_text">Chủ đề:</s:String>
+    <s:String x:Key="theme_tip">Cài đặt chủ đề trong thử mục Themes.</s:String>
+    <s:String x:Key="location_text">Vị trí:</s:String>
+    <s:String x:Key="location_tip">Thay đổi vị trí của thanh tác vụ trên màn hình.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Trái</s:String>
+        <s:String>Đầu</s:String>
+        <s:String>Phải</s:String>
+        <s:String>Đáy</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
+    <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở thanh thông báo</s:String>
+    <s:String x:Key="show_clock">Hiện thị _đồng hồ</s:String>
+    <s:String x:Key="show_multi_mon">Hiện ở tất cả màn hình</s:String>
+    <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
+    <s:String x:Key="select_location">Chọn vị trí...</s:String>
+    <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="start_text">Bắt đầu</s:String>
+    <s:String x:Key="start_text_xp">bắt đầu</s:String>
+    <s:String x:Key="start_button_tip_98">Nhấn vào đây để bắt đầu.</s:String>
+    <s:String x:Key="start_button_tip">Nhấn vào đây để bắt đầu</s:String>
+    <s:String x:Key="start_button_tip_vista">Bắt đầu</s:String>
+
+    <s:String x:Key="retrobar_title">Thanh tác vụ RetroBar</s:String>
+    <s:String x:Key="toolbars">_Thanh công cụ</s:String>
+    <s:String x:Key="quick_launch">_Truy cập nhanh</s:String>
+    <s:String x:Key="new_toolbar">_Tạo thanh công cụ...</s:String>
+    <s:String x:Key="show_taskman_2k">Trình quản lý tác vụ...</s:String>
+    <s:String x:Key="show_taskman">Trình quản lý tác vụ</s:String>
+    <s:String x:Key="tray_properties">Tinh chỉnh</s:String>
+    <s:String x:Key="update_available">_Có bản cập nhật mới...</s:String>
+    <s:String x:Key="exit_retrobar">_Thoát RetroBar</s:String>
+
+    <s:String x:Key="restore">_Khôi phục</s:String>
+    <s:String x:Key="move">_Di chuyển</s:String>
+    <s:String x:Key="size">_Kích thước</s:String>
+    <s:String x:Key="minimize">Thu nhỏ</s:String>
+    <s:String x:Key="maximize">Mở rộng</s:String>
+    <s:String x:Key="close">_Đóng</s:String>
+
+    <s:String x:Key="show_hidden">Hiện thị cái biểu tưởng ẩn</s:String>
+    <s:String x:Key="hide">Ẩn</s:String>
+
+    <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
+
+    <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
+</ResourceDictionary>
