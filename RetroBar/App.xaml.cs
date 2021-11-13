@@ -41,7 +41,11 @@ namespace RetroBar
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+            if (Settings.Instance.UseSoftwareRendering)
+            {
+                RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+            }
+
             DictionaryManager.SetLanguageFromSettings();
             DictionaryManager.SetThemeFromSettings();
             _windowManager = new WindowManager(_shellManager, _startMenuMonitor, _updater);

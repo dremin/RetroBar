@@ -211,6 +211,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool UseSoftwareRendering
+        {
+            get
+            {
+                return settings.UseSoftwareRendering;
+            }
+            set
+            {
+                if (settings.UseSoftwareRendering != value)
+                {
+                    settings.UseSoftwareRendering = value;
+                }
+            }
+        }
+
         public int Edge
         {
             get
