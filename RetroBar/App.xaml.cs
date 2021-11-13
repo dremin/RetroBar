@@ -31,6 +31,23 @@ namespace RetroBar
             _startMenuMonitor = new StartMenuMonitor(new AppVisibilityHelper(false));
             DictionaryManager = new DictionaryManager();
             _updater = new Updater();
+
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "UseSoftwareRendering")
+            {
+                if (Settings.Instance.UseSoftwareRendering)
+                {
+                    RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+                }
+                else
+                {
+                    RenderOptions.ProcessRenderMode = RenderMode.Default;
+                }
+            }
         }
 
         public void ExitGracefully()
@@ -72,6 +89,8 @@ namespace RetroBar
 
         private void ExitApp()
         {
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+
             _windowManager.Dispose();
             DictionaryManager.Dispose();
             _shellManager.Dispose();

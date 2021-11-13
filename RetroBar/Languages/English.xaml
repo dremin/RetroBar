@@ -26,7 +26,7 @@
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
-    <s:String x:Key="use_software_rendering">_Use software rendering (requires restart)</s:String>
+    <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
