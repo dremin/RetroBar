@@ -123,6 +123,10 @@
                                 Content="{DynamicResource select_location}"
                                 Click="SetQuickLaunchLocation_OnClick" />
                     </DockPanel>
+                    <CheckBox x:Name="cbUseSoftwareRendering"
+                              IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{DynamicResource use_software_rendering}" />
+                    </CheckBox>
                 </StackPanel>
             </TabItem>
         </TabControl>
