@@ -174,7 +174,7 @@ namespace RetroBar.Controls
                     return;
                 }
 
-                ShellHelper.StartProcess(Window.WinFileName);
+                ShellHelper.StartProcess(Window.IsUWP ? "appx:" + Window.AppUserModelID : Window.WinFileName);
             }
         }
 
