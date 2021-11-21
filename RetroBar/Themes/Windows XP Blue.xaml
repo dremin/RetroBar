@@ -237,7 +237,10 @@
                       BlurRadius="4"
                       Opacity="1" />
 
+    <SolidColorBrush x:Key="ItemButtonForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
@@ -474,7 +477,7 @@
                             <DataTrigger.Setters>
                                 <Setter TargetName="ButtonBorder"
                                         Property="Padding"
-                                        Value="0" />
+                                        Value="1,0,1,0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                         <Trigger Property="IsMouseOver"
@@ -506,6 +509,8 @@
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
                             <Setter TargetName="ButtonTopBorder"
                                     Property="BorderBrush"
                                     Value="{DynamicResource TaskButtonTopBorderPressed}" />
@@ -553,6 +558,8 @@
     <Style TargetType="Button"
            x:Key="TaskButtonActive"
            BasedOn="{StaticResource TaskButton}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonActiveForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -599,7 +606,7 @@
                             <DataTrigger.Setters>
                                 <Setter TargetName="ButtonBorder"
                                         Property="Padding"
-                                        Value="0" />
+                                        Value="1,0,1,0" />
                                 <Setter TargetName="Content"
                                         Property="Margin"
                                         Value="8,6,8,5" />
@@ -695,6 +702,8 @@
                                 <Setter TargetName="Content"
                                         Property="Margin"
                                         Value="9,7,7,4" />
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource ButtonPressedForeground}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
@@ -702,7 +711,7 @@
                             <DataTrigger.Setters>
                                 <Setter TargetName="ButtonBorder"
                                         Property="Padding"
-                                        Value="0" />
+                                        Value="1,0,1,0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                         <MultiDataTrigger>
@@ -716,6 +725,8 @@
                                 <Setter TargetName="Content"
                                         Property="Margin"
                                         Value="9,4,7,2" />
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource ButtonPressedForeground}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
@@ -836,13 +847,13 @@
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
         <Setter Property="Foreground"
-                Value="{DynamicResource ButtonForeground}" />
+                Value="{DynamicResource ItemButtonForeground}" />
         <Setter Property="Margin"
                 Value="0,0,5,-3" />
         <Setter Property="MinWidth"
                 Value="99" />
         <Setter Property="Height"
-                Value="33" />
+                Value="32" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -933,7 +944,7 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="Margin"
-                Value="0,-1,26,0" />
+                Value="0,0,26,0" />
         <Setter Property="Effect"
                 Value="{DynamicResource StartLabelShadow}" />
     </Style>
@@ -1129,7 +1140,7 @@
                                 Padding="5,4,6,4"
                                 HorizontalAlignment="Center"
                                 x:Name="ButtonBorder">
-                            <Path Fill="{DynamicResource ButtonForeground}"
+                            <Path Fill="{DynamicResource ItemButtonForeground}"
                                   Data="M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z"
                                   RenderOptions.EdgeMode="Aliased"
                                   Effect="{DynamicResource TrayToggleArrowShadow}"
