@@ -40,6 +40,8 @@ namespace RetroBar
             DesiredWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
 
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
+
+            FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
             SetFontSmoothing();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -149,6 +151,17 @@ namespace RetroBar
             {
                 AppBarEdge = (AppBarEdge)Settings.Instance.Edge;
                 SetScreenPosition();
+            }
+            else if (e.PropertyName == "Language")
+            {
+                FlowDirection newFlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
+
+                if (FlowDirection != newFlowDirection && Screen.Primary)
+                {
+                    // It is necessary to reopen the taskbars to refresh menu sizes.
+                    _windowManager.ReopenTaskbars();
+                    return;
+                }
             }
         }
 

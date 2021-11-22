@@ -9,7 +9,6 @@
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
         AllowDrop="True"
-        FlowDirection="{DynamicResource flow_direction}"
         Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>
         <ResourceDictionary>

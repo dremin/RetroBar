@@ -78,8 +78,6 @@
     <Style TargetType="ContextMenu"
            x:Key="{x:Type ContextMenu}"
            BasedOn="{StaticResource GlobalFonts}">
-        <EventSetter Event="Loaded"
-                     Handler="ContextMenu_Loaded" />
     </Style>
 
     <Style TargetType="Window"
