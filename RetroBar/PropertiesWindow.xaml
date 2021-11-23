@@ -7,6 +7,7 @@
         Width="Auto"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
+        FlowDirection="{DynamicResource flow_direction}"
         Style="{DynamicResource PropertiesWindow}"
         Closing="PropertiesWindow_OnClosing"
         Loaded="PropertiesWindow_OnLoaded"
@@ -34,6 +35,9 @@
                         Value="200" />
             </Style>
             <Style TargetType="{x:Type CheckBox}">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Path}" BasedOn="{StaticResource DefaultDirection}" />
+                </Style.Resources>
                 <Setter Property="Margin"
                         Value="0,5,5,5" />
                 <Setter Property="Padding"
