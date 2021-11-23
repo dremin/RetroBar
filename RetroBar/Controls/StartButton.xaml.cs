@@ -16,7 +16,14 @@ namespace RetroBar.Controls
         private bool allowOpenStart;
         private readonly DispatcherTimer pendingOpenTimer;
 
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(StartButton));
         public static DependencyProperty StartMenuMonitorProperty = DependencyProperty.Register("StartMenuMonitor", typeof(StartMenuMonitor), typeof(StartButton));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
 
         public StartMenuMonitor StartMenuMonitor
         {
@@ -51,6 +58,7 @@ namespace RetroBar.Controls
         {
             if (allowOpenStart)
             {
+                Host?.SetTrayHost();
                 pendingOpenTimer.Start();
                 ShellHelper.ShowStartMenu();
                 return;
