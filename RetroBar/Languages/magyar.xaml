@@ -4,6 +4,8 @@
 
     <s:String x:Key="retrobar_properties">RetroBar tulajdonságok</s:String>
     <s:String x:Key="taskbar_options">Tálca Beállítások</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/hu/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/hu/properties_noclock.png" />
     <s:String x:Key="autostart">Automatikus indítás _bejelentkezéskor</s:String>
     <s:String x:Key="language_text">_Nyelv:</s:String>
     <s:String x:Key="language_tip">Vélaszd ki a használni kívánt nyelvet.</s:String>
@@ -20,13 +22,14 @@
     <s:String x:Key="allow_font_smoothing">_Betűsimítás engedélyezése</s:String>
     <s:String x:Key="collapse_tray_icons">Az _értesítési terület ikonjainak összecsukása</s:String>
     <s:String x:Key="show_clock">Mutasd az _órát</s:String>
+    <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
     <s:String x:Key="show_quick_launch">Mutasd a _Gyorsindítást</s:String>
     <s:String x:Key="select_location">Hely ki_választása...</s:String>
     <s:String x:Key="quick_launch_folder">Gyorsindítás – Válasszon ki egy mappát</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
-    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
     <s:String x:Key="start_button_tip_98">Kattintson ide a kezdéshez.</s:String>
     <s:String x:Key="start_button_tip">Kattintson ide a kezdéshez</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
