@@ -40,6 +40,8 @@ namespace RetroBar
             DesiredWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
 
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
+
+            FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
             SetFontSmoothing();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -62,6 +64,7 @@ namespace RetroBar
 
             SetLayoutRounding();
             SetBlur(AllowsTransparency);
+            UpdateTrayPosition();
         }
         
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -97,6 +100,14 @@ namespace RetroBar
         private void SetFontSmoothing()
         {
             VisualTextRenderingMode = Settings.Instance.AllowFontSmoothing ? TextRenderingMode.Auto : TextRenderingMode.Aliased;
+        }
+
+        private void UpdateTrayPosition()
+        {
+            if (Screen.Primary)
+            {
+                SetTrayHost();
+            }
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -150,6 +161,17 @@ namespace RetroBar
                 AppBarEdge = (AppBarEdge)Settings.Instance.Edge;
                 SetScreenPosition();
             }
+            else if (e.PropertyName == "Language")
+            {
+                FlowDirection newFlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
+
+                if (FlowDirection != newFlowDirection && Screen.Primary)
+                {
+                    // It is necessary to reopen the taskbars to refresh menu sizes.
+                    _windowManager.ReopenTaskbars();
+                    return;
+                }
+            }
         }
 
         private void Taskbar_OnLocationChanged(object? sender, EventArgs e)
@@ -185,6 +207,13 @@ namespace RetroBar
 
                 if (Top != desiredTop) Top = desiredTop;
             }
+
+            UpdateTrayPosition();
+        }
+
+        private void Taskbar_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateTrayPosition();
         }
 
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)

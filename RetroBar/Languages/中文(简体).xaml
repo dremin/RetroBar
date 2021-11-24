@@ -26,6 +26,7 @@
     <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
     <s:String x:Key="select_location">选择位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
+    <s:String x:Key="use_software_rendering">使用软件渲染(_U)</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 
     <s:String x:Key="start_text">开始</s:String>

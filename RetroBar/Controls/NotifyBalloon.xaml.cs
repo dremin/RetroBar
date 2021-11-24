@@ -50,20 +50,46 @@ namespace RetroBar.Controls
             switch ((AppBarEdge)Settings.Instance.Edge)
             {
                 case AppBarEdge.Top:
-                    placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + (offset.X * dpiScale.DpiScaleX),
-                        targetSize.Height + (offset.Y * dpiScale.DpiScaleY)),
-                        PopupPrimaryAxis.Horizontal);
+                    if (FlowDirection == FlowDirection.LeftToRight)
+                    {
+                        placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + (offset.X * dpiScale.DpiScaleX),
+                            targetSize.Height + (offset.Y * dpiScale.DpiScaleY)),
+                            PopupPrimaryAxis.Horizontal);
+                    }
+                    else
+                    {
+                        placement = new CustomPopupPlacement(new Point(-1 * offset.X * dpiScale.DpiScaleX,
+                            targetSize.Height + (offset.Y * dpiScale.DpiScaleY)),
+                            PopupPrimaryAxis.Horizontal);
+                    }
                     break;
+
                 case AppBarEdge.Left:
-                    placement = new CustomPopupPlacement(new Point(offset.X * dpiScale.DpiScaleX,
+                    placement = new CustomPopupPlacement(new Point(offset.X * dpiScale.DpiScaleX - (FlowDirection == FlowDirection.LeftToRight ? 0 : targetSize.Width),
                         (popupSize.Height * -1) + (offset.Y * dpiScale.DpiScaleY)),
                         PopupPrimaryAxis.Horizontal);
                     break;
-                default:
-                    // bottom or right taskbar
+
+                case AppBarEdge.Right:
                     placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + (offset.X * dpiScale.DpiScaleX),
                         (popupSize.Height * -1) + (offset.Y * dpiScale.DpiScaleY)),
                         PopupPrimaryAxis.Horizontal);
+                    break;
+
+                default:
+                    // bottom taskbar
+                    if (FlowDirection == FlowDirection.LeftToRight)
+                    {
+                        placement = new CustomPopupPlacement(new Point((popupSize.Width * -1) + (offset.X * dpiScale.DpiScaleX),
+                            (popupSize.Height * -1) + (offset.Y * dpiScale.DpiScaleY)),
+                            PopupPrimaryAxis.Horizontal);
+                    }
+                    else
+                    {
+                        placement = new CustomPopupPlacement(new Point(-1 * offset.X * dpiScale.DpiScaleX,
+                            (popupSize.Height * -1) + (offset.Y * dpiScale.DpiScaleY)),
+                            PopupPrimaryAxis.Horizontal);
+                    }
                     break;
             }
 

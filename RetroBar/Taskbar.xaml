@@ -8,6 +8,7 @@
         Title="{DynamicResource retrobar_title}"
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
+        SizeChanged="Taskbar_OnSizeChanged"
         AllowDrop="True"
         Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>
@@ -18,7 +19,8 @@
     </Window.Resources>
     <ContentControl Style="{DynamicResource Taskbar}">
         <DockPanel>
-            <controls:StartButton x:Name="StartButton">
+            <controls:StartButton x:Name="StartButton"
+                                  Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="leading"

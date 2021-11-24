@@ -938,9 +938,11 @@
         <Setter Property="Text"
                 Value="{DynamicResource start_text_xp}" />
         <Setter Property="FontFamily"
-                Value="Franklin Gothic Medium Italic" />
+                Value="{DynamicResource start_text_xp_font_family}" />
         <Setter Property="FontSize"
                 Value="19" />
+        <Setter Property="FontStyle"
+                Value="Italic" />
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="Margin"
