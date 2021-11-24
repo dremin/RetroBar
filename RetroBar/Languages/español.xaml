@@ -22,9 +22,11 @@
     <s:String x:Key="allow_font_smoothing">_Permitir suavizado de fuentes</s:String>
     <s:String x:Key="collapse_tray_icons">_Contraer los iconos del área de notificación</s:String>
     <s:String x:Key="show_clock">Mostrar el _reloj</s:String>
+    <s:String x:Key="show_multi_mon">Mostrar en _varias pantallas</s:String>
     <s:String x:Key="show_quick_launch">Mostrar inicio rápi_do</s:String>
     <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
+    <s:String x:Key="use_software_rendering">Usar procesamiento por _software</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="start_text">Inicio</s:String>
