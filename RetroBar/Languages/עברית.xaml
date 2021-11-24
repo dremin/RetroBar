@@ -22,13 +22,15 @@
     <s:String x:Key="allow_font_smoothing">_אפשר החלקת גופנים</s:String>
     <s:String x:Key="collapse_tray_icons">סמלי אזור הודעה מכווץ</s:String>
     <s:String x:Key="show_clock">הצג את שעון המערכת</s:String>
+    <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
     <s:String x:Key="show_quick_launch">הצג הפעלה מהירה</s:String>
     <s:String x:Key="select_location">_בחירת מיקום...</s:String>
     <s:String x:Key="quick_launch_folder">הפעלה מהירה - בחירת תיקיה</s:String>
+    <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
     <s:String x:Key="ok_dialog">אישור</s:String>
 
     <s:String x:Key="start_text">התחל</s:String>
-    <s:String x:Key="start_text_xp">  התחל </s:String>
+    <s:String x:Key="start_text_xp"> התחל</s:String>
     <s:String x:Key="start_button_tip_98">לחץ כאן כדי להתחיל</s:String>
     <s:String x:Key="start_button_tip">לחץ כאן כדי להתחיל</s:String>
     <s:String x:Key="start_button_tip_vista">התחל</s:String>
