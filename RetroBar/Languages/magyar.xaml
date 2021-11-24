@@ -8,9 +8,9 @@
     <s:String x:Key="language_text">_Nyelv:</s:String>
     <s:String x:Key="language_tip">Vélaszd ki a használni kívánt nyelvet.</s:String>
     <s:String x:Key="theme_text">_Téma:</s:String>
-    <s:String x:Key="theme_tip">A témákat a témák mappába telepítsd.</s:String>
+    <s:String x:Key="theme_tip">A témákat a Themes mappába telepítsd.</s:String>
     <s:String x:Key="location_text">H_ely:</s:String>
-    <s:String x:Key="location_tip">Change the taskbar location on screen.</s:String>
+    <s:String x:Key="location_tip">Tálca elhelyezkedésének megváltoztatása a képernyőn.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Bal oldalt</s:String>
         <s:String>Fent</s:String>
@@ -20,13 +20,15 @@
     <s:String x:Key="allow_font_smoothing">_Betűsimítás engedélyezése</s:String>
     <s:String x:Key="collapse_tray_icons">Az _értesítési terület ikonjainak összecsukása</s:String>
     <s:String x:Key="show_clock">Mutasd az _órát</s:String>
+    <s:String x:Key="show_multi_mon">Megjelenítés _több kijelzőn</s:String>
     <s:String x:Key="show_quick_launch">Mutasd a _Gyorsindítást</s:String>
     <s:String x:Key="select_location">Hely ki_választása...</s:String>
     <s:String x:Key="quick_launch_folder">Gyorsindítás – Válasszon ki egy mappát</s:String>
+    <s:String x:Key="use_software_rendering">Használjon _szoftveres megjelenítést</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
-    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
     <s:String x:Key="start_button_tip_98">Kattintson ide a kezdéshez.</s:String>
     <s:String x:Key="start_button_tip">Kattintson ide a kezdéshez</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
