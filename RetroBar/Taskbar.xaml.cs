@@ -330,6 +330,11 @@ namespace RetroBar
             propWindow.OpenCustomizeNotifications();
         }
 
+        private void SetTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            Clock.OpenDateTimeCpl();
+        }
+
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ShellHelper.StartTaskManager();

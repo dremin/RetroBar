@@ -179,6 +179,11 @@ namespace RetroBar.Controls
             Now = DateTime.Now;
         }
 
+        public static void OpenDateTimeCpl()
+        {
+            ShellHelper.StartProcess("timedate.cpl");
+        }
+
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (EnvironmentHelper.IsWindows10OrBetter)
