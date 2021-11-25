@@ -150,11 +150,11 @@ namespace RetroBar
                 {
                     if (rKeyValueNames.Contains("RetroBar"))
                     {
-                        AutoStartCheckBox.IsChecked = true;
+                        cbAutoStart.IsChecked = true;
                     }
                     else
                     {
-                        AutoStartCheckBox.IsChecked = false;
+                        cbAutoStart.IsChecked = false;
                     }
                 }
             }
@@ -267,7 +267,7 @@ namespace RetroBar
             UpdateWindowPosition();
         }
 
-        private void AutoStartCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        private void CbAutoStart_OnChecked(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -308,7 +308,7 @@ namespace RetroBar
             cboClockAction.ItemsSource = availableClockActions;
         }
 
-        private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboEdgeSelect.SelectedItem == null)
             {
@@ -316,7 +316,7 @@ namespace RetroBar
             }
         }
 
-        private void cboMultiMonMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboMultiMonMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboMultiMonMode.SelectedItem == null)
             {
@@ -324,7 +324,7 @@ namespace RetroBar
             }
         }
 
-        private void cboInvertIconsMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboInvertIconsMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboInvertIconsMode.SelectedItem == null)
             {
@@ -332,7 +332,7 @@ namespace RetroBar
             }
         }
 
-        private void cboMiddleMouseAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboMiddleMouseAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboMiddleMouseAction.SelectedItem == null)
             {
@@ -340,7 +340,7 @@ namespace RetroBar
             }
         }
 
-        private void cboClockAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboClockAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboClockAction.SelectedItem == null)
             {
@@ -348,7 +348,7 @@ namespace RetroBar
             }
         }
 
-        private void cboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboRowCount.SelectedItem == null)
             {

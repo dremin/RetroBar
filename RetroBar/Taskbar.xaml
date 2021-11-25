@@ -20,18 +20,18 @@
             <converters:SettingsToTextFormattingModeConverter x:Key="textFormattingModeConverter" />
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
-
-            <Style TargetType="ContextMenu"
-                   x:Key="{x:Type ContextMenu}"
-                   BasedOn="{StaticResource GlobalFonts}">
-                <Setter Property="TextOptions.TextRenderingMode">
-                    <Setter.Value>
-                        <Binding Source="{x:Static utilities:Settings.Instance}"
-                                 Path="AllowFontSmoothing"
-                                 Converter="{StaticResource textRenderingModeConverter}" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <MenuItem x:Shared="false" x:Key="ToolbarsItem" Header="{DynamicResource toolbars}">
+                <MenuItem Header="{DynamicResource quick_launch}" IsCheckable="true" IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}" />
+                <Separator />
+                <MenuItem Header="{DynamicResource new_toolbar}" x:Name="NewToolbarMenuItem" />
+            </MenuItem>
+            <MenuItem x:Shared="false" x:Key="SetTimeMenuItem" Header="{DynamicResource set_time}" Click="SetTimeMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="CustomizeNotificationsMenuItem" Header="{DynamicResource customize_notifications_menu}" Click="CustomizeNotificationsMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="TaskManagerMenuItem" Style="{DynamicResource TaskManMenuItem}" Click="TaskManagerMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="LockTaskbarMenuItem" Header="{DynamicResource lock_taskbar_menu}" IsCheckable="True" IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}" />
+            <MenuItem x:Shared="false" x:Key="PropertiesMenuItem" Header="{DynamicResource tray_properties}" Click="PropertiesMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="ExitMenuItem" Header="{DynamicResource exit_retrobar}" Click="ExitMenuItem_OnClick" Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
         </ResourceDictionary>
     </Window.Resources>
     <TextOptions.TextFormattingMode>
@@ -84,8 +84,21 @@
                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:ShowDesktopButton>
-            <GroupBox Style="{DynamicResource Tray}"
-                      PreviewMouseRightButtonUp="NotifyArea_PreviewMouseRightButtonUp">
+            <GroupBox Style="{DynamicResource Tray}">
+                <GroupBox.ContextMenu>
+                    <ContextMenu>
+                        <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
+                        <Separator /-->
+                        <StaticResourceExtension ResourceKey="SetTimeMenuItem" />
+                        <StaticResourceExtension ResourceKey="CustomizeNotificationsMenuItem" />
+                        <Separator />
+                        <StaticResourceExtension ResourceKey="TaskManagerMenuItem" />
+                        <Separator />
+                        <StaticResourceExtension ResourceKey="LockTaskbarMenuItem" />
+                        <StaticResourceExtension ResourceKey="PropertiesMenuItem" />
+                        <StaticResourceExtension ResourceKey="ExitMenuItem" />
+                    </ContextMenu>
+                </GroupBox.ContextMenu>
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="trailing"
@@ -99,8 +112,7 @@
                                  RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
                     <controls:NotifyIconList NotificationArea="{Binding NotificationArea}" />
-                    <controls:Clock VerticalAlignment="Center"
-                                    PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
+                    <controls:Clock VerticalAlignment="Center" />
                 </StackPanel>
             </GroupBox>
             <controls:InputLanguage VerticalAlignment="Stretch"
@@ -120,42 +132,18 @@
     <appbar:AppBarWindow.ContextMenu>
         <ContextMenu Opened="ContextMenu_Opened">
             <!-- TODO: Add when desk bands and additional taskbars are supported. -->
-            <!-- MenuItem Header="{DynamicResource toolbars}">
-                <MenuItem Header="{DynamicResource quick_launch}" IsCheckable="true"
-                          IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}" />
-                <Separator />
-                <MenuItem Header="{DynamicResource new_toolbar}" Name="NewToolbarMenuItem" />
-            </MenuItem>
+            <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
             <Separator /-->
-            <MenuItem Header="{DynamicResource set_time}"
-                      Name="DateTimeMenuItem"
-                      Click="DateTimeMenuItem_OnClick"
-                      FontWeight="Bold"
-                      Visibility="Collapsed" />
-            <MenuItem Header="{DynamicResource customize_notifications_menu}"
-                      Name="CustomizeNotificationsMenuItem"
-                      Click="CustomizeNotificationsMenuItem_OnClick" Visibility="Collapsed" />
-            <Separator Name="NotificationAreaSeparator"
-                       Visibility="Collapsed" />
-            <MenuItem Style="{DynamicResource TaskManMenuItem}"
-                      Name="TaskManagerMenuItem"
-                      Click="TaskManagerMenuItem_OnClick" />
+            <StaticResourceExtension ResourceKey="TaskManagerMenuItem" />
             <Separator />
-            <MenuItem Header="{DynamicResource update_available}"
-                      Name="UpdateAvailableMenuItem"
+            <MenuItem x:Name="UpdateAvailableMenuItem"
+                      Header="{DynamicResource update_available}"
                       Click="UpdateAvailableMenuItem_OnClick"
                       FontWeight="Bold"
                       Visibility="Collapsed" />
-            <MenuItem Header="{DynamicResource lock_taskbar_menu}"
-                      Name="LockTaskbarMenuItem"
-                      IsCheckable="True"
-                      IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}"/>
-            <MenuItem Header="{DynamicResource tray_properties}"
-                      Name="PropertiesMenuItem"
-                      Click="PropertiesMenuItem_OnClick" />
-            <MenuItem Header="{DynamicResource exit_retrobar}"
-                      Name="ExitMenuItem"
-                      Click="ExitMenuItem_OnClick" />
+            <StaticResourceExtension ResourceKey="LockTaskbarMenuItem" />
+            <StaticResourceExtension ResourceKey="PropertiesMenuItem" />
+            <StaticResourceExtension ResourceKey="ExitMenuItem" />
         </ContextMenu>
     </appbar:AppBarWindow.ContextMenu>
 </appbar:AppBarWindow>
