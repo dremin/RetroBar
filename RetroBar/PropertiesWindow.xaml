@@ -179,9 +179,9 @@
                                     <AccessText Text="{DynamicResource language_text}"
                                                 ToolTip="{DynamicResource language_tip}" />
                                 </Label>
-                                <ComboBox Name="cboLanguageSelect"
+                                <ComboBox x:Name="cboLanguageSelect"
                                           SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectionChanged="cboLanguageSelect_SelectionChanged" />
+                                          SelectionChanged="CboLanguageSelect_SelectionChanged" />
                             </DockPanel>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
@@ -189,7 +189,7 @@
                                     <AccessText Text="{DynamicResource theme_text}"
                                                 ToolTip="{DynamicResource theme_tip}" />
                                 </Label>
-                                <ComboBox Name="cboThemeSelect"
+                                <ComboBox x:Name="cboThemeSelect"
                                           SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                             <DockPanel>
@@ -198,10 +198,10 @@
                                     <AccessText Text="{DynamicResource location_text}"
                                                 ToolTip="{DynamicResource location_tip}" />
                                 </Label>
-                                <ComboBox Name="cboEdgeSelect"
+                                <ComboBox x:Name="cboEdgeSelect"
                                           ItemsSource="{DynamicResource location_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                          SelectionChanged="cboEdgeSelect_SelectionChanged" />
+                                          SelectionChanged="CboEdgeSelect_SelectionChanged" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
@@ -250,7 +250,7 @@
                                                   DockPanel.Dock="Right">
                                             <StackPanel Orientation="Horizontal">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <ToggleButton Name="NotifyIconToggleButton"
+                                                    <ToggleButton x:Name="NotifyIconToggleButton"
                                                                   Focusable="False"
                                                                   Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}"
                                                                   Style="{DynamicResource TrayToggleButton}"/>
@@ -307,9 +307,9 @@
                             Margin="10">
                     <StackPanel Orientation="Vertical"
                                 Margin="0,0,0,10">
-                        <CheckBox Checked="AutoStartCheckBox_OnChecked"
-                                  Unchecked="AutoStartCheckBox_OnChecked"
-                                  Name="AutoStartCheckBox">
+                        <CheckBox x:Name="cbAutoStart"
+                                  Checked="CbAutoStart_OnChecked"
+                                  Unchecked="CbAutoStart_OnChecked">
                             <Label Content="{DynamicResource autostart}" />
                         </CheckBox>
                         <CheckBox x:Name="cbUseSoftwareRendering"
@@ -329,14 +329,14 @@
                                    Target="{Binding ElementName=cboInvertIconsMode}">
                                 <AccessText Text="{DynamicResource invert_system_icons}" />
                             </Label>
-                            <ComboBox Name="cboInvertIconsMode"
+                            <ComboBox x:Name="cboInvertIconsMode"
                                       ItemsSource="{DynamicResource invert_system_icons_values}"
                                       SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                      SelectionChanged="cboInvertIconsMode_SelectionChanged" />
+                                      SelectionChanged="CboInvertIconsMode_SelectionChanged" />
                         </DockPanel>
                         <Button HorizontalAlignment="Right"
-                                        Content="{DynamicResource customize}"
-                                        Click="CustomizeNotifications_OnClick" />
+                                Content="{DynamicResource customize}"
+                                Click="CustomizeNotifications_OnClick" />
                         <DockPanel>
                             <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboMiddleMouseAction}">
@@ -345,7 +345,7 @@
                             <ComboBox x:Name="cboMiddleMouseAction"
                                       ItemsSource="{DynamicResource middle_mouse_task_action_values}"
                                       SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskMiddleClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                      SelectionChanged="cboMiddleMouseAction_SelectionChanged" />
+                                      SelectionChanged="CboMiddleMouseAction_SelectionChanged" />
                         </DockPanel>
                     </StackPanel>
                     <GroupBox Header="{DynamicResource multiple_displays}"
@@ -360,11 +360,11 @@
                                        Target="{Binding ElementName=cboMultiMonMode}">
                                     <AccessText Text="{DynamicResource show_tasks_on}" />
                                 </Label>
-                                <ComboBox Name="cboMultiMonMode"
+                                <ComboBox x:Name="cboMultiMonMode"
                                           IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
                                           ItemsSource="{DynamicResource show_tasks_on_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                          SelectionChanged="cboMultiMonMode_SelectionChanged" />
+                                          SelectionChanged="CboMultiMonMode_SelectionChanged" />
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
@@ -373,7 +373,7 @@
                             <DockPanel Margin="20,0">
                                 <Label DockPanel.Dock="Left" Content="{DynamicResource taskbar_scale_1x}" />
                                 <Label DockPanel.Dock="Right" Content="{DynamicResource taskbar_scale_2x}" />
-                                <Slider Name="sldTaskbarScale"
+                                <Slider x:Name="sldTaskbarScale"
                                         Orientation="Horizontal"
                                         IsSnapToTickEnabled="True"
                                         Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskbarScale, UpdateSourceTrigger=PropertyChanged}"
@@ -382,7 +382,7 @@
                                         TickFrequency="0.05"
                                         TickPlacement="BottomRight" />
                             </DockPanel>
-                            <TextBlock Name="txtCurrentScale"
+                            <TextBlock x:Name="txtCurrentScale"
                                        HorizontalAlignment="Center">
                                 <TextBlock.Text>
                                     <MultiBinding Converter="{StaticResource doubleToPercentConverter}" UpdateSourceTrigger="PropertyChanged">
@@ -394,7 +394,7 @@
                         </StackPanel>
                     </GroupBox>
                     <DockPanel Margin="0,10,0,0">
-                        <TextBlock Name="txtVersion"
+                        <TextBlock x:Name="txtVersion"
                                    DockPanel.Dock="Left"
                                    Margin="0,0,10,0" />
                         <TextBlock DockPanel.Dock="Right"

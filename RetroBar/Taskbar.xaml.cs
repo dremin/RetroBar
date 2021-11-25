@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 using RetroBar.Utilities;
 using Application = System.Windows.Application;
-using RetroBar.Controls;
 using System.Diagnostics;
 using System.Windows.Input;
 using ManagedShell.Common.Logging;
@@ -37,8 +36,6 @@ namespace RetroBar
             }
         }
 
-        private bool _clockRightClicked;
-        private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
@@ -319,7 +316,7 @@ namespace RetroBar
             }
         }
 
-        private void DateTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void SetTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ShellHelper.StartProcess("timedate.cpl");
         }
@@ -419,38 +416,6 @@ namespace RetroBar
             {
                 UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
-
-            // Some menu items should only be accessible when the clock is what was right-clicked
-
-            if (_clockRightClicked)
-            {
-                DateTimeMenuItem.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                DateTimeMenuItem.Visibility = Visibility.Collapsed;
-            }
-
-            if(_notifyAreaRightClicked && Settings.Instance.CollapseNotifyIcons)
-            {
-                CustomizeNotificationsMenuItem.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                CustomizeNotificationsMenuItem.Visibility = Visibility.Collapsed;
-            }
-
-            if (_clockRightClicked || (_notifyAreaRightClicked && Settings.Instance.CollapseNotifyIcons))
-            {
-                NotificationAreaSeparator.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                NotificationAreaSeparator.Visibility = Visibility.Collapsed;
-            }
-
-            _clockRightClicked = false;
-            _notifyAreaRightClicked = false;
         }
 
         public void SetTrayHost()
@@ -477,16 +442,6 @@ namespace RetroBar
             {
                 OnPropertyChanged(nameof(AllowAutoHide));
             }
-        }
-
-        private void Clock_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            _clockRightClicked = true;
-        }
-
-        private void NotifyArea_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            _notifyAreaRightClicked = true;
         }
 
         private void Taskbar_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
