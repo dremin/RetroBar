@@ -53,7 +53,7 @@ namespace RetroBar.Controls
             }
         }
 
-        private void ToggleDesktop()
+        public static void ToggleDesktop()
         {
             NativeMethods.SendMessage(WindowHelper.FindWindowsTray(IntPtr.Zero),
                 (int)NativeMethods.WM.COMMAND, (IntPtr)TOGGLE_DESKTOP, IntPtr.Zero);

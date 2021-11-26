@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 using RetroBar.Utilities;
 using Application = System.Windows.Application;
-using RetroBar.Controls;
 using System.Diagnostics;
 using System.Windows.Input;
 using ManagedShell.Common.Logging;
@@ -37,8 +36,6 @@ namespace RetroBar
             }
         }
 
-        private bool _clockRightClicked;
-        private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
@@ -319,7 +316,7 @@ namespace RetroBar
             }
         }
 
-        private void DateTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void SetTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ShellHelper.StartProcess("timedate.cpl");
         }
@@ -330,9 +327,42 @@ namespace RetroBar
             propWindow.OpenCustomizeNotifications();
         }
 
-        private void SetTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void ChangeUndoMenuItem(string tag = "", Visibility v = Visibility.Visible)
         {
-            Clock.OpenDateTimeCpl();
+            Style undoMenuItemStyle = (Style)Resources["UndoMenuItemStyle"];
+            Style newMenuItemStyle = new Style(typeof(MenuItem), undoMenuItemStyle);
+            newMenuItemStyle.Setters.Add(new Setter(TagProperty, tag));
+            newMenuItemStyle.Setters.Add(new Setter(VisibilityProperty, v));
+            Resources["UndoMenuItemStyle"] = newMenuItemStyle;
+        }
+
+        private void CascadeMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowTiler.CascadeWindows();
+            ChangeUndoMenuItem("cascade");
+        }
+
+        private void HorizTileMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowTiler.TileWindowsHorizontally();
+            ChangeUndoMenuItem("tile");
+        }
+
+        private void VertTileMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowTiler.TileWindowsVertically();
+            ChangeUndoMenuItem("tile");
+        }
+
+        private void ToggleDesktopMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            Controls.ShowDesktopButton.ToggleDesktop();
+        }
+
+        private void UndoMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowTiler.RestoreWindowPositions();
+            ChangeUndoMenuItem(v: Visibility.Collapsed);
         }
 
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -424,38 +454,6 @@ namespace RetroBar
             {
                 UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
-
-            // Some menu items should only be accessible when the clock is what was right-clicked
-
-            if (_clockRightClicked)
-            {
-                DateTimeMenuItem.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                DateTimeMenuItem.Visibility = Visibility.Collapsed;
-            }
-
-            if(_notifyAreaRightClicked && Settings.Instance.CollapseNotifyIcons)
-            {
-                CustomizeNotificationsMenuItem.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                CustomizeNotificationsMenuItem.Visibility = Visibility.Collapsed;
-            }
-
-            if (_clockRightClicked || (_notifyAreaRightClicked && Settings.Instance.CollapseNotifyIcons))
-            {
-                NotificationAreaSeparator.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                NotificationAreaSeparator.Visibility = Visibility.Collapsed;
-            }
-
-            _clockRightClicked = false;
-            _notifyAreaRightClicked = false;
         }
 
         public void SetTrayHost()
@@ -482,16 +480,6 @@ namespace RetroBar
             {
                 OnPropertyChanged("AllowAutoHide");
             }
-        }
-
-        private void Clock_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            _clockRightClicked = true;
-        }
-
-        private void NotifyArea_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            _notifyAreaRightClicked = true;
         }
 
         private void Taskbar_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

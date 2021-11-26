@@ -19,6 +19,20 @@
             <converters:SettingsToTextFormattingModeConverter x:Key="textFormattingModeConverter" />
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
+            <Style x:Key="UndoMenuItemStyle" TargetType="{x:Type MenuItem}">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="cascade">
+                        <Setter Property="Header" Value="{DynamicResource undo_cascade}"/>
+                    </Trigger>
+                    <Trigger Property="Tag" Value="tile">
+                        <Setter Property="Header" Value="{DynamicResource undo_tile}"/>
+                    </Trigger>
+                    <Trigger Property="Tag" Value="minimize">
+                        <Setter Property="Header" Value="{DynamicResource undo_minimize_all}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <MenuItem x:Shared="false" x:Key="ToolbarsItem" Header="{DynamicResource toolbars}">
                 <MenuItem Header="{DynamicResource quick_launch}" IsCheckable="true"
                           IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}" />
@@ -27,6 +41,11 @@
             </MenuItem>
             <MenuItem x:Shared="false" x:Key="SetTimeMenuItem" Header="{DynamicResource set_time}" Click="SetTimeMenuItem_OnClick" />
             <MenuItem x:Shared="false" x:Key="CustomizeNotificationsMenuItem" Header="{DynamicResource customize_notifications_menu}" Click="CustomizeNotificationsMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="CascadeMenuItem" Header="{DynamicResource cascade}" Click="CascadeMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="HorizTileMenuItem" Header="{DynamicResource horiz_tile}" Click="HorizTileMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="VertTileMenuItem" Header="{DynamicResource vert_tile}" Click="VertTileMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="ToggleDesktopMenuItem" Header="{DynamicResource toggle_desktop}" Click="ToggleDesktopMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="UndoMenuItem" Style="{DynamicResource UndoMenuItemStyle}" Click="UndoMenuItem_OnClick" />
             <MenuItem x:Shared="false" x:Key="TaskManagerMenuItem" Style="{DynamicResource TaskManMenuItem}" Click="TaskManagerMenuItem_OnClick" />
             <MenuItem x:Shared="false" x:Key="LockTaskbarMenuItem" Header="{DynamicResource lock_taskbar_menu}" IsCheckable="True" IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}" />
             <MenuItem x:Shared="false" x:Key="PropertiesMenuItem" Header="{DynamicResource tray_properties}" Click="PropertiesMenuItem_OnClick" />
@@ -91,6 +110,12 @@
                         <StaticResourceExtension ResourceKey="SetTimeMenuItem" />
                         <StaticResourceExtension ResourceKey="CustomizeNotificationsMenuItem" />
                         <Separator />
+                        <StaticResourceExtension ResourceKey="CascadeMenuItem" />
+                        <StaticResourceExtension ResourceKey="HorizTileMenuItem" />
+                        <StaticResourceExtension ResourceKey="VertTileMenuItem" />
+                        <StaticResourceExtension ResourceKey="ToggleDesktopMenuItem" />
+                        <StaticResourceExtension ResourceKey="UndoMenuItem" />
+                        <Separator />
                         <StaticResourceExtension ResourceKey="TaskManagerMenuItem" />
                         <Separator />
                         <StaticResourceExtension ResourceKey="LockTaskbarMenuItem" />
@@ -133,6 +158,12 @@
             <!-- TODO: Add when desk bands and additional taskbars are supported. -->
             <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
             <Separator /-->
+            <StaticResourceExtension ResourceKey="CascadeMenuItem" />
+            <StaticResourceExtension ResourceKey="HorizTileMenuItem" />
+            <StaticResourceExtension ResourceKey="VertTileMenuItem" />
+            <StaticResourceExtension ResourceKey="ToggleDesktopMenuItem" />
+            <StaticResourceExtension ResourceKey="UndoMenuItem" />
+            <Separator />
             <StaticResourceExtension ResourceKey="TaskManagerMenuItem" />
             <Separator />
             <MenuItem x:Name="UpdateAvailableMenuItem"

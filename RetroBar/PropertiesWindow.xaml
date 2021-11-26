@@ -181,7 +181,7 @@
                                 </Label>
                                 <ComboBox Name="cboLanguageSelect"
                                           SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectionChanged="cboLanguageSelect_SelectionChanged" />
+                                          SelectionChanged="CboLanguageSelect_SelectionChanged" />
                             </DockPanel>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
@@ -189,7 +189,7 @@
                                     <AccessText Text="{DynamicResource theme_text}"
                                                 ToolTip="{DynamicResource theme_tip}" />
                                 </Label>
-                                <ComboBox Name="cboThemeSelect"
+                                <ComboBox x:Name="cboThemeSelect"
                                           SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Theme, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                             <DockPanel>
@@ -201,7 +201,7 @@
                                 <ComboBox Name="cboEdgeSelect"
                                           ItemsSource="{DynamicResource location_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                          SelectionChanged="cboEdgeSelect_SelectionChanged" />
+                                          SelectionChanged="CboEdgeSelect_SelectionChanged" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
@@ -303,9 +303,9 @@
                             Margin="10">
                     <StackPanel Orientation="Vertical"
                                 Margin="0,0,0,10">
-                        <CheckBox Checked="AutoStartCheckBox_OnChecked"
-                                  Unchecked="AutoStartCheckBox_OnChecked"
-                                  Name="AutoStartCheckBox">
+                        <CheckBox x:Name="cbAutoStart"
+                                  Checked="CbAutoStart_OnChecked"
+                                  Unchecked="CbAutoStart_OnChecked">
                             <Label Content="{DynamicResource autostart}" />
                         </CheckBox>
                         <CheckBox x:Name="cbMiddleMouseToClose"
@@ -347,7 +347,7 @@
                                           IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
                                           ItemsSource="{DynamicResource show_tasks_on_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                          SelectionChanged="cboMultiMonMode_SelectionChanged" />
+                                          SelectionChanged="CboMultiMonMode_SelectionChanged" />
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
