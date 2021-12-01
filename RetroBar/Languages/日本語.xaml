@@ -39,8 +39,8 @@
     <s:String x:Key="toolbars">ツールバー(_T)</s:String>
     <s:String x:Key="quick_launch">クイック起動(_Q)</s:String>
     <s:String x:Key="new_toolbar">新しいツールバー(_N)...</s:String>
-    <s:String x:Key="show_taskman_2k">タスクマネージャー(_K)...</s:String>
-    <s:String x:Key="show_taskman">タスクマネージャー(_K)</s:String>
+    <s:String x:Key="show_taskman_2k">タスク マネージャ(_K)...</s:String>
+    <s:String x:Key="show_taskman">タスク マネージャ(_K)</s:String>
     <s:String x:Key="tray_properties">プロパティ(_R)</s:String>
     <s:String x:Key="update_available">更新可能(_U)...</s:String>
     <s:String x:Key="exit_retrobar">RetroBarを終了(_E)</s:String>
