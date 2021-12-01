@@ -4,8 +4,8 @@
 
     <s:String x:Key="retrobar_properties">RetroBar 設定</s:String>
     <s:String x:Key="taskbar_options">タスクバー 設定</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/properties_noclock.png" />
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/ja/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/ja/properties_noclock.png" />
     <s:String x:Key="autostart">ログオン時に自動的に起動する(_L)</s:String>
     <s:String x:Key="language_text">言語(_G):</s:String>
     <s:String x:Key="language_tip">使用する言語を選択します。</s:String>
