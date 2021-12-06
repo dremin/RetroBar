@@ -5,6 +5,7 @@
         <ResourceDictionary Source="Windows XP Blue.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Thickness x:Key="TaskButtonMargin" Right="1" />
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -28,7 +29,7 @@
                       Offset="0.62" />
         <GradientStop Color="#ecebec"
                       Offset="0.9" />
-        <GradientStop Color="#bfc4d4"
+        <GradientStop Color="#83829d"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
@@ -54,7 +55,7 @@
                       Offset="0.89" />
         <GradientStop Color="#ecebec"
                       Offset="0.98" />
-        <GradientStop Color="#bfc4d4"
+        <GradientStop Color="#83829d"
                       Offset="1.0" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskbarTopBorder" Color="#7d7e99" />
@@ -122,9 +123,13 @@
                          GradientOrigin="0.15,0.15"
                          RadiusX="0.75"
                          RadiusY="0.7">
-        <GradientStop Color="#e8e8e7"
+        <GradientStop Color="#f8f8f8"
                       Offset="0.0" />
+        <GradientStop Color="#f8f8f8"
+                      Offset="0.3" />
         <GradientStop Color="#8789ab"
+                      Offset="0.75" />
+        <GradientStop Color="#58596d"
                       Offset="0.9" />
     </RadialGradientBrush>
     <RadialGradientBrush x:Key="TrayToggleHoverBackground"
@@ -133,31 +138,47 @@
                          RadiusY="0.7">
         <GradientStop Color="#ffffff"
                       Offset="0.0" />
+        <GradientStop Color="#ffffff"
+                      Offset="0.4" />
         <GradientStop Color="#9d9fc7"
+                      Offset="0.75" />
+        <GradientStop Color="#58596d"
                       Offset="0.9" />
     </RadialGradientBrush>
     <RadialGradientBrush x:Key="TrayTogglePressedBackground"
-                         GradientOrigin="0.1,0.1"
-                         RadiusX="0.6"
-                         RadiusY="0.6">
-        <GradientStop Color="#cfcfd6"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#e0e0e0"
                       Offset="0.0" />
-        <GradientStop Color="#777999"
+        <GradientStop Color="#e0e0e0"
+                      Offset="0.3" />
+        <GradientStop Color="#7b7d99"
+                      Offset="0.75" />
+        <GradientStop Color="#58596d"
                       Offset="0.9" />
     </RadialGradientBrush>
-    <DropShadowEffect x:Key="TrayToggleArrowShadow"
+    <DropShadowEffect x:Key="TrayToggleArrowOuterShadow"
                       Color="#000000"
-                      BlurRadius="1.8"
+                      BlurRadius="4"
+                      ShadowDepth="0.6"
+                      Direction="90"/>
+    <DropShadowEffect x:Key="TrayToggleArrowShadow"
+                      Color="#585a73"
+                      BlurRadius="1"
                       Opacity="0.7"
-                      ShadowDepth="0.6" />
+                      ShadowDepth="0.6"
+                      Direction="270" />
     <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#ffffff" />
+    <Thickness x:Key="TrayToggleArrowPadding" Left="4" Top="4" Right="7" Bottom="4" />
 
     <SolidColorBrush x:Key="TaskButtonTopBorder" Color="#a6a7b0" />
     <SolidColorBrush x:Key="TaskButtonLeftBorder" Color="#9495a2" />
-    <SolidColorBrush x:Key="TaskButtonRightBorder" Color="#8a8b98" />
-    <SolidColorBrush x:Key="TaskButtonBottomBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskButtonRightBorder" Color="#9495a2" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorder" Color="#8a8b98" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorder" Color="#ffffff" />
-    <SolidColorBrush x:Key="TaskButtonBottomRightBorder" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorder" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorder" Color="#8a8b98" />
     <LinearGradientBrush x:Key="TaskButtonBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -182,9 +203,10 @@
     <SolidColorBrush x:Key="TaskButtonTopBorderHover" Color="#68787a" />
     <SolidColorBrush x:Key="TaskButtonLeftBorderHover" Color="#616d78" />
     <SolidColorBrush x:Key="TaskButtonRightBorderHover" Color="#616d78" />
-    <SolidColorBrush x:Key="TaskButtonBottomBorderHover" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderHover" Color="#7d7e8a" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorderHover" Color="#ffffff" />
-    <SolidColorBrush x:Key="TaskButtonBottomRightBorderHover" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderHover" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderHover" Color="#616d78" />
     <LinearGradientBrush x:Key="TaskButtonBackgroundHover"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -212,10 +234,11 @@
 
     <SolidColorBrush x:Key="TaskButtonTopBorderPressed" Color="#616d78" />
     <SolidColorBrush x:Key="TaskButtonLeftBorderPressed" Color="#616d78" />
-    <SolidColorBrush x:Key="TaskButtonRightBorderPressed" Color="#6c7782" />
-    <SolidColorBrush x:Key="TaskButtonBottomBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderPressed" Color="#6c7782" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressed" Color="#616d78" />
-    <SolidColorBrush x:Key="TaskButtonBottomRightBorderPressed" Color="#07ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderPressed" Color="#6c7782" />
     <LinearGradientBrush x:Key="TaskButtonBackgroundPressed"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -245,7 +268,8 @@
 
     <SolidColorBrush x:Key="TaskButtonTopBorderPressedHover" Color="#7e8a95" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressedHover" Color="#7e8a95" />
-    <SolidColorBrush x:Key="TaskButtonBottomRightBorderPressedHover" Color="#89949f" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderPressedHover" Color="#7e8a95" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderPressedHover" Color="#89949f" />
     <LinearGradientBrush x:Key="TaskButtonBackgroundPressedHover"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -401,86 +425,8 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ToggleButton"
-           x:Key="TrayToggleButton">
-        <Setter Property="OverridesDefaultStyle"
-                Value="True" />
-        <Setter Property="Background"
-                Value="{DynamicResource TrayToggleBackground}" />
-        <Setter Property="Margin"
-                Value="-20,1,3,0" />
-        <Setter Property="VerticalAlignment"
-                Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Border Background="Transparent">
-                        <Border BorderThickness="1"
-                                BorderBrush="{DynamicResource TrayToggleBorder}"
-                                CornerRadius="10"
-                                Background="{TemplateBinding Background}"
-                                Padding="5,4,7,4"
-                                HorizontalAlignment="Center"
-                                x:Name="ButtonBorder">
-                            <Path Fill="{DynamicResource ItemButtonForeground}"
-                                  Data="M -1,4.5 L 3.5,9 L 5,8 L 2,4.5 L 5,1 L 3.5,0 Z"
-                                  RenderOptions.EdgeMode="Aliased"
-                                  Effect="{DynamicResource TrayToggleArrowShadow}"
-                                  x:Name="ToggleArrow">
-                            </Path>
-                        </Border>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                            <Setter TargetName="ButtonBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TrayToggleHoverBackground}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed"
-                                 Value="True">
-                            <Setter TargetName="ButtonBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TrayTogglePressedBackground}" />
-                            <Setter TargetName="ToggleArrow"
-                                    Property="Fill"
-                                    Value="{DynamicResource TrayToggleArrowPressed}" />
-                        </Trigger>
-                        <Trigger Property="IsChecked"
-                                 Value="True">
-                            <Setter TargetName="ToggleArrow"
-                                    Property="RenderTransformOrigin"
-                                    Value="0.6,0.5" />
-                            <Setter TargetName="ToggleArrow"
-                                    Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="-1"></ScaleTransform>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
-            </Trigger>
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
-            </Trigger>
-            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                         Value="Vertical">
-                <DataTrigger.Setters>
-                    <Setter Property="Margin"
-                            Value="0,-19,0,1" />
-                </DataTrigger.Setters>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-
     <SolidColorBrush x:Key="ItemButtonForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
+    <SolidColorBrush x:Key="ButtonForeground" Color="#404040" />
     <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
