@@ -768,7 +768,32 @@
         </Setter>
     </Style>
 
-    <Style x:Key="TaskListScrollButton"
+    <CornerRadius x:Key="TaskListScrollUpButtonCornerRadius">0,0,2,2</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollDownCornerRadius">2,2,0,0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#2f68d5" />
+    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#3281ea" />
+    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#3281ea" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#3281ea" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="#1334a9" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="#1334aa" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="#133ab0" />
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#332f68d5"
+                      Offset="0.0" />
+        <GradientStop Color="#332b6bde"
+                      Offset="0.2" />
+        <GradientStop Color="#1742cd"
+                      Offset="0.4" />
+        <GradientStop Color="#1743cb"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#bedcff" />
+
+    <Style x:Key="TaskListScrollUpButton"
            TargetType="RepeatButton"
            BasedOn="{StaticResource TaskListScrollButton}">
         <Setter Property="Template">
@@ -776,40 +801,160 @@
                 <ControlTemplate TargetType="RepeatButton">
                     <Border Background="Transparent">
                         <Border BorderThickness="0,1,0,0"
-                                BorderBrush="{DynamicResource TaskButtonTopBorder}"
+                                BorderBrush="{DynamicResource TaskListScrollButtonTopBorder}"
                                 Background="Transparent"
-                                CornerRadius="2"
+                                CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                 x:Name="ButtonTopBorder">
                             <Border BorderThickness="1,0,0,0"
-                                    BorderBrush="{DynamicResource TaskButtonLeftBorder}"
-                                    CornerRadius="2"
+                                    BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
+                                    CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                     x:Name="ButtonLeftBorder">
                                 <Border BorderThickness="0,0,0,1"
-                                        BorderBrush="{DynamicResource TaskButtonRightBorder}"
-                                        CornerRadius="2"
+                                        BorderBrush="{DynamicResource TaskListScrollButtonRightBorder}"
+                                        CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                         x:Name="ButtonRightBorder">
                                     <Border BorderThickness="0,0,1,0"
-                                            BorderBrush="{DynamicResource TaskButtonBottomBorder}"
-                                            CornerRadius="2"
+                                            BorderBrush="{DynamicResource TaskListScrollButtonBottomBorder}"
+                                            CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                             x:Name="ButtonBottomBorder">
                                         <Border BorderThickness="0,0,0,1"
-                                                BorderBrush="{DynamicResource TaskButtonInnerBottomBorder}"
-                                                Background="{DynamicResource TaskButtonBackground}"
-                                                CornerRadius="2"
+                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerBottomBorder}"
+                                                Background="{DynamicResource TaskListScrollButtonBackground}"
+                                                CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                                 x:Name="ButtonInnerBottomBorder">
                                             <Border BorderThickness="1,0,0,0"
-                                                    BorderBrush="{DynamicResource TaskButtonInnerLeftBorder}"
-                                                    CornerRadius="2"
+                                                    BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
+                                                    CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                                     x:Name="ButtonInnerLeftBorder">
                                                 <Border BorderThickness="0,0,1,0"
-                                                        BorderBrush="{DynamicResource TaskButtonInnerRightBorder}"
-                                                        Background="{DynamicResource TaskButtonBackgroundHighlight}"
-                                                        CornerRadius="2"
+                                                        BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
+                                                        Background="{DynamicResource TaskListScrollButtonBackground}"
+                                                        CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
                                                         x:Name="ButtonInnerRightBorder">
                                                     <ContentPresenter HorizontalAlignment="Center"
-                                                                  VerticalAlignment="Center"
-                                                                  Margin="4,-3,4,0"
-                                                                  x:Name="Content" />
+                                                                      VerticalAlignment="Center"
+                                                                      Margin="1,-3,1,-3"
+                                                                      x:Name="Content" />
+                                                </Border>
+                                            </Border>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderHover}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonLeftBorderHover}" />
+                            <Setter TargetName="ButtonRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonRightBorderHover}" />
+                            <Setter TargetName="ButtonBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomBorderHover}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderHover}" />
+                            <Setter TargetName="ButtonInnerRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerRightBorderHover}" />
+                            <Setter TargetName="ButtonInnerBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerBottomBorderHover}" />
+                            <Setter TargetName="ButtonInnerBottomBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
+                            <Setter TargetName="ButtonInnerRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonTopBorderPressed}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonLeftBorderPressed}" />
+                            <Setter TargetName="ButtonRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonRightBorderPressed}" />
+                            <Setter TargetName="ButtonBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonBottomBorderPressed}" />
+                            <Setter TargetName="ButtonInnerLeftBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerLeftBorderPressed}" />
+                            <Setter TargetName="ButtonInnerRightBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerRightBorderPressed}" />
+                            <Setter TargetName="ButtonInnerBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource TaskButtonInnerBottomBorderPressed}" />
+                            <Setter TargetName="ButtonInnerBottomBorder"
+                                    Property="Background"
+                                    Value="Transparent" />
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonInnerRightBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TaskListScrollDownButton"
+           TargetType="RepeatButton"
+           BasedOn="{StaticResource TaskListScrollButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent">
+                        <Border BorderThickness="0,1,0,0"
+                                BorderBrush="{DynamicResource TaskListScrollButtonTopBorder}"
+                                Background="Transparent"
+                                CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                x:Name="ButtonTopBorder">
+                            <Border BorderThickness="1,0,0,0"
+                                    BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
+                                    CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                    x:Name="ButtonLeftBorder">
+                                <Border BorderThickness="0,0,0,1"
+                                        BorderBrush="{DynamicResource TaskListScrollDownButtonBottomBorder}"
+                                        CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                        x:Name="ButtonRightBorder">
+                                    <Border BorderThickness="0,0,1,0"
+                                            BorderBrush="{DynamicResource TaskListScrollButtonBottomBorder}"
+                                            CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                            x:Name="ButtonBottomBorder">
+                                        <Border BorderThickness="0,0,0,1"
+                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerBottomBorder}"
+                                                Background="{DynamicResource TaskListScrollButtonBackground}"
+                                                CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                                x:Name="ButtonInnerBottomBorder">
+                                            <Border BorderThickness="1,0,0,0"
+                                                    BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
+                                                    CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                                    x:Name="ButtonInnerLeftBorder">
+                                                <Border BorderThickness="0,0,1,0"
+                                                        BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
+                                                        Background="{DynamicResource TaskListScrollButtonBackground}"
+                                                        CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                                        x:Name="ButtonInnerRightBorder">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"
+                                                                      Margin="1,-3,1,-3"
+                                                                      x:Name="Content" />
                                                 </Border>
                                             </Border>
                                         </Border>
@@ -1169,21 +1314,124 @@
         </Setter>
     </Style>
 
+    <Style x:Key="TaskListScrollButtonGrid"
+           TargetType="Grid">
+        <Setter Property="Margin"
+                Value="1,0" />
+    </Style>
+
     <Style x:Key="TaskListScrollViewer"
            TargetType="ScrollViewer"
            BasedOn="{StaticResource TaskListScrollViewer}">
         <Setter Property="Margin"
                 Value="0,0,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollContentPresenter Grid.Column="0"
+                                                Width="{TemplateBinding Width}"
+                                                Height="{TemplateBinding Height}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                Content="{TemplateBinding Content}" />
+                        <Grid Grid.Column="1"
+                              Style="{DynamicResource TaskListScrollButtonGrid}"
+                              Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <RepeatButton Command="ScrollBar.PageUpCommand"
+                                          Style="{DynamicResource TaskListScrollUpButton}"
+                                          Grid.Column="0">
+                                <Path Fill="{DynamicResource TaskListScrollArrow}"
+                                      Data="{DynamicResource VArrow}"
+                                      RenderTransformOrigin="0.5,0.5"
+                                      RenderOptions.EdgeMode="Aliased">
+                                    <Path.RenderTransform>
+                                        <ScaleTransform ScaleY="-1" />
+                                    </Path.RenderTransform>
+                                </Path>
+                            </RepeatButton>
+                            <RepeatButton Command="ScrollBar.PageDownCommand"
+                                          Style="{DynamicResource TaskListScrollDownButton}"
+                                          Grid.Row="1">
+                                <Path Fill="{DynamicResource TaskListScrollArrow}"
+                                      Data="{DynamicResource VArrow}"
+                                      RenderOptions.EdgeMode="Aliased">
+                                </Path>
+                            </RepeatButton>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ScrollContentPresenter Grid.Row="0"
+                                                            Width="{TemplateBinding Width}"
+                                                            Height="{TemplateBinding Height}"
+                                                            CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                            Content="{TemplateBinding Content}" />
+                                    <Grid Grid.Row="1"
+                                          Style="{DynamicResource TaskListScrollButtonGrid}"
+                                          Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <RepeatButton Command="ScrollBar.PageUpCommand"
+                                                      Style="{DynamicResource TaskListScrollUpButton}"
+                                                      Padding="7"
+                                                      Grid.Column="0">
+                                            <Path Fill="{DynamicResource TaskListScrollArrow}"
+                                                  Data="{DynamicResource VArrow}"
+                                                  Margin="7"
+                                                  RenderTransformOrigin="0.5,0.5"
+                                                  RenderOptions.EdgeMode="Aliased">
+                                                <Path.RenderTransform>
+                                                    <ScaleTransform ScaleY="-1" />
+                                                </Path.RenderTransform>
+                                            </Path>
+                                        </RepeatButton>
+                                        <RepeatButton Command="ScrollBar.PageDownCommand"
+                                                      Style="{DynamicResource TaskListScrollDownButton}"
+                                                      Padding="4"
+                                                      Grid.Column="1">
+                                            <Path Fill="{DynamicResource TaskListScrollArrow}"
+                                                  Data="{DynamicResource VArrow}"
+                                                  Margin="7"
+                                                  RenderOptions.EdgeMode="Aliased">
+                                            </Path>
+                                        </RepeatButton>
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                     <Setter Property="Margin"
                             Value="0,0,0,10" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Geometry x:Key="VArrow">M 4.5 6 L 9 1.5 L 8 0 L 4.5 3 L 1 0 L 0 1.5 Z</Geometry>
+    <Geometry x:Key="HArrow">M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z</Geometry>
 
     <Style TargetType="ToggleButton"
            x:Key="TrayToggleButton">
@@ -1208,7 +1456,7 @@
                                 x:Name="ButtonBorder">
                             <Border Effect="{DynamicResource TrayToggleArrowOuterShadow}">
                                 <Path Fill="{DynamicResource ItemButtonForeground}"
-                                      Data="M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z"
+                                      Data="{DynamicResource HArrow}"
                                       RenderOptions.EdgeMode="Aliased"
                                       Effect="{DynamicResource TrayToggleArrowShadow}"
                                       x:Name="ToggleArrow" />

@@ -61,6 +61,31 @@
     <SolidColorBrush x:Key="TaskbarTopBorder" Color="#7d7e99" />
     <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#83829d" />
 
+    <CornerRadius x:Key="TaskListScrollUpButtonCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollDownCornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#848ca3" />
+    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="Transparent" />
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#ecebf3"
+                      Offset="0.1" />
+        <GradientStop Color="#abacc5"
+                      Offset="0.8" />
+        <GradientStop Color="#a1a3c0"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#000000" />
+
     <SolidColorBrush x:Key="TrayBottomBorder" Color="#61637c" />
     <SolidColorBrush x:Key="TrayLeftBorder1" Color="#58596d" />
     <SolidColorBrush x:Key="TrayLeftBorder2" Color="#d7d8da" />
@@ -386,7 +411,8 @@
                                             BorderBrush="{DynamicResource TrayLeftBorder4}"
                                             Padding="7,0,0,0"
                                             Name="TrayInnerBorder4">
-                                        <ContentPresenter />
+                                        <ContentPresenter Margin="0,-1,0,0"
+                                                          Name="Content" />
                                     </Border>
                                 </Border>
                             </Border>
@@ -417,6 +443,9 @@
                                 <Setter TargetName="TrayBottomBorder"
                                         Property="Background"
                                         Value="{DynamicResource TrayVerticalBackground}" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="0,0,-1,0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
