@@ -411,7 +411,7 @@
                                             BorderBrush="{DynamicResource TrayLeftBorder4}"
                                             Padding="7,0,0,0"
                                             Name="TrayInnerBorder4">
-                                        <ContentPresenter Margin="0,-1,0,0"
+                                        <ContentPresenter Margin="0,1,0,0"
                                                           Name="Content" />
                                     </Border>
                                 </Border>
