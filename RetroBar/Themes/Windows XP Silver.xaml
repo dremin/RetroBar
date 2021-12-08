@@ -1,0 +1,462 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Windows XP Blue.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Thickness x:Key="TaskButtonMargin" Right="1" />
+    <LinearGradientBrush x:Key="TaskbarBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#dadce8"
+                      Offset="0.0" />
+        <GradientStop Color="#ffffff"
+                      Offset="0.05" />
+        <GradientStop Color="#dadce8"
+                      Offset="0.1" />
+        <GradientStop Color="#b3b6c5"
+                      Offset="0.12" />
+        <GradientStop Color="#9a99b1"
+                      Offset="0.13" />
+        <GradientStop Color="#a8a9bf"
+                      Offset="0.35" />
+        <GradientStop Color="#b1b7bb"
+                      Offset="0.4" />
+        <GradientStop Color="#bbbdcd"
+                      Offset="0.5" />
+        <GradientStop Color="#d7d7d7"
+                      Offset="0.62" />
+        <GradientStop Color="#ecebec"
+                      Offset="0.9" />
+        <GradientStop Color="#83829d"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#dadce8"
+                      Offset="0.0" />
+        <GradientStop Color="#ffffff"
+                      Offset="0.02" />
+        <GradientStop Color="#dadce8"
+                      Offset="0.03" />
+        <GradientStop Color="#b3b6c5"
+                      Offset="0.04" />
+        <GradientStop Color="#9a99b1"
+                      Offset="0.05" />
+        <GradientStop Color="#a8a9bf"
+                      Offset="0.1" />
+        <GradientStop Color="#c4cbd1"
+                      Offset="0.16" />
+        <GradientStop Color="#c4cbd1"
+                      Offset="0.87" />
+        <GradientStop Color="#d7d7d7"
+                      Offset="0.89" />
+        <GradientStop Color="#ecebec"
+                      Offset="0.98" />
+        <GradientStop Color="#83829d"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskbarTopBorder" Color="#7d7e99" />
+    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#83829d" />
+
+    <CornerRadius x:Key="TaskListScrollUpButtonCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollDownCornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#848ca3" />
+    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="Transparent" />
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#ecebf3"
+                      Offset="0.1" />
+        <GradientStop Color="#abacc5"
+                      Offset="0.8" />
+        <GradientStop Color="#a1a3c0"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="#566282" />
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#000000" />
+
+    <SolidColorBrush x:Key="TrayBottomBorder" Color="#61637c" />
+    <SolidColorBrush x:Key="TrayLeftBorder1" Color="#58596d" />
+    <SolidColorBrush x:Key="TrayLeftBorder2" Color="#d7d8da" />
+    <SolidColorBrush x:Key="TrayLeftBorder3" Color="Transparent" />
+    <SolidColorBrush x:Key="TrayLeftBorder4" Color="Transparent" />
+    <LinearGradientBrush x:Key="TrayBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#fefefe"
+                      Offset="0.12" />
+        <GradientStop Color="#e8e8ee"
+                      Offset="0.25" />
+        <GradientStop Color="#cfd0df"
+                      Offset="0.4" />
+        <GradientStop Color="#cbccda"
+                      Offset="0.5" />
+        <GradientStop Color="#c8cad8"
+                      Offset="0.78" />
+        <GradientStop Color="#aaadc2"
+                      Offset="0.97" />
+        <GradientStop Color="#888ba3"
+                      Offset="0.98" />
+        <GradientStop Color="#61637c"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TrayVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#fefefe"
+                      Offset="0.04" />
+        <GradientStop Color="#e8e8ee"
+                      Offset="0.08" />
+        <GradientStop Color="#cfd0df"
+                      Offset="0.12" />
+        <GradientStop Color="#cacbd9"
+                      Offset="0.5" />
+        <GradientStop Color="#cbccda"
+                      Offset="0.8" />
+        <GradientStop Color="#c5c6d6"
+                      Offset="0.97" />
+        <GradientStop Color="#b4b6cb"
+                      Offset="0.99" />
+        <GradientStop Color="#61637c"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TrayToggleBorder"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#242424"
+                      Offset="0.2" />
+        <GradientStop Color="#fcfcfc"
+                      Offset="0.8" />
+    </LinearGradientBrush>
+    <RadialGradientBrush x:Key="TrayToggleBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#f8f8f8"
+                      Offset="0.0" />
+        <GradientStop Color="#f8f8f8"
+                      Offset="0.3" />
+        <GradientStop Color="#8789ab"
+                      Offset="0.75" />
+        <GradientStop Color="#58596d"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayToggleHoverBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#ffffff"
+                      Offset="0.4" />
+        <GradientStop Color="#9d9fc7"
+                      Offset="0.75" />
+        <GradientStop Color="#58596d"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayTogglePressedBackground"
+                         GradientOrigin="0.15,0.15"
+                         RadiusX="0.75"
+                         RadiusY="0.7">
+        <GradientStop Color="#e0e0e0"
+                      Offset="0.0" />
+        <GradientStop Color="#e0e0e0"
+                      Offset="0.3" />
+        <GradientStop Color="#7b7d99"
+                      Offset="0.75" />
+        <GradientStop Color="#58596d"
+                      Offset="0.9" />
+    </RadialGradientBrush>
+    <DropShadowEffect x:Key="TrayToggleArrowOuterShadow"
+                      Color="#000000"
+                      BlurRadius="4"
+                      ShadowDepth="0.6"
+                      Direction="90"/>
+    <DropShadowEffect x:Key="TrayToggleArrowShadow"
+                      Color="#585a73"
+                      BlurRadius="1"
+                      Opacity="0.7"
+                      ShadowDepth="0.6"
+                      Direction="270" />
+    <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#ffffff" />
+    <Thickness x:Key="TrayToggleArrowPadding" Left="4" Top="4" Right="7" Bottom="4" />
+
+    <SolidColorBrush x:Key="TaskButtonTopBorder" Color="#a6a7b0" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorder" Color="#9495a2" />
+    <SolidColorBrush x:Key="TaskButtonRightBorder" Color="#9495a2" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorder" Color="#8a8b98" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorder" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorder" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorder" Color="#8a8b98" />
+    <LinearGradientBrush x:Key="TaskButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#f8f9fa"
+                      Offset="0.2" />
+        <GradientStop Color="#cfd0df"
+                      Offset="0.5" />
+        <GradientStop Color="#cbccda"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlight"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="Transparent"
+                      Offset="0.0" />
+        <GradientStop Color="Transparent"
+                      Offset="0.5" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderHover" Color="#68787a" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderHover" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderHover" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderHover" Color="#7d7e8a" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderHover" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderHover" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderHover" Color="#616d78" />
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#d9dae8"
+                      Offset="0.0" />
+        <GradientStop Color="#dddeed"
+                      Offset="0.4" />
+        <GradientStop Color="#efeff8"
+                      Offset="0.5" />
+        <GradientStop Color="#fcfcff"
+                      Offset="0.65" />
+        <GradientStop Color="#ffffff"
+                      Offset="0.85" />
+        <GradientStop Color="#ffffff"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="Transparent"
+                      Offset="0.0" />
+        <GradientStop Color="Transparent"
+                      Offset="0.5" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderPressed" Color="#6c7782" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderPressed" Color="#616d78" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderPressed" Color="#6c7782" />
+    <LinearGradientBrush x:Key="TaskButtonBackgroundPressed"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#43515b"
+                      Offset="0.0" />
+        <GradientStop Color="#616b78"
+                      Offset="0.05" />
+        <GradientStop Color="#65707c"
+                      Offset="0.15" />
+        <GradientStop Color="#77818c"
+                      Offset="0.45" />
+        <GradientStop Color="#7d8890"
+                      Offset="0.5" />
+        <GradientStop Color="#828c95"
+                      Offset="0.8" />
+        <GradientStop Color="#89919a"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightPressed"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="Transparent"
+                      Offset="0.0" />
+        <GradientStop Color="Transparent"
+                      Offset="0.5" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderPressedHover" Color="#7e8a95" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressedHover" Color="#7e8a95" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderPressedHover" Color="#7e8a95" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderPressedHover" Color="#89949f" />
+    <LinearGradientBrush x:Key="TaskButtonBackgroundPressedHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#616f79"
+                      Offset="0.0" />
+        <GradientStop Color="#818c97"
+                      Offset="0.05" />
+        <GradientStop Color="#828d99"
+                      Offset="0.20" />
+        <GradientStop Color="#89949f"
+                      Offset="0.32" />
+        <GradientStop Color="#949ea9"
+                      Offset="0.45" />
+        <GradientStop Color="#97a2aa"
+                      Offset="0.48" />
+        <GradientStop Color="#9aa5ad"
+                      Offset="0.5" />
+        <GradientStop Color="#a6aeb7"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskButtonTopBorderFlashing" Color="#c36700" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderFlashing" Color="#c36700" />
+    <SolidColorBrush x:Key="TaskButtonRightBorderFlashing" Color="#c36700" />
+    <SolidColorBrush x:Key="TaskButtonBottomBorderFlashing" Color="#c36700" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderFlashing" Color="#ffbc50" />
+    <SolidColorBrush x:Key="TaskButtonBottomRightBorderFlashing" Color="#ffbc50" />
+    <LinearGradientBrush x:Key="TaskButtonBackgroundFlashing"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#fdc966"
+                      Offset="0.0" />
+        <GradientStop Color="#fdc864"
+                      Offset="0.1" />
+        <GradientStop Color="#ffa043"
+                      Offset="0.9" />
+        <GradientStop Color="#fdab5a"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightFlashing"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="Transparent"
+                      Offset="0.0" />
+        <GradientStop Color="Transparent"
+                      Offset="0.5" />
+    </LinearGradientBrush>
+
+    <BitmapImage x:Key="StartButtonImage"
+                 UriSource="../Resources/startxpsilverbutton.png" />
+
+    <Style TargetType="ContentControl"
+           x:Key="Taskbar"
+           BasedOn="{StaticResource Taskbar}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderThickness="0,1,0,0"
+                            BorderBrush="{DynamicResource TaskbarTopBorder}"
+                            Background="{DynamicResource TaskbarBackground}"
+                            x:Name="TaskbarTopBorder">
+                        <Border BorderThickness="0,0,0,1"
+                            BorderBrush="{DynamicResource TaskbarBottomBorder}"
+                            x:Name="TaskbarBottomBorder">
+                            <ContentPresenter Margin="0,-1,0,-1"
+                                          Name="Content" />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarTopBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TaskbarVerticalBackground}" />
+                                <Setter TargetName="TaskbarTopBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="-1,0,-1,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="GroupBox"
+           x:Key="Tray">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border BorderThickness="1,0,0,0"
+                            BorderBrush="{DynamicResource TrayLeftBorder1}"
+                            Name="TrayInnerBorder1">
+                        <Border BorderThickness="1,0,0,0"
+                                BorderBrush="{DynamicResource TrayLeftBorder2}"
+                                Name="TrayInnerBorder2">
+                            <Border BorderThickness="0,0,0,1"
+                                    BorderBrush="{DynamicResource TrayBottomBorder}"
+                                    Background="{DynamicResource TrayBackground}"
+                                    Name="TrayBottomBorder">
+                                <Border BorderThickness="1,0,0,0"
+                                        BorderBrush="{DynamicResource TrayLeftBorder3}"
+                                        Name="TrayInnerBorder3">
+                                    <Border BorderThickness="1,0,0,0"
+                                            BorderBrush="{DynamicResource TrayLeftBorder4}"
+                                            Padding="7,0,0,0"
+                                            Name="TrayInnerBorder4">
+                                        <ContentPresenter Margin="0,1,0,0"
+                                                          Name="Content" />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TrayBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="TrayInnerBorder1"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder2"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder3"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder4"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder4"
+                                        Property="Padding"
+                                        Value="0,7,0,0" />
+                                <Setter TargetName="TrayBottomBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TrayVerticalBackground}" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="0,0,-1,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="ItemButtonForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonForeground" Color="#404040" />
+    <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
+</ResourceDictionary>

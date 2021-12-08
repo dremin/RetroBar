@@ -28,7 +28,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Windows 95-98
   - Windows Me
   - Windows 2000
-  - Windows XP (Blue and Classic)
+  - Windows XP (Blue, Silver and Classic)
 - Support for the following languages:
   - English
   - Spanish (español)
