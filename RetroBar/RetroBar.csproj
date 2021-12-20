@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ManagedShell" Version="0.0.140" />
+    <PackageReference Include="ManagedShell" Version="0.0.146" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 

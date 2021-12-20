@@ -61,31 +61,6 @@
     <SolidColorBrush x:Key="TaskbarTopBorder" Color="#7d7e99" />
     <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#83829d" />
 
-    <CornerRadius x:Key="TaskListScrollUpButtonCornerRadius">0</CornerRadius>
-    <CornerRadius x:Key="TaskListScrollDownCornerRadius">0</CornerRadius>
-
-    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#848ca3" />
-    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#566282" />
-    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#566282" />
-    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#566282" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="Transparent" />
-    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
-                         StartPoint="0,0"
-                         EndPoint="0,1">
-        <GradientStop Color="#ffffff"
-                      Offset="0.0" />
-        <GradientStop Color="#ecebf3"
-                      Offset="0.1" />
-        <GradientStop Color="#abacc5"
-                      Offset="0.8" />
-        <GradientStop Color="#a1a3c0"
-                      Offset="1.0" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="#566282" />
-    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#000000" />
-
     <SolidColorBrush x:Key="TrayBottomBorder" Color="#61637c" />
     <SolidColorBrush x:Key="TrayLeftBorder1" Color="#58596d" />
     <SolidColorBrush x:Key="TrayLeftBorder2" Color="#d7d8da" />
@@ -342,6 +317,71 @@
         <GradientStop Color="Transparent"
                       Offset="0.5" />
     </LinearGradientBrush>
+
+    <CornerRadius x:Key="TaskListScrollUpCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollDownCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollRightCornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#ffffff" />
+    <LinearGradientBrush x:Key="TaskListScrollButtonLeftBorder"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#EDEAF3"
+                      Offset="0.0" />
+        <GradientStop Color="#B5B6CE"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskListScrollButtonRightBorder"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#EDEAF3"
+                      Offset="0.0" />
+        <GradientStop Color="#B5B6CE"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#A1A1BE" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerTopBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterLeftBorder" Color="#586180" />
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterRightBorder" Color="#586180" />
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterBottomBorder" Color="#848AA1" />
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#ecebf3"
+                      Offset="0.1" />
+        <GradientStop Color="#abacc5"
+                      Offset="0.8" />
+        <GradientStop Color="#a1a3c0"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#8082A8"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundPressed"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#9A9AB2"
+                      Offset="0.0" />
+        <GradientStop Color="#ffffff"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskListScrollDownButtonInnerTopBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonOuterTopBorder" Color="#848AA1" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonTopBorder" Color="#ffffff" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonInnerBottomBorder" Color="#848AA1" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="#565F7D" />
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#000000" />
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxpsilverbutton.png" />
