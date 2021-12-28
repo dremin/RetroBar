@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">خصائص RetroBar</s:String>
+    <s:String x:Key="taskbar_options">خيارات الشريظ المهام</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/he/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/he/properties_noclock.png" />
+    <s:String x:Key="autostart">_بدأ تلقائيًا عند تسجيل الدخول</s:String>
+    <s:String x:Key="language_text">_لسان:</s:String>
+    <s:String x:Key="language_tip">_اختيار لسانك.</s:String>
+    <s:String x:Key="theme_text">_تصميم:</s:String>
+    <s:String x:Key="theme_tip">ثبّت التصاميم في المجلد "Themes".</s:String>
+    <s:String x:Key="location_text">_موقع:</s:String>
+    <s:String x:Key="location_tip">تغيير حجم شريط المهام.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>شمال</s:String>
+        <s:String>قمة</s:String>
+        <s:String>يمين</s:String>
+        <s:String>أسفل</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_السماح بتجانس الخط</s:String>
+    <s:String x:Key="collapse_tray_icons">تقليص رموز منطقة الرسالة</s:String>
+    <s:String x:Key="show_clock">عرض ساعة النظام</s:String>
+    <s:String x:Key="show_multi_mon">عرض على شاشات متعددة</s:String>
+    <s:String x:Key="show_quick_launch">عرض البداية السريعة</s:String>
+    <s:String x:Key="select_location">_اختيار الموقع...</s:String>
+    <s:String x:Key="quick_launch_folder">بداية سريعة - اختيار المجلد</s:String>
+    <s:String x:Key="use_software_rendering">_استخدام عرض البرامج</s:String>
+    <s:String x:Key="ok_dialog">طيب</s:String>
+
+    <s:String x:Key="start_text">بدأ</s:String>
+    <s:String x:Key="start_text_xp"> بدأ</s:String>
+    <s:String x:Key="start_button_tip_98">انقر(ي) هنا لتبدأ(ين)</s:String>
+    <s:String x:Key="start_button_tip">انقر(ي) هنا لتبدأ(ين)</s:String>
+    <s:String x:Key="start_button_tip_vista">بدأ</s:String>
+
+    <s:String x:Key="retrobar_title">شريط المهام RetroBar</s:String>
+    <s:String x:Key="toolbars">_أشرطة الأدوات</s:String>
+    <s:String x:Key="quick_launch">_بداية سريعة</s:String>
+    <s:String x:Key="new_toolbar">_شريط أدوات حديث...</s:String>
+    <s:String x:Key="show_taskman_2k">_قمـ(ي) بتشغيل إدارة المهام</s:String>
+    <s:String x:Key="show_taskman">_قمـ(ي) بتشغيل إدارة المهام</s:String>
+    <s:String x:Key="tray_properties">_خصائص</s:String>
+    <s:String x:Key="update_available">_تحديث متوفر...</s:String>
+    <s:String x:Key="exit_retrobar">_خروج من RetroBar</s:String>
+
+    <s:String x:Key="restore">_استعادة إلى أعلى</s:String>
+    <s:String x:Key="move">_حرك</s:String>
+    <s:String x:Key="size">_بحجم</s:String>
+    <s:String x:Key="minimize">_تصغير</s:String>
+    <s:String x:Key="maximize">_تكبير</s:String>
+    <s:String x:Key="close">_سكر</s:String>
+
+    <s:String x:Key="show_hidden">إظهار الرموز المخفية</s:String>
+    <s:String x:Key="hide">إخفاء</s:String>
+
+    <s:String x:Key="set_time">_اضبط الساعة والتاريخ</s:String>
+
+    <s:String x:Key="open_folder">&amp;فتح مجلد</s:String>
+
+	<FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
+</ResourceDictionary>
