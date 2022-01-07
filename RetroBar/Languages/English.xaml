@@ -21,6 +21,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Allow font smoothing</s:String>
     <s:String x:Key="collapse_tray_icons">Collapse _notification area icons</s:String>
+    <s:String x:Key="customize">Customiz_e...</s:String>
     <s:String x:Key="show_clock">Show the _clock</s:String>
     <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
@@ -28,6 +29,14 @@
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Customize Notifications</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behavior for items in the list below.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Select an item, then choose its notification behavior:</s:String>
+    <s:String x:Key="always_hide">Always hide</s:String>
+    <s:String x:Key="always_show">Always show</s:String>
+    <s:String x:Key="name_heading">Name</s:String>
+    <s:String x:Key="behavior_heading">Behavior</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
@@ -44,6 +53,7 @@
     <s:String x:Key="tray_properties">P_roperties</s:String>
     <s:String x:Key="update_available">_Update available...</s:String>
     <s:String x:Key="exit_retrobar">_Exit RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Customize Notifications...</s:String> <!-- TODO: Add to context menu! -->
 
     <s:String x:Key="restore">_Restore</s:String>
     <s:String x:Key="move">_Move</s:String>

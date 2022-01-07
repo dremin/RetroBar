@@ -1,5 +1,6 @@
 ﻿using ManagedShell.AppBar;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Runtime.CompilerServices;
@@ -196,6 +197,22 @@ namespace RetroBar.Utilities
             }
         }
 
+        public string[] PinnedNotifyIcons
+        {
+            get
+            {
+                return parseConcatString(settings.PinnedNotifyIcons, '|');
+            }
+            set
+            {
+                string val = concatStringList(value, '|');
+                if (settings.PinnedNotifyIcons != val)
+                {
+                    settings.PinnedNotifyIcons = val;
+                }
+            }
+        }
+
         public bool AllowFontSmoothing
         {
             get
@@ -244,6 +261,40 @@ namespace RetroBar.Utilities
                     settings.Edge = value;
                 }
             }
+        }
+        #endregion
+
+        #region Helpers
+        private string[] parseConcatString(string concat, char separator)
+        {
+            List<string> parsed = new List<string>();
+
+            foreach (string key in concat.Split(separator))
+            {
+                if (!string.IsNullOrEmpty(key))
+                {
+                    parsed.Add(key);
+                }
+            }
+
+            return parsed.ToArray();
+        }
+
+        private string concatStringList(IEnumerable<string> list, char separator)
+        {
+            string concatenated = "";
+
+            foreach (string key in list)
+            {
+                if (!string.IsNullOrEmpty(concatenated))
+                {
+                    concatenated += separator.ToString();
+                }
+
+                concatenated += key;
+            }
+
+            return concatenated;
         }
         #endregion
 
