@@ -106,10 +106,16 @@
                     <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                         <Label Content="{DynamicResource allow_font_smoothing}" />
                     </CheckBox>
-                    <CheckBox x:Name="cbCollapseTrayIcons"
-                              IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}">
-                        <Label Content="{DynamicResource collapse_tray_icons}" />
-                    </CheckBox>
+                    <DockPanel>
+                        <CheckBox x:Name="cbCollapseTrayIcons"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource collapse_tray_icons}" />
+                        </CheckBox>
+                        <Button HorizontalAlignment="Right"
+                                Content="{DynamicResource customize}"
+                                IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}"
+                                Click="CustomizeNotifications_OnClick" />
+                    </DockPanel>
                     <CheckBox x:Name="cbShowClock"
                               IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
                         <Label Content="{DynamicResource show_clock}" />

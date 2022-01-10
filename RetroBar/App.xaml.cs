@@ -84,7 +84,10 @@ namespace RetroBar
 
             _logger = new ManagedShellLogger();
 
-            return new ShellManager(ShellManager.DefaultShellConfig);
+            ShellConfig config = ShellManager.DefaultShellConfig;
+            config.PinnedNotifyIcons = Settings.Instance.PinnedNotifyIcons;
+
+            return new ShellManager(config);
         }
 
         private void ExitApp()

@@ -38,7 +38,8 @@
                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:Toolbar>
-            <GroupBox Style="{DynamicResource Tray}">
+            <GroupBox Style="{DynamicResource Tray}"
+                      PreviewMouseRightButtonUp="NotifyArea_PreviewMouseRightButtonUp">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="trailing"
@@ -51,8 +52,9 @@
                                  Path="Orientation"
                                  RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
-                    <controls:NotifyIconList NotificationArea="{Binding NotificationArea}"></controls:NotifyIconList>
-                    <controls:Clock VerticalAlignment="Center"></controls:Clock>
+                    <controls:NotifyIconList NotificationArea="{Binding NotificationArea}" />
+                    <controls:Clock VerticalAlignment="Center"
+                                    PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
             </GroupBox>
             <controls:TaskList VerticalAlignment="Top"
@@ -69,12 +71,31 @@
                 <MenuItem Header="{DynamicResource new_toolbar}" Name="NewToolbarMenuItem" />
             </MenuItem>
             <Separator /-->
-            <MenuItem Style="{DynamicResource TaskManMenuItem}" Name="TaskManagerMenuItem" Click="TaskManagerMenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource set_time}"
+                      Name="DateTimeMenuItem"
+                      Click="DateTimeMenuItem_OnClick"
+                      FontWeight="Bold"
+                      Visibility="Collapsed" />
+            <MenuItem Header="{DynamicResource customize_notifications_menu}"
+                      Name="CustomizeNotificationsMenuItem"
+                      Click="CustomizeNotificationsMenuItem_OnClick" Visibility="Collapsed" />
+            <Separator Name="NotificationAreaSeparator"
+                       Visibility="Collapsed" />
+            <MenuItem Style="{DynamicResource TaskManMenuItem}"
+                      Name="TaskManagerMenuItem"
+                      Click="TaskManagerMenuItem_OnClick" />
             <Separator />
-            <MenuItem Header="{DynamicResource update_available}" Name="UpdateAvailableMenuItem" Click="UpdateAvailableMenuItem_OnClick"
-                      FontWeight="Bold" Visibility="Collapsed" />
-            <MenuItem Header="{DynamicResource tray_properties}" Name="PropertiesMenuItem" Click="PropertiesMenuItem_OnClick" />
-            <MenuItem Header="{DynamicResource exit_retrobar}" Name="ExitMenuItem" Click="ExitMenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource update_available}"
+                      Name="UpdateAvailableMenuItem"
+                      Click="UpdateAvailableMenuItem_OnClick"
+                      FontWeight="Bold"
+                      Visibility="Collapsed" />
+            <MenuItem Header="{DynamicResource tray_properties}"
+                      Name="PropertiesMenuItem"
+                      Click="PropertiesMenuItem_OnClick" />
+            <MenuItem Header="{DynamicResource exit_retrobar}"
+                      Name="ExitMenuItem"
+                      Click="ExitMenuItem_OnClick" />
         </ContextMenu>
     </appbar:AppBarWindow.ContextMenu>
 </appbar:AppBarWindow>

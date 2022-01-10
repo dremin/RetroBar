@@ -240,6 +240,53 @@
                       Offset="0.3" />
     </LinearGradientBrush>
 
+    <CornerRadius x:Key="TaskListScrollUpCornerRadius">0,0,2,2</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollDownCornerRadius">2,2,0,0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0,2,2,0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollRightCornerRadius">2,0,0,2</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#26000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#26ffffff" />
+    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#26ffffff" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#26ffffff" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerTopBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="#33000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="#33000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="#33000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterLeftBorder" Color="#1f000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterRightBorder" Color="#55000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterBottomBorder" Color="#44000000" />
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#26000000"
+                      Offset="0.0" />
+        <GradientStop Color="#33000000"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundHover"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#5576FC"
+                      Offset="0.0" />
+        <GradientStop Color="#4A58E7"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundPressed"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#272784"
+                      Offset="0.0" />
+        <GradientStop Color="#363CCA"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskListScrollDownButtonInnerTopBorder" Color="#33000000" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonOuterTopBorder" Color="#44000000" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonTopBorder" Color="#26ffffff" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonInnerBottomBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#bedcff" />
+
     <DropShadowEffect x:Key="StartLabelShadow"
                       Color="#454c10"
                       Direction="315"
@@ -768,73 +815,61 @@
         </Setter>
     </Style>
 
-    <CornerRadius x:Key="TaskListScrollUpButtonCornerRadius">0,0,2,2</CornerRadius>
-    <CornerRadius x:Key="TaskListScrollDownCornerRadius">2,2,0,0</CornerRadius>
-
-    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#2f68d5" />
-    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#3281ea" />
-    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#3281ea" />
-    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#3281ea" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="#1334a9" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="#1334aa" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="#133ab0" />
-    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
-                         StartPoint="0,0"
-                         EndPoint="0,1">
-        <GradientStop Color="#332f68d5"
-                      Offset="0.0" />
-        <GradientStop Color="#332b6bde"
-                      Offset="0.2" />
-        <GradientStop Color="#1742cd"
-                      Offset="0.4" />
-        <GradientStop Color="#1743cb"
-                      Offset="1.0" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#bedcff" />
-
     <Style x:Key="TaskListScrollUpButton"
            TargetType="RepeatButton"
            BasedOn="{StaticResource TaskListScrollButton}">
+        <Setter Property="Margin"
+                Value="0,1,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border Background="Transparent">
-                        <Border BorderThickness="0,1,0,0"
-                                BorderBrush="{DynamicResource TaskListScrollButtonTopBorder}"
-                                Background="Transparent"
-                                CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                x:Name="ButtonTopBorder">
-                            <Border BorderThickness="1,0,0,0"
-                                    BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
-                                    CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                    x:Name="ButtonLeftBorder">
+                    <Border BorderThickness="1,0,0,0"
+                            BorderBrush="{DynamicResource TaskListScrollButtonOuterLeftBorder}"
+                            CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                            x:Name="ButtonOuterLeftBorder">
+                        <Border BorderThickness="0,0,1,0"
+                                BorderBrush="{DynamicResource TaskListScrollButtonOuterRightBorder}"
+                                CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                x:Name="ButtonOuterRightBorder">
+                            <Border BorderThickness="0,0,0,1"
+                                    BorderBrush="{DynamicResource TaskListScrollButtonOuterBottomBorder}"
+                                    CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                    x:Name="ButtonOuterBottomBorder">
                                 <Border BorderThickness="0,0,0,1"
-                                        BorderBrush="{DynamicResource TaskListScrollButtonRightBorder}"
-                                        CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                        x:Name="ButtonRightBorder">
-                                    <Border BorderThickness="0,0,1,0"
-                                            BorderBrush="{DynamicResource TaskListScrollButtonBottomBorder}"
-                                            CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                            x:Name="ButtonBottomBorder">
-                                        <Border BorderThickness="0,0,0,1"
-                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerBottomBorder}"
-                                                Background="{DynamicResource TaskListScrollButtonBackground}"
-                                                CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                                x:Name="ButtonInnerBottomBorder">
-                                            <Border BorderThickness="1,0,0,0"
-                                                    BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
-                                                    CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                                    x:Name="ButtonInnerLeftBorder">
-                                                <Border BorderThickness="0,0,1,0"
-                                                        BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
-                                                        Background="{DynamicResource TaskListScrollButtonBackground}"
-                                                        CornerRadius="{DynamicResource TaskListScrollUpButtonCornerRadius}"
-                                                        x:Name="ButtonInnerRightBorder">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"
-                                                                      Margin="1,-3,1,-3"
-                                                                      x:Name="Content" />
+                                        BorderBrush="{DynamicResource TaskListScrollButtonBottomBorder}"
+                                        CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                        x:Name="ButtonBottomBorder">
+                                    <Border BorderThickness="1,0,0,0"
+                                            BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
+                                            CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                            x:Name="ButtonLeftBorder">
+                                        <Border BorderThickness="0,0,1,0"
+                                                BorderBrush="{DynamicResource TaskListScrollButtonRightBorder}"
+                                                CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                                x:Name="ButtonRightBorder">
+                                            <Border BorderThickness="0,1,0,0"
+                                                    BorderBrush="{DynamicResource TaskListScrollButtonTopBorder}"
+                                                    Background="{DynamicResource TaskListScrollButtonBackground}"
+                                                    CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                                    x:Name="ButtonTopBorder">
+                                                <Border BorderThickness="0,0,0,1"
+                                                        BorderBrush="{DynamicResource TaskListScrollButtonInnerBottomBorder}"
+                                                        CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                                        x:Name="ButtonInnerBottomBorder">
+                                                    <Border BorderThickness="1,0,0,0"
+                                                            BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
+                                                            CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                                            x:Name="ButtonInnerLeftBorder">
+                                                        <Border BorderThickness="0,0,1,0"
+                                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
+                                                                CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                                                                x:Name="ButtonInnerRightBorder">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                              VerticalAlignment="Center"
+                                                                              Margin="1,-3,1,-3"
+                                                                              x:Name="Content" />
+                                                        </Border>
+                                                    </Border>
                                                 </Border>
                                             </Border>
                                         </Border>
@@ -847,114 +882,155 @@
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="ButtonTopBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonTopBorderHover}" />
-                            <Setter TargetName="ButtonLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonLeftBorderHover}" />
-                            <Setter TargetName="ButtonRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonRightBorderHover}" />
-                            <Setter TargetName="ButtonBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonBottomBorderHover}" />
-                            <Setter TargetName="ButtonInnerLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerLeftBorderHover}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerRightBorderHover}" />
-                            <Setter TargetName="ButtonInnerBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerBottomBorderHover}" />
-                            <Setter TargetName="ButtonInnerBottomBorder"
                                     Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundHighlightHover}" />
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundHover}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
                             <Setter TargetName="ButtonTopBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonTopBorderPressed}" />
-                            <Setter TargetName="ButtonLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonLeftBorderPressed}" />
-                            <Setter TargetName="ButtonRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonRightBorderPressed}" />
-                            <Setter TargetName="ButtonBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonBottomBorderPressed}" />
-                            <Setter TargetName="ButtonInnerLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerLeftBorderPressed}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerRightBorderPressed}" />
-                            <Setter TargetName="ButtonInnerBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerBottomBorderPressed}" />
-                            <Setter TargetName="ButtonInnerBottomBorder"
                                     Property="Background"
-                                    Value="Transparent" />
-                            <Setter TargetName="ButtonTopBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundPressed}" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonTopBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="ButtonRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="ButtonInnerLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonInnerRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonInnerBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="ButtonOuterLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonOuterRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonOuterBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="ButtonLeftBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonTopBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonRightBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonBottomBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonInnerLeftBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonInnerRightBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonInnerBottomBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonOuterLeftBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonOuterRightBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                                <Setter TargetName="ButtonOuterBottomBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollLeftCornerRadius}" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="TaskListScrollDownButton"
            TargetType="RepeatButton"
            BasedOn="{StaticResource TaskListScrollButton}">
+        <Setter Property="Margin"
+                Value="0,-1,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border Background="Transparent">
-                        <Border BorderThickness="0,1,0,0"
-                                BorderBrush="{DynamicResource TaskListScrollButtonTopBorder}"
-                                Background="Transparent"
+                    <Border BorderThickness="1,0,0,0"
+                            BorderBrush="{DynamicResource TaskListScrollButtonOuterLeftBorder}"
+                            CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                            x:Name="ButtonOuterLeftBorder">
+                        <Border BorderThickness="0,0,1,0"
+                                BorderBrush="{DynamicResource TaskListScrollButtonOuterRightBorder}"
                                 CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                x:Name="ButtonTopBorder">
-                            <Border BorderThickness="1,0,0,0"
-                                    BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
+                                x:Name="ButtonOuterRightBorder">
+                            <Border BorderThickness="0,1,0,0"
+                                    BorderBrush="{DynamicResource TaskListScrollDownButtonOuterTopBorder}"
                                     CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                    x:Name="ButtonLeftBorder">
+                                    x:Name="ButtonOuterTopBorder">
                                 <Border BorderThickness="0,0,0,1"
                                         BorderBrush="{DynamicResource TaskListScrollDownButtonBottomBorder}"
                                         CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                        x:Name="ButtonRightBorder">
-                                    <Border BorderThickness="0,0,1,0"
-                                            BorderBrush="{DynamicResource TaskListScrollButtonBottomBorder}"
+                                        x:Name="ButtonBottomBorder">
+                                    <Border BorderThickness="1,0,0,0"
+                                            BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
                                             CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                            x:Name="ButtonBottomBorder">
-                                        <Border BorderThickness="0,0,0,1"
-                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerBottomBorder}"
-                                                Background="{DynamicResource TaskListScrollButtonBackground}"
+                                            x:Name="ButtonLeftBorder">
+                                        <Border BorderThickness="0,0,1,0"
+                                                BorderBrush="{DynamicResource TaskListScrollButtonRightBorder}"
                                                 CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                                x:Name="ButtonInnerBottomBorder">
-                                            <Border BorderThickness="1,0,0,0"
-                                                    BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
+                                                x:Name="ButtonRightBorder">
+                                            <Border BorderThickness="0,1,0,0"
+                                                    BorderBrush="{DynamicResource TaskListScrollDownButtonTopBorder}"
                                                     CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                                    x:Name="ButtonInnerLeftBorder">
-                                                <Border BorderThickness="0,0,1,0"
-                                                        BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
+                                                    x:Name="ButtonTopBorder">
+                                                <Border BorderThickness="0,0,0,1"
+                                                        BorderBrush="{DynamicResource TaskListScrollDownButtonInnerBottomBorder}"
                                                         Background="{DynamicResource TaskListScrollButtonBackground}"
                                                         CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
-                                                        x:Name="ButtonInnerRightBorder">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"
-                                                                      Margin="1,-3,1,-3"
-                                                                      x:Name="Content" />
+                                                        x:Name="ButtonInnerBottomBorder">
+                                                    <Border BorderThickness="1,0,0,0"
+                                                            BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
+                                                            CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                                            x:Name="ButtonInnerLeftBorder">
+                                                        <Border BorderThickness="0,0,1,0"
+                                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
+                                                                CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                                                x:Name="ButtonInnerRightBorder">
+                                                            <Border BorderThickness="0,1,0,0"
+                                                                    BorderBrush="{DynamicResource TaskListScrollDownButtonInnerTopBorder}"
+                                                                    CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
+                                                                    x:Name="ButtonInnerTopBorder">
+                                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                              VerticalAlignment="Center"
+                                                                              Margin="1,-4,1,-3"
+                                                                              x:Name="Content" />
+                                                            </Border>
+                                                        </Border>
+                                                    </Border>
                                                 </Border>
                                             </Border>
                                         </Border>
@@ -966,71 +1042,103 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
-                            <Setter TargetName="ButtonTopBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonTopBorderHover}" />
-                            <Setter TargetName="ButtonLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonLeftBorderHover}" />
-                            <Setter TargetName="ButtonRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonRightBorderHover}" />
-                            <Setter TargetName="ButtonBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonBottomBorderHover}" />
-                            <Setter TargetName="ButtonInnerLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerLeftBorderHover}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerRightBorderHover}" />
-                            <Setter TargetName="ButtonInnerBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerBottomBorderHover}" />
                             <Setter TargetName="ButtonInnerBottomBorder"
                                     Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundHighlightHover}" />
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundHover}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
-                            <Setter TargetName="ButtonTopBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonTopBorderPressed}" />
-                            <Setter TargetName="ButtonLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonLeftBorderPressed}" />
-                            <Setter TargetName="ButtonRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonRightBorderPressed}" />
-                            <Setter TargetName="ButtonBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonBottomBorderPressed}" />
-                            <Setter TargetName="ButtonInnerLeftBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerLeftBorderPressed}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerRightBorderPressed}" />
-                            <Setter TargetName="ButtonInnerBottomBorder"
-                                    Property="BorderBrush"
-                                    Value="{DynamicResource TaskButtonInnerBottomBorderPressed}" />
                             <Setter TargetName="ButtonInnerBottomBorder"
                                     Property="Background"
-                                    Value="Transparent" />
-                            <Setter TargetName="ButtonTopBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
-                            <Setter TargetName="ButtonInnerRightBorder"
-                                    Property="Background"
-                                    Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundPressed}" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="1,-3,1,-3" />
+                                <Setter TargetName="ButtonLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonTopBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="ButtonRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="ButtonInnerLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonInnerRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonInnerBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="ButtonInnerTopBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="ButtonOuterLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonOuterRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonOuterTopBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="ButtonLeftBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonTopBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonRightBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonBottomBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonInnerLeftBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonInnerRightBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonInnerBottomBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonInnerTopBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonOuterLeftBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonOuterRightBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                                <Setter TargetName="ButtonOuterTopBorder"
+                                        Property="CornerRadius"
+                                        Value="{DynamicResource TaskListScrollRightCornerRadius}" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />

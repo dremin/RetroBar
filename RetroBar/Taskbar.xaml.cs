@@ -21,6 +21,8 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
+        private bool _clockRightClicked;
+        private bool _notifyAreaRightClicked;
         private ShellManager _shellManager;
         private Updater _updater;
         private WindowManager _windowManager;
@@ -216,6 +218,17 @@ namespace RetroBar
             UpdateTrayPosition();
         }
 
+        private void DateTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShellHelper.StartProcess("timedate.cpl");
+        }
+
+        private void CustomizeNotificationsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            PropertiesWindow propWindow = PropertiesWindow.Open(_shellManager.NotificationArea, ((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
+            propWindow.OpenCustomizeNotifications();
+        }
+
         private void TaskManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ShellHelper.StartTaskManager();
@@ -234,7 +247,7 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow.Open(((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
+            PropertiesWindow.Open(_shellManager.NotificationArea, ((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
         }
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -280,6 +293,38 @@ namespace RetroBar
             {
                 UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
+
+            // Some menu items should only be accessible when the clock is what was right-clicked
+
+            if (_clockRightClicked)
+            {
+                DateTimeMenuItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DateTimeMenuItem.Visibility = Visibility.Collapsed;
+            }
+
+            if(_notifyAreaRightClicked && Settings.Instance.CollapseNotifyIcons)
+            {
+                CustomizeNotificationsMenuItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CustomizeNotificationsMenuItem.Visibility = Visibility.Collapsed;
+            }
+
+            if (_clockRightClicked || (_notifyAreaRightClicked && Settings.Instance.CollapseNotifyIcons))
+            {
+                NotificationAreaSeparator.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NotificationAreaSeparator.Visibility = Visibility.Collapsed;
+            }
+
+            _clockRightClicked = false;
+            _notifyAreaRightClicked = false;
         }
 
         public void SetTrayHost()
@@ -295,6 +340,16 @@ namespace RetroBar
                     Right = (int)((Left + Width) * DpiScale)
                 }
             });
+        }
+
+        private void Clock_PreviewMouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _clockRightClicked = true;
+        }
+
+        private void NotifyArea_PreviewMouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _notifyAreaRightClicked = true;
         }
     }
 }
