@@ -9,6 +9,7 @@ using ManagedShell.Common.Logging;
 using Microsoft.Win32;
 using ManagedShell.AppBar;
 using System.Windows.Forms;
+using ManagedShell.WindowsTray;
 
 namespace RetroBar
 {
@@ -22,13 +23,15 @@ namespace RetroBar
         private readonly double _barSize;
         private readonly DictionaryManager _dictionaryManager;
         private readonly double _dpiScale;
+        private readonly NotificationArea _notificationArea;
         private readonly AppBarScreen _screen;
 
-        private PropertiesWindow(DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
+        private PropertiesWindow(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             _barSize = barSize;
             _dictionaryManager = dictionaryManager;
             _dpiScale = dpiScale;
+            _notificationArea = notificationArea;
             _screen = screen;
 
             InitializeComponent();
@@ -38,17 +41,19 @@ namespace RetroBar
             LoadThemes();
         }
 
-        public static void Open(DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
+        public static PropertiesWindow Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             if (_instance == null)
             {
-                _instance = new PropertiesWindow(dictionaryManager, screen, dpiScale, barSize);
+                _instance = new PropertiesWindow(notificationArea, dictionaryManager, screen, dpiScale, barSize);
                 _instance.Show();
             }
             else
             {
                 _instance.Activate();
             }
+
+            return _instance;
         }
 
         private void LoadAutoStart()
@@ -179,6 +184,16 @@ namespace RetroBar
             {
                 cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[Settings.Instance.Edge];
             }
+        }
+
+        private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenCustomizeNotifications();
+        }
+
+        public void OpenCustomizeNotifications()
+        {
+            NotificationPropertiesWindow.Open(_notificationArea, new Point(Left, Top));
         }
     }
 }
