@@ -155,11 +155,6 @@ namespace RetroBar.Controls
             ClockTip = now.ToLongDateString();
         }
 
-        private void OpenDateTimeCpl()
-        {
-            ShellHelper.StartProcess("timedate.cpl");
-        }
-
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (EnvironmentHelper.IsWindows10OrBetter)
@@ -171,14 +166,9 @@ namespace RetroBar.Controls
         private void Clock_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             singleClick.Stop();
-            OpenDateTimeCpl();
+            ShellHelper.StartProcess("timedate.cpl");
 
             e.Handled = true;
-        }
-
-        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            OpenDateTimeCpl();
         }
     }
 }

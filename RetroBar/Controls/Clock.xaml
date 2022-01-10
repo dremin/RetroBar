@@ -8,9 +8,4 @@
                ToolTip="{Binding ClockTip}"
                Name="ClockTextBlock"
                Visibility="Collapsed" />
-    <UserControl.ContextMenu>
-        <ContextMenu>
-            <MenuItem Header="{DynamicResource set_time}" Click="MenuItem_OnClick" />
-        </ContextMenu>
-    </UserControl.ContextMenu>
 </UserControl>

@@ -86,8 +86,8 @@
                                                   SelectedIndex="{Binding IsPinned, Converter={StaticResource boolToIntConverter}}"
                                                   SelectionChanged="BehaviorComboBox_SelectionChanged"
                                                   Visibility="Collapsed">
-                                            <ComboBoxItem Content="{StaticResource always_hide}" />
-                                            <ComboBoxItem Content="{StaticResource always_show}" />
+                                            <ComboBoxItem Content="{DynamicResource always_hide}" />
+                                            <ComboBoxItem Content="{DynamicResource always_show}" />
                                         </ComboBox>
                                     </StackPanel>
                                     <DataTemplate.Triggers>

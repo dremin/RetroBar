@@ -41,7 +41,7 @@ namespace RetroBar
             LoadThemes();
         }
 
-        public static void Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
+        public static PropertiesWindow Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             if (_instance == null)
             {
@@ -52,6 +52,8 @@ namespace RetroBar
             {
                 _instance.Activate();
             }
+
+            return _instance;
         }
 
         private void LoadAutoStart()
@@ -185,6 +187,11 @@ namespace RetroBar
         }
 
         private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenCustomizeNotifications();
+        }
+
+        public void OpenCustomizeNotifications()
         {
             NotificationPropertiesWindow.Open(_notificationArea, new Point(Left, Top));
         }
