@@ -30,8 +30,13 @@ jobs:
       env:
         Profile: ${{ matrix.publishprofile }}
 
+    - name: Copy license
+      run: cp License.txt RetroBar\bin\Release\netcoreapp3.1\publish
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: RetroBar
-        path: RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
+        path: |
+          RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
+          RetroBar\bin\Release\netcoreapp3.1\publish\License.txt

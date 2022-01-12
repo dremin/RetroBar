@@ -202,7 +202,8 @@ namespace RetroBar.Controls
 
         private void AppButton_OnDragEnter(object sender, DragEventArgs e)
         {
-            if (!inDrag)
+            // Ignore drag operations from a reorder
+            if (!inDrag && !e.Data.GetDataPresent("GongSolutions.Wpf.DragDrop"))
             {
                 inDrag = true;
                 dragTimer.Start();

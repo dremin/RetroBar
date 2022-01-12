@@ -11,7 +11,7 @@ namespace RetroBar.Converters
         {
             if (value is bool isPinned)
             {
-                return isPinned ? Application.Current.FindResource("always_show") : Application.Current.FindResource("always_hide");
+                return isPinned ? Application.Current.FindResource("always_show") : Application.Current.FindResource("hide_when_inactive");
             }
 
             return Binding.DoNothing;
