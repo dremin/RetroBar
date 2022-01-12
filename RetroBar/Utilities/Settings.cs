@@ -201,7 +201,7 @@ namespace RetroBar.Utilities
         {
             get
             {
-                return parseConcatString(settings.PinnedNotifyIcons, '|');
+                return parseConcatString(settings.PinnedNotifyIcons, '|').ToArray();
             }
             set
             {
@@ -262,10 +262,35 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        private List<string> _quickLaunchOrder;
+
+        public List<string> QuickLaunchOrder
+        {
+            get
+            {
+                if (_quickLaunchOrder == null)
+                {
+                    _quickLaunchOrder = parseConcatString(settings.QuickLaunchOrder, '|');
+                }
+
+                return _quickLaunchOrder;
+            }
+            set
+            {
+                _quickLaunchOrder = value;
+
+                string val = concatStringList(value, '|');
+                if (settings.QuickLaunchOrder != val)
+                {
+                    settings.QuickLaunchOrder = val;
+                }
+            }
+        }
         #endregion
 
         #region Helpers
-        private string[] parseConcatString(string concat, char separator)
+        private List<string> parseConcatString(string concat, char separator)
         {
             List<string> parsed = new List<string>();
 
@@ -277,7 +302,7 @@ namespace RetroBar.Utilities
                 }
             }
 
-            return parsed.ToArray();
+            return parsed;
         }
 
         private string concatStringList(IEnumerable<string> list, char separator)

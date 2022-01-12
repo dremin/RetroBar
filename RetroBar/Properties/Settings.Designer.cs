@@ -167,5 +167,17 @@ namespace RetroBar.Properties {
                 this["PinnedNotifyIcons"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QuickLaunchOrder {
+            get {
+                return ((string)(this["QuickLaunchOrder"]));
+            }
+            set {
+                this["QuickLaunchOrder"] = value;
+            }
+        }
     }
 }

@@ -2,10 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RetroBar.Controls"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              IsVisibleChanged="UserControl_IsVisibleChanged">
     <ItemsControl x:Name="ToolbarItems"
                   Focusable="False"
-                  Style="{DynamicResource ToolbarItems}">
+                  Style="{DynamicResource ToolbarItems}"
+                  dd:DragDrop.IsDragSource="True"
+                  dd:DragDrop.IsDropTarget="True"
+                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource AncestorType=local:Toolbar}, Path=DropHandler}"
+                  dd:DragDrop.DragDropContext="Toolbar">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal"></WrapPanel>

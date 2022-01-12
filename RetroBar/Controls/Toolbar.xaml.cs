@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.ShellFolders;
@@ -33,6 +36,8 @@ namespace RetroBar.Controls
 
         private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
 
+        public ToolbarDropHandler DropHandler { get; set; }
+
         private ShellFolder Folder
         {
             get => (ShellFolder)GetValue(FolderProperty);
@@ -45,6 +50,8 @@ namespace RetroBar.Controls
 
         public Toolbar()
         {
+            DropHandler = new ToolbarDropHandler(this);
+
             InitializeComponent();
         }
 
@@ -65,7 +72,21 @@ namespace RetroBar.Controls
             if (Folder != null)
             {
                 ToolbarItems.ItemsSource = Folder.Files;
+                ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+                cvs.CustomSort = new ToolbarSorter(this);
             }
+        }
+
+        public void SaveItemOrder()
+        {
+            List<string> itemPaths = new List<string>();
+
+            foreach (ShellFile file in ((ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files)).OfType<ShellFile>())
+            {
+                itemPaths.Add(file.Path);
+            }
+
+            Settings.Instance.QuickLaunchOrder = itemPaths;
         }
 
         #region Events
