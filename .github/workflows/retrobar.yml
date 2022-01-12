@@ -37,4 +37,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: RetroBar
-        path: RetroBar\bin\Release\netcoreapp3.1\publish\
+        path: |
+          RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
+          RetroBar\bin\Release\netcoreapp3.1\publish\License.txt
