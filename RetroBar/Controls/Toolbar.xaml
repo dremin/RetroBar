@@ -8,7 +8,8 @@
                   Focusable="False"
                   Style="{DynamicResource ToolbarItems}"
                   dd:DragDrop.IsDragSource="True"
-                  dd:DragDrop.IsDropTarget="True">
+                  dd:DragDrop.IsDropTarget="True"
+                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource AncestorType=local:Toolbar}, Path=DropHandler}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal"></WrapPanel>
