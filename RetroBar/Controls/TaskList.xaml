@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              Loaded="TaskList_OnLoaded"
              Unloaded="TaskList_OnUnloaded"
              SizeChanged="TaskList_OnSizeChanged">
@@ -16,7 +17,9 @@
                   VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="TasksList"
                       Focusable="False"
-                      HorizontalAlignment="Stretch">
+                      HorizontalAlignment="Stretch"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel>

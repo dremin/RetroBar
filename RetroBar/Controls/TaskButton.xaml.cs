@@ -202,7 +202,7 @@ namespace RetroBar.Controls
 
         private void AppButton_OnDragEnter(object sender, DragEventArgs e)
         {
-            if (!inDrag)
+            if (!inDrag && !e.Data.GetDataPresent("GongSolutions.Wpf.DragDrop"))
             {
                 inDrag = true;
                 dragTimer.Start();
