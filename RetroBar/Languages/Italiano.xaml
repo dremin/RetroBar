@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Proprietà di RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Opzioni Barra delle Applicazioni</s:String>
+    <BitmapImage x:Key="properties_95" UriSource="../Resources/properties.png" />
+    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/properties_noclock.png" />
+    <s:String x:Key="autostart">Avvia automaticamente all'accensione</s:String>
+    <s:String x:Key="language_text">Lin_gua:</s:String>
+    <s:String x:Key="language_tip">Seleziona la lingua da usare.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Installa Temi nella cartella dei Temi.</s:String>
+    <s:String x:Key="location_text">_Posizione:</s:String>
+    <s:String x:Key="location_tip">Cambia la posizione della Barra delle Applicazioni.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Sinistra</s:String>
+        <s:String>Alto</s:String>
+        <s:String>Destra</s:String>
+        <s:String>Basso</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Permetti font _Smussati</s:String>
+    <s:String x:Key="collapse_tray_icons">Nascondi _icone nell'area di notifica</s:String>
+    <s:String x:Key="customize">Personalizz_a...</s:String>
+    <s:String x:Key="show_clock">Mostra l'_orologio</s:String>
+    <s:String x:Key="show_multi_mon">Mostra su _più schermi</s:String>
+    <s:String x:Key="show_quick_launch">Mostra _Avvio Rapido</s:String>
+    <s:String x:Key="select_location">_Seleziona Posizione...</s:String>
+    <s:String x:Key="quick_launch_folder">Avvio Rapido - Scegli una Cartella</s:String>
+    <s:String x:Key="use_software_rendering">_Utilizza Rendering Software</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Personalizza Notifiche</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar mostra le icone per notifiche urgenti e attive, e nasconde quelle inattive. Puoi cambiare questo comportamento per gli oggetti nella lista sotto.
+    <s:String x:Key="customize_notifications_instruction">Seleziona un oggetto e poi scegli il suo comportamento di notifica:</s:String>
+    <s:String x:Key="hide_when_inactive">Nascondi quando Inattivo</s:String>
+    <s:String x:Key="always_show">Mostra sempre</s:String>
+    <s:String x:Key="name_heading">Nome</s:String>
+    <s:String x:Key="behavior_heading">Comportamento</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Clicca qui per iniziare.</s:String>
+    <s:String x:Key="start_button_tip">Clicca qui per iniziare</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">Barra delle Applicazioni RetroBar</s:String>
+    <s:String x:Key="toolbars">_Barre degli Strumenti</s:String>
+    <s:String x:Key="quick_launch">_Avvio Rapido</s:String>
+    <s:String x:Key="new_toolbar">_Nuovo ...</s:String>
+    <s:String x:Key="show_taskman_2k">Gestione Attività...</s:String>
+    <s:String x:Key="show_taskman">Gestione Attività</s:String>
+    <s:String x:Key="tray_properties">P_roprietà</s:String>
+    <s:String x:Key="update_available">_Aggiornamento disponibile...</s:String>
+    <s:String x:Key="exit_retrobar">_Esci da RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Personalizza Notifiche...</s:String>
+
+    <s:String x:Key="restore">_Ripristina</s:String>
+    <s:String x:Key="move">_Muovi</s:String>
+    <s:String x:Key="size">_Grandezza</s:String>
+    <s:String x:Key="minimize">Mi_nimizza</s:String>
+    <s:String x:Key="maximize">Ma_ssimizza</s:String>
+    <s:String x:Key="close">_Chiudi</s:String>
+
+    <s:String x:Key="show_hidden">Mostra icone nascoste</s:String>
+    <s:String x:Key="hide">Nascondi</s:String>
+
+    <s:String x:Key="set_time">_Aggiusta Data/Ora</s:String>
+
+    <s:String x:Key="open_folder">&amp;Apri Cartella</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
