@@ -21,6 +21,8 @@ namespace RetroBar.Utilities
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
+            // Save before the drop in order to catch any items not yet saved
+            _toolbar.SaveItemOrder();
             DropInFlight = dropInfo;
 
             DragDrop.DefaultDropHandler.Drop(dropInfo);
