@@ -40,6 +40,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Vietnamese (Tiếng Việt)
   - Hebrew (עברית)
   - Japanese (日本語)
+  - Arabic (العربية)
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.
