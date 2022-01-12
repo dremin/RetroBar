@@ -39,6 +39,12 @@ namespace RetroBar.Utilities
                         desiredSort.RemoveAt(currentIndex);
                     }
 
+                    // Safety first!
+                    if (desiredIndex > desiredSort.Count)
+                    {
+                        desiredIndex = desiredSort.Count;
+                    }
+
                     desiredSort.Insert(desiredIndex, droppedFile.Path);
                 }
 

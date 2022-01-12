@@ -19,7 +19,8 @@
                       Focusable="False"
                       HorizontalAlignment="Stretch"
                       dd:DragDrop.IsDragSource="True"
-                      dd:DragDrop.IsDropTarget="True">
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.DragDropContext="TaskList">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel>

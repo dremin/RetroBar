@@ -27,6 +27,7 @@ namespace RetroBar.Utilities
 
             DragDrop.DefaultDropHandler.Drop(dropInfo);
 
+            // Save post-drop state
             _toolbar.SaveItemOrder();
             DropInFlight = null;
         }
