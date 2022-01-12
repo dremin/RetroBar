@@ -98,7 +98,7 @@
                                                             <Setter Property="Text" Value="{DynamicResource always_show}" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding IsPinned}" Value="False">
-                                                            <Setter Property="Text" Value="{DynamicResource always_hide}" />
+                                                            <Setter Property="Text" Value="{DynamicResource hide_when_inactive}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
