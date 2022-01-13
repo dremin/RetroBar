@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <StartupObject>RetroBar.App</StartupObject>
+    <StartupObject>RetroBar.Program</StartupObject>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyVersion>1.0.0.8</AssemblyVersion>
     <FileVersion>1.0.0.8</FileVersion>

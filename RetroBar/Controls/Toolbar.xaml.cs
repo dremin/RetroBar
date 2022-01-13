@@ -17,6 +17,9 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class Toolbar : UserControl
     {
+        private bool _ignoreNextUpdate;
+        private bool _isLoaded;
+
         private enum MenuItem : uint
         {
             OpenParentFolder = CommonContextMenuItem.Paste + 1
@@ -55,6 +58,24 @@ namespace RetroBar.Controls
             InitializeComponent();
         }
 
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "QuickLaunchOrder")
+            {
+                if (_ignoreNextUpdate)
+                {
+                    _ignoreNextUpdate = false;
+                    return;
+                }
+
+                if (Folder != null)
+                {
+                    ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+                    cvs.Refresh();
+                }
+            }
+        }
+
         private void SetupFolder(string path)
         {
             Folder?.Dispose();
@@ -85,6 +106,9 @@ namespace RetroBar.Controls
             {
                 itemPaths.Add(file.Path);
             }
+
+            // small optimization, only other toolbars with this folder need to reload when the setting is saved.
+            _ignoreNextUpdate = true;
 
             Settings.Instance.QuickLaunchOrder = itemPaths;
         }
@@ -200,5 +224,22 @@ namespace RetroBar.Controls
             return false;
         }
         #endregion
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!_isLoaded)
+            {
+                Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+                _isLoaded = true;
+            }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+
+            _isLoaded = false;
+        }
     }
 }

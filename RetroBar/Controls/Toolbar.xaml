@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:dd="urn:gong-wpf-dragdrop"
-             IsVisibleChanged="UserControl_IsVisibleChanged">
+             IsVisibleChanged="UserControl_IsVisibleChanged"
+             Loaded="UserControl_Loaded"
+             Unloaded="UserControl_Unloaded">
     <ItemsControl x:Name="ToolbarItems"
                   Focusable="False"
                   Style="{DynamicResource ToolbarItems}"
