@@ -31,7 +31,7 @@
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizza notifiche</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar mostra le icone per notifiche urgenti e attive, e nasconde quelle inattive. Puoi cambiare questo comportamento per gli elementi nella lista sotto.
+    <s:String x:Key="customize_notifications_info">RetroBar mostra le icone per notifiche urgenti e attive, e nasconde quelle inattive. Puoi cambiare questo comportamento per gli elementi nella lista sotto.</s:String>
     <s:String x:Key="customize_notifications_instruction">Selezionare un elemento e sceglierne il comportamento di notifica:</s:String>
     <s:String x:Key="hide_when_inactive">Nascondi se inattivo</s:String>
     <s:String x:Key="always_show">Mostra sempre</s:String>
