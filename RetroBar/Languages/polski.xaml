@@ -11,7 +11,7 @@
     <s:String x:Key="language_tip">Wybierz język.</s:String>
     <s:String x:Key="theme_text">_Motyw:</s:String>
     <s:String x:Key="theme_tip">Zainstaluj motywy w folderze Themes.</s:String>
-    <s:String x:Key="location_text">Lokalizacja paska zadań:</s:String>
+    <s:String x:Key="location_text">Lokalizacja:</s:String>
     <s:String x:Key="location_tip">Zmień umiejscowienie paska zadań na ekranie.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Po lewej</s:String>
@@ -24,7 +24,7 @@
     <s:String x:Key="show_clock">Pokaż zegar</s:String>
     <s:String x:Key="show_multi_mon">Pokazuj pasek zadań na wielu ekranach</s:String>
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>
-    <s:String x:Key="select_location">_Wybierz miejsce do zapisu...</s:String>
+    <s:String x:Key="select_location">_Wybierz lokalizację...</s:String>
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
     <s:String x:Key="use_software_rendering">_Użyj renderowania oprogramowania</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
@@ -55,7 +55,7 @@
     <s:String x:Key="show_hidden">Pokaż ukryte ikony</s:String>
     <s:String x:Key="hide">Ukryj</s:String>
 
-    <s:String x:Key="set_time">_Dostosuj zegar</s:String>
+    <s:String x:Key="set_time">_Dostosuj datę i godzinę</s:String>
 
-    <s:String x:Key="open_folder">&amp;Otwórz Folder</s:String>
+    <s:String x:Key="open_folder">&amp;Otwórz folder</s:String>
 </ResourceDictionary>
