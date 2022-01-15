@@ -6,7 +6,7 @@
     <s:String x:Key="taskbar_options">Opzioni barra delle applicazioni</s:String>
     <BitmapImage x:Key="properties_95" UriSource="../Resources/it/properties.png" />
     <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/it/properties_noclock.png" />
-    <s:String x:Key="autostart">Avvia automaticamente all'accensione</s:String>
+    <s:String x:Key="autostart">Avvia automaticamente all'a_ccesso</s:String>
     <s:String x:Key="language_text">Lin_gua:</s:String>
     <s:String x:Key="language_tip">Seleziona la lingua da usare.</s:String>
     <s:String x:Key="theme_text">_Tema:</s:String>
@@ -19,15 +19,15 @@
         <s:String>Destra</s:String>
         <s:String>Basso</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Permetti font _Smussati</s:String>
+    <s:String x:Key="allow_font_smoothing">Consenti anti-alia_sing caratteri</s:String>
     <s:String x:Key="collapse_tray_icons">Nascondi _icone nell'area di notifica</s:String>
     <s:String x:Key="customize">Personalizz_a...</s:String>
-    <s:String x:Key="show_clock">Mostra l'_orologio</s:String>
+    <s:String x:Key="show_clock">M_ostra orologio</s:String>
     <s:String x:Key="show_multi_mon">Mostra su _più schermi</s:String>
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>
-    <s:String x:Key="select_location">_Seleziona Posizione...</s:String>
-    <s:String x:Key="quick_launch_folder">Avvio veloce - Scegli una Cartella</s:String>
-    <s:String x:Key="use_software_rendering">_Utilizza Rendering Software</s:String>
+    <s:String x:Key="select_location">Cam_bia cartella...</s:String>
+    <s:String x:Key="quick_launch_folder">Avvio veloce - Selezione cartella</s:String>
+    <s:String x:Key="use_software_rendering">_Utilizza rendering software</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizza notifiche</s:String>
@@ -44,22 +44,22 @@
     <s:String x:Key="start_button_tip">Fare clic per iniziare.</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
-    <s:String x:Key="retrobar_title">Barra delle Applicazioni RetroBar</s:String>
+    <s:String x:Key="retrobar_title">Barra delle applicazioni RetroBar</s:String>
     <s:String x:Key="toolbars">_Barre degli strumenti</s:String>
     <s:String x:Key="quick_launch">A_vvio veloce</s:String>
     <s:String x:Key="new_toolbar">_Nuova barra degli strumenti...</s:String>
-    <s:String x:Key="show_taskman_2k">Gestione attività...</s:String>
-    <s:String x:Key="show_taskman">Gestione attività</s:String>
+    <s:String x:Key="show_taskman_2k">Tas_k Manager...</s:String>
+    <s:String x:Key="show_taskman">Tas_k Manager</s:String>
     <s:String x:Key="tray_properties">_Proprietà</s:String>
-    <s:String x:Key="update_available">_Aggiornamento disponibile...</s:String>
+    <s:String x:Key="update_available">A_ggiornamento disponibile...</s:String>
     <s:String x:Key="exit_retrobar">_Esci da RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Pe_rsonalizza notifiche...</s:String>
 
     <s:String x:Key="restore">_Ripristina</s:String>
-    <s:String x:Key="move">_Muovi</s:String>
-    <s:String x:Key="size">_Grandezza</s:String>
-    <s:String x:Key="minimize">Mi_nimizza</s:String>
-    <s:String x:Key="maximize">Ma_ssimizza</s:String>
+    <s:String x:Key="move">_Sposta</s:String>
+    <s:String x:Key="size">Ri_dimensiona</s:String>
+    <s:String x:Key="minimize">R_iduci a icona</s:String>
+    <s:String x:Key="maximize">Ingra_ndisci</s:String>
     <s:String x:Key="close">_Chiudi</s:String>
 
     <s:String x:Key="show_hidden">Mostra icone nascoste</s:String>
