@@ -47,7 +47,7 @@
 
     <s:String x:Key="restore">_Przywróć</s:String>
     <s:String x:Key="move">_Przenieś</s:String>
-    <s:String x:Key="size">_Zmień wielkość</s:String>
+    <s:String x:Key="size">_Dostosuj rozmiar</s:String>
     <s:String x:Key="minimize">Minimalizuj</s:String>
     <s:String x:Key="maximize">Maksymalizuj</s:String>
     <s:String x:Key="close">_Zamknij</s:String>
