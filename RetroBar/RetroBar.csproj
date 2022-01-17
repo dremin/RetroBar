@@ -24,8 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\properties.png" />
-    <None Remove="Resources\properties_noclock.png" />
     <None Remove="Resources\retrobar.ico" />
     <None Remove="Resources\start9x.png" />
     <None Remove="Languages\English.xaml" />
@@ -39,8 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\properties.png" />
-    <Resource Include="Resources\properties_noclock.png" />
     <Resource Include="Resources\retrobar.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -59,12 +55,6 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Update="Resources\*\properties.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\*\properties_noclock.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\startxpblue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
