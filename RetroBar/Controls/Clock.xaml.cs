@@ -32,12 +32,18 @@ namespace RetroBar.Controls
         private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
         private readonly DispatcherTimer singleClick = new DispatcherTimer(DispatcherPriority.Input);
 
+        private bool _isLoaded;
+
         public Clock()
         {
             InitializeComponent();
             DataContext = this;
 
-            Initialize();
+            clock.Interval = TimeSpan.FromMilliseconds(500);
+            clock.Tick += Clock_Tick;
+
+            singleClick.Interval = TimeSpan.FromMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime);
+            singleClick.Tick += SingleClick_Tick;
         }
 
         private void Initialize()
@@ -51,19 +57,13 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
             SystemEvents.TimeChanged += TimeChanged;
             SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
-            Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
         }
 
         private void StartClock()
         {
             SetTime();
 
-            clock.Interval = TimeSpan.FromMilliseconds(500);
-            clock.Tick += Clock_Tick;
             clock.Start();
-
-            singleClick.Interval = TimeSpan.FromMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime);
-            singleClick.Tick += SingleClick_Tick;
 
             ClockTextBlock.Visibility = Visibility.Visible;
         }
@@ -141,12 +141,6 @@ namespace RetroBar.Controls
             }
         }
 
-        private void Dispatcher_ShutdownStarted(object sender, EventArgs e)
-        {
-            SystemEvents.TimeChanged -= TimeChanged;
-            SystemEvents.UserPreferenceChanged -= UserPreferenceChanged;
-        }
-
         private void SetTime()
         {
             DateTime now = DateTime.Now;
@@ -169,6 +163,27 @@ namespace RetroBar.Controls
             ShellHelper.StartProcess("timedate.cpl");
 
             e.Handled = true;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!_isLoaded)
+            {
+                Initialize();
+
+                _isLoaded = true;
+            }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            StopClock();
+
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            SystemEvents.TimeChanged -= TimeChanged;
+            SystemEvents.UserPreferenceChanged -= UserPreferenceChanged;
+
+            _isLoaded = false;
         }
     }
 }
