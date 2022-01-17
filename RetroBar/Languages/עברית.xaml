@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">מאפייני RetroBar</s:String>
     <s:String x:Key="taskbar_options">הגדרות שורת המשימות</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/he/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/he/properties_noclock.png" />
     <s:String x:Key="autostart">התחל אוטומטית בכ_ניסה</s:String>
     <s:String x:Key="language_text">שפ_ה:</s:String>
     <s:String x:Key="language_tip">בחר את השפה שלך.</s:String>

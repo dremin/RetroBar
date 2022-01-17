@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">خصائص RetroBar</s:String>
     <s:String x:Key="taskbar_options">خيارات الشريظ المهام</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/ar/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/ar/properties_noclock.png" />
     <s:String x:Key="autostart">_بدأ تلقائيًا عند تسجيل الدخول</s:String>
     <s:String x:Key="language_text">_لسان:</s:String>
     <s:String x:Key="language_tip">_اختيار لسانك.</s:String>

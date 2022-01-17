@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">Propriedades da RetroBar</s:String>
     <s:String x:Key="taskbar_options">Barra de tarefas</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/pt/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/pt/properties_noclock.png" />
     <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>
     <s:String x:Key="language_text">I_dioma:</s:String>
     <s:String x:Key="language_tip">Selecione o idioma a ser usado.</s:String>

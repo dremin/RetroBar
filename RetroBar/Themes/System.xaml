@@ -31,19 +31,6 @@
                         Value="LeftToRight" />
     </Style>
 
-    <Style TargetType="Image"
-           x:Key="PropertiesImage"
-           BasedOn="{StaticResource DefaultDirection}">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="True">
-                <Setter Property="Source" Value="{DynamicResource properties_95}" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="False">
-                <Setter Property="Source" Value="{DynamicResource properties_95_noclock}" />
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-
     <Style TargetType="MenuItem"
            x:Key="TaskManMenuItem">
         <Setter Property="Header"

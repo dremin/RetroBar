@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">Proprietà di RetroBar</s:String>
     <s:String x:Key="taskbar_options">Opzioni barra delle applicazioni</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/it/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/it/properties_noclock.png" />
     <s:String x:Key="autostart">Avvia automaticamente all'a_ccesso</s:String>
     <s:String x:Key="language_text">Lin_gua:</s:String>
     <s:String x:Key="language_tip">Seleziona la lingua da usare.</s:String>
