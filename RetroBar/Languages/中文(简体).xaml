@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">RetroBar 属性</s:String>
     <s:String x:Key="taskbar_options">任务栏选项</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/zh/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/zh/properties_noclock.png" />
     <s:String x:Key="autostart">开机时自动启动(_L)</s:String>
     <s:String x:Key="language_text">语言(_G)：</s:String>
     <s:String x:Key="language_tip">选择要使用的语言。</s:String>

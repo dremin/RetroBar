@@ -6,8 +6,6 @@
     <s:String x:Key="taskbar_options">Taskbar Options</s:String>
     <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
     <s:String x:Key="notification_area">Notification area</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/properties_noclock.png" />
     <s:String x:Key="autostart">Automatically start at _logon</s:String>
     <s:String x:Key="language_text">Lan_guage:</s:String>
     <s:String x:Key="language_tip">Select the language to use.</s:String>

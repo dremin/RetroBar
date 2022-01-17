@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">Właściwości RetroBar</s:String>
     <s:String x:Key="taskbar_options">Opcje paska zadań</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/pl/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/pl/properties_noclock.png" />
     <s:String x:Key="autostart">Uruchamiaj podczas startu systemu</s:String>
     <s:String x:Key="language_text">Język:</s:String>
     <s:String x:Key="language_tip">Wybierz język.</s:String>

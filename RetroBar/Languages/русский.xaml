@@ -4,8 +4,6 @@
 
     <s:String x:Key="retrobar_properties">Свойства RetroBar</s:String>
     <s:String x:Key="taskbar_options">Параметры панели задач</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/ru/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/ru/properties_noclock.png" />
     <s:String x:Key="autostart">Запускать при при в_ходе в систему</s:String>
     <s:String x:Key="language_text">_Язык:</s:String>
     <s:String x:Key="language_tip">Выберите язык, который хотите использовать.</s:String>
