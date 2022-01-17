@@ -82,6 +82,7 @@
                                             IsHitTestVisible="False"
                                             Focusable="False"
                                             ClipToBounds="True"
+                                            Margin="0,0,0,5"
                                             Style="{DynamicResource Taskbar}">
                                 <DockPanel>
                                     <ToggleButton Style="{DynamicResource StartButton}"
@@ -190,6 +191,7 @@
                                             IsHitTestVisible="False"
                                             Focusable="False"
                                             ClipToBounds="True"
+                                            Margin="0,0,0,5"
                                             Style="{DynamicResource Taskbar}">
                                 <DockPanel>
                                     <GroupBox Style="{DynamicResource Tray}"
