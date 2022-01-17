@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
-    <PackageReference Include="ManagedShell" Version="0.0.150" />
+    <PackageReference Include="ManagedShell" Version="0.0.152" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
 
