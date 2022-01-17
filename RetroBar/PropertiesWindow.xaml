@@ -16,6 +16,7 @@
         ContentRendered="PropertiesWindow_OnContentRendered">
     <Window.Resources>
         <ResourceDictionary>
+            <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
@@ -84,6 +85,11 @@
                                             ClipToBounds="True"
                                             Margin="0,0,0,5"
                                             Style="{DynamicResource Taskbar}">
+                                <TextOptions.TextRenderingMode>
+                                    <Binding Source="{x:Static Settings:Settings.Instance}"
+                                             Path="AllowFontSmoothing"
+                                             Converter="{StaticResource textRenderingModeConverter}" />
+                                </TextOptions.TextRenderingMode>
                                 <DockPanel>
                                     <ToggleButton Style="{DynamicResource StartButton}"
                                                   Focusable="False"
@@ -193,6 +199,11 @@
                                             ClipToBounds="True"
                                             Margin="0,0,0,5"
                                             Style="{DynamicResource Taskbar}">
+                                <TextOptions.TextRenderingMode>
+                                    <Binding Source="{x:Static Settings:Settings.Instance}"
+                                             Path="AllowFontSmoothing"
+                                             Converter="{StaticResource textRenderingModeConverter}" />
+                                </TextOptions.TextRenderingMode>
                                 <DockPanel>
                                     <GroupBox Style="{DynamicResource Tray}"
                                               DockPanel.Dock="Right">

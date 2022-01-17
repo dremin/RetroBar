@@ -74,11 +74,6 @@
                 Value="2,1,2,1" />
     </Style>
 
-    <Style TargetType="ContextMenu"
-           x:Key="{x:Type ContextMenu}"
-           BasedOn="{StaticResource GlobalFonts}">
-    </Style>
-
     <Style TargetType="Window"
            x:Key="PropertiesWindow"
            BasedOn="{StaticResource GlobalFonts}">
