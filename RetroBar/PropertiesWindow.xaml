@@ -65,6 +65,15 @@
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
             </Style>
+            <Style x:Key="PreviewBorder"
+                   TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush"
+                        Value="#99000000" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+                <Setter Property="Margin"
+                        Value="0,0,0,5" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid Margin="7">
@@ -78,71 +87,72 @@
                             Margin="10">
                     <GroupBox Header="{DynamicResource taskbar_appearance}">
                         <StackPanel Orientation="Vertical">
-                            <ContentControl Height="{DynamicResource TaskbarHeight}"
-                                            Width="335"
-                                            IsHitTestVisible="False"
-                                            Focusable="False"
-                                            ClipToBounds="True"
-                                            Margin="0,0,0,5"
-                                            Style="{DynamicResource Taskbar}">
-                                <TextOptions.TextRenderingMode>
-                                    <Binding Source="{x:Static Settings:Settings.Instance}"
-                                             Path="AllowFontSmoothing"
-                                             Converter="{StaticResource textRenderingModeConverter}" />
-                                </TextOptions.TextRenderingMode>
-                                <DockPanel>
-                                    <ToggleButton Style="{DynamicResource StartButton}"
-                                                  Focusable="False"
-                                                  DockPanel.Dock="Left">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Image Grid.Column="0"
-                                                   Style="{DynamicResource StartIcon}" />
-                                            <TextBlock Grid.Column="1"
-                                                       Style="{DynamicResource StartLabel}" />
-                                        </Grid>
-                                    </ToggleButton>
-                                    <ItemsControl DockPanel.Dock="Left"
-                                                  Focusable="False"
-                                                  Style="{DynamicResource ToolbarItems}"
-                                                  Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal"></WrapPanel>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <Button Style="{DynamicResource ToolbarButton}"
-                                                Focusable="False">
-                                            <Image Source="Resources\retrobar.ico"
-                                                   Style="{DynamicResource ToolbarIcon}" />
-                                        </Button>
-                                    </ItemsControl>
-                                    <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
-                                                  Focusable="False"
-                                                  VerticalScrollBarVisibility="Hidden">
-                                        <Button Focusable="False"
-                                                HorizontalAlignment="Left"
-                                                Width="{DynamicResource TaskButtonWidth}"
-                                                Style="{DynamicResource TaskButton}">
+                            <Border Style="{StaticResource PreviewBorder}">
+                                <ContentControl Height="{DynamicResource TaskbarHeight}"
+                                                Width="335"
+                                                IsHitTestVisible="False"
+                                                Focusable="False"
+                                                ClipToBounds="True"
+                                                Style="{DynamicResource Taskbar}">
+                                    <TextOptions.TextRenderingMode>
+                                        <Binding Source="{x:Static Settings:Settings.Instance}"
+                                                 Path="AllowFontSmoothing"
+                                                 Converter="{StaticResource textRenderingModeConverter}" />
+                                    </TextOptions.TextRenderingMode>
+                                    <DockPanel>
+                                        <ToggleButton Style="{DynamicResource StartButton}"
+                                                      Focusable="False"
+                                                      DockPanel.Dock="Left">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                                <Image Source="Resources\retrobar.ico"
-                                                       Grid.Column="0"
-                                                       Style="{DynamicResource TaskIcon}" />
-                                                <TextBlock Text="RetroBar"
-                                                           Grid.Column="1"
-                                                           Style="{DynamicResource TaskLabel}" />
+                                                <Image Grid.Column="0"
+                                                       Style="{DynamicResource StartIcon}" />
+                                                <TextBlock Grid.Column="1"
+                                                           Style="{DynamicResource StartLabel}" />
                                             </Grid>
-                                        </Button>
-                                    </ScrollViewer>
-                                </DockPanel>
-                            </ContentControl>
+                                        </ToggleButton>
+                                        <ItemsControl DockPanel.Dock="Left"
+                                                      Focusable="False"
+                                                      Style="{DynamicResource ToolbarItems}"
+                                                      Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal"></WrapPanel>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <Button Style="{DynamicResource ToolbarButton}"
+                                                    Focusable="False">
+                                                <Image Source="Resources\retrobar.ico"
+                                                       Style="{DynamicResource ToolbarIcon}" />
+                                            </Button>
+                                        </ItemsControl>
+                                        <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
+                                                      Focusable="False"
+                                                      VerticalScrollBarVisibility="Hidden">
+                                            <Button Focusable="False"
+                                                    HorizontalAlignment="Left"
+                                                    Width="{DynamicResource TaskButtonWidth}"
+                                                    Style="{DynamicResource TaskButton}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="Resources\retrobar.ico"
+                                                           Grid.Column="0"
+                                                           Style="{DynamicResource TaskIcon}" />
+                                                    <TextBlock Text="RetroBar"
+                                                               Grid.Column="1"
+                                                               Style="{DynamicResource TaskLabel}" />
+                                                </Grid>
+                                            </Button>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </ContentControl>
+                            </Border>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
                                        Target="{Binding ElementName=cboLanguageSelect}">
@@ -192,47 +202,48 @@
                     </GroupBox>
                     <GroupBox Header="{DynamicResource notification_area}">
                         <StackPanel Orientation="Vertical">
-                            <ContentControl Height="{DynamicResource TaskbarHeight}"
-                                            Width="335"
-                                            IsHitTestVisible="False"
-                                            Focusable="False"
-                                            ClipToBounds="True"
-                                            Margin="0,0,0,5"
-                                            Style="{DynamicResource Taskbar}">
-                                <TextOptions.TextRenderingMode>
-                                    <Binding Source="{x:Static Settings:Settings.Instance}"
-                                             Path="AllowFontSmoothing"
-                                             Converter="{StaticResource textRenderingModeConverter}" />
-                                </TextOptions.TextRenderingMode>
-                                <DockPanel>
-                                    <GroupBox Style="{DynamicResource Tray}"
-                                              DockPanel.Dock="Right">
-                                        <StackPanel Orientation="Horizontal">
+                            <Border Style="{StaticResource PreviewBorder}">
+                                <ContentControl Height="{DynamicResource TaskbarHeight}"
+                                                Width="335"
+                                                IsHitTestVisible="False"
+                                                Focusable="False"
+                                                ClipToBounds="True"
+                                                Style="{DynamicResource Taskbar}">
+                                    <TextOptions.TextRenderingMode>
+                                        <Binding Source="{x:Static Settings:Settings.Instance}"
+                                                 Path="AllowFontSmoothing"
+                                                 Converter="{StaticResource textRenderingModeConverter}" />
+                                    </TextOptions.TextRenderingMode>
+                                    <DockPanel>
+                                        <GroupBox Style="{DynamicResource Tray}"
+                                                  DockPanel.Dock="Right">
                                             <StackPanel Orientation="Horizontal">
-                                                <ToggleButton Name="NotifyIconToggleButton"
-                                                              Focusable="False"
-                                                              Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}"
-                                                              Style="{DynamicResource TrayToggleButton}"/>
-                                                <ItemsControl Focusable="False"
-                                                              HorizontalAlignment="Center"
-                                                              VerticalAlignment="Center">
-                                                    <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <WrapPanel Orientation="Horizontal"></WrapPanel>
-                                                        </ItemsPanelTemplate>
-                                                    </ItemsControl.ItemsPanel>
-                                                    <Border>
-                                                        <Image Source="Resources\retrobar.ico"
-                                                               Style="{DynamicResource NotifyIcon}" />
-                                                    </Border>
-                                                </ItemsControl>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ToggleButton Name="NotifyIconToggleButton"
+                                                                  Focusable="False"
+                                                                  Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}"
+                                                                  Style="{DynamicResource TrayToggleButton}"/>
+                                                    <ItemsControl Focusable="False"
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel Orientation="Horizontal"></WrapPanel>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <Border>
+                                                            <Image Source="Resources\retrobar.ico"
+                                                                   Style="{DynamicResource NotifyIcon}" />
+                                                        </Border>
+                                                    </ItemsControl>
+                                                </StackPanel>
+                                                <controls:Clock VerticalAlignment="Center" />
                                             </StackPanel>
-                                            <controls:Clock VerticalAlignment="Center" />
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <StackPanel></StackPanel>
-                                </DockPanel>
-                            </ContentControl>
+                                        </GroupBox>
+                                        <StackPanel></StackPanel>
+                                    </DockPanel>
+                                </ContentControl>
+                            </Border>
                             <CheckBox x:Name="cbShowClock"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_clock}" />
