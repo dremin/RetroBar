@@ -26,6 +26,7 @@
   <ItemGroup>
     <None Remove="Resources\properties.png" />
     <None Remove="Resources\properties_noclock.png" />
+    <None Remove="Resources\retrobar.ico" />
     <None Remove="Resources\start9x.png" />
     <None Remove="Languages\English.xaml" />
     <None Remove="Themes\System.xaml" />
@@ -40,6 +41,9 @@
   <ItemGroup>
     <Resource Include="Resources\properties.png" />
     <Resource Include="Resources\properties_noclock.png" />
+    <Resource Include="Resources\retrobar.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\start9x.png" />
   </ItemGroup>
 
