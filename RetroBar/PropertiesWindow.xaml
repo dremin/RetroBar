@@ -73,6 +73,8 @@
                         Value="1" />
                 <Setter Property="Margin"
                         Value="0,0,0,5" />
+                <Setter Property="Width"
+                        Value="335" />
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -89,7 +91,6 @@
                         <StackPanel Orientation="Vertical">
                             <Border Style="{StaticResource PreviewBorder}">
                                 <ContentControl Height="{DynamicResource TaskbarHeight}"
-                                                Width="335"
                                                 IsHitTestVisible="False"
                                                 Focusable="False"
                                                 ClipToBounds="True"
@@ -204,7 +205,6 @@
                         <StackPanel Orientation="Vertical">
                             <Border Style="{StaticResource PreviewBorder}">
                                 <ContentControl Height="{DynamicResource TaskbarHeight}"
-                                                Width="335"
                                                 IsHitTestVisible="False"
                                                 Focusable="False"
                                                 ClipToBounds="True"
