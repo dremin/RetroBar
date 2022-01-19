@@ -4,6 +4,8 @@
 
     <s:String x:Key="retrobar_properties">RetroBar 属性</s:String>
     <s:String x:Key="taskbar_options">任务栏选项</s:String>
+    <s:String x:Key="taskbar_appearance">任务栏外观</s:String>
+    <s:String x:Key="notification_area">通知区域</s:String>
     <s:String x:Key="autostart">开机时自动启动(_L)</s:String>
     <s:String x:Key="language_text">语言(_G)：</s:String>
     <s:String x:Key="language_tip">选择要使用的语言。</s:String>
@@ -26,6 +28,14 @@
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
     <s:String x:Key="use_software_rendering">使用软件渲染(_U)</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
+	
+    <s:String x:Key="customize_notifications">自定义通知</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar 显示活动和紧急通知的图标，并隐藏非活动通知。 您可以为下面列表中的项目更改此行为。</s:String>
+    <s:String x:Key="customize_notifications_instruction">选择一个项目，然后选择其通知行为：</s:String>
+    <s:String x:Key="hide_when_inactive">不活动时隐藏</s:String>
+    <s:String x:Key="always_show">总是显示</s:String>
+    <s:String x:Key="name_heading">名称</s:String>
+    <s:String x:Key="behavior_heading">行为</s:String>
 
     <s:String x:Key="start_text">开始</s:String>
     <s:String x:Key="start_text_xp">开始</s:String>
@@ -42,6 +52,7 @@
     <s:String x:Key="tray_properties">属性(_R)</s:String>
     <s:String x:Key="update_available">更新可用(_U)...</s:String>
     <s:String x:Key="exit_retrobar">退出 RetroBar(_E)</s:String>
+    <s:String x:Key="customize_notifications_menu">自定义通知(_C)...</s:String>
 
     <s:String x:Key="restore">恢复(_R)</s:String>
     <s:String x:Key="move">移动(_M)</s:String>
