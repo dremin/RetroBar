@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar Einstellungen</s:String>
+    <s:String x:Key="taskbar_options">Taskleiste Optionen</s:String>
+    <s:String x:Key="taskbar_appearance">Taskleistendarstellung</s:String>
+    <s:String x:Key="notification_area">Infobereich</s:String>
+    <s:String x:Key="autostart">Beim Hochfahren automatisch starten</s:String>
+    <s:String x:Key="language_text">Sprache:</s:String>
+    <s:String x:Key="language_tip">Wählen Sie die Sprache aus:</s:String>
+    <s:String x:Key="theme_text">Schema:</s:String>
+    <s:String x:Key="theme_tip">Installiere Schemas im "Themes" Ordner.</s:String>
+    <s:String x:Key="location_text">Position:</s:String>
+    <s:String x:Key="location_tip">Ändere die Position der Taskleiste auf dem Bildschirm.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Links</s:String>
+        <s:String>Oben</s:String>
+        <s:String>Rechts</s:String>
+        <s:String>Unten</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Schriftglättung zulassen</s:String>
+    <s:String x:Key="collapse_tray_icons">Inaktive Symbole ausblenden</s:String>
+    <s:String x:Key="customize">Anpassen...</s:String>
+    <s:String x:Key="show_clock">Uhr anzeigen</s:String>
+    <s:String x:Key="show_multi_mon">Auf mehreren Bildschirmen anzeigen</s:String>
+    <s:String x:Key="show_quick_launch">Schnellstartleiste anzeigen</s:String>
+    <s:String x:Key="select_location">Ort auswählen...</s:String>
+    <s:String x:Key="quick_launch_folder">Schnellstart - Wähle ein Ordner</s:String>
+    <s:String x:Key="use_software_rendering">Nutze Software Darstellung</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar zeigt Symbole für aktive und dringende Benachrichtigungen an und blendet inaktive aus. Sie können dieses Verhalten für Elemente in der folgenden Liste ändern.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Markieren Sie ein Element und wählen Sie dessen Verhalten im Infobereich:</s:String>
+    <s:String x:Key="hide_when_inactive">Ausblenden wenn inaktiv</s:String>
+    <s:String x:Key="always_show">Immer einblenden</s:String>
+    <s:String x:Key="name_heading">Name</s:String>
+    <s:String x:Key="behavior_heading">Vergalten</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
+    <s:String x:Key="start_button_tip_98">Klicken Sie zum Starten auf diese Schaltfläche.</s:String>
+    <s:String x:Key="start_button_tip">Klicken Sie zum Starten auf diese Schaltfläche.</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Taskleiste</s:String>
+    <s:String x:Key="toolbars">Symbolleisten</s:String>
+    <s:String x:Key="quick_launch">Schnellstartleiste</s:String>
+    <s:String x:Key="new_toolbar">Neue Symbolleiste...</s:String>
+    <s:String x:Key="show_taskman_2k">Task-Manager...</s:String>
+    <s:String x:Key="show_taskman">Task-Manager</s:String>
+    <s:String x:Key="tray_properties">Eigenschaften</s:String>
+    <s:String x:Key="update_available">Update verfügbar...</s:String>
+    <s:String x:Key="exit_retrobar">Retrobar schließen</s:String>
+    <s:String x:Key="customize_notifications_menu">Infobereich anpassen...</s:String>
+
+    <s:String x:Key="restore">Wiederherstellen</s:String>
+    <s:String x:Key="move">Verschieben</s:String>
+    <s:String x:Key="size">Größe</s:String>
+    <s:String x:Key="minimize">Minimieren</s:String>
+    <s:String x:Key="maximize">Maximieren</s:String>
+    <s:String x:Key="close">Schließen</s:String>
+
+    <s:String x:Key="show_hidden">Versteckte Symbole anzeigen</s:String>
+    <s:String x:Key="hide">Ausblenden</s:String>
+
+    <s:String x:Key="set_time">Datum/Uhrzeit anpassen</s:String>
+
+    <s:String x:Key="open_folder">&amp;Ordner öffnen</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
