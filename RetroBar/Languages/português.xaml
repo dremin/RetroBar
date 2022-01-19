@@ -4,6 +4,8 @@
 
     <s:String x:Key="retrobar_properties">Propriedades da RetroBar</s:String>
     <s:String x:Key="taskbar_options">Barra de tarefas</s:String>
+    <s:String x:Key="taskbar_appearance">Aparência da barra de tarefas</s:String>
+    <s:String x:Key="notification_area">Área de notificação</s:String>
     <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>
     <s:String x:Key="language_text">I_dioma:</s:String>
     <s:String x:Key="language_tip">Selecione o idioma a ser usado.</s:String>
@@ -17,8 +19,9 @@
         <s:String>Direita</s:String>
         <s:String>Inferior</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">_Permitir suavização de fonte</s:String>
+    <s:String x:Key="allow_font_smoothing">Permitir su_avização de fonte</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar ícones _inativos</s:String>
+    <s:String x:Key="customize">_Personalizar...</s:String>
     <s:String x:Key="show_clock">Mostrar o _relógio</s:String>
     <s:String x:Key="show_multi_mon">Mostrar em vários _monitores</s:String>
     <s:String x:Key="show_quick_launch">Mostrar barra 'Iniciali_zação rápida'</s:String>
@@ -26,6 +29,14 @@
     <s:String x:Key="quick_launch_folder">Inicialização rápida - Escolha uma pasta</s:String>
     <s:String x:Key="use_software_rendering">_Usar renderização de software</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Personalizar notificações</s:String>
+    <s:String x:Key="customize_notifications_info">A RetroBar exibe ícones para notificações ativas e urgentes e oculta os ícones inativos. Você pode alterar esse comportamento para os itens da lista abaixo.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Selecione um item e escolha seu comportamento de notificação:</s:String>
+    <s:String x:Key="hide_when_inactive">Ocultar quando inativo</s:String>
+    <s:String x:Key="always_show">Sempre mostrar</s:String>
+    <s:String x:Key="name_heading">Nome</s:String>
+    <s:String x:Key="behavior_heading">Comportamento</s:String>
 
     <s:String x:Key="start_text">Iniciar</s:String>
     <s:String x:Key="start_text_xp">Iniciar</s:String>
@@ -42,6 +53,7 @@
     <s:String x:Key="tray_properties">P_ropriedades</s:String>
     <s:String x:Key="update_available">_Atualização disponível...</s:String>
     <s:String x:Key="exit_retrobar">_Sair da RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Personalizar notificações...</s:String>
 
     <s:String x:Key="restore">_Restaurar</s:String>
     <s:String x:Key="move">_Mover</s:String>
