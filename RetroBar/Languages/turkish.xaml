@@ -27,7 +27,7 @@
     <s:String x:Key="show_quick_launch">Hızlı Başlat'ı Göster</s:String>
     <s:String x:Key="select_location">_Konum seç...</s:String>
     <s:String x:Key="quick_launch_folder">Hızlı Başlat - Bir klasör seç</s:String>
-    <s:String x:Key="use_software_rendering">Yazılım çözücü kullan</s:String>
+    <s:String x:Key="use_software_rendering">Yazılım ile işleme kullan</s:String>
     <s:String x:Key="ok_dialog">Tamam</s:String>
 
     <s:String x:Key="customize_notifications">Bildirimleri Özelleştir</s:String>
