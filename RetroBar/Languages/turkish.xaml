@@ -6,7 +6,7 @@
     <s:String x:Key="taskbar_options">Görev Çubuğu Özellikleri</s:String>
     <s:String x:Key="taskbar_appearance">Görev çubuğu görünümü</s:String>
     <s:String x:Key="notification_area">Bildirim alanı</s:String>
-    <s:String x:Key="autostart">Başlangıçta otomatik olarak başlat</s:String>
+    <s:String x:Key="autostart">Oturum açarken otomatik olarak başlat</s:String>
     <s:String x:Key="language_text">Dil:</s:String>
     <s:String x:Key="language_tip">Kullanılacak dili seçin.</s:String>
     <s:String x:Key="theme_text">Tema:</s:String>
