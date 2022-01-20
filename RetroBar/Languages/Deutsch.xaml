@@ -10,16 +10,16 @@
     <s:String x:Key="language_text">Sprache:</s:String>
     <s:String x:Key="language_tip">Wählen Sie die Sprache aus:</s:String>
     <s:String x:Key="theme_text">Schema:</s:String>
-    <s:String x:Key="theme_tip">Installiere Schemas im "Themes" Ordner.</s:String>
+    <s:String x:Key="theme_tip">Installieren Sie Schemas im "Themes" Ordner.</s:String>
     <s:String x:Key="location_text">Position:</s:String>
-    <s:String x:Key="location_tip">Ändere die Position der Taskleiste auf dem Bildschirm.</s:String>
+    <s:String x:Key="location_tip">Ändert die Position der Taskleiste auf dem Bildschirm.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Links</s:String>
         <s:String>Oben</s:String>
         <s:String>Rechts</s:String>
         <s:String>Unten</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">_Schriftglättung zulassen</s:String>
+    <s:String x:Key="allow_font_smoothing">Schriftglättung zulassen</s:String>
     <s:String x:Key="collapse_tray_icons">Inaktive Symbole ausblenden</s:String>
     <s:String x:Key="customize">Anpassen...</s:String>
     <s:String x:Key="show_clock">Uhr anzeigen</s:String>
