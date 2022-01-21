@@ -6,12 +6,12 @@
     <s:String x:Key="taskbar_options">Görev Çubuğu Özellikleri</s:String>
     <s:String x:Key="taskbar_appearance">Görev çubuğu görünümü</s:String>
     <s:String x:Key="notification_area">Bildirim alanı</s:String>
-    <s:String x:Key="autostart">Oturum açarken otomatik olarak başlat</s:String>
-    <s:String x:Key="language_text">Dil:</s:String>
+    <s:String x:Key="autostart">Oturum açarken otomatik o_larak başlat</s:String>
+    <s:String x:Key="language_text">_Dil:</s:String>
     <s:String x:Key="language_tip">Kullanılacak dili seçin.</s:String>
-    <s:String x:Key="theme_text">Tema:</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
     <s:String x:Key="theme_tip">Temaları Themes klasörüne yükleyin.</s:String>
-    <s:String x:Key="location_text">Konum:</s:String>
+    <s:String x:Key="location_text">K_onum:</s:String>
     <s:String x:Key="location_tip">Görev çubuğunun ekrandaki konumunu değiştir.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Sol</s:String>
@@ -19,15 +19,15 @@
         <s:String>Sağ</s:String>
         <s:String>Alt</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Yazı tipi yumuşatmaya izin ver</s:String>
-    <s:String x:Key="collapse_tray_icons">Bildirim alanı simgelerini daralt</s:String>
-    <s:String x:Key="customize">Özelleştir...</s:String>
-    <s:String x:Key="show_clock">Saati göster</s:String>
-    <s:String x:Key="show_multi_mon">Birden çok ekranda göster</s:String>
-    <s:String x:Key="show_quick_launch">Hızlı Başlat'ı Göster</s:String>
+    <s:String x:Key="allow_font_smoothing">_Yazı tipi yumuşatmaya izin ver</s:String>
+    <s:String x:Key="collapse_tray_icons">_Bildirim alanı simgelerini daralt</s:String>
+    <s:String x:Key="customize">Ö_zelleştir...</s:String>
+    <s:String x:Key="show_clock">_Saati göster</s:String>
+    <s:String x:Key="show_multi_mon">Birden çok _ekranda göster</s:String>
+    <s:String x:Key="show_quick_launch">_Hızlı Başlat'ı Göster</s:String>
     <s:String x:Key="select_location">_Konum seç...</s:String>
     <s:String x:Key="quick_launch_folder">Hızlı Başlat - Bir klasör seç</s:String>
-    <s:String x:Key="use_software_rendering">Yazılım ile işleme kullan</s:String>
+    <s:String x:Key="use_software_rendering">Y_azılım ile işleme kullan</s:String>
     <s:String x:Key="ok_dialog">Tamam</s:String>
 
     <s:String x:Key="customize_notifications">Bildirimleri Özelleştir</s:String>
@@ -45,27 +45,27 @@
     <s:String x:Key="start_button_tip_vista">Başlat</s:String>
 
     <s:String x:Key="retrobar_title">Retrobar Görev Çubuğu</s:String>
-    <s:String x:Key="toolbars">Araç Çubukları</s:String>
-    <s:String x:Key="quick_launch">Hızlı Başlat</s:String>
-    <s:String x:Key="new_toolbar">Yeni Araç Çubuğu...</s:String>
-    <s:String x:Key="show_taskman_2k">Görev Yöneticisi...</s:String>
-    <s:String x:Key="show_taskman">Görev Yöneticisi...</s:String>
-    <s:String x:Key="tray_properties">Özellikler</s:String>
-    <s:String x:Key="update_available">Güncelleme mevcut...</s:String>
-    <s:String x:Key="exit_retrobar">RetroBar'dan Çık</s:String>
-    <s:String x:Key="customize_notifications_menu">Bildirimleri Özelleştir...</s:String>
+    <s:String x:Key="toolbars">Araç Çubuk_ları</s:String>
+    <s:String x:Key="quick_launch">_Hızlı Başlat</s:String>
+    <s:String x:Key="new_toolbar">Ye_ni Araç Çubuğu...</s:String>
+    <s:String x:Key="show_taskman_2k">_Görev Yöneticisi...</s:String>
+    <s:String x:Key="show_taskman">_Görev Yöneticisi...</s:String>
+    <s:String x:Key="tray_properties">Özellikle_r</s:String>
+    <s:String x:Key="update_available">Güncelleme mevc_ut...</s:String>
+    <s:String x:Key="exit_retrobar">R_etroBar'dan Çık</s:String>
+    <s:String x:Key="customize_notifications_menu">B_ildirimleri Özelleştir...</s:String>
 
-    <s:String x:Key="restore">Önceki Boyut</s:String>
-    <s:String x:Key="move">Taşı</s:String>
-    <s:String x:Key="size">Boyut</s:String>
-    <s:String x:Key="minimize">Simge durumuna küçült</s:String>
-    <s:String x:Key="maximize">Ekranı kapla</s:String>
-    <s:String x:Key="close">Kapat</s:String>
+    <s:String x:Key="restore">Ön_ceki Boyut</s:String>
+    <s:String x:Key="move">_Taşı</s:String>
+    <s:String x:Key="size">_Boyut</s:String>
+    <s:String x:Key="minimize">_Simge durumuna küçült</s:String>
+    <s:String x:Key="maximize">_Ekranı kapla</s:String>
+    <s:String x:Key="close">_Kapat</s:String>
 
     <s:String x:Key="show_hidden">Gizli simgeleri göster.</s:String>
     <s:String x:Key="hide">Gizle</s:String>
 
-    <s:String x:Key="set_time">Tarih/Zaman Ayarla</s:String>
+    <s:String x:Key="set_time">Tarih/_Zaman Ayarla</s:String>
 
     <s:String x:Key="open_folder">&amp;Klasörü Aç</s:String>
 </ResourceDictionary>
