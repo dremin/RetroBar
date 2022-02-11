@@ -27,7 +27,7 @@
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
-    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất</s:String>
+    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -69,7 +69,7 @@
 
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
 
-    <FlowDirection x:Key="flow_direction">TráiQuaPhải</FlowDirection>
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
 
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>
