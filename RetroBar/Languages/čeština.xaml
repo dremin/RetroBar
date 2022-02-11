@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Vlastnosti RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Nastavení lišty</s:String>
+    <s:String x:Key="taskbar_appearance">Vzhled lišty</s:String>
+    <s:String x:Key="notification_area">Prostor pro upozornění</s:String>
+    <s:String x:Key="autostart">Automaticky spustit po _přihlášení</s:String>
+    <s:String x:Key="language_text">Ja_zyk:</s:String>
+    <s:String x:Key="language_tip">Vyberte jazyk.</s:String>
+    <s:String x:Key="theme_text">_Motiv:</s:String>
+    <s:String x:Key="theme_tip">Vložte vlastní motivy do složky "Themes".</s:String>
+    <s:String x:Key="location_text">_Umístění:</s:String>
+    <s:String x:Key="location_tip">Změnit umístění lišty na obrazovce.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Vlevo</s:String>
+        <s:String>Nahoře</s:String>
+        <s:String>Vpravo</s:String>
+        <s:String>Dole</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Povolit vyhlazovaní _textu</s:String>
+    <s:String x:Key="collapse_tray_icons">Skrýt upozornění</s:String>
+    <s:String x:Key="customize">_Přizspůsobit...</s:String>
+    <s:String x:Key="show_clock">Zobrazit _hodiny</s:String>
+    <s:String x:Key="show_multi_mon">Zobrazit na více _obrazovkách</s:String>
+    <s:String x:Key="show_quick_launch">Zobrazit _Rychlý Přístup</s:String>
+    <s:String x:Key="select_location">Vybrat _umístění...</s:String>
+    <s:String x:Key="quick_launch_folder">Rychlý Přístup - Zvolte složku</s:String>
+    <s:String x:Key="use_software_rendering">_Použít programové vykreslování</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Přizspůsobit upozornění</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar zobrazuje ikony pro aktivní či důležitá upozornění, a skryvá ty neaktivní. Dole v seznamu můžete zobrazení těchto upozornění změnit.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Vyberte položku a poté zvolte její zobrazení:</s:String>
+    <s:String x:Key="hide_when_inactive">Skrýt při neaktivitě</s:String>
+    <s:String x:Key="always_show">Neskrývat</s:String>
+    <s:String x:Key="name_heading">Název</s:String>
+    <s:String x:Key="behavior_heading">Zobrazení</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Začněte klepnutím sem.</s:String>
+    <s:String x:Key="start_button_tip">Začněte klepnutím sem</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">Lišta RetroBar</s:String>
+    <s:String x:Key="toolbars">_Lišty</s:String>
+    <s:String x:Key="quick_launch">_Rychlý Přístup</s:String>
+    <s:String x:Key="new_toolbar">_Nová lišta...</s:String>
+    <s:String x:Key="show_taskman_2k">_Správce Úloh...</s:String>
+    <s:String x:Key="show_taskman">_Správce Úloh</s:String>
+    <s:String x:Key="tray_properties">_Vlastnosti</s:String>
+    <s:String x:Key="update_available">Dostupná _aktualizace...</s:String>
+    <s:String x:Key="exit_retrobar">_Zavřít RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Přizspůsobit Upozornění...</s:String>
+
+    <s:String x:Key="restore">_Obnovit</s:String>
+    <s:String x:Key="move">_Posunout</s:String>
+    <s:String x:Key="size">_Velikost</s:String>
+    <s:String x:Key="minimize">Mi_nimalizovat</s:String>
+    <s:String x:Key="maximize">Ma_ximalizovat</s:String>
+    <s:String x:Key="close">_Zavřít</s:String>
+
+    <s:String x:Key="show_hidden">Zobrazit skryté upozornění</s:String>
+    <s:String x:Key="hide">Skrýt</s:String>
+
+    <s:String x:Key="set_time">_Změnit Datum a Čas</s:String>
+
+    <s:String x:Key="open_folder">&amp;Otevřít Složku</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
