@@ -36,7 +36,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: RetroBar ${{ matrix.publishprofile }}
+        name: RetroBar ${{ matrix.publishprofile == 'x86' && '32-bit' || '64-bit' }}
         path: |
           RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\RetroBar.exe
           RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt
