@@ -4,12 +4,35 @@
         <ResourceDictionary Source="Windows 2000.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <SolidColorBrush x:Key="ButtonInnerHighlight" Color="Transparent" />
+
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/startxpclassic.png" />
+
+    <Style TargetType="Image"
+           x:Key="StartIcon"
+           BasedOn="{StaticResource StartIcon}">
+        <Setter Property="Margin"
+                Value="-2,0,2,0" />
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="StartLabel"
+           BasedOn="{StaticResource StartLabel}">
+        <Setter Property="Margin"
+                Value="0,0,-1,1" />
+    </Style>
 
     <Style TargetType="MenuItem"
            x:Key="TaskManMenuItem">
         <Setter Property="Header"
                 Value="{DynamicResource show_taskman}" />
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="Clock"
+           BasedOn="{StaticResource Clock}">
+        <Setter Property="Margin"
+                Value="5,-1,5,0" />
     </Style>
 </ResourceDictionary>
