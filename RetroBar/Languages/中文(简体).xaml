@@ -21,6 +21,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">允许字体平滑(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">收起通知区域图标(_N)</s:String>
+    <s:String x:Key="customize">自定义(_E)...</s:String>
     <s:String x:Key="show_clock">显示时钟(_C)</s:String>
 	<s:String x:Key="show_multi_mon">在多个显示器上显示(_M)</s:String>
     <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
@@ -67,4 +68,8 @@
     <s:String x:Key="set_time">调整日期/时间(_A)</s:String>
 
     <s:String x:Key="open_folder">&amp;打开文件夹</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    
+    <FontFamily x:Key="start_text_xp_font_family">SimSun</FontFamily>
 </ResourceDictionary>
