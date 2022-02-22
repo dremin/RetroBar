@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">Ιδιότητες: RetroBar</s:String>
+    <s:String x:Key="retrobar_properties">Ιδιότητες του RetroBar</s:String>
     <s:String x:Key="taskbar_options">Ιδιότητες γραμμής εργασιών</s:String>
     <s:String x:Key="taskbar_appearance">Εμφάνιση γραμμής εργασιών</s:String>
     <s:String x:Key="notification_area">Περιοχή ειδοποιήσεων</s:String>
-    <s:String x:Key="autostart">Αυτόματη εκκήνηση κατά την _εκκίνηση</s:String>
+    <s:String x:Key="autostart">Αυτόματη αναπαραγωγή κατά την _εκκίνηση</s:String>
     <s:String x:Key="language_text">Γλώ_σσα:</s:String>
     <s:String x:Key="language_tip">Επιλέξτε την γλώσσα που θα χρησιμοποιήσετε.</s:String>
     <s:String x:Key="theme_text">_Θέμα:</s:String>
@@ -20,13 +20,13 @@
         <s:String>Κάτω</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Επιτροπή εξομάλυσης της γραμματοσειράς</s:String>
-    <s:String x:Key="collapse_tray_icons">Διαχωρισμός των_εικονιδίων της περιοχής ειδοποιήσεων</s:String>
+    <s:String x:Key="collapse_tray_icons">Διαχωρισμός των _εικονιδίων της περιοχής ειδοποιήσεων</s:String>
     <s:String x:Key="customize">Προσαρμογ_ή...</s:String>
-    <s:String x:Key="show_clock">Εμφάνιση του_ρολογιού</s:String>
+    <s:String x:Key="show_clock">Εμφάνιση του _ρολογιού</s:String>
     <s:String x:Key="show_multi_mon">Εμφάνιση σε _πολλαπλές οθόνες</s:String>
     <s:String x:Key="show_quick_launch">Εμφάνιση _Γρήγορης Εκκίνησης</s:String>
     <s:String x:Key="select_location">_Επιλογή τοποθεσίας...</s:String>
-    <s:String x:Key="quick_launch_folder">Γρήγορη Εκκίνηση- Επιλέξτε έναν φάκελο</s:String>
+    <s:String x:Key="quick_launch_folder">Γρήγορη Εκκίνηση - Επιλέξτε έναν φάκελο</s:String>
     <s:String x:Key="use_software_rendering">_Χρήση απόδοσης λογισμικού</s:String>
     <s:String x:Key="ok_dialog">ΟΚ</s:String>
 
