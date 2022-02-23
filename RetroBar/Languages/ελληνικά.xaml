@@ -60,7 +60,7 @@
     <s:String x:Key="size">_Μέγεθος</s:String>
     <s:String x:Key="minimize">Ελα_χιστοποίηση</s:String>
     <s:String x:Key="maximize">Μεγι_στοποιήση</s:String>
-    <s:String x:Key="Κλείσιμο">_Κλείσιμο</s:String>
+    <s:String x:Key="Κλείσιμο">_Close</s:String>
 
     <s:String x:Key="show_hidden">Εμφάνιση κρυφών εικονιδίων</s:String>
     <s:String x:Key="hide">Απόκρυψη</s:String>
