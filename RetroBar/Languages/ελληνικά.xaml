@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Ιδιότητες του RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Ιδιότητες γραμμής εργασιών</s:String>
+    <s:String x:Key="taskbar_appearance">Εμφάνιση γραμμής εργασιών</s:String>
+    <s:String x:Key="notification_area">Περιοχή ειδοποιήσεων</s:String>
+    <s:String x:Key="autostart">Αυτόματη αναπαραγωγή κατά την _εκκίνηση</s:String>
+    <s:String x:Key="language_text">Γλώ_σσα:</s:String>
+    <s:String x:Key="language_tip">Επιλέξτε την γλώσσα που θα χρησιμοποιήσετε.</s:String>
+    <s:String x:Key="theme_text">_Θέμα:</s:String>
+    <s:String x:Key="theme_tip">Εγκαταστήστε θέματα στον φάκελο των θεμάτων.</s:String>
+    <s:String x:Key="location_text">Τοποθ_εσία:</s:String>
+    <s:String x:Key="location_tip">Αλλάξτε την τοποθεσία της γραμμής εργασιών στην οθόνη.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Αριστερά</s:String>
+        <s:String>Κορυφή</s:String>
+        <s:String>Δεξιά</s:String>
+        <s:String>Κάτω</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Επιτροπή εξομάλυσης της γραμματοσειράς</s:String>
+    <s:String x:Key="collapse_tray_icons">Διαχωρισμός των _εικονιδίων της περιοχής ειδοποιήσεων</s:String>
+    <s:String x:Key="customize">Προσαρμογ_ή...</s:String>
+    <s:String x:Key="show_clock">Εμφάνιση του _ρολογιού</s:String>
+    <s:String x:Key="show_multi_mon">Εμφάνιση σε _πολλαπλές οθόνες</s:String>
+    <s:String x:Key="show_quick_launch">Εμφάνιση _Γρήγορης Εκκίνησης</s:String>
+    <s:String x:Key="select_location">_Επιλογή τοποθεσίας...</s:String>
+    <s:String x:Key="quick_launch_folder">Γρήγορη Εκκίνηση - Επιλέξτε έναν φάκελο</s:String>
+    <s:String x:Key="use_software_rendering">_Χρήση απόδοσης λογισμικού</s:String>
+    <s:String x:Key="ok_dialog">ΟΚ</s:String>
+
+    <s:String x:Key="customize_notifications">Προσαρμογή ειδοποιήσεων</s:String>
+    <s:String x:Key="customize_notifications_info">Το RetroBar εμφανίζει εικονίδια για ενεργές και επείγουσες ειδοποιήσεις και αποκρύπτει τις ανενεργές. Μπορείτε να αλλάξετε αυτήν τη συμπεριφορά για τα στοιχεία στην παρακάτω λίστα.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Επιλέξτε ένα αντικείμενο, τότε επιλέξτε την συμπεριφορά των ειδοποιήσεων:</s:String>
+    <s:String x:Key="hide_when_inactive">Απόκρυψη όταν είναι ανενεργό</s:String>
+    <s:String x:Key="always_show">Εμφάνιση πάντα</s:String>
+    <s:String x:Key="name_heading">Όνομα</s:String>
+    <s:String x:Key="behavior_heading">Συμπεριφορά</s:String>
+
+    <s:String x:Key="start_text">Έναρξη</s:String>
+    <s:String x:Key="start_text_xp">έναρξη</s:String>
+    <s:String x:Key="start_button_tip_98">Κάντε κλικ εδώ, για να ξεκινήσετε.</s:String>
+    <s:String x:Key="start_button_tip">Κάντε κλικ εδώ, για να ξεκινήσετε</s:String>
+    <s:String x:Key="start_button_tip_vista">Έναρξη</s:String>
+
+    <s:String x:Key="retrobar_title">Γραμμή εργασιών RetroBar</s:String>
+    <s:String x:Key="toolbars">_Γραμμές εργαλείων</s:String>
+    <s:String x:Key="quick_launch">_Γρήγορη εκκίνηση</s:String>
+    <s:String x:Key="new_toolbar">_Νέα Γραμμή Εργαλείων...</s:String>
+    <s:String x:Key="show_taskman_2k">Δια_χείρηση Εργασιών...</s:String>
+    <s:String x:Key="show_taskman">Δια_χείρηση εργασιών</s:String>
+    <s:String x:Key="tray_properties">Ι_διότητες</s:String>
+    <s:String x:Key="update_available">_διαθέσιμη ενημέρωση...</s:String>
+    <s:String x:Key="exit_retrobar">_Έξοδος από το RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Προσαρμογή ειδοποιήσεων...</s:String>
+
+    <s:String x:Key="restore">_Επαναφορά</s:String>
+    <s:String x:Key="move">_Μετακίνηση</s:String>
+    <s:String x:Key="size">_Μέγεθος</s:String>
+    <s:String x:Key="minimize">Ελα_χιστοποίηση</s:String>
+    <s:String x:Key="maximize">Μεγι_στοποιήση</s:String>
+    <s:String x:Key="close">_Κλείσιμο</s:String>
+
+    <s:String x:Key="show_hidden">Εμφάνιση κρυφών εικονιδίων</s:String>
+    <s:String x:Key="hide">Απόκρυψη</s:String>
+
+    <s:String x:Key="set_time">_Προσαρμογή Ημέρας/Ώρας</s:String>
+
+    <s:String x:Key="open_folder">&amp;Άνοιγμα Φακέλου</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
