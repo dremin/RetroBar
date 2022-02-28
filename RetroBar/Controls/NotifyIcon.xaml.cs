@@ -116,49 +116,27 @@ namespace RetroBar.Controls
         private const int APPCOMMAND_VOLUME_UP = 0xA0000;
         private const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
 
-        private void VolumeUp()
+        private void ChangeVolume(bool upOrDown)
         {
             NativeMethods.SendMessage(WindowHelper.FindWindowsTray(IntPtr.Zero), (int)NativeMethods.WM.APPCOMMAND,
-                WindowHelper.FindWindowsTray(IntPtr.Zero), (IntPtr)APPCOMMAND_VOLUME_UP);
-            ManagedShell.Common.Logging.ShellLogger.Debug($"VolumeIcon: IS UP");
-        }
-        private void VolumeDown()
-        {
-            NativeMethods.SendMessage(WindowHelper.FindWindowsTray(IntPtr.Zero), (int)NativeMethods.WM.APPCOMMAND,
-                WindowHelper.FindWindowsTray(IntPtr.Zero), (IntPtr)APPCOMMAND_VOLUME_DOWN);
-            ManagedShell.Common.Logging.ShellLogger.Debug($"VolumeIcon: IS DOWN");
+                WindowHelper.FindWindowsTray(IntPtr.Zero), upOrDown ? (IntPtr)APPCOMMAND_VOLUME_UP : (IntPtr)APPCOMMAND_VOLUME_DOWN);
         }
 
-        private bool handleVolumeIconMouseWheel(bool performAction)
+        private bool HandleNotificationIconMouseWheel(bool upOrDown)
         {
-            if (TrayIcon?.GUID.ToString() == VOLUME_GUID)
+            switch (TrayIcon?.GUID.ToString())
             {
-                if (performAction)
-                {
-                    VolumeUp();
-                }
-                else
-                {
-                    VolumeDown();
-                }
-
-                return true;
+                case VOLUME_GUID:
+                    ChangeVolume(upOrDown);
+                    return true;
+                default:
+                    return false;
             }
-
-            return false;
         }
 
         private void NotifyIcon_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (e.Delta > 0)
-            {
-                handleVolumeIconMouseWheel(true);
-            }
-
-            if (e.Delta < 0)
-            {
-                handleVolumeIconMouseWheel(false);
-            }
+            HandleNotificationIconMouseWheel(e.Delta > 0);
             e.Handled = true;
         }
     }
