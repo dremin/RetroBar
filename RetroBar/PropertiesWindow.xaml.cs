@@ -26,6 +26,18 @@ namespace RetroBar
         private readonly NotificationArea _notificationArea;
         private readonly AppBarScreen _screen;
 
+        // Previews should always assume bottom edge
+        public AppBarEdge AppBarEdge
+        {
+            get => AppBarEdge.Bottom;
+        }
+
+        // Previews should always assume horizontal orientation
+        public Orientation Orientation
+        {
+            get => Orientation.Horizontal;
+        }
+
         private PropertiesWindow(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             _barSize = barSize;

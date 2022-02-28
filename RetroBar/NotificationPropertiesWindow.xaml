@@ -13,7 +13,6 @@
         <ResourceDictionary>
             <converters:BoolToIntConverter x:Key="boolToIntConverter" />
             <converters:NewLineToSpaceConverter x:Key="newLineToSpaceConverter" />
-            <converters:NotifyIconPinnedConverter x:Key="notifyIconPinnedConverter" />
             <Style TargetType="{x:Type ComboBox}">
                 <Setter Property="HorizontalAlignment"
                         Value="Right" />
@@ -36,6 +35,16 @@
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
             </Style>
+            <Style TargetType="{x:Type ComboBoxItem}">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       TextTrimming="CharacterEllipsis" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid Margin="9,12">
@@ -48,6 +57,7 @@
                        TextWrapping="Wrap"
                        DockPanel.Dock="Top" />
             <TextBlock Text="{DynamicResource customize_notifications_instruction}"
+                       TextWrapping="Wrap"
                        Margin="0,20,0,3"
                        DockPanel.Dock="Top" />
             <ListView VerticalAlignment="Stretch"
@@ -56,7 +66,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{DynamicResource name_heading}"
-                                        Width="190">
+                                        Width="180">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
@@ -75,18 +85,30 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{DynamicResource behavior_heading}"
-                                        Width="106">
+                                        Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <TextBlock Text="{Binding IsPinned, Converter={StaticResource notifyIconPinnedConverter}}"
-                                                   Name="BehaviorTextBlock"
-                                                   TextTrimming="CharacterEllipsis" />
+                                        <TextBlock Name="BehaviorTextBlock"
+                                                   TextTrimming="CharacterEllipsis">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsPinned}" Value="True">
+                                                            <Setter Property="Text" Value="{DynamicResource always_show}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsPinned}" Value="False">
+                                                            <Setter Property="Text" Value="{DynamicResource hide_when_inactive}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
                                         <ComboBox Name="BehaviorComboBox"
                                                   SelectedIndex="{Binding IsPinned, Converter={StaticResource boolToIntConverter}}"
                                                   SelectionChanged="BehaviorComboBox_SelectionChanged"
                                                   Visibility="Collapsed">
-                                            <ComboBoxItem Content="{DynamicResource always_hide}" />
+                                            <ComboBoxItem Content="{DynamicResource hide_when_inactive}" />
                                             <ComboBoxItem Content="{DynamicResource always_show}" />
                                         </ComboBox>
                                     </StackPanel>

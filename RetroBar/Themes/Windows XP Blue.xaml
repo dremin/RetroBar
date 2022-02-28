@@ -216,6 +216,14 @@
         <GradientStop Color="#2c6de5"
                       Offset="1.0" />
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightPressedHover"
+                         StartPoint="0,0"
+                         EndPoint="0.03,1">
+        <GradientStop Color="Transparent"
+                      Offset="0.0" />
+        <GradientStop Color="Transparent"
+                      Offset="0.3" />
+    </LinearGradientBrush>
 
     <SolidColorBrush x:Key="TaskButtonTopBorderFlashing" Color="#d37400" />
     <SolidColorBrush x:Key="TaskButtonLeftBorderFlashing" Color="#d37400" />
@@ -645,6 +653,7 @@
                                 x:Name="ButtonTopBorder">
                             <Border BorderThickness="1,0,0,0"
                                     BorderBrush="{DynamicResource TaskButtonLeftBorderPressed}"
+                                    Background="{DynamicResource TaskButtonBackgroundHighlightPressed}"
                                     CornerRadius="2"
                                     x:Name="ButtonLeftBorder">
                                 <Border BorderThickness="0,0,0,1"
@@ -706,6 +715,9 @@
                             <Setter TargetName="ButtonTopBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBackgroundPressedHover}" />
+                            <Setter TargetName="ButtonLeftBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHighlightPressedHover}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1311,11 +1323,11 @@
                                 <Border BorderThickness="0,0,0,1"
                                         BorderBrush="Transparent"
                                         CornerRadius="2"
-                                        x:Name="ButtonRightBorder">
+                                        x:Name="ButtonBottomBorder">
                                     <Border BorderThickness="0,0,1,0"
                                             BorderBrush="Transparent"
                                             CornerRadius="2"
-                                            x:Name="ButtonBottomBorder">
+                                            x:Name="ButtonRightBorder">
                                         <Border BorderThickness="0,0,0,1"
                                                 BorderBrush="Transparent"
                                                 Background="Transparent"
@@ -1414,7 +1426,7 @@
                                     Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
                             <Setter TargetName="Content"
                                     Property="Margin"
-                                    Value="3,2,1,2" />
+                                    Value="3,3,1,3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

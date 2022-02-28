@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.ShellFolders;
@@ -14,6 +17,9 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class Toolbar : UserControl
     {
+        private bool _ignoreNextUpdate;
+        private bool _isLoaded;
+
         private enum MenuItem : uint
         {
             OpenParentFolder = CommonContextMenuItem.Paste + 1
@@ -33,6 +39,8 @@ namespace RetroBar.Controls
 
         private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
 
+        public ToolbarDropHandler DropHandler { get; set; }
+
         private ShellFolder Folder
         {
             get => (ShellFolder)GetValue(FolderProperty);
@@ -45,7 +53,27 @@ namespace RetroBar.Controls
 
         public Toolbar()
         {
+            DropHandler = new ToolbarDropHandler(this);
+
             InitializeComponent();
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "QuickLaunchOrder")
+            {
+                if (_ignoreNextUpdate)
+                {
+                    _ignoreNextUpdate = false;
+                    return;
+                }
+
+                if (Folder != null)
+                {
+                    ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+                    cvs.Refresh();
+                }
+            }
         }
 
         private void SetupFolder(string path)
@@ -65,7 +93,24 @@ namespace RetroBar.Controls
             if (Folder != null)
             {
                 ToolbarItems.ItemsSource = Folder.Files;
+                ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+                cvs.CustomSort = new ToolbarSorter(this);
             }
+        }
+
+        public void SaveItemOrder()
+        {
+            List<string> itemPaths = new List<string>();
+
+            foreach (ShellFile file in ((ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files)).OfType<ShellFile>())
+            {
+                itemPaths.Add(file.Path);
+            }
+
+            // small optimization, only other toolbars with this folder need to reload when the setting is saved.
+            _ignoreNextUpdate = true;
+
+            Settings.Instance.QuickLaunchOrder = itemPaths;
         }
 
         #region Events
@@ -179,5 +224,22 @@ namespace RetroBar.Controls
             return false;
         }
         #endregion
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!_isLoaded)
+            {
+                Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+                _isLoaded = true;
+            }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+
+            _isLoaded = false;
+        }
     }
 }

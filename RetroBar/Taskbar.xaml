@@ -13,10 +13,28 @@
         Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>
         <ResourceDictionary>
+            <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
+
+            <Style TargetType="ContextMenu"
+                   x:Key="{x:Type ContextMenu}"
+                   BasedOn="{StaticResource GlobalFonts}">
+                <Setter Property="TextOptions.TextRenderingMode">
+                    <Setter.Value>
+                        <Binding Source="{x:Static utilities:Settings.Instance}"
+                                 Path="AllowFontSmoothing"
+                                 Converter="{StaticResource textRenderingModeConverter}" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
+    <TextOptions.TextRenderingMode>
+        <Binding Source="{x:Static utilities:Settings.Instance}"
+                 Path="AllowFontSmoothing"
+                 Converter="{StaticResource textRenderingModeConverter}" />
+    </TextOptions.TextRenderingMode>
     <ContentControl Style="{DynamicResource Taskbar}">
         <DockPanel>
             <controls:StartButton x:Name="StartButton"

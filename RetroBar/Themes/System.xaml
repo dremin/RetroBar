@@ -10,6 +10,7 @@
     <Thickness x:Key="TaskButtonVerticalMargin" />
 
     <SolidColorBrush x:Key="ButtonHighlight" Color="{x:Static SystemColors.ControlLightLightColor}" />
+    <SolidColorBrush x:Key="ButtonInnerHighlight" Color="{x:Static SystemColors.ControlLightLightColor}" />
     <SolidColorBrush x:Key="ButtonLight" Color="{x:Static SystemColors.ControlLightColor}" />
     <SolidColorBrush x:Key="ButtonFace" Color="{x:Static SystemColors.ControlColor}" />
     <SolidColorBrush x:Key="ButtonShadow" Color="{x:Static SystemColors.ControlDarkColor}" />
@@ -29,19 +30,6 @@
     <Style x:Key="DefaultDirection">
         <Setter Property="Control.FlowDirection"
                         Value="LeftToRight" />
-    </Style>
-
-    <Style TargetType="Image"
-           x:Key="PropertiesImage"
-           BasedOn="{StaticResource DefaultDirection}">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="True">
-                <Setter Property="Source" Value="{DynamicResource properties_95}" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding ElementName=cbShowClock, Path=IsChecked}" Value="False">
-                <Setter Property="Source" Value="{DynamicResource properties_95_noclock}" />
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="MenuItem"
@@ -72,11 +60,6 @@
                 Value="{DynamicResource ToolTipForeground}" />
         <Setter Property="Padding"
                 Value="2,1,2,1" />
-    </Style>
-
-    <Style TargetType="ContextMenu"
-           x:Key="{x:Type ContextMenu}"
-           BasedOn="{StaticResource GlobalFonts}">
     </Style>
 
     <Style TargetType="Window"
@@ -283,17 +266,12 @@
                                         BorderBrush="{DynamicResource ButtonLight}">
                                     <Border BorderThickness="1,1,0,0"
                                             BorderBrush="{DynamicResource ButtonShadow}">
-                                        <Border BorderThickness="0,1,0,0"
-                                                BorderBrush="{DynamicResource ButtonHighlight}"
-                                                Padding="2,1,2,0">
-                                            <Border.Background>
-                                                <DrawingBrush TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
-                                                    <DrawingBrush.Drawing>
-                                                        <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}" />
-                                                    </DrawingBrush.Drawing>
-                                                </DrawingBrush>
-                                            </Border.Background>
-                                            <ContentPresenter />
+                                        <Border Background="{DynamicResource CheckeredBackground}">
+                                            <Border BorderThickness="0,1,0,0"
+                                                    Padding="2,1,2,0"
+                                                    BorderBrush="{DynamicResource ButtonInnerHighlight}">
+                                                <ContentPresenter />
+                                            </Border>
                                         </Border>
                                     </Border>
                                 </Border>
@@ -314,6 +292,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <DrawingBrush x:Key="CheckeredBackground" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Geometry="M2,0 H1 V1 H0 V2 H1 V1 H2Z" Brush="{DynamicResource ButtonHighlight}" />
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
 
     <Style TargetType="Button"
            x:Key="TaskButtonFlashing"

@@ -44,7 +44,6 @@ namespace RetroBar
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
 
             FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
-            SetFontSmoothing();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
@@ -99,11 +98,6 @@ namespace RetroBar
             }
         }
 
-        private void SetFontSmoothing()
-        {
-            VisualTextRenderingMode = Settings.Instance.AllowFontSmoothing ? TextRenderingMode.Auto : TextRenderingMode.Aliased;
-        }
-
         private void UpdateTrayPosition()
         {
             if (Screen.Primary)
@@ -142,10 +136,6 @@ namespace RetroBar
                     Width = DesiredWidth;
                     SetScreenPosition();
                 }
-            }
-            else if (e.PropertyName == "AllowFontSmoothing")
-            {
-                SetFontSmoothing();
             }
             else if (e.PropertyName == "ShowQuickLaunch")
             {

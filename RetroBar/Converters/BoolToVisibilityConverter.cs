@@ -4,14 +4,14 @@ using System.Windows.Data;
 
 namespace RetroBar.Converters
 {
-    [ValueConversion(typeof(bool), typeof(string))]
-    public class NotifyIconPinnedConverter : IValueConverter
+    [ValueConversion(typeof(bool), typeof(Visibility))]
+    public class BoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is bool isPinned)
+            if (value is bool boolValue)
             {
-                return isPinned ? Application.Current.FindResource("always_show") : Application.Current.FindResource("always_hide");
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
             }
 
             return Binding.DoNothing;

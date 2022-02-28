@@ -4,8 +4,8 @@
 
     <s:String x:Key="retrobar_properties">Tinh chỉnh RetroBar</s:String>
     <s:String x:Key="taskbar_options">Tùy chọn thanh tác vụ</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/vi/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/vi/properties_noclock.png" />
+    <s:String x:Key="taskbar_appearance">Giao diện thanh tác vụ</s:String>
+    <s:String x:Key="notification_area">Khu vực thông báo</s:String>
     <s:String x:Key="autostart">Tự động khởi động khi đăng nhập</s:String>
     <s:String x:Key="language_text">Ngôn ngữ:</s:String>
     <s:String x:Key="language_tip">Chọn ngôn ngữ để bắt đầu sử dụng.</s:String>
@@ -21,13 +21,22 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
     <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở thanh thông báo</s:String>
+    <s:String x:Key="customize">Tùy chỉnh...</s:String>
     <s:String x:Key="show_clock">Hiện thị _đồng hồ</s:String>
     <s:String x:Key="show_multi_mon">Hiện ở tất cả màn hình</s:String>
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
-    <s:String x:Key="use_software_rendering">_Dùng phần mềm kết xuất</s:String>
+    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar sẽ hiện các biểu tượng thông báo đang hoạt động hoặc quan trọng, đồng thời ẩn các biểu tượng không cần thiết. Bạn cũng có thể thay đổi hành vi của chúng ở ngay danh sách dưới đây.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Chọn một mục nào đó, rồi chọn hành vi thông báo cho mục đó:</s:String>
+    <s:String x:Key="hide_when_inactive">Ẩn nếu không hoạt động</s:String>
+    <s:String x:Key="always_show">Luôn luôn hiện</s:String>
+    <s:String x:Key="name_heading">Tên</s:String>
+    <s:String x:Key="behavior_heading">Hành vi</s:String>
 
     <s:String x:Key="start_text">Bắt đầu</s:String>
     <s:String x:Key="start_text_xp">Bắt đầu</s:String>
@@ -44,6 +53,7 @@
     <s:String x:Key="tray_properties">Tinh chỉnh</s:String>
     <s:String x:Key="update_available">_Có bản cập nhật mới...</s:String>
     <s:String x:Key="exit_retrobar">_Thoát RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Tùy chỉnh thông báo...</s:String>
 
     <s:String x:Key="restore">_Khôi phục</s:String>
     <s:String x:Key="move">_Di chuyển</s:String>
@@ -52,12 +62,14 @@
     <s:String x:Key="maximize">Mở rộng</s:String>
     <s:String x:Key="close">_Đóng</s:String>
 
-    <s:String x:Key="show_hidden">Hiện thị cái biểu tưởng ẩn</s:String>
+    <s:String x:Key="show_hidden">Hiện thị biểu tưởng ẩn</s:String>
     <s:String x:Key="hide">Ẩn</s:String>
 
     <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
 
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
 
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>

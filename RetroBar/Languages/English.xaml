@@ -4,8 +4,8 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
     <s:String x:Key="taskbar_options">Taskbar Options</s:String>
-    <BitmapImage x:Key="properties_95" UriSource="../Resources/properties.png" />
-    <BitmapImage x:Key="properties_95_noclock" UriSource="../Resources/properties_noclock.png" />
+    <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
+    <s:String x:Key="notification_area">Notification area</s:String>
     <s:String x:Key="autostart">Automatically start at _logon</s:String>
     <s:String x:Key="language_text">Lan_guage:</s:String>
     <s:String x:Key="language_tip">Select the language to use.</s:String>
@@ -33,7 +33,7 @@
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behavior for items in the list below.</s:String>
     <s:String x:Key="customize_notifications_instruction">Select an item, then choose its notification behavior:</s:String>
-    <s:String x:Key="always_hide">Always hide</s:String>
+    <s:String x:Key="hide_when_inactive">Hide when inactive</s:String>
     <s:String x:Key="always_show">Always show</s:String>
     <s:String x:Key="name_heading">Name</s:String>
     <s:String x:Key="behavior_heading">Behavior</s:String>

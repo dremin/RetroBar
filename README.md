@@ -14,16 +14,16 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 ## Features
 - Replaces default Windows taskbar with classic layout
 - Native notification area with balloon notification support
-- Native task list with UWP app support
+- Native task list with UWP app support and drag reordering
 - Quick launch toolbar
 - Start button opens modern start menu
 - Ability to show or hide the clock
 - Display taskbar on any side of the screen (even on Windows 11)
 - Option to display the taskbar, notification area, and clock on multiple monitors
-- XP-style collapsible notification area
+- Customizable XP-style collapsible notification area
 - Custom theme support
 - Several themes included:
-  - System
+  - System (Classic and XP)
   - Watercolor
   - Windows 95-98
   - Windows Me
@@ -40,6 +40,9 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Vietnamese (Tiếng Việt)
   - Hebrew (עברית)
   - Japanese (日本語)
+  - Arabic (العربية)
+  - Italian (italiano)
+  - Polish (polski)
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.
