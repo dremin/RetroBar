@@ -405,7 +405,7 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/startxpblue.png" />
     <BitmapImage x:Key="StartButtonImage"
-                 UriSource="../Resources/startxpzune.png" />
+                 UriSource="../Resources/startxpzunebutton.png" />
 
     <Style TargetType="MenuItem"
            x:Key="TaskManMenuItem">
