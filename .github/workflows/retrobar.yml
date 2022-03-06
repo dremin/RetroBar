@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        publishprofile: [ ReleaseProfile ]
+        publishprofile: [ x64, x86 ]
 
     runs-on: windows-latest
 
@@ -31,12 +31,12 @@ jobs:
         Profile: ${{ matrix.publishprofile }}
 
     - name: Copy license
-      run: cp DistLicense.txt RetroBar\bin\Release\netcoreapp3.1\publish\License.txt
+      run: cp DistLicense.txt RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: RetroBar
+        name: RetroBar ${{ matrix.publishprofile == 'x86' && '32-bit' || '64-bit' }}
         path: |
-          RetroBar\bin\Release\netcoreapp3.1\publish\RetroBar.exe
-          RetroBar\bin\Release\netcoreapp3.1\publish\License.txt
+          RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\RetroBar.exe
+          RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt

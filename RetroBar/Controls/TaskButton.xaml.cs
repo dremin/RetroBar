@@ -110,7 +110,16 @@ namespace RetroBar.Controls
             // disable window operations depending on current window state. originally tried implementing via bindings but found there is no notification we get regarding maximized state
             MaximizeMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
             MinimizeMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowMinimized && (ws & (int)NativeMethods.WindowStyles.WS_MINIMIZEBOX) != 0);
-            RestoreMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowNormal);
+            if (RestoreMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowNormal))
+            {
+                CloseMenuItem.FontWeight = FontWeights.Normal;
+                RestoreMenuItem.FontWeight = FontWeights.Bold;
+            }
+            if (!RestoreMenuItem.IsEnabled || RestoreMenuItem.IsEnabled && !MaximizeMenuItem.IsEnabled)
+            {
+                CloseMenuItem.FontWeight = FontWeights.Bold;
+                RestoreMenuItem.FontWeight = FontWeights.Normal;
+            }
             MoveMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal;
             SizeMenuItem.IsEnabled = (wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
         }
