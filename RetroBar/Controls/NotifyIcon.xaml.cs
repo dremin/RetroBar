@@ -6,6 +6,7 @@ using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTray;
+using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -112,22 +113,14 @@ namespace RetroBar.Controls
             TrayIcon?.IconMouseMove(MouseHelper.GetCursorPositionParam());
         }
 
-        private const int APPCOMMAND_VOLUME_DOWN = 0x90000;
-        private const int APPCOMMAND_VOLUME_UP = 0xA0000;
         private const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
-
-        private void ChangeVolume(bool upOrDown)
-        {
-            NativeMethods.SendMessage(WindowHelper.FindWindowsTray(IntPtr.Zero), (int)NativeMethods.WM.APPCOMMAND,
-                WindowHelper.FindWindowsTray(IntPtr.Zero), upOrDown ? (IntPtr)APPCOMMAND_VOLUME_UP : (IntPtr)APPCOMMAND_VOLUME_DOWN);
-        }
 
         private bool HandleNotificationIconMouseWheel(bool upOrDown)
         {
             switch (TrayIcon?.GUID.ToString())
             {
                 case VOLUME_GUID:
-                    ChangeVolume(upOrDown);
+                    VolumeChanger.ChangeVolume(WindowHelper.FindWindowsTray(IntPtr.Zero), upOrDown);
                     return true;
                 default:
                     return false;
