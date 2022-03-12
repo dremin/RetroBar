@@ -6,6 +6,7 @@ using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTray;
+using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -110,6 +111,26 @@ namespace RetroBar.Controls
         {
             e.Handled = true;
             TrayIcon?.IconMouseMove(MouseHelper.GetCursorPositionParam());
+        }
+
+        private const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
+
+        private bool HandleNotificationIconMouseWheel(bool upOrDown)
+        {
+            switch (TrayIcon?.GUID.ToString())
+            {
+                case VOLUME_GUID:
+                    VolumeChanger.ChangeVolume(WindowHelper.FindWindowsTray(IntPtr.Zero), upOrDown);
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private void NotifyIcon_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            HandleNotificationIconMouseWheel(e.Delta > 0);
+            e.Handled = true;
         }
     }
 }
