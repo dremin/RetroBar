@@ -15,9 +15,9 @@
         <GradientStop Color="#99c6f1"
                       Offset="0.0" />
         <GradientStop Color="#99c6f1"
-                      Offset="0.03" />
+                      Offset="0.05" />
         <GradientStop Color="#83c2ed"
-                      Offset="0.03" />
+                      Offset="0.05" />
         <GradientStop Color="#5896df"
                       Offset="0.40" />
         <GradientStop Color="#5896df"
@@ -212,6 +212,10 @@
                          EndPoint="0,1">
         <GradientStop Color="#94c5ef"
                       Offset="0.0" />
+        <GradientStop Color="#94c5ef"
+                      Offset="0.03" />
+        <GradientStop Color="#80c0ed"
+                      Offset="0.03" />
         <GradientStop Color="#5f9de6"
                       Offset="0.4" />
         <GradientStop Color="#5f9de6"
@@ -257,6 +261,10 @@
                          EndPoint="0,1">
         <GradientStop Color="#67a4e6"
                       Offset="0.0" />
+        <GradientStop Color="#67a4e6"
+                      Offset="0.03" />
+        <GradientStop Color="#509de0"
+                      Offset="0.03" />
         <GradientStop Color="#3270d5"
                       Offset="0.4" />
         <GradientStop Color="#3270d5"
