@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net480</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>RetroBar.Program</StartupObject>
@@ -11,6 +11,10 @@
     <FileVersion>1.0.0.8</FileVersion>
     <ApplicationIcon>Resources\retrobar.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net480'">
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +39,10 @@
     <PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
     <PackageReference Include="ManagedShell" Version="0.0.162" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net480'">
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 
   <ItemGroup>

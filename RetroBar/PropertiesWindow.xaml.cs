@@ -141,7 +141,9 @@ namespace RetroBar
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.Description = (string)FindResource("quick_launch_folder");
+#if NETCOREAPP3_0_OR_GREATER
             fbd.UseDescriptionForTitle = true;
+#endif
             fbd.ShowNewFolderButton = false;
             fbd.SelectedPath = Settings.Instance.QuickLaunchPath;
 
