@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        publishprofile: [ AnyCPU ]
+        publishprofile: [ x64, x86 ]
 
     runs-on: windows-latest
 
@@ -26,15 +26,17 @@ jobs:
       uses: dotnet/nbgv@v0.4.0
 
     - name: Publish app
-      run: dotnet publish -p:PublishProfile=$env:Profile -f net480
+      run: dotnet publish -p:PublishProfile=$env:Profile -f netcoreapp3.1
       env:
         Profile: ${{ matrix.publishprofile }}
 
     - name: Copy license
-      run: cp DistLicense.txt RetroBar\bin\Release\net480\publish\License.txt
+      run: cp DistLicense.txt RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: RetroBar
-        path: RetroBar\bin\Release\net480\publish\
+        name: RetroBar ${{ matrix.publishprofile == 'x86' && '32-bit' || '64-bit' }}
+        path: |
+          RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\RetroBar.exe
+          RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt
