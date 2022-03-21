@@ -16,7 +16,7 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class NotifyIconList : UserControl
     {
-        private bool isLoaded;
+        private bool _isLoaded;
         private CollectionViewSource allNotifyIconsSource;
         private CollectionViewSource pinnedNotifyIconsSource;
         private ObservableCollection<ManagedShell.WindowsTray.NotifyIcon> promotedIcons = new ObservableCollection<ManagedShell.WindowsTray.NotifyIcon>();
@@ -32,8 +32,6 @@ namespace RetroBar.Controls
         public NotifyIconList()
         {
             InitializeComponent();
-
-            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -57,7 +55,7 @@ namespace RetroBar.Controls
 
         private void NotifyIconList_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (!isLoaded && NotificationArea != null)
+            if (!_isLoaded && NotificationArea != null)
             {
                 CompositeCollection allNotifyIcons = new CompositeCollection();
                 allNotifyIcons.Add(new CollectionContainer { Collection = NotificationArea.UnpinnedIcons });
@@ -71,6 +69,8 @@ namespace RetroBar.Controls
 
                 NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
+
+                Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
                 if (Settings.Instance.CollapseNotifyIcons)
                 {
@@ -87,7 +87,7 @@ namespace RetroBar.Controls
                     NotifyIcons.ItemsSource = allNotifyIconsSource.View;
                 }
 
-                isLoaded = true;
+                _isLoaded = true;
             }
         }
 
@@ -133,13 +133,20 @@ namespace RetroBar.Controls
 
         private void NotifyIconList_OnUnloaded(object sender, RoutedEventArgs e)
         {
+            if (!_isLoaded)
+            {
+                return;
+            }
+
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+
             if (NotificationArea != null)
             {
                 NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown -= NotificationArea_NotificationBalloonShown;
             }
 
-            isLoaded = false;
+            _isLoaded = false;
         }
 
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

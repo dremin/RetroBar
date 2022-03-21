@@ -18,6 +18,12 @@ namespace RetroBar.Controls
         private bool isLoaded;
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
+        private const string HARDWARE_GUID = "7820ae78-23e3-4229-82c1-e41cb67d5b9c";
+        private const string MEETNOW_GUID = "7820ae83-23e3-4229-82c1-e41cb67d5b9c";
+        private const string NETWORK_GUID = "7820ae74-23e3-4229-82c1-e41cb67d5b9c";
+        private const string POWER_GUID = "7820ae75-23e3-4229-82c1-e41cb67d5b9c";
+        private const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
+
         public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(NotifyIcon));
 
         public Taskbar Host
@@ -31,6 +37,41 @@ namespace RetroBar.Controls
             InitializeComponent();
         }
 
+        private void applyEffects()
+        {
+            if (!EnvironmentHelper.IsWindows10OrBetter || TrayIcon == null)
+            {
+                return;
+            }
+
+            string iconGuid = TrayIcon.GUID.ToString();
+
+            if (!(iconGuid == HARDWARE_GUID ||
+                iconGuid == MEETNOW_GUID ||
+                iconGuid == NETWORK_GUID ||
+                iconGuid == POWER_GUID ||
+                iconGuid == VOLUME_GUID))
+            {
+                return;
+            }
+
+            bool invertByTheme = Application.Current.FindResource("InvertSystemNotifyIcons") as bool? ?? false;
+
+            if (NotifyIconImage.Effect == null != invertByTheme)
+            {
+                return;
+            }
+
+            if (invertByTheme)
+            {
+                NotifyIconImage.Effect = new InvertEffect();
+            }
+            else
+            {
+                NotifyIconImage.Effect = null;
+            }
+        }
+
         private void NotifyIcon_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (!isLoaded)
@@ -41,6 +82,8 @@ namespace RetroBar.Controls
                 {
                     return;
                 }
+
+                applyEffects();
 
                 TrayIcon.NotificationBalloonShown += TrayIcon_NotificationBalloonShown;
 
@@ -112,8 +155,6 @@ namespace RetroBar.Controls
             e.Handled = true;
             TrayIcon?.IconMouseMove(MouseHelper.GetCursorPositionParam());
         }
-
-        private const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
 
         private bool HandleNotificationIconMouseWheel(bool upOrDown)
         {

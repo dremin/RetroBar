@@ -1,9 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Windows XP Blue.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
