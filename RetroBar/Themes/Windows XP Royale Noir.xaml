@@ -10,20 +10,22 @@
                          MappingMode="Absolute"
                          StartPoint="0,0"
                          EndPoint="0,30">
-        <GradientStop Color="#232b3e"
+        <GradientStop Color="#737c84"
                       Offset="0.0" />
         <GradientStop Color="#737c84"
-                      Offset="0.01" />
+                      Offset="0.05" />
         <GradientStop Color="#66737c"
-                      Offset="0.01" />
+                      Offset="0.05" />
         <GradientStop Color="#4c5868"
                       Offset="0.49" />
         <GradientStop Color="#4c5868"
                       Offset="0.53" />
-        <GradientStop Color="#232a3d"
+        <GradientStop Color="#334151"
                       Offset="0.53" />
+        <GradientStop Color="#232a3d"
+                      Offset="0.97" />
         <GradientStop Color="#161c2d"
-                      Offset="0.99" />
+                      Offset="0.97" />
         <GradientStop Color="#161c2d"
                       Offset="1.0" />
     </LinearGradientBrush>
@@ -57,9 +59,9 @@
         <GradientStop Color="#253649"
                       Offset="0.0" />
         <GradientStop Color="#1c2b41"
-                      Offset="0.51" />
+                      Offset="0.53" />
         <GradientStop Color="#010409"
-                      Offset="0.51" />
+                      Offset="0.53" />
         <GradientStop Color="#00091c"
                       Offset="1.0" />
     </LinearGradientBrush>
@@ -88,52 +90,54 @@
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TrayToggleBorder"
                          StartPoint="0,0"
-                         EndPoint="1,1">
-        <GradientStop Color="#000000"
+                         EndPoint="0,1">
+        <GradientStop Color="#36435b"
                       Offset="0.0" />
-        <GradientStop Color="#39485f"
-                      Offset="0.5" />
-        <GradientStop Color="#000000"
+        <GradientStop Color="#070c1a"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TrayToggleBorderHover"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#000000"
+        <GradientStop Color="#1c263b"
                       Offset="0.0" />
-        <GradientStop Color="#39485f"
-                      Offset="0.5" />
         <GradientStop Color="#000000"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TrayToggleBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#53627e"
+        <GradientStop Color="#566581"
                       Offset="0.0" />
-        <GradientStop Color="#2a354d"
-                      Offset="0.5" />
-        <GradientStop Color="#53627e"
+        <GradientStop Color="#35425a"
+                      Offset="0.4" />
+        <GradientStop Color="#172134"
+                      Offset="0.4" />
+        <GradientStop Color="#566581"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TrayToggleHoverBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#4e5c76"
+        <GradientStop Color="#566581"
                       Offset="0.0" />
-        <GradientStop Color="#151e30"
-                      Offset="0.5" />
-        <GradientStop Color="#4e5c76"
+        <GradientStop Color="#1c263a"
+                      Offset="0.4" />
+        <GradientStop Color="#00020a"
+                      Offset="0.4" />
+        <GradientStop Color="#566581"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TrayTogglePressedBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#37435b"
+        <GradientStop Color="#3f4c66"
                       Offset="0.0" />
-        <GradientStop Color="#000311"
-                      Offset="0.5" />
-        <GradientStop Color="#3c4a65"
+        <GradientStop Color="#151f32"
+                      Offset="0.4" />
+        <GradientStop Color="#01030c"
+                      Offset="0.4" />
+        <GradientStop Color="#46536d"
                       Offset="1.0" />
     </LinearGradientBrush>
     <DropShadowEffect x:Key="TrayToggleArrowOuterShadow"
@@ -146,25 +150,51 @@
                       BlurRadius="4"
                       ShadowDepth="0" />
     <SolidColorBrush x:Key="TrayToggleArrow" Color="#adbddb" />
-    <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#758198" />
+    <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#8391ab" />
 
-    <SolidColorBrush x:Key="TaskButtonTopBorder" Color="#454e60" />
-    <SolidColorBrush x:Key="TaskButtonLeftBorder" Color="#13182c" />
-    <SolidColorBrush x:Key="TaskButtonRightBorder" Color="#13182c" />
-    <SolidColorBrush x:Key="TaskButtonBottomBorder" Color="#070c1d" />
+    <SolidColorBrush x:Key="TaskButtonTopBorder" Color="#58606b" />
+    <LinearGradientBrush x:Key="TaskButtonLeftBorder"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#545c68"
+                      Offset="0.0" />
+        <GradientStop Color="#3c4452"
+                      Offset="0.4" />
+        <GradientStop Color="#2b3545"
+                      Offset="0.6" />
+        <GradientStop Color="#182236"
+                      Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonRightBorder"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#545c68"
+                      Offset="0.0" />
+        <GradientStop Color="#3c4452"
+                      Offset="0.4" />
+        <GradientStop Color="#2b3545"
+                      Offset="0.6" />
+        <GradientStop Color="#182236"
+                      Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskButtonBottomBorder" Color="#000d1d" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorder" Color="#00000000" />
     <SolidColorBrush x:Key="TaskButtonInnerRightBorder" Color="#00000000" />
-    <SolidColorBrush x:Key="TaskButtonInnerBottomBorder" Color="#202738" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorder" Color="#1e2637" />
     <LinearGradientBrush x:Key="TaskButtonBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
         <GradientStop Color="#757f87"
                       Offset="0.0" />
+        <GradientStop Color="#757f87"
+                      Offset="0.03" />
+        <GradientStop Color="#697780"
+                      Offset="0.03" />
         <GradientStop Color="#525e6d"
                       Offset="0.54" />
         <GradientStop Color="#404e5e"
                       Offset="0.54" />
-        <GradientStop Color="#1e2637"
+        <GradientStop Color="#2c3647"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskButtonBackgroundHighlight"
@@ -177,8 +207,30 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="TaskButtonTopBorderHover" Color="#424b5e" />
-    <SolidColorBrush x:Key="TaskButtonLeftBorderHover" Color="#282d4a" />
-    <SolidColorBrush x:Key="TaskButtonRightBorderHover" Color="#292e4d" />
+    <LinearGradientBrush x:Key="TaskButtonLeftBorderHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#3d465a"
+                      Offset="0.0" />
+        <GradientStop Color="#292e4d"
+                      Offset="0.4" />
+        <GradientStop Color="#1b223b"
+                      Offset="0.6" />
+        <GradientStop Color="#0d142b"
+                      Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonRightBorderHover"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#3d465a"
+                      Offset="0.0" />
+        <GradientStop Color="#292e4d"
+                      Offset="0.4" />
+        <GradientStop Color="#1b223b"
+                      Offset="0.6" />
+        <GradientStop Color="#0d142b"
+                      Offset="1" />
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskButtonBottomBorderHover" Color="#0d0625" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorderHover" Color="#00000000" />
     <SolidColorBrush x:Key="TaskButtonInnerRightBorderHover" Color="#00000000" />
@@ -188,6 +240,10 @@
                          EndPoint="0,1">
         <GradientStop Color="#5c6876"
                       Offset="0.0" />
+        <GradientStop Color="#5c6876"
+                      Offset="0.03" />
+        <GradientStop Color="#4e5d6b"
+                      Offset="0.03" />
         <GradientStop Color="#354154"
                       Offset="0.54" />
         <GradientStop Color="#263246"
@@ -205,7 +261,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="TaskButtonTopBorderPressed" Color="#030305" />
-    <SolidColorBrush x:Key="TaskButtonLeftBorderPressed" Color="#0c1320" />
+    <SolidColorBrush x:Key="TaskButtonLeftBorderPressed" Color="#000615" />
     <SolidColorBrush x:Key="TaskButtonRightBorderPressed" Color="#000615" />
     <SolidColorBrush x:Key="TaskButtonBottomBorderPressed" Color="#707277" />
     <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressed" Color="#00000000" />
@@ -216,14 +272,18 @@
                          EndPoint="0,1">
         <GradientStop Color="#232833"
                       Offset="0.0" />
+        <GradientStop Color="#232833"
+                      Offset="0.03" />
         <GradientStop Color="#3d454f"
-                      Offset="0.05" />
+                      Offset="0.03" />
         <GradientStop Color="#1a2332"
                       Offset="0.5" />
         <GradientStop Color="#0b1322"
                       Offset="0.5" />
-        <GradientStop Color="#17202c"
-                      Offset="1.0" />
+        <GradientStop Color="#0a1222"
+                      Offset="0.87" />
+        <GradientStop Color="#131b2a"
+                      Offset="0.87" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightPressed"
                          StartPoint="0,0"
@@ -234,95 +294,50 @@
                       Offset="0.3" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="TaskButtonTopBorderPressedHover" Color="#030305" />
-    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressedHover" Color="#263240" />
-    <SolidColorBrush x:Key="TaskButtonInnerRightBorderPressedHover" Color="#263240" />
-    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderPressedHover" Color="#707277" />
+    <SolidColorBrush x:Key="TaskButtonTopBorderPressedHover" Color="#030310" />
+    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderPressedHover" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskButtonInnerRightBorderPressedHover" Color="Transparent" />
+    <SolidColorBrush x:Key="TaskButtonInnerBottomBorderPressedHover" Color="Transparent" />
     <LinearGradientBrush x:Key="TaskButtonBackgroundPressedHover"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#444b59"
+        <GradientStop Color="#262c38"
                       Offset="0.0" />
-        <GradientStop Color="#626d75"
+        <GradientStop Color="#262c38"
+                      Offset="0.03" />
+        <GradientStop Color="#3c4550"
+                      Offset="0.03" />
+        <GradientStop Color="#253140"
+                      Offset="0.5" />
+        <GradientStop Color="#172233"
+                      Offset="0.5" />
+        <GradientStop Color="#151e31"
+                      Offset="0.87" />
+        <GradientStop Color="#202838"
+                      Offset="0.87" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightPressedHover"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#00ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#22ffffff"
                       Offset="0.05" />
-        <GradientStop Color="#47596d"
-                      Offset="0.5" />
-        <GradientStop Color="#374661"
-                      Offset="0.5" />
-        <GradientStop Color="#2d3c57"
-                      Offset="0.85" />
-        <GradientStop Color="#3f4a5f"
+        <GradientStop Color="#22ffffff"
+                      Offset="0.95" />
+        <GradientStop Color="#00ffffff"
                       Offset="1.0" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="TaskButtonTopBorderFlashing" Color="#594b3b" />
-    <SolidColorBrush x:Key="TaskButtonLeftBorderFlashing" Color="#594b3b" />
-    <SolidColorBrush x:Key="TaskButtonRightBorderFlashing" Color="#594b3b" />
-    <SolidColorBrush x:Key="TaskButtonBottomBorderFlashing" Color="#e4b87a" />
-    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderFlashing" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskButtonBottomRightBorderFlashing" Color="Transparent" />
-    <LinearGradientBrush x:Key="TaskButtonBackgroundHighlightFlashing"
-                         StartPoint="0,0"
-                         EndPoint="0,1">
-        <GradientStop Color="#f78538"
-                      Offset="0.0" />
-        <GradientStop Color="#fddc56"
-                      Offset="0.05" />
-        <GradientStop Color="#ff7533"
-                      Offset="0.5" />
-        <GradientStop Color="#d94c21"
-                      Offset="0.5" />
-        <GradientStop Color="#c5441e"
-                      Offset="1.0" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TaskButtonBackgroundFlashing" Color="Transparent" />
-
-    <CornerRadius x:Key="TaskListScrollUpCornerRadius">0,0,2,2</CornerRadius>
-    <CornerRadius x:Key="TaskListScrollDownCornerRadius">2,2,0,0</CornerRadius>
-    <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0,2,2,0</CornerRadius>
-    <CornerRadius x:Key="TaskListScrollRightCornerRadius">2,0,0,2</CornerRadius>
-
-    <SolidColorBrush x:Key="TaskListScrollButtonTopBorder" Color="#26000000" />
-    <SolidColorBrush x:Key="TaskListScrollButtonLeftBorder" Color="#26ffffff" />
-    <SolidColorBrush x:Key="TaskListScrollButtonRightBorder" Color="#26ffffff" />
-    <SolidColorBrush x:Key="TaskListScrollButtonBottomBorder" Color="#26ffffff" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerTopBorder" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerLeftBorder" Color="#33000000" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerRightBorder" Color="#33000000" />
-    <SolidColorBrush x:Key="TaskListScrollButtonInnerBottomBorder" Color="#33000000" />
-    <SolidColorBrush x:Key="TaskListScrollButtonOuterLeftBorder" Color="#1f000000" />
-    <SolidColorBrush x:Key="TaskListScrollButtonOuterRightBorder" Color="#55000000" />
-    <SolidColorBrush x:Key="TaskListScrollButtonOuterBottomBorder" Color="#44000000" />
-    <LinearGradientBrush x:Key="TaskListScrollButtonBackground"
-                         StartPoint="0,0"
-                         EndPoint="1,1">
-        <GradientStop Color="#26000000"
-                      Offset="0.0" />
-        <GradientStop Color="#33000000"
-                      Offset="1.0" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundHover"
-                         StartPoint="0,0"
-                         EndPoint="1,1">
-        <GradientStop Color="#5576FC"
-                      Offset="0.0" />
-        <GradientStop Color="#4A58E7"
-                      Offset="1.0" />
-    </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundPressed"
                          StartPoint="0,0"
                          EndPoint="1,1">
-        <GradientStop Color="#272784"
+        <GradientStop Color="#1b2733"
                       Offset="0.0" />
-        <GradientStop Color="#363CCA"
+        <GradientStop Color="#2e3947"
                       Offset="1.0" />
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="TaskListScrollDownButtonInnerTopBorder" Color="#33000000" />
-    <SolidColorBrush x:Key="TaskListScrollDownButtonOuterTopBorder" Color="#44000000" />
-    <SolidColorBrush x:Key="TaskListScrollDownButtonTopBorder" Color="#26ffffff" />
-    <SolidColorBrush x:Key="TaskListScrollDownButtonInnerBottomBorder" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskListScrollDownButtonBottomBorder" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#bedcff" />
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="#adbddb" />
 
     <DropShadowEffect x:Key="StartLabelShadow"
                       Color="#303611"
@@ -331,59 +346,7 @@
                       BlurRadius="4"
                       Opacity="1" />
 
-    <SolidColorBrush x:Key="ItemButtonForeground" Color="#F0f0f0" />
-    <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
-
-    <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
-    <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
-
-    <SolidColorBrush x:Key="BalloonCloseButtonInactiveBackground" Color="#FFFFF5" />
-    <SolidColorBrush x:Key="BalloonCloseButtonInactiveBorder" Color="#C7BEA6" />
-    <SolidColorBrush x:Key="BalloonCloseButtonInactiveForeground" Color="#AA9C87" />
-    <SolidColorBrush x:Key="BalloonCloseButtonInactiveShadow" Color="Transparent" />
-
-    <SolidColorBrush x:Key="BalloonCloseButtonActiveBorder" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="BalloonCloseButtonActiveForeground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="BalloonCloseButtonActiveShadowLight" Color="#F3F3D6" />
-    <SolidColorBrush x:Key="BalloonCloseButtonActiveShadowDark" Color="#B8B8A2" />
-
-    <SolidColorBrush x:Key="BalloonCloseButtonHoverInnerLight" Color="#11000000" />
-    <SolidColorBrush x:Key="BalloonCloseButtonHoverInnerDark" Color="#33000000" />
-
-    <RadialGradientBrush x:Key="BalloonCloseButtonHoverBackground"
-                         GradientOrigin="1.0,1.0"
-                         RadiusX="0.8"
-                         RadiusY="0.8">
-        <GradientStop Color="#ffde17"
-                      Offset="0.0" />
-        <GradientStop Color="#ffad31"
-                      Offset="0.5" />
-        <GradientStop Color="#ffad31"
-                      Offset="0.6" />
-        <GradientStop Color="#ffd9a1"
-                      Offset="1.0" />
-    </RadialGradientBrush>
-
-    <SolidColorBrush x:Key="BalloonCloseButtonPressedInnerLight" Color="#08000000" />
-    <SolidColorBrush x:Key="BalloonCloseButtonPressedInnerDark" Color="#33000000" />
-
-    <RadialGradientBrush x:Key="BalloonCloseButtonPressedBackground"
-                         GradientOrigin="1.0,1.0"
-                         RadiusX="0.8"
-                         RadiusY="0.8">
-        <GradientStop Color="#d89500"
-                      Offset="0.0" />
-        <GradientStop Color="#cc7900"
-                      Offset="0.5" />
-        <GradientStop Color="#cc7900"
-                      Offset="0.6" />
-        <GradientStop Color="#a96000"
-                      Offset="1.0" />
-    </RadialGradientBrush>
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startnoir.png" />
