@@ -41,6 +41,7 @@
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
+    <system:Boolean x:Key="UseLargeIcons">False</system:Boolean>
 
     <Style x:Key="GlobalFonts">
         <Setter Property="Control.FontFamily"

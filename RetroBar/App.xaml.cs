@@ -7,6 +7,7 @@ using ManagedShell.Interop;
 using Application = System.Windows.Application;
 using System.Windows.Interop;
 using System.Windows.Media;
+using ManagedShell.Common.Enums;
 
 namespace RetroBar
 {
@@ -35,21 +36,6 @@ namespace RetroBar
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
-        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "UseSoftwareRendering")
-            {
-                if (Settings.Instance.UseSoftwareRendering)
-                {
-                    RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
-                }
-                else
-                {
-                    RenderOptions.ProcessRenderMode = RenderMode.Default;
-                }
-            }
-        }
-
         public void ExitGracefully()
         {
             _shellManager.AppBarManager.SignalGracefulShutdown();
@@ -64,7 +50,7 @@ namespace RetroBar
             }
 
             DictionaryManager.SetLanguageFromSettings();
-            DictionaryManager.SetThemeFromSettings();
+            loadTheme();
             _windowManager = new WindowManager(_shellManager, _startMenuMonitor, _updater);
         }
 
@@ -76,6 +62,41 @@ namespace RetroBar
         private void App_OnSessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
             ExitApp();
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "UseSoftwareRendering")
+            {
+                if (Settings.Instance.UseSoftwareRendering)
+                {
+                    RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+                }
+                else
+                {
+                    RenderOptions.ProcessRenderMode = RenderMode.Default;
+                }
+            }
+            else if (e.PropertyName == "Theme")
+            {
+                setTaskIconSize();
+            }
+        }
+
+        private void loadTheme()
+        {
+            DictionaryManager.SetThemeFromSettings();
+            setTaskIconSize();
+        }
+
+        private void setTaskIconSize()
+        {
+            bool useLargeIcons = FindResource("UseLargeIcons") as bool? ?? false;
+
+            if (_shellManager.TasksService.TaskIconSize != IconSize.Small != useLargeIcons)
+            {
+                _shellManager.TasksService.TaskIconSize = useLargeIcons ? IconSize.Large : IconSize.Small;
+            }
         }
 
         private ShellManager SetupManagedShell()
