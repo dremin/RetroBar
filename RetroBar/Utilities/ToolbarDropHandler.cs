@@ -14,20 +14,22 @@ namespace RetroBar.Utilities
             _toolbar = toolbar;
         }
 
-        public void DragEnter(IDropInfo dropInfo)
-        {
-            DragDrop.DefaultDropHandler.DragEnter(dropInfo);
-        }
-
         void IDropTarget.DragOver(IDropInfo dropInfo)
         {
             DragDrop.DefaultDropHandler.DragOver(dropInfo);
+        }
+
+#if !NETCOREAPP3_1_OR_GREATER
+        public void DragEnter(IDropInfo dropInfo)
+        {
+            DragDrop.DefaultDropHandler.DragEnter(dropInfo);
         }
 
         public void DragLeave(IDropInfo dropInfo)
         {
             DragDrop.DefaultDropHandler.DragLeave(dropInfo);
         }
+#endif
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
