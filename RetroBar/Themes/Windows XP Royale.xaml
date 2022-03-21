@@ -98,11 +98,14 @@
         <GradientStop Color="#c8daf0"
                       Offset="1.0" />
     </LinearGradientBrush>
+    <Thickness x:Key="TrayToggleOuterBorderThickness" Left="2" Top="2" Right="2" Bottom="2" />
     <LinearGradientBrush x:Key="TrayToggleBorder"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#ccd8eb"
+        <GradientStop Color="#456dac"
                       Offset="0.0" />
+        <GradientStop Color="#ccd8eb"
+                      Offset="0.05" />
         <GradientStop Color="#456dac"
                       Offset="1.0" />
     </LinearGradientBrush>
@@ -342,7 +345,22 @@
     <SolidColorBrush x:Key="TaskButtonLeftBorderFlashing" Color="#524844" />
     <SolidColorBrush x:Key="TaskButtonRightBorderFlashing" Color="#524844" />
     <SolidColorBrush x:Key="TaskButtonBottomBorderFlashing" Color="#ebbb74" />
-    <SolidColorBrush x:Key="TaskButtonInnerLeftBorderFlashing" Color="Transparent" />
+    <LinearGradientBrush x:Key="TaskButtonInnerLeftBorderFlashing"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#fbb570"
+                      Offset="0.0" />
+        <GradientStop Color="#fbb570"
+                      Offset="0.03" />
+        <GradientStop Color="#fde472"
+                      Offset="0.03" />
+        <GradientStop Color="#ff8d4c"
+                      Offset="0.5" />
+        <GradientStop Color="#e1693b"
+                      Offset="0.5" />
+        <GradientStop Color="#d26238"
+                      Offset="1.0" />
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskButtonBottomRightBorderFlashing" Color="Transparent" />
     <LinearGradientBrush x:Key="TaskButtonBackgroundFlashing"
                          StartPoint="0,0"
@@ -461,8 +479,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent">
-                        <Border BorderThickness="2"
-                                BorderBrush="{DynamicResource TrayToggleOuterBorder}"
+                        <Border Padding="{DynamicResource TrayToggleOuterBorderThickness}"
+                                Background="{DynamicResource TrayToggleOuterBorder}"
                                 CornerRadius="10"
                                 HorizontalAlignment="Center">
                             <Border BorderThickness="1"
