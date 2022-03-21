@@ -1,34 +1,33 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="ButtonInnerHighlight" Color="Transparent" />
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Windows XP Classic.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
     <BitmapImage x:Key="StartIconImage"
-                 UriSource="../Resources/startxpclassic.png" />
+                 UriSource="../Resources/startvistaclassic.png" />
+
+    <ToolTip x:Key="StartButtonTip"
+             Content="{DynamicResource start_button_tip_vista}" />
 
     <Style TargetType="Image"
            x:Key="StartIcon"
            BasedOn="{StaticResource StartIcon}">
         <Setter Property="Margin"
-                Value="-2,0,2,0" />
+                Value="-2,0,1,0" />
     </Style>
 
     <Style TargetType="TextBlock"
            x:Key="StartLabel"
            BasedOn="{StaticResource StartLabel}">
         <Setter Property="Margin"
-                Value="0,0,-1,1" />
-    </Style>
-
-    <Style TargetType="MenuItem"
-           x:Key="TaskManMenuItem">
-        <Setter Property="Header"
-                Value="{DynamicResource show_taskman}" />
+                Value="0,0,0,1" />
     </Style>
 
     <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="5,-1,5,0" />
+                Value="3,-1,5,0" />
     </Style>
 </ResourceDictionary>

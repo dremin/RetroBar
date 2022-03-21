@@ -462,6 +462,18 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="ClassicFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle RenderOptions.EdgeMode="Aliased" Margin="5" StrokeThickness="1"
+                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                               StrokeDashOffset="1.5" StrokeDashArray="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
 
     <Style TargetType="ToggleButton"
@@ -495,7 +507,7 @@
                                             Background="{TemplateBinding Background}"
                                             Padding="2,1"
                                             x:Name="ButtonInnerTopBorder">
-                                        <ContentPresenter />
+                                        <ContentPresenter Name="Content" />
                                     </Border>
                                 </Border>
                             </Border>
@@ -516,6 +528,9 @@
                             <Setter TargetName="ButtonInnerTopBorder"
                                     Property="BorderBrush"
                                     Value="{DynamicResource ButtonShadow}" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="1,1,-1,-1" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
@@ -531,6 +546,9 @@
                             <Setter TargetName="ButtonInnerTopBorder"
                                     Property="BorderBrush"
                                     Value="{DynamicResource ButtonShadow}" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="1,1,-1,-1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
