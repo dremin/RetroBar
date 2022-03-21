@@ -15,6 +15,7 @@
                 PreviewMouseWheel="NotifyIcon_OnPreviewMouseWheel">
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Focusable="True"
+                   Name="NotifyIconImage"
                    Style="{DynamicResource NotifyIcon}" />
         </Border>
         <local:NotifyBalloon x:Name="BalloonControl" />

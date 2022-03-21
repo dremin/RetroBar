@@ -5,6 +5,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Windows XP Royale.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    
+    <system:Boolean x:Key="InvertSystemNotifyIcons">False</system:Boolean>
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          MappingMode="Absolute"

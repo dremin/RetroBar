@@ -5,8 +5,9 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Windows XP Blue.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Thickness x:Key="TaskButtonMargin" Right="2" />
+    <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          MappingMode="Absolute"
