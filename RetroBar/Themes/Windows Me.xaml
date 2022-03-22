@@ -14,7 +14,8 @@
     <Style TargetType="ToggleButton"
            x:Key="StartButton"
            BasedOn="{StaticResource StartButton}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ClassicFocusVisual}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{StaticResource ClassicFocusVisual}" />
     </Style>
 
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
