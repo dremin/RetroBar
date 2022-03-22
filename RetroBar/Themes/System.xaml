@@ -27,6 +27,9 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
 
+    <BitmapImage x:Key="ShowDesktopIconImage"
+                 UriSource="../Resources/desktop95.ico" />
+
     <Style x:Key="DefaultDirection">
         <Setter Property="Control.FlowDirection"
                         Value="LeftToRight" />
@@ -520,6 +523,10 @@
     </Style>
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
+    <ToolTip x:Key="ShowDesktopButtonTip" Content="{DynamicResource show_desktop_tip}" />
+    <Style TargetType="MenuItem" x:Key="ShowDesktopItem">
+        <Setter Property="Header" Value="{DynamicResource show_desktop}" />
+    </Style>
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton">
@@ -601,6 +608,22 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ToggleButton"
+           x:Key="ShowDesktopButton"
+           BasedOn="{StaticResource StartButton}">
+        <Setter Property="Margin"
+                Value="-2,0,0,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{DynamicResource CheckeredBackground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="Image"
            x:Key="TaskIcon"
            BasedOn="{StaticResource DefaultDirection}">
@@ -619,6 +642,15 @@
                 Value="0,0,2,0" />
         <Setter Property="Source"
                 Value="{DynamicResource StartIconImage}" />
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="ShowDesktopIcon"
+           BasedOn="{StaticResource TaskIcon}">
+        <Setter Property="Margin"
+                Value="-1,0,0,0" />
+        <Setter Property="Source"
+                Value="{DynamicResource ShowDesktopIconImage}" />
     </Style>
 
     <Style TargetType="Image"

@@ -26,4 +26,7 @@
     </Style>
 
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
+
+    <BitmapImage x:Key="ShowDesktopIconImage"
+                 UriSource="../Resources/desktopMe2K.ico" />
 </ResourceDictionary>

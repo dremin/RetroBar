@@ -19,6 +19,11 @@
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}" />
+    <ToolTip x:Key="ShowDesktopButtonTip" Content="{DynamicResource show_desktop_tip_95}" />
+    <Style TargetType="MenuItem" x:Key="ShowDesktopItem">
+        <Setter Property="Header" Value="{DynamicResource show_desktop_95}" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton"

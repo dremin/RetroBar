@@ -137,6 +137,36 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool ShowDesktopButton
+        {
+            get
+            {
+                return settings.ShowDesktopButton;
+            }
+            set
+            {
+                if (settings.ShowDesktopButton != value)
+                {
+                    settings.ShowDesktopButton = value;
+                }
+            }
+        }
+
+        public bool PeekAtDesktop
+        {
+            get
+            {
+                return settings.PeekAtDesktop;
+            }
+            set
+            {
+                if (settings.PeekAtDesktop != value)
+                {
+                    settings.PeekAtDesktop = value;
+                }
+            }
+        }
+
         public bool ShowMultiMon
         {
             get

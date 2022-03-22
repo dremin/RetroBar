@@ -50,6 +50,11 @@ namespace RetroBar
                 QuickLaunchToolbar.Visibility = Visibility.Visible;
             }
 
+            if (Settings.Instance.ShowDesktopButton)
+            {
+                ShowDesktopButtonTray.Visibility = Visibility.Visible;
+            }
+
             // Hide the start button on secondary display(s)
             if (!Screen.Primary)
             {
@@ -160,6 +165,17 @@ namespace RetroBar
                     // It is necessary to reopen the taskbars to refresh menu sizes.
                     _windowManager.ReopenTaskbars();
                     return;
+                }
+            }
+            else if (e.PropertyName == "ShowDesktopButton")
+            {
+                if (Settings.Instance.ShowDesktopButton)
+                {
+                    ShowDesktopButtonTray.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ShowDesktopButtonTray.Visibility = Visibility.Collapsed;
                 }
             }
         }

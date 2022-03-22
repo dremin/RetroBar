@@ -360,6 +360,8 @@
                  UriSource="../Resources/startxpblue.png" />
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxpbluebutton.png" />
+    <BitmapImage x:Key="ShowDesktopIconImage"
+                 UriSource="../Resources/desktopxp.ico" />
 
     <Style TargetType="MenuItem"
            x:Key="TaskManMenuItem">

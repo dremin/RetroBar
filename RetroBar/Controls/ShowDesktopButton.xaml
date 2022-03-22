@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="RetroBar.Controls.ShowDesktopButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Settings="clr-namespace:RetroBar.Utilities">
+    <ToggleButton Name="ShowDesktop"
+                  ToolTip="{DynamicResource ShowDesktopButtonTip}"
+                  Style="{DynamicResource ShowDesktopButton}"
+                  Click="ShowDesktop_OnClick"
+                  MouseEnter="ShowDesktop_OnMouseEnter"
+                  MouseLeave="ShowDesktop_OnMouseLeave">
+        <Grid>
+            <Image Style="{DynamicResource ShowDesktopIcon}" />
+        </Grid>
+        <ToggleButton.ContextMenu>
+            <ContextMenu Opened="ContextMenu_Opened">
+                <MenuItem Style="{DynamicResource ShowDesktopItem}"
+                          Name="ShowDesktopItem"
+                          Click="ShowDesktop_OnClick" />
+                <MenuItem Header="{DynamicResource peek_at_desktop}"
+                          FontWeight="Bold"
+                          IsCheckable="True"
+                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=PeekAtDesktop, UpdateSourceTrigger=PropertyChanged}"
+                          Name="PeekAtDesktopItem" />
+                <MenuItem Header="{DynamicResource tray_properties}"
+                          Name="PropertiesItem"
+                          Click="PropertiesItem_OnClick" />
+            </ContextMenu>
+        </ToggleButton.ContextMenu>
+    </ToggleButton>
+</UserControl>
+ 

@@ -643,4 +643,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <BitmapImage x:Key="ShowDesktopIconImage"
+                 UriSource="../Resources/desktopxp.ico" />
 </ResourceDictionary>
