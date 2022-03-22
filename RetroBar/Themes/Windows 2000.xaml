@@ -18,5 +18,12 @@
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
 
+    <Style TargetType="TextBlock"
+           x:Key="StartLabel"
+           BasedOn="{StaticResource StartLabel}">
+        <Setter Property="Margin"
+                Value="0,-1,0,0" />
+    </Style>
+
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 </ResourceDictionary>

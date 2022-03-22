@@ -1167,6 +1167,8 @@
                 Value="99" />
         <Setter Property="Height"
                 Value="32" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
