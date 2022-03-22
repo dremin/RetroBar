@@ -19,10 +19,6 @@ namespace RetroBar.Controls
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
         private const string HARDWARE_GUID = "7820ae78-23e3-4229-82c1-e41cb67d5b9c";
-        private const string MEETNOW_GUID = "7820ae83-23e3-4229-82c1-e41cb67d5b9c";
-        private const string NETWORK_GUID = "7820ae74-23e3-4229-82c1-e41cb67d5b9c";
-        private const string POWER_GUID = "7820ae75-23e3-4229-82c1-e41cb67d5b9c";
-        private const string VOLUME_GUID = "7820ae73-23e3-4229-82c1-e41cb67d5b9c";
 
         public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(NotifyIcon));
 
@@ -47,10 +43,10 @@ namespace RetroBar.Controls
             string iconGuid = TrayIcon.GUID.ToString();
 
             if (!(iconGuid == HARDWARE_GUID ||
-                iconGuid == MEETNOW_GUID ||
-                iconGuid == NETWORK_GUID ||
-                iconGuid == POWER_GUID ||
-                iconGuid == VOLUME_GUID))
+                iconGuid == NotificationArea.MEETNOW_GUID ||
+                iconGuid == NotificationArea.NETWORK_GUID ||
+                iconGuid == NotificationArea.POWER_GUID ||
+                iconGuid == NotificationArea.VOLUME_GUID))
             {
                 return;
             }
@@ -160,7 +156,7 @@ namespace RetroBar.Controls
         {
             switch (TrayIcon?.GUID.ToString())
             {
-                case VOLUME_GUID:
+                case NotificationArea.VOLUME_GUID:
                     VolumeChanger.ChangeVolume(WindowHelper.FindWindowsTray(IntPtr.Zero), upOrDown);
                     return true;
                 default:
