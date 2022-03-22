@@ -19,6 +19,18 @@ namespace RetroBar.Utilities
             DragDrop.DefaultDropHandler.DragOver(dropInfo);
         }
 
+#if !NETCOREAPP3_1_OR_GREATER
+        public void DragEnter(IDropInfo dropInfo)
+        {
+            DragDrop.DefaultDropHandler.DragEnter(dropInfo);
+        }
+
+        public void DragLeave(IDropInfo dropInfo)
+        {
+            DragDrop.DefaultDropHandler.DragLeave(dropInfo);
+        }
+#endif
+
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
             // Save before the drop in order to catch any items not yet saved

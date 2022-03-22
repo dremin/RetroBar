@@ -5,6 +5,7 @@
         xmlns:converters="clr-namespace:RetroBar.Converters"
         xmlns:Settings="clr-namespace:RetroBar.Utilities"
         Title="{DynamicResource retrobar_properties}"
+        Icon="Resources/retrobar.ico"
         Height="Auto"
         Width="Auto"
         ResizeMode="NoResize"
