@@ -28,7 +28,7 @@
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
-    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
     <s:String x:Key="start_button_tip_98">Kliknij tutaj aby rozpocząć.</s:String>
     <s:String x:Key="start_button_tip">Kliknij tutaj aby rozpocząć</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
