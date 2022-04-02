@@ -68,8 +68,4 @@
     <s:String x:Key="set_time">Настройка _даты/времени</s:String>
 
     <s:String x:Key="open_folder">&amp;Открыть папку</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
