@@ -4,8 +4,8 @@
 
     <s:String x:Key="retrobar_properties">Свойства RetroBar</s:String>
     <s:String x:Key="taskbar_options">Параметры панели задач</s:String>
-    <s:String x:Key="taskbar_appearance">Внешний вид панели задач</s:String>
-    <s:String x:Key="notification_area">Зона уведомлений</s:String>
+    <s:String x:Key="taskbar_appearance">Оформление панели задач</s:String>
+    <s:String x:Key="notification_area">Область уведомлений</s:String>
     <s:String x:Key="autostart">Запускать при при в_ходе в систему</s:String>
     <s:String x:Key="language_text">_Язык:</s:String>
     <s:String x:Key="language_tip">Выберите язык, который хотите использовать.</s:String>
