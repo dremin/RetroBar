@@ -8,7 +8,7 @@ Pining for simpler times? RetroBar teleports you back in time by replacing your 
 RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for great compatibility and performance.
 
 ## Requirements
-- Windows 7 SP1, Windows 8.1, Windows 10 or later
+- Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
 - [.NET Core 3.1 desktop runtime](https://dotnet.microsoft.com/download/dotnet/3.1/runtime) (select the appropriate download button under "Run desktop apps")
 
 ## Features
@@ -22,27 +22,43 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Option to display the taskbar, notification area, and clock on multiple monitors
 - Customizable XP-style collapsible notification area
 - Custom theme support
-- Several themes included:
-  - System (Classic and XP)
-  - Watercolor
-  - Windows 95-98
-  - Windows Me
-  - Windows 2000
-  - Windows XP (Blue, Silver and Classic)
-- Support for the following languages:
-  - English
-  - Spanish (español)
-  - French (français)
-  - Portuguese (português)
-  - Simplified Chinese (简体中文)
-  - Russian (русский)
-  - Hungarian (magyar)
-  - Vietnamese (Tiếng Việt)
-  - Hebrew (עברית)
-  - Japanese (日本語)
-  - Arabic (العربية)
-  - Italian (italiano)
-  - Polish (polski)
+
+## Included themes
+- System (Classic and XP)
+- Watercolor
+- Windows 95-98
+- Windows Me
+- Windows 2000
+- Windows XP:
+  - Classic
+  - Blue
+  - Olive Green
+  - Silver
+  - Royale
+  - Royale Noir
+  - Embedded Style
+  - Zune Style
+- Windows Vista Classic
+
+## Supported languages
+- Arabic (العربية)
+- Czech (čeština)
+- English
+- English (United Kingdom)
+- French (français)
+- German (Deutsch)
+- Greek (ελληνικά)
+- Hebrew (עברית)
+- Hungarian (magyar)
+- Italian (italiano)
+- Japanese (日本語)
+- Polish (polski)
+- Portuguese (português)
+- Russian (русский)
+- Simplified Chinese (简体中文)
+- Spanish (español)
+- Turkish (Türkçe)
+- Vietnamese (Tiếng Việt)
 
 ## Custom themes
 RetroBar supports custom themes. To use custom themes, create a `Themes` directory in the same directory as `RetroBar.exe`, and place valid `.xaml` theme files there.
