@@ -3,7 +3,9 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Свойства RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Параметры панели задач</s:String>
+    <s:String x:Key="taskbar_options">Панель задач</s:String>
+    <s:String x:Key="taskbar_appearance">Оформление панели задач</s:String>
+    <s:String x:Key="notification_area">Область уведомлений</s:String>
     <s:String x:Key="autostart">Запускать при при в_ходе в систему</s:String>
     <s:String x:Key="language_text">_Язык:</s:String>
     <s:String x:Key="language_tip">Выберите язык, который хотите использовать.</s:String>
@@ -18,7 +20,7 @@
         <s:String>Внизу</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">Пр_именять сглаживание шрифтов</s:String>
-    <s:String x:Key="collapse_tray_icons">Скр_ывать неиспользуемые значки панели уведомлений</s:String>
+    <s:String x:Key="collapse_tray_icons">Скр_ывать неиспользуемые значки</s:String>
     <s:String x:Key="customize">_Настроить...</s:String>
     <s:String x:Key="show_clock">Отображать _часы</s:String>
     <s:String x:Key="show_multi_mon">Показывать на н_ескольких дисплеях</s:String>
