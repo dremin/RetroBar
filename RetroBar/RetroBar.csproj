@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>netcoreapp3.1;net480</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net480;net6.0-windows10.0.19041.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>RetroBar.Program</StartupObject>
@@ -10,7 +10,7 @@
     <AssemblyVersion>1.0.0.8</AssemblyVersion>
     <FileVersion>1.0.0.8</FileVersion>
     <ApplicationIcon>Resources\retrobar.ico</ApplicationIcon>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>AnyCPU;x86;ARM64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net480'">
