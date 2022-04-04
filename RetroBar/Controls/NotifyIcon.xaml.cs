@@ -86,7 +86,7 @@ namespace RetroBar.Controls
                 // If a notification was received before we started listening, it will be here. Show the first one that is not expired.
                 NotificationBalloon firstUnexpiredNotification = TrayIcon.MissedNotifications.FirstOrDefault(balloon => balloon.Received.AddMilliseconds(balloon.Timeout) > DateTime.Now);
 
-                if (firstUnexpiredNotification != null)
+                if (firstUnexpiredNotification != null && Host != null && Host.Screen.Primary)
                 {
                     BalloonControl.Show(firstUnexpiredNotification, NotifyIconBorder);
                     TrayIcon.MissedNotifications.Remove(firstUnexpiredNotification);
@@ -107,6 +107,11 @@ namespace RetroBar.Controls
 
         private void TrayIcon_NotificationBalloonShown(object sender, NotificationBalloonEventArgs e)
         {
+            if (Host == null || !Host.Screen.Primary)
+            {
+                return;
+            }
+
             BalloonControl.Show(e.Balloon, NotifyIconBorder);
             e.Handled = true;
         }
