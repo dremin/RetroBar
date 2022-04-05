@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        publishprofile: [ x64, x86 ]
+        publishprofile: [ [x64, netcoreapp3.1], [x86, netcoreapp3.1], [ARM64, net6.0-windows10.0.19041.0] ]
 
     runs-on: windows-latest
 
@@ -26,17 +26,18 @@ jobs:
       uses: dotnet/nbgv@v0.4.0
 
     - name: Publish app
-      run: dotnet publish -p:PublishProfile=$env:Profile -f netcoreapp3.1
+      run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework
       env:
-        Profile: ${{ matrix.publishprofile }}
+        Profile: ${{ matrix.publishprofile[0] }}
+        Framework: ${{ matrix.publishprofile[1] }}
 
     - name: Copy license
-      run: cp DistLicense.txt RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt
+      run: cp DistLicense.txt RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\License.txt
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: RetroBar ${{ matrix.publishprofile == 'x86' && '32-bit' || '64-bit' }}
+        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || 'ARM64' }}
         path: |
-          RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\RetroBar.exe
-          RetroBar\bin\Release\netcoreapp3.1\publish-${{ matrix.publishprofile }}\License.txt
+          RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\RetroBar.exe
+          RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\License.txt
