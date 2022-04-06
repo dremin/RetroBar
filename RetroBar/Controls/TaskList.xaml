@@ -16,7 +16,7 @@
                   x:Name="TasksScrollViewer"
                   Focusable="False"
                   PreviewMouseWheel="TasksScrollViewer_PreviewMouseWheel"
-                  VerticalScrollBarVisibility="Auto">
+                  VerticalScrollBarVisibility="Disabled">
         <ItemsControl x:Name="TasksList"
                       Focusable="False"
                       HorizontalAlignment="Stretch"
