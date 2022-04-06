@@ -94,6 +94,7 @@ namespace RetroBar.Controls
             if (Settings.Instance.Edge == (int)AppBarEdge.Left || Settings.Instance.Edge == (int)AppBarEdge.Right)
             {
                 ButtonWidth = ActualWidth;
+                SetScrollable(true); // while technically not always scrollable, we don't run into DPI-specific issues with it enabled while vertical
                 return;
             }
 
