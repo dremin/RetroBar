@@ -13,11 +13,12 @@ namespace RetroBar.Controls
     public partial class TaskList : UserControl
     {
         private bool isLoaded;
+        private bool isScrollable;
         private double DefaultButtonWidth;
         private double MinButtonWidth;
         private double TaskButtonLeftMargin;
         private double TaskButtonRightMargin;
-
+        
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register("ButtonWidth", typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
 
         public double ButtonWidth
@@ -104,14 +105,41 @@ namespace RetroBar.Controls
             if (maxWidth > defaultWidth)
             {
                 ButtonWidth = DefaultButtonWidth;
+                SetScrollable(false);
             }
             else if (maxWidth < minWidth)
             {
                 ButtonWidth = Math.Ceiling(DefaultButtonWidth / 2);
+                SetScrollable(true);
             }
             else
             {
                 ButtonWidth = Math.Floor(maxWidth);
+                SetScrollable(false);
+            }
+        }
+
+        private void SetScrollable(bool canScroll)
+        {
+            if (canScroll == isScrollable) return;
+
+            if (canScroll)
+            {
+                TasksScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            }
+            else
+            {
+                TasksScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            }
+
+            isScrollable = canScroll;
+        }
+
+        private void TasksScrollViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            if (!isScrollable)
+            {
+                e.Handled = true;
             }
         }
     }
