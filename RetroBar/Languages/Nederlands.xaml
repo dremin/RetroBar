@@ -1,0 +1,76 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar Instellingen</s:String>
+    <s:String x:Key="taskbar_options">Taakbalk Opties</s:String>
+    <s:String x:Key="taskbar_appearance">Taakbalkweergave</s:String>
+    <s:String x:Key="notification_area">Systeemvak</s:String>
+    <s:String x:Key="autostart">_Automatisch starten bij aanmelden</s:String>
+    <s:String x:Key="language_text">T_aal:</s:String>
+    <s:String x:Key="language_tip">Hiermee selecteert u de taal om te gebruiken.</s:String>
+    <s:String x:Key="theme_text">_Thema:</s:String>
+    <s:String x:Key="theme_tip">Installeer themas in de Themes map.</s:String>
+    <s:String x:Key="location_text">Locatie:</s:String>
+    <s:String x:Key="location_tip">Hiermee verandert u de plek van de taakbalk op het scherm.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Links</s:String>
+        <s:String>Boven</s:String>
+        <s:String>Rechts</s:String>
+        <s:String>Onder</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Lettertype vloeiend maken</s:String>
+    <s:String x:Key="collapse_tray_icons">_Niet-actieve pictogrammen opruimen</s:String>
+    <s:String x:Key="customize">Aanpassen...</s:String>
+    <s:String x:Key="show_clock">_Klok weergeven</s:String>
+    <s:String x:Key="show_multi_mon">Laat op _meerdere beeldschermen zien</s:String>
+    <s:String x:Key="show_quick_launch">Werkbalk _Snel starten weergeven</s:String>
+    <s:String x:Key="select_location">_Selecteer locatie...</s:String>
+    <s:String x:Key="quick_launch_folder">Snel starten - Kies een map</s:String>
+    <s:String x:Key="use_software_rendering">_Gebruik software rendering</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Customize Notifications</s:String>
+    <s:String x:Key="customize_notifications_info">Retrobar geeft standaard alleen pictogrammen voor actuele en urgente meldingen weer, en verbergt alle andere pictogrammen. U kunt dit gedrag voor de onderstaande items wijzigen.</s:String>
+
+    <s:String x:Key="customize_notifications_instruction">Selecteer een item en kies het gewenste gedrag:</s:String>
+    <s:String x:Key="hide_when_inactive">Verberg indien niet actief</s:String>
+    <s:String x:Key="always_show">Altijd weergeven</s:String>
+    <s:String x:Key="name_heading">Naam</s:String>
+    <s:String x:Key="behavior_heading">Gedrag</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Klik hier om te beginnen.</s:String>
+    <s:String x:Key="start_button_tip">Klik hier om te beginnen</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Taakbalk</s:String>
+    <s:String x:Key="toolbars">_Werkbalken</s:String>
+    <s:String x:Key="quick_launch">_Snel starten</s:String>
+    <s:String x:Key="new_toolbar">_Nieuwe werkbalk...</s:String>
+    <s:String x:Key="show_taskman_2k">T_aakbeheer...</s:String>
+    <s:String x:Key="show_taskman">Taakbeheer</s:String>
+    <s:String x:Key="tray_properties">Ei_genschappen</s:String>
+    <s:String x:Key="update_available">_Updates beschikbaar...</s:String>
+    <s:String x:Key="exit_retrobar">RetroBar _afsluiten</s:String>
+    <s:String x:Key="customize_notifications_menu">Meld_ingen aanpassen...</s:String>
+
+    <s:String x:Key="restore">_Vorig formaat</s:String>
+    <s:String x:Key="move">Ve_rplaatsen</s:String>
+    <s:String x:Key="size">_Formaat wijzigen</s:String>
+    <s:String x:Key="minimize">Mi_nimaliseren</s:String>
+    <s:String x:Key="maximize">_Maximaliseren</s:String>
+    <s:String x:Key="close">_Sluiten</s:String>
+
+    <s:String x:Key="show_hidden">Verborgen pictogrammen weergeven</s:String>
+    <s:String x:Key="hide">Verbergen</s:String>
+
+    <s:String x:Key="set_time">Dat_um/tijd aanpassen</s:String>
+
+    <s:String x:Key="open_folder">&amp;Map openen</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
