@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar 內容</s:String>
+    <s:String x:Key="taskbar_options">工作列選項</s:String>
+    <s:String x:Key="taskbar_appearance">工作列外觀</s:String>
+    <s:String x:Key="notification_area">通知區域</s:String>
+    <s:String x:Key="autostart">開機時自動啟動(_L)</s:String>
+    <s:String x:Key="language_text">語言(_G)：</s:String>
+    <s:String x:Key="language_tip">選擇要使用的語言。</s:String>
+    <s:String x:Key="theme_text">主題(_T)：</s:String>
+    <s:String x:Key="theme_tip">在 Themes 資料夾中安裝主題。</s:String>
+    <s:String x:Key="location_text">位置(_I)：</s:String>
+    <s:String x:Key="location_tip">更改螢幕上的工作列位置。</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>左</s:String>
+        <s:String>上</s:String>
+        <s:String>右</s:String>
+        <s:String>下</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">允許字體平滑(_A)</s:String>
+    <s:String x:Key="collapse_tray_icons">隱藏非使用中時圖示(_N)</s:String>
+    <s:String x:Key="customize">自訂(_E)...</s:String>
+    <s:String x:Key="show_clock">顯示小時鐘(_C)</s:String>
+	<s:String x:Key="show_multi_mon">在多個顯示器上顯示(_M)</s:String>
+    <s:String x:Key="show_quick_launch">顯示快速啟動(_Q)</s:String>
+    <s:String x:Key="select_location">選擇位置(_S)...</s:String>
+    <s:String x:Key="quick_launch_folder">快速啟動 - 選擇一個資料夾</s:String>
+    <s:String x:Key="use_software_rendering">使用軟體渲染(_U)</s:String>
+    <s:String x:Key="ok_dialog">確定</s:String>
+	
+    <s:String x:Key="customize_notifications">自訂通知</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar 會顯示作用中和重要的通知，並隱藏非使用中的通知。您可以從以下清單中，改變項目的通知行為。</s:String>
+    <s:String x:Key="customize_notifications_instruction">請選擇一個項目，再選擇其通知行為：</s:String>
+    <s:String x:Key="hide_when_inactive">非使用中時隱藏</s:String>
+    <s:String x:Key="always_show">永遠顯示</s:String>
+    <s:String x:Key="name_heading">名稱</s:String>
+    <s:String x:Key="behavior_heading">行為</s:String>
+
+    <s:String x:Key="start_text">開始</s:String>
+    <s:String x:Key="start_text_xp">開始</s:String>
+    <s:String x:Key="start_button_tip_98">請按這個地方，開始作業</s:String>
+    <s:String x:Key="start_button_tip">請按這裡開始操作</s:String>
+    <s:String x:Key="start_button_tip_vista">開始</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar 工作列</s:String>
+    <s:String x:Key="toolbars">工具列(_T)</s:String>
+    <s:String x:Key="quick_launch">快速啟動(_Q)</s:String>
+    <s:String x:Key="new_toolbar">新增工具列(_N)...</s:String>
+    <s:String x:Key="show_taskman_2k">工作管理員(_K)...</s:String>
+    <s:String x:Key="show_taskman">工作管理員(_K)</s:String>
+    <s:String x:Key="tray_properties">內容(_R)</s:String>
+    <s:String x:Key="update_available">有可用更新(_U)...</s:String>
+    <s:String x:Key="exit_retrobar">結束 RetroBar(_E)</s:String>
+    <s:String x:Key="customize_notifications_menu">自訂通知(_C)...</s:String>
+
+    <s:String x:Key="restore">還原(_R)</s:String>
+    <s:String x:Key="move">移動(_M)</s:String>
+    <s:String x:Key="size">大小(_S)</s:String>
+    <s:String x:Key="minimize">最小化(_N)</s:String>
+    <s:String x:Key="maximize">最大化(_X)</s:String>
+    <s:String x:Key="close">關閉(_C)</s:String>
+
+    <s:String x:Key="show_hidden">顯示隱藏的圖示</s:String>
+    <s:String x:Key="hide">隱藏</s:String>
+
+    <s:String x:Key="set_time">調整日期/時間(_A)</s:String>
+
+    <s:String x:Key="open_folder">&amp;開啟資料夾</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    
+    <FontFamily x:Key="start_text_xp_font_family">PMingLiU</FontFamily>
+</ResourceDictionary>
