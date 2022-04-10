@@ -13,8 +13,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
+                  x:Name="TasksScrollViewer"
                   Focusable="False"
-                  VerticalScrollBarVisibility="Auto">
+                  PreviewMouseWheel="TasksScrollViewer_PreviewMouseWheel"
+                  VerticalScrollBarVisibility="Disabled">
         <ItemsControl x:Name="TasksList"
                       Focusable="False"
                       HorizontalAlignment="Stretch"
