@@ -10,14 +10,14 @@
     <s:String x:Key="language_text">Ngôn ngữ:</s:String>
     <s:String x:Key="language_tip">Chọn ngôn ngữ để bắt đầu sử dụng.</s:String>
     <s:String x:Key="theme_text">Chủ đề:</s:String>
-    <s:String x:Key="theme_tip">Cài đặt chủ đề trong thử mục Themes.</s:String>
+    <s:String x:Key="theme_tip">Cài đặt chủ đề trong thư mục Themes.</s:String>
     <s:String x:Key="location_text">Vị trí:</s:String>
     <s:String x:Key="location_tip">Thay đổi vị trí của thanh tác vụ trên màn hình.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Trái</s:String>
-        <s:String>Đầu</s:String>
+        <s:String>Trên</s:String>
         <s:String>Phải</s:String>
-        <s:String>Đáy</s:String>
+        <s:String>Dưới</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
     <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở thanh thông báo</s:String>
@@ -39,7 +39,7 @@
     <s:String x:Key="behavior_heading">Hành vi</s:String>
 
     <s:String x:Key="start_text">Bắt đầu</s:String>
-    <s:String x:Key="start_text_xp">Bắt đầu</s:String>
+    <s:String x:Key="start_text_xp">bắt đầu</s:String>
     <s:String x:Key="start_button_tip_98">Nhấn vào đây để bắt đầu.</s:String>
     <s:String x:Key="start_button_tip">Nhấn vào đây để bắt đầu</s:String>
     <s:String x:Key="start_button_tip_vista">Bắt đầu</s:String>
@@ -59,10 +59,10 @@
     <s:String x:Key="move">_Di chuyển</s:String>
     <s:String x:Key="size">_Kích thước</s:String>
     <s:String x:Key="minimize">Thu nhỏ</s:String>
-    <s:String x:Key="maximize">Mở rộng</s:String>
+    <s:String x:Key="maximize">Phóng to</s:String>
     <s:String x:Key="close">_Đóng</s:String>
 
-    <s:String x:Key="show_hidden">Hiện thị biểu tưởng ẩn</s:String>
+    <s:String x:Key="show_hidden">Hiện thị biểu tưởng đã ẩn</s:String>
     <s:String x:Key="hide">Ẩn</s:String>
 
     <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
