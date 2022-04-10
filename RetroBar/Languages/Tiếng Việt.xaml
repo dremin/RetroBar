@@ -39,7 +39,7 @@
     <s:String x:Key="behavior_heading">Hành vi</s:String>
 
     <s:String x:Key="start_text">Bắt đầu</s:String>
-    <s:String x:Key="start_text_xp">bắt đầu</s:String>
+    <s:String x:Key="start_text_xp">Bắt đầu</s:String>
     <s:String x:Key="start_button_tip_98">Nhấn vào đây để bắt đầu.</s:String>
     <s:String x:Key="start_button_tip">Nhấn vào đây để bắt đầu</s:String>
     <s:String x:Key="start_button_tip_vista">Bắt đầu</s:String>
