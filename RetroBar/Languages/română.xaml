@@ -3,36 +3,36 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Proprietăți RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Setări bară de activități</s:String>
-    <s:String x:Key="taskbar_appearance">Aspectul barei de activități</s:String>
+    <s:String x:Key="taskbar_options">Setări bară de instrumente</s:String>
+    <s:String x:Key="taskbar_appearance">Aspectul barei de instrumente</s:String>
     <s:String x:Key="notification_area">Zona de notificări</s:String>
-    <s:String x:Key="autostart">Pornire automată la _logare</s:String>
+    <s:String x:Key="autostart">Pornire automată la _conectare</s:String>
     <s:String x:Key="language_text">Limbă:</s:String>
-    <s:String x:Key="language_tip">Selectează limba.</s:String>
+    <s:String x:Key="language_tip">Selectați limba.</s:String>
     <s:String x:Key="theme_text">_Temă:</s:String>
-    <s:String x:Key="theme_tip">Instalează teme in dosarul Themes.</s:String>
+    <s:String x:Key="theme_tip">Instalați teme în dosarul Themes.</s:String>
     <s:String x:Key="location_text">Poziție:</s:String>
-    <s:String x:Key="location_tip">Schimbă poziția barei de activități de pe ecran.</s:String>
+    <s:String x:Key="location_tip">Schimbați poziția barei de activități de pe ecran.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Stânga</s:String>
         <s:String>Sus</s:String>
         <s:String>Dreapta</s:String>
         <s:String>Jos</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">_Activează netezirea fontului</s:String>
-    <s:String x:Key="collapse_tray_icons">Ascunde pictogramele din bara de notificări</s:String>
-    <s:String x:Key="customize">Personalizează...</s:String>
-    <s:String x:Key="show_clock">Arată _ceasul</s:String>
-    <s:String x:Key="show_multi_mon">Arată pe _ecrane multiple</s:String>
-    <s:String x:Key="show_quick_launch">Arată _Meniul de Lansare Rapidă</s:String>
-    <s:String x:Key="select_location">_Selectează o locație...</s:String>
+    <s:String x:Key="allow_font_smoothing">_Activați netezirea fontului</s:String>
+    <s:String x:Key="collapse_tray_icons">Ascundeți pictogramele din bara de notificări</s:String>
+    <s:String x:Key="customize">Personalizați...</s:String>
+    <s:String x:Key="show_clock">Afișați _ceasul</s:String>
+    <s:String x:Key="show_multi_mon">Afisați pe _ecrane multiple</s:String>
+    <s:String x:Key="show_quick_launch">Afișați _Meniul de Lansare Rapidă</s:String>
+    <s:String x:Key="select_location">_Selectați o locație...</s:String>
     <s:String x:Key="quick_launch_folder">Meniul de Lansare Rapidă - Selectează un dosar</s:String>
-    <s:String x:Key="use_software_rendering">_Folosește software rendering</s:String>
+    <s:String x:Key="use_software_rendering">_Folosiți software rendering</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
-    <s:String x:Key="customize_notifications">Personalizează Notificările</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar arată pictograme pentru notificări active și urgente, și le ascunde pe cele inactive. Poți schimba acest comportament pentru următoarele din lista de jos.</s:String>
-    <s:String x:Key="customize_notifications_instruction">Selectează o opțiune, apoi alege comportamentul notificării:</s:String>
+    <s:String x:Key="customize_notifications">Personalizați Notificările</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar arată pictograme pentru notificări active și urgente, și le ascunde pe cele inactive. Puteți schimba acest comportament pentru următoarele din lista de jos.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Selectați o opțiune, apoi alegeți comportamentul notificării:</s:String>
     <s:String x:Key="hide_when_inactive">Ascunde în caz de inactivitate</s:String>
     <s:String x:Key="always_show">Mereu arată</s:String>
     <s:String x:Key="name_heading">Nume</s:String>
@@ -40,34 +40,34 @@
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
-    <s:String x:Key="start_button_tip_98">Dă click aici să începi.</s:String>
-    <s:String x:Key="start_button_tip">Dă click aici să începi</s:String>
+    <s:String x:Key="start_button_tip_98">Click aici pentru a începe.</s:String>
+    <s:String x:Key="start_button_tip">Click aici pentru a începe</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
-    <s:String x:Key="retrobar_title">Bara de activități RetroBar</s:String>
-    <s:String x:Key="toolbars">_Bare de activități</s:String>
+    <s:String x:Key="retrobar_title">Bara de instrumente RetroBar</s:String>
+    <s:String x:Key="toolbars">_Bare de instrumente</s:String>
     <s:String x:Key="quick_launch">_Lansare rapidă</s:String>
-    <s:String x:Key="new_toolbar">_Bară nouă de activitate...</s:String>
+    <s:String x:Key="new_toolbar">_Bară nouă de instrumente...</s:String>
     <s:String x:Key="show_taskman_2k">Manager de activități...</s:String>
     <s:String x:Key="show_taskman">Manager de activități</s:String>
     <s:String x:Key="tray_properties">Proprietăți</s:String>
     <s:String x:Key="update_available">_Actualizare disponibilă...</s:String>
-    <s:String x:Key="exit_retrobar">_Ieși din RetroBar</s:String>
-    <s:String x:Key="customize_notifications_menu">_Personalizează Notificările...</s:String>
+    <s:String x:Key="exit_retrobar">_Închideți RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Personalizați notificările...</s:String>
 
-    <s:String x:Key="restore">_Restabilește</s:String>
-    <s:String x:Key="move">_Mișcă</s:String>
-    <s:String x:Key="size">_Mărime</s:String>
-    <s:String x:Key="minimize">Minimizează</s:String>
-    <s:String x:Key="maximize">Maximizează</s:String>
-    <s:String x:Key="close">_Închide</s:String>
+    <s:String x:Key="restore">_Restabilire</s:String>
+    <s:String x:Key="move">_Mutare</s:String>
+    <s:String x:Key="size">_Dimensiune</s:String>
+    <s:String x:Key="minimize">Minimizare</s:String>
+    <s:String x:Key="maximize">Maximizare</s:String>
+    <s:String x:Key="close">_Închidere</s:String>
 
     <s:String x:Key="show_hidden">Arată pictogramele ascunse</s:String>
-    <s:String x:Key="hide">Ascunde</s:String>
+    <s:String x:Key="hide">Ascundere</s:String>
 
-    <s:String x:Key="set_time">_Schimbă Data/Ceas</s:String>
+    <s:String x:Key="set_time">_Reglați data/ora</s:String>
 
-    <s:String x:Key="open_folder">&amp;Deschide Dosar</s:String>
+    <s:String x:Key="open_folder">&amp;Deschideți dosarul</s:String>
 
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
 
