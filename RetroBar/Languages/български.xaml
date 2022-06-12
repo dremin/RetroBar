@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Свойства на RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Опции на лентата на задачите</s:String>
+    <s:String x:Key="taskbar_appearance">Облик на лентата на задачите</s:String>
+    <s:String x:Key="notification_area">Район на известията</s:String>
+    <s:String x:Key="autostart">Пуска_й автоматично при влизане</s:String>
+    <s:String x:Key="language_text">_Език:</s:String>
+    <s:String x:Key="language_tip">Избери езика, който искаш да използваш.</s:String>
+    <s:String x:Key="theme_text">_Тема:</s:String>
+    <s:String x:Key="theme_tip">Инсталирай теми в папката Themes.</s:String>
+    <s:String x:Key="location_text">Местополо_жение:</s:String>
+    <s:String x:Key="location_tip">Промени местоположението на лентата на задачите върху екрана.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Отляво</s:String>
+        <s:String>Отгоре</s:String>
+        <s:String>Отдясно</s:String>
+        <s:String>Отдолу</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Позволи изглаждането на шрифтовете</s:String>
+    <s:String x:Key="collapse_tray_icons">Събери и_коните в района на известията</s:String>
+    <s:String x:Key="customize">Персонали_зирай...</s:String>
+    <s:String x:Key="show_clock">Показвай _часовника</s:String>
+    <s:String x:Key="show_multi_mon">Показвай върху множество _екрани</s:String>
+    <s:String x:Key="show_quick_launch">Показвай _Бърз достъп</s:String>
+    <s:String x:Key="select_location">_Избери местоположение...</s:String>
+    <s:String x:Key="quick_launch_folder">Бърз достъп - избери папка</s:String>
+    <s:String x:Key="use_software_rendering">Използвай _софтуерен рендъринг</s:String>
+    <s:String x:Key="ok_dialog">ОК</s:String>
+
+    <s:String x:Key="customize_notifications">Персонализирай известията</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar показва иконите на активните и спешните известия, а крие неактивните. Можеш да промениш това поведение за долупосочените елементи.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Избери елемент, а после му избери поведението на известията:</s:String>
+    <s:String x:Key="hide_when_inactive">Крий го при неактивност</s:String>
+    <s:String x:Key="always_show">Винаги го показвай</s:String>
+    <s:String x:Key="name_heading">Име</s:String>
+    <s:String x:Key="behavior_heading">Поведение</s:String>
+
+    <s:String x:Key="start_text">Старт</s:String>
+    <s:String x:Key="start_text_xp">старт</s:String>
+    <s:String x:Key="start_button_tip_98">Натисни тук, за да започнеш.</s:String>
+    <s:String x:Key="start_button_tip">Натисни тук, за да започнеш</s:String>
+    <s:String x:Key="start_button_tip_vista">Старт</s:String>
+
+    <s:String x:Key="retrobar_title">Лента на задачите RetroBar</s:String>
+    <s:String x:Key="toolbars">_Ленти с инструменти</s:String>
+    <s:String x:Key="quick_launch">_Бърз достъп</s:String>
+    <s:String x:Key="new_toolbar">_Нова лента с инструменти...</s:String>
+    <s:String x:Key="show_taskman_2k">_Диспечер на задачите...</s:String>
+    <s:String x:Key="show_taskman">_Диспечер на задачите</s:String>
+    <s:String x:Key="tray_properties">Св_ойства</s:String>
+    <s:String x:Key="update_available">Н_алична е актуализация...</s:String>
+    <s:String x:Key="exit_retrobar">_Излез от RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">П_ерсонализирай известията...</s:String>
+
+    <s:String x:Key="restore">_Възстанови</s:String>
+    <s:String x:Key="move">_Премести</s:String>
+    <s:String x:Key="size">П_реоразмери</s:String>
+    <s:String x:Key="minimize">_Намали</s:String>
+    <s:String x:Key="maximize">_Увеличи</s:String>
+    <s:String x:Key="close">_Затвори</s:String>
+
+    <s:String x:Key="show_hidden">Покажи скритите икони</s:String>
+    <s:String x:Key="hide">Скрий</s:String>
+
+    <s:String x:Key="set_time">На_гласи датата и часа</s:String>
+
+    <s:String x:Key="open_folder">&amp;Отвори папка</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
