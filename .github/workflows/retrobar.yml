@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        publishprofile: [ [x64, netcoreapp3.1], [x86, netcoreapp3.1], [ARM64, net6.0-windows10.0.19041.0] ]
+        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows] ]
 
     runs-on: windows-latest
 
