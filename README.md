@@ -38,6 +38,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Royale Noir
   - Embedded Style
   - Zune Style
+- Windows Longhorn Aero
 - Windows Vista Classic
 
 ## Supported languages
