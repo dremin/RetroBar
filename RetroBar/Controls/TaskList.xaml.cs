@@ -105,12 +105,12 @@ namespace RetroBar.Controls
 
             if (maxWidth > defaultWidth)
             {
-                ButtonWidth = DefaultButtonWidth;
+                ButtonWidth = defaultWidth;
                 SetScrollable(false);
             }
             else if (maxWidth < minWidth)
             {
-                ButtonWidth = Math.Ceiling(DefaultButtonWidth / 2);
+                ButtonWidth = Math.Ceiling(defaultWidth / 2);
                 SetScrollable(true);
             }
             else

@@ -1270,7 +1270,7 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="14,-1,14,0" />
+                Value="6,-1,14,0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1345,7 +1345,7 @@
                                                         Background="Transparent"
                                                         CornerRadius="2"
                                                         x:Name="ButtonInnerRightBorder">
-                                                    <ContentPresenter Margin="2,3"
+                                                    <ContentPresenter Margin="1,3"
                                                                   x:Name="Content" />
                                                 </Border>
                                             </Border>
@@ -1428,7 +1428,7 @@
                                     Value="{DynamicResource TaskButtonBackgroundHighlightPressed}" />
                             <Setter TargetName="Content"
                                     Property="Margin"
-                                    Value="3,3,1,3" />
+                                    Value="2,3,0,3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
