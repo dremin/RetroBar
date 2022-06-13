@@ -18,5 +18,12 @@
                 Value="{StaticResource ClassicFocusVisual}" />
     </Style>
 
+    <Style TargetType="TextBlock"
+           x:Key="Clock"
+           BasedOn="{StaticResource Clock}">
+        <Setter Property="Margin"
+                Value="8,0" />
+    </Style>
+
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>

@@ -1127,7 +1127,7 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="14,0,14,0" />
+                Value="6,0,14,0" />
         <Setter Property="Effect"
                 Value="{StaticResource ForegroundShadow}" />
         <Style.Triggers>

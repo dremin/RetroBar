@@ -25,5 +25,12 @@
                 Value="0,-1,0,0" />
     </Style>
 
+    <Style TargetType="TextBlock"
+           x:Key="Clock"
+           BasedOn="{StaticResource Clock}">
+        <Setter Property="Margin"
+                Value="13,0,10,0" />
+    </Style>
+
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 </ResourceDictionary>
