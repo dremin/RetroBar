@@ -31,7 +31,7 @@
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar отображает значки для активных и срочных уведомлений, скрывая неактивные. Можно изменить такое поведение для элементов следующего списка.</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar отображает значки для активных и срочных уведомлений, скрывая неактивные. Такое поведение можно изменить для элементов следующего списка.</s:String>
     <s:String x:Key="customize_notifications_instruction">Выберите элемент, а затем задайте нужное поведение:</s:String>
     <s:String x:Key="hide_when_inactive">Скрывать, если неактивно</s:String>
     <s:String x:Key="always_show">Всегда отображать</s:String>
