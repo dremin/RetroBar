@@ -4,15 +4,15 @@
 
     <s:String x:Key="retrobar_properties">RetroBar 속성</s:String>
     <s:String x:Key="taskbar_options">작업 표시줄 설정</s:String>
-    <s:String x:Key="taskbar_appearance">작업표시줄 외형</s:String>
-    <s:String x:Key="notification_area">알람 영억</s:String>
+    <s:String x:Key="taskbar_appearance">작업 표시줄 모양</s:String>
+    <s:String x:Key="notification_area">알림 영역</s:String>
     <s:String x:Key="autostart">시작시 자동으로 _켜짐</s:String>
     <s:String x:Key="language_text">언어:</s:String>
     <s:String x:Key="language_tip">사용할 언어를 선택해 주십시오.</s:String>
     <s:String x:Key="theme_text">_테마:</s:String>
     <s:String x:Key="theme_tip">테마 폴더안의 테마를 설치합니다.</s:String>
     <s:String x:Key="location_text">위치</s:String>
-    <s:String x:Key="location_tip">작업 표시줄 위치 변경</s:String>
+    <s:String x:Key="location_tip">화면의 작업 표시줄 위치를 변경합니다.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>왼쪽</s:String>
         <s:String>상단</s:String>
@@ -20,40 +20,40 @@
         <s:String>하단</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_폰트 스무딩 활성화</s:String>
-    <s:String x:Key="collapse_tray_icons">알림 영역 아이콘 숨기기</s:String>
-    <s:String x:Key="customize">커스터마이즈</s:String>
-    <s:String x:Key="show_clock">시계 보이기</s:String>
+    <s:String x:Key="collapse_tray_icons">사용하지 않은 아이콘 숨기기</s:String>
+    <s:String x:Key="customize">사용자 지정...</s:String>
+    <s:String x:Key="show_clock">시계 표시</s:String>
     <s:String x:Key="show_multi_mon">여러 모니터에서 표시</s:String>
-    <s:String x:Key="show_quick_launch">바로가기 표시</s:String>
+    <s:String x:Key="show_quick_launch">빠른 실행 아이콘 표시</s:String>
     <s:String x:Key="select_location">_위치 선택</s:String>
-    <s:String x:Key="quick_launch_folder">바로가기 지정할 폴더 선택</s:String>
+    <s:String x:Key="quick_launch_folder">빠른 실행 지정할 폴더 선택</s:String>
     <s:String x:Key="use_software_rendering">_소프트웨어 렌더링 사용</s:String>
     <s:String x:Key="ok_dialog">예</s:String>
 
-    <s:String x:Key="customize_notifications">알람 커스터마이즈</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar는 활성 알림 및 긴급 알림 아이콘을 표시하고 비활성 알림은 숨깁니다. 아래 목록의 항목에 대해 이 동작을 변경할 수 있습니다.</s:String>
-    <s:String x:Key="customize_notifications_instruction">항목을 선택한 다음 알림 동작을 선택합니다.:</s:String>
-    <s:String x:Key="hide_when_inactive">비활성 일때 숨기기</s:String>
-    <s:String x:Key="always_show">항상 보이기</s:String>
+    <s:String x:Key="customize_notifications">알림 사용자 지정</s:String>
+    <s:String x:Key="customize_notifications_info"> RetroBar에서는 사용 중이거나 긴급한 알림 아이콘은 표시하고 사용하지 않은 아이콘은 감춥니다. 아래 목록에 있는 항목의 동작을 변경할 수 있습니다.</s:String>
+    <s:String x:Key="customize_notifications_instruction">항목을 선택하고 그 알림 동작을 선택하십시오.:</s:String>
+    <s:String x:Key="hide_when_inactive">사용하지 않을 때 감추기</s:String>
+    <s:String x:Key="always_show">항상 표시</s:String>
     <s:String x:Key="name_heading">이름</s:String>
-    <s:String x:Key="behavior_heading">행동</s:String>
+    <s:String x:Key="behavior_heading">동작</s:String>
 
     <s:String x:Key="start_text">시작</s:String>
     <s:String x:Key="start_text_xp">시작</s:String>
-    <s:String x:Key="start_button_tip_98">여기를 눌러서 시작하십시오</s:String>
-    <s:String x:Key="start_button_tip">여기를 눌러서 시작하십시오</s:String>
+    <s:String x:Key="start_button_tip_98">시작하려면 여기를 클릭하십시오.</s:String>
+    <s:String x:Key="start_button_tip">시작하려면 여기를 클릭하십시오.</s:String>
     <s:String x:Key="start_button_tip_vista">시작</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar 작업표시줄</s:String>
-    <s:String x:Key="toolbars">_툴바</s:String>
-    <s:String x:Key="quick_launch">_빠른 시작</s:String>
-    <s:String x:Key="new_toolbar">_새 툴바...</s:String>
+    <s:String x:Key="toolbars">_도구 모음</s:String>
+    <s:String x:Key="quick_launch">_빠른 실행</s:String>
+    <s:String x:Key="new_toolbar">_새 도구모음...</s:String>
     <s:String x:Key="show_taskman_2k">작업 관리자...</s:String>
     <s:String x:Key="show_taskman">작업 관리자</s:String>
     <s:String x:Key="tray_properties">속성</s:String>
     <s:String x:Key="update_available">_업데이트 가능...</s:String>
     <s:String x:Key="exit_retrobar">_RetroBar 종료</s:String>
-    <s:String x:Key="customize_notifications_menu">_알림 커스터마이즈</s:String>
+    <s:String x:Key="customize_notifications_menu">_알림 사용자 지정</s:String>
 
     <s:String x:Key="restore">이전 크기로(_R)</s:String>
     <s:String x:Key="move">이동(_M)</s:String>
