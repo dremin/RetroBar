@@ -54,6 +54,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Hungarian (magyar)
 - Italian (italiano)
 - Japanese (日本語)
+- Korean (한국어)
 - Polish (polski)
 - Portuguese (português)
 - Romanian (Română)
