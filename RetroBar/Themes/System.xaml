@@ -315,6 +315,12 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
+    <DrawingBrush x:Key="CheckeredBackgroundAlt" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}" />
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
     <Style TargetType="Button"
            x:Key="TaskButtonFlashing"
            BasedOn="{StaticResource TaskButton}">
@@ -621,7 +627,7 @@
             <Trigger Property="IsChecked"
                      Value="True">
                 <Setter Property="Background"
-                        Value="{DynamicResource CheckeredBackground}" />
+                        Value="{DynamicResource CheckeredBackgroundAlt}" />
             </Trigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Horizontal">

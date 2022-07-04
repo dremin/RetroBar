@@ -48,6 +48,8 @@
                 Value="0" />
         <Setter Property="HorizontalAlignment"
                 Value="Center" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
