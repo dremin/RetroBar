@@ -3,15 +3,15 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar 속성</s:String>
-    <s:String x:Key="taskbar_options">작업 표시줄 설정</s:String>
+    <s:String x:Key="taskbar_options">작업 표시줄</s:String>
     <s:String x:Key="taskbar_appearance">작업 표시줄 모양</s:String>
     <s:String x:Key="notification_area">알림 영역</s:String>
-    <s:String x:Key="autostart">시작시 자동으로 _켜짐</s:String>
-    <s:String x:Key="language_text">언어:</s:String>
+    <s:String x:Key="autostart">시작시 자동으로 켜짐(_S)</s:String>
+    <s:String x:Key="language_text">언어(_L):</s:String>
     <s:String x:Key="language_tip">사용할 언어를 선택해 주십시오.</s:String>
-    <s:String x:Key="theme_text">_테마:</s:String>
-    <s:String x:Key="theme_tip">테마 폴더안의 테마를 설치합니다.</s:String>
-    <s:String x:Key="location_text">위치</s:String>
+    <s:String x:Key="theme_text">테마(_T):</s:String>
+    <s:String x:Key="theme_tip">Themes 폴더에 테마를 설치합니다.</s:String>
+    <s:String x:Key="location_text">위치(_L):</s:String>
     <s:String x:Key="location_tip">화면의 작업 표시줄 위치를 변경합니다.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>왼쪽</s:String>
@@ -19,20 +19,20 @@
         <s:String>오른쪽</s:String>
         <s:String>하단</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">_폰트 스무딩 활성화</s:String>
-    <s:String x:Key="collapse_tray_icons">사용하지 않은 아이콘 숨기기</s:String>
-    <s:String x:Key="customize">사용자 지정...</s:String>
-    <s:String x:Key="show_clock">시계 표시</s:String>
-    <s:String x:Key="show_multi_mon">여러 모니터에서 표시</s:String>
-    <s:String x:Key="show_quick_launch">빠른 실행 아이콘 표시</s:String>
-    <s:String x:Key="select_location">_위치 선택</s:String>
+    <s:String x:Key="allow_font_smoothing">폰트 스무딩 활성화(_S)</s:String>
+    <s:String x:Key="collapse_tray_icons">사용하지 않은 아이콘 숨기기(_H)</s:String>
+    <s:String x:Key="customize">사용자 지정(_C)...</s:String>
+    <s:String x:Key="show_clock">시계 표시(_K)</s:String>
+    <s:String x:Key="show_multi_mon">여러 모니터에서 표시(_M)</s:String>
+    <s:String x:Key="show_quick_launch">빠른 실행 아이콘 표시(_Q)</s:String>
+    <s:String x:Key="select_location">대상 찾기(_F)...</s:String>
     <s:String x:Key="quick_launch_folder">빠른 실행 지정할 폴더 선택</s:String>
-    <s:String x:Key="use_software_rendering">_소프트웨어 렌더링 사용</s:String>
-    <s:String x:Key="ok_dialog">예</s:String>
+    <s:String x:Key="use_software_rendering">소프트웨어 렌더링 사용(_R)</s:String>
+    <s:String x:Key="ok_dialog">확인</s:String>
 
     <s:String x:Key="customize_notifications">알림 사용자 지정</s:String>
-    <s:String x:Key="customize_notifications_info"> RetroBar에서는 사용 중이거나 긴급한 알림 아이콘은 표시하고 사용하지 않은 아이콘은 감춥니다. 아래 목록에 있는 항목의 동작을 변경할 수 있습니다.</s:String>
-    <s:String x:Key="customize_notifications_instruction">항목을 선택하고 그 알림 동작을 선택하십시오.:</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar에서는 사용 중이거나 긴급한 알림 아이콘은 표시하고 사용하지 않은 아이콘은 감춥니다. 아래 목록에 있는 항목의 동작을 변경할 수 있습니다.</s:String>
+    <s:String x:Key="customize_notifications_instruction">항목을 선택하고 그 알림 동작을 선택하십시오.</s:String>
     <s:String x:Key="hide_when_inactive">사용하지 않을 때 감추기</s:String>
     <s:String x:Key="always_show">항상 표시</s:String>
     <s:String x:Key="name_heading">이름</s:String>
@@ -40,20 +40,20 @@
 
     <s:String x:Key="start_text">시작</s:String>
     <s:String x:Key="start_text_xp">시작</s:String>
-    <s:String x:Key="start_button_tip_98">시작하려면 여기를 클릭하십시오.</s:String>
+    <s:String x:Key="start_button_tip_98">시작하려면 이곳을 누르십시오. </s:String>
     <s:String x:Key="start_button_tip">시작하려면 여기를 클릭하십시오.</s:String>
     <s:String x:Key="start_button_tip_vista">시작</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar 작업표시줄</s:String>
-    <s:String x:Key="toolbars">_도구 모음</s:String>
-    <s:String x:Key="quick_launch">_빠른 실행</s:String>
-    <s:String x:Key="new_toolbar">_새 도구모음...</s:String>
-    <s:String x:Key="show_taskman_2k">작업 관리자...</s:String>
-    <s:String x:Key="show_taskman">작업 관리자</s:String>
-    <s:String x:Key="tray_properties">속성</s:String>
-    <s:String x:Key="update_available">_업데이트 가능...</s:String>
-    <s:String x:Key="exit_retrobar">_RetroBar 종료</s:String>
-    <s:String x:Key="customize_notifications_menu">_알림 사용자 지정</s:String>
+    <s:String x:Key="toolbars">도구 모음(_T)</s:String>
+    <s:String x:Key="quick_launch">빠른 실행(_Q)</s:String>
+    <s:String x:Key="new_toolbar">새 도구 모음(_N)...</s:String>
+    <s:String x:Key="show_taskman_2k">작업 관리자(_K)...</s:String>
+    <s:String x:Key="show_taskman">작업 관리자(_K)</s:String>
+    <s:String x:Key="tray_properties">속성(_R)</s:String>
+    <s:String x:Key="update_available">업데이트 가능(_U)...</s:String>
+    <s:String x:Key="exit_retrobar">RetroBar 종료(_E)</s:String>
+    <s:String x:Key="customize_notifications_menu">알림 사용자 지정(_C)...</s:String>
 
     <s:String x:Key="restore">이전 크기로(_R)</s:String>
     <s:String x:Key="move">이동(_M)</s:String>
@@ -65,9 +65,9 @@
     <s:String x:Key="show_hidden">숨겨진 아이콘 표시</s:String>
     <s:String x:Key="hide">숨기기</s:String>
 
-    <s:String x:Key="set_time">_날짜/시간 조정</s:String>
+    <s:String x:Key="set_time">날짜/시간 조정(_A)</s:String>
 
-    <s:String x:Key="open_folder">&amp;폴더 열기</s:String>
+    <s:String x:Key="open_folder">폴더 열기(&amp;O)</s:String>
 
     <FontFamily x:Key="start_text_xp_font_family">굴림 Bold</FontFamily>
 </ResourceDictionary>
