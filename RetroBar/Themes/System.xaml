@@ -17,16 +17,21 @@
     <SolidColorBrush x:Key="ButtonFace" Color="{x:Static SystemColors.ControlColor}" />
     <SolidColorBrush x:Key="ButtonShadow" Color="{x:Static SystemColors.ControlDarkColor}" />
     <SolidColorBrush x:Key="ButtonDarkShadow" Color="{x:Static SystemColors.ControlDarkDarkColor}" />
-    <SolidColorBrush x:Key="ButtonFlashingFace" Color="{x:Static SystemColors.HighlightColor}" />
-
     <SolidColorBrush x:Key="ButtonForeground" Color="{x:Static SystemColors.ControlTextColor}" />
-    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
+
+    <SolidColorBrush x:Key="HighlightBackground" Color="{x:Static SystemColors.HighlightColor}" />
+    <SolidColorBrush x:Key="HighlightForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
+
     <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="{x:Static SystemColors.HighlightColor}" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="{x:Static SystemColors.InfoColor}" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="{x:Static SystemColors.InfoTextColor}" />
+
+    <SolidColorBrush x:Key="MenuBackground" Color="{x:Static SystemColors.MenuColor}" />
+    <SolidColorBrush x:Key="MenuForeground" Color="{x:Static SystemColors.MenuTextColor}" />
+    <SolidColorBrush x:Key="DisabledForeground" Color="{x:Static SystemColors.GrayTextColor}" />
 
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
@@ -39,12 +44,6 @@
     <Style x:Key="DefaultDirection">
         <Setter Property="Control.FlowDirection"
                         Value="LeftToRight" />
-    </Style>
-
-    <Style TargetType="MenuItem"
-           x:Key="TaskManMenuItem">
-        <Setter Property="Header"
-                Value="{DynamicResource show_taskman_2k}" />
     </Style>
 
     <system:Double x:Key="GlobalFontSize">11</system:Double>
@@ -62,9 +61,185 @@
                 Value="{DynamicResource GlobalFontSize}" />
     </Style>
 
-    <Style TargetType="ContextMenu"
-           x:Key="{x:Type ContextMenu}"
+    <DropShadowEffect x:Key="DisabledDropShadow"
+                      ShadowDepth="1.42"
+                      Direction="315"
+                      Color="#ffffff"
+                      BlurRadius="0"
+                      Opacity="1" />
+
+    <Geometry x:Key="Checkmark">M0 2 0 5 2.5 7.6 7.1 3 7.1 0 2.5 4.6Z</Geometry>
+
+    <ControlTemplate TargetType="MenuItem"
+                     x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuItemTemplateKey}">
+        <Border Name="Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="17" SharedSizeGroup="MenuItemIconColumnGroup" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                    <ColumnDefinition Width="14" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon"
+                                  Grid.Column="0"
+                                  Margin="3,0,1,-1"
+                                  ContentSource="Icon"
+                                  TextBlock.FontSize="13"
+                                  TextBlock.FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"
+                                  TextBlock.FontWeight="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" />
+                <Path x:Name="GlyphPanel"
+                      Grid.Column="0"
+                      Margin="4,0,6,0"
+                      VerticalAlignment="Center"
+                      Data="{DynamicResource Checkmark}"
+                      Fill="{TemplateBinding Foreground}"
+                      FlowDirection="LeftToRight"
+                      RenderOptions.EdgeMode="Aliased"
+                      Visibility="Hidden" />
+                <ContentPresenter x:Name="Header"
+                                  Grid.Column="1"
+                                  Margin="{TemplateBinding Padding}"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True" />
+                <TextBlock x:Name="InputGestureText"
+                           Grid.Column="2"
+                           Margin="5,1,0,1"
+                           DockPanel.Dock="Right"
+                           Text="{TemplateBinding InputGestureText}" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter TargetName="GlyphPanel"
+                        Property="Visibility"
+                        Value="Visible" />
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="StaysOpenOnClick"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource DisabledForeground}" />
+                <Setter TargetName="Icon"
+                        Property="Effect"
+                        Value="{DynamicResource DisabledDropShadow}" />
+                <Setter TargetName="Header"
+                        Property="Effect"
+                        Value="{DynamicResource DisabledDropShadow}" />
+            </Trigger>
+            <Trigger Property="IsHighlighted"
+                     Value="True">
+                <Setter TargetName="Border"
+                        Property="Background"
+                        Value="{DynamicResource HighlightBackground}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource HighlightForeground}" />
+                <Setter TargetName="Icon"
+                        Property="Effect"
+                        Value="{x:Null}" />
+                <Setter TargetName="Header"
+                        Property="Effect"
+                        Value="{x:Null}" />
+            </Trigger>
+            <Trigger Property="StaysOpenOnClick"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource DisabledForeground}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="MenuItem"
+           x:Key="{x:Type MenuItem}"
            BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuItemTemplateKey}}" />
+        <Style.Triggers>
+            <Trigger Property="Role"
+                     Value="TopLevelHeader">
+                <Setter Property="Margin"
+                        Value="0,1,0,1" />
+                <Setter Property="Padding"
+                        Value="4,1,5,2" />
+                <Setter Property="Template"
+                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role"
+                     Value="TopLevelItem">
+                <Setter Property="Margin"
+                        Value="0,1,0,1" />
+                <Setter Property="Padding"
+                        Value="4,1,5,2" />
+                <Setter Property="Template"
+                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role"
+                     Value="SubmenuHeader">
+                <Setter Property="DockPanel.Dock"
+                        Value="Top"/>
+                <Setter Property="Padding"
+                        Value="0,2,0,2" />
+                <Setter Property="Template"
+                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuHeaderTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role"
+                     Value="SubmenuItem">
+                <Setter Property="DockPanel.Dock"
+                        Value="Top"/>
+                <Setter Property="Padding"
+                        Value="0,1,0,0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="MenuItem"
+           x:Key="TaskManMenuItem"
+           BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Setter Property="Header"
+                Value="{DynamicResource show_taskman_2k}" />
+    </Style>
+
+    <Style TargetType="Separator"
+           x:Key="{x:Static MenuItem.SeparatorStyleKey}">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="MinHeight"
+                Value="2" />
+        <Setter Property="MinWidth"
+                Value="2" />
+        <Setter Property="Margin"
+                Value="2" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonShadow}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource ButtonHighlight}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Grid Height="2"
+                          Margin="0,2,0,1"
+                          Background="{TemplateBinding BorderBrush}">
+                        <Rectangle Fill="{TemplateBinding Background}"
+                                   Height="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="ToolTip"
@@ -191,6 +366,59 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ContextMenu"
+           x:Key="{x:Type ContextMenu}"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource MenuBackground}" />
+        <Setter Property="FontStyle"
+                Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}" />
+        <Setter Property="FontWeight"
+                Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource MenuForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Grid Margin="{TemplateBinding Margin}">
+                        <Border Background="Transparent"
+                                Padding="2">
+                            <Border BorderThickness="0,0,1,1"
+                                    BorderBrush="{DynamicResource ButtonDarkShadow}"
+                                    x:Name="OuterBottomBorder">
+                                <Border BorderThickness="1,1,0,0"
+                                        BorderBrush="{DynamicResource ButtonLight}"
+                                        x:Name="OuterTopBorder">
+                                    <Border BorderThickness="0,0,1,1"
+                                            BorderBrush="{DynamicResource ButtonShadow}"
+                                            x:Name="InnerBottomBorder">
+                                        <Border BorderThickness="1,1,0,0"
+                                                BorderBrush="{DynamicResource ButtonHighlight}"
+                                                Background="{TemplateBinding Background}"
+                                                x:Name="InnerTopBorder">
+                                            <ScrollViewer SnapsToDevicePixels="True"
+                                                          VerticalScrollBarVisibility="Auto"
+                                                          HorizontalScrollBarVisibility="Hidden"
+                                                          ClipToBounds="True">
+                                                <StackPanel IsItemsHost="True"
+                                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                            Margin="0"
+                                                            HorizontalAlignment="Stretch"
+                                                            VerticalAlignment="Stretch"/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="GroupBox"
            x:Key="Tray">
         <Setter Property="OverridesDefaultStyle"
@@ -219,6 +447,8 @@
            x:Key="TaskButton">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
         <Setter Property="Foreground"
@@ -252,6 +482,16 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused"
+                                           Value="True" />
+                                <Condition Property="IsMouseOver"
+                                           Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="FocusVisualStyle"
+                                    Value="{DynamicResource ClassicFocusVisualAlt}" />
+                        </MultiTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="Vertical">
                             <DataTrigger.Setters>
@@ -350,7 +590,7 @@
 
     <DrawingBrush x:Key="CheckeredBackground" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
         <DrawingBrush.Drawing>
-            <GeometryDrawing Geometry="M2,0 H1 V1 H0 V2 H1 V1 H2Z" Brush="{DynamicResource ButtonHighlight}" />
+            <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}" />
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
@@ -364,9 +604,9 @@
            x:Key="TaskButtonFlashing"
            BasedOn="{StaticResource TaskButton}">
         <Setter Property="Background"
-                Value="{DynamicResource ButtonFlashingFace}" />
+                Value="{DynamicResource HighlightBackground}" />
         <Setter Property="Foreground"
-                Value="{DynamicResource ButtonFlashingForeground}" />
+                Value="{DynamicResource HighlightForeground}" />
     </Style>
 
     <Style TargetType="ContentControl"
@@ -561,6 +801,18 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Rectangle RenderOptions.EdgeMode="Aliased" Margin="5,5,3,5" StrokeThickness="1"
+                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                               StrokeDashOffset="1.5" StrokeDashArray="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ClassicFocusVisualAlt">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle RenderOptions.EdgeMode="Aliased" Margin="2,4,2,4" StrokeThickness="1"
                                Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
                                StrokeDashOffset="1.5" StrokeDashArray="1" />
                 </ControlTemplate>

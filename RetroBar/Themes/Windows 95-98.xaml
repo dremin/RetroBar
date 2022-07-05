@@ -2,17 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
-    
-    <SolidColorBrush x:Key="ButtonHighlight" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonInnerHighlight" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonLight" Color="#dfdfdf" />
-    <SolidColorBrush x:Key="ButtonFace" Color="#c0c0c0" />
+
+    <SolidColorBrush x:Key="ButtonHighlight" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ButtonInnerHighlight" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ButtonLight" Color="#DFDFDF" />
+    <SolidColorBrush x:Key="ButtonFace" Color="#C0C0C0" />
     <SolidColorBrush x:Key="ButtonShadow" Color="#808080" />
     <SolidColorBrush x:Key="ButtonDarkShadow" Color="#000000" />
-    <SolidColorBrush x:Key="ButtonFlashingFace" Color="#000080" />
-
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
-    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
+
+    <SolidColorBrush x:Key="HighlightBackground" Color="#000080" />
+    <SolidColorBrush x:Key="HighlightForeground" Color="#FFFFFF" />
+
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
     
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
@@ -20,6 +21,10 @@
     
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
+
+    <SolidColorBrush x:Key="MenuBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="MenuForeground" Color="#000000" />
+    <SolidColorBrush x:Key="DisabledForeground" Color="#808080" />
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}" />
     <ToolTip x:Key="ShowDesktopButtonTip" Content="{DynamicResource show_desktop_tip_95}" />

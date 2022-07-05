@@ -8,6 +8,13 @@
     <Thickness x:Key="TaskButtonMargin" />
     <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
 
+    <SolidColorBrush x:Key="HighlightBackground" Color="#316AC5" />
+    <SolidColorBrush x:Key="HighlightForeground" Color="#FFFFFF" />
+
+    <SolidColorBrush x:Key="MenuBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="MenuForeground" Color="#000000" />
+    <SolidColorBrush x:Key="DisabledForeground" Color="#ACA899" />
+
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -362,7 +369,6 @@
     <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="#316ac5" />
@@ -424,7 +430,8 @@
                  UriSource="../Resources/desktopxp-lg.png" />
 
     <Style TargetType="MenuItem"
-           x:Key="TaskManMenuItem">
+           x:Key="TaskManMenuItem"
+           BasedOn="{StaticResource {x:Type MenuItem}}">
         <Setter Property="Header"
                 Value="{DynamicResource show_taskman}" />
     </Style>
@@ -710,6 +717,121 @@
                                         Value="{DynamicResource TaskbarUnlockedRightBorder}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate TargetType="MenuItem"
+                     x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuItemTemplateKey}">
+        <Border Name="Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="17"
+                                      Width="Auto"
+                                      SharedSizeGroup="MenuItemIconColumnGroup" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"
+                                      SharedSizeGroup="MenuItemIGTColumnGroup" />
+                    <ColumnDefinition Width="14"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon"
+                                  Margin="4,0,6,0"
+                                  VerticalAlignment="Center"
+                                  ContentSource="Icon"
+                                  TextBlock.FontSize="13"
+                                  TextBlock.FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"
+                                  TextBlock.FontWeight="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" />
+                <Path x:Name="GlyphPanel"
+                      Margin="4,0,6,0"
+                      Visibility="Hidden"
+                      VerticalAlignment="Center"
+                      Fill="{TemplateBinding Foreground}"
+                      FlowDirection="LeftToRight"
+                      Data="{DynamicResource Checkmark}"/>
+                <ContentPresenter Grid.Column="1"
+                                  ContentSource="Header"
+                                  Margin="{TemplateBinding Padding}"
+                                  RecognizesAccessKey="True"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                <TextBlock x:Name="InputGestureText"
+                           Grid.Column="2"
+                           Text="{TemplateBinding InputGestureText}"
+                           Margin="5,2,0,2"
+                           DockPanel.Dock="Right" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter TargetName="GlyphPanel"
+                        Property="Visibility"
+                        Value="Visible" />
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsHighlighted"
+                     Value="True">
+                <Setter TargetName="Border"
+                        Property="Background"
+                        Value="{DynamicResource HighlightBackground}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource HighlightForeground}" />
+            </Trigger>
+            <Trigger Property="StaysOpenOnClick"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource DisabledForeground}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="ContextMenu"
+           x:Key="{x:Type ContextMenu}"
+           BasedOn="{StaticResource {x:Type ContextMenu}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <Border Name="ContextMenuBorder" Background="{TemplateBinding Background}"
+                            BorderBrush="{DynamicResource DisabledForeground}"
+                            BorderThickness="1">
+                            <ScrollViewer Name="ContextMenuScrollViewer"
+                                          Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=MenuScrollViewer}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas Height="0" Width="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Rectangle Name="OpaqueRect"
+                                                   Height="{Binding ElementName=ContextMenuBorder,Path=ActualHeight}"
+                                                   Width="{Binding ElementName=ContextMenuBorder,Path=ActualWidth}"
+                                                   Fill="{Binding ElementName=ContextMenuBorder,Path=Background}" />
+                                    </Canvas>
+                                    <ItemsPresenter Name="ItemsPresenter" Margin="2"
+                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                    SnapsToDevicePixels="True" />
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="ContextMenuScrollViewer"
+                                 Property="ScrollViewer.CanContentScroll"
+                                 Value="False">
+                            <Setter TargetName="OpaqueRect"
+                                    Property="Canvas.Top"
+                                    Value="{Binding ElementName=ContextMenuScrollViewer, Path=VerticalOffset}" />
+                            <Setter TargetName="OpaqueRect"
+                                    Property="Canvas.Left"
+                                    Value="{Binding ElementName=ContextMenuScrollViewer, Path=HorizontalOffset}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
