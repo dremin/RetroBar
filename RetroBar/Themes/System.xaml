@@ -647,6 +647,14 @@
         </Style.Triggers>
     </Style>
 
+    <ControlTemplate TargetType="{x:Type UserControl}"
+                     x:Key="ClockTemplateKey">
+        <TextBlock Style="{DynamicResource Clock}"
+                   Text="{Binding Path=Now, StringFormat=t, Mode=OneWay}"
+                   Name="ClockText">
+        </TextBlock>
+    </ControlTemplate>
+
     <Style TargetType="Button"
            x:Key="ToolbarButton">
         <Setter Property="OverridesDefaultStyle"
