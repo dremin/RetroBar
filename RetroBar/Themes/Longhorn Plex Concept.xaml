@@ -21,7 +21,7 @@
         <GradientStop Color="#403f6791"
                       Offset="1.0" />
     </LinearGradientBrush-->
-    
+
     <DropShadowEffect x:Key="PlexGlow"
                       Color="#558cd7"
                       Opacity="1"
@@ -388,8 +388,6 @@
     <FontFamily x:Key="GlobalFontFamily">../Resources/Fonts/#Liberation Sans</FontFamily>
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
-    <system:String x:Key="StartText">start</system:String>
-
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
 
     <Style TargetType="GroupBox"
@@ -410,7 +408,7 @@
                                 </LinearGradientBrush>
                             </Border.OpacityMask>
                         </Border-->
-                        <ContentPresenter />
+                    <ContentPresenter />
                     <!--/Grid-->
                 </ControlTemplate>
             </Setter.Value>
@@ -743,6 +741,8 @@
     <Style TargetType="TextBlock"
            x:Key="StartLabel"
            BasedOn="{StaticResource StartLabel}">
+        <Setter Property="Text"
+                Value="{DynamicResource start_text_xp}" />
         <Setter Property="FontSize"
                 Value="14" />
         <Setter Property="FontWeight"
@@ -758,11 +758,42 @@
            BasedOn="{StaticResource Clock}">
         <Setter Property="FontSize"
                 Value="{DynamicResource GlobalFontSize}" />
+        <Setter Property="FontWeight"
+                Value="SemiBold"/>
         <Setter Property="Margin"
-                Value="14,0" />
+                Value="0" />
         <Setter Property="Effect"
                 Value="{DynamicResource PlexGlow}"/>
     </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="Clock2"
+           BasedOn="{StaticResource Clock}">
+        <Setter Property="FontSize"
+                Value="{DynamicResource GlobalFontSize}" />
+        <Setter Property="Margin"
+                Value="2,0,8,0" />
+        <Setter Property="Effect"
+                Value="{DynamicResource PlexGlow}"/>
+    </Style>
+
+    <ControlTemplate TargetType="{x:Type UserControl}"
+                     x:Key="ClockTemplateKey">
+        <DockPanel LastChildFill="False">
+            <TextBlock Style="{DynamicResource Clock}"
+                       FontSize="19"
+                       Text="{Binding Path=Now, StringFormat=%h, Mode=OneWay}"
+                       x:Name="ClockHour" DockPanel.Dock="Left" />
+            <TextBlock Style="{DynamicResource Clock2}"
+                       FontSize="10"
+                       Text="{Binding Path=Now, StringFormat=mm, Mode=OneWay}"
+                       x:Name="ClockMinute" DockPanel.Dock="Top" />
+            <TextBlock Style="{DynamicResource Clock2}"
+                       FontSize="10"
+                       Text="{Binding Path=Now, StringFormat=tt, Mode=OneWay}"
+                       x:Name="ClockTT" DockPanel.Dock="Bottom" />
+        </DockPanel>
+    </ControlTemplate>
 
     <Style TargetType="ItemsControl"
            x:Key="ToolbarItems"
@@ -776,7 +807,7 @@
                 <ControlTemplate TargetType="ItemsControl">
                     <!--Grid>
                         <Border Style="{DynamicResource TaskbarBackgroundStyle}"/-->
-                        <ItemsPresenter Margin="{TemplateBinding Padding}"/>
+                    <ItemsPresenter Margin="{TemplateBinding Padding}"/>
                     <!--/Grid-->
                 </ControlTemplate>
             </Setter.Value>
@@ -835,7 +866,7 @@
                         </Grid.ColumnDefinitions>
                         <!--Border Style="{DynamicResource TaskbarBackgroundStyle}"
                                 Grid.ColumnSpan="2"/-->
-                        
+
                         <ScrollBar x:Name="PART_VerticalScrollBar"
                                 Value="{TemplateBinding VerticalOffset}"
                                 Maximum="{TemplateBinding ScrollableHeight}"
@@ -918,6 +949,8 @@
                         </Trigger>
                         <Trigger Property="IsChecked"
                                  Value="True">
+                            <Setter Property="ToolTip"
+                                  Value="{DynamicResource hide}" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -932,6 +965,11 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                               Value="False">
+                            <Setter Property="ToolTip"
+                                  Value="{DynamicResource show_hidden}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1104,7 +1142,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="PlexContextMenuStyle" TargetType="ContextMenu">
         <Style.Resources>
             <Style x:Key="{x:Type MenuItem}" TargetType="MenuItem" BasedOn="{StaticResource PlexMenuItemStyle}"/>
@@ -1133,18 +1171,46 @@
     </Style>
 
     <Style x:Key="{x:Type Separator}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
+    <Style x:Key="{x:Type ContextMenu}" TargetType="ContextMenu" BasedOn="{StaticResource PlexContextMenuStyle}"/>
+    <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
+    <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip" BasedOn="{StaticResource PlexToolTipStyle}"/>
+    <Style TargetType="MenuItem"
+           x:Key="TaskManMenuItem">
+        <Setter Property="Header"
+                Value="{DynamicResource show_taskman}" />
+    </Style>
+
+    <Style x:Key="GlobalFonts">
+        <Setter Property="Control.FontFamily"
+                Value="{DynamicResource GlobalFontFamily}" />
+        <Setter Property="Control.FontSize"
+                Value="{DynamicResource GlobalFontSize}" />
+    </Style>
 
     <Style TargetType="Window"
+           x:Key="TaskbarWindow">
+        <Style.Resources>
+            <Style x:Key="{x:Type ContextMenu}" TargetType="ContextMenu" BasedOn="{StaticResource PlexContextMenuStyle}"/>
+            <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
+            <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip" BasedOn="{StaticResource PlexToolTipStyle}"/>
+        </Style.Resources>
+        <Setter Property="TextOptions.TextFormattingMode"
+                Value="Display" />
+        <Setter Property="Background"
+                Value="Transparent" />
+    </Style>
+
+    <Style TargetType="ContentControl"
            x:Key="Taskbar"
            BasedOn="{StaticResource Taskbar}">
         <Style.Resources>
-            <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource PlexContextMenuStyle}"/>
+            <Style x:Key="{x:Type ContextMenu}" TargetType="ContextMenu" BasedOn="{StaticResource PlexContextMenuStyle}"/>
             <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator" BasedOn="{StaticResource PlexSeparatorStyle}"/>
             <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip" BasedOn="{StaticResource PlexToolTipStyle}"/>
         </Style.Resources>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Window">
+                <ControlTemplate TargetType="ContentControl">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
