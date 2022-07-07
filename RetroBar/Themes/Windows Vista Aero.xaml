@@ -184,22 +184,38 @@
                       Offset="0.5" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="TaskButtonOuterBorderFlashing" Color="#33000000" />
-    <SolidColorBrush x:Key="TaskButtonInnerBorderFlashing" Color="#80ffffff" />
-    <SolidColorBrush x:Key="TaskButtonInnerTopRightBorderFlashing" Color="#80ffffff" />
-    <SolidColorBrush x:Key="TaskButtonInnerBottomLeftBorderFlashing" Color="#80ffffff" />
+    <SolidColorBrush x:Key="TaskButtonOuterBorderFlashing" Color="#40ffffff" />
+    <SolidColorBrush x:Key="TaskButtonInnerBorderFlashing" Color="#5f000000" />
+    <SolidColorBrush x:Key="TaskButtonInnerTopRightBorderFlashing" Color="#1effffff" />
+    <LinearGradientBrush x:Key="TaskButtonInnerBottomLeftBorderFlashing"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#ccca662a"
+                      Offset="0.0" />
+        <GradientStop Color="#f9e2cb43"
+                      Offset="0.5" />
+        <GradientStop Color="#ccca662a"
+                      Offset="1.0" />
+    </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskButtonBackgroundFlashing"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#66ffffff"
+        <GradientStop Color="#59ffffff"
                       Offset="0.0" />
-        <GradientStop Color="#4dffffff"
-                      Offset="0.1" />
-        <GradientStop Color="#4dffffff"
-                      Offset="0.6" />
+        <GradientStop Color="#1bffffff"
+                      Offset="0.5" />
         <GradientStop Color="Transparent"
-                      Offset="0.6" />
+                      Offset="0.5" />
     </LinearGradientBrush>
+    <RadialGradientBrush x:Key="TaskButtonBottomBackgroundFlashing"
+                         GradientOrigin="0.5,1.0"
+                         RadiusX="0.8"
+                         RadiusY="0.8">
+        <GradientStop Color="#ffc7800e"
+                      Offset="0.0" />
+        <GradientStop Color="#00aa4b0c"
+                      Offset="1.0" />
+    </RadialGradientBrush>
 
     <SolidColorBrush x:Key="ToolbarButtonInnerBorderHover" Color="#40ffffff" />
     <RadialGradientBrush x:Key="ToolbarButtonBottomBackgroundHover"
@@ -508,16 +524,8 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Left">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Padding"
-                                        Value="1,0,1,2" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Right">
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
                             <DataTrigger.Setters>
                                 <Setter TargetName="ButtonBorder"
                                         Property="Padding"
@@ -613,16 +621,8 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Left">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Padding"
-                                        Value="1,0,1,2" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Right">
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
                             <DataTrigger.Setters>
                                 <Setter TargetName="ButtonBorder"
                                         Property="Padding"
@@ -655,6 +655,7 @@
                             Name="ButtonBorder">
                         <Border BorderThickness="1"
                                 BorderBrush="{DynamicResource TaskButtonOuterBorderFlashing}"
+                                    Background="{DynamicResource TaskButtonBottomBackgroundFlashing}"
                                 CornerRadius="2"
                                 x:Name="ButtonOuterBorder">
                             <Border BorderThickness="1"
@@ -662,11 +663,11 @@
                                     Background="{DynamicResource TaskButtonBackgroundFlashing}"
                                     CornerRadius="2"
                                     x:Name="ButtonInnerBorder">
-                                <Border BorderThickness="0,1,1,0"
+                                <Border BorderThickness="1,1,1,0"
                                         BorderBrush="{DynamicResource TaskButtonInnerTopRightBorderFlashing}"
                                         CornerRadius="2"
                                         x:Name="ButtonInnerTopRightBorder">
-                                    <Border BorderThickness="1,0,0,1"
+                                    <Border BorderThickness="0,0,0,1"
                                             BorderBrush="{DynamicResource TaskButtonInnerBottomLeftBorderFlashing}"
                                             CornerRadius="2"
                                             x:Name="ButtonInnerBottomLeftBorder">
@@ -678,32 +679,19 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Left">
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
                             <DataTrigger.Setters>
                                 <Setter TargetName="ButtonBorder"
                                         Property="Padding"
                                         Value="1,0,1,2" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Right">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="ButtonBorder"
-                                        Property="Padding"
-                                        Value="1,0,1,2" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
-                                           Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <MultiDataTrigger.Setters>
-                                <Setter Property="Foreground"
-                                        Value="{DynamicResource ButtonPressedForeground}" />
-                            </MultiDataTrigger.Setters>
-                        </MultiDataTrigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
