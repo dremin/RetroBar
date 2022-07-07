@@ -39,7 +39,10 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Embedded Style
   - Zune Style
 - Windows Longhorn Aero
-- Windows Vista Classic
+- Windows Vista:
+  - Aero
+  - Basic
+  - Classic
 
 ## Supported languages
 - Arabic (العربية)
