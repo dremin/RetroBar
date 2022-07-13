@@ -132,21 +132,19 @@
                          EndPoint="0,1">
         <GradientStop Color="#59ffffff"
                       Offset="0.0" />
-        <GradientStop Color="#14dcf1ff"
+        <GradientStop Color="#2bffffff"
                       Offset="0.5" />
         <GradientStop Color="Transparent"
                       Offset="0.5" />
-        <GradientStop Color="#a0404f6f"
-                      Offset="1.0" />
     </LinearGradientBrush>
     <RadialGradientBrush x:Key="TaskButtonBottomBackgroundHover"
-                         GradientOrigin="0.5,1.0"
+                         GradientOrigin="0.5,1.1"
                          RadiusX="0.8"
                          RadiusY="0.8">
-        <GradientStop Color="#c24781b6"
+        <GradientStop Color="#ff2c7ecc"
                       Offset="0.0" />
-        <GradientStop Color="#00404f6f"
-                      Offset="1.0" />
+        <GradientStop Color="#002c7ecc"
+                      Offset="0.8" />
     </RadialGradientBrush>
 
     <SolidColorBrush x:Key="TaskButtonOuterBorderActive" Color="#50ffffff" />
@@ -165,13 +163,13 @@
     </LinearGradientBrush>
 
     <RadialGradientBrush x:Key="TaskButtonBottomBackgroundActiveHover"
-                         GradientOrigin="0.5,1.0"
+                         GradientOrigin="0.5,1.2"
                          RadiusX="0.8"
                          RadiusY="0.8">
-        <GradientStop Color="#ff4781b6"
+        <GradientStop Color="#ff2b8fbd"
                       Offset="0.0" />
-        <GradientStop Color="#00404f6f"
-                      Offset="1.0" />
+        <GradientStop Color="#002b8fbd"
+                      Offset="0.8" />
     </RadialGradientBrush>
     <LinearGradientBrush x:Key="TaskButtonBackgroundActiveHover"
                          StartPoint="0,0"
@@ -549,7 +547,7 @@
                             <Setter TargetName="ButtonInnerBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBackgroundHover}" />
-                            <Setter TargetName="ButtonInnerTopRightBorder"
+                            <Setter TargetName="ButtonOuterBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBottomBackgroundHover}" />
                             <Setter TargetName="ButtonInnerTopRightBorder"
@@ -634,7 +632,7 @@
                             <Setter TargetName="ButtonInnerBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBackgroundActiveHover}" />
-                            <Setter TargetName="ButtonOuterBorder"
+                            <Setter TargetName="ButtonInnerTopRightBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBottomBackgroundActiveHover}" />
                         </Trigger>
