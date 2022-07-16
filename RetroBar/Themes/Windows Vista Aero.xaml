@@ -20,19 +20,6 @@
         <GradientStop Color="#c2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
-
-    <!--<LinearGradientBrush x:Key="TaskbarBackground"
-                         StartPoint="0,0"
-                         EndPoint="0,1">
-        <GradientStop Color="#cc767676"
-                      Offset="0.0" />
-        <GradientStop Color="#b5323232"
-                      Offset="0.5" />
-        <GradientStop Color="#97000000"
-                      Offset="0.5" />
-        <GradientStop Color="#a2000000"
-                      Offset="1.0" />
-    </LinearGradientBrush>-->
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
@@ -45,16 +32,11 @@
         <GradientStop Color="#c2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
-    <!--<SolidColorBrush x:Key="TaskbarWindowBackground" Color="#70333333" />-->
     <SolidColorBrush x:Key="TaskbarWindowBackground" Color="Transparent" />
     <SolidColorBrush x:Key="TaskbarTopBorder" Color="#e5474747" />
     <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#e59e9e9e" />
     <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#c2000000" />
     <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#f7000000" />
-    <!--<SolidColorBrush x:Key="TaskbarTopBorder" Color="#d7474747" />
-    <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#d89e9e9e" />
-    <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#a2000000" />
-    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#f2000000" />-->
 
     <SolidColorBrush x:Key="TrayToggleOuterBorder" Color="#20ffffff" />
     <SolidColorBrush x:Key="TrayToggleBorder" Color="#99000000" />
