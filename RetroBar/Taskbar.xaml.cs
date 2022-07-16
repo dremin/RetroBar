@@ -199,11 +199,13 @@ namespace RetroBar
             }
 
             UpdateTrayPosition();
+            StartButton?.UpdateFloatingStartCoordinates();
         }
 
         private void Taskbar_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             UpdateTrayPosition();
+            StartButton?.UpdateFloatingStartCoordinates();
         }
 
         private void DateTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
