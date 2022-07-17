@@ -420,7 +420,8 @@
                     <Border BorderThickness="0"
                             Padding="7,0,0,0"
                             Name="TrayBorder">
-                        <ContentPresenter />
+                        <ContentPresenter Margin="0,0,4,0"
+                                          Name="Content" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
@@ -429,6 +430,9 @@
                                 <Setter TargetName="TrayBorder"
                                         Property="Padding"
                                         Value="2,7,2,0" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="0,0,0,6" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -1031,17 +1035,50 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="6,0,14,1" />
+                Value="6,0,10,1" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="0,3,0,9" />
+                            Value="0,3" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <ControlTemplate TargetType="{x:Type UserControl}"
+                     x:Key="ClockTemplateKey">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding Path=Now, StringFormat=t, Mode=OneWay}"
+                       Style="{DynamicResource Clock}"
+                       Name="ClockText">
+            </TextBlock>
+            <TextBlock Text="{Binding Path=Now, StringFormat=dddd, Mode=OneWay}"
+                       Style="{DynamicResource Clock}"
+                       Name="ClockVerticalDayOfWeek"
+                       Visibility="Collapsed">
+            </TextBlock>
+            <TextBlock Text="{Binding Path=Now, StringFormat=d, Mode=OneWay}"
+                       Style="{DynamicResource Clock}"
+                       Name="ClockVerticalDate"
+                       Visibility="Collapsed">
+            </TextBlock>
+        </StackPanel>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter TargetName="ClockVerticalDayOfWeek"
+                            Property="Visibility"
+                            Value="Visible" />
+                    <Setter TargetName="ClockVerticalDate"
+                            Property="Visibility"
+                            Value="Visible" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
     <Style TargetType="Image"
            x:Key="NotifyIcon"
