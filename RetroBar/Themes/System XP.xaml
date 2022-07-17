@@ -31,4 +31,37 @@
         <Setter Property="Margin"
                 Value="5,-1,5,0" />
     </Style>
+
+    <ControlTemplate TargetType="{x:Type UserControl}"
+                     x:Key="ClockTemplateKey">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding Path=Now, StringFormat=t, Mode=OneWay}"
+                       Style="{DynamicResource Clock}"
+                       Name="ClockText">
+            </TextBlock>
+            <TextBlock Text="{Binding Path=Now, StringFormat=dddd, Mode=OneWay}"
+                       Style="{DynamicResource Clock}"
+                       Name="ClockVerticalDayOfWeek"
+                       Visibility="Collapsed">
+            </TextBlock>
+            <TextBlock Text="{Binding Path=Now, StringFormat=d, Mode=OneWay}"
+                       Style="{DynamicResource Clock}"
+                       Name="ClockVerticalDate"
+                       Visibility="Collapsed">
+            </TextBlock>
+        </StackPanel>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter TargetName="ClockVerticalDayOfWeek"
+                            Property="Visibility"
+                            Value="Visible" />
+                    <Setter TargetName="ClockVerticalDate"
+                            Property="Visibility"
+                            Value="Visible" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 </ResourceDictionary>

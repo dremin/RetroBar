@@ -47,7 +47,7 @@ namespace RetroBar.Controls
             };
         }
 
-        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Theme")
             {
