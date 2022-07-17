@@ -427,7 +427,7 @@
                                             BorderBrush="{DynamicResource TrayLeftBorder4}"
                                             Padding="7,0,0,0"
                                             Name="TrayInnerBorder4">
-                                        <ContentPresenter Margin="0,0,4,0"
+                                        <ContentPresenter Margin="0,0,6,0"
                                                           Name="Content" />
                                     </Border>
                                 </Border>
@@ -461,7 +461,7 @@
                                         Value="{DynamicResource TrayVerticalBackground}" />
                                 <Setter TargetName="Content"
                                         Property="Margin"
-                                        Value="0,0,0,7" />
+                                        Value="0,0,0,6" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -1274,13 +1274,13 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="3,-1,10,0" />
+                Value="8,-1,11,0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="0,2" />
+                            Value="0,1,1,6" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
@@ -1295,11 +1295,13 @@
             </TextBlock>
             <TextBlock Text="{Binding Path=Now, StringFormat=dddd, Mode=OneWay}"
                        Style="{DynamicResource Clock}"
+                       Margin="0,0,0,6"
                        Name="ClockVerticalDayOfWeek"
                        Visibility="Collapsed">
             </TextBlock>
             <TextBlock Text="{Binding Path=Now, StringFormat=d, Mode=OneWay}"
                        Style="{DynamicResource Clock}"
+                       Margin="0,0,0,3"
                        Name="ClockVerticalDate"
                        Visibility="Collapsed">
             </TextBlock>
@@ -1323,7 +1325,16 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
-                Value="0,2,4,2" />
+                Value="0,2,2,2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="2,2,0,2" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="ItemsControl"
