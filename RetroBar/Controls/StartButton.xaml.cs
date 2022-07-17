@@ -14,6 +14,7 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class StartButton : UserControl
     {
+        private FloatingStartButton? floatingStartButton;
         private bool allowOpenStart;
         private readonly DispatcherTimer pendingOpenTimer;
 
@@ -44,6 +45,19 @@ namespace RetroBar.Controls
                 Start.IsChecked = false;
                 pendingOpenTimer.Stop();
             };
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Theme")
+            {
+                bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
+
+                if (!useFloatingStartButton && floatingStartButton != null)
+                {
+                    closeFloatingStart();
+                }
+            }
         }
 
         public void SetStartMenuState(bool opened)
@@ -85,16 +99,91 @@ namespace RetroBar.Controls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             StartMenuMonitor.StartMenuVisibilityChanged += AppVisibilityHelper_StartMenuVisibilityChanged;
+
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+            openFloatingStart();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             StartMenuMonitor.StartMenuVisibilityChanged -= AppVisibilityHelper_StartMenuVisibilityChanged;
+
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+
+            hideFloatingStart();
         }
 
         private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
         {
             SetStartMenuState(e.Visible);
         }
+
+        #region Floating start button
+
+        private void openFloatingStart()
+        {
+            bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
+
+            if (!useFloatingStartButton || !Host.Screen.Primary) return;
+
+            if (floatingStartButton == null)
+            {
+                floatingStartButton = new FloatingStartButton(this, getButtonCoordinates(), getButtonSize());
+                floatingStartButton.Show();
+            }
+            else
+            {
+                showFloatingStart();
+            }
+        }
+
+        private void showFloatingStart()
+        {
+            if (floatingStartButton == null) return;
+
+            UpdateFloatingStartCoordinates();
+            floatingStartButton.Visibility = Visibility.Visible;
+        }
+
+        private void hideFloatingStart()
+        {
+            if (floatingStartButton == null) return;
+
+            floatingStartButton.Visibility = Visibility.Hidden;
+        }
+
+        private void closeFloatingStart()
+        {
+            floatingStartButton?.Close();
+            floatingStartButton = null;
+        }
+
+        private Point getButtonCoordinates()
+        {
+            // Get the location of the start button's top left
+            Point buttonPosPixels = Start.PointToScreen(new Point(0, 0));
+
+            // Convert from pixels to WPF points
+            PresentationSource source = PresentationSource.FromVisual(this);
+            Point buttonPosPoints = source.CompositionTarget.TransformFromDevice.Transform(buttonPosPixels);
+
+            return buttonPosPoints;
+        }
+
+        private Size getButtonSize()
+        {
+            return new Size(Start.ActualWidth, Start.ActualHeight);
+        }
+
+        public void UpdateFloatingStartCoordinates()
+        {
+            // Can't get our coordinates if we aren't visible.
+            if (!IsVisible || floatingStartButton == null) return;
+
+            floatingStartButton.SetPosition(getButtonCoordinates(), getButtonSize());
+        }
+
+        #endregion
     }
 }
