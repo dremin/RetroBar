@@ -434,7 +434,8 @@
                                     BorderBrush="{DynamicResource TrayLeftBorder1}"
                                     Padding="7,0,0,0"
                                     Name="TrayInnerBorder1">
-                                <ContentPresenter />
+                                <ContentPresenter Margin="0,0,4,0"
+                                                  Name="Content" />
                             </Border>
                         </Border>
                     </Border>
@@ -463,6 +464,9 @@
                                 <Setter TargetName="TrayOuterBottomBorder"
                                         Property="Background"
                                         Value="{DynamicResource TrayVerticalBackground}" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="0,0,1,7" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>

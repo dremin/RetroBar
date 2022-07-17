@@ -427,7 +427,8 @@
                                             BorderBrush="{DynamicResource TrayLeftBorder4}"
                                             Padding="7,0,0,0"
                                             Name="TrayInnerBorder4">
-                                        <ContentPresenter />
+                                        <ContentPresenter Margin="0,0,4,0"
+                                                          Name="Content" />
                                     </Border>
                                 </Border>
                             </Border>
@@ -458,6 +459,9 @@
                                 <Setter TargetName="TrayInnerBorder1"
                                         Property="Background"
                                         Value="{DynamicResource TrayVerticalBackground}" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="0,0,0,7" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -1270,13 +1274,13 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="6,-1,14,0" />
+                Value="3,-1,10,0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="0,3,0,9" />
+                            Value="0,2,0,-3" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
