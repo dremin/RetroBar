@@ -1,8 +1,12 @@
 ﻿<UserControl x:Class="RetroBar.Controls.TaskButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:RetroBar.Converters"
              Loaded="TaskButton_OnLoaded"
              Unloaded="TaskButton_OnUnloaded">
+    <UserControl.Resources>
+        <converters:TaskLabelConverter x:Key="taskLabelConverter" />
+    </UserControl.Resources>
     <Button Name="AppButton"
             ToolTip="{Binding Path=Title}"
             Click="AppButton_OnClick"
@@ -19,9 +23,16 @@
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Grid.Column="0"
                    Style="{DynamicResource TaskIcon}" />
-            <TextBlock Text="{Binding Path=Title}"
-                       Grid.Column="1"
-                       Style="{DynamicResource TaskLabel}" />
+            <TextBlock Grid.Column="1"
+                       Style="{DynamicResource TaskLabel}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource taskLabelConverter}">
+                        <Binding Path="Title" />
+                        <Binding Path="ProgressValue" />
+                        <Binding Path="ProgressState" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </Grid>
         <Button.ContextMenu>
             <ContextMenu>
