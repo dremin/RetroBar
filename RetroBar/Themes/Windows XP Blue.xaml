@@ -1268,6 +1268,8 @@
                 Value="0,0,26,0" />
         <Setter Property="Effect"
                 Value="{DynamicResource StartLabelShadow}" />
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Grayscale" />
     </Style>
 
     <Style TargetType="TextBlock"

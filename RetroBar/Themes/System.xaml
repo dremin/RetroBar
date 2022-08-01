@@ -634,6 +634,8 @@
                 Value="{DynamicResource start_text}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Auto" />
     </Style>
 
     <Style TargetType="TextBlock"
