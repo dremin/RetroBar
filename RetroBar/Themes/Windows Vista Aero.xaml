@@ -739,7 +739,7 @@
                 <ControlTemplate TargetType="RepeatButton">
                     <Border BorderThickness="1,0,1,1"
                             BorderBrush="{DynamicResource TaskListScrollButtonOuterBorder}"
-                            CornerRadius="{DynamicResource TaskListScrollUpCornerRadius}"
+                            CornerRadius="{DynamicResource TaskListScrollDownCornerRadius}"
                             x:Name="ButtonOuterBorder">
                         <Border BorderThickness="1,0,1,1"
                                 BorderBrush="{DynamicResource TaskListScrollButtonBorder}"
