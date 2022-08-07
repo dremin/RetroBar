@@ -37,6 +37,10 @@
     <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#e59e9e9e" />
     <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#c2000000" />
     <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#f7000000" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopBorder" Color="#e5474747" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#e59e9e9e" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#c2000000" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#f7000000" />
 
     <SolidColorBrush x:Key="TrayToggleOuterBorder" Color="#20ffffff" />
     <SolidColorBrush x:Key="TrayToggleBorder" Color="#99000000" />
@@ -384,6 +388,18 @@
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="Vertical">
                             <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarTopBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarVerticalTopBorder}" />
+                                <Setter TargetName="TaskbarTopInnerBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarVerticalTopInnerBorder}" />
+                                <Setter TargetName="TaskbarBottomBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarVerticalBottomBorder}" />
+                                <Setter TargetName="TaskbarBottomInnerBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarVerticalBottomInnerBorder}" />
                                 <Setter TargetName="TaskbarBottomInnerBorder"
                                         Property="Background"
                                         Value="{DynamicResource TaskbarVerticalBackground}" />
