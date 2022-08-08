@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">RetroBar nustatymai</s:String>
-    <s:String x:Key="taskbar_options">Užduočių juostos nustatymai</s:String>
+    <s:String x:Key="retrobar_properties">RetroBar ypatybės</s:String>
+    <s:String x:Key="taskbar_options">Užduočių juosta</s:String>
     <s:String x:Key="taskbar_appearance">Užduočių juostos išvaizda</s:String>
     <s:String x:Key="notification_area">Pranešimų sritis</s:String>
     <s:String x:Key="autostart">Automatiškai pradėti</s:String>
@@ -21,10 +21,10 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Leisti šriftų sulyginimą</s:String>
     <s:String x:Key="collapse_tray_icons">Sutra_ukti pranešimų srities piktogramas</s:String>
-    <s:String x:Key="customize">Kei_sti...</s:String>
-    <s:String x:Key="show_clock">Rodyti _laikrodį</s:String>
-    <s:String x:Key="show_multi_mon">Rodyti _keliuose monitoriuose</s:String>
-    <s:String x:Key="show_quick_launch">Rodyti greitą paleidimą</s:String>
+    <s:String x:Key="customize">_Tinkinti...</s:String>
+    <s:String x:Key="show_clock">Rodyti lai_krodį</s:String>
+    <s:String x:Key="show_multi_mon">Rodyti keliuose _monitoriuose</s:String>
+    <s:String x:Key="show_quick_launch">Rodyti _greitą paleidimą</s:String>
     <s:String x:Key="select_location">_Pasirinkti vietą...</s:String>
     <s:String x:Key="quick_launch_folder">Greitas paleidimas - Pasirinkite aplanką</s:String>
     <s:String x:Key="use_software_rendering">_Naudoti programos vaizdavimą</s:String>
