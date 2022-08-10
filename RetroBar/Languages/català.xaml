@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Propietats de RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Opcions de la barra de tasques</s:String>
+    <s:String x:Key="taskbar_appearance">Aparença de la barra de tasques</s:String>
+    <s:String x:Key="notification_area">Àrea de notificació</s:String>
+    <s:String x:Key="autostart">_Inicia automàticament en iniciar sessió</s:String>
+    <s:String x:Key="language_text">_Llengua:</s:String>
+    <s:String x:Key="language_tip">Tria la llengua a utilitzar.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Instal·la temes a la carpeta Themes.</s:String>
+    <s:String x:Key="location_text">_Ubicació:</s:String>
+    <s:String x:Key="location_tip">Canvia la ubicació de la barra de tasques en pantalla.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Esquerra</s:String>
+        <s:String>Superior</s:String>
+        <s:String>Dreta</s:String>
+        <s:String>Inferior</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Permet el suavitzat de la font</s:String>
+    <s:String x:Key="collapse_tray_icons">Oculta les _icones de notificació</s:String>
+    <s:String x:Key="customize">_Personalitza...</s:String>
+    <s:String x:Key="show_clock">Mostra el _rellotge</s:String>
+    <s:String x:Key="show_multi_mon">Mostra en _múltiples pantalles</s:String>
+    <s:String x:Key="show_quick_launch">Mostra _l'inici ràpid</s:String>
+    <s:String x:Key="select_location">_Tria ubicació...</s:String>
+    <s:String x:Key="quick_launch_folder">Inici ràpid: tria una carpeta</s:String>
+    <s:String x:Key="use_software_rendering">Utilitza processament per programari</s:String>
+    <s:String x:Key="ok_dialog">D'acord</s:String>
+
+    <s:String x:Key="customize_notifications">Personalitza notificacions</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar mostra aquelles icones de notificacions actives i urgents, i amaga les inactives. Pots canviar aquest comportament per a cada element de la llista d'aquí sota.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Selecciona un element i escull el comportament de la seva notificació:</s:String>
+    <s:String x:Key="hide_when_inactive">Oculta quan estigui inactiu</s:String>
+    <s:String x:Key="always_show">Mostra sempre</s:String>
+    <s:String x:Key="name_heading">Nom</s:String>
+    <s:String x:Key="behavior_heading">Comportament</s:String>
+
+    <s:String x:Key="start_text">Inicia</s:String>
+    <s:String x:Key="start_text_xp">Inicia</s:String>
+    <s:String x:Key="start_button_tip_98">Fes clic aquí per començar.</s:String> 
+    <s:String x:Key="start_button_tip">Fes clic aquí per començar</s:String>
+    <s:String x:Key="start_button_tip_vista">Inicia</s:String>
+
+    <s:String x:Key="retrobar_title">Barra de tasques de RetroBar</s:String>
+    <s:String x:Key="toolbars">_Barres d'eines</s:String>
+    <s:String x:Key="quick_launch">_Inici ràpid</s:String>
+    <s:String x:Key="new_toolbar">_Barra d'eines nova...</s:String>
+    <s:String x:Key="show_taskman_2k">Admi_nistrador de tasques...</s:String>
+    <s:String x:Key="show_taskman">Admi_nistrador de tasques</s:String>
+    <s:String x:Key="tray_properties">_Propietats</s:String>
+    <s:String x:Key="update_available">_Actualització disponible...</s:String>
+    <s:String x:Key="exit_retrobar">_Surt de RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Personalitza les notificacions...</s:String>
+
+    <s:String x:Key="restore">_Restaura</s:String>
+    <s:String x:Key="move">_Desplaça</s:String>
+    <s:String x:Key="size">_Mida</s:String>
+    <s:String x:Key="minimize">Mi_nimitza</s:String>
+    <s:String x:Key="maximize">_Ma_ximitza</s:String>
+    <s:String x:Key="close">_Tanca</s:String>
+
+    <s:String x:Key="show_hidden">Mostra les icones ocultes</s:String>
+    <s:String x:Key="hide">Oculta</s:String>
+
+    <s:String x:Key="set_time">_Canvia la data i l'hora</s:String>
+
+    <s:String x:Key="open_folder">&amp;Obre la carpeta</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
