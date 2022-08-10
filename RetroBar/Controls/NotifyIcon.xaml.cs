@@ -19,6 +19,7 @@ namespace RetroBar.Controls
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
         private const string HARDWARE_GUID = "7820ae78-23e3-4229-82c1-e41cb67d5b9c";
+        private const string UPDATE_GUID = "7820ae81-23e3-4229-82c1-e41cb67d5b9c";
 
         public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(NotifyIcon));
 
@@ -43,6 +44,7 @@ namespace RetroBar.Controls
             string iconGuid = TrayIcon.GUID.ToString();
 
             if (!(iconGuid == HARDWARE_GUID ||
+                iconGuid == UPDATE_GUID ||
                 iconGuid == NotificationArea.MEETNOW_GUID ||
                 iconGuid == NotificationArea.NETWORK_GUID ||
                 iconGuid == NotificationArea.POWER_GUID ||
