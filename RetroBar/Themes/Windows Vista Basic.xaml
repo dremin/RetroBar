@@ -7,5 +7,57 @@
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
 
+    <LinearGradientBrush x:Key="TaskbarBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#8B8C8C"
+                      Offset="0.0" />
+        <GradientStop Color="#828383"
+                      Offset="0.15" />
+        <GradientStop Color="#4D4F4F"
+                      Offset="0.45" />
+        <GradientStop Color="#464648"
+                      Offset="0.50" />
+        <GradientStop Color="#1B1D1F"
+                      Offset="0.50" />
+        <GradientStop Color="#181A1B"
+                      Offset="0.80" />
+        <GradientStop Color="#18191B"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#8B8C8C"
+                      Offset="0.0" />
+        <GradientStop Color="#808182"
+                      Offset="0.05" />
+        <GradientStop Color="#4B4C4D"
+                      Offset="0.15" />
+        <GradientStop Color="#454647"
+                      Offset="0.17" />
+        <GradientStop Color="#181A1C"
+                      Offset="0.171" />
+        <GradientStop Color="#1C1E1F"
+                      Offset="1.0" />
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskbarWindowBackground" Color="#000000" />
+    <SolidColorBrush x:Key="TaskbarTopBorder" Color="#545454" />
+    <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#B4B5B5" />
+    <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#17191A" />
+    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#131415" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopBorder" Color="#545454" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#B4B4B4" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#1C1E1F" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#1B1D1F" />
+
+    <CornerRadius x:Key="TaskListScrollUpCornerRadius">0.4,0.4,0,0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollRightCornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterBorder" Color="#000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder" Color="#2D3650" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderHover" Color="#73767C" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderPressed" Color="#73767C" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#111218" />
 </ResourceDictionary>
