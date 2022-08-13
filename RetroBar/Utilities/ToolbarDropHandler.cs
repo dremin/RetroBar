@@ -16,6 +16,14 @@ namespace RetroBar.Utilities
 
         void IDropTarget.DragOver(IDropInfo dropInfo)
         {
+            if (dropInfo.Data is System.Windows.DataObject dataObject)
+            {
+                if (dataObject != null && dataObject.GetDataPresent(System.Windows.DataFormats.FileDrop))
+                {
+                    dropInfo.Effects = System.Windows.DragDropEffects.Link;
+                }
+            }
+
             DragDrop.DefaultDropHandler.DragOver(dropInfo);
         }
 
@@ -33,6 +41,15 @@ namespace RetroBar.Utilities
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
+            if (dropInfo.Data is System.Windows.DataObject dataObject)
+            {
+                if (dataObject != null && dataObject.ContainsFileDropList())
+                {
+                    _toolbar.AddToSource(dataObject.GetFileDropList());
+                    return;
+                }
+            }
+
             // Save before the drop in order to catch any items not yet saved
             _toolbar.SaveItemOrder();
             DropInFlight = dropInfo;
