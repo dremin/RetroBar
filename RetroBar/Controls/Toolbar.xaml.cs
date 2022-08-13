@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
 using ManagedShell.ShellFolders;
 using ManagedShell.ShellFolders.Enums;
 using RetroBar.Utilities;
@@ -111,6 +113,35 @@ namespace RetroBar.Controls
             _ignoreNextUpdate = true;
 
             Settings.Instance.QuickLaunchOrder = itemPaths;
+        }
+
+        public void AddToSource(StringCollection filesToAdd)
+        {
+            string sourcePath = Environment.ExpandEnvironmentVariables(Path);
+
+            foreach (string itemPath in filesToAdd)
+            {
+                // Create shortcut to each dragged file
+                try
+                {
+                    string destinationFileName = System.IO.Path.GetFileNameWithoutExtension(itemPath);
+                    string destinationPath = System.IO.Path.Combine(sourcePath, destinationFileName + ".lnk");
+                    int dupCount = 0;
+
+                    while (ShellHelper.Exists(destinationPath))
+                    {
+                        dupCount++;
+
+                        destinationPath = System.IO.Path.Combine(sourcePath, $"{destinationFileName} ({dupCount}).lnk");
+                    }
+
+                    ShellLinkHelper.CreateAndSave(itemPath, destinationPath);
+                }
+                catch (Exception e)
+                {
+                    ShellLogger.Error($"Toolbar: Unable to save shortcut to {itemPath}", e);
+                }
+            }
         }
 
         #region Events
