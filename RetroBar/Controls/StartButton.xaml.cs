@@ -73,14 +73,54 @@ namespace RetroBar.Controls
         {
             if (allowOpenStart)
             {
-                Host?.SetTrayHost();
-                pendingOpenTimer.Start();
-                ShellHelper.ShowStartMenu();
+                OpenStartMenu();
                 return;
             }
 
             Start.IsChecked = false;
         }
+
+        private void OpenStartMenu()
+        {
+            Host?.SetTrayHost();
+            pendingOpenTimer.Start();
+            ShellHelper.ShowStartMenu();
+        }
+
+        #region Drag
+        private bool inDrag;
+        private DispatcherTimer? dragTimer;
+
+        private void dragTimer_Tick(object? sender, EventArgs e)
+        {
+            if (inDrag && Start.IsChecked == false)
+            {
+                OpenStartMenu();
+            }
+
+            dragTimer?.Stop();
+        }
+
+        private void Start_DragEnter(object sender, DragEventArgs e)
+        {
+            // Ignore drag operations from a reorder
+            if (!inDrag && !e.Data.GetDataPresent("GongSolutions.Wpf.DragDrop"))
+            {
+                inDrag = true;
+                dragTimer?.Start();
+            }
+        }
+
+        private void Start_DragLeave(object sender, DragEventArgs e)
+        {
+            if (inDrag)
+            {
+                dragTimer?.Stop();
+                inDrag = false;
+            }
+        }
+
+        #endregion
 
         private void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -101,6 +141,10 @@ namespace RetroBar.Controls
             StartMenuMonitor.StartMenuVisibilityChanged += AppVisibilityHelper_StartMenuVisibilityChanged;
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+            // drag support - delayed activation using system setting
+            dragTimer = new DispatcherTimer { Interval = SystemParameters.MouseHoverTime };
+            dragTimer.Tick += dragTimer_Tick;
 
             openFloatingStart();
         }
