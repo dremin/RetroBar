@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
 using Microsoft.Win32;
 using RetroBar.Utilities;
 
@@ -118,25 +119,25 @@ namespace RetroBar.Controls
 
         private static void SetConverterCultureRecursively(DependencyObject main)
         {
-	        if (main != null)
-	        {
-		        var binding = BindingOperations.GetBinding(main, TextBlock.TextProperty);
+            if (main != null)
+            {
+                var binding = BindingOperations.GetBinding(main, TextBlock.TextProperty);
 
-		        if (binding != null)
-		        {
-			        BindingOperations.SetBinding(main, TextBlock.TextProperty,
-				        new Binding(binding.Path.Path)
-					        { StringFormat = binding.StringFormat, ConverterCulture = CultureInfo.CurrentCulture });
-		        }
+                if (binding != null)
+                {
+                    BindingOperations.SetBinding(main, TextBlock.TextProperty,
+                        new Binding(binding.Path.Path)
+                            { StringFormat = binding.StringFormat, ConverterCulture = CultureInfo.CurrentCulture });
+                }
 
-		        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(main); i++)
-		        {
-			        if (VisualTreeHelper.GetChild(main, i) is UIElement sub)
-			        {
-				        SetConverterCultureRecursively(sub);
-			        }
-		        }
-	        }
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(main); i++)
+                {
+                    if (VisualTreeHelper.GetChild(main, i) is UIElement sub)
+                    {
+                        SetConverterCultureRecursively(sub);
+                    }
+                }
+            }
         }
 
         private void SetCurrentCulture()
@@ -146,19 +147,22 @@ namespace RetroBar.Controls
                 var iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", false);
                 if (iKey == null) return;
                 var iCi = (CultureInfo)CultureInfo.GetCultureInfo((string)iKey.GetValue("LocaleName")).Clone();
-                iCi.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
-                iCi.DateTimeFormat.LongTimePattern = (string)iKey.GetValue("sTimeFormat");
                 iCi.DateTimeFormat.ShortDatePattern = (string)iKey.GetValue("sShortDate");
+                iCi.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
                 iCi.DateTimeFormat.LongDatePattern = (string)iKey.GetValue("sLongDate");
+                iCi.DateTimeFormat.LongTimePattern = (string)iKey.GetValue("sTimeFormat");
+                iCi.DateTimeFormat.DateSeparator = (string)iKey.GetValue("sDate");
+                iCi.DateTimeFormat.TimeSeparator = (string)iKey.GetValue("sTime");
+                iCi.DateTimeFormat.AMDesignator = (string)iKey.GetValue("s1159");
+                iCi.DateTimeFormat.PMDesignator = (string)iKey.GetValue("s2359");
 
                 CultureInfo.CurrentCulture = iCi;
                 SetConverterCultureRecursively(this);
                 SetConverterCultureRecursively(ClockTip);
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                ManagedShell.Common.Logging.ShellLogger.Error
-                    ($"Clock: Unable to set the current culture: {exception.Message}");
+                ShellLogger.Error($"Clock: Unable to set the current culture: {e.Message}");
             }
         }
 
