@@ -220,6 +220,7 @@
                                                  Converter="{StaticResource textRenderingModeConverter}" />
                                     </TextOptions.TextRenderingMode>
                                     <DockPanel>
+                                        <controls:ShowDesktopButton DockPanel.Dock="Right" HorizontalAlignment="Center" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
                                         <GroupBox Style="{DynamicResource Tray}"
                                                   DockPanel.Dock="Right">
                                             <StackPanel Orientation="Horizontal">
