@@ -270,6 +270,23 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
+    <LinearGradientBrush x:Key="ShowDesktopButtonBorderHorizontal"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#FFB3B3B3"
+                      Offset="0.0" />
+        <GradientStop Color="#FF000000"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ShowDesktopButtonBorderVertical"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#FFB3B3B3"
+                      Offset="0.0" />
+        <GradientStop Color="#FF000000"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="ToolTipBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -1153,6 +1170,13 @@
     </ControlTemplate>
 
     <Style TargetType="Image"
+           x:Key="ShowDesktopIcon"
+           BasedOn="{StaticResource TaskIcon}">
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+    </Style>
+
+    <Style TargetType="Image"
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
@@ -1293,6 +1317,79 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="ShowDesktopButton">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border BorderThickness="0,1,0,0"
+                            BorderBrush="Transparent"
+                            x:Name="ButtonOuterBorder">
+                        <Border BorderThickness="1,0,0,0"
+                                BorderBrush="{DynamicResource ShowDesktopButtonBorderHorizontal}"
+                                Background="#0FD4D4D4"
+                                x:Name="ButtonBorder">
+                            <Border BorderThickness="0,1,1,1"
+                                    BorderBrush="Transparent"
+                                    x:Name="ButtonInnerBorder">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Margin="6,-5,6,0"
+                                                  x:Name="Content" />
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonInnerBorder"
+                                    Property="Background"
+                                    Value="#5BD4D4D4" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonInnerBorder"
+                                    Property="Background"
+                                    Value="#5BD4D4D4" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource ShowDesktopButtonBorderVertical}" />
+                                <Setter TargetName="ButtonOuterBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,1,1" />
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="38,6" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Foreground"
+                            Value="{DynamicResource TaskListScrollArrowHover}" />
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="TaskListScrollButtonGrid"
