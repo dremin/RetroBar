@@ -18,11 +18,6 @@ namespace RetroBar.Controls
         private bool isLoaded;
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
-        private const string HARDWARE_GUID = "7820ae78-23e3-4229-82c1-e41cb67d5b9c";
-        private const string UPDATE_GUID = "7820ae81-23e3-4229-82c1-e41cb67d5b9c";
-        private const string MICROPHONE_GUID = "7820ae82-23e3-4229-82c1-e41cb67d5b9c";
-        private const string LOCATION_GUID = "7820ae77-23e3-4229-82c1-e41cb67d5b9c";
-
         public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(NotifyIcon));
 
         public Taskbar Host
@@ -45,10 +40,10 @@ namespace RetroBar.Controls
 
             string iconGuid = TrayIcon.GUID.ToString();
 
-            if (!(iconGuid == HARDWARE_GUID ||
-                iconGuid == UPDATE_GUID ||
-                iconGuid == MICROPHONE_GUID ||
-                iconGuid == LOCATION_GUID ||
+            if (!(iconGuid == NotificationArea.HARDWARE_GUID ||
+                iconGuid == NotificationArea.UPDATE_GUID ||
+                iconGuid == NotificationArea.MICROPHONE_GUID ||
+                iconGuid == NotificationArea.LOCATION_GUID ||
                 iconGuid == NotificationArea.MEETNOW_GUID ||
                 iconGuid == NotificationArea.NETWORK_GUID ||
                 iconGuid == NotificationArea.POWER_GUID ||
