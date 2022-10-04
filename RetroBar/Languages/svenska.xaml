@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar-inställningar</s:String>
+    <s:String x:Key="taskbar_options">Aktivitetsfältet Egenskaper</s:String>
+    <s:String x:Key="taskbar_appearance">Aktivitetsfältet utseende</s:String>
+    <s:String x:Key="notification_area">Meddelandefältet</s:String>
+    <s:String x:Key="autostart">Starta automatiskt vid in_loggning</s:String>
+    <s:String x:Key="language_text">S_pråk:</s:String>
+    <s:String x:Key="language_tip">Välj det språk som ska användas.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Installera teman i mappen Teman.</s:String>
+    <s:String x:Key="location_text">Pl_ats:</s:String>
+    <s:String x:Key="location_tip">Ändra platsen för aktivitetsfältet på skärmen.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Vänster</s:String>
+        <s:String>Ovan</s:String>
+        <s:String>Höger</s:String>
+        <s:String>Nedan</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Tillåt t_ypsnittsutjämning</s:String>
+    <s:String x:Key="collapse_tray_icons">Kollaps meddela_ndefältet ikoner</s:String>
+    <s:String x:Key="customize">Anpa_ssa...</s:String>
+    <s:String x:Key="show_clock">Visa _klockan</s:String>
+    <s:String x:Key="show_multi_mon">Visa på _multipel skärmar</s:String>
+    <s:String x:Key="show_quick_launch">V_isa snabbstartfältet</s:String>
+    <s:String x:Key="select_location">Väl_j plats...</s:String>
+    <s:String x:Key="quick_launch_folder">Snabbstart - Välj en mapp</s:String>
+    <s:String x:Key="use_software_rendering">Använd mj_ukvarurendering</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Anpassa meddelanden</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar visar ikoner för aktiva och brådskande meddelanden, men inaktiva meddelanden döljs. Du kan ange hur meddelanden som rör objekten i listan nedan ska visas.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Markera ett objekt och ange hur meddelanden som rör objektet ska visas:</s:String>
+    <s:String x:Key="hide_when_inactive">Dölj vid inaktivitet</s:String>
+    <s:String x:Key="always_show">Alltid synlig</s:String>
+    <s:String x:Key="name_heading">Namn</s:String>
+    <s:String x:Key="behavior_heading">Beteende</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
+    <s:String x:Key="start_button_tip_98">Klicka här om du vill starta.</s:String>
+    <s:String x:Key="start_button_tip">Klicka här om du vill starta</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Aktivitetsfältet</s:String>
+    <s:String x:Key="toolbars">Verk_tygsfält</s:String>
+    <s:String x:Key="quick_launch">Sna_bbstart</s:String>
+    <s:String x:Key="new_toolbar">_Nytt verktygsfält...</s:String>
+    <s:String x:Key="show_taskman_2k">A_ktivitetshanteraren...</s:String>
+    <s:String x:Key="show_taskman">A_ktivitetshanteraren</s:String>
+    <s:String x:Key="tray_properties">Egenskape_r</s:String>
+    <s:String x:Key="update_available">_Uppdatering tillganglig...</s:String>
+    <s:String x:Key="exit_retrobar">A_vsluta RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">A_npassa meddelanden...</s:String>
+
+    <s:String x:Key="restore">_Återställ</s:String>
+    <s:String x:Key="move">_Flytta</s:String>
+    <s:String x:Key="size">Ändra _storlek</s:String>
+    <s:String x:Key="minimize">_Minimera</s:String>
+    <s:String x:Key="maximize">Ma_ximera</s:String>
+    <s:String x:Key="close">St_äng</s:String>
+
+    <s:String x:Key="show_hidden">Visa dolda ikoner</s:String>
+    <s:String x:Key="hide">Dölj</s:String>
+
+    <s:String x:Key="set_time">Justera _datum/tid</s:String>
+
+    <s:String x:Key="open_folder">&amp;Öppna mappen</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
