@@ -202,6 +202,24 @@
                       Offset="1.0" />
     </RadialGradientBrush>
 
+    <LinearGradientBrush x:Key="TaskButtonThumbnailBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#77eeeeee"
+                      Offset="0.0" />
+        <GradientStop Color="#77bbbbbb"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TaskButtonThumbnailBorder"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#aa111111"
+                      Offset="0.0" />
+        <GradientStop Color="#dd111111"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="ToolbarButtonInnerBorderHover" Color="#40ffffff" />
     <RadialGradientBrush x:Key="ToolbarButtonBottomBackgroundHover"
                          GradientOrigin="0.5,1.0"
@@ -669,6 +687,43 @@
                                     Value="7,4,5,2" />
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ContentControl"
+           x:Key="TaskButtonThumbnail">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderBrush="{DynamicResource TaskButtonThumbnailBorder}"
+                            BorderThickness="1"
+                            Background="{DynamicResource TaskButtonThumbnailBackground}"
+                            CornerRadius="6"
+                            Margin="4">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black"
+                                              ShadowDepth="1"
+                                              Direction="270"
+                                              Opacity="1"
+                                              BlurRadius="6" />
+                        </Border.Effect>
+                        <Border BorderBrush="#88ffffff"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="3">
+                            <Border BorderBrush="#88ffffff"
+                                    BorderThickness="1"
+                                    CornerRadius="2">
+                                <Border BorderBrush="#aa000000"
+                                        BorderThickness="1"
+                                        CornerRadius="1">
+                                    <ContentPresenter />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

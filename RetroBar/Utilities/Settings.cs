@@ -287,6 +287,18 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool ShowTaskThumbnails
+        {
+            get
+            {
+                return true;
+            }
+            set
+            {
+                
+            }
+        }
         #endregion
 
         #region Helpers
