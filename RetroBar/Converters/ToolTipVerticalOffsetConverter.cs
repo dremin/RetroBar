@@ -26,7 +26,7 @@ namespace RetroBar.Converters
             }
             else
             {
-                return 0;
+                return (double)0;
             }
         }
 

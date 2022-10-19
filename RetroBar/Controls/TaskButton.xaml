@@ -128,7 +128,8 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ToolTip">
                                                 <ContentControl Style="{DynamicResource TaskButtonThumbnail}">
-                                                    <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}" />
+                                                    <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
+                                                                            Title="{Binding Path=Title}"/>
                                                 </ContentControl>
                                             </ControlTemplate>
                                         </Setter.Value>

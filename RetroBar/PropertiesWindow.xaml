@@ -202,6 +202,10 @@
                                         Content="{DynamicResource select_location}"
                                         Click="SetQuickLaunchLocation_OnClick" />
                             </DockPanel>
+                            <CheckBox x:Name="cbShowWindowPreviews"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_window_previews}" />
+                            </CheckBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource notification_area}">

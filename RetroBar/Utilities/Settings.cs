@@ -292,11 +292,14 @@ namespace RetroBar.Utilities
         {
             get
             {
-                return true;
+                return settings.ShowTaskThumbnails;
             }
             set
             {
-                
+                if (settings.ShowTaskThumbnails != value)
+                {
+                    settings.ShowTaskThumbnails = value;
+                }
             }
         }
         #endregion

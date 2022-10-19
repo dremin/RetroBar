@@ -20,7 +20,7 @@ namespace RetroBar.Converters
 
             if (Settings.Instance.Edge == (int)AppBarEdge.Left || Settings.Instance.Edge == (int)AppBarEdge.Right)
             {
-                return 0;
+                return (double)0;
             }
             else
             {

@@ -210,7 +210,6 @@
         <GradientStop Color="#77bbbbbb"
                       Offset="1.0" />
     </LinearGradientBrush>
-
     <LinearGradientBrush x:Key="TaskButtonThumbnailBorder"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -219,6 +218,14 @@
         <GradientStop Color="#dd111111"
                       Offset="1.0" />
     </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskButtonThumbnailInnerBorder" Color="#88ffffff" />
+    <SolidColorBrush x:Key="TaskButtonThumbnailThumbBorder" Color="#aa000000" />
+    <DropShadowEffect x:Key="TaskButtonThumbnailShadow"
+                      Color="Black"
+                      ShadowDepth="1"
+                      Direction="270"
+                      Opacity="1"
+                      BlurRadius="6" />
 
     <SolidColorBrush x:Key="ToolbarButtonInnerBorderHover" Color="#40ffffff" />
     <RadialGradientBrush x:Key="ToolbarButtonBottomBackgroundHover"
@@ -701,22 +708,16 @@
                             BorderThickness="1"
                             Background="{DynamicResource TaskButtonThumbnailBackground}"
                             CornerRadius="6"
-                            Margin="4">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Black"
-                                              ShadowDepth="1"
-                                              Direction="270"
-                                              Opacity="1"
-                                              BlurRadius="6" />
-                        </Border.Effect>
-                        <Border BorderBrush="#88ffffff"
+                            Margin="4"
+                            Effect="{DynamicResource TaskButtonThumbnailShadow}">
+                        <Border BorderBrush="{DynamicResource TaskButtonThumbnailInnerBorder}"
                                 BorderThickness="1"
                                 CornerRadius="6"
                                 Padding="3">
-                            <Border BorderBrush="#88ffffff"
+                            <Border BorderBrush="{DynamicResource TaskButtonThumbnailInnerBorder}"
                                     BorderThickness="1"
                                     CornerRadius="2">
-                                <Border BorderBrush="#aa000000"
+                                <Border BorderBrush="{DynamicResource TaskButtonThumbnailThumbBorder}"
                                         BorderThickness="1"
                                         CornerRadius="1">
                                     <ContentPresenter />

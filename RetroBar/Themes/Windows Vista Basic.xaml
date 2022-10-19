@@ -51,6 +51,15 @@
     <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#1C1E1F" />
     <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#1B1D1F" />
 
+    <LinearGradientBrush x:Key="TaskButtonThumbnailBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#545454"
+                      Offset="0.0" />
+        <GradientStop Color="#444444"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <CornerRadius x:Key="TaskListScrollUpCornerRadius">0.4,0.4,0,0</CornerRadius>
     <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0</CornerRadius>
     <CornerRadius x:Key="TaskListScrollRightCornerRadius">0</CornerRadius>

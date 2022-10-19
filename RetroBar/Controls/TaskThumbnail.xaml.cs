@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Threading;
 using ManagedShell.Interop;
 
 namespace RetroBar.Controls
@@ -14,12 +15,18 @@ namespace RetroBar.Controls
         const double MAX_WIDTH = 180;
         const double MAX_HEIGHT = 120;
 
-        public byte ThumbnailOpacity = 255;
+        // TODO: Set this correctly
         public double DpiScale = 1.0;
+
+        private DispatcherTimer _toolTipTimer;
 
         public TaskThumbnail()
         {
             InitializeComponent();
+
+            _toolTipTimer = new DispatcherTimer();
+            _toolTipTimer.Tick += ToolTipTimer_Tick;
+            _toolTipTimer.Interval = new TimeSpan(0, 0, 0, 0, ToolTipService.GetInitialShowDelay(this));
         }
 
         public IntPtr Handle
@@ -51,6 +58,20 @@ namespace RetroBar.Controls
             set
             {
                 SetValue(SourceWindowHandleProperty, value);
+            }
+        }
+
+        public static DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(TaskThumbnail), new PropertyMetadata(""));
+
+        public string Title
+        {
+            get
+            {
+                return (string)GetValue(TitleProperty);
+            }
+            set
+            {
+                SetValue(TitleProperty, value);
             }
         }
 
@@ -92,11 +113,12 @@ namespace RetroBar.Controls
                 NativeMethods.DwmQueryThumbnailSourceSize(_thumbHandle, out NativeMethods.PSIZE size);
                 double aspectRatio = (double)size.x / size.y;
 
+                // TODO: Use new ManagedShell constant
                 var props = new NativeMethods.DWM_THUMBNAIL_PROPERTIES
                 {
                     fVisible = true,
-                    dwFlags = NativeMethods.DWM_TNP_VISIBLE | NativeMethods.DWM_TNP_RECTDESTINATION | NativeMethods.DWM_TNP_OPACITY,
-                    opacity = ThumbnailOpacity,
+                    dwFlags = NativeMethods.DWM_TNP_VISIBLE | NativeMethods.DWM_TNP_RECTDESTINATION | 0x00000010,
+                    fSourceClientAreaOnly = true,
                     rcDestination = Rect
                 };
 
@@ -104,7 +126,7 @@ namespace RetroBar.Controls
                 {
                     if (size.x <= MAX_WIDTH && size.y <= MAX_HEIGHT)
                     {
-                        // do not scale
+                        // small, do not scale
                         Width = size.x;
                         Height = size.y;
                         props.rcDestination.Right = props.rcDestination.Left + size.x;
@@ -112,7 +134,7 @@ namespace RetroBar.Controls
                     }
                     else
                     {
-                        // scale, preserving aspect ratio
+                        // large, scale preserving aspect ratio
                         double controlAspectRatio = MAX_WIDTH / MAX_HEIGHT;
 
                         if (aspectRatio > controlAspectRatio)
@@ -148,12 +170,29 @@ namespace RetroBar.Controls
                 NativeMethods.DwmUnregisterThumbnail(_thumbHandle);
                 _thumbHandle = IntPtr.Zero;
             }
+
+            _toolTipTimer.Stop();
+            if (ToolTip is ToolTip tip)
+            {
+                tip.IsOpen = false;
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
                 Refresh();
+
+            _toolTipTimer.Start();
+        }
+
+        private void ToolTipTimer_Tick(object sender, EventArgs e)
+        {
+            if (ToolTip is ToolTip tip)
+            {
+                tip.PlacementTarget = this;
+                tip.IsOpen = true;
+            }
         }
     }
 }
