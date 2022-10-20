@@ -15,7 +15,6 @@ namespace RetroBar.Controls
         const double MAX_WIDTH = 180;
         const double MAX_HEIGHT = 120;
 
-        // TODO: Set this correctly
         public double DpiScale = 1.0;
 
         private DispatcherTimer _toolTipTimer;
@@ -124,11 +123,11 @@ namespace RetroBar.Controls
 
                 if (this != null)
                 {
-                    if (size.x <= MAX_WIDTH && size.y <= MAX_HEIGHT)
+                    if (size.x <= (MAX_WIDTH * DpiScale) && size.y <= (MAX_HEIGHT * DpiScale))
                     {
                         // small, do not scale
-                        Width = size.x;
-                        Height = size.y;
+                        Width = size.x / DpiScale;
+                        Height = size.y / DpiScale;
                         props.rcDestination.Right = props.rcDestination.Left + size.x;
                         props.rcDestination.Bottom = props.rcDestination.Top + size.y;
                     }
@@ -143,17 +142,17 @@ namespace RetroBar.Controls
                             int height = (int)(MAX_WIDTH / aspectRatio);
 
                             Width = MAX_WIDTH;
-                            Height = height * DpiScale;
-                            props.rcDestination.Bottom = props.rcDestination.Top + height;
+                            Height = height;
+                            props.rcDestination.Bottom = props.rcDestination.Top + (int)(height * DpiScale);
                         }
                         else if (aspectRatio < controlAspectRatio)
                         {
                             // tall
                             int width = (int)(MAX_HEIGHT * aspectRatio);
 
-                            Width = width * DpiScale;
+                            Width = width;
                             Height = MAX_HEIGHT;
-                            props.rcDestination.Right = props.rcDestination.Left + width;
+                            props.rcDestination.Right = props.rcDestination.Left + (int)(width * DpiScale);
                         }
                     }
                 }
@@ -180,7 +179,9 @@ namespace RetroBar.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
+            DpiScale = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
+
+            if (NativeMethods.DwmIsCompositionEnabled() && SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
                 Refresh();
 
             _toolTipTimer.Start();
