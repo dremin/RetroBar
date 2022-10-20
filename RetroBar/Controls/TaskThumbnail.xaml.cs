@@ -112,11 +112,10 @@ namespace RetroBar.Controls
                 NativeMethods.DwmQueryThumbnailSourceSize(_thumbHandle, out NativeMethods.PSIZE size);
                 double aspectRatio = (double)size.x / size.y;
 
-                // TODO: Use new ManagedShell constant
                 var props = new NativeMethods.DWM_THUMBNAIL_PROPERTIES
                 {
                     fVisible = true,
-                    dwFlags = NativeMethods.DWM_TNP_VISIBLE | NativeMethods.DWM_TNP_RECTDESTINATION | 0x00000010,
+                    dwFlags = NativeMethods.DWM_TNP_VISIBLE | NativeMethods.DWM_TNP_RECTDESTINATION | NativeMethods.DWM_TNP_SOURCECLIENTAREAONLY,
                     fSourceClientAreaOnly = true,
                     rcDestination = Rect
                 };
