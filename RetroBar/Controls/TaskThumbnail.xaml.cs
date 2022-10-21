@@ -109,14 +109,20 @@ namespace RetroBar.Controls
 
             if (this != null)
             {
+                var clientAreaProps = new NativeMethods.DWM_THUMBNAIL_PROPERTIES
+                {
+                    dwFlags = NativeMethods.DWM_TNP_SOURCECLIENTAREAONLY,
+                    fSourceClientAreaOnly = true
+                };
+                NativeMethods.DwmUpdateThumbnailProperties(_thumbHandle, ref clientAreaProps);
+
                 NativeMethods.DwmQueryThumbnailSourceSize(_thumbHandle, out NativeMethods.PSIZE size);
                 double aspectRatio = (double)size.x / size.y;
 
                 var props = new NativeMethods.DWM_THUMBNAIL_PROPERTIES
                 {
                     fVisible = true,
-                    dwFlags = NativeMethods.DWM_TNP_VISIBLE | NativeMethods.DWM_TNP_RECTDESTINATION | NativeMethods.DWM_TNP_SOURCECLIENTAREAONLY,
-                    fSourceClientAreaOnly = true,
+                    dwFlags = NativeMethods.DWM_TNP_VISIBLE | NativeMethods.DWM_TNP_RECTDESTINATION,
                     rcDestination = Rect
                 };
 
