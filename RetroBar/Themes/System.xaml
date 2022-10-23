@@ -321,6 +321,32 @@
                 Value="{DynamicResource ButtonFlashingForeground}" />
     </Style>
 
+    <Style TargetType="ContentControl"
+           x:Key="TaskButtonThumbnail">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderThickness="0,0,1,1"
+                            BorderBrush="{DynamicResource ButtonDarkShadow}"
+                            Margin="4">
+                        <Border BorderThickness="1,1,0,0"
+                                BorderBrush="{DynamicResource ButtonHighlight}">
+                            <Border BorderThickness="0,0,1,1"
+                                    BorderBrush="{DynamicResource ButtonShadow}">
+                                <Border BorderThickness="1,1,0,0"
+                                        BorderBrush="{DynamicResource ButtonLight}"
+                                        Background="{DynamicResource ButtonFace}"
+                                        Padding="3">
+                                    <ContentPresenter />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="TaskListScrollButton"
            TargetType="RepeatButton">
         <Setter Property="OverridesDefaultStyle"
