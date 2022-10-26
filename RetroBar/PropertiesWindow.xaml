@@ -264,7 +264,7 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource multiple_monitors}">
+                    <GroupBox Header="{DynamicResource multiple_displays}">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbShowMultiMon"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
@@ -272,7 +272,7 @@
                             </CheckBox>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=MultiMonMode}">
+                                       Target="{Binding ElementName=cboMultiMonMode}">
                                     <AccessText Text="{DynamicResource show_tasks_on}" />
                                 </Label>
                                 <ComboBox Name="cboMultiMonMode"
@@ -300,23 +300,18 @@
                         </CheckBox>
                     </StackPanel>
                     <DockPanel Margin="0,10,0,0">
-                        <StackPanel Orientation="Vertical"
-                                    DockPanel.Dock="Left"
-                                    Margin="0,0,10,0"
-                                    VerticalAlignment="Center">
-                            <TextBlock Name="txtVersion" />
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical"
-                                    DockPanel.Dock="Right"
-                                    VerticalAlignment="Center">
-                            <TextBlock TextAlignment="Right">
-                                <Hyperlink NavigateUri="https://github.com/dremin/RetroBar" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Name="txtVersion"
+                                   DockPanel.Dock="Left"
+                                   Margin="0,0,10,0" />
+                        <TextBlock DockPanel.Dock="Right"
+                                   TextAlignment="Right">
+                                <Hyperlink NavigateUri="https://github.com/dremin/RetroBar"
+                                           RequestNavigate="Hyperlink_RequestNavigate">
                                     <Hyperlink.Inlines>
                                         <Run Text="{DynamicResource visit_on_github}" />
                                     </Hyperlink.Inlines>
                                 </Hyperlink>
-                            </TextBlock>
-                        </StackPanel>
+                        </TextBlock>
                     </DockPanel>
                 </StackPanel>
             </TabItem>

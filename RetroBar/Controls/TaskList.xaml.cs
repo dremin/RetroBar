@@ -74,7 +74,11 @@ namespace RetroBar.Controls
             if (!isLoaded && Tasks != null)
             {
                 taskbarItems = Tasks.CreateGroupedWindowsCollection();
-                taskbarItems.Filter = Tasks_Filter;
+                if (taskbarItems != null)
+                {
+                    taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
+                    taskbarItems.Filter = Tasks_Filter;
+                }
 
                 TasksList.ItemsSource = taskbarItems;
 
@@ -131,7 +135,10 @@ namespace RetroBar.Controls
 
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Tasks.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
+            if (taskbarItems != null)
+            {
+                taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
+            }
             isLoaded = false;
         }
 

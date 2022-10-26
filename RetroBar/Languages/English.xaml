@@ -29,7 +29,7 @@
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
-    <s:String x:Key="multiple_monitors">Multiple monitors</s:String>
+    <s:String x:Key="multiple_displays">Multiple displays</s:String>
     <s:String x:Key="show_tasks_on">S_how tasks on:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>All taskbars</s:String>
