@@ -8,6 +8,7 @@
         Icon="Resources/retrobar.ico"
         Height="Auto"
         Width="Auto"
+        MinWidth="413"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         FlowDirection="{DynamicResource flow_direction}"
@@ -189,10 +190,6 @@
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
                             </CheckBox>
-                            <CheckBox x:Name="cbShowMultiMon"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_multi_mon}" />
-                            </CheckBox>
                             <DockPanel>
                                 <CheckBox x:Name="cbShowQuickLaunch"
                                           IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
@@ -267,19 +264,60 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="RetroBar">
+                    <GroupBox Header="{DynamicResource multiple_monitors}">
                         <StackPanel Orientation="Vertical">
-                            <CheckBox Checked="AutoStartCheckBox_OnChecked"
-                                      Unchecked="AutoStartCheckBox_OnChecked"
-                                      Name="AutoStartCheckBox">
-                                <Label Content="{DynamicResource autostart}" />
+                            <CheckBox x:Name="cbShowMultiMon"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_multi_mon}" />
                             </CheckBox>
-                            <CheckBox x:Name="cbUseSoftwareRendering"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource use_software_rendering}" />
-                            </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=MultiMonMode}">
+                                    <AccessText Text="{DynamicResource show_tasks_on}" />
+                                </Label>
+                                <ComboBox Name="cboMultiMonMode"
+                                          IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{DynamicResource show_tasks_on_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectionChanged="cboMultiMonMode_SelectionChanged" />
+                            </DockPanel>
                         </StackPanel>
                     </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="RetroBar">
+                <StackPanel Orientation="Vertical"
+                            Margin="10">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Checked="AutoStartCheckBox_OnChecked"
+                                  Unchecked="AutoStartCheckBox_OnChecked"
+                                  Name="AutoStartCheckBox">
+                            <Label Content="{DynamicResource autostart}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbUseSoftwareRendering"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource use_software_rendering}" />
+                        </CheckBox>
+                    </StackPanel>
+                    <DockPanel Margin="0,10,0,0">
+                        <StackPanel Orientation="Vertical"
+                                    DockPanel.Dock="Left"
+                                    Margin="0,0,10,0"
+                                    VerticalAlignment="Center">
+                            <TextBlock Name="txtVersion" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    DockPanel.Dock="Right"
+                                    VerticalAlignment="Center">
+                            <TextBlock TextAlignment="Right">
+                                <Hyperlink NavigateUri="https://github.com/dremin/RetroBar" RequestNavigate="Hyperlink_RequestNavigate">
+                                    <Hyperlink.Inlines>
+                                        <Run Text="{DynamicResource visit_on_github}" />
+                                    </Hyperlink.Inlines>
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </DockPanel>
                 </StackPanel>
             </TabItem>
         </TabControl>

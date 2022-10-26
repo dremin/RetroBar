@@ -29,6 +29,15 @@
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
+    <s:String x:Key="multiple_monitors">Multiple monitors</s:String>
+    <s:String x:Key="show_tasks_on">S_how tasks on:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>All taskbars</s:String>
+        <s:String>Same taskbar as window</s:String>
+        <s:String>Same taskbar as window and primary taskbar</s:String>
+    </x:Array>
+    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="visit_on_github">Visit on GitHub</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>

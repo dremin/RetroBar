@@ -191,5 +191,17 @@ namespace RetroBar.Properties {
                 this["ShowTaskThumbnails"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MultiMonMode {
+            get {
+                return ((int)(this["MultiMonMode"]));
+            }
+            set {
+                this["MultiMonMode"] = value;
+            }
+        }
     }
 }

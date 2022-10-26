@@ -51,6 +51,7 @@ namespace RetroBar
             LoadAutoStart();
             LoadLanguages();
             LoadThemes();
+            LoadVersion();
         }
 
         public static PropertiesWindow Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
@@ -107,6 +108,11 @@ namespace RetroBar
             {
                 cboThemeSelect.Items.Add(theme);
             }
+        }
+
+        private void LoadVersion()
+        {
+            txtVersion.Text = string.Format((string)FindResource("version"), System.Windows.Forms.Application.ProductVersion);
         }
 
         private void UpdateWindowPosition()
@@ -200,6 +206,14 @@ namespace RetroBar
             }
         }
 
+        private void cboMultiMonMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboMultiMonMode.SelectedItem == null)
+            {
+                cboMultiMonMode.SelectedValue = cboMultiMonMode.Items[Settings.Instance.MultiMonMode];
+            }
+        }
+
         private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
         {
             OpenCustomizeNotifications();
@@ -208,6 +222,12 @@ namespace RetroBar
         public void OpenCustomizeNotifications()
         {
             NotificationPropertiesWindow.Open(_notificationArea, new Point(Left, Top));
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            ShellHelper.ExecuteProcess(e.Uri.AbsoluteUri);
+            e.Handled = true;
         }
     }
 }
