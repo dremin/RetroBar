@@ -248,6 +248,28 @@
                       Offset="1.0" />
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="TaskButtonThumbnailBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#61ffffff"
+                      Offset="0.0" />
+        <GradientStop Color="#7affffff"
+                      Offset="0.5" />
+        <GradientStop Color="#4fffffff"
+                      Offset="0.5" />
+        <GradientStop Color="#4fffffff"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskButtonThumbnailBorder" Color="#80191e1e" />
+    <SolidColorBrush x:Key="TaskButtonThumbnailInnerBorder" Color="#88ffffff" />
+    <SolidColorBrush x:Key="TaskButtonThumbnailThumbBorder" Color="#aa000000" />
+    <DropShadowEffect x:Key="TaskButtonThumbnailShadow"
+                      Color="Black"
+                      ShadowDepth="1"
+                      Direction="270"
+                      Opacity="1"
+                      BlurRadius="6" />
+
     <CornerRadius x:Key="TaskListScrollUpCornerRadius">0,0,2,2</CornerRadius>
     <CornerRadius x:Key="TaskListScrollDownCornerRadius">2,2,0,0</CornerRadius>
     <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0,2,2,0</CornerRadius>
@@ -700,6 +722,37 @@
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ContentControl"
+           x:Key="TaskButtonThumbnail">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderBrush="{DynamicResource TaskButtonThumbnailBorder}"
+                            BorderThickness="1"
+                            Background="{DynamicResource TaskButtonThumbnailBackground}"
+                            CornerRadius="4"
+                            Margin="4"
+                            Effect="{DynamicResource TaskButtonThumbnailShadow}">
+                        <Border BorderBrush="{DynamicResource TaskButtonThumbnailInnerBorder}"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                Padding="3">
+                            <Border BorderBrush="{DynamicResource TaskButtonThumbnailInnerBorder}"
+                                    BorderThickness="1"
+                                    CornerRadius="2">
+                                <Border BorderBrush="{DynamicResource TaskButtonThumbnailThumbBorder}"
+                                        BorderThickness="1"
+                                        CornerRadius="1">
+                                    <ContentPresenter />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
