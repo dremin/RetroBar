@@ -831,6 +831,24 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ContentControl"
+           x:Key="TaskButtonThumbnail">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderThickness="1"
+                            CornerRadius="4"
+                            BorderBrush="{DynamicResource ToolTipForeground}"
+                            Background="{DynamicResource ToolTipBackground}"
+                            Padding="4"
+                            Margin="4">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="TaskListScrollUpButton"
            TargetType="RepeatButton"
            BasedOn="{StaticResource TaskListScrollButton}">

@@ -301,6 +301,23 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ContentControl"
+           x:Key="TaskButtonThumbnail">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderThickness="1"
+                            BorderBrush="{DynamicResource ToolTipForeground}"
+                            Background="{DynamicResource ToolTipBackground}"
+                            Padding="4"
+                            Margin="4">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}"/>
 
     <Style TargetType="ToggleButton"
