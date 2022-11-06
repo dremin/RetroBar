@@ -107,7 +107,6 @@ namespace RetroBar
 
             ShellConfig config = ShellManager.DefaultShellConfig;
             config.PinnedNotifyIcons = Settings.Instance.PinnedNotifyIcons;
-            config.MultiMonAwareTasksService = false;
 
             return new ShellManager(config);
         }

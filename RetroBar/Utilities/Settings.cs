@@ -302,6 +302,26 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public int MultiMonMode
+        {
+            get
+            {
+                if (settings.MultiMonMode >= 0 && settings.MultiMonMode <= 2)
+                {
+                    return settings.MultiMonMode;
+                }
+
+                return 0;
+            }
+            set
+            {
+                if (settings.MultiMonMode != value && value >= 0 && value <= 2)
+                {
+                    settings.MultiMonMode = value;
+                }
+            }
+        }
         #endregion
 
         #region Helpers

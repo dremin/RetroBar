@@ -76,6 +76,7 @@
                 </StackPanel>
             </GroupBox>
             <controls:TaskList VerticalAlignment="Top"
+                               Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>
     </ContentControl>

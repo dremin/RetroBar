@@ -2,6 +2,7 @@
 using ManagedShell.WindowsTasks;
 using RetroBar.Utilities;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,7 +19,8 @@ namespace RetroBar.Controls
         private double MinButtonWidth;
         private double TaskButtonLeftMargin;
         private double TaskButtonRightMargin;
-        
+        private ICollectionView taskbarItems;
+
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register("ButtonWidth", typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
 
         public double ButtonWidth
@@ -33,6 +35,14 @@ namespace RetroBar.Controls
         {
             get { return (Tasks)GetValue(TasksProperty); }
             set { SetValue(TasksProperty, value); }
+        }
+
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(TaskList));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
         }
 
         public TaskList()
@@ -63,19 +73,72 @@ namespace RetroBar.Controls
         {
             if (!isLoaded && Tasks != null)
             {
-                TasksList.ItemsSource = Tasks.GroupedWindows;
-                if (Tasks.GroupedWindows != null)
-                    Tasks.GroupedWindows.CollectionChanged += GroupedWindows_CollectionChanged;
-                
+                taskbarItems = Tasks.CreateGroupedWindowsCollection();
+                if (taskbarItems != null)
+                {
+                    taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
+                    taskbarItems.Filter = Tasks_Filter;
+                }
+
+                TasksList.ItemsSource = taskbarItems;
+
+                Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
                 isLoaded = true;
             }
 
             SetStyles();
         }
 
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "MultiMonMode")
+            {
+                taskbarItems?.Refresh();
+            }
+            else if (e.PropertyName == "ShowMultiMon")
+            {
+                if (Settings.Instance.MultiMonMode != 0)
+                {
+                    taskbarItems?.Refresh();
+                }
+            }
+        }
+
+        private bool Tasks_Filter(object obj)
+        {
+            if (obj is ApplicationWindow window)
+            {
+                if (!window.ShowInTaskbar)
+                {
+                    return false;
+                }
+
+                if (!Settings.Instance.ShowMultiMon || Settings.Instance.MultiMonMode == 0)
+                {
+                    return true;
+                }
+
+                if (Settings.Instance.MultiMonMode == 2 && Host.Screen.Primary)
+                {
+                    return true;
+                }
+
+                if (window.HMonitor != Host.Screen.HMonitor)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void TaskList_OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Tasks.GroupedWindows.CollectionChanged -= GroupedWindows_CollectionChanged;
+            if (taskbarItems != null)
+            {
+                taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
+            }
             isLoaded = false;
         }
 
