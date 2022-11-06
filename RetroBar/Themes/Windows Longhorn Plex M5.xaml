@@ -385,7 +385,7 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" /-->
     <!--#endregion-->
 
-    <FontFamily x:Key="GlobalFontFamily">../Resources/Fonts/#Liberation Sans</FontFamily>
+    <FontFamily x:Key="GlobalFontFamily">Segoe UI</FontFamily>
     <system:Double x:Key="GlobalFontSize">11</system:Double>
 
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
@@ -697,6 +697,8 @@
                 Value="{DynamicResource ButtonForeground}" />
         <Setter Property="VerticalAlignment"
                 Value="Stretch" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -746,7 +748,7 @@
         <Setter Property="FontSize"
                 Value="14" />
         <Setter Property="FontWeight"
-                Value="Normal" />
+                Value="Medium"/>
         <Setter Property="Margin"
                 Value="0" />
         <Setter Property="Effect"
@@ -781,15 +783,15 @@
                      x:Key="ClockTemplateKey">
         <DockPanel LastChildFill="False">
             <TextBlock Style="{DynamicResource Clock}"
-                       FontSize="19"
+                       FontSize="16"
                        Text="{Binding Path=Now, StringFormat=%h, Mode=OneWay}"
                        x:Name="ClockHour" DockPanel.Dock="Left" />
             <TextBlock Style="{DynamicResource Clock2}"
-                       FontSize="10"
+                       FontSize="9"
                        Text="{Binding Path=Now, StringFormat=mm, Mode=OneWay}"
                        x:Name="ClockMinute" DockPanel.Dock="Top" />
             <TextBlock Style="{DynamicResource Clock2}"
-                       FontSize="10"
+                       FontSize="6"
                        Text="{Binding Path=Now, StringFormat=tt, Mode=OneWay}"
                        x:Name="ClockTT" DockPanel.Dock="Bottom" />
         </DockPanel>
