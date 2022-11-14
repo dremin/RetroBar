@@ -242,7 +242,14 @@ namespace RetroBar
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            ((App)Application.Current).ExitGracefully();
+            if (NativeMethods.GetAsyncKeyState((int)System.Windows.Forms.Keys.ShiftKey) < 0)
+            {
+                ((App)Application.Current).RestartApp();
+            }
+            else
+            {
+                ((App)Application.Current).ExitGracefully();
+            }
         }
 
         protected override void CustomClosing()

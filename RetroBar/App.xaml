@@ -4,7 +4,8 @@
              ShutdownMode="OnExplicitShutdown"
              Startup="App_OnStartup"
              Exit="App_OnExit"
-             SessionEnding="App_OnSessionEnding">
+             SessionEnding="App_OnSessionEnding"
+             DispatcherUnhandledException="App_DispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
