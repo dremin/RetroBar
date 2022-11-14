@@ -11,7 +11,6 @@ using RetroBar.Utilities;
 using Application = System.Windows.Application;
 using RetroBar.Controls;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace RetroBar
 {
