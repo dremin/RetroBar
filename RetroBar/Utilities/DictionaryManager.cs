@@ -129,10 +129,17 @@ namespace RetroBar.Utilities
                 }
             }
 
-            GetMergedDictionaries().Add(new ResourceDictionary()
+            try
             {
-                Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
-            });
+                GetMergedDictionaries().Add(new ResourceDictionary()
+                {
+                    Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
+                });
+            }
+            catch (Exception e)
+            {
+                ManagedShell.Common.Logging.ShellLogger.Error($"Error loading dictionaries: {e.Message} {e.InnerException?.Message}");
+            }
         }
 
         public List<string> GetThemes()
