@@ -27,7 +27,17 @@
     <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
     <s:String x:Key="select_location">选择位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
+    <s:String x:Key="show_window_previews">显示窗口预览（缩略图）(_W)</s:String>
     <s:String x:Key="use_software_rendering">使用软件渲染(_U)</s:String>
+    <s:String x:Key="multiple_displays">多种显示</s:String>
+    <s:String x:Key="show_tasks_on">显示任务在(_H)：</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>所有任务栏</s:String>
+        <s:String>与窗口的任务栏相同</s:String>
+        <s:String>与窗口和主任务栏相同的任务栏</s:String>
+    </x:Array>
+    <s:String x:Key="version">版本 {0}</s:String>
+    <s:String x:Key="visit_on_github">访问 GitHub 主页</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 	
     <s:String x:Key="customize_notifications">自定义通知</s:String>
