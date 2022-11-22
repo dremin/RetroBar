@@ -198,6 +198,11 @@ namespace RetroBar
             }
         }
 
+        private void cboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            LoadVersion();
+        }
+        
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboEdgeSelect.SelectedItem == null)
