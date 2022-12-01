@@ -15,9 +15,9 @@
     <s:String x:Key="location_tip">Promjenite poziciju programske trake.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Ljevo</s:String>
-        <s:String>Gore</s:String>
+        <s:String>Vrh</s:String>
         <s:String>Desno</s:String>
-        <s:String>Dolje</s:String>
+        <s:String>Dno</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="collapse_tray_icons">Skrati ikone područija obavjesti </s:String>
