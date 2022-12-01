@@ -6,7 +6,7 @@
     <s:String x:Key="taskbar_options">Opcije programske trake</s:String>
     <s:String x:Key="taskbar_appearance">Izgled programske trake</s:String>
     <s:String x:Key="notification_area">Područje obavjesti</s:String>
-    <s:String x:Key="autostart">Automatski pokrenuti na početku</s:String>
+    <s:String x:Key="autostart">Automatski pokrenuti na _početku</s:String>
     <s:String x:Key="language_text">jez_ik:</s:String>
     <s:String x:Key="language_tip">Odaberi jezik za korištenje.</s:String>
     <s:String x:Key="theme_text">_Teme:</s:String>
