@@ -6,13 +6,13 @@
     <s:String x:Key="taskbar_options">Opcije programske trake</s:String>
     <s:String x:Key="taskbar_appearance">Izgled programske trake</s:String>
     <s:String x:Key="notification_area">Područje obavjesti</s:String>
-    <s:String x:Key="autostart">Automatski pokrenuti na _početku</s:String>
-    <s:String x:Key="language_text">jez_ik:</s:String>
+    <s:String x:Key="autostart">Automatski pokrenuti na_početku</s:String>
+    <s:String x:Key="language_text">Jez_ik:</s:String>
     <s:String x:Key="language_tip">Odaberi jezik za korištenje.</s:String>
     <s:String x:Key="theme_text">_Teme:</s:String>
     <s:String x:Key="theme_tip">Instaliraj teme u datoteki za teme.</s:String>
-    <s:String x:Key="location_text">Lokaci_ja:</s:String>
-    <s:String x:Key="location_tip">Promjenite poziciju programske trake.</s:String>
+    <s:String x:Key="location_text">_Mjesto:</s:String>
+    <s:String x:Key="location_tip">Promjenite mjesto programske trake.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Ljevo</s:String>
         <s:String>Vrh</s:String>
@@ -22,9 +22,9 @@
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="collapse_tray_icons">Skrati ikone područija obavjesti </s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
-    <s:String x:Key="show_clock">Prikaži _sat</s:String>
-    <s:String x:Key="show_multi_mon">Prikaži na _više zaslona</s:String>
-    <s:String x:Key="show_quick_launch">Prikaži _brzo pokretanje</s:String>
+    <s:String x:Key="show_clock">Prikaži  _sat</s:String>
+    <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
+    <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
@@ -38,8 +38,8 @@
     <s:String x:Key="name_heading">Ime</s:String>
     <s:String x:Key="behavior_heading">Ponašanje</s:String>
 
-    <s:String x:Key="start_text">Početak</s:String>
-    <s:String x:Key="start_text_xp">Početak</s:String>
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
     <s:String x:Key="start_button_tip_98">Pritisnite ovdje za početak.</s:String>
     <s:String x:Key="start_button_tip">Pritisnite ovdje za početak</s:String>
     <s:String x:Key="start_button_tip_vista">Početak</s:String>
@@ -48,7 +48,7 @@
     <s:String x:Key="toolbars">_Alatne take</s:String>
     <s:String x:Key="quick_launch">_Brzo pokretanje</s:String>
     <s:String x:Key="new_toolbar">_Nove alatne trake...</s:String>
-    <s:String x:Key="show_taskman_2k">uparvite_lj zadataka...</s:String>
+    <s:String x:Key="show_taskman_2k">Uparvite_lj zadataka...</s:String>
     <s:String x:Key="show_taskman">uparvite_lj zadataka</s:String>
     <s:String x:Key="tray_properties">S_vojstava</s:String>
     <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
@@ -69,7 +69,7 @@
 
     <s:String x:Key="open_folder">&amp;Orvori Datoteku</s:String>
 
-    <FlowDirection x:Key="flow_direction">S lijeva nadesno</FlowDirection>
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
 
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
