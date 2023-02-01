@@ -242,7 +242,7 @@ namespace RetroBar.Utilities
                 }
             }
         }
-		
+
         public bool MiddleMouseToClose
         {
             get
