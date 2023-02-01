@@ -25,6 +25,7 @@
     <s:String x:Key="select_location">_Changer de dossier...</s:String>
     <s:String x:Key="quick_launch_folder">Lancement rapide - Choisir un dossier</s:String>
     <s:String x:Key="use_software_rendering">_Utiliser le rendu logiciel</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Le clic du milieu de la souris ferme les éléments de la barre des tâches</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Démarrer</s:String>

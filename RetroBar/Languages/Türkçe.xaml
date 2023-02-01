@@ -29,6 +29,7 @@
     <s:String x:Key="quick_launch_folder">Hızlı Başlat - Bir klasör seç</s:String>
     <s:String x:Key="show_window_previews">_Pencere önizlemelerini (önizleme görseli) göster</s:String>
     <s:String x:Key="use_software_rendering">Y_azılım ile işleme kullan</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Orta fare tıklaması, görev çubuğu öğelerini kapatır</s:String>
     <s:String x:Key="multiple_displays">Birden çok ekran</s:String>
     <s:String x:Key="show_tasks_on">Görev düğmelerini _şurada göster:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">

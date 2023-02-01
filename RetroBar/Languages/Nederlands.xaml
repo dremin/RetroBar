@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">_Selecteer locatie...</s:String>
     <s:String x:Key="quick_launch_folder">Snel starten - Kies een map</s:String>
     <s:String x:Key="use_software_rendering">_Gebruik software rendering</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Middelste muisklik sluit taakbalkitems</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>

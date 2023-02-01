@@ -25,6 +25,7 @@
     <s:String x:Key="select_location">_בחירת מיקום...</s:String>
     <s:String x:Key="quick_launch_folder">הפעלה מהירה - בחירת תיקיה</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
+		<s:String x:Key="middle_mouse_to_close">_לחיצה אמצעית סוגרת פריטים בשורת המשימות</s:String>
     <s:String x:Key="ok_dialog">אישור</s:String>
 
     <s:String x:Key="start_text">התחל</s:String>

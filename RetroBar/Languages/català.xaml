@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">_Tria ubicació...</s:String>
     <s:String x:Key="quick_launch_folder">Inici ràpid: tria una carpeta</s:String>
     <s:String x:Key="use_software_rendering">Utilitza _processament per programari</s:String>
+	<s:String x:Key="middle_mouse_to_close">El clic del mig tanca els elements de la barra de tasques</s:String>
     <s:String x:Key="ok_dialog">D'acord</s:String>
 
     <s:String x:Key="customize_notifications">Personalització de notificacions</s:String>

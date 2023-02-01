@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
     <s:String x:Key="use_software_rendering">Usar procesamiento por soft_ware</s:String>
+	<s:String x:Key="middle_mouse_to_close">_El clic central del mouse cierra los elementos de la barra de tareas</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>

@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Middle mouse click to close Taskbar Items</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customise Notifications</s:String>

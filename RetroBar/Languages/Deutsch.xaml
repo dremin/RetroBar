@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">Ort auswählen...</s:String>
     <s:String x:Key="quick_launch_folder">Schnellstart - Wähle ein Ordner</s:String>
     <s:String x:Key="use_software_rendering">Nutze Software Darstellung</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Mittlerer Mausklick schließt Taskleistenelemente</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>

@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">_Επιλογή τοποθεσίας...</s:String>
     <s:String x:Key="quick_launch_folder">Γρήγορη Εκκίνηση - Επιλέξτε έναν φάκελο</s:String>
     <s:String x:Key="use_software_rendering">_Χρήση απόδοσης λογισμικού</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Το μεσαίο κλικ του ποντικιού κλείνει τα στοιχεία της γραμμής εργασιών</s:String>
     <s:String x:Key="ok_dialog">ΟΚ</s:String>
 
     <s:String x:Key="customize_notifications">Προσαρμογή ειδοποιήσεων</s:String>

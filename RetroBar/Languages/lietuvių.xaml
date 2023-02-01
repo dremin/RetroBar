@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">_Pasirinkti vietą...</s:String>
     <s:String x:Key="quick_launch_folder">Greitas paleidimas - Pasirinkite aplanką</s:String>
     <s:String x:Key="use_software_rendering">_Naudoti programos vaizdavimą</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Vidurinis pelės paspaudimas uždaro užduočių juostos elementus</s:String>
     <s:String x:Key="ok_dialog">Gerai</s:String>
 
     <s:String x:Key="customize_notifications">Priminimų tvarkymas</s:String>

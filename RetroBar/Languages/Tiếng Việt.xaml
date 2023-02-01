@@ -29,6 +29,7 @@
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
     <s:String x:Key="show_window_previews">Hiện hình xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
     <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Nhấp chuột giữa đóng các mục trên thanh tác vụ</s:String>
     <s:String x:Key="multiple_displays">Đa màn hình</s:String>
     <s:String x:Key="show_tasks_on">_Hiện các tác vụ trên:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">

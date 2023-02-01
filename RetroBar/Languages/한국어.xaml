@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">대상 찾기(_F)...</s:String>
     <s:String x:Key="quick_launch_folder">빠른 실행 지정할 폴더 선택</s:String>
     <s:String x:Key="use_software_rendering">소프트웨어 렌더링 사용(_R)</s:String>
+		<s:String x:Key="middle_mouse_to_close">_가운데 클릭은 작업 표시줄 항목을 닫습니다.</s:String>
     <s:String x:Key="ok_dialog">확인</s:String>
 
     <s:String x:Key="customize_notifications">알림 사용자 지정</s:String>

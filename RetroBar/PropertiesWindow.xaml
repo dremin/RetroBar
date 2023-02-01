@@ -299,6 +299,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource use_software_rendering}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbMiddleMouseToClose"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=MiddleMouseToClose, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource middle_mouse_to_close}" />
+                        </CheckBox>
                     </StackPanel>
                     <DockPanel Margin="0,10,0,0">
                         <TextBlock Name="txtVersion"

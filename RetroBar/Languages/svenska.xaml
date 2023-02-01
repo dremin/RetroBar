@@ -28,6 +28,7 @@
     <s:String x:Key="select_location">Väl_j plats...</s:String>
     <s:String x:Key="quick_launch_folder">Snabbstart - Välj en mapp</s:String>
     <s:String x:Key="use_software_rendering">Använd mj_ukvarurendering</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Klicka på mitten av musen stänger objekt i aktivitetsfältet</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Anpassa meddelanden</s:String>
