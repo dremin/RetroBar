@@ -80,6 +80,8 @@
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
+    
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+
+    <s:String x:Key="middle_mouse_to_close">_Middle mouse click to close Taskbar Items</s:String>
 </ResourceDictionary>

@@ -154,6 +154,19 @@ namespace RetroBar.Properties {
                 this["UseSoftwareRendering"] = value;
             }
         }
+		
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MiddleMouseToClose
+        {
+            get {
+                return ((bool)(this["MiddleMouseToClose"]));
+            }
+            set {
+                this["MiddleMouseToClose"] = value;
+            }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
