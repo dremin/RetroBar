@@ -28,7 +28,6 @@
     <s:String x:Key="select_location">_Избери местоположение...</s:String>
     <s:String x:Key="quick_launch_folder">Бърз достъп - избери папка</s:String>
     <s:String x:Key="use_software_rendering">Използвай _софтуерен рендъринг</s:String>
-	<s:String x:Key="middle_mouse_to_close">_Средното щракване затваря елементи от лентата на задачите</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Персонализирай известията</s:String>

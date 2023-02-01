@@ -25,7 +25,6 @@
     <s:String x:Key="select_location">位置を選択(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">クイック起動 - フォルダーを選択</s:String>
     <s:String x:Key="use_software_rendering">ソフトウェアレンダリングを使用(_U)</s:String>
-	<s:String x:Key="middle_mouse_to_close">中クリックでタスクバー項目を閉じる</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">スタート</s:String>

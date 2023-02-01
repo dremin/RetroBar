@@ -28,7 +28,6 @@
     <s:String x:Key="select_location">_Pilih tempat...</s:String>
     <s:String x:Key="quick_launch_folder">Lancar Segera - Pilih lipatan</s:String>
     <s:String x:Key="use_software_rendering">_Gunakan terapan dari perisian (software render)</s:String>
-	<s:String x:Key="middle_mouse_to_close">_Klik tengah tetikus menutup item bar tugas</s:String>
     <s:String x:Key="ok_dialog">Okey</s:String>
 
     <s:String x:Key="customize_notifications">Ubahsuai Pemberitahuan</s:String>

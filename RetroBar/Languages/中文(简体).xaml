@@ -29,7 +29,6 @@
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
     <s:String x:Key="show_window_previews">显示窗口预览（缩略图）(_W)</s:String>
     <s:String x:Key="use_software_rendering">使用软件渲染(_U)</s:String>
-	<s:String x:Key="middle_mouse_to_close">_中键单击关闭任务栏项目</s:String>
     <s:String x:Key="multiple_displays">多种显示</s:String>
     <s:String x:Key="show_tasks_on">显示任务在(_H)：</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">

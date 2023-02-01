@@ -28,7 +28,6 @@
     <s:String x:Key="select_location">選擇位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速啟動 - 選擇一個資料夾</s:String>
     <s:String x:Key="use_software_rendering">使用軟體渲染(_U)</s:String>
-	<s:String x:Key="middle_mouse_to_close">_中鍵單擊關閉任務欄項目</s:String>
     <s:String x:Key="ok_dialog">確定</s:String>
 	
     <s:String x:Key="customize_notifications">自訂通知</s:String>

@@ -25,7 +25,6 @@
     <s:String x:Key="select_location">_اختيار الموقع...</s:String>
     <s:String x:Key="quick_launch_folder">بداية سريعة - اختيار المجلد</s:String>
     <s:String x:Key="use_software_rendering">_استخدام عرض البرامج</s:String>
-	<s:String x:Key="middle_mouse_to_close">_النقر الأوسط يغلق عناصر شريط المهام</s:String>
     <s:String x:Key="ok_dialog">طيب</s:String>
 
     <s:String x:Key="start_text">ابدأ</s:String>

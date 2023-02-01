@@ -28,7 +28,6 @@
     <s:String x:Key="select_location">Pilih lokasi...</s:String>
     <s:String x:Key="quick_launch_folder">Luncur Cepat - Pilih folder</s:String>
     <s:String x:Key="use_software_rendering">Gunakan perenderan perangkat l_unak</s:String>
-	<s:String x:Key="middle_mouse_to_close">_Klik tengah mouse menutup Item Taskbar</s:String>
     <s:String x:Key="ok_dialog">Oke</s:String>
 
     <s:String x:Key="customize_notifications">Sesuaikan notifikasi</s:String>

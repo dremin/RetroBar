@@ -28,7 +28,6 @@
     <s:String x:Key="select_location">_Selectați o locație...</s:String>
     <s:String x:Key="quick_launch_folder">Meniul de Lansare Rapidă - Selectează un dosar</s:String>
     <s:String x:Key="use_software_rendering">_Folosiți software rendering</s:String>
-	<s:String x:Key="middle_mouse_to_close">_Clic din mijloc al mouse-ului închide elementele din bara de activități</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizați Notificările</s:String>

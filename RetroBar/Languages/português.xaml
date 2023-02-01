@@ -28,7 +28,6 @@
     <s:String x:Key="select_location">_Selecionar local...</s:String>
     <s:String x:Key="quick_launch_folder">Inicialização rápida - Escolha uma pasta</s:String>
     <s:String x:Key="use_software_rendering">_Usar renderização de software</s:String>
-	<s:String x:Key="middle_mouse_to_close">_O clique do meio do mouse fecha os itens da barra de tarefas</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificações</s:String>

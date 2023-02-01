@@ -25,7 +25,6 @@
     <s:String x:Key="select_location">Hely ki_választása...</s:String>
     <s:String x:Key="quick_launch_folder">Gyorsindítás – Válasszon ki egy mappát</s:String>
     <s:String x:Key="use_software_rendering">Használjon _szoftveres megjelenítést</s:String>
-	<s:String x:Key="middle_mouse_to_close">_A középső egérkattintás bezárja a tálca elemeit</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="start_text">Start</s:String>

@@ -29,7 +29,6 @@
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
     <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena sličica)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
-	<s:String x:Key="middle_mouse_to_close">_Srednji klik miša zatvara stavke programske trake</s:String>
     <s:String x:Key="multiple_displays">Više zaslona</s:String>
     <s:String x:Key="show_tasks_on">P_rikaži zadatke na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
