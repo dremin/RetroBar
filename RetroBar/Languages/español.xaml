@@ -27,7 +27,17 @@
     <s:String x:Key="show_quick_launch">Mostrar inicio rápi_do</s:String>
     <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
+    <s:String x:Key="show_window_previews">Mostrar _vistas previas de las ventanas (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">Usar procesamiento por soft_ware</s:String>
+    <s:String x:Key="multiple_displays">Varias pantallas</s:String>
+    <s:String x:Key="show_tasks_on">Mostrar _tareas en:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Todas las barras de tareas</s:String>
+        <s:String>La misma barra de tareas que la ventana</s:String>
+        <s:String>La misma barra de tareas que la ventana y la barra de tareas principal</s:String>
+    </x:Array>
+    <s:String x:Key="version">Versión {0}</s:String>
+    <s:String x:Key="visit_on_github">GitHub</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
@@ -68,4 +78,6 @@
     <s:String x:Key="set_time">Ajustar _fecha y hora</s:String>
 
     <s:String x:Key="open_folder">&amp;Abrir carpeta</s:String>
+
+    <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central del mouse</s:String>
 </ResourceDictionary>
