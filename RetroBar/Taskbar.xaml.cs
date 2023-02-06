@@ -72,7 +72,7 @@ namespace RetroBar
 
             if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
                     msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
-                Settings.Instance.Theme == DictionaryManager.THEME_DEFAULT)
+                Settings.Instance.Theme.StartsWith(DictionaryManager.THEME_DEFAULT))
             {
                 handled = true;
 
