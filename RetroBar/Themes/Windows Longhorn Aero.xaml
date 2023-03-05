@@ -1093,11 +1093,11 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource ItemButtonForeground}" />
         <Setter Property="Margin"
-                Value="0,0,5,0" />
+                Value="0,0,3,0" />
         <Setter Property="Width"
                 Value="78" />
         <Setter Property="Height"
-                Value="29" />
+                Value="30" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
         <Setter Property="FocusVisualStyle"
@@ -1349,7 +1349,7 @@
            TargetType="ScrollViewer"
            BasedOn="{StaticResource TaskListScrollViewer}">
         <Setter Property="Margin"
-                Value="0,0,10,0" />
+                Value="2,0,10,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
