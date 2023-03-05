@@ -81,7 +81,7 @@
 
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
 
-    <FontFamily x:Key="start_text_xp_font_family">Франклин Gothic</FontFamily>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
     
     <s:String x:Key="middle_mouse_to_close">_Средњи клик да затворите ставке на траци задатака</s:String>
 </ResourceDictionary>
