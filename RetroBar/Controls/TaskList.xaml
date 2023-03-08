@@ -25,7 +25,7 @@
                       dd:DragDrop.DragDropContext="TaskList">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel>
+                    <WrapPanel Style="{DynamicResource TaskListWrapPanel}">
                         <WrapPanel.Orientation>
                             <Binding Converter="{StaticResource orientationConverter}"
                                      Path="Orientation"
