@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">Svojstva RetroBar</s:String>
     <s:String x:Key="taskbar_options">Opcije programske trake</s:String>
+	<s:String x:Key="advanced">Napredne postavke</s:String>
     <s:String x:Key="taskbar_appearance">Izgled programske trake</s:String>
     <s:String x:Key="notification_area">Područje obavjesti</s:String>
     <s:String x:Key="autostart">Automatski pokrenuti na_početku</s:String>
@@ -29,6 +30,7 @@
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
     <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena sličica)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
+	<s:String x:Key="middle_mouse_to_close">_Pritisak na srednju tipku miša zatvara stavke programske trake.</s:String>
     <s:String x:Key="multiple_displays">Više zaslona</s:String>
     <s:String x:Key="show_tasks_on">P_rikaži zadatke na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -79,7 +81,7 @@
 
     <s:String x:Key="open_folder">&amp;Orvori Datoteku</s:String>
 
+    <!-- Stavke ispod su postavke, i trebale bi uvjek biti u Engleskom -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
