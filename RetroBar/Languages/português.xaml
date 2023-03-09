@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">Propriedades da RetroBar</s:String>
     <s:String x:Key="taskbar_options">Barra de tarefas</s:String>
+    <s:String x:Key="advanced">Avançado</s:String>
     <s:String x:Key="taskbar_appearance">Aparência da barra de tarefas</s:String>
     <s:String x:Key="notification_area">Área de notificação</s:String>
     <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>
@@ -23,11 +24,22 @@
     <s:String x:Key="collapse_tray_icons">Ocultar ícones _inativos</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
     <s:String x:Key="show_clock">Mostrar o _relógio</s:String>
-    <s:String x:Key="show_multi_mon">Mostrar em vários _monitores</s:String>
+    <s:String x:Key="show_multi_mon">Mostrar em _vários monitores</s:String>
     <s:String x:Key="show_quick_launch">Mostrar barra 'Iniciali_zação rápida'</s:String>
-    <s:String x:Key="select_location">_Selecionar local...</s:String>
+    <s:String x:Key="select_location">S_elecionar local...</s:String>
     <s:String x:Key="quick_launch_folder">Inicialização rápida - Escolha uma pasta</s:String>
+    <s:String x:Key="show_window_previews">Mo_strar visualizações de janela (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">_Usar renderização de software</s:String>
+    <s:String x:Key="middle_mouse_to_close">Fechar itens da barra de tarefas ao clicar com o botão do _meio do mouse</s:String>
+    <s:String x:Key="multiple_displays">Vários monitores</s:String>
+    <s:String x:Key="show_tasks_on">Mostrar tare_fas em:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Todas as barras de tarefas</s:String>
+        <s:String>Mesma barra de tarefas que a janela</s:String>
+        <s:String>Mesma barra de tarefas que a janela e barra de tarefas principal</s:String>
+    </x:Array>
+    <s:String x:Key="version">Versão {0}</s:String>
+    <s:String x:Key="visit_on_github">Visitar no GitHub</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificações</s:String>
