@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
     <s:String x:Key="taskbar_options">Taskbar Options</s:String>
+    <s:String x:Key="advanced">Advanced</s:String>
     <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
     <s:String x:Key="notification_area">Notification area</s:String>
     <s:String x:Key="autostart">Automatically start at _logon</s:String>
@@ -29,6 +30,7 @@
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Middle-click to close taskbar items</s:String>
     <s:String x:Key="multiple_displays">Multiple displays</s:String>
     <s:String x:Key="show_tasks_on">S_how tasks on:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -79,7 +81,7 @@
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 
+    <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

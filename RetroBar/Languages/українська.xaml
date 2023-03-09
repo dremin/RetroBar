@@ -1,0 +1,87 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Властивості RetroBar</s:String>
+    <s:String x:Key="taskbar_options">Налаштування Панелі Завдань</s:String>
+    <s:String x:Key="taskbar_appearance">Вигляд панелі завдань</s:String>
+    <s:String x:Key="notification_area">Панель сповіщень</s:String>
+    <s:String x:Key="autostart">Автоматично запускатися при вході</s:String>
+    <s:String x:Key="language_text">Мова:</s:String>
+    <s:String x:Key="language_tip">Виберіть мову для використання.</s:String>
+    <s:String x:Key="theme_text">Тема П/З:</s:String>
+    <s:String x:Key="theme_tip">Встановлюйте теми в теку "Themes".</s:String>
+    <s:String x:Key="location_text">Розташування:</s:String>
+    <s:String x:Key="location_tip">Змінює розташування п/з на екрані.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Зліва</s:String>
+        <s:String>Зверху</s:String>
+        <s:String>Справа</s:String>
+        <s:String>Внизу</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Згладжування шрифту</s:String>
+    <s:String x:Key="collapse_tray_icons">Згорнути іконки панелі сповіщень</s:String>
+    <s:String x:Key="customize">Змінити...</s:String>
+    <s:String x:Key="show_clock">Показати годинник</s:String>
+    <s:String x:Key="show_multi_mon">Показати на усіх дисплеях</s:String>
+    <s:String x:Key="show_quick_launch">Показати ікони швидкого запуску</s:String>
+    <s:String x:Key="select_location">Вибрати іншу теку...</s:String>
+    <s:String x:Key="quick_launch_folder">Швидкий запуск - Виберіть теку</s:String>
+    <s:String x:Key="show_window_previews">Показувати попередній перегляд вікон</s:String>
+    <s:String x:Key="use_software_rendering">Вимк. апаратне оброблення</s:String>
+    <s:String x:Key="multiple_displays">Дисплеї</s:String>
+    <s:String x:Key="show_tasks_on">Показувати активні програми:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Усі панелі</s:String>
+        <s:String>Та сама панель, що й у вікні</s:String>
+        <s:String>Та сама панель, що й у вікні та основній панелі</s:String>
+    </x:Array>
+    <s:String x:Key="version">Версія {0}</s:String>
+    <s:String x:Key="visit_on_github">Сторінка програми в GitHub</s:String>
+    <s:String x:Key="ok_dialog">ОК</s:String>
+
+    <s:String x:Key="customize_notifications">Налаштування Панелі Сповіщень</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar показує іконки сповіщень та фонових програм і ховає неактивні. Ви можете змінити поведінку показу в списку нижче.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Вибери іконку та вибери поведінку сповіщення:</s:String>
+    <s:String x:Key="hide_when_inactive">Ховати коли неактивне</s:String>
+    <s:String x:Key="always_show">Завжди показувати</s:String>
+    <s:String x:Key="name_heading">Назва</s:String>
+    <s:String x:Key="behavior_heading">Поведінка</s:String>
+
+    <s:String x:Key="start_text">Пуск</s:String>
+    <s:String x:Key="start_text_xp">Пуск</s:String>
+    <s:String x:Key="start_button_tip_98">Нажміть цю кнопку, щоб почати взаємодіяти з комп'ютером.</s:String>
+    <s:String x:Key="start_button_tip">Нажміть цю кнопку, щоб почати взаємодіяти з комп'ютером.</s:String>
+    <s:String x:Key="start_button_tip_vista">Пуск</s:String>
+
+    <s:String x:Key="retrobar_title">Панель Завдань RetroBar</s:String>
+    <s:String x:Key="toolbars">Панелі інструментів</s:String>
+    <s:String x:Key="quick_launch">Швидкий Запуск</s:String>
+    <s:String x:Key="new_toolbar">Нова панель інструментів...</s:String>
+    <s:String x:Key="show_taskman_2k">Диспетчер завдань...</s:String>
+    <s:String x:Key="show_taskman">Диспетчер завдань</s:String>
+    <s:String x:Key="tray_properties">Властивості</s:String>
+    <s:String x:Key="update_available">Доступне оновлення...</s:String>
+    <s:String x:Key="exit_retrobar">Вийти з RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">Налаштувати панель сповіщень...</s:String>
+
+    <s:String x:Key="restore">Відновити</s:String>
+    <s:String x:Key="move">Перемістити</s:String>
+    <s:String x:Key="size">Змінити розмір</s:String>
+    <s:String x:Key="minimize">Сховати</s:String>
+    <s:String x:Key="maximize">Показати</s:String>
+    <s:String x:Key="close">Закрити</s:String>
+
+    <s:String x:Key="show_hidden">Показати заховані ікони</s:String>
+    <s:String x:Key="hide">Сховати</s:String>
+
+    <s:String x:Key="set_time">Налаштувати Дату та Час</s:String>
+
+    <s:String x:Key="open_folder">&amp;Відкрити Теку</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+
+    <s:String x:Key="middle_mouse_to_close">[КОЛЕСО МИШІ], щоб закрити програму в панелі завдань</s:String>
+</ResourceDictionary>

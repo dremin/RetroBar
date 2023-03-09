@@ -420,6 +420,8 @@
 
     <Style x:Key="TaskListScrollViewer"
            TargetType="ScrollViewer">
+        <Setter Property="Margin"
+                Value="2,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -459,6 +461,8 @@
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -499,6 +503,10 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="TaskListWrapPanel"
+           TargetType="WrapPanel">
+    </Style>
+
     <Style x:Key="ClassicFocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -521,8 +529,6 @@
                 Value="{DynamicResource ButtonFace}" />
         <Setter Property="Foreground"
                 Value="{DynamicResource ButtonForeground}" />
-        <Setter Property="Margin"
-                Value="0,0,2,0" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
         <Setter Property="FocusVisualStyle"
@@ -593,15 +599,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                         Value="Vertical">
-                <DataTrigger.Setters>
-                    <Setter Property="Margin"
-                            Value="0" />
-                </DataTrigger.Setters>
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="Image"
@@ -765,7 +762,7 @@
         <Setter Property="HorizontalAlignment"
                 Value="Stretch" />
         <Setter Property="Margin"
-                Value="0,0,4,0" />
+                Value="2,0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">

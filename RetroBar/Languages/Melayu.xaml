@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Hartabenda Retrobar</s:String>
+    <s:String x:Key="taskbar_options">Pilihan Lintangan Tugasan</s:String>
+    <s:String x:Key="taskbar_appearance">Paparan Lintangan Tugasan</s:String>
+    <s:String x:Key="notification_area">Bahagian Pemberitahuan</s:String>
+    <s:String x:Key="autostart">Buka secara automatik semasa _log masuk</s:String>
+    <s:String x:Key="language_text">Baha_sa:</s:String>
+    <s:String x:Key="language_tip">Pilih bahasa untuk diguna.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Pasangkan tema di lipatan Tema.</s:String>
+    <s:String x:Key="location_text">Tem_pat:</s:String>
+    <s:String x:Key="location_tip">Tukar kedudukan lintangan tugasan di paparan.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Kiri</s:String>
+        <s:String>Atas</s:String>
+        <s:String>Kanan</s:String>
+        <s:String>Bawah</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Benarkan kelicinan fon</s:String>
+    <s:String x:Key="collapse_tray_icons">Jatuhkan kawasan ikon _pemberitahuan </s:String>
+    <s:String x:Key="customize">Ubahsua_i...</s:String>
+    <s:String x:Key="show_clock">Paparkan _jam</s:String>
+    <s:String x:Key="show_multi_mon">Paparkan pada paparan yang _berbilang</s:String>
+    <s:String x:Key="show_quick_launch">Paparkan lancar _segera</s:String>
+    <s:String x:Key="select_location">_Pilih tempat...</s:String>
+    <s:String x:Key="quick_launch_folder">Lancar Segera - Pilih lipatan</s:String>
+    <s:String x:Key="use_software_rendering">_Gunakan terapan dari perisian (software render)</s:String>
+    <s:String x:Key="ok_dialog">Okey</s:String>
+
+    <s:String x:Key="customize_notifications">Ubahsuai Pemberitahuan</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar memaparkan ikon untuk pemberitahuan yang aktif dan penting, dan sembunyikan yang tidak aktif. Anda juga boleh menetapkan keadaan ini untuk perkara yang disenaraikan dibawah.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Pilih perkara, dan pilih keadaan pemberitahuan:</s:String>
+    <s:String x:Key="hide_when_inactive">Sembunyikan jika tidak aktif</s:String>
+    <s:String x:Key="always_show">Paparkan sentiasa</s:String>
+    <s:String x:Key="name_heading">Nama</s:String>
+    <s:String x:Key="behavior_heading">Keadaan</s:String>
+
+    <s:String x:Key="start_text">Mula</s:String>
+    <s:String x:Key="start_text_xp">mula</s:String>
+    <s:String x:Key="start_button_tip_98">Ketik disini untuk mula.</s:String>
+    <s:String x:Key="start_button_tip">Ketik disini untuk mula</s:String>
+    <s:String x:Key="start_button_tip_vista">Mula</s:String>
+
+    <s:String x:Key="retrobar_title">Lintangan Tugasan RetroBar</s:String>
+    <s:String x:Key="toolbars">_Lintangan Peralatan</s:String>
+    <s:String x:Key="quick_launch">_Lancar Segera</s:String>
+    <s:String x:Key="new_toolbar">_Lintangan Peralatan Baru...</s:String>
+    <s:String x:Key="show_taskman_2k">Pengurus _Tugasan...</s:String>
+    <s:String x:Key="show_taskman">Pengurus _Tugasan</s:String>
+    <s:String x:Key="tray_properties">Hartab_enda</s:String>
+    <s:String x:Key="update_available">_Pengemaskini tersedia...</s:String>
+    <s:String x:Key="exit_retrobar">_Keluarkan RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Ubahsuai Pemberitahuan...</s:String>
+
+    <s:String x:Key="restore">_Kembalikan Semula</s:String>
+    <s:String x:Key="move">_Gerakkan</s:String>
+    <s:String x:Key="size">_Saiz</s:String>
+    <s:String x:Key="minimize">_Turunkan</s:String>
+    <s:String x:Key="maximize">_Naikkan</s:String>
+    <s:String x:Key="close">_Tutup</s:String>
+
+    <s:String x:Key="show_hidden">Paparkan ikon tersembunyi</s:String>
+    <s:String x:Key="hide">Sembunyi</s:String>
+
+    <s:String x:Key="set_time">_Ubahkan Tarikh/Masa</s:String>
+
+    <s:String x:Key="open_folder">&amp;Buka Lipatan</s:String>
+
+    <FlowDirection x:Key="flow_direction">KiriKeKanan</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>

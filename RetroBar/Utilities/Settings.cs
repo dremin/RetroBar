@@ -243,6 +243,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool MiddleMouseToClose
+        {
+            get
+            {
+                return settings.MiddleMouseToClose;
+            }
+            set
+            {
+                if (settings.MiddleMouseToClose != value)
+                {
+                    settings.MiddleMouseToClose = value;
+                }
+            }
+        }
+
         public int Edge
         {
             get

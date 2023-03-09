@@ -165,7 +165,8 @@
                                                 ToolTip="{DynamicResource language_tip}" />
                                 </Label>
                                 <ComboBox Name="cboLanguageSelect"
-                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
+                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectionChanged="cboLanguageSelect_SelectionChanged" />
                             </DockPanel>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
@@ -264,6 +265,27 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{DynamicResource advanced}">
+                <StackPanel Orientation="Vertical"
+                            Margin="10">
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,0,0,10">
+                        <CheckBox Checked="AutoStartCheckBox_OnChecked"
+                                  Unchecked="AutoStartCheckBox_OnChecked"
+                                  Name="AutoStartCheckBox">
+                            <Label Content="{DynamicResource autostart}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbMiddleMouseToClose"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=MiddleMouseToClose, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource middle_mouse_to_close}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbUseSoftwareRendering"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource use_software_rendering}" />
+                        </CheckBox>
+                    </StackPanel>
                     <GroupBox Header="{DynamicResource multiple_displays}">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbShowMultiMon"
@@ -283,22 +305,6 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="RetroBar">
-                <StackPanel Orientation="Vertical"
-                            Margin="10">
-                    <StackPanel Orientation="Vertical">
-                        <CheckBox Checked="AutoStartCheckBox_OnChecked"
-                                  Unchecked="AutoStartCheckBox_OnChecked"
-                                  Name="AutoStartCheckBox">
-                            <Label Content="{DynamicResource autostart}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbUseSoftwareRendering"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource use_software_rendering}" />
-                        </CheckBox>
-                    </StackPanel>
                     <DockPanel Margin="0,10,0,0">
                         <TextBlock Name="txtVersion"
                                    DockPanel.Dock="Left"

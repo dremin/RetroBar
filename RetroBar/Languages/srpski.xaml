@@ -1,0 +1,87 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Postavke RetroBara</s:String>
+    <s:String x:Key="taskbar_options">Postavke trake zadataka</s:String>
+    <s:String x:Key="taskbar_appearance">Izgled trake zadataka</s:String>
+    <s:String x:Key="notification_area">Sistemska paleta</s:String>
+    <s:String x:Key="autostart">Pokreni _automatski pri prijavljivanju</s:String>
+    <s:String x:Key="language_text">_Jezik:</s:String>
+    <s:String x:Key="language_tip">Izaberite jezik aplikacije.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Instalirajte teme u potfolder "Themes".</s:String>
+    <s:String x:Key="location_text">_Položaj:</s:String>
+    <s:String x:Key="location_tip">Izaberite položaj trake zadataka na ekranu.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Levo</s:String>
+        <s:String>Gore</s:String>
+        <s:String>Desno</s:String>
+        <s:String>Dole</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Dozvoli izglađivanje _fontova</s:String>
+    <s:String x:Key="collapse_tray_icons">Skupi _ikonice u sistemskoj paleti</s:String>
+    <s:String x:Key="customize">Prilago_di...</s:String>
+    <s:String x:Key="show_clock">Prikaži _sat</s:String>
+    <s:String x:Key="show_multi_mon">Prikaži na _više ekrana</s:String>
+    <s:String x:Key="show_quick_launch">Prikaži _brzo pokretanje</s:String>
+    <s:String x:Key="select_location">I_zaberi lokaciju...</s:String>
+    <s:String x:Key="quick_launch_folder">Brzo pokretanje - izaberite fasciklu</s:String>
+    <s:String x:Key="show_window_previews">Prikaži preglede prozora (sliči_ce)</s:String>
+    <s:String x:Key="use_software_rendering">_Koristi softverski rendering</s:String>
+    <s:String x:Key="multiple_displays">Više ekrana</s:String>
+    <s:String x:Key="show_tasks_on">Prika_ži prozore na:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Svim trakama zadataka</s:String>
+        <s:String>Traci zadataka na kojoj je prozor</s:String>
+        <s:String>Traci zadataka na kojoj je prozor i na glavnoj</s:String>
+    </x:Array>
+    <s:String x:Key="version">Verzija {0}</s:String>
+    <s:String x:Key="visit_on_github">Otvorite GitHub</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Prilagodi obaveštenja</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone za aktivna i hitna obaveštenja, a neaktivna sakriva. Možete da promenite ovo ponašanje za stavke na spisku ispod.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Izaberite stavku, pa izaberite ponašanje njenih obaveštenja:</s:String>
+    <s:String x:Key="hide_when_inactive">Sakrij kada je neaktivno</s:String>
+    <s:String x:Key="always_show">Uvek prikaži</s:String>
+    <s:String x:Key="name_heading">Ime</s:String>
+    <s:String x:Key="behavior_heading">Ponašanje</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Kliknite ovde da počnete.</s:String>
+    <s:String x:Key="start_button_tip">Kliknite ovde da počnete</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar traka zadataka</s:String>
+    <s:String x:Key="toolbars">_Trake sa alatkama</s:String>
+    <s:String x:Key="quick_launch">_Brzo pokretanje</s:String>
+    <s:String x:Key="new_toolbar">_Nova traka sa alatkama...</s:String>
+    <s:String x:Key="show_taskman_2k">Upravljač _zadacima...</s:String>
+    <s:String x:Key="show_taskman">Upravljač _zadacima</s:String>
+    <s:String x:Key="tray_properties">S_vojstva</s:String>
+    <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
+    <s:String x:Key="exit_retrobar">_Napusti RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">Prilagodi _obaveštenja...</s:String>
+
+    <s:String x:Key="restore">_Vrati u prethodno stanje</s:String>
+    <s:String x:Key="move">Preme_sti</s:String>
+    <s:String x:Key="size">Veli_čina</s:String>
+    <s:String x:Key="minimize">Um_anji</s:String>
+    <s:String x:Key="maximize">_Uvećaj</s:String>
+    <s:String x:Key="close">_Zatvori</s:String>
+
+    <s:String x:Key="show_hidden">Prikaži skrivene ikone</s:String>
+    <s:String x:Key="hide">Sakrij</s:String>
+
+    <s:String x:Key="set_time">_Podesite datum i vreme</s:String>
+
+    <s:String x:Key="open_folder">Otvori &amp;fasciklu</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+
+    <s:String x:Key="middle_mouse_to_close">_Srednji klik da zatvorite stavke na traci zadataka</s:String>
+</ResourceDictionary>

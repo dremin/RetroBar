@@ -1,0 +1,87 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">تنظیمات رتروبار</s:String>
+    <s:String x:Key="taskbar_options">تنظیمات تسکبار</s:String>
+    <s:String x:Key="taskbar_appearance">تم تسکبار</s:String>
+    <s:String x:Key="notification_area">قسمت نوتیفیکیشن</s:String>
+    <s:String x:Key="autostart">در روشن شدن باز شود</s:String>
+    <s:String x:Key="language_text">زبان:</s:String>
+    <s:String x:Key="language_tip">زبان را انتخاب کنید.</s:String>
+    <s:String x:Key="theme_text">_تم:</s:String>
+    <s:String x:Key="theme_tip">نصب تم در فولدر تم خودی</s:String>
+    <s:String x:Key="location_text">کجا:</s:String>
+    <s:String x:Key="location_tip">مکان تسکبار</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>چپ</s:String>
+        <s:String>بالا</s:String>
+        <s:String>راست</s:String>
+        <s:String>پایین</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_فونت اسموفینگ</s:String>
+    <s:String x:Key="collapse_tray_icons">جمع شدن در مکان نوتیفیکیشن</s:String>
+    <s:String x:Key="customize">کاستومایز</s:String>
+    <s:String x:Key="show_clock">نشان دادن ساعت</s:String>
+    <s:String x:Key="show_multi_mon">در چند مانیتور نشان داده شود</s:String>
+    <s:String x:Key="show_quick_launch">کوییک لانچ</s:String>
+    <s:String x:Key="select_location">_کجا...</s:String>
+    <s:String x:Key="quick_launch_folder">کوییک لانچ - کدام فلدر</s:String>
+    <s:String x:Key="show_window_previews">نشان دادن _نمایه ویندوز ها (thumbnails)</s:String>
+    <s:String x:Key="use_software_rendering">_رندر نرم افزاری</s:String>
+    <s:String x:Key="multiple_displays">چند مانیتور</s:String>
+    <s:String x:Key="show_tasks_on">نشان دادن تسک ها:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>همه تسکبارا جمعند</s:String>
+        <s:String>تسکبار توی مانیتور 1</s:String>
+        <s:String>تسکبار توی مانیتور های دیگر</s:String>
+    </x:Array>
+    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="visit_on_github">مراجعه به گیتهاب</s:String>
+    <s:String x:Key="ok_dialog">اوکی</s:String>
+
+    <s:String x:Key="customize_notifications">تنظیمات نوتیفیکیشن ها</s:String>
+    <s:String x:Key="customize_notifications_info">رتروبار همیشه اعلان های جمع شده را نشان میدهد، آهرا در آینده می توانید تغییر دهید</s:String>
+    <s:String x:Key="customize_notifications_instruction">آپشن رو انتخاب کن, بعد بگو در اعلان ها چگونه نمایش داده شود:</s:String>
+    <s:String x:Key="hide_when_inactive">گم شود وقتی استفاده نمیشود</s:String>
+    <s:String x:Key="always_show">همیشه نشان داده شود</s:String>
+    <s:String x:Key="name_heading">نام</s:String>
+    <s:String x:Key="behavior_heading">نشانی</s:String>
+
+    <s:String x:Key="start_text">منو</s:String>
+    <s:String x:Key="start_text_xp">منو</s:String>
+    <s:String x:Key="start_button_tip_98">بزن منو تا جغ زده شوی</s:String>
+    <s:String x:Key="start_button_tip">بزن تا شروع شه</s:String>
+    <s:String x:Key="start_button_tip_vista">منو</s:String>
+
+    <s:String x:Key="retrobar_title">تسکبار رتروبار</s:String>
+    <s:String x:Key="toolbars">_ابزارالات</s:String>
+    <s:String x:Key="quick_launch">_کوییک لانچ</s:String>
+    <s:String x:Key="new_toolbar">_ابزار جدید...</s:String>
+    <s:String x:Key="show_taskman_2k">تسک منیجر...</s:String>
+    <s:String x:Key="show_taskman">تسک منیجیر</s:String>
+    <s:String x:Key="tray_properties">تنظیمات</s:String>
+    <s:String x:Key="update_available">_!آپدیت موجوده...</s:String>
+    <s:String x:Key="exit_retrobar">_گم شو</s:String>
+    <s:String x:Key="customize_notifications_menu">_تنظیمات اعلان ها...</s:String>
+
+    <s:String x:Key="restore">_Restore</s:String>
+    <s:String x:Key="move">_Move</s:String>
+    <s:String x:Key="size">_Size</s:String>
+    <s:String x:Key="minimize">Mi_nimize</s:String>
+    <s:String x:Key="maximize">Ma_ximize</s:String>
+    <s:String x:Key="close">_Close</s:String>
+
+    <s:String x:Key="show_hidden">آیکون های جغ زده</s:String>
+    <s:String x:Key="hide">پنهان سازی</s:String>
+
+    <s:String x:Key="set_time">_تنظیمات ساعت</s:String>
+
+    <s:String x:Key="open_folder">&amp;فولدرش</s:String>
+
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+
+    <s:String x:Key="middle_mouse_to_close">_Middle mouse click to close Taskbar Items</s:String>
+</ResourceDictionary>

@@ -27,7 +27,17 @@
     <s:String x:Key="show_quick_launch">_Hızlı Başlat'ı Göster</s:String>
     <s:String x:Key="select_location">_Konum seç...</s:String>
     <s:String x:Key="quick_launch_folder">Hızlı Başlat - Bir klasör seç</s:String>
+    <s:String x:Key="show_window_previews">_Pencere önizlemelerini (önizleme görseli) göster</s:String>
     <s:String x:Key="use_software_rendering">Y_azılım ile işleme kullan</s:String>
+    <s:String x:Key="multiple_displays">Birden çok ekran</s:String>
+    <s:String x:Key="show_tasks_on">Görev düğmelerini _şurada göster:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Tüm görev çubukları</s:String>
+        <s:String>Pencerenin açıldığı görev çubuğu</s:String>
+        <s:String>Ana görev çubuğu ve pencerenin açıldığı görev çubuğu</s:String>
+    </x:Array>
+    <s:String x:Key="version">Sürüm {0}</s:String>
+    <s:String x:Key="visit_on_github">GitHub'da ziyaret edin</s:String>
     <s:String x:Key="ok_dialog">Tamam</s:String>
 
     <s:String x:Key="customize_notifications">Bildirimleri Özelleştir</s:String>
@@ -62,7 +72,7 @@
     <s:String x:Key="maximize">_Ekranı kapla</s:String>
     <s:String x:Key="close">_Kapat</s:String>
 
-    <s:String x:Key="show_hidden">Gizli simgeleri göster.</s:String>
+    <s:String x:Key="show_hidden">Gizli simgeleri göster</s:String>
     <s:String x:Key="hide">Gizle</s:String>
 
     <s:String x:Key="set_time">Tarih/_Zaman Ayarla</s:String>

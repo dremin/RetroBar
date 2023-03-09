@@ -30,10 +30,30 @@ namespace RetroBar.Utilities
         public void SetThemeFromSettings()
         {
             SetTheme(THEME_DEFAULT);
+
+            if (Settings.Instance.Theme.StartsWith(THEME_DEFAULT))
+            {
+                SetSystemThemeParams();
+            }
+            else
+            {
+                ClearSystemThemeParams();
+            }
+
             if (Settings.Instance.Theme != THEME_DEFAULT)
             {
                 SetTheme(Settings.Instance.Theme);
             }
+        }
+
+        private void SetSystemThemeParams()
+        {
+            Application.Current.Resources["GlobalFontFamily"] = SystemFonts.CaptionFontFamily;
+        }
+
+        private void ClearSystemThemeParams()
+        {
+            Application.Current.Resources.Remove("GlobalFontFamily");
         }
 
         private void SetTheme(string theme)
@@ -129,10 +149,17 @@ namespace RetroBar.Utilities
                 }
             }
 
-            GetMergedDictionaries().Add(new ResourceDictionary()
+            try
             {
-                Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
-            });
+                GetMergedDictionaries().Add(new ResourceDictionary()
+                {
+                    Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
+                });
+            }
+            catch (Exception e)
+            {
+                ManagedShell.Common.Logging.ShellLogger.Error($"Error loading dictionaries: {e.Message} {e.InnerException?.Message}");
+            }
         }
 
         public List<string> GetThemes()

@@ -8,27 +8,36 @@
     <s:String x:Key="notification_area">Khu vực thông báo</s:String>
     <s:String x:Key="autostart">Tự động khởi động khi đăng nhập</s:String>
     <s:String x:Key="language_text">Ngôn ngữ:</s:String>
-    <s:String x:Key="language_tip">Chọn ngôn ngữ để bắt đầu sử dụng.</s:String>
+    <s:String x:Key="language_tip">Chọn ngôn ngữ để sử dụng.</s:String>
     <s:String x:Key="theme_text">Chủ đề:</s:String>
     <s:String x:Key="theme_tip">Cài đặt chủ đề trong thư mục Themes.</s:String>
     <s:String x:Key="location_text">Vị trí:</s:String>
     <s:String x:Key="location_tip">Thay đổi vị trí của thanh tác vụ trên màn hình.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
-        <s:String>Trái</s:String>
-        <s:String>Trên</s:String>
-        <s:String>Phải</s:String>
-        <s:String>Dưới</s:String>
+        <s:String>Bên trái</s:String>
+        <s:String>Trên cùng</s:String>
+        <s:String>Bên phải</s:String>
+        <s:String>Dưới cùng</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
-    <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở thanh thông báo</s:String>
+    <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở phần thông báo</s:String>
     <s:String x:Key="customize">Tùy chỉnh...</s:String>
-    <s:String x:Key="show_clock">Hiện thị _đồng hồ</s:String>
+    <s:String x:Key="show_clock">Hiển thị _đồng hồ</s:String>
     <s:String x:Key="show_multi_mon">Hiện ở tất cả màn hình</s:String>
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
-    <s:String x:Key="show_window_previews">Hiện xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
+    <s:String x:Key="show_window_previews">Hiện hình xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
     <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất</s:String>
+    <s:String x:Key="multiple_displays">Đa màn hình</s:String>
+    <s:String x:Key="show_tasks_on">_Hiện các tác vụ trên:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Tất cả các thanh tác vụ</s:String>
+        <s:String>Thanh tác vụ cùng cửa sổ</s:String>
+        <s:String>Thanh tác vụ cùng cửa sổ và thanh tác vụ chính</s:String>
+    </x:Array>
+    <s:String x:Key="version">Phiên bản {0}</s:String>
+    <s:String x:Key="visit_on_github">Xem trên GitHub</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -63,7 +72,7 @@
     <s:String x:Key="maximize">Phóng to</s:String>
     <s:String x:Key="close">_Đóng</s:String>
 
-    <s:String x:Key="show_hidden">Hiện thị biểu tưởng đã ẩn</s:String>
+    <s:String x:Key="show_hidden">Hiển thị biểu tượng đã ẩn</s:String>
     <s:String x:Key="hide">Ẩn</s:String>
 
     <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
