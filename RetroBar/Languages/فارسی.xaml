@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">تنظیمات رتروبار</s:String>
     <s:String x:Key="taskbar_options">تنظیمات تسکبار</s:String>
+    <s:String x:Key="advanced">پیشرفته</s:String>
     <s:String x:Key="taskbar_appearance">تم تسکبار</s:String>
     <s:String x:Key="notification_area">قسمت نوتیفیکیشن</s:String>
     <s:String x:Key="autostart">در روشن شدن باز شود</s:String>
@@ -36,7 +37,7 @@
         <s:String>تسکبار توی مانیتور 1</s:String>
         <s:String>تسکبار توی مانیتور های دیگر</s:String>
     </x:Array>
-    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="version">نسخه {0}</s:String>
     <s:String x:Key="visit_on_github">مراجعه به گیتهاب</s:String>
     <s:String x:Key="ok_dialog">اوکی</s:String>
 
@@ -79,9 +80,5 @@
 
     <s:String x:Key="open_folder">&amp;فولدرش</s:String>
 
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
-
-    <s:String x:Key="middle_mouse_to_close">_Middle mouse click to close Taskbar Items</s:String>
+    <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
 </ResourceDictionary>
