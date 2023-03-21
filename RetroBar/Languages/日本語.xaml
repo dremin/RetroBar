@@ -37,6 +37,7 @@
     <s:String x:Key="toolbars">ツールバー(_T)</s:String>
     <s:String x:Key="quick_launch">クイック起動(_Q)</s:String>
     <s:String x:Key="new_toolbar">新しいツールバー(_N)...</s:String>
+    <s:String x:Key="set_time">日付と時刻の調整(_A)</s:String>
     <s:String x:Key="show_taskman_2k">タスク マネージャ(_K)...</s:String>
     <s:String x:Key="show_taskman">タスク マネージャ(_K)</s:String>
     <s:String x:Key="tray_properties">プロパティ(_R)</s:String>
@@ -53,7 +54,7 @@
     <s:String x:Key="show_hidden">隠れたアイコンを表示</s:String>
     <s:String x:Key="hide">隠す</s:String>
 
-    <s:String x:Key="set_time">日付と時刻の調整(_A)</s:String>
-
     <s:String x:Key="open_folder">&amp;フォルダーを開く</s:String>
+
+    <FontFamily x:Key="start_text_xp_font_family">MS UI Gothic</FontFamily>
 </ResourceDictionary>

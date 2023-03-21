@@ -1,9 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar 속성</s:String>
     <s:String x:Key="taskbar_options">작업 표시줄</s:String>
+    <s:String x:Key="advanced">고급</s:String>
     <s:String x:Key="taskbar_appearance">작업 표시줄 모양</s:String>
     <s:String x:Key="notification_area">알림 영역</s:String>
     <s:String x:Key="autostart">시작시 자동으로 켜짐(_S)</s:String>
@@ -48,6 +49,7 @@
     <s:String x:Key="toolbars">도구 모음(_T)</s:String>
     <s:String x:Key="quick_launch">빠른 실행(_Q)</s:String>
     <s:String x:Key="new_toolbar">새 도구 모음(_N)...</s:String>
+    <s:String x:Key="set_time">날짜/시간 조정(_A)</s:String>
     <s:String x:Key="show_taskman_2k">작업 관리자(_K)...</s:String>
     <s:String x:Key="show_taskman">작업 관리자(_K)</s:String>
     <s:String x:Key="tray_properties">속성(_R)</s:String>
@@ -64,8 +66,6 @@
 
     <s:String x:Key="show_hidden">숨겨진 아이콘 표시</s:String>
     <s:String x:Key="hide">숨기기</s:String>
-
-    <s:String x:Key="set_time">날짜/시간 조정(_A)</s:String>
 
     <s:String x:Key="open_folder">폴더 열기(&amp;O)</s:String>
 

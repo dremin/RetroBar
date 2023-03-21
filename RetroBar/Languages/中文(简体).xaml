@@ -58,6 +58,7 @@
     <s:String x:Key="toolbars">工具栏(_T)</s:String>
     <s:String x:Key="quick_launch">快速启动(_Q)</s:String>
     <s:String x:Key="new_toolbar">新建工具栏(_N)...</s:String>
+    <s:String x:Key="set_time">调整日期/时间(_A)</s:String>
     <s:String x:Key="show_taskman_2k">任务管理器(_K)...</s:String>
     <s:String x:Key="show_taskman">任务管理器(_K)</s:String>
     <s:String x:Key="tray_properties">属性(_R)</s:String>
@@ -74,8 +75,6 @@
 
     <s:String x:Key="show_hidden">显示隐藏的图标</s:String>
     <s:String x:Key="hide">隐藏</s:String>
-
-    <s:String x:Key="set_time">调整日期/时间(_A)</s:String>
 
     <s:String x:Key="open_folder">&amp;打开文件夹</s:String>
 

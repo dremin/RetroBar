@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar 內容</s:String>
-    <s:String x:Key="taskbar_options">工作列選項</s:String>
+    <s:String x:Key="taskbar_options">工作列</s:String>
+    <s:String x:Key="advanced">進階</s:String>
     <s:String x:Key="taskbar_appearance">工作列外觀</s:String>
     <s:String x:Key="notification_area">通知區域</s:String>
     <s:String x:Key="autostart">開機時自動啟動(_L)</s:String>
@@ -48,6 +49,7 @@
     <s:String x:Key="toolbars">工具列(_T)</s:String>
     <s:String x:Key="quick_launch">快速啟動(_Q)</s:String>
     <s:String x:Key="new_toolbar">新增工具列(_N)...</s:String>
+    <s:String x:Key="set_time">調整日期/時間(_A)</s:String>
     <s:String x:Key="show_taskman_2k">工作管理員(_K)...</s:String>
     <s:String x:Key="show_taskman">工作管理員(_K)</s:String>
     <s:String x:Key="tray_properties">內容(_R)</s:String>
@@ -65,11 +67,7 @@
     <s:String x:Key="show_hidden">顯示隱藏的圖示</s:String>
     <s:String x:Key="hide">隱藏</s:String>
 
-    <s:String x:Key="set_time">調整日期/時間(_A)</s:String>
-
     <s:String x:Key="open_folder">&amp;開啟資料夾</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
     
     <FontFamily x:Key="start_text_xp_font_family">PMingLiU</FontFamily>
 </ResourceDictionary>

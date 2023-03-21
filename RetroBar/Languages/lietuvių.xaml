@@ -48,6 +48,7 @@
     <s:String x:Key="toolbars">Į_rankių juostos</s:String>
     <s:String x:Key="quick_launch">_Greitas paleidimas</s:String>
     <s:String x:Key="new_toolbar">_Nauja įrankių juosta...</s:String>
+    <s:String x:Key="set_time">_Datos/laiko nustatymas</s:String>
     <s:String x:Key="show_taskman_2k">Uždu_očių tvarkymas...</s:String>
     <s:String x:Key="show_taskman">Uždu_očių tvarkymas</s:String>
     <s:String x:Key="tray_properties">_Ypatybės</s:String>
@@ -64,8 +65,6 @@
 
     <s:String x:Key="show_hidden">Rodyti paslėptas piktogramas</s:String>
     <s:String x:Key="hide">Slėpti</s:String>
-
-    <s:String x:Key="set_time">_Datos/laiko nustatymas</s:String>
 
     <s:String x:Key="open_folder">&amp;Atidaryti aplanką</s:String>
 </ResourceDictionary>

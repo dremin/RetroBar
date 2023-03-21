@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Свойства на RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Опции на лентата на задачите</s:String>
+    <s:String x:Key="taskbar_options">Лента на задачите</s:String>
+    <s:String x:Key="advanced">Разширени</s:String>
     <s:String x:Key="taskbar_appearance">Облик на лентата на задачите</s:String>
     <s:String x:Key="notification_area">Район на известията</s:String>
     <s:String x:Key="autostart">Пуска_й автоматично при влизане</s:String>
@@ -48,6 +49,7 @@
     <s:String x:Key="toolbars">_Ленти с инструменти</s:String>
     <s:String x:Key="quick_launch">_Бърз достъп</s:String>
     <s:String x:Key="new_toolbar">_Нова лента с инструменти...</s:String>
+    <s:String x:Key="set_time">На_гласи датата и часа</s:String>
     <s:String x:Key="show_taskman_2k">_Диспечер на задачите...</s:String>
     <s:String x:Key="show_taskman">_Диспечер на задачите</s:String>
     <s:String x:Key="tray_properties">Св_ойства</s:String>
@@ -65,11 +67,5 @@
     <s:String x:Key="show_hidden">Покажи скритите икони</s:String>
     <s:String x:Key="hide">Скрий</s:String>
 
-    <s:String x:Key="set_time">На_гласи датата и часа</s:String>
-
     <s:String x:Key="open_folder">&amp;Отвори папка</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

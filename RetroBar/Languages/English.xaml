@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
-    <s:String x:Key="taskbar_options">Taskbar Options</s:String>
+    <s:String x:Key="taskbar_options">Taskbar</s:String>
     <s:String x:Key="advanced">Advanced</s:String>
     <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
     <s:String x:Key="notification_area">Notification area</s:String>
@@ -39,7 +39,7 @@
         <s:String>Same taskbar as window and primary taskbar</s:String>
     </x:Array>
     <s:String x:Key="version">Version {0}</s:String>
-    <s:String x:Key="visit_on_github">Visit on GitHub</s:String>
+    <s:String x:Key="visit_on_github">Visit RetroBar on GitHub</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>
@@ -60,6 +60,15 @@
     <s:String x:Key="toolbars">_Toolbars</s:String>
     <s:String x:Key="quick_launch">_Quick Launch</s:String>
     <s:String x:Key="new_toolbar">_New Toolbar...</s:String>
+    <s:String x:Key="set_time">_Adjust Date/Time</s:String>
+    <s:String x:Key="cascade">Ca_scade Windows</s:String>
+    <s:String x:Key="horiz_tile">Tile Windows _Horizontally</s:String>
+    <s:String x:Key="vert_tile">Tile Windows V_ertically</s:String>
+    <s:String x:Key="toggle_desktop">_Show the Desktop</s:String>
+    <s:String x:Key="hide_desktop">_Show Open Windows</s:String>
+    <s:String x:Key="undo_cascade">_Undo Cascade</s:String>
+    <s:String x:Key="undo_tile">_Undo Tile</s:String>
+    <s:String x:Key="undo_minimize_all">_Undo Minimize All</s:String>
     <s:String x:Key="show_taskman_2k">Tas_k Manager...</s:String>
     <s:String x:Key="show_taskman">Tas_k Manager</s:String>
     <s:String x:Key="tray_properties">P_roperties</s:String>
@@ -76,8 +85,6 @@
 
     <s:String x:Key="show_hidden">Show hidden icons</s:String>
     <s:String x:Key="hide">Hide</s:String>
-
-    <s:String x:Key="set_time">_Adjust Date/Time</s:String>
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 

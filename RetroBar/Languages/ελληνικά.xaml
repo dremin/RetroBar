@@ -48,6 +48,7 @@
     <s:String x:Key="toolbars">_Γραμμές εργαλείων</s:String>
     <s:String x:Key="quick_launch">_Γρήγορη εκκίνηση</s:String>
     <s:String x:Key="new_toolbar">_Νέα Γραμμή Εργαλείων...</s:String>
+    <s:String x:Key="set_time">_Προσαρμογή Ημέρας/Ώρας</s:String>
     <s:String x:Key="show_taskman_2k">Δια_χείρηση Εργασιών...</s:String>
     <s:String x:Key="show_taskman">Δια_χείρηση εργασιών</s:String>
     <s:String x:Key="tray_properties">Ι_διότητες</s:String>
@@ -65,11 +66,5 @@
     <s:String x:Key="show_hidden">Εμφάνιση κρυφών εικονιδίων</s:String>
     <s:String x:Key="hide">Απόκρυψη</s:String>
 
-    <s:String x:Key="set_time">_Προσαρμογή Ημέρας/Ώρας</s:String>
-
     <s:String x:Key="open_folder">&amp;Άνοιγμα Φακέλου</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

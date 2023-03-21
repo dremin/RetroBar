@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
@@ -37,8 +37,9 @@
     <s:String x:Key="toolbars">_أشرطة الأدوات</s:String>
     <s:String x:Key="quick_launch">_بداية سريعة</s:String>
     <s:String x:Key="new_toolbar">_شريط أدوات حديث...</s:String>
-    <s:String x:Key="show_taskman_2k">_قمـ(ي) بتشغيل إدارة المهام</s:String>
-    <s:String x:Key="show_taskman">_قمـ(ي) بتشغيل إدارة المهام</s:String>
+    <s:String x:Key="set_time">_اضبط الساعة والتاريخ</s:String>
+    <s:String x:Key="show_taskman_2k">مدير المه_ام...</s:String>
+    <s:String x:Key="show_taskman">إدارة المه_ام</s:String>
     <s:String x:Key="tray_properties">خ_صائص</s:String>
     <s:String x:Key="update_available">_تحديث متوفر...</s:String>
     <s:String x:Key="exit_retrobar">_خروج من RetroBar</s:String>
@@ -53,11 +54,8 @@
     <s:String x:Key="show_hidden">إظهار الرموز المخفية</s:String>
     <s:String x:Key="hide">إخفاء</s:String>
 
-    <s:String x:Key="set_time">_اضبط الساعة والتاريخ</s:String>
-
     <s:String x:Key="open_folder">&amp;فتح مجلد</s:String>
 
     <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
-
     <FontFamily x:Key="start_text_xp_font_family">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>

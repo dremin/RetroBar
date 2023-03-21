@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
@@ -49,6 +49,7 @@
     <s:String x:Key="toolbars">_Werkbalken</s:String>
     <s:String x:Key="quick_launch">_Snel starten</s:String>
     <s:String x:Key="new_toolbar">_Nieuwe werkbalk...</s:String>
+    <s:String x:Key="set_time">Dat_um/tijd aanpassen</s:String>
     <s:String x:Key="show_taskman_2k">T_aakbeheer...</s:String>
     <s:String x:Key="show_taskman">Taakbeheer</s:String>
     <s:String x:Key="tray_properties">Ei_genschappen</s:String>
@@ -66,11 +67,5 @@
     <s:String x:Key="show_hidden">Verborgen pictogrammen weergeven</s:String>
     <s:String x:Key="hide">Verbergen</s:String>
 
-    <s:String x:Key="set_time">Dat_um/tijd aanpassen</s:String>
-
     <s:String x:Key="open_folder">&amp;Map openen</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

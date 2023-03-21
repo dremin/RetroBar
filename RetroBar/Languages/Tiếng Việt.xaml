@@ -58,6 +58,7 @@
     <s:String x:Key="toolbars">_Thanh công cụ</s:String>
     <s:String x:Key="quick_launch">_Truy cập nhanh</s:String>
     <s:String x:Key="new_toolbar">_Tạo thanh công cụ...</s:String>
+    <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
     <s:String x:Key="show_taskman_2k">Trình quản lý tác vụ...</s:String>
     <s:String x:Key="show_taskman">Trình quản lý tác vụ</s:String>
     <s:String x:Key="tray_properties">Tinh chỉnh</s:String>
@@ -74,8 +75,6 @@
 
     <s:String x:Key="show_hidden">Hiển thị biểu tượng đã ẩn</s:String>
     <s:String x:Key="hide">Ẩn</s:String>
-
-    <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
 
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
 

@@ -37,6 +37,7 @@
     <s:String x:Key="toolbars">_Eszköztárak</s:String>
     <s:String x:Key="quick_launch">_Gyorsindítás</s:String>
     <s:String x:Key="new_toolbar">_Új eszköztár...</s:String>
+    <s:String x:Key="set_time">_Dátum/Idő beállítása</s:String>
     <s:String x:Key="show_taskman_2k">F_eladatkezelő...</s:String>
     <s:String x:Key="show_taskman">F_eladatkezelő</s:String>
     <s:String x:Key="tray_properties">_Tulajdonságok</s:String>
@@ -52,8 +53,6 @@
 
     <s:String x:Key="show_hidden">Rejtett ikonok mutatása</s:String>
     <s:String x:Key="hide">Elrejtés</s:String>
-
-    <s:String x:Key="set_time">_Dátum/Idő beállítása</s:String>
 
     <s:String x:Key="open_folder">&amp;Mappa megnyitása</s:String>
 </ResourceDictionary>

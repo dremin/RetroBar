@@ -37,6 +37,7 @@
     <s:String x:Key="toolbars">_סרגלי כלים</s:String>
     <s:String x:Key="quick_launch">_הפעלה מהירה</s:String>
     <s:String x:Key="new_toolbar">_סרגל כלים חדש...</s:String>
+    <s:String x:Key="set_time">_התאם את השעה והתאריך</s:String>
     <s:String x:Key="show_taskman_2k">הפעל את מנהל המשימות</s:String>
     <s:String x:Key="show_taskman">הפעל את מנהל המשימות</s:String>
     <s:String x:Key="tray_properties">ה_גדרות</s:String>
@@ -53,11 +54,9 @@
     <s:String x:Key="show_hidden">הצג סמלים מוסתרים</s:String>
     <s:String x:Key="hide">הסתר</s:String>
 
-    <s:String x:Key="set_time">_התאם את השעה והתאריך</s:String>
-
     <s:String x:Key="open_folder">&amp;פתח תיקיה</s:String>
 
-	<FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
+    <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
 
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>
