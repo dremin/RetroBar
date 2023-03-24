@@ -3,7 +3,10 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">خصائص RetroBar</s:String>
-    <s:String x:Key="taskbar_options">خيارات الشريظ المهام</s:String>
+    <s:String x:Key="taskbar_tab">شريط المهام</s:String>
+    <s:String x:Key="advanced_tab">خيارا ت متقدمة</s:String>
+    <s:String x:Key="taskbar_appearance">ظهور شريط المهام</s:String>
+    <s:String x:Key="notification_area">ناحية الإعلام</s:String>
     <s:String x:Key="autostart">_بدأ تلقائيًا عند تسجيل الدخول</s:String>
     <s:String x:Key="language_text">_لسان:</s:String>
     <s:String x:Key="language_tip">_اختيار لسانك.</s:String>
@@ -19,13 +22,14 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_السماح بتجانس الخط</s:String>
     <s:String x:Key="collapse_tray_icons">تقليص رموز منطقة الرسالة</s:String>
+    <s:String x:Key="customize">ت_خصيص...</s:String>
     <s:String x:Key="show_clock">عرض ساعة النظام</s:String>
     <s:String x:Key="show_multi_mon">عرض على شاشات متعددة</s:String>
     <s:String x:Key="show_quick_launch">عرض البداية السريعة</s:String>
     <s:String x:Key="select_location">_اختيار الموقع...</s:String>
     <s:String x:Key="quick_launch_folder">بداية سريعة - اختيار المجلد</s:String>
     <s:String x:Key="use_software_rendering">_استخدام عرض البرامج</s:String>
-    <s:String x:Key="ok_dialog">طيب</s:String>
+    <s:String x:Key="ok_dialog">موافق</s:String>
 
     <s:String x:Key="start_text">ابدأ</s:String>
     <s:String x:Key="start_text_xp"> ابدأ</s:String>

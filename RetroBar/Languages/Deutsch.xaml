@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Eigenschaften von Retrobar</s:String>
-    <s:String x:Key="taskbar_options">Taskleiste</s:String>
+    <s:String x:Key="taskbar_tab">Taskleiste</s:String>
     <s:String x:Key="taskbar_appearance">Taskleistendarstellung</s:String>
     <s:String x:Key="notification_area">Infobereich</s:String>
     <s:String x:Key="autostart">Beim Hochfahren automatisch starten</s:String>
@@ -48,6 +48,7 @@
     <s:String x:Key="toolbars">S_ymbolleisten</s:String>
     <s:String x:Key="quick_launch">Schnellstartleiste</s:String>
     <s:String x:Key="new_toolbar">Neue Symbolleiste...</s:String>
+    <s:String x:Key="set_time">_Datum/Uhrzeit ändern</s:String>
     <s:String x:Key="show_taskman_2k">_Task-Manager...</s:String>
     <s:String x:Key="show_taskman">_Task-Manager</s:String>
     <s:String x:Key="tray_properties">E_igenschaften</s:String>
@@ -65,9 +66,5 @@
     <s:String x:Key="show_hidden">Versteckte Symbole anzeigen</s:String>
     <s:String x:Key="hide">Ausblenden</s:String>
 
-    <s:String x:Key="set_time">_Datum/Uhrzeit ändern</s:String>
-
     <s:String x:Key="open_folder">&amp;Ordner öffnen</s:String>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

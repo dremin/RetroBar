@@ -88,7 +88,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0">
-            <TabItem Header="{DynamicResource taskbar_options}">
+            <TabItem Header="{DynamicResource taskbar_tab}">
                 <StackPanel Orientation="Vertical"
                             Margin="10">
                     <GroupBox Header="{DynamicResource taskbar_appearance}">
@@ -267,7 +267,7 @@
                     </GroupBox>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="{DynamicResource advanced}">
+            <TabItem Header="{DynamicResource advanced_tab}">
                 <StackPanel Orientation="Vertical"
                             Margin="10">
                     <StackPanel Orientation="Vertical"

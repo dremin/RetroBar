@@ -3,7 +3,7 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Proprietăți RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Bară de activităţi</s:String>
+    <s:String x:Key="taskbar_tab">Bară de activităţi</s:String>
     <s:String x:Key="taskbar_appearance">Aspect bară de activităţi</s:String>
     <s:String x:Key="notification_area">Zona de notificări</s:String>
     <s:String x:Key="autostart">Pornire automată la _conectare</s:String>

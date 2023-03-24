@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Властивості RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Налаштування Панелі Завдань</s:String>
+    <s:String x:Key="taskbar_tab">Панель завдань</s:String>
+    <s:String x:Key="advanced_tab">Додатково</s:String>
     <s:String x:Key="taskbar_appearance">Вигляд панелі завдань</s:String>
     <s:String x:Key="notification_area">Панель сповіщень</s:String>
     <s:String x:Key="autostart">Автоматично запускатися при вході</s:String>
@@ -29,6 +30,7 @@
     <s:String x:Key="quick_launch_folder">Швидкий запуск - Виберіть теку</s:String>
     <s:String x:Key="show_window_previews">Показувати попередній перегляд вікон</s:String>
     <s:String x:Key="use_software_rendering">Вимк. апаратне оброблення</s:String>
+    <s:String x:Key="middle_mouse_to_close">[КОЛЕСО МИШІ], щоб закрити програму в панелі завдань</s:String>
     <s:String x:Key="multiple_displays">Дисплеї</s:String>
     <s:String x:Key="show_tasks_on">Показувати активні програми:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -58,6 +60,7 @@
     <s:String x:Key="toolbars">Панелі інструментів</s:String>
     <s:String x:Key="quick_launch">Швидкий Запуск</s:String>
     <s:String x:Key="new_toolbar">Нова панель інструментів...</s:String>
+    <s:String x:Key="set_time">Налаштувати Дату та Час</s:String>
     <s:String x:Key="show_taskman_2k">Диспетчер завдань...</s:String>
     <s:String x:Key="show_taskman">Диспетчер завдань</s:String>
     <s:String x:Key="tray_properties">Властивості</s:String>
@@ -75,13 +78,5 @@
     <s:String x:Key="show_hidden">Показати заховані ікони</s:String>
     <s:String x:Key="hide">Сховати</s:String>
 
-    <s:String x:Key="set_time">Налаштувати Дату та Час</s:String>
-
     <s:String x:Key="open_folder">&amp;Відкрити Теку</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
-
-    <s:String x:Key="middle_mouse_to_close">[КОЛЕСО МИШІ], щоб закрити програму в панелі завдань</s:String>
 </ResourceDictionary>

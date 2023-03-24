@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">تنظیمات رتروبار</s:String>
-    <s:String x:Key="taskbar_options">تنظیمات تسکبار</s:String>
-    <s:String x:Key="advanced">پیشرفته</s:String>
+    <s:String x:Key="taskbar_tab">نوار فعالیت</s:String>
+    <s:String x:Key="advanced_tab">پیشرفته</s:String>
     <s:String x:Key="taskbar_appearance">تم تسکبار</s:String>
     <s:String x:Key="notification_area">قسمت نوتیفیکیشن</s:String>
     <s:String x:Key="autostart">در روشن شدن باز شود</s:String>
@@ -59,6 +59,7 @@
     <s:String x:Key="toolbars">_ابزارالات</s:String>
     <s:String x:Key="quick_launch">_کوییک لانچ</s:String>
     <s:String x:Key="new_toolbar">_ابزار جدید...</s:String>
+    <s:String x:Key="set_time">_تنظیمات ساعت</s:String>
     <s:String x:Key="show_taskman_2k">تسک منیجر...</s:String>
     <s:String x:Key="show_taskman">تسک منیجیر</s:String>
     <s:String x:Key="tray_properties">تنظیمات</s:String>
@@ -75,8 +76,6 @@
 
     <s:String x:Key="show_hidden">آیکون های جغ زده</s:String>
     <s:String x:Key="hide">پنهان سازی</s:String>
-
-    <s:String x:Key="set_time">_تنظیمات ساعت</s:String>
 
     <s:String x:Key="open_folder">&amp;فولدرش</s:String>
 

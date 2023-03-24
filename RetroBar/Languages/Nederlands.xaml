@@ -3,7 +3,7 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar Instellingen</s:String>
-    <s:String x:Key="taskbar_options">Taakbalk Opties</s:String>
+    <s:String x:Key="taskbar_tab">Taakbalk</s:String>
     <s:String x:Key="taskbar_appearance">Taakbalkweergave</s:String>
     <s:String x:Key="notification_area">Systeemvak</s:String>
     <s:String x:Key="autostart">_Automatisch starten bij aanmelden</s:String>

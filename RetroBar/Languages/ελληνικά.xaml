@@ -3,14 +3,15 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Ιδιότητες του RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Ιδιότητες γραμμής εργασιών</s:String>
+    <s:String x:Key="taskbar_tab">Γραμμή εργασιών</s:String>
+    <s:String x:Key="advanced_tab">Για προχωρημένους</s:String>
     <s:String x:Key="taskbar_appearance">Εμφάνιση γραμμής εργασιών</s:String>
     <s:String x:Key="notification_area">Περιοχή ειδοποιήσεων</s:String>
     <s:String x:Key="autostart">Αυτόματη αναπαραγωγή κατά την _εκκίνηση</s:String>
     <s:String x:Key="language_text">Γλώ_σσα:</s:String>
     <s:String x:Key="language_tip">Επιλέξτε την γλώσσα που θα χρησιμοποιήσετε.</s:String>
     <s:String x:Key="theme_text">_Θέμα:</s:String>
-    <s:String x:Key="theme_tip">Εγκαταστήστε θέματα στον φάκελο των θεμάτων.</s:String>
+    <s:String x:Key="theme_tip">Εγκαταστήστε θέματα στο φάκελο "Themes".</s:String>
     <s:String x:Key="location_text">Τοποθ_εσία:</s:String>
     <s:String x:Key="location_tip">Αλλάξτε την τοποθεσία της γραμμής εργασιών στην οθόνη.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
@@ -20,14 +21,15 @@
         <s:String>Κάτω</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Επιτροπή εξομάλυσης της γραμματοσειράς</s:String>
-    <s:String x:Key="collapse_tray_icons">Διαχωρισμός των _εικονιδίων της περιοχής ειδοποιήσεων</s:String>
-    <s:String x:Key="customize">Προσαρμογ_ή...</s:String>
-    <s:String x:Key="show_clock">Εμφάνιση του _ρολογιού</s:String>
+    <s:String x:Key="collapse_tray_icons">Απόκρ_υψη εικονιδίων περιοχής ειδοποιήσεων</s:String>
+    <s:String x:Key="customize">Πρ_οσαρμογή...</s:String>
+    <s:String x:Key="show_clock">Εμφάνιση του ρο_λογιού</s:String>
     <s:String x:Key="show_multi_mon">Εμφάνιση σε _πολλαπλές οθόνες</s:String>
     <s:String x:Key="show_quick_launch">Εμφάνιση _Γρήγορης Εκκίνησης</s:String>
     <s:String x:Key="select_location">_Επιλογή τοποθεσίας...</s:String>
     <s:String x:Key="quick_launch_folder">Γρήγορη Εκκίνηση - Επιλέξτε έναν φάκελο</s:String>
     <s:String x:Key="use_software_rendering">_Χρήση απόδοσης λογισμικού</s:String>
+    <s:String x:Key="version">Έκδοση {0}</s:String>
     <s:String x:Key="ok_dialog">ΟΚ</s:String>
 
     <s:String x:Key="customize_notifications">Προσαρμογή ειδοποιήσεων</s:String>
@@ -51,16 +53,16 @@
     <s:String x:Key="set_time">_Προσαρμογή Ημέρας/Ώρας</s:String>
     <s:String x:Key="show_taskman_2k">Δια_χείρηση Εργασιών...</s:String>
     <s:String x:Key="show_taskman">Δια_χείρηση εργασιών</s:String>
-    <s:String x:Key="tray_properties">Ι_διότητες</s:String>
+    <s:String x:Key="tray_properties">_Ιδιότητες</s:String>
     <s:String x:Key="update_available">_διαθέσιμη ενημέρωση...</s:String>
     <s:String x:Key="exit_retrobar">_Έξοδος από το RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Προσαρμογή ειδοποιήσεων...</s:String>
 
-    <s:String x:Key="restore">_Επαναφορά</s:String>
+    <s:String x:Key="restore">Επανα_φορά</s:String>
     <s:String x:Key="move">_Μετακίνηση</s:String>
-    <s:String x:Key="size">_Μέγεθος</s:String>
-    <s:String x:Key="minimize">Ελα_χιστοποίηση</s:String>
-    <s:String x:Key="maximize">Μεγι_στοποιήση</s:String>
+    <s:String x:Key="size">Μέγε_θος</s:String>
+    <s:String x:Key="minimize">Ε_λαχιστοποίηση</s:String>
+    <s:String x:Key="maximize">Με_γιστοποιήση</s:String>
     <s:String x:Key="close">_Κλείσιμο</s:String>
 
     <s:String x:Key="show_hidden">Εμφάνιση κρυφών εικονιδίων</s:String>

@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar 속성</s:String>
-    <s:String x:Key="taskbar_options">작업 표시줄</s:String>
-    <s:String x:Key="advanced">고급</s:String>
+    <s:String x:Key="taskbar_tab">작업 표시줄</s:String>
+    <s:String x:Key="advanced_tab">고급</s:String>
     <s:String x:Key="taskbar_appearance">작업 표시줄 모양</s:String>
     <s:String x:Key="notification_area">알림 영역</s:String>
     <s:String x:Key="autostart">시작시 자동으로 켜짐(_S)</s:String>

@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Propiedades de RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Barra de tareas</s:String>
-    <s:String x:Key="advanced">Avanzado</s:String>
+    <s:String x:Key="taskbar_tab">Barra de tareas</s:String>
+    <s:String x:Key="advanced_tab">Opciones avanzadas</s:String>
     <s:String x:Key="taskbar_appearance">Apariencia de barra de tareas</s:String>
     <s:String x:Key="notification_area">Área de notificación</s:String>
     <s:String x:Key="autostart">_Iniciar automáticamente al iniciar sesión</s:String>

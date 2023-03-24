@@ -3,7 +3,7 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar Özellikleri</s:String>
-    <s:String x:Key="taskbar_options">Görev Çubuğu Özellikleri</s:String>
+    <s:String x:Key="taskbar_tab">Görev Çubuğu</s:String>
     <s:String x:Key="taskbar_appearance">Görev çubuğu görünümü</s:String>
     <s:String x:Key="notification_area">Bildirim alanı</s:String>
     <s:String x:Key="autostart">Oturum açarken otomatik o_larak başlat</s:String>
@@ -58,6 +58,7 @@
     <s:String x:Key="toolbars">Araç Çubuk_ları</s:String>
     <s:String x:Key="quick_launch">_Hızlı Başlat</s:String>
     <s:String x:Key="new_toolbar">Ye_ni Araç Çubuğu...</s:String>
+    <s:String x:Key="set_time">Tarih/_Zaman Ayarla</s:String>
     <s:String x:Key="show_taskman_2k">_Görev Yöneticisi...</s:String>
     <s:String x:Key="show_taskman">_Görev Yöneticisi...</s:String>
     <s:String x:Key="tray_properties">Özellikle_r</s:String>
@@ -74,8 +75,6 @@
 
     <s:String x:Key="show_hidden">Gizli simgeleri göster</s:String>
     <s:String x:Key="hide">Gizle</s:String>
-
-    <s:String x:Key="set_time">Tarih/_Zaman Ayarla</s:String>
 
     <s:String x:Key="open_folder">&amp;Klasörü Aç</s:String>
 </ResourceDictionary>

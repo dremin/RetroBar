@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Свойства на RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Лента на задачите</s:String>
-    <s:String x:Key="advanced">Разширени</s:String>
+    <s:String x:Key="taskbar_tab">Лента на задачите</s:String>
+    <s:String x:Key="advanced_tab">Разширени</s:String>
     <s:String x:Key="taskbar_appearance">Облик на лентата на задачите</s:String>
     <s:String x:Key="notification_area">Район на известията</s:String>
     <s:String x:Key="autostart">Пуска_й автоматично при влизане</s:String>

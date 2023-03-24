@@ -3,7 +3,7 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar 属性</s:String>
-    <s:String x:Key="taskbar_options">任务栏选项</s:String>
+    <s:String x:Key="taskbar_tab">任务栏</s:String>
     <s:String x:Key="taskbar_appearance">任务栏外观</s:String>
     <s:String x:Key="notification_area">通知区域</s:String>
     <s:String x:Key="autostart">开机时自动启动(_L)</s:String>
@@ -23,7 +23,7 @@
     <s:String x:Key="collapse_tray_icons">收起通知区域图标(_N)</s:String>
     <s:String x:Key="customize">自定义(_E)...</s:String>
     <s:String x:Key="show_clock">显示时钟(_C)</s:String>
-	<s:String x:Key="show_multi_mon">在多个显示器上显示(_M)</s:String>
+    <s:String x:Key="show_multi_mon">在多个显示器上显示(_M)</s:String>
     <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
     <s:String x:Key="select_location">选择位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
@@ -39,7 +39,7 @@
     <s:String x:Key="version">版本 {0}</s:String>
     <s:String x:Key="visit_on_github">访问 GitHub 主页</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
-	
+
     <s:String x:Key="customize_notifications">自定义通知</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar 显示活动和紧急通知的图标，并隐藏非活动通知。 您可以为下面列表中的项目更改此行为。</s:String>
     <s:String x:Key="customize_notifications_instruction">选择一个项目，然后选择其通知行为：</s:String>
@@ -78,7 +78,5 @@
 
     <s:String x:Key="open_folder">&amp;打开文件夹</s:String>
 
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    
     <FontFamily x:Key="start_text_xp_font_family">SimSun</FontFamily>
 </ResourceDictionary>

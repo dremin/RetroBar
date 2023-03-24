@@ -1,10 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Propriedades da RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Barra de tarefas</s:String>
-    <s:String x:Key="advanced">Avançado</s:String>
+    <s:String x:Key="taskbar_tab">Barra de tarefas</s:String>
+    <s:String x:Key="advanced_tab">Avançado</s:String>
     <s:String x:Key="taskbar_appearance">Aparência da barra de tarefas</s:String>
     <s:String x:Key="notification_area">Área de notificação</s:String>
     <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>

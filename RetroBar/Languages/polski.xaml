@@ -1,15 +1,16 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Właściwości RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Opcje paska zadań</s:String>
+    <s:String x:Key="taskbar_tab">Pasek zadań</s:String>
+    <s:String x:Key="advanced_tab">Zaawansowane</s:String>
     <s:String x:Key="taskbar_appearance">Wygląd paska zadań</s:String>
-    <s:String x:Key="notification_area">Powiadomienia</s:String>
+    <s:String x:Key="notification_area">Obszar powiadomień</s:String>
     <s:String x:Key="autostart">Uruchamiaj podczas startu systemu</s:String>
-    <s:String x:Key="language_text">Język:</s:String>
+    <s:String x:Key="language_text">_Język:</s:String>
     <s:String x:Key="language_tip">Wybierz język.</s:String>
-    <s:String x:Key="theme_text">Motyw:</s:String>
+    <s:String x:Key="theme_text">_Motyw:</s:String>
     <s:String x:Key="theme_tip">Zainstaluj motywy w folderze Themes.</s:String>
     <s:String x:Key="location_text">Lokalizacja:</s:String>
     <s:String x:Key="location_tip">Zmień umiejscowienie paska zadań na ekranie.</s:String>
@@ -19,16 +20,17 @@
         <s:String>Po prawej</s:String>
         <s:String>Na dole</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Zezwól na wygładzanie czcionek</s:String>
+    <s:String x:Key="allow_font_smoothing">_Zezwól na wygładzanie czcionek</s:String>
     <s:String x:Key="collapse_tray_icons">Zwiń ikony w pasku powiadomień</s:String>
-    <s:String x:Key="customize">Dostosuj...</s:String>
-    <s:String x:Key="show_clock">Pokaż zegar</s:String>
+    <s:String x:Key="customize">_Dostosuj...</s:String>
+    <s:String x:Key="show_clock">_Pokaż zegar</s:String>
     <s:String x:Key="show_multi_mon">Pokazuj pasek zadań na wielu ekranach</s:String>
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>
     <s:String x:Key="select_location">_Wybierz lokalizację...</s:String>
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
     <s:String x:Key="show_window_previews">Pokaż podgląd okien</s:String>
-    <s:String x:Key="use_software_rendering">Użyj renderowania oprogramowania</s:String>
+    <s:String x:Key="use_software_rendering">_Użyj renderowania oprogramowania</s:String>
+    <s:String x:Key="middle_mouse_to_close">Kliknij środkowym przyciskiem myszy, aby zamknąć element paska zadań</s:String>
     <s:String x:Key="multiple_displays">Wiele monitorów</s:String>
     <s:String x:Key="show_tasks_on">Pokaż zadania na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -51,37 +53,30 @@
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
     <s:String x:Key="start_button_tip_98">Kliknij tutaj aby rozpocząć.</s:String>
-    <s:String x:Key="start_button_tip">Kliknij tutaj aby rozpocząć</s:String>
+    <s:String x:Key="start_button_tip">Kliknij, aby rozpocząć</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">Pasek zadań RetroBar</s:String>
-    <s:String x:Key="toolbars">Paski zadań</s:String>
-    <s:String x:Key="quick_launch">Pasek szybkiego uruchamiania</s:String>
-    <s:String x:Key="new_toolbar">Nowy pasek narzędzi...</s:String>
+    <s:String x:Key="toolbars">P_aski zadań</s:String>
+    <s:String x:Key="quick_launch">_Pasek szybkiego uruchamiania</s:String>
+    <s:String x:Key="new_toolbar">_Nowy pasek narzędzi...</s:String>
+    <s:String x:Key="set_time">_Dostosuj datę i godzinę</s:String>
     <s:String x:Key="show_taskman_2k">Menedżer zadań...</s:String>
     <s:String x:Key="show_taskman">Menedżer zadań</s:String>
-    <s:String x:Key="tray_properties">Właściwości</s:String>
-    <s:String x:Key="update_available">Dostępna aktualizacja...</s:String>
-    <s:String x:Key="exit_retrobar">Wyjdź z RetroBar</s:String>
-    <s:String x:Key="customize_notifications_menu">Dostosuj powiadomienia...</s:String>
+    <s:String x:Key="tray_properties">Właśc_iwości</s:String>
+    <s:String x:Key="update_available">_Dostępna aktualizacja...</s:String>
+    <s:String x:Key="exit_retrobar">_Wyjdź z RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Dostosuj powiadomienia...</s:String>
 
-    <s:String x:Key="restore">Przywróć</s:String>
-    <s:String x:Key="move">Przenieś</s:String>
-    <s:String x:Key="size">Dostosuj rozmiar</s:String>
-    <s:String x:Key="minimize">Minimalizuj</s:String>
-    <s:String x:Key="maximize">Maksymalizuj</s:String>
-    <s:String x:Key="close">Zamknij</s:String>
+    <s:String x:Key="restore">_Przywróć</s:String>
+    <s:String x:Key="move">Prz_enieś</s:String>
+    <s:String x:Key="size">_Rozmiar</s:String>
+    <s:String x:Key="minimize">_Minimalizuj</s:String>
+    <s:String x:Key="maximize">Mak_symalizuj</s:String>
+    <s:String x:Key="close">Zam_knij</s:String>
 
     <s:String x:Key="show_hidden">Pokaż ukryte ikony</s:String>
     <s:String x:Key="hide">Ukryj</s:String>
 
-    <s:String x:Key="set_time">Dostosuj datę i godzinę</s:String>
-
     <s:String x:Key="open_folder">&amp;Otwórz folder</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
-
-    <s:String x:Key="middle_mouse_to_close">Kliknij środkowym przyciskiem myszy, aby zamknąć element paska zadań</s:String>
 </ResourceDictionary>
