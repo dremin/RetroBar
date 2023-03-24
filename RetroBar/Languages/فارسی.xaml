@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">تنظیمات رتروبار</s:String>
-    <s:String x:Key="taskbar_options">تنظیمات تسکبار</s:String>
+    <s:String x:Key="taskbar_tab">نوار فعالیت</s:String>
+    <s:String x:Key="advanced_tab">پیشرفته</s:String>
     <s:String x:Key="taskbar_appearance">تم تسکبار</s:String>
     <s:String x:Key="notification_area">قسمت نوتیفیکیشن</s:String>
     <s:String x:Key="autostart">در روشن شدن باز شود</s:String>
@@ -36,7 +37,7 @@
         <s:String>تسکبار توی مانیتور 1</s:String>
         <s:String>تسکبار توی مانیتور های دیگر</s:String>
     </x:Array>
-    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="version">نسخه {0}</s:String>
     <s:String x:Key="visit_on_github">مراجعه به گیتهاب</s:String>
     <s:String x:Key="ok_dialog">اوکی</s:String>
 
@@ -58,6 +59,7 @@
     <s:String x:Key="toolbars">_ابزارالات</s:String>
     <s:String x:Key="quick_launch">_کوییک لانچ</s:String>
     <s:String x:Key="new_toolbar">_ابزار جدید...</s:String>
+    <s:String x:Key="set_time">_تنظیمات ساعت</s:String>
     <s:String x:Key="show_taskman_2k">تسک منیجر...</s:String>
     <s:String x:Key="show_taskman">تسک منیجیر</s:String>
     <s:String x:Key="tray_properties">تنظیمات</s:String>
@@ -75,13 +77,7 @@
     <s:String x:Key="show_hidden">آیکون های جغ زده</s:String>
     <s:String x:Key="hide">پنهان سازی</s:String>
 
-    <s:String x:Key="set_time">_تنظیمات ساعت</s:String>
-
     <s:String x:Key="open_folder">&amp;فولدرش</s:String>
 
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
-
-    <s:String x:Key="middle_mouse_to_close">_Middle mouse click to close Taskbar Items</s:String>
+    <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
 </ResourceDictionary>

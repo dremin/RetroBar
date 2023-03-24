@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Свойства RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Панель задач</s:String>
-    <s:String x:Key="advanced">Дополнительно</s:String>
+    <s:String x:Key="taskbar_tab">Панель задач</s:String>
+    <s:String x:Key="advanced_tab">Дополнительно</s:String>
     <s:String x:Key="taskbar_appearance">Оформление панели задач</s:String>
     <s:String x:Key="notification_area">Область уведомлений</s:String>
     <s:String x:Key="autostart">Запускать при при в_ходе в систему</s:String>
@@ -30,7 +30,7 @@
     <s:String x:Key="quick_launch_folder">Панель быстого запуска - выберите папку</s:String>
     <s:String x:Key="show_window_previews">Отобра_жать образцы окон (эскизы)</s:String>
     <s:String x:Key="use_software_rendering">Использовать п_рограммную отрисовку</s:String>
-   <s:String x:Key="middle_mouse_to_close">_Закрывать элементы щелчком средней кнопки мыши</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Закрывать элементы щелчком средней кнопки мыши</s:String>
     <s:String x:Key="multiple_displays">Несколько дисплеев</s:String>
     <s:String x:Key="show_tasks_on">_Отображать кнопки окон:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -40,7 +40,7 @@
     </x:Array>
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
-	<s:String x:Key="ok_dialog">ОК</s:String>
+    <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar отображает значки для активных и срочных уведомлений, скрывая неактивные. Можно изменить такое поведение для элементов следующего списка.</s:String>
@@ -61,9 +61,6 @@
     <s:String x:Key="quick_launch">_Быстрый запуск</s:String>
     <s:String x:Key="new_toolbar">Созд_ать панель инструментов...</s:String>
     <s:String x:Key="set_time">Настройка _даты/времени</s:String>
-
-    <!-- строки 67–74 в настоящий момент не используются, и предназначены на случай,
-    если PR #461 будет закончен и объединён до следующего выпуска программы. -->
     <s:String x:Key="cascade">Окна _каскадом</s:String>
     <s:String x:Key="horiz_tile">Окна свер_ху вниз</s:String>
     <s:String x:Key="vert_tile">Окна с_лева направо</s:String>
@@ -72,7 +69,6 @@
     <s:String x:Key="undo_cascade">_Отменить Окна каскадом</s:String>
     <s:String x:Key="undo_tile">_Отменить Окна рядом</s:String>
     <s:String x:Key="undo_minimize_all">_Отменить Свернуть всё</s:String>
-
     <s:String x:Key="show_taskman_2k">Д_испетчер задач...</s:String>
     <s:String x:Key="show_taskman">Д_испетчер задач</s:String>
     <s:String x:Key="tray_properties">_Свойства</s:String>

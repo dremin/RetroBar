@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Vlastnosti RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Nastavení lišty</s:String>
+    <s:String x:Key="taskbar_tab">Hlavní panel</s:String>
+    <s:String x:Key="advanced_tab">Upřesnit</s:String>
     <s:String x:Key="taskbar_appearance">Vzhled lišty</s:String>
     <s:String x:Key="notification_area">Prostor pro upozornění</s:String>
     <s:String x:Key="autostart">Automaticky spustit po _přihlášení</s:String>
@@ -39,7 +40,7 @@
     <s:String x:Key="behavior_heading">Zobrazení</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
-    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_text_xp">Start</s:String>
     <s:String x:Key="start_button_tip_98">Začněte klepnutím sem.</s:String>
     <s:String x:Key="start_button_tip">Začněte klepnutím sem</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
@@ -48,6 +49,7 @@
     <s:String x:Key="toolbars">_Lišty</s:String>
     <s:String x:Key="quick_launch">_Rychlý Přístup</s:String>
     <s:String x:Key="new_toolbar">_Nová lišta...</s:String>
+    <s:String x:Key="set_time">_Změnit Datum a Čas</s:String>
     <s:String x:Key="show_taskman_2k">_Správce Úloh...</s:String>
     <s:String x:Key="show_taskman">_Správce Úloh</s:String>
     <s:String x:Key="tray_properties">_Vlastnosti</s:String>
@@ -65,11 +67,5 @@
     <s:String x:Key="show_hidden">Zobrazit skryté upozornění</s:String>
     <s:String x:Key="hide">Skrýt</s:String>
 
-    <s:String x:Key="set_time">_Změnit Datum a Čas</s:String>
-
     <s:String x:Key="open_folder">&amp;Otevřít Složku</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

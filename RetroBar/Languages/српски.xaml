@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Поставке RetroBar-а</s:String>
-    <s:String x:Key="taskbar_options">Поставке траке задатака</s:String>
+    <s:String x:Key="taskbar_tab">Трака задатака</s:String>
+    <s:String x:Key="advanced_tab">За напредне</s:String>
     <s:String x:Key="taskbar_appearance">Изглед траке задатака</s:String>
     <s:String x:Key="notification_area">Системска палета</s:String>
     <s:String x:Key="autostart">Покрени _аутоматски при пријављивању</s:String>
@@ -29,6 +30,7 @@
     <s:String x:Key="quick_launch_folder">Брзо покретање - изаберите фасциклу</s:String>
     <s:String x:Key="show_window_previews">Прикажи прегледе прозора (сличи_це)</s:String>
     <s:String x:Key="use_software_rendering">_Користи софтверски рендеринг</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Средњи клик да затворите ставке на траци задатака</s:String>
     <s:String x:Key="multiple_displays">Више екрана</s:String>
     <s:String x:Key="show_tasks_on">Прика_жи прозоре на:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -58,6 +60,7 @@
     <s:String x:Key="toolbars">_Траке са алаткама</s:String>
     <s:String x:Key="quick_launch">_Брзо покретање</s:String>
     <s:String x:Key="new_toolbar">_Нова трака са алаткама...</s:String>
+    <s:String x:Key="set_time">_Подесите датум и време</s:String>
     <s:String x:Key="show_taskman_2k">Управљач _задацима...</s:String>
     <s:String x:Key="show_taskman">Управљач _задацима</s:String>
     <s:String x:Key="tray_properties">С_војства</s:String>
@@ -75,13 +78,5 @@
     <s:String x:Key="show_hidden">Прикажи скривене иконе</s:String>
     <s:String x:Key="hide">Сакриј</s:String>
 
-    <s:String x:Key="set_time">_Подесите датум и време</s:String>
-
     <s:String x:Key="open_folder">Отвори &amp;фасциклу</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
-    
-    <s:String x:Key="middle_mouse_to_close">_Средњи клик да затворите ставке на траци задатака</s:String>
 </ResourceDictionary>

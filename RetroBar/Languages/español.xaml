@@ -1,9 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Propiedades de RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Barra de tareas</s:String>
+    <s:String x:Key="taskbar_tab">Barra de tareas</s:String>
+    <s:String x:Key="advanced_tab">Opciones avanzadas</s:String>
     <s:String x:Key="taskbar_appearance">Apariencia de barra de tareas</s:String>
     <s:String x:Key="notification_area">Área de notificación</s:String>
     <s:String x:Key="autostart">_Iniciar automáticamente al iniciar sesión</s:String>
@@ -29,6 +30,7 @@
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
     <s:String x:Key="show_window_previews">Mostrar _vistas previas de las ventanas (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">Usar procesamiento por soft_ware</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central</s:String>
     <s:String x:Key="multiple_displays">Varias pantallas</s:String>
     <s:String x:Key="show_tasks_on">Mostrar _tareas en:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -37,7 +39,7 @@
         <s:String>La misma barra de tareas que la ventana y la barra de tareas principal</s:String>
     </x:Array>
     <s:String x:Key="version">Versión {0}</s:String>
-    <s:String x:Key="visit_on_github">GitHub</s:String>
+    <s:String x:Key="visit_on_github">Visitar RetroBar en GitHub</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
@@ -58,6 +60,15 @@
     <s:String x:Key="toolbars">_Barras de herramientas</s:String>
     <s:String x:Key="quick_launch">Inicio _rápido</s:String>
     <s:String x:Key="new_toolbar">_Nueva barra de herramientas...</s:String>
+    <s:String x:Key="set_time">Ajustar _fecha y hora</s:String>
+    <s:String x:Key="cascade">Ca_scada</s:String>
+    <s:String x:Key="horiz_tile">Mosaico _horizontal</s:String>
+    <s:String x:Key="vert_tile">Mosaico vert_ical</s:String>
+    <s:String x:Key="toggle_desktop">Mostrar el _escritorio</s:String>
+    <s:String x:Key="hide_desktop">Mostrar _ventanas abiertas</s:String>
+    <s:String x:Key="undo_cascade">_Deshacer Cascada</s:String>
+    <s:String x:Key="undo_tile">_Deshacer En mosaico</s:String>
+    <s:String x:Key="undo_minimize_all">_Deshacer Minimizar todo</s:String>
     <s:String x:Key="show_taskman_2k">Admi_nistrador de tareas...</s:String>
     <s:String x:Key="show_taskman">Admi_nistrador de tareas</s:String>
     <s:String x:Key="tray_properties">_Propiedades</s:String>
@@ -75,9 +86,5 @@
     <s:String x:Key="show_hidden">Mostrar iconos ocultos</s:String>
     <s:String x:Key="hide">Ocultar</s:String>
 
-    <s:String x:Key="set_time">Ajustar _fecha y hora</s:String>
-
     <s:String x:Key="open_folder">&amp;Abrir carpeta</s:String>
-
-    <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central del mouse</s:String>
 </ResourceDictionary>

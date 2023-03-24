@@ -3,7 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Hartabenda Retrobar</s:String>
-    <s:String x:Key="taskbar_options">Pilihan Lintangan Tugasan</s:String>
+    <s:String x:Key="taskbar_tab">Bar Tugas</s:String>
+    <s:String x:Key="advanced_tab">Lebih Maju</s:String>
     <s:String x:Key="taskbar_appearance">Paparan Lintangan Tugasan</s:String>
     <s:String x:Key="notification_area">Bahagian Pemberitahuan</s:String>
     <s:String x:Key="autostart">Buka secara automatik semasa _log masuk</s:String>
@@ -20,7 +21,7 @@
         <s:String>Bawah</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Benarkan kelicinan fon</s:String>
-    <s:String x:Key="collapse_tray_icons">Jatuhkan kawasan ikon _pemberitahuan </s:String>
+    <s:String x:Key="collapse_tray_icons">Jatuhkan kawasan ikon _pemberitahuan</s:String>
     <s:String x:Key="customize">Ubahsua_i...</s:String>
     <s:String x:Key="show_clock">Paparkan _jam</s:String>
     <s:String x:Key="show_multi_mon">Paparkan pada paparan yang _berbilang</s:String>
@@ -28,7 +29,7 @@
     <s:String x:Key="select_location">_Pilih tempat...</s:String>
     <s:String x:Key="quick_launch_folder">Lancar Segera - Pilih lipatan</s:String>
     <s:String x:Key="use_software_rendering">_Gunakan terapan dari perisian (software render)</s:String>
-    <s:String x:Key="ok_dialog">Okey</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Ubahsuai Pemberitahuan</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar memaparkan ikon untuk pemberitahuan yang aktif dan penting, dan sembunyikan yang tidak aktif. Anda juga boleh menetapkan keadaan ini untuk perkara yang disenaraikan dibawah.</s:String>
@@ -48,6 +49,7 @@
     <s:String x:Key="toolbars">_Lintangan Peralatan</s:String>
     <s:String x:Key="quick_launch">_Lancar Segera</s:String>
     <s:String x:Key="new_toolbar">_Lintangan Peralatan Baru...</s:String>
+    <s:String x:Key="set_time">_Ubahkan Tarikh/Masa</s:String>
     <s:String x:Key="show_taskman_2k">Pengurus _Tugasan...</s:String>
     <s:String x:Key="show_taskman">Pengurus _Tugasan</s:String>
     <s:String x:Key="tray_properties">Hartab_enda</s:String>
@@ -65,11 +67,5 @@
     <s:String x:Key="show_hidden">Paparkan ikon tersembunyi</s:String>
     <s:String x:Key="hide">Sembunyi</s:String>
 
-    <s:String x:Key="set_time">_Ubahkan Tarikh/Masa</s:String>
-
     <s:String x:Key="open_folder">&amp;Buka Lipatan</s:String>
-
-    <FlowDirection x:Key="flow_direction">KiriKeKanan</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

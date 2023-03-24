@@ -1,9 +1,12 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">מאפייני RetroBar</s:String>
-    <s:String x:Key="taskbar_options">הגדרות שורת המשימות</s:String>
+    <s:String x:Key="taskbar_tab">שורת המשימות</s:String>
+    <s:String x:Key="advanced_tab">מתקדם</s:String>
+    <s:String x:Key="taskbar_appearance">מראה שורת המשימות</s:String>
+    <s:String x:Key="notification_area">אזור ההתרעות</s:String>
     <s:String x:Key="autostart">התחל אוטומטית בכ_ניסה</s:String>
     <s:String x:Key="language_text">שפ_ה:</s:String>
     <s:String x:Key="language_tip">בחר את השפה שלך.</s:String>
@@ -19,12 +22,11 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_אפשר החלקת גופנים</s:String>
     <s:String x:Key="collapse_tray_icons">סמלי אזור הודעה מכווץ</s:String>
+    <s:String x:Key="customize">התא_מה אישית...</s:String>
     <s:String x:Key="show_clock">הצג את שעון המערכת</s:String>
-    <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
     <s:String x:Key="show_quick_launch">הצג הפעלה מהירה</s:String>
     <s:String x:Key="select_location">_בחירת מיקום...</s:String>
     <s:String x:Key="quick_launch_folder">הפעלה מהירה - בחירת תיקיה</s:String>
-    <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
     <s:String x:Key="ok_dialog">אישור</s:String>
 
     <s:String x:Key="start_text">התחל</s:String>
@@ -37,9 +39,10 @@
     <s:String x:Key="toolbars">_סרגלי כלים</s:String>
     <s:String x:Key="quick_launch">_הפעלה מהירה</s:String>
     <s:String x:Key="new_toolbar">_סרגל כלים חדש...</s:String>
+    <s:String x:Key="set_time">_התאם את השעה והתאריך</s:String>
     <s:String x:Key="show_taskman_2k">הפעל את מנהל המשימות</s:String>
     <s:String x:Key="show_taskman">הפעל את מנהל המשימות</s:String>
-    <s:String x:Key="tray_properties">ה_גדרות</s:String>
+    <s:String x:Key="tray_properties">מ_אפיינים</s:String>
     <s:String x:Key="update_available">_העדכון זמין כעת...</s:String>
     <s:String x:Key="exit_retrobar">_יציאה RetroBar</s:String>
 
@@ -53,11 +56,8 @@
     <s:String x:Key="show_hidden">הצג סמלים מוסתרים</s:String>
     <s:String x:Key="hide">הסתר</s:String>
 
-    <s:String x:Key="set_time">_התאם את השעה והתאריך</s:String>
-
     <s:String x:Key="open_folder">&amp;פתח תיקיה</s:String>
 
-	<FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
-
+    <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>

@@ -3,7 +3,7 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Proprietà di RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Opzioni barra delle applicazioni</s:String>
+    <s:String x:Key="taskbar_tab">Barra delle applicazioni</s:String>
     <s:String x:Key="autostart">Avvia automaticamente all'a_ccesso</s:String>
     <s:String x:Key="language_text">Lin_gua:</s:String>
     <s:String x:Key="language_tip">Seleziona la lingua da usare.</s:String>
@@ -46,6 +46,7 @@
     <s:String x:Key="toolbars">_Barre degli strumenti</s:String>
     <s:String x:Key="quick_launch">A_vvio veloce</s:String>
     <s:String x:Key="new_toolbar">_Nuova barra degli strumenti...</s:String>
+    <s:String x:Key="set_time">Mo_difica data/ora</s:String>
     <s:String x:Key="show_taskman_2k">Tas_k Manager...</s:String>
     <s:String x:Key="show_taskman">Tas_k Manager</s:String>
     <s:String x:Key="tray_properties">_Proprietà</s:String>
@@ -62,8 +63,6 @@
 
     <s:String x:Key="show_hidden">Mostra icone nascoste</s:String>
     <s:String x:Key="hide">Nascondi</s:String>
-
-    <s:String x:Key="set_time">Mo_difica data/ora</s:String>
 
     <s:String x:Key="open_folder">&amp;Apri cartella</s:String>
 </ResourceDictionary>

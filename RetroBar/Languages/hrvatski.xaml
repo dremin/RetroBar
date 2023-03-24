@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Svojstva RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Opcije programske trake</s:String>
-	<s:String x:Key="advanced">Napredne postavke</s:String>
+    <s:String x:Key="taskbar_tab">Programska traka</s:String>
+    <s:String x:Key="advanced_tab">Napredne postavke</s:String>
     <s:String x:Key="taskbar_appearance">Izgled programske trake</s:String>
     <s:String x:Key="notification_area">Područje obavjesti</s:String>
     <s:String x:Key="autostart">Automatski pokrenuti na_početku</s:String>
@@ -21,7 +21,7 @@
         <s:String>Dno</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
-    <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone </s:String>
+    <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone</s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
     <s:String x:Key="show_clock">Prikaži  _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
@@ -30,7 +30,7 @@
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
     <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena sličica)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
-	<s:String x:Key="middle_mouse_to_close">_Pritisak na srednju tipku miša zatvara stavke programske trake.</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Pritisak na srednju tipku miša zatvara stavke programske trake.</s:String>
     <s:String x:Key="multiple_displays">Više zaslona</s:String>
     <s:String x:Key="show_tasks_on">P_rikaži zadatke na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -40,7 +40,7 @@
     </x:Array>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Posjeti na GitHub-u</s:String>
-	<s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone za aktivne i važne obavjesti, i sakriva neaktivne. Vi možete promjeniti ovo ponašanje za stavke u popisu ispod.</s:String>
@@ -60,6 +60,7 @@
     <s:String x:Key="toolbars">_Alatne take</s:String>
     <s:String x:Key="quick_launch">_Brzo pokretanje</s:String>
     <s:String x:Key="new_toolbar">_Nove alatne trake...</s:String>
+    <s:String x:Key="set_time">_Podesi Datum/Vrijeme</s:String>
     <s:String x:Key="show_taskman_2k">Uparvite_lj zadataka...</s:String>
     <s:String x:Key="show_taskman">Uparvite_lj zadataka</s:String>
     <s:String x:Key="tray_properties">S_vojstava</s:String>
@@ -77,11 +78,5 @@
     <s:String x:Key="show_hidden">Prikaži sakrivene ikone</s:String>
     <s:String x:Key="hide">Sakriji</s:String>
 
-    <s:String x:Key="set_time">_Podesi Datum/Vrijeme</s:String>
-
     <s:String x:Key="open_folder">&amp;Orvori Datoteku</s:String>
-
-    <!-- Stavke ispod su postavke, i trebale bi uvjek biti u Engleskom -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

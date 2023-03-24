@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar-inställningar</s:String>
-    <s:String x:Key="taskbar_options">Aktivitetsfältet Egenskaper</s:String>
+    <s:String x:Key="taskbar_tab">Aktivitetsfältet</s:String>
     <s:String x:Key="taskbar_appearance">Aktivitetsfältet utseende</s:String>
     <s:String x:Key="notification_area">Meddelandefältet</s:String>
     <s:String x:Key="autostart">Starta automatiskt vid in_loggning</s:String>
@@ -48,6 +48,7 @@
     <s:String x:Key="toolbars">Verk_tygsfält</s:String>
     <s:String x:Key="quick_launch">Sna_bbstart</s:String>
     <s:String x:Key="new_toolbar">_Nytt verktygsfält...</s:String>
+    <s:String x:Key="set_time">Justera _datum/tid</s:String>
     <s:String x:Key="show_taskman_2k">A_ktivitetshanteraren...</s:String>
     <s:String x:Key="show_taskman">A_ktivitetshanteraren</s:String>
     <s:String x:Key="tray_properties">Egenskape_r</s:String>
@@ -65,11 +66,5 @@
     <s:String x:Key="show_hidden">Visa dolda ikoner</s:String>
     <s:String x:Key="hide">Dölj</s:String>
 
-    <s:String x:Key="set_time">Justera _datum/tid</s:String>
-
     <s:String x:Key="open_folder">&amp;Öppna mappen</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

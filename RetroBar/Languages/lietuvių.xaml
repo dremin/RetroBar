@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar ypatybės</s:String>
-    <s:String x:Key="taskbar_options">Užduočių juosta</s:String>
+    <s:String x:Key="taskbar_tab">Užduočių juosta</s:String>
     <s:String x:Key="taskbar_appearance">Užduočių juostos išvaizda</s:String>
     <s:String x:Key="notification_area">Pranešimų sritis</s:String>
     <s:String x:Key="autostart">Automatiškai pradėti</s:String>
@@ -40,7 +40,7 @@
 
     <s:String x:Key="start_text">Pradėti</s:String>
     <s:String x:Key="start_text_xp">pradėti</s:String>
-    <s:String x:Key="start_button_tip_98">Pradėkite spustelėdami čia.</s:String> 
+    <s:String x:Key="start_button_tip_98">Pradėkite spustelėdami čia.</s:String>
     <s:String x:Key="start_button_tip">Pradėkite spustelėdami čia</s:String>
     <s:String x:Key="start_button_tip_vista">Pradėti</s:String>
 
@@ -48,6 +48,7 @@
     <s:String x:Key="toolbars">Į_rankių juostos</s:String>
     <s:String x:Key="quick_launch">_Greitas paleidimas</s:String>
     <s:String x:Key="new_toolbar">_Nauja įrankių juosta...</s:String>
+    <s:String x:Key="set_time">_Datos/laiko nustatymas</s:String>
     <s:String x:Key="show_taskman_2k">Uždu_očių tvarkymas...</s:String>
     <s:String x:Key="show_taskman">Uždu_očių tvarkymas</s:String>
     <s:String x:Key="tray_properties">_Ypatybės</s:String>
@@ -64,8 +65,6 @@
 
     <s:String x:Key="show_hidden">Rodyti paslėptas piktogramas</s:String>
     <s:String x:Key="hide">Slėpti</s:String>
-
-    <s:String x:Key="set_time">_Datos/laiko nustatymas</s:String>
 
     <s:String x:Key="open_folder">&amp;Atidaryti aplanką</s:String>
 </ResourceDictionary>
