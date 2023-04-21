@@ -1,5 +1,6 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
+using ManagedShell.WindowsTasks;
 using RetroBar.Utilities;
 using System;
 using System.Diagnostics;
@@ -16,6 +17,15 @@ namespace RetroBar.Controls
         private const int TOGGLE_DESKTOP = 407;
         private IntPtr taskbarHandle = Process.GetCurrentProcess().MainWindowHandle;
         private bool isWindows81OrBetter = EnvironmentHelper.IsWindows81OrBetter;
+        private bool isLoaded;
+
+        public static DependencyProperty TasksServiceProperty = DependencyProperty.Register("TasksService", typeof(TasksService), typeof(ShowDesktopButton));
+
+        public TasksService TasksService
+        {
+            get { return (TasksService)GetValue(TasksServiceProperty); }
+            set { SetValue(TasksServiceProperty, value); }
+        }
 
         public ShowDesktopButton()
         {
@@ -66,8 +76,7 @@ namespace RetroBar.Controls
 
         private void ShowDesktop_OnClick(object sender, RoutedEventArgs e)
         {
-            // TODO: Check the button if the desktop is active after clicking it.
-            //       Uncheck if the desktop is no longer active.
+            // If the user activates a window other than the desktop, HandleWindowActivated will deselect the button.
             ToggleDesktop();
         }
 
@@ -79,6 +88,32 @@ namespace RetroBar.Controls
         private void PropertiesItem_OnClick(object sender, RoutedEventArgs e)
         {
             OpenDisplayPropertiesCpl();
+        }
+
+        private void HandleWindowActivated(object sender, WindowActivatedEventArgs e)
+        {
+            if (ShowDesktop.IsChecked == true)
+            {
+                ShowDesktop.IsChecked = false;
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!isLoaded && TasksService != null)
+            {
+                TasksService.WindowActivated += HandleWindowActivated;
+                isLoaded = true;
+            }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (isLoaded && TasksService != null)
+            {
+                TasksService.WindowActivated -= HandleWindowActivated;
+                isLoaded = false;
+            }
         }
     }
 }
