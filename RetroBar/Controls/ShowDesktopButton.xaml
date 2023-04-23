@@ -10,22 +10,20 @@
                   Click="ShowDesktop_OnClick"
                   MouseEnter="ShowDesktop_OnMouseEnter"
                   MouseLeave="ShowDesktop_OnMouseLeave">
-        <Grid>
-            <Image Style="{DynamicResource ShowDesktopIcon}" />
-        </Grid>
+        <Image Name="ShowDesktopIcon"
+               Style="{DynamicResource ShowDesktopIcon}" />
         <ToggleButton.ContextMenu>
             <ContextMenu Opened="ContextMenu_Opened">
                 <MenuItem Style="{DynamicResource ShowDesktopItem}"
-                          Name="ShowDesktopItem"
-                          Click="ShowDesktop_OnClick" />
+                        Name="ShowDesktopItem"
+                        Click="ShowDesktop_OnClick" />
                 <MenuItem Header="{DynamicResource peek_at_desktop}"
-                          FontWeight="Bold"
-                          IsCheckable="True"
-                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=PeekAtDesktop, UpdateSourceTrigger=PropertyChanged}"
-                          Name="PeekAtDesktopItem" />
+                        IsCheckable="True"
+                        IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=PeekAtDesktop, UpdateSourceTrigger=PropertyChanged}"
+                        Name="PeekAtDesktopItem" />
                 <MenuItem Header="{DynamicResource tray_properties}"
-                          Name="PropertiesItem"
-                          Click="PropertiesItem_OnClick" />
+                        Name="PropertiesItem"
+                        Click="PropertiesItem_OnClick" />
             </ContextMenu>
         </ToggleButton.ContextMenu>
     </ToggleButton>

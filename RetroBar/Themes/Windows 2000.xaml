@@ -34,41 +34,8 @@
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
 
-    <BitmapImage x:Key="ShowDesktopIconImage"
-                 UriSource="../Resources/desktopMe2K.ico" />
-    <Style TargetType="ToggleButton"
-           x:Key="ShowDesktopButton">
-        <Setter Property="OverridesDefaultStyle"
-                Value="True" />
-        <Setter Property="Background"
-                Value="{DynamicResource ButtonFace}" />
-        <Setter Property="Foreground"
-                Value="{DynamicResource ButtonForeground}" />
-        <Setter Property="Margin"
-                Value="0" />
-        <Setter Property="HorizontalAlignment"
-                Value="Center" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Border Background="{TemplateBinding Background}">
-                        <Grid Margin="4,0,6,0">
-                            <ContentPresenter />
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                         Value="Vertical">
-                <DataTrigger.Setters>
-                    <Setter Property="Margin"
-                            Value="0,4,0,6" />
-                </DataTrigger.Setters>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
+    <BitmapImage x:Key="ShowDesktopIconImageSmall"
+                 UriSource="../Resources/desktopMe2k-sm.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageLarge"
+                 UriSource="../Resources/desktopMe2k-lg.png" />
 </ResourceDictionary>

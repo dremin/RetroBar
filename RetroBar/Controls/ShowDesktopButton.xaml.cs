@@ -32,6 +32,18 @@ namespace RetroBar.Controls
             InitializeComponent();
         }
 
+        private void SetIconSizeForDpi()
+        {
+            if (DpiHelper.DpiScale > 1)
+            {
+                ShowDesktopIcon.Source = (System.Windows.Media.ImageSource)FindResource("ShowDesktopIconImageLarge");
+            }
+            else
+            {
+                ShowDesktopIcon.Source = (System.Windows.Media.ImageSource)FindResource("ShowDesktopIconImageSmall");
+            }
+        }
+
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
             PeekAtDesktopItem.IsEnabled = true;
@@ -102,6 +114,7 @@ namespace RetroBar.Controls
         {
             if (!isLoaded && TasksService != null)
             {
+                SetIconSizeForDpi();
                 TasksService.WindowActivated += HandleWindowActivated;
                 isLoaded = true;
             }

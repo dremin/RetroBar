@@ -58,7 +58,6 @@
             </controls:Toolbar>
             <controls:ShowDesktopButton x:Name="ShowDesktopButtonTray"
                                         TasksService="{Binding TasksService}"
-                                        HorizontalAlignment="Center"
                                         Visibility="Collapsed">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
