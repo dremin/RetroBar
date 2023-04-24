@@ -19,6 +19,13 @@
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}" />
+    <ToolTip x:Key="ShowDesktopButtonTip" Content="{DynamicResource show_desktop_tip_95}" />
+    <Style TargetType="MenuItem"
+           x:Key="ShowDesktopItem"
+           BasedOn="{StaticResource ShowDesktopItem}">
+        <Setter Property="Header"
+                Value="{DynamicResource show_desktop_95}" />
+    </Style>
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton"
@@ -28,4 +35,27 @@
     </Style>
 
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
+
+    <Style TargetType="ToggleButton"
+           x:Key="ShowDesktopButton"
+           BasedOn="{StaticResource StartButton}">
+        <Setter Property="Margin"
+                Value="-2,0,0,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{DynamicResource CheckeredBackgroundAlt}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Horizontal">
+                <DataTrigger.Setters>
+                    <Setter Property="BorderThickness"
+                            Value="0,0,0,1" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

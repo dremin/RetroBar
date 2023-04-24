@@ -31,6 +31,7 @@
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
     <s:String x:Key="middle_mouse_to_close">_Middle-click to close taskbar items</s:String>
+    <s:String x:Key="add_show_desktop_button">Add the Show _Desktop button</s:String>
     <s:String x:Key="multiple_displays">Multiple displays</s:String>
     <s:String x:Key="show_tasks_on">S_how tasks on:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -75,6 +76,12 @@
     <s:String x:Key="update_available">_Update available...</s:String>
     <s:String x:Key="exit_retrobar">_Exit RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Customize Notifications...</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Surface/Restore Desktop</s:String>
+    <s:String x:Key="show_desktop_tip">Show Desktop</s:String>
+    <s:String x:Key="show_desktop_95">_Desktop</s:String>
+    <s:String x:Key="show_desktop">_Show Desktop</s:String>
+    <s:String x:Key="peek_at_desktop">_Peek at desktop</s:String>
 
     <s:String x:Key="restore">_Restore</s:String>
     <s:String x:Key="move">_Move</s:String>

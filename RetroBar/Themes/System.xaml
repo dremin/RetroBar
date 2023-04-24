@@ -27,6 +27,11 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
 
+    <BitmapImage x:Key="ShowDesktopIconImageSmall"
+                 UriSource="../Resources/desktop95-sm.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageLarge"
+                 UriSource="../Resources/desktop95-lg.png" />
+
     <Style x:Key="DefaultDirection">
         <Setter Property="Control.FlowDirection"
                         Value="LeftToRight" />
@@ -312,6 +317,12 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
+    <DrawingBrush x:Key="CheckeredBackgroundAlt" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Geometry="M0,0 H1 V1 H2 V2 H1 V1 H0Z" Brush="{DynamicResource ButtonHighlight}" />
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
     <Style TargetType="Button"
            x:Key="TaskButtonFlashing"
            BasedOn="{StaticResource TaskButton}">
@@ -520,6 +531,14 @@
     </Style>
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
+    <ToolTip x:Key="ShowDesktopButtonTip" Content="{DynamicResource show_desktop_tip}" />
+    <Style TargetType="MenuItem"
+           x:Key="ShowDesktopItem">
+        <Setter Property="Header"
+                Value="{DynamicResource show_desktop}" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton">
@@ -531,6 +550,8 @@
                 Value="{DynamicResource ButtonForeground}" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
+        <Setter Property="BorderThickness"
+                Value="0,0,1,1" />
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Template">
@@ -538,7 +559,7 @@
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent"
                             Padding="2">
-                        <Border BorderThickness="0,0,1,1"
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{DynamicResource ButtonDarkShadow}"
                                 x:Name="ButtonOuterBottomBorder">
                             <Border BorderThickness="1,1,0,0"
@@ -600,6 +621,102 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="ToggleButton"
+           x:Key="ShowDesktopButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            Padding="0,2,2,2"
+                            Name="ButtonBorder">
+                        <Border BorderThickness="0,0,1,1"
+                                BorderBrush="{TemplateBinding Background}"
+                                x:Name="ButtonRightBottomBorder">
+                            <Border BorderThickness="1,1,0,0"
+                                    BorderBrush="{TemplateBinding Background}"
+                                    x:Name="ButtonLeftTopBorder">
+                                <Border BorderThickness="1"
+                                        BorderBrush="Transparent"
+                                        Background="{TemplateBinding Background}"
+                                        Padding="2,1">
+                                    <ContentPresenter Name="Content" />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Padding"
+                                        Value="0,0,0,2" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{DynamicResource CheckeredBackground}" />
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="1,1,-1,-1" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                            <Setter TargetName="Content"
+                                    Property="Margin"
+                                    Value="1,1,-1,-1" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked"
+                                           Value="True" />
+                                <Condition Property="IsMouseOver"
+                                           Value="True" />
+                                <Condition Property="IsPressed"
+                                           Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="Image"
            x:Key="TaskIcon"
@@ -619,6 +736,15 @@
                 Value="0,0,2,0" />
         <Setter Property="Source"
                 Value="{DynamicResource StartIconImage}" />
+    </Style>
+
+    <Style TargetType="Image"
+           x:Key="ShowDesktopIcon"
+           BasedOn="{StaticResource TaskIcon}">
+        <Setter Property="Margin"
+                Value="-1,0,0,0" />
+        <Setter Property="Source"
+                Value="{DynamicResource ShowDesktopIconImageSmall}" />
     </Style>
 
     <Style TargetType="Image"

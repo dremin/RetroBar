@@ -5,6 +5,11 @@
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/startxpclassic.png" />
 
+    <BitmapImage x:Key="ShowDesktopIconImageSmall"
+                 UriSource="../Resources/desktopxp-sm.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageLarge"
+                 UriSource="../Resources/desktopxp-lg.png" />
+
     <Style TargetType="Image"
            x:Key="StartIcon"
            BasedOn="{StaticResource StartIcon}">

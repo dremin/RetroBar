@@ -33,4 +33,9 @@
     </Style>
 
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
+
+    <BitmapImage x:Key="ShowDesktopIconImageSmall"
+                 UriSource="../Resources/desktopMe2k-sm.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageLarge"
+                 UriSource="../Resources/desktopMe2k-lg.png" />
 </ResourceDictionary>

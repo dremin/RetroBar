@@ -56,6 +56,16 @@
                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:Toolbar>
+            <controls:ShowDesktopButton x:Name="ShowDesktopButtonTray"
+                                        TasksService="{Binding TasksService}"
+                                        Visibility="Collapsed">
+                <DockPanel.Dock>
+                    <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="trailing"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                </DockPanel.Dock>
+            </controls:ShowDesktopButton>
             <GroupBox Style="{DynamicResource Tray}"
                       PreviewMouseRightButtonUp="NotifyArea_PreviewMouseRightButtonUp">
                 <DockPanel.Dock>

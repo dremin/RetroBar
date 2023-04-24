@@ -34,6 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+	<None Remove="Resources\desktop95-sm.png" />
+	<None Remove="Resources\desktop95-lg.png" />
     <None Remove="Resources\retrobar.ico" />
     <None Remove="Resources\shader_invert.ps" />
     <None Remove="Resources\start9x.png" />
@@ -43,7 +45,7 @@
 
   <ItemGroup>
     <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />
-    <PackageReference Include="ManagedShell" Version="0.0.200" />
+    <PackageReference Include="ManagedShell" Version="0.0.202" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
 
@@ -52,6 +54,8 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Resource Include="Resources\desktop95-sm.png" />
+	<Resource Include="Resources\desktop95-lg.png" />
     <Resource Include="Resources\shader_invert.ps" />
     <Resource Include="Resources\retrobar.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

@@ -378,6 +378,10 @@
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startlhaerobutton.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageSmall"
+                 UriSource="../Resources/desktopxp-sm.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageLarge"
+                 UriSource="../Resources/desktopxp-lg.png" />
 
     <Style TargetType="MenuItem"
            x:Key="TaskManMenuItem">
@@ -1537,6 +1541,122 @@
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ToggleButton"
+           x:Key="ShowDesktopButton">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border BorderThickness="1,0,0,0"
+                            BorderBrush="{DynamicResource TaskListScrollButtonOuterLeftBorder}"
+                            x:Name="ButtonOuterLeftBorder">
+                        <Border BorderThickness="0,0,0,0"
+                                BorderBrush="{DynamicResource TaskListScrollButtonOuterRightBorder}"
+                                x:Name="ButtonOuterRightBorder">
+                            <Border BorderThickness="0,0,0,0"
+                                    BorderBrush="{DynamicResource TaskListScrollButtonOuterBottomBorder}"
+                                    x:Name="ButtonOuterBottomBorder">
+                                <Border BorderThickness="0,0,0,0"
+                                        BorderBrush="{DynamicResource TaskListScrollButtonBottomBorder}"
+                                        x:Name="ButtonBottomBorder">
+                                    <Border BorderThickness="1,0,0,0"
+                                            BorderBrush="{DynamicResource TaskListScrollButtonLeftBorder}"
+                                            x:Name="ButtonLeftBorder">
+                                        <Border BorderThickness="0,0,0,0"
+                                                BorderBrush="{DynamicResource TaskListScrollButtonRightBorder}"
+                                                x:Name="ButtonRightBorder">
+                                            <Border BorderThickness="0,1,0,0"
+                                                    BorderBrush="{DynamicResource TaskListScrollButtonTopBorder}"
+                                                    Background="{DynamicResource TaskListScrollButtonBackground}"
+                                                    x:Name="ButtonTopBorder">
+                                                <Border BorderThickness="0,0,0,1"
+                                                        BorderBrush="{DynamicResource TaskListScrollButtonInnerBottomBorder}"
+                                                        x:Name="ButtonInnerBottomBorder">
+                                                    <Border BorderThickness="1,0,0,0"
+                                                            BorderBrush="{DynamicResource TaskListScrollButtonInnerLeftBorder}"
+                                                            x:Name="ButtonInnerLeftBorder">
+                                                        <Border BorderThickness="0,0,1,0"
+                                                                BorderBrush="{DynamicResource TaskListScrollButtonInnerRightBorder}"
+                                                                x:Name="ButtonInnerRightBorder">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                              VerticalAlignment="Center"
+                                                                              Margin="5,1,3,0"
+                                                                              x:Name="Content" />
+                                                        </Border>
+                                                    </Border>
+                                                </Border>
+                                            </Border>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundHover}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonTopBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskListScrollButtonBackgroundPressed}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,0" />
+                                <Setter TargetName="ButtonTopBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="ButtonRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,0" />
+                                <Setter TargetName="ButtonInnerLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,1" />
+                                <Setter TargetName="ButtonInnerRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonInnerBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="ButtonOuterLeftBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,0" />
+                                <Setter TargetName="ButtonOuterRightBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="ButtonOuterBottomBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,0,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="Button"
