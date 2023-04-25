@@ -77,6 +77,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Spanish (español)
 - Swedish (svenska)
 - Turkish (Türkçe)
+- Ukrainian (українська)
 - Vietnamese (Tiếng Việt)
 
 ## Custom languages and themes
