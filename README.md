@@ -70,7 +70,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Persian (فارسی)
 - Polish (polski)
 - Portuguese (português)
-- Romanian (Română)
+- Romanian (română)
 - Russian (русский)
 - Serbian (Cyrillic) (српски)
 - Serbian (Latin) (srpski)
