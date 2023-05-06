@@ -22,7 +22,7 @@ namespace RetroBar.Converters
             {
                 double placementTargetHeight = (double)values[0];
                 double toolTipHeight = (double)values[1];
-                return (placementTargetHeight / 2.0) - (toolTipHeight / 2.0);
+                return (placementTargetHeight / 2.0) - (toolTipHeight / 2.0 / (double)values[2]);
             }
             else
             {

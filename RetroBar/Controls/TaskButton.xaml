@@ -104,6 +104,7 @@
                                             <MultiBinding Converter="{StaticResource toolTipHorizontalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
                                                 <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualWidth"/>
                                                 <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
                                                 <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
                                             </MultiBinding>
                                         </Setter.Value>
@@ -113,6 +114,7 @@
                                             <MultiBinding Converter="{StaticResource toolTipVerticalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
                                                 <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualHeight"/>
                                                 <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
                                                 <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
                                             </MultiBinding>
                                         </Setter.Value>

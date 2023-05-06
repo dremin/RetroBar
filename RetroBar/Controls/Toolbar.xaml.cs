@@ -70,12 +70,23 @@ namespace RetroBar.Controls
                     return;
                 }
 
-                if (Folder != null)
-                {
-                    ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
-                    cvs.Refresh();
-                }
+                Refresh();
             }
+            else if (e.PropertyName == "TaskbarScale")
+            {
+                Refresh();
+            }
+        }
+
+        private void Refresh()
+        {
+            if (Folder == null)
+            {
+                return;
+            }
+
+            ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+            cvs.Refresh();
         }
 
         private void SetupFolder(string path)

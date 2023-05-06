@@ -32,9 +32,9 @@ namespace RetroBar.Controls
             InitializeComponent();
         }
 
-        private void SetIconSizeForDpi()
+        private void SetIconSize()
         {
-            if (DpiHelper.DpiScale > 1)
+            if (DpiHelper.DpiScale > 1 || Settings.Instance.TaskbarScale > 1)
             {
                 ShowDesktopIcon.Source = (System.Windows.Media.ImageSource)FindResource("ShowDesktopIconImageLarge");
             }
@@ -110,12 +110,21 @@ namespace RetroBar.Controls
             }
         }
 
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "TaskbarScale")
+            {
+                SetIconSize();
+            }
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (!isLoaded && TasksService != null)
             {
-                SetIconSizeForDpi();
+                SetIconSize();
                 TasksService.WindowActivated += HandleWindowActivated;
+                Settings.Instance.PropertyChanged += Settings_PropertyChanged;
                 isLoaded = true;
             }
         }
@@ -125,6 +134,7 @@ namespace RetroBar.Controls
             if (isLoaded && TasksService != null)
             {
                 TasksService.WindowActivated -= HandleWindowActivated;
+                Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
                 isLoaded = false;
             }
         }

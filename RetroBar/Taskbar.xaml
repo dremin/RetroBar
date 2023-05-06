@@ -14,6 +14,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
+            <converters:SettingsToTextFormattingModeConverter x:Key="textFormattingModeConverter" />
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
 
@@ -30,12 +31,25 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
+    <TextOptions.TextFormattingMode>
+        <MultiBinding Converter="{StaticResource textFormattingModeConverter}" UpdateSourceTrigger="PropertyChanged">
+            <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+            <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothing"/>
+        </MultiBinding>
+    </TextOptions.TextFormattingMode>
     <TextOptions.TextRenderingMode>
         <Binding Source="{x:Static utilities:Settings.Instance}"
                  Path="AllowFontSmoothing"
                  Converter="{StaticResource textRenderingModeConverter}" />
     </TextOptions.TextRenderingMode>
     <ContentControl Style="{DynamicResource Taskbar}">
+        <ContentControl.LayoutTransform>
+            <ScaleTransform x:Name="TaskbarScaleTransform"
+                            ScaleX="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
+                            ScaleY="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
+                            CenterX="0"
+                            CenterY="0" />
+        </ContentControl.LayoutTransform>
         <DockPanel>
             <controls:StartButton x:Name="StartButton"
                                   Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">

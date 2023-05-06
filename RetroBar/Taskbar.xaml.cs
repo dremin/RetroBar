@@ -36,8 +36,8 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
-            DesiredHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
-            DesiredWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
+            DesiredHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
             AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
 
@@ -109,15 +109,33 @@ namespace RetroBar
             }
         }
 
+        private void RecalculateSize()
+        {
+            double newHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
+            bool heightChanged = newHeight != DesiredHeight;
+            bool widthChanged = newWidth != DesiredWidth;
+
+            DesiredHeight = newHeight;
+            DesiredWidth = newWidth;
+
+            if (Orientation == Orientation.Horizontal && heightChanged)
+            {
+                Height = DesiredHeight;
+                SetScreenPosition();
+            }
+            else if (Orientation == Orientation.Vertical && widthChanged)
+            {
+                Width = DesiredWidth;
+                SetScreenPosition();
+            }
+        }
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Theme")
             {
                 bool newTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
-                double newHeight = Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
-                double newWidth = Application.Current.FindResource("TaskbarWidth") as double? ?? 0;
-                bool heightChanged = newHeight != DesiredHeight;
-                bool widthChanged = newWidth != DesiredWidth;
 
                 if (AllowsTransparency != newTransparency && Screen.Primary)
                 {
@@ -126,19 +144,7 @@ namespace RetroBar
                     return;
                 }
 
-                DesiredHeight = newHeight;
-                DesiredWidth = newWidth;
-
-                if (Orientation == Orientation.Horizontal && heightChanged)
-                {
-                    Height = DesiredHeight;
-                    SetScreenPosition();
-                }
-                else if (Orientation == Orientation.Vertical && widthChanged)
-                {
-                    Width = DesiredWidth;
-                    SetScreenPosition();
-                }
+                RecalculateSize();
             }
             else if (e.PropertyName == "ShowQuickLaunch")
             {
@@ -177,6 +183,10 @@ namespace RetroBar
                 {
                     ShowDesktopButtonTray.Visibility = Visibility.Collapsed;
                 }
+            }
+            else if (e.PropertyName == "TaskbarScale")
+            {
+                RecalculateSize();
             }
         }
 

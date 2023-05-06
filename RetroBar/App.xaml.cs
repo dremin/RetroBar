@@ -81,7 +81,7 @@ namespace RetroBar
                     RenderOptions.ProcessRenderMode = RenderMode.Default;
                 }
             }
-            else if (e.PropertyName == "Theme")
+            else if (e.PropertyName == "Theme" || e.PropertyName == "TaskbarScale")
             {
                 setTaskIconSize();
             }
@@ -95,7 +95,7 @@ namespace RetroBar
 
         private void setTaskIconSize()
         {
-            bool useLargeIcons = FindResource("UseLargeIcons") as bool? ?? false;
+            bool useLargeIcons = Settings.Instance.TaskbarScale > 1 || (FindResource("UseLargeIcons") as bool? ?? false);
 
             if (_shellManager.TasksService.TaskIconSize != IconSize.Small != useLargeIcons)
             {

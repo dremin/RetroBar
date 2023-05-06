@@ -367,6 +367,21 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public double TaskbarScale
+        {
+            get
+            {
+                return settings.TaskbarScale;
+            }
+            set
+            {
+                if (settings.TaskbarScale != value)
+                {
+                    settings.TaskbarScale = value;
+                }
+            }
+        }
         #endregion
 
         #region Helpers
