@@ -316,12 +316,10 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource taskbar_scale}">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock TextWrapping="Wrap" Width="330" Text="{DynamicResource taskbar_scale_instruction}" />
-                            <DockPanel Margin="20,4,20,0">
-                                <Label DockPanel.Dock="Left" Content="{DynamicResource taskbar_scale_1x}" />
-                                <Label DockPanel.Dock="Right" Content="{DynamicResource taskbar_scale_2x}" />
-                                <Slider Name="sldTaskbarScale"
+                        <DockPanel Margin="20,0">
+                            <Label DockPanel.Dock="Left" Content="{DynamicResource taskbar_scale_1x}" />
+                            <Label DockPanel.Dock="Right" Content="{DynamicResource taskbar_scale_2x}" />
+                            <Slider Name="sldTaskbarScale"
                                     Orientation="Horizontal"
                                     IsSnapToTickEnabled="True"
                                     Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskbarScale, UpdateSourceTrigger=PropertyChanged}"
@@ -331,8 +329,7 @@
                                     AutoToolTipPrecision="2"
                                     TickFrequency="0.25"
                                     TickPlacement="BottomRight" />
-                            </DockPanel>
-                        </StackPanel>
+                        </DockPanel>
                     </GroupBox>
                     <DockPanel Margin="0,10,0,0">
                         <TextBlock Name="txtVersion"

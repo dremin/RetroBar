@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace RetroBar.Converters
 {
-    [ValueConversion(typeof(bool), typeof(TextRenderingMode))]
+    [ValueConversion(typeof(bool), typeof(TextFormattingMode))]
     public class SettingsToTextFormattingModeConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
