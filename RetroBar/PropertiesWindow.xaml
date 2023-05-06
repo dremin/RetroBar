@@ -295,6 +295,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource use_software_rendering}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbDebugLogging"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource debug_logging}" />
+                        </CheckBox>
                     </StackPanel>
                     <GroupBox Header="{DynamicResource multiple_displays}"
                               Margin="0,0,0,10">

@@ -10,18 +10,31 @@ namespace RetroBar.Utilities
         private string _logPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar"), "Logs");
         private string _logName = DateTime.Now.ToString("yyyy-MM-dd_HHmmssfff");
         private string _logExt = "log";
-        private LogSeverity _logSeverity = LogSeverity.Debug;
         private TimeSpan _logRetention = new TimeSpan(7, 0, 0);
         private FileLog _fileLog;
 
         public ManagedShellLogger()
         {
             SetupLogging();
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "DebugLogging")
+            {
+                SetSeverity();
+            }
+        }
+
+        private void SetSeverity()
+        {
+            ShellLogger.Severity = Settings.Instance.DebugLogging ? LogSeverity.Debug : LogSeverity.Info;
         }
 
         private void SetupLogging()
         {
-            ShellLogger.Severity = _logSeverity;
+            SetSeverity();
 
             SetupFileLog();
 
@@ -64,6 +77,7 @@ namespace RetroBar.Utilities
 
         public void Dispose()
         {
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             _fileLog?.Dispose();
         }
     }
