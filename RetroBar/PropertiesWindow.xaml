@@ -20,6 +20,7 @@
         <ResourceDictionary>
             <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
@@ -316,20 +317,29 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource taskbar_scale}">
-                        <DockPanel Margin="20,0">
-                            <Label DockPanel.Dock="Left" Content="{DynamicResource taskbar_scale_1x}" />
-                            <Label DockPanel.Dock="Right" Content="{DynamicResource taskbar_scale_2x}" />
-                            <Slider Name="sldTaskbarScale"
-                                    Orientation="Horizontal"
-                                    IsSnapToTickEnabled="True"
-                                    Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskbarScale, UpdateSourceTrigger=PropertyChanged}"
-                                    Minimum="1"
-                                    Maximum="2"
-                                    AutoToolTipPlacement="BottomRight"
-                                    AutoToolTipPrecision="2"
-                                    TickFrequency="0.25"
-                                    TickPlacement="BottomRight" />
-                        </DockPanel>
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel Margin="20,0">
+                                <Label DockPanel.Dock="Left" Content="{DynamicResource taskbar_scale_1x}" />
+                                <Label DockPanel.Dock="Right" Content="{DynamicResource taskbar_scale_2x}" />
+                                <Slider Name="sldTaskbarScale"
+                                        Orientation="Horizontal"
+                                        IsSnapToTickEnabled="True"
+                                        Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskbarScale, UpdateSourceTrigger=PropertyChanged}"
+                                        Minimum="1"
+                                        Maximum="2"
+                                        TickFrequency="0.05"
+                                        TickPlacement="BottomRight" />
+                            </DockPanel>
+                            <TextBlock Name="txtCurrentScale"
+                                       HorizontalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource doubleToPercentConverter}" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding Source="{x:Static Settings:Settings.Instance}" Path="TaskbarScale"/>
+                                        <Binding Source="{x:Static Settings:Settings.Instance}" Path="Language"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
                     </GroupBox>
                     <DockPanel Margin="0,10,0,0">
                         <TextBlock Name="txtVersion"
