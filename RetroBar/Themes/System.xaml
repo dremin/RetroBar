@@ -83,8 +83,6 @@
 
     <Style TargetType="Window"
            x:Key="TaskbarWindow">
-        <Setter Property="TextOptions.TextFormattingMode"
-                Value="Display" />
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
     </Style>

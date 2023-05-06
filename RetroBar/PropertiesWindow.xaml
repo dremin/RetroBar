@@ -67,6 +67,10 @@
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
             </Style>
+            <Style TargetType="{x:Type Slider}">
+                <Setter Property="Margin"
+                        Value="4,2" />
+            </Style>
             <Style x:Key="PreviewBorder"
                    TargetType="{x:Type Border}">
                 <Setter Property="Background"
@@ -291,7 +295,8 @@
                             <Label Content="{DynamicResource use_software_rendering}" />
                         </CheckBox>
                     </StackPanel>
-                    <GroupBox Header="{DynamicResource multiple_displays}">
+                    <GroupBox Header="{DynamicResource multiple_displays}"
+                              Margin="0,0,0,10">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbShowMultiMon"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
@@ -307,6 +312,25 @@
                                           ItemsSource="{DynamicResource show_tasks_on_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged}"
                                           SelectionChanged="cboMultiMonMode_SelectionChanged" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource taskbar_scale}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock TextWrapping="Wrap" Width="330" Text="{DynamicResource taskbar_scale_instruction}" />
+                            <DockPanel Margin="20,4,20,0">
+                                <Label DockPanel.Dock="Left" Content="{DynamicResource taskbar_scale_1x}" />
+                                <Label DockPanel.Dock="Right" Content="{DynamicResource taskbar_scale_2x}" />
+                                <Slider Name="sldTaskbarScale"
+                                    Orientation="Horizontal"
+                                    IsSnapToTickEnabled="True"
+                                    Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskbarScale, UpdateSourceTrigger=PropertyChanged}"
+                                    Minimum="1"
+                                    Maximum="2"
+                                    AutoToolTipPlacement="BottomRight"
+                                    AutoToolTipPrecision="2"
+                                    TickFrequency="0.25"
+                                    TickPlacement="BottomRight" />
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>

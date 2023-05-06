@@ -26,7 +26,7 @@ namespace RetroBar.Converters
             {
                 double placementTargetWidth = (double)values[0];
                 double toolTipWidth = (double)values[1];
-                return (placementTargetWidth / 2.0) - (toolTipWidth / 2.0);
+                return (placementTargetWidth / 2.0) - (toolTipWidth / 2.0 / (double)values[2]);
             }
         }
 

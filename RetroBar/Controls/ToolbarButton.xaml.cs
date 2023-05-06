@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using RetroBar.Utilities;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -19,7 +20,7 @@ namespace RetroBar.Controls
         private void setIconBinding()
         {
             string bindingPath = "SmallIcon";
-            bool useLargeIcons = Application.Current.FindResource("UseLargeIcons") as bool? ?? false;
+            bool useLargeIcons = Settings.Instance.TaskbarScale > 1 || (Application.Current.FindResource("UseLargeIcons") as bool? ?? false);
 
             if (useLargeIcons)
             {

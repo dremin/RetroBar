@@ -217,7 +217,7 @@ namespace RetroBar.Controls
 
         private Size getButtonSize()
         {
-            return new Size(Start.ActualWidth, Start.ActualHeight);
+            return new Size(Start.ActualWidth * Settings.Instance.TaskbarScale, Start.ActualHeight * Settings.Instance.TaskbarScale);
         }
 
         public void UpdateFloatingStartCoordinates()

@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="clr-namespace:RetroBar.Converters"
              xmlns:utilities="clr-namespace:RetroBar.Utilities"
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
              Height="120"
              Width="180"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
     <UserControl.Resources>
         <converters:ToolTipHorizontalOffsetConverter x:Key="toolTipHorizontalOffsetConverter" />
+        <s:Double x:Key="ConstantScale">1.0</s:Double>
     </UserControl.Resources>
     <UserControl.ToolTip>
         <ToolTip>
@@ -24,6 +26,7 @@
                             <MultiBinding Converter="{StaticResource toolTipHorizontalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
                                 <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualWidth"/>
                                 <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
+                                <Binding Source="{StaticResource ConstantScale}"/>
                                 <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
                             </MultiBinding>
                         </Setter.Value>
