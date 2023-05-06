@@ -382,6 +382,21 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool DebugLogging
+        {
+            get
+            {
+                return settings.DebugLogging;
+            }
+            set
+            {
+                if (settings.DebugLogging != value)
+                {
+                    settings.DebugLogging = value;
+                }
+            }
+        }
         #endregion
 
         #region Helpers
