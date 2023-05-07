@@ -41,6 +41,11 @@
     </x:Array>
     <s:String x:Key="version">Versión {0}</s:String>
     <s:String x:Key="visit_on_github">Visitar RetroBar en GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Escala de barra de tareas</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Configuración actual: {0}%</s:String>
+    <s:String x:Key="debug_logging">Habilitar registro de depuración</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
