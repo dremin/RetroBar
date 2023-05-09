@@ -31,6 +31,7 @@
     <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena sličica)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
     <s:String x:Key="middle_mouse_to_close">_Pritisak na srednju tipku miša zatvara stavke programske trake.</s:String>
+    <s:String x:Key="add_show_desktop_button">Dodaj gumb za radnu površinu</s:String>
     <s:String x:Key="multiple_displays">Više zaslona</s:String>
     <s:String x:Key="show_tasks_on">P_rikaži zadatke na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -39,15 +40,21 @@
         <s:String>Ista programska traka kao prozor i primarna programska traka</s:String>
     </x:Array>
     <s:String x:Key="version">Verzija {0}</s:String>
-    <s:String x:Key="visit_on_github">Posjeti na GitHub-u</s:String>
+    <s:String x:Key="visit_on_github">Posjete na GitHubu</s:String>
+    <s:String x:Key="taskbar_scale">Omjer programske trake</s:String>
+    <s:String x:Key="taskbar_scale">Taskbar scale</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Trenutačne postavke: {0}%</s:String>
+    <s:String x:Key="debug_logging">Omogući bilježenje</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone za aktivne i važne obavjesti, i sakriva neaktivne. Vi možete promjeniti ovo ponašanje za stavke u popisu ispod.</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone aktivnih i hitnih obavijesti, a sakriva neaktivne. Takvo ponašanje možete promjeniti za stavke na popisu.</s:String>
     <s:String x:Key="customize_notifications_instruction">Odaberi savku, onda odaberite njezino obavjesno ponašanje:</s:String>
-    <s:String x:Key="hide_when_inactive">Sakriji kada je neaktivno</s:String>
+    <s:String x:Key="hide_when_inactive">Sakriji kad je neaktivno</s:String>
     <s:String x:Key="always_show">Uvjek prikaži</s:String>
-    <s:String x:Key="name_heading">Ime</s:String>
+    <s:String x:Key="name_heading">Naziv</s:String>
     <s:String x:Key="behavior_heading">Ponašanje</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
@@ -61,12 +68,26 @@
     <s:String x:Key="quick_launch">_Brzo pokretanje</s:String>
     <s:String x:Key="new_toolbar">_Nove alatne trake...</s:String>
     <s:String x:Key="set_time">_Podesi Datum/Vrijeme</s:String>
+    <s:String x:Key="cascade">Ka_skadno složi prozore.</s:String>
+    <s:String x:Key="horiz_tile">Poploči prozore _vodoravno</s:String>
+    <s:String x:Key="vert_tile">Poploči prozore okomito</s:String>
+    <s:String x:Key="toggle_desktop">_Prikaži radnu površinu</s:String>
+    <s:String x:Key="hide_desktop">_Prikaži otvorene prozore</s:String>
+    <s:String x:Key="undo_cascade">_Poništi kaskadno redanje</s:String>
+    <s:String x:Key="undo_tile">_Poništi vodoravno/okomito redanje</s:String>
+    <s:String x:Key="undo_minimize_all">_Poništi umanjenje svega</s:String>
     <s:String x:Key="show_taskman_2k">Uparvite_lj zadataka...</s:String>
     <s:String x:Key="show_taskman">Uparvite_lj zadataka</s:String>
     <s:String x:Key="tray_properties">S_vojstava</s:String>
     <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
     <s:String x:Key="exit_retrobar">_Izlaz RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Prilagodi obavjesti...</s:String>
+  
+    <s:String x:Key="show_desktop_tip_95">Pojavi/vrati se na radnu površinu</s:String>
+    <s:String x:Key="show_desktop_tip">Pokaži radnu površinu</s:String>
+    <s:String x:Key="show_desktop_95">_Radna površina</s:String>
+    <s:String x:Key="show_desktop">_Pokaži radnu površinu</s:String>
+    <s:String x:Key="peek_at_desktop">_Pogled na radnu površinu</s:String>
 
     <s:String x:Key="restore">_Vrati</s:String>
     <s:String x:Key="move">_Premjesti</s:String>
