@@ -85,6 +85,15 @@
            x:Key="TaskbarWindow">
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource Mode=Self}}"
+                         Value="AutoHide">
+                <DataTrigger.Setters>
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Window"
@@ -99,6 +108,12 @@
 
     <Style TargetType="ContentControl"
            x:Key="Taskbar">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="0"
+                                    Y="0" />
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">

@@ -42,7 +42,7 @@
                  Path="AllowFontSmoothing"
                  Converter="{StaticResource textRenderingModeConverter}" />
     </TextOptions.TextRenderingMode>
-    <ContentControl Style="{DynamicResource Taskbar}">
+    <ContentControl Style="{DynamicResource Taskbar}" x:Name="TaskbarContentControl">
         <ContentControl.LayoutTransform>
             <ScaleTransform x:Name="TaskbarScaleTransform"
                             ScaleX="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"

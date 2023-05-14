@@ -397,6 +397,21 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool AutoHide
+        {
+            get
+            {
+                return settings.AutoHide;
+            }
+            set
+            {
+                if (settings.AutoHide != value)
+                {
+                    settings.AutoHide = value;
+                }
+            }
+        }
         #endregion
 
         #region Helpers

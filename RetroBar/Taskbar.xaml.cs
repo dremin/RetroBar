@@ -21,12 +21,13 @@ namespace RetroBar
     {
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
+        private bool _startMenuOpen;
         private ShellManager _shellManager;
         private Updater _updater;
         private WindowManager _windowManager;
 
-        public Taskbar(WindowManager windowManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge)
-            : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, 0)
+        public Taskbar(WindowManager windowManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
+            : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, mode, 0)
         {
             _shellManager = shellManager;
             _updater = updater;
@@ -39,7 +40,7 @@ namespace RetroBar
             DesiredHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
-            AllowsTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
+            AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
             FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
 
@@ -60,6 +61,8 @@ namespace RetroBar
             {
                 StartButton.Visibility = Visibility.Collapsed;
             }
+
+            AutoHideElement = TaskbarContentControl;
         }
 
         protected override void OnSourceInitialized(object sender, EventArgs e)
@@ -67,7 +70,7 @@ namespace RetroBar
             base.OnSourceInitialized(sender, e);
 
             SetLayoutRounding();
-            SetBlur(AllowsTransparency);
+            SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
             UpdateTrayPosition();
         }
         
@@ -135,7 +138,7 @@ namespace RetroBar
         {
             if (e.PropertyName == "Theme")
             {
-                bool newTransparency = Application.Current.FindResource("AllowsTransparency") as bool? ?? false;
+                bool newTransparency = AppBarMode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
                 if (AllowsTransparency != newTransparency && Screen.Primary)
                 {
@@ -144,6 +147,8 @@ namespace RetroBar
                     return;
                 }
 
+                SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
+                PeekDuringAutoHide();
                 RecalculateSize();
             }
             else if (e.PropertyName == "ShowQuickLaunch")
@@ -159,6 +164,7 @@ namespace RetroBar
             }
             else if (e.PropertyName == "Edge")
             {
+                PeekDuringAutoHide();
                 AppBarEdge = (AppBarEdge)Settings.Instance.Edge;
                 SetScreenPosition();
             }
@@ -186,7 +192,23 @@ namespace RetroBar
             }
             else if (e.PropertyName == "TaskbarScale")
             {
+                PeekDuringAutoHide();
                 RecalculateSize();
+            }
+            else if (e.PropertyName == "AutoHide")
+            {
+                bool newTransparency = Settings.Instance.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
+
+                if (AllowsTransparency == newTransparency)
+                {
+                    AppBarMode = Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal;
+                }
+                else if (Screen.Primary)
+                {
+                    // Auto hide requires transparency
+                    // Transparency cannot be changed on an open window.
+                    _windowManager.ReopenTaskbars();
+                }
             }
         }
 
@@ -278,6 +300,11 @@ namespace RetroBar
             }
         }
 
+        protected override bool ShouldAllowAutoHide()
+        {
+            return (!_startMenuOpen || !Screen.Primary) && base.ShouldAllowAutoHide();
+        }
+
         protected override void CustomClosing()
         {
             if (AllowClose)
@@ -363,6 +390,17 @@ namespace RetroBar
                     Right = (int)((Left + Width) * DpiScale)
                 }
             });
+        }
+
+        public void SetStartMenuOpen(bool isOpen)
+        {
+            bool currentAutoHide = AllowAutoHide;
+            _startMenuOpen = isOpen;
+
+            if (AllowAutoHide != currentAutoHide)
+            {
+                OnPropertyChanged("AllowAutoHide");
+            }
         }
 
         private void Clock_PreviewMouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

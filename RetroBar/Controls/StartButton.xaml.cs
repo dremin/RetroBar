@@ -42,8 +42,7 @@ namespace RetroBar.Controls
             pendingOpenTimer.Tick += (sender, args) =>
             {
                 // if the start menu didn't open, flip the button back to unchecked
-                Start.IsChecked = false;
-                pendingOpenTimer.Stop();
+                SetStartMenuState(false);
             };
         }
 
@@ -65,6 +64,7 @@ namespace RetroBar.Controls
             Dispatcher.Invoke(() =>
             {
                 Start.IsChecked = opened;
+                Host?.SetStartMenuOpen(opened);
             });
             pendingOpenTimer.Stop();
         }
@@ -77,12 +77,13 @@ namespace RetroBar.Controls
                 return;
             }
 
-            Start.IsChecked = false;
+            SetStartMenuState(false);
         }
 
         private void OpenStartMenu()
         {
             Host?.SetTrayHost();
+            Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
             ShellHelper.ShowStartMenu();
         }

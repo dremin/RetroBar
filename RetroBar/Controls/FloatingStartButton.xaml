@@ -11,5 +11,9 @@
         AllowsTransparency="True"
         FlowDirection="{DynamicResource flow_direction}">
     <Rectangle Name="ViewRect">
+        <Rectangle.RenderTransform>
+            <TranslateTransform X="{Binding Path=Host.AutoHideElement.RenderTransform.(TranslateTransform.X)}"
+                                Y="{Binding Path=Host.AutoHideElement.RenderTransform.(TranslateTransform.Y)}" />
+        </Rectangle.RenderTransform>
     </Rectangle>
 </Window>
