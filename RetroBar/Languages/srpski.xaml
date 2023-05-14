@@ -31,6 +31,7 @@
     <s:String x:Key="show_window_previews">Prikaži preglede prozora (sliči_ce)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi softverski rendering</s:String>
     <s:String x:Key="middle_mouse_to_close">_Srednji klik da zatvorite stavke na traci zadataka</s:String>
+    <s:String x:Key="add_show_desktop_button">Dodaj dugme za prikaz radne povr_šine</s:String>
     <s:String x:Key="multiple_displays">Više ekrana</s:String>
     <s:String x:Key="show_tasks_on">Prika_ži prozore na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -40,6 +41,11 @@
     </x:Array>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Otvorite GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Razmera trake zadataka</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Trenutna postavka: {0}%</s:String>
+    <s:String x:Key="debug_logging">Omogući _beleženje</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obaveštenja</s:String>
@@ -60,13 +66,27 @@
     <s:String x:Key="toolbars">_Trake sa alatkama</s:String>
     <s:String x:Key="quick_launch">_Brzo pokretanje</s:String>
     <s:String x:Key="new_toolbar">_Nova traka sa alatkama...</s:String>
-    <s:String x:Key="set_time">_Podesite datum i vreme</s:String>
+    <s:String x:Key="set_time">_Prilagodite datum i vreme</s:String>
+    <s:String x:Key="cascade">Ka_skadno poređaj prozore</s:String>
+    <s:String x:Key="horiz_tile">Naslaži prozore _horizontalno</s:String>
+    <s:String x:Key="vert_tile">Naslaži prozore _vertikalno</s:String>
+    <s:String x:Key="toggle_desktop">_Prikaži radnu površinu</s:String>
+    <s:String x:Key="hide_desktop">_Prikaži otvorene prozore</s:String>
+    <s:String x:Key="undo_cascade">_Opozovi kaskadno ređanje</s:String>
+    <s:String x:Key="undo_tile">_Opozovi ređanje</s:String>
+    <s:String x:Key="undo_minimize_all">_Opozovi umanjenje svih</s:String>
     <s:String x:Key="show_taskman_2k">Upravljač _zadacima...</s:String>
     <s:String x:Key="show_taskman">Upravljač _zadacima</s:String>
     <s:String x:Key="tray_properties">S_vojstva</s:String>
     <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
     <s:String x:Key="exit_retrobar">_Napusti RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Prilagodi _obaveštenja...</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Prikaži/vrati radnu površinu</s:String>
+    <s:String x:Key="show_desktop_tip">Prikaži radnu površinu</s:String>
+    <s:String x:Key="show_desktop_95">_Radna površina</s:String>
+    <s:String x:Key="show_desktop">_Prikaži radnu površinu</s:String>
+    <s:String x:Key="peek_at_desktop">_Zaviri na radnu površinu</s:String>
 
     <s:String x:Key="restore">_Vrati u prethodno stanje</s:String>
     <s:String x:Key="move">Preme_sti</s:String>
