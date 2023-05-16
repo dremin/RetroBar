@@ -40,6 +40,13 @@ namespace RetroBar
             DesiredHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
+            if (AppBarMode == AppBarMode.AutoHide)
+            {
+                double unlockedSize = Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
+                DesiredHeight += unlockedSize;
+                DesiredWidth += unlockedSize;
+            }
+
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
             FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
@@ -116,6 +123,14 @@ namespace RetroBar
         {
             double newHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
+
+            if (AppBarMode == AppBarMode.AutoHide)
+            {
+                double unlockedSize = Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
+                newHeight += unlockedSize;
+                newWidth += unlockedSize;
+            }
+
             bool heightChanged = newHeight != DesiredHeight;
             bool widthChanged = newWidth != DesiredWidth;
 

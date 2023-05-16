@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
@@ -212,6 +213,14 @@ namespace RetroBar.Controls
             // Convert from pixels to WPF points
             PresentationSource source = PresentationSource.FromVisual(this);
             Point buttonPosPoints = source.CompositionTarget.TransformFromDevice.Transform(buttonPosPixels);
+
+            // If the start button is currently translated, we get the translated position
+            // and need to offset by that much to be positioned correctly.
+            if (Host?.AutoHideElement?.RenderTransform is TranslateTransform tt)
+            {
+                buttonPosPoints.X += (tt.X * -1);
+                buttonPosPoints.Y += (tt.Y * -1);
+            }
 
             return buttonPosPoints;
         }
