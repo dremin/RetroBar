@@ -37,9 +37,35 @@
     <SolidColorBrush x:Key="TaskbarBorder" Color="#3168d5" />
 
     <SolidColorBrush x:Key="TaskbarUnlockedBorderTop" Color="#3b72be" />
-    <LinearGradientBrush x:Key="TaskbarUnlockedBorder"
+    <LinearGradientBrush x:Key="TaskbarUnlockedBottomBorder"
+                         MappingMode="Absolute"
                          StartPoint="0,0"
-                         EndPoint="1,0">
+                         EndPoint="0,3">
+        <GradientStop Color="#368beb"
+                      Offset="0.0" />
+        <GradientStop Color="#307be5"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedTopBorder"
+                         StartPoint="0,1"
+                         EndPoint="0,0.97">
+        <GradientStop Color="#368beb"
+                      Offset="0.0" />
+        <GradientStop Color="#307be5"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedLeftBorder"
+                         StartPoint="1,0"
+                         EndPoint="0.97,0">
+        <GradientStop Color="#368beb"
+                      Offset="0.0" />
+        <GradientStop Color="#307be5"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedRightBorder"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="3,0">
         <GradientStop Color="#368beb"
                       Offset="0.0" />
         <GradientStop Color="#307be5"
@@ -394,7 +420,7 @@
                             BorderBrush="{DynamicResource TaskbarUnlockedBorderTop}"
                             x:Name="TaskbarUnlockedBorderTop">
                         <Border BorderThickness="0"
-                                BorderBrush="{DynamicResource TaskbarUnlockedBorder}"
+                                BorderBrush="{DynamicResource TaskbarUnlockedBottomBorder}"
                                 x:Name="TaskbarUnlockedBorder">
                             <Border BorderThickness="0,1,0,0"
                                     BorderBrush="{DynamicResource TaskbarBorder}"
@@ -450,22 +476,9 @@
                                 <Setter TargetName="TaskbarUnlockedBorder"
                                         Property="BorderThickness"
                                         Value="0,0,0,3" />
-                            </MultiDataTrigger.Setters>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                           Value="AutoHide" />
-                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                           Value="Left" />
-                            </MultiDataTrigger.Conditions>
-                            <MultiDataTrigger.Setters>
-                                <Setter TargetName="TaskbarUnlockedBorderTop"
-                                        Property="BorderThickness"
-                                        Value="1,0,0,0" />
                                 <Setter TargetName="TaskbarUnlockedBorder"
-                                        Property="BorderThickness"
-                                        Value="3,0,0,0" />
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedTopBorder}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -478,10 +491,32 @@
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="TaskbarUnlockedBorderTop"
                                         Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderThickness"
+                                        Value="3,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedRightBorder}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Left" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorderTop"
+                                        Property="BorderThickness"
                                         Value="0,0,1,0" />
                                 <Setter TargetName="TaskbarUnlockedBorder"
                                         Property="BorderThickness"
                                         Value="0,0,3,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedLeftBorder}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>

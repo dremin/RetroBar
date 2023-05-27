@@ -59,9 +59,41 @@
     <SolidColorBrush x:Key="TaskbarBorder" Color="#2a4dab" />
 
     <SolidColorBrush x:Key="TaskbarUnlockedBorderTop" Color="#0f2816" />
-    <LinearGradientBrush x:Key="TaskbarUnlockedBorder"
+    <LinearGradientBrush x:Key="TaskbarUnlockedBottomBorder"
+                         MappingMode="Absolute"
                          StartPoint="0,0"
-                         EndPoint="1,0">
+                         EndPoint="0,3">
+        <GradientStop Color="#5f8dbf"
+                      Offset="0.0" />
+        <GradientStop Color="#97bad9"
+                      Offset="0.5" />
+        <GradientStop Color="#5b89bc"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedTopBorder"
+                         StartPoint="0,1"
+                         EndPoint="0,0.97">
+        <GradientStop Color="#5f8dbf"
+                      Offset="0.0" />
+        <GradientStop Color="#97bad9"
+                      Offset="0.5" />
+        <GradientStop Color="#5b89bc"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedLeftBorder"
+                         StartPoint="1,0"
+                         EndPoint="0.97,0">
+        <GradientStop Color="#5f8dbf"
+                      Offset="0.0" />
+        <GradientStop Color="#97bad9"
+                      Offset="0.5" />
+        <GradientStop Color="#5b89bc"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedRightBorder"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="3,0">
         <GradientStop Color="#5f8dbf"
                       Offset="0.0" />
         <GradientStop Color="#97bad9"
