@@ -109,6 +109,8 @@
 
     <Style TargetType="ContentControl"
            x:Key="Taskbar">
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TranslateTransform X="0"

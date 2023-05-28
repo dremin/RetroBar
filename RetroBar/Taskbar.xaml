@@ -51,6 +51,7 @@
                             CenterY="0" />
         </ContentControl.LayoutTransform>
         <DockPanel>
+            <Button Visibility="Collapsed" x:Name="FocusDummyButton" />
             <controls:StartButton x:Name="StartButton"
                                   Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
                 <DockPanel.Dock>

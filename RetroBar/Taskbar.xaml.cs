@@ -11,6 +11,7 @@ using RetroBar.Utilities;
 using Application = System.Windows.Application;
 using RetroBar.Controls;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace RetroBar
 {
@@ -350,6 +351,14 @@ namespace RetroBar
                 // Update window as necessary
                 base.SetScreenProperties(reason);
             }
+        }
+
+        protected override void OnAutoHideAnimationBegin(bool isHiding)
+        {
+            base.OnAutoHideAnimationBegin(isHiding);
+
+            // Prevent focus indicators and tooltips while hidden
+            FocusDummyButton.MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
         }
 
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
