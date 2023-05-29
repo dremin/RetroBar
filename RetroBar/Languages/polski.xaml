@@ -3,10 +3,10 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Właściwości RetroBar</s:String>
-    <s:String x:Key="taskbar_tab">Taskbar</s:String>
+    <s:String x:Key="taskbar_tab">Pasek zadań</s:String>
     <s:String x:Key="advanced_tab">Zaawansowane</s:String>
     <s:String x:Key="taskbar_appearance">Wygląd paska zadań</s:String>
-    <s:String x:Key="notification_area">Powiadomienia</s:String>
+    <s:String x:Key="notification_area">Obszar powiadomień</s:String>
     <s:String x:Key="autostart">Uruchamiaj podczas startu systemu</s:String>
     <s:String x:Key="language_text">Język:</s:String>
     <s:String x:Key="language_tip">Wybierz język.</s:String>
