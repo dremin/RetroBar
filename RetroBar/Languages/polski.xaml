@@ -8,9 +8,9 @@
     <s:String x:Key="taskbar_appearance">Wygląd paska zadań</s:String>
     <s:String x:Key="notification_area">Obszar powiadomień</s:String>
     <s:String x:Key="autostart">Uruchamiaj podczas startu systemu</s:String>
-    <s:String x:Key="language_text">Język:</s:String>
+    <s:String x:Key="language_text">_Język:</s:String>
     <s:String x:Key="language_tip">Wybierz język.</s:String>
-    <s:String x:Key="theme_text">Motyw:</s:String>
+    <s:String x:Key="theme_text">_Motyw:</s:String>
     <s:String x:Key="theme_tip">Zainstaluj motywy w folderze Themes.</s:String>
     <s:String x:Key="location_text">Lokalizacja:</s:String>
     <s:String x:Key="location_tip">Zmień umiejscowienie paska zadań na ekranie.</s:String>
@@ -20,16 +20,16 @@
         <s:String>Po prawej</s:String>
         <s:String>Na dole</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Zezwól na wygładzanie czcionek</s:String>
+    <s:String x:Key="allow_font_smoothing">_Zezwól na wygładzanie czcionek</s:String>
     <s:String x:Key="collapse_tray_icons">Zwiń ikony w pasku powiadomień</s:String>
-    <s:String x:Key="customize">Dostosuj...</s:String>
-    <s:String x:Key="show_clock">Pokaż zegar</s:String>
+    <s:String x:Key="customize">_Dostosuj...</s:String>
+    <s:String x:Key="show_clock">_Pokaż zegar</s:String>
     <s:String x:Key="show_multi_mon">Pokazuj pasek zadań na wielu ekranach</s:String>
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>
     <s:String x:Key="select_location">_Wybierz lokalizację...</s:String>
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
     <s:String x:Key="show_window_previews">Pokaż podgląd okien</s:String>
-    <s:String x:Key="use_software_rendering">Użyj renderowania oprogramowania</s:String>
+    <s:String x:Key="use_software_rendering">_Użyj renderowania oprogramowania</s:String>
     <s:String x:Key="middle_mouse_to_close">Kliknij środkowym przyciskiem myszy, aby zamknąć element paska zadań</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj przycisk "pokaż pulpit"</s:String>
     <s:String x:Key="multiple_displays">Wiele monitorów</s:String>
@@ -45,7 +45,7 @@
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Aktualne ustawienie: {0}%</s:String>
-    <s:String x:Key="debug_logging">Enable debug logging</s:String>
+    <s:String x:Key="debug_logging">Włącz debugowanie</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Dostosuj powiadomienia</s:String>
@@ -58,15 +58,15 @@
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
-    <s:String x:Key="start_button_tip_98">Kliknij tutaj aby rozpocząć.</s:String>
-    <s:String x:Key="start_button_tip">Kliknij tutaj aby rozpocząć</s:String>
+    <s:String x:Key="start_button_tip_98">Kliknij, aby rozpocząć.</s:String>
+    <s:String x:Key="start_button_tip">Kliknij, aby rozpocząć</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">Pasek zadań RetroBar</s:String>
-    <s:String x:Key="toolbars">Paski zadań</s:String>
-    <s:String x:Key="quick_launch">Pasek szybkiego uruchamiania</s:String>
-    <s:String x:Key="new_toolbar">Nowy pasek narzędzi...</s:String>
-    <s:String x:Key="set_time">Dostosuj datę i godzinę</s:String>
+    <s:String x:Key="toolbars">P_aski zadań</s:String>
+    <s:String x:Key="quick_launch">_Pasek szybkiego uruchamiania</s:String>
+    <s:String x:Key="new_toolbar">_Nowy pasek narzędzi...</s:String>
+    <s:String x:Key="set_time">_Dostosuj datę i godzinę</s:String>
     <s:String x:Key="cascade">Okna kaskadowe</s:String>
     <s:String x:Key="horiz_tile">Ułóż okna poziomo</s:String>
     <s:String x:Key="vert_tile">Ułóż okna pionowo</s:String>
@@ -77,10 +77,10 @@
     <s:String x:Key="undo_minimize_all">Cofnij minimalizacje</s:String>
     <s:String x:Key="show_taskman_2k">Menedżer zadań...</s:String>
     <s:String x:Key="show_taskman">Menedżer zadań</s:String>
-    <s:String x:Key="tray_properties">Właściwości</s:String>
-    <s:String x:Key="update_available">Dostępna aktualizacja...</s:String>
-    <s:String x:Key="exit_retrobar">Wyjdź z RetroBar</s:String>
-    <s:String x:Key="customize_notifications_menu">Dostosuj powiadomienia...</s:String>
+    <s:String x:Key="tray_properties">Właś_ciwości</s:String>
+    <s:String x:Key="update_available">_Dostępna aktualizacja...</s:String>
+    <s:String x:Key="exit_retrobar">_Wyjdź z RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Dostosuj powiadomienia...</s:String>
 
     <s:String x:Key="show_desktop_tip_95">Przywracanie pulpitu</s:String>
     <s:String x:Key="show_desktop_tip">Pokaż pulpit</s:String>
@@ -88,19 +88,15 @@
     <s:String x:Key="show_desktop">Pokaż pulpit</s:String>
     <s:String x:Key="peek_at_desktop">Zerknij na Pulpit</s:String>
 
-    <s:String x:Key="restore">Przywróć</s:String>
-    <s:String x:Key="move">Przenieś</s:String>
-    <s:String x:Key="size">Dostosuj rozmiar</s:String>
-    <s:String x:Key="minimize">Minimalizuj</s:String>
-    <s:String x:Key="maximize">Maksymalizuj</s:String>
-    <s:String x:Key="close">Zamknij</s:String>
+    <s:String x:Key="restore">_Przywróć</s:String>
+    <s:String x:Key="move">Prz_enieś</s:String>
+    <s:String x:Key="size">_Rozmiar</s:String>
+    <s:String x:Key="minimize">_Minimalizuj</s:String>
+    <s:String x:Key="maximize">Mak_symalizuj</s:String>
+    <s:String x:Key="close">Zam_knij</s:String>
 
     <s:String x:Key="show_hidden">Pokaż ukryte ikony</s:String>
     <s:String x:Key="hide">Ukryj</s:String>
 
     <s:String x:Key="open_folder">&amp;Otwórz folder</s:String>
-
-    <!-- Items below are settings, and should always be in English ( and they will :P ) -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
