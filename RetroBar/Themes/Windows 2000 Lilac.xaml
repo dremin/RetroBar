@@ -7,7 +7,7 @@
     <SolidColorBrush x:Key="ButtonInnerHighlight" Color="#d8d5ec" />
     <SolidColorBrush x:Key="ButtonLight" Color="#aea8d9" />
     <SolidColorBrush x:Key="ButtonFace" Color="#aea8d9" />
-    <SolidColorBrush x:Key="ButtonShadow" Color="#aea8d9" />
+    <SolidColorBrush x:Key="ButtonShadow" Color="#584fb0" />
     <SolidColorBrush x:Key="ButtonDarkShadow" Color="#000000" />
     <SolidColorBrush x:Key="ButtonFlashingFace" Color="#0A246A" />
 
