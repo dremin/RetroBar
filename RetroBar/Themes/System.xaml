@@ -4,6 +4,7 @@
 
     <system:Double x:Key="TaskbarHeight">28</system:Double>
     <system:Double x:Key="TaskbarWidth">98</system:Double>
+    <system:Double x:Key="TaskbarUnlockedSize">0</system:Double>
     <system:Double x:Key="TaskButtonWidth">160</system:Double>
     <system:Double x:Key="TaskButtonMinWidth">45</system:Double>
     <Thickness x:Key="TaskButtonMargin" Right="3" />
@@ -85,6 +86,15 @@
            x:Key="TaskbarWindow">
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource Mode=Self}}"
+                         Value="AutoHide">
+                <DataTrigger.Setters>
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Window"
@@ -99,6 +109,14 @@
 
     <Style TargetType="ContentControl"
            x:Key="Taskbar">
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="0"
+                                    Y="0" />
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">

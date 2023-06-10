@@ -51,6 +51,50 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskbarBorder" Color="#1f2639" />
 
+    <SolidColorBrush x:Key="TaskbarUnlockedBorderTop" Color="#000000" />
+    <LinearGradientBrush x:Key="TaskbarUnlockedBottomBorder"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="0,3">
+        <GradientStop Color="#444c57"
+                      Offset="0.0" />
+        <GradientStop Color="#687076"
+                      Offset="0.5" />
+        <GradientStop Color="#404a54"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedTopBorder"
+                         StartPoint="0,1"
+                         EndPoint="0,0.97">
+        <GradientStop Color="#444c57"
+                      Offset="0.0" />
+        <GradientStop Color="#687076"
+                      Offset="0.5" />
+        <GradientStop Color="#404a54"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedLeftBorder"
+                         StartPoint="1,0"
+                         EndPoint="0.97,0">
+        <GradientStop Color="#444c57"
+                      Offset="0.0" />
+        <GradientStop Color="#687076"
+                      Offset="0.5" />
+        <GradientStop Color="#404a54"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedRightBorder"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="3,0">
+        <GradientStop Color="#444c57"
+                      Offset="0.0" />
+        <GradientStop Color="#687076"
+                      Offset="0.5" />
+        <GradientStop Color="#404a54"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="TrayTopBorder" Color="#000007" />
     <SolidColorBrush x:Key="TrayBottomBorder" Color="#000007" />
     <SolidColorBrush x:Key="TrayOuterBorderVertical" Color="#000007" />
