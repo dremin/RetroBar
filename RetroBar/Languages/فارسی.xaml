@@ -7,11 +7,11 @@
     <s:String x:Key="advanced_tab">پیشرفته</s:String>
     <s:String x:Key="taskbar_appearance">تم تسکبار</s:String>
     <s:String x:Key="notification_area">قسمت نوتیفیکیشن</s:String>
-    <s:String x:Key="autostart">در روشن شدن باز شود</s:String>
-    <s:String x:Key="language_text">زبان:</s:String>
+    <s:String x:Key="autostart">در استارتاپ روشن شود</s:String>
+    <s:String x:Key="language_text">زبان و لطافت:</s:String>
     <s:String x:Key="language_tip">زبان را انتخاب کنید.</s:String>
     <s:String x:Key="theme_text">_تم:</s:String>
-    <s:String x:Key="theme_tip">نصب تم در فولدر تم خودی</s:String>
+    <s:String x:Key="theme_tip">نصب تم در فولدر تم خود تسکبار</s:String>
     <s:String x:Key="location_text">کجا:</s:String>
     <s:String x:Key="location_tip">مکان تسکبار</s:String>
     <x:Array x:Key="location_values" Type="s:String">
@@ -20,7 +20,7 @@
         <s:String>راست</s:String>
         <s:String>پایین</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">_فونت اسموفینگ</s:String>
+    <s:String x:Key="allow_font_smoothing">_فونت نرم</s:String>
     <s:String x:Key="collapse_tray_icons">جمع شدن در مکان نوتیفیکیشن</s:String>
     <s:String x:Key="customize">کاستومایز</s:String>
     <s:String x:Key="show_clock">نشان دادن ساعت</s:String>
@@ -51,7 +51,7 @@
 
     <s:String x:Key="start_text">منو</s:String>
     <s:String x:Key="start_text_xp">منو</s:String>
-    <s:String x:Key="start_button_tip_98">بزن منو تا جغ زده شوی</s:String>
+    <s:String x:Key="start_button_tip_98">بزن منو برای تست</s:String>
     <s:String x:Key="start_button_tip">بزن تا شروع شه</s:String>
     <s:String x:Key="start_button_tip_vista">منو</s:String>
 
