@@ -32,6 +32,7 @@
     <s:String x:Key="use_software_rendering">Usar procesamiento por soft_ware</s:String>
     <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central</s:String>
     <s:String x:Key="add_show_desktop_button">Agregar el botón Mostrar _escritorio</s:String>
+    <s:String x:Key="enable_auto_hide">Ocultar automáticam_ente la barra de tareas</s:String>
     <s:String x:Key="multiple_displays">Varias pantallas</s:String>
     <s:String x:Key="show_tasks_on">Mostrar _tareas en:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
