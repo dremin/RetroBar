@@ -9,36 +9,47 @@
              SizeChanged="TaskList_OnSizeChanged">
     <UserControl.Resources>
         <ResourceDictionary>
+            <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
             <converters:EdgeOrientationConverter x:Key="orientationConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
-                  x:Name="TasksScrollViewer"
-                  Focusable="False"
-                  PreviewMouseWheel="TasksScrollViewer_PreviewMouseWheel"
-                  VerticalScrollBarVisibility="Disabled">
-        <ItemsControl x:Name="TasksList"
+    <DockPanel>
+        <Thumb Style="{DynamicResource ToolbarThumb}">
+            <DockPanel.Dock>
+                <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="leading"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+            </DockPanel.Dock>
+        </Thumb>
+        <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
+                      x:Name="TasksScrollViewer"
                       Focusable="False"
-                      HorizontalAlignment="Stretch"
-                      dd:DragDrop.IsDragSource="True"
-                      dd:DragDrop.IsDropTarget="True"
-                      dd:DragDrop.DragDropContext="TaskList">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Style="{DynamicResource TaskListWrapPanel}">
-                        <WrapPanel.Orientation>
-                            <Binding Converter="{StaticResource orientationConverter}"
-                                     Path="Orientation"
-                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
-                        </WrapPanel.Orientation>
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <ItemContainerTemplate>
-                    <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"></local:TaskButton>
-                </ItemContainerTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </ScrollViewer>
+                      PreviewMouseWheel="TasksScrollViewer_PreviewMouseWheel"
+                      VerticalScrollBarVisibility="Disabled">
+            <ItemsControl x:Name="TasksList"
+                          Focusable="False"
+                          HorizontalAlignment="Stretch"
+                          dd:DragDrop.IsDragSource="True"
+                          dd:DragDrop.IsDropTarget="True"
+                          dd:DragDrop.DragDropContext="TaskList">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Style="{DynamicResource TaskListWrapPanel}">
+                            <WrapPanel.Orientation>
+                                <Binding Converter="{StaticResource orientationConverter}"
+                                         Path="Orientation"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                            </WrapPanel.Orientation>
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <ItemContainerTemplate>
+                        <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"></local:TaskButton>
+                    </ItemContainerTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>

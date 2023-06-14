@@ -20,6 +20,14 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
+        public bool IsLocked
+        {
+            get
+            {
+                return Settings.Instance.LockTaskbar;
+            }
+        }
+
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
@@ -41,7 +49,7 @@ namespace RetroBar
             DesiredHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
-            if (AppBarMode == AppBarMode.AutoHide)
+            if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
                 double unlockedSize = Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
                 DesiredHeight += unlockedSize;
@@ -125,7 +133,7 @@ namespace RetroBar
             double newHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
-            if (AppBarMode == AppBarMode.AutoHide)
+            if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
                 double unlockedSize = Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
                 newHeight += unlockedSize;
@@ -225,6 +233,12 @@ namespace RetroBar
                     // Transparency cannot be changed on an open window.
                     _windowManager.ReopenTaskbars();
                 }
+            }
+            else if (e.PropertyName == "LockTaskbar")
+            {
+                OnPropertyChanged("IsLocked");
+                PeekDuringAutoHide();
+                RecalculateSize();
             }
         }
 

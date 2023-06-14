@@ -412,6 +412,21 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        public bool LockTaskbar
+        {
+            get
+            {
+                return settings.LockTaskbar;
+            }
+            set
+            {
+                if (settings.LockTaskbar != value)
+                {
+                    settings.LockTaskbar = value;
+                }
+            }
+        }
         #endregion
 
         #region Helpers

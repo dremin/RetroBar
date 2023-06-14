@@ -742,4 +742,87 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Thumb"
+           x:Key="ToolbarThumb"
+           BasedOn="{StaticResource ToolbarThumb}">
+        <Setter Property="Height"
+                Value="Auto" />
+        <Setter Property="Margin"
+                Value="4,6,0,4" />
+        <Setter Property="Width"
+                Value="6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="Transparent"
+                            SnapsToDevicePixels="True">
+                        <Rectangle x:Name="ThumbRect">
+                            <Rectangle.Fill>
+                                <DrawingBrush Viewport="0,0,6,6"
+                                              ViewportUnits="Absolute"
+                                              Viewbox="0,0,6,6"
+                                              ViewboxUnits="Absolute"
+                                              TileMode="Tile">
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="{DynamicResource ToolbarThumbBackground}"
+                                                             Geometry="M 1 1 L 1 3 L 3 3 L 3 1 z" />
+                                            <GeometryDrawing Brush="{DynamicResource ToolbarThumbForeground}"
+                                                             Geometry="M 0 0 L 0 2 L 2 2 L 2 0 z" />
+                                            <GeometryDrawing Brush="{DynamicResource ToolbarThumbBackground}"
+                                                             Geometry="M 4 4 L 4 6 L 6 6 L 6 4 z" />
+                                            <GeometryDrawing Brush="{DynamicResource ToolbarThumbForeground}"
+                                                             Geometry="M 3 3 L 3 5 L 5 5 L 5 3 z" />
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Orientation}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter Property="Height"
+                                        Value="6" />
+                                <Setter Property="Width"
+                                        Value="Auto" />
+                                <Setter TargetName="ThumbRect"
+                                        Property="Fill">
+                                    <Setter.Value>
+                                        <DrawingBrush Viewport="0,0,6,6"
+                                                      ViewportUnits="Absolute"
+                                                      Viewbox="0,0,6,6"
+                                                      ViewboxUnits="Absolute"
+                                                      TileMode="Tile">
+                                            <DrawingBrush.Drawing>
+                                                <DrawingGroup>
+                                                    <GeometryDrawing Brush="{DynamicResource ToolbarThumbBackground}"
+                                                                     Geometry="M 0 4 L 0 6 L 2 6 L 2 4 z" />
+                                                    <GeometryDrawing Brush="{DynamicResource ToolbarThumbForeground}"
+                                                                     Geometry="M 1 3 L 1 5 L 3 5 L 3 3 z" />
+                                                    <GeometryDrawing Brush="{DynamicResource ToolbarThumbBackground}"
+                                                                     Geometry="M 3 1 L 3 3 L 5 3 L 5 1 z" />
+                                                    <GeometryDrawing Brush="{DynamicResource ToolbarThumbForeground}"
+                                                                     Geometry="M 4 0 L 4 2 L 6 2 L 6 0 z" />
+                                                </DrawingGroup>
+                                            </DrawingBrush.Drawing>
+                                        </DrawingBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Margin"
+                        Value="5,3,6,1" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
