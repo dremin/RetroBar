@@ -946,8 +946,6 @@
            x:Key="ToolbarThumb">
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
-        <Setter Property="Cursor"
-                Value="SizeAll" />
         <Setter Property="Margin"
                 Value="2,2,0,2" />
         <Setter Property="Template">
