@@ -440,6 +440,15 @@
 
     <SolidColorBrush x:Key="TaskListScrollArrow" Color="#dfd4d0" />
 
+    <LinearGradientBrush x:Key="ToolbarThumbForeground"
+                         StartPoint="0.8,0.8"
+                         EndPoint="0.3,0.3">
+        <GradientStop Color="#161616"
+                      Offset="0.0" />
+        <GradientStop Color="#757575"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 
     <BitmapImage x:Key="StartButtonImage"

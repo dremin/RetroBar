@@ -385,6 +385,15 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskListScrollArrow" Color="#adbddb" />
 
+    <LinearGradientBrush x:Key="ToolbarThumbForeground"
+                         StartPoint="0.5,0"
+                         EndPoint="0.5,1">
+        <GradientStop Color="#18263b"
+                      Offset="0.0" />
+        <GradientStop Color="#73777f"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <DropShadowEffect x:Key="StartLabelShadow"
                       Color="#303611"
                       Direction="315"
