@@ -100,7 +100,7 @@
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
             </GroupBox>
-            <controls:TaskList VerticalAlignment="Top"
+            <controls:TaskList VerticalAlignment="Stretch"
                                Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>
