@@ -32,7 +32,7 @@
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
     <s:String x:Key="middle_mouse_to_close">_Middle-click to close taskbar items</s:String>
     <s:String x:Key="add_show_desktop_button">Add the Show _Desktop button</s:String>
-    <s:String x:Key="enable_auto_hide">Auto-hide the taskbar</s:String>
+    <s:String x:Key="enable_auto_hide">A_uto-hide the taskbar</s:String>
     <s:String x:Key="lock_taskbar">_Lock the taskbar</s:String>
     <s:String x:Key="multiple_displays">Multiple displays</s:String>
     <s:String x:Key="show_tasks_on">S_how tasks on:</s:String>
