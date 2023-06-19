@@ -9,6 +9,7 @@
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
         SizeChanged="Taskbar_OnSizeChanged"
+        MouseLeftButtonDown="Taskbar_OnMouseLeftButtonDown"
         AllowDrop="True"
         Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>

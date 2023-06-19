@@ -12,6 +12,7 @@ using Application = System.Windows.Application;
 using RetroBar.Controls;
 using System.Diagnostics;
 using System.Windows.Input;
+using ManagedShell.Common.Logging;
 
 namespace RetroBar
 {
@@ -31,6 +32,8 @@ namespace RetroBar
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
+        private LowLevelMouseHook _mouseDragHook;
+        private Point? _mouseDragStart = null;
         private ShellManager _shellManager;
         private Updater _updater;
         private WindowManager _windowManager;
@@ -441,14 +444,142 @@ namespace RetroBar
             }
         }
 
-        private void Clock_PreviewMouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Clock_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             _clockRightClicked = true;
         }
 
-        private void NotifyArea_PreviewMouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void NotifyArea_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             _notifyAreaRightClicked = true;
+        }
+
+        private void Taskbar_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!IsLocked)
+            {
+                // Start low-level mouse hook to receive current drag position
+                // The hook should be stopped upon mouse up
+                StartMouseDragHook();
+            }
+        }
+
+        private AppBarEdge DragCoordsToScreenEdge(int x, int y)
+        {
+            // The areas of the screen which determine the dragged-to edge are divided in an X.
+            // To determine the edge, split the screen into quadrants, and then split the quadrants diagonally, alternating.
+            double relativeX = (double)x / Screen.Bounds.Width;
+            double relativeY = (double)y / Screen.Bounds.Height;
+
+            // We will use the relative coordinates to form quadrants
+            // Within each quadrant,
+
+            if (relativeX < 0.5 && relativeY < 0.5)
+            {
+                // top-left quadrant
+                if (relativeX >= relativeY)
+                {
+                    return AppBarEdge.Top;
+                } else
+                {
+                    return AppBarEdge.Left;
+                }
+            }
+            else if (relativeX >= 0.5 && relativeY < 0.5)
+            {
+                // top-right quadrant
+                // adjust relativeX to the same base as relativeY
+                relativeX -= 0.5;
+
+                if (relativeX + relativeY < 0.5)
+                {
+                    return AppBarEdge.Top;
+                }
+                else
+                {
+                    return AppBarEdge.Right;
+                }
+            }
+            else if (relativeX < 0.5 && relativeY >= 0.5)
+            {
+                // bottom-left quadrant
+                // adjust relativeY to the same base as relativeX
+                relativeY -= 0.5;
+
+                if (relativeX + relativeY < 0.5)
+                {
+                    return AppBarEdge.Left;
+                }
+                else
+                {
+                    return AppBarEdge.Bottom;
+                }
+            }
+            else
+            {
+                // bottom-right quadrant
+                if (relativeX >= relativeY)
+                {
+                    return AppBarEdge.Right;
+                }
+                else
+                {
+                    return AppBarEdge.Bottom;
+                }
+            }
+        }
+
+        private void MouseDragHook_LowLevelMouseEvent(object sender, LowLevelMouseHook.LowLevelMouseEventArgs e)
+        {
+            switch (e.Message)
+            {
+                case NativeMethods.WM.MOUSEMOVE:
+                    if (_mouseDragStart == null)
+                    {
+                        return;
+                    }
+
+                    if (Math.Abs(e.HookStruct.pt.X - (double)(_mouseDragStart?.X)) <= SystemParameters.MinimumHorizontalDragDistance ||
+                        Math.Abs(e.HookStruct.pt.Y - (double)(_mouseDragStart?.Y)) <= SystemParameters.MinimumVerticalDragDistance)
+                    {
+                        return;
+                    }
+
+                    AppBarEdge newEdge = DragCoordsToScreenEdge(e.HookStruct.pt.X, e.HookStruct.pt.Y);
+                    if (newEdge != AppBarEdge)
+                    {
+                        Settings.Instance.Edge = (int)newEdge;
+                    }
+                    break;
+                case NativeMethods.WM.LBUTTONUP:
+                    StopMouseDragHook();
+                    break;
+            }
+        }
+
+        private void StartMouseDragHook()
+        {
+            if (_mouseDragHook != null)
+            {
+                return;
+            }
+
+            _mouseDragHook = new LowLevelMouseHook();
+            _mouseDragHook.LowLevelMouseEvent += MouseDragHook_LowLevelMouseEvent;
+            _mouseDragHook.Initialize();
+            _mouseDragStart = new Point(System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y);
+
+            ShellLogger.Debug($"Mouse drag hook started");
+        }
+
+        private void StopMouseDragHook()
+        {
+            _mouseDragHook.LowLevelMouseEvent -= MouseDragHook_LowLevelMouseEvent;
+            _mouseDragHook.Dispose();
+            _mouseDragHook = null;
+            _mouseDragStart = null;
+
+            ShellLogger.Debug("Mouse drag hook removed");
         }
     }
 }
