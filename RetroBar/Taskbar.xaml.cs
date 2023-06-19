@@ -468,8 +468,8 @@ namespace RetroBar
         {
             // The areas of the screen which determine the dragged-to edge are divided in an X.
             // To determine the edge, split the screen into quadrants, and then split the quadrants diagonally, alternating.
-            double relativeX = (double)x / Screen.Bounds.Width;
-            double relativeY = (double)y / Screen.Bounds.Height;
+            double relativeX = ((double)x - Screen.Bounds.Left) / Screen.Bounds.Width;
+            double relativeY = ((double)y - Screen.Bounds.Top) / Screen.Bounds.Height;
 
             // We will use the relative coordinates to form quadrants
             // Within each quadrant,
