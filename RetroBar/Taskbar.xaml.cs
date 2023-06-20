@@ -258,7 +258,7 @@ namespace RetroBar
                 }
                 else if (AppBarEdge == AppBarEdge.Right)
                 {
-                    desiredLeft = Screen.Bounds.Right / DpiScale - Width;
+                    desiredLeft = Screen.Bounds.Right / DpiScale - DesiredWidth;
                 }
 
                 if (Left != desiredLeft) Left = desiredLeft;
@@ -273,7 +273,7 @@ namespace RetroBar
                 }
                 else if (AppBarEdge == AppBarEdge.Bottom)
                 {
-                    desiredTop = Screen.Bounds.Bottom / DpiScale - Height;
+                    desiredTop = Screen.Bounds.Bottom / DpiScale - DesiredHeight;
                 }
 
                 if (Top != desiredTop) Top = desiredTop;
@@ -552,6 +552,13 @@ namespace RetroBar
                     }
                     break;
                 case NativeMethods.WM.LBUTTONUP:
+                case NativeMethods.WM.LBUTTONDOWN:
+                case NativeMethods.WM.MBUTTONUP:
+                case NativeMethods.WM.MBUTTONDOWN:
+                case NativeMethods.WM.RBUTTONUP:
+                case NativeMethods.WM.RBUTTONDOWN:
+                case NativeMethods.WM.XBUTTONUP:
+                case NativeMethods.WM.XBUTTONDOWN:
                     StopMouseDragHook();
                     break;
             }
