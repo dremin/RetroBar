@@ -33,6 +33,7 @@
     <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central</s:String>
     <s:String x:Key="add_show_desktop_button">Agregar el botón Mostrar _escritorio</s:String>
     <s:String x:Key="enable_auto_hide">Ocultar automáticam_ente la barra de tareas</s:String>
+    <s:String x:Key="lock_taskbar">_Bloquear la barra de tareas</s:String>
     <s:String x:Key="multiple_displays">Varias pantallas</s:String>
     <s:String x:Key="show_tasks_on">Mostrar _tareas en:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -82,6 +83,7 @@
     <s:String x:Key="update_available">_Actualización disponible...</s:String>
     <s:String x:Key="exit_retrobar">_Salir de RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Personali_zar notificaciones...</s:String>
+    <s:String x:Key="lock_taskbar_menu">Bloquear la barra de _tareas</s:String>
 
     <s:String x:Key="show_desktop_tip_95">Emerger o restaurar escritorio</s:String>
     <s:String x:Key="show_desktop_tip">Mostrar escritorio</s:String>
