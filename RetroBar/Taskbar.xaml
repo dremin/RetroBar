@@ -9,6 +9,7 @@
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
         SizeChanged="Taskbar_OnSizeChanged"
+        MouseLeftButtonDown="Taskbar_OnMouseLeftButtonDown"
         AllowDrop="True"
         Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>
@@ -100,7 +101,7 @@
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
             </GroupBox>
-            <controls:TaskList VerticalAlignment="Top"
+            <controls:TaskList VerticalAlignment="Stretch"
                                Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>
@@ -134,6 +135,10 @@
                       Click="UpdateAvailableMenuItem_OnClick"
                       FontWeight="Bold"
                       Visibility="Collapsed" />
+            <MenuItem Header="{DynamicResource lock_taskbar_menu}"
+                      Name="LockTaskbarMenuItem"
+                      IsCheckable="True"
+                      IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}"/>
             <MenuItem Header="{DynamicResource tray_properties}"
                       Name="PropertiesMenuItem"
                       Click="PropertiesMenuItem_OnClick" />

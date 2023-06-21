@@ -20,6 +20,7 @@
         <ResourceDictionary>
             <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
@@ -124,6 +125,9 @@
                                                            Style="{DynamicResource StartLabel}" />
                                             </Grid>
                                         </ToggleButton>
+                                        <Thumb Style="{DynamicResource ToolbarThumb}"
+                                               DockPanel.Dock="Left"
+                                               Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}" />
                                         <ItemsControl DockPanel.Dock="Left"
                                                       Focusable="False"
                                                       Style="{DynamicResource ToolbarItems}"
@@ -139,6 +143,9 @@
                                                        Style="{DynamicResource ToolbarIcon}" />
                                             </Button>
                                         </ItemsControl>
+                                        <Thumb Style="{DynamicResource ToolbarThumb}"
+                                               DockPanel.Dock="Left"
+                                               Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}" />
                                         <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
                                                       Focusable="False"
                                                       VerticalScrollBarVisibility="Hidden">
@@ -195,6 +202,9 @@
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource lock_taskbar}" />
                             </CheckBox>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHide, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource enable_auto_hide}" />

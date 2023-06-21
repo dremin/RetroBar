@@ -448,7 +448,7 @@
     <Style x:Key="TaskListScrollViewer"
            TargetType="ScrollViewer">
         <Setter Property="Margin"
-                Value="2,0,0,0" />
+                Value="4,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -489,7 +489,7 @@
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="0" />
+                            Value="0,3,0,0" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -574,7 +574,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent"
-                            Padding="2">
+                            x:Name="ButtonPaddingBorder"
+                            Padding="2,2,0,2">
                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{DynamicResource ButtonDarkShadow}"
                                 x:Name="ButtonOuterBottomBorder">
@@ -632,6 +633,14 @@
                                     Property="Margin"
                                     Value="1,1,-1,-1" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonPaddingBorder"
+                                        Property="Padding"
+                                        Value="2,2,2,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -904,14 +913,102 @@
         <Setter Property="HorizontalAlignment"
                 Value="Stretch" />
         <Setter Property="Margin"
-                Value="2,0" />
+                Value="4,0,0,0" />
         <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                               Value="False" />
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="Vertical" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="2,4" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                               Value="True" />
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="Vertical" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="2,4,2,0" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Thumb"
+           x:Key="ToolbarThumb">
+        <Setter Property="OverridesDefaultStyle"
+                Value="true" />
+        <Setter Property="Margin"
+                Value="2,2,0,2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border BorderThickness="1,0,0,0"
+                            BorderBrush="{DynamicResource ButtonShadow}"
+                            x:Name="OuterBorder1"
+                            SnapsToDevicePixels="True">
+                        <Border BorderThickness="1,0,0,0"
+                                BorderBrush="{DynamicResource ButtonHighlight}"
+                                x:Name="OuterBorder2">
+                            <Border BorderThickness="0,0,1,1"
+                                    BorderBrush="{DynamicResource ButtonShadow}"
+                                    HorizontalAlignment="Left"
+                                    Margin="2,2,0,2"
+                                    x:Name="OuterNub"
+                                    Width="3">
+                                <Border BorderThickness="1,1,0,0"
+                                        BorderBrush="{DynamicResource ButtonHighlight}">
+                                    
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="OuterBorder1"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="OuterBorder2"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="OuterNub"
+                                        Property="Margin"
+                                        Value="2,2,2,0" />
+                                <Setter TargetName="OuterNub"
+                                        Property="Height"
+                                        Value="3" />
+                                <Setter TargetName="OuterNub"
+                                        Property="HorizontalAlignment"
+                                        Value="Stretch" />
+                                <Setter TargetName="OuterNub"
+                                        Property="Width"
+                                        Value="Auto" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                         Value="True">
+                <Setter Property="Visibility"
+                        Value="Collapsed" />
+            </DataTrigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
-                <DataTrigger.Setters>
-                    <Setter Property="Margin"
-                            Value="2" />
-                </DataTrigger.Setters>
+                <Setter Property="Margin"
+                        Value="2,1,2,0" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

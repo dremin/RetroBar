@@ -275,5 +275,17 @@ namespace RetroBar.Properties {
                 this["AutoHide"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LockTaskbar {
+            get {
+                return ((bool)(this["LockTaskbar"]));
+            }
+            set {
+                this["LockTaskbar"] = value;
+            }
+        }
     }
 }

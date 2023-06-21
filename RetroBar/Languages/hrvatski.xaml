@@ -42,7 +42,6 @@
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Posjete na GitHubu</s:String>
     <s:String x:Key="taskbar_scale">Omjer programske trake</s:String>
-    <s:String x:Key="taskbar_scale">Taskbar scale</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Trenutačne postavke: {0}%</s:String>
