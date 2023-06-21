@@ -3,8 +3,8 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Властивості RetroBar</s:String>
-    <s:String x:Key="taskbar_tab">Панель завдань</s:String>
-    <s:String x:Key="advanced_tab">Додатково</s:String>
+    <s:String x:Key="taskbar_tab">Панель Завдань</s:String>
+    <s:String x:Key="advanced_tab">Розширені</s:String>
     <s:String x:Key="taskbar_appearance">Вигляд панелі завдань</s:String>
     <s:String x:Key="notification_area">Панель сповіщень</s:String>
     <s:String x:Key="autostart">Автоматично запускатися при вході</s:String>
@@ -31,6 +31,8 @@
     <s:String x:Key="show_window_previews">Показувати попередній перегляд вікон</s:String>
     <s:String x:Key="use_software_rendering">Вимк. апаратне оброблення</s:String>
     <s:String x:Key="middle_mouse_to_close">[КОЛЕСО МИШІ], щоб закрити програму в панелі завдань</s:String>
+    <s:String x:Key="add_show_desktop_button">Кнопка "Показати робочий стіл"</s:String>
+    <s:String x:Key="enable_auto_hide">Автоматично ховати панель завдань</s:String>
     <s:String x:Key="multiple_displays">Дисплеї</s:String>
     <s:String x:Key="show_tasks_on">Показувати активні програми:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -40,9 +42,14 @@
     </x:Array>
     <s:String x:Key="version">Версія {0}</s:String>
     <s:String x:Key="visit_on_github">Сторінка програми в GitHub</s:String>
-    <s:String x:Key="ok_dialog">ОК</s:String>
+    <s:String x:Key="taskbar_scale">Розмір П/З</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Розмір налаштовано на: {0}%</s:String>
+    <s:String x:Key="debug_logging">Дебаг</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
-    <s:String x:Key="customize_notifications">Налаштування Панелі Сповіщень</s:String>
+    <s:String x:Key="customize_notifications">Налаштувати панель сповіщень</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar показує іконки сповіщень та фонових програм і ховає неактивні. Ви можете змінити поведінку показу в списку нижче.</s:String>
     <s:String x:Key="customize_notifications_instruction">Вибери іконку та вибери поведінку сповіщення:</s:String>
     <s:String x:Key="hide_when_inactive">Ховати коли неактивне</s:String>
@@ -53,7 +60,7 @@
     <s:String x:Key="start_text">Пуск</s:String>
     <s:String x:Key="start_text_xp">Пуск</s:String>
     <s:String x:Key="start_button_tip_98">Нажміть цю кнопку, щоб почати взаємодіяти з комп'ютером.</s:String>
-    <s:String x:Key="start_button_tip">Нажміть цю кнопку, щоб почати взаємодіяти з комп'ютером.</s:String>
+    <s:String x:Key="start_button_tip">Нажміть цю кнопку, щоб почати взаємодіяти з комп'ютером</s:String>
     <s:String x:Key="start_button_tip_vista">Пуск</s:String>
 
     <s:String x:Key="retrobar_title">Панель Завдань RetroBar</s:String>
@@ -61,12 +68,23 @@
     <s:String x:Key="quick_launch">Швидкий Запуск</s:String>
     <s:String x:Key="new_toolbar">Нова панель інструментів...</s:String>
     <s:String x:Key="set_time">Налаштувати Дату та Час</s:String>
+    <s:String x:Key="cascade">Сховати вікна</s:String>
+    <s:String x:Key="toggle_desktop">Показати робочий стіл</s:String>
+    <s:String x:Key="hide_desktop">Показати відкриті вікна</s:String>
+    <s:String x:Key="undo_cascade">Скасувати сховування вікон</s:String>
+    <s:String x:Key="undo_minimize_all">Скасувати сховування усіх вікон</s:String>
     <s:String x:Key="show_taskman_2k">Диспетчер завдань...</s:String>
     <s:String x:Key="show_taskman">Диспетчер завдань</s:String>
     <s:String x:Key="tray_properties">Властивості</s:String>
     <s:String x:Key="update_available">Доступне оновлення...</s:String>
     <s:String x:Key="exit_retrobar">Вийти з RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Налаштувати панель сповіщень...</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Показати робочий стіл</s:String>
+    <s:String x:Key="show_desktop_tip">Показати робочий стіл</s:String>
+    <s:String x:Key="show_desktop_95">Робочий стіл</s:String>
+    <s:String x:Key="show_desktop">Показати робочий стіл</s:String>
+    <s:String x:Key="peek_at_desktop">Наведення курсору для поп. перегляду</s:String>
 
     <s:String x:Key="restore">Відновити</s:String>
     <s:String x:Key="move">Перемістити</s:String>
@@ -79,4 +97,8 @@
     <s:String x:Key="hide">Сховати</s:String>
 
     <s:String x:Key="open_folder">&amp;Відкрити Теку</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
