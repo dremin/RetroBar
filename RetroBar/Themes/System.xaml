@@ -538,7 +538,7 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Rectangle RenderOptions.EdgeMode="Aliased" Margin="5" StrokeThickness="1"
+                    <Rectangle RenderOptions.EdgeMode="Aliased" Margin="5,5,3,5" StrokeThickness="1"
                                Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
                                StrokeDashOffset="1.5" StrokeDashArray="1" />
                 </ControlTemplate>

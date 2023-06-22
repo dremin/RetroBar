@@ -110,7 +110,7 @@
            x:Key="ShowDesktopButton"
            BasedOn="{StaticResource StartButton}">
         <Setter Property="Margin"
-                Value="-2,0,0,0" />
+                Value="-2,0,2,0" />
         <Setter Property="HorizontalAlignment"
                 Value="Center" />
         <Style.Triggers>
