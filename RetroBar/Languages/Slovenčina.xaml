@@ -2,60 +2,94 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">Vlastnosti RetroBar</s:String>
-    <s:String x:Key="taskbar_tab">Hlavný panel</s:String>
+    <s:String x:Key="retrobar_properties">Vlastnosti RetroBaru</s:String>
+    <s:String x:Key="taskbar_tab">Panel úloh</s:String>
     <s:String x:Key="advanced_tab">Upresniť</s:String>
-    <s:String x:Key="taskbar_appearance">Vzhľad lišty</s:String>
-    <s:String x:Key="notification_area">Priestor pre upozornenia</s:String>
-    <s:String x:Key="autostart">Automaticky spustiť po _prihlásení</s:String>
+    <s:String x:Key="taskbar_appearance">Vzhľad panelu úloh</s:String>
+    <s:String x:Key="notification_area">Priestor pre notifikácie</s:String>
+    <s:String x:Key="autostart">Automaticky zapnút pri _prihlásení</s:String>
     <s:String x:Key="language_text">Ja_zyk:</s:String>
     <s:String x:Key="language_tip">Vyberte jazyk.</s:String>
     <s:String x:Key="theme_text">_Téma:</s:String>
-    <s:String x:Key="theme_tip">Vložte vlastné témy do priečinku "Themes".</s:String>
+    <s:String x:Key="theme_tip">Vložte témy do priečinku "Themes".</s:String>
     <s:String x:Key="location_text">_Umiestnenie:</s:String>
-    <s:String x:Key="location_tip">Zmeniť umiestnenie lišty na obrazovke.</s:String>
+    <s:String x:Key="location_tip">Zmeniť umiestnenie panelu úloh na obrazovke.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Vľavo</s:String>
         <s:String>Hore</s:String>
         <s:String>Vpravo</s:String>
         <s:String>Dole</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Povoliť vyhladzovanie _textu</s:String>
+    <s:String x:Key="allow_font_smoothing">_Povoliť vyhladzovanie textu</s:String>
     <s:String x:Key="collapse_tray_icons">Skryť upozornenia</s:String>
-    <s:String x:Key="customize">_Přispôsobiť...</s:String>
+    <s:String x:Key="customize">_Prispôsobiť...</s:String>
     <s:String x:Key="show_clock">Zobraziť _hodiny</s:String>
-    <s:String x:Key="show_multi_mon">Zobraziť na viacerých _obrazovkách</s:String>
-    <s:String x:Key="show_quick_launch">Zobraziť _Rýchly Prístup</s:String>
-    <s:String x:Key="select_location">Vybrať _umiestnenie...</s:String>
-    <s:String x:Key="quick_launch_folder">Rýchly Prístup - Vyberte priečinok</s:String>
-    <s:String x:Key="use_software_rendering">_Použít programové vykresľovanie</s:String>
+    <s:String x:Key="show_multi_mon">Zobraziť na _viacero obrazovkách</s:String>
+    <s:String x:Key="show_quick_launch">Zobraziť _rýchly prístup</s:String>
+    <s:String x:Key="select_location">_Vybrať umiestnenie...</s:String>
+    <s:String x:Key="quick_launch_folder">Rýchly prístup - Vyberte priečinok</s:String>
+    <s:String x:Key="show_window_previews">Zobraziť náhľad _okien (miniatúry)</s:String>
+    <s:String x:Key="use_software_rendering">_Použiť softvérové vykresľovanie</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Stredný klik pre zatvorenie aplikácie</s:String>
+    <s:String x:Key="add_show_desktop_button">Pridať tlačidlo pre zobrazenie _Pracovnej plochy</s:String>
+    <s:String x:Key="enable_auto_hide">A_utomaticky skryť panel úloh</s:String>
+    <s:String x:Key="lock_taskbar">_Zamknúť panel úloh</s:String>
+    <s:String x:Key="multiple_displays">Viacero obrazoviek</s:String>
+    <s:String x:Key="show_tasks_on">Z_obraziť  na:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Všetkých paneloch úloh</s:String>
+        <s:String>Tom istom paneli úloh ako okno</s:String>
+        <s:String>Tom istom paneli úloh a hlavnom paneli úloh</s:String>
+    </x:Array>
+    <s:String x:Key="version">Verzia {0}</s:String>
+    <s:String x:Key="visit_on_github">Navštíviť RetroBar na GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Škála panela úloh</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Aktuálne nastavenie: {0}%</s:String>
+    <s:String x:Key="debug_logging">Povoliť debug logovanie</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
-    <s:String x:Key="customize_notifications">Prispôsobiť upozornenia</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar zobrazuje ikony pre aktívne či dôležité upozornenia, a skryvá tie neaktívne. Dole v zozname môžete zobrazenie týchto upozornení zmeniť.</s:String>
-    <s:String x:Key="customize_notifications_instruction">Vyberte položku a potom zvoľte jej zobrazenie:</s:String>
-    <s:String x:Key="hide_when_inactive">Skrýť pri neaktivite</s:String>
-    <s:String x:Key="always_show">Neskrývať</s:String>
+    <s:String x:Key="customize_notifications">Prispôsobiť notifikácie</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar zobrazuje ikony pre aktívny a dôležité notifikácie, a skrýva tie neaktívne. Tento stav pre ikony si viete zmeniť dole v ponuke.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Vyberte si položku, potom zmente jej notifikačné správanie:</s:String>
+    <s:String x:Key="hide_when_inactive">Skryť keď neaktívne</s:String>
+    <s:String x:Key="always_show">Zobrazovať stále</s:String>
     <s:String x:Key="name_heading">Názov</s:String>
-    <s:String x:Key="behavior_heading">Zobrazenie</s:String>
+    <s:String x:Key="behavior_heading">Stav</s:String>
 
-    <s:String x:Key="start_text">Štart</s:String>
-    <s:String x:Key="start_text_xp">Štart</s:String>
+    <s:String x:Key="start_text">štart</s:String>
+    <s:String x:Key="start_text_xp">štart</s:String>
     <s:String x:Key="start_button_tip_98">Začnite kliknutím sem.</s:String>
     <s:String x:Key="start_button_tip">Začnite kliknutím sem</s:String>
-    <s:String x:Key="start_button_tip_vista">Štart</s:String>
+    <s:String x:Key="start_button_tip_vista">štart</s:String>
 
-    <s:String x:Key="retrobar_title">Lišta RetroBar</s:String>
-    <s:String x:Key="toolbars">_Lišty</s:String>
-    <s:String x:Key="quick_launch">_Rýchly Prístup</s:String>
-    <s:String x:Key="new_toolbar">_Nová lišta...</s:String>
-    <s:String x:Key="set_time">_Zmenit Dátum a Čas</s:String>
-    <s:String x:Key="show_taskman_2k">_Správca Úloh...</s:String>
-    <s:String x:Key="show_taskman">_Správca Úloh</s:String>
-    <s:String x:Key="tray_properties">_Vlastnosti</s:String>
-    <s:String x:Key="update_available">Dostupná _aktualizácia...</s:String>
-    <s:String x:Key="exit_retrobar">_Zavrieť RetroBar</s:String>
+    <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
+    <s:String x:Key="toolbars">_Panel nástrojov</s:String>
+    <s:String x:Key="quick_launch">_Rýchly štart</s:String>
+    <s:String x:Key="new_toolbar">_Nový panel nástrojov...</s:String>
+    <s:String x:Key="set_time">_Nastaviť dátum/čas</s:String>
+    <s:String x:Key="cascade">S_kladanie okien</s:String>
+    <s:String x:Key="horiz_tile">Rozložiť okná _horizontálne</s:String>
+    <s:String x:Key="vert_tile">Rozložiť okná _vertikálne</s:String>
+    <s:String x:Key="toggle_desktop">_Zobraziť pracovnú plochu</s:String>
+    <s:String x:Key="hide_desktop">_Zobraziť otvorené okná</s:String>
+    <s:String x:Key="undo_cascade">_Späť ku skladaniu</s:String>
+    <s:String x:Key="undo_tile">_Späť ku rozloženiu</s:String>
+    <s:String x:Key="undo_minimize_all">_Späť ku minimalizovaniu všetkých</s:String>
+    <s:String x:Key="show_taskman_2k">_Správca úloh...</s:String>
+    <s:String x:Key="show_taskman">_Správca úloh</s:String>
+    <s:String x:Key="tray_properties">V_lasnosti</s:String>
+    <s:String x:Key="update_available">_Aktualizácia je k dispozícii...</s:String>
+    <s:String x:Key="exit_retrobar">_Ukončiť RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Prispôsobiť upozornenia...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Zamknúť úložisko úloh</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Povrch/Obnoviť pracovnú plochu</s:String>
+    <s:String x:Key="show_desktop_tip">Zobraziť pracovnú plochu</s:String>
+    <s:String x:Key="show_desktop_95">_Pracovná plocha</s:String>
+    <s:String x:Key="show_desktop">_Zobraziť pracovnú plochu</s:String>
+    <s:String x:Key="peek_at_desktop">_Načrieť na pracovnú plochu</s:String>
 
     <s:String x:Key="restore">_Obnoviť</s:String>
     <s:String x:Key="move">_Posunúť</s:String>
@@ -64,8 +98,12 @@
     <s:String x:Key="maximize">Ma_ximalizovať</s:String>
     <s:String x:Key="close">_Zavrieť</s:String>
 
-    <s:String x:Key="show_hidden">Zobraziť skryté upozornenia</s:String>
+    <s:String x:Key="show_hidden">Zobraziť skryté ikony</s:String>
     <s:String x:Key="hide">Skryť</s:String>
 
     <s:String x:Key="open_folder">&amp;Otvoriť priečinok</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
