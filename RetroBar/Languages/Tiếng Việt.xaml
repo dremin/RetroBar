@@ -1,33 +1,51 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Tinh chỉnh RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Tùy chọn thanh tác vụ</s:String>
+    <s:String x:Key="taskbar_tab">Thanh tác vụ</s:String>
+    <s:String x:Key="advanced_tab">Nâng cao</s:String>
     <s:String x:Key="taskbar_appearance">Giao diện thanh tác vụ</s:String>
     <s:String x:Key="notification_area">Khu vực thông báo</s:String>
     <s:String x:Key="autostart">Tự động khởi động khi đăng nhập</s:String>
     <s:String x:Key="language_text">Ngôn ngữ:</s:String>
-    <s:String x:Key="language_tip">Chọn ngôn ngữ để bắt đầu sử dụng.</s:String>
+    <s:String x:Key="language_tip">Chọn ngôn ngữ để sử dụng.</s:String>
     <s:String x:Key="theme_text">Chủ đề:</s:String>
     <s:String x:Key="theme_tip">Cài đặt chủ đề trong thư mục Themes.</s:String>
     <s:String x:Key="location_text">Vị trí:</s:String>
     <s:String x:Key="location_tip">Thay đổi vị trí của thanh tác vụ trên màn hình.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
-        <s:String>Trái</s:String>
-        <s:String>Trên</s:String>
-        <s:String>Phải</s:String>
-        <s:String>Dưới</s:String>
+        <s:String>Bên trái</s:String>
+        <s:String>Trên cùng</s:String>
+        <s:String>Bên phải</s:String>
+        <s:String>Dưới cùng</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
-    <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở thanh thông báo</s:String>
+    <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở phần thông báo</s:String>
     <s:String x:Key="customize">Tùy chỉnh...</s:String>
-    <s:String x:Key="show_clock">Hiện thị _đồng hồ</s:String>
+    <s:String x:Key="show_clock">Hiển thị _đồng hồ</s:String>
     <s:String x:Key="show_multi_mon">Hiện ở tất cả màn hình</s:String>
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
-    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất</s:String>
+    <s:String x:Key="show_window_previews">Hiện hình xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
+    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất (Software Rendering)</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Nhấn chuột giữa (nút lăn trên chuột) để đóng các mục trên thanh tác vụ</s:String>
+    <s:String x:Key="add_show_desktop_button">Thêm nút Hiện bàn làm việc</s:String>
+    <s:String x:Key="multiple_displays">Đa màn hình</s:String>
+    <s:String x:Key="show_tasks_on">_Hiện các tác vụ trên:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Tất cả các thanh tác vụ</s:String>
+        <s:String>Thanh tác vụ cùng cửa sổ</s:String>
+        <s:String>Thanh tác vụ cùng cửa sổ và thanh tác vụ chính</s:String>
+    </x:Array>
+    <s:String x:Key="version">Phiên bản {0}</s:String>
+    <s:String x:Key="visit_on_github">RetroBar trên GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Phóng lớn thanh tác vụ</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Cài đặt hiện tại: {0}%</s:String>
+    <s:String x:Key="debug_logging">Kích hoạt ghi nhật ký gỡ lỗi</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -48,6 +66,15 @@
     <s:String x:Key="toolbars">_Thanh công cụ</s:String>
     <s:String x:Key="quick_launch">_Truy cập nhanh</s:String>
     <s:String x:Key="new_toolbar">_Tạo thanh công cụ...</s:String>
+    <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
+    <s:String x:Key="cascade">Xếp chồng các cửa sổ</s:String>
+    <s:String x:Key="horiz_tile">Chia các cửa sổ theo chiều ngang</s:String>
+    <s:String x:Key="vert_tile">Chia các cửa sổ theo chiều dọc</s:String>
+    <s:String x:Key="toggle_desktop">_Hiện bàn làm việc</s:String>
+    <s:String x:Key="hide_desktop">Hiện các cửa sổ đang mở</s:String>
+    <s:String x:Key="undo_cascade">Hoàn tác xếp chồng</s:String>
+    <s:String x:Key="undo_tile">Hoàn tác chia cửa sổ</s:String>
+    <s:String x:Key="undo_minimize_all">Hoàn tác thu nhỏ tất cả</s:String>
     <s:String x:Key="show_taskman_2k">Trình quản lý tác vụ...</s:String>
     <s:String x:Key="show_taskman">Trình quản lý tác vụ</s:String>
     <s:String x:Key="tray_properties">Tinh chỉnh</s:String>
@@ -55,6 +82,12 @@
     <s:String x:Key="exit_retrobar">_Thoát RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Tùy chỉnh thông báo...</s:String>
 
+    <s:String x:Key="show_desktop_tip_95">Khôi phục bàn làm việc</s:String>
+    <s:String x:Key="show_desktop_tip">Hiện bàn làm việc</s:String>
+    <s:String x:Key="show_desktop_95">_Bàn làm việc</s:String>
+    <s:String x:Key="show_desktop">_Hiện bàn làm việc</s:String>
+    <s:String x:Key="peek_at_desktop">_Xem nhanh bàn làm việc</s:String>
+  
     <s:String x:Key="restore">_Khôi phục</s:String>
     <s:String x:Key="move">_Di chuyển</s:String>
     <s:String x:Key="size">_Kích thước</s:String>
@@ -62,14 +95,10 @@
     <s:String x:Key="maximize">Phóng to</s:String>
     <s:String x:Key="close">_Đóng</s:String>
 
-    <s:String x:Key="show_hidden">Hiện thị biểu tưởng đã ẩn</s:String>
+    <s:String x:Key="show_hidden">Hiển thị biểu tượng đã ẩn</s:String>
     <s:String x:Key="hide">Ẩn</s:String>
 
-    <s:String x:Key="set_time">_Thay đổi Ngày/Giờ</s:String>
-
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
-
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
 
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>

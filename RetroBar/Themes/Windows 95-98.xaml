@@ -19,6 +19,83 @@
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_98}" />
+    <ToolTip x:Key="ShowDesktopButtonTip" Content="{DynamicResource show_desktop_tip_95}" />
+    <Style TargetType="MenuItem"
+           x:Key="ShowDesktopItem"
+           BasedOn="{StaticResource ShowDesktopItem}">
+        <Setter Property="Header"
+                Value="{DynamicResource show_desktop_95}" />
+    </Style>
+
+    <Style TargetType="GroupBox"
+           x:Key="Tray"
+           BasedOn="{StaticResource Tray}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border BorderThickness="0"
+                            BorderBrush="{DynamicResource ButtonShadow}"
+                            Margin="0,2"
+                            x:Name="OuterTrayBorder">
+                        <Border BorderThickness="0"
+                                x:Name="InnerTrayBorder"
+                                BorderBrush="{DynamicResource ButtonHighlight}"
+                                Padding="2,0">
+                            <Border BorderThickness="0,0,1,1"
+                                    BorderBrush="{DynamicResource ButtonHighlight}">
+                                <Border BorderThickness="1,1,0,0"
+                                        BorderBrush="{DynamicResource ButtonShadow}"
+                                        Background="{DynamicResource ButtonFace}"
+                                        Padding="2">
+                                    <ContentPresenter />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Horizontal" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="OuterTrayBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="InnerTrayBorder"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="OuterTrayBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="OuterTrayBorder"
+                                        Property="Margin"
+                                        Value="2,0" />
+                                <Setter TargetName="InnerTrayBorder"
+                                        Property="BorderThickness"
+                                        Value="0,1,0,0" />
+                                <Setter TargetName="InnerTrayBorder"
+                                        Property="Padding"
+                                        Value="0,2" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="ToggleButton"
            x:Key="StartButton"
@@ -28,4 +105,27 @@
     </Style>
 
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
+
+    <Style TargetType="ToggleButton"
+           x:Key="ShowDesktopButton"
+           BasedOn="{StaticResource StartButton}">
+        <Setter Property="Margin"
+                Value="-2,0,2,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{DynamicResource CheckeredBackgroundAlt}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Horizontal">
+                <DataTrigger.Setters>
+                    <Setter Property="BorderThickness"
+                            Value="0,0,0,1" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

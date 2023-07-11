@@ -30,10 +30,30 @@ namespace RetroBar.Utilities
         public void SetThemeFromSettings()
         {
             SetTheme(THEME_DEFAULT);
+
+            if (Settings.Instance.Theme.StartsWith(THEME_DEFAULT))
+            {
+                SetSystemThemeParams();
+            }
+            else
+            {
+                ClearSystemThemeParams();
+            }
+
             if (Settings.Instance.Theme != THEME_DEFAULT)
             {
                 SetTheme(Settings.Instance.Theme);
             }
+        }
+
+        private void SetSystemThemeParams()
+        {
+            Application.Current.Resources["GlobalFontFamily"] = SystemFonts.CaptionFontFamily;
+        }
+
+        private void ClearSystemThemeParams()
+        {
+            Application.Current.Resources.Remove("GlobalFontFamily");
         }
 
         private void SetTheme(string theme)
@@ -103,26 +123,43 @@ namespace RetroBar.Utilities
             }
             else
             {
+                // Built-in dictionary
                 dictFilePath = Path.ChangeExtension(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder, dictionary),
                                                     dictExtension);
 
                 if (!File.Exists(dictFilePath))
                 {
-                    dictFilePath = // Custom dictionary in app directory
-                        Path.ChangeExtension(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder, dictionary),
+                    // Installed dictionary in AppData directory
+                    dictFilePath = 
+                        Path.ChangeExtension(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar", dictFolder, dictionary),
                                              dictExtension);
 
                     if (!File.Exists(dictFilePath))
                     {
-                        return;
+                        // Custom dictionary in app directory
+                        dictFilePath =
+                            Path.ChangeExtension(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder, dictionary),
+                                                 dictExtension);
+
+                        if (!File.Exists(dictFilePath))
+                        {
+                            return;
+                        }
                     }
                 }
             }
 
-            GetMergedDictionaries().Add(new ResourceDictionary()
+            try
             {
-                Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
-            });
+                GetMergedDictionaries().Add(new ResourceDictionary()
+                {
+                    Source = new Uri(dictFilePath, UriKind.RelativeOrAbsolute)
+                });
+            }
+            catch (Exception e)
+            {
+                ManagedShell.Common.Logging.ShellLogger.Error($"Error loading dictionaries: {e.Message} {e.InnerException?.Message}");
+            }
         }
 
         public List<string> GetThemes()
@@ -141,12 +178,26 @@ namespace RetroBar.Utilities
         {
             List<string> dictionaries = new List<string> { dictDefault };
 
+            // Built-in dictionaries
             foreach (string subStr in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder))
                                                .Where(s => Path.GetExtension(s).Contains(dictExtension)))
             {
                 dictionaries.Add(Path.GetFileNameWithoutExtension(subStr));
             }
 
+            // Installed AppData dictionaries
+            string installedDictDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar", dictFolder);
+
+            if (Directory.Exists(installedDictDir))
+            {
+                foreach (string subStr in Directory.GetFiles(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar", dictFolder))
+                                                   .Where(s => Path.GetExtension(s).Contains(dictExtension)))
+                {
+                    dictionaries.Add(Path.GetFileNameWithoutExtension(subStr));
+                }
+            }
+
+            // Same-folder dictionaries
             // Because RetroBar is published as a single-file app, it gets extracted to a temp directory, so custom dictionaries won't be there.
             // Get the executable path to find the custom dictionaries directory when not a debug build.
             string customDictDir = Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder);

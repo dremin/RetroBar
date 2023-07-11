@@ -4,11 +4,13 @@
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
     <ToggleButton ToolTip="{DynamicResource StartButtonTip}"
-            Click="Start_OnClick"
-            PreviewMouseLeftButtonDown="Start_OnPreviewMouseLeftButtonDown"
-            MouseRightButtonUp="Start_OnMouseRightButtonUp"
-            Name="Start"
-            Style="{DynamicResource StartButton}">
+                  Click="Start_OnClick"
+                  DragEnter="Start_DragEnter"
+                  DragLeave="Start_DragLeave"
+                  PreviewMouseLeftButtonDown="Start_OnPreviewMouseLeftButtonDown"
+                  MouseRightButtonUp="Start_OnMouseRightButtonUp"
+                  Name="Start"
+                  Style="{DynamicResource StartButton}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

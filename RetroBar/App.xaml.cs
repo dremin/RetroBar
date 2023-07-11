@@ -8,6 +8,9 @@ using Application = System.Windows.Application;
 using System.Windows.Interop;
 using System.Windows.Media;
 using ManagedShell.Common.Enums;
+using System.Diagnostics;
+using System.Reflection;
+using ManagedShell.Common.Logging;
 
 namespace RetroBar
 {
@@ -18,6 +21,7 @@ namespace RetroBar
     {
         public DictionaryManager DictionaryManager { get; }
 
+        private bool _errorVisible;
         private ManagedShellLogger _logger;
         private WindowManager _windowManager;
 
@@ -77,7 +81,7 @@ namespace RetroBar
                     RenderOptions.ProcessRenderMode = RenderMode.Default;
                 }
             }
-            else if (e.PropertyName == "Theme")
+            else if (e.PropertyName == "Theme" || e.PropertyName == "TaskbarScale")
             {
                 setTaskIconSize();
             }
@@ -91,7 +95,7 @@ namespace RetroBar
 
         private void setTaskIconSize()
         {
-            bool useLargeIcons = FindResource("UseLargeIcons") as bool? ?? false;
+            bool useLargeIcons = Settings.Instance.TaskbarScale > 1 || (FindResource("UseLargeIcons") as bool? ?? false);
 
             if (_shellManager.TasksService.TaskIconSize != IconSize.Small != useLargeIcons)
             {
@@ -111,6 +115,22 @@ namespace RetroBar
             return new ShellManager(config);
         }
 
+        public void RestartApp()
+        {
+            try
+            {
+                // run the program again
+                Process current = new Process();
+                current.StartInfo.FileName = ExePath.GetExecutablePath();
+                current.Start();
+
+                // close this instance
+                ExitGracefully();
+            }
+            catch
+            { }
+        }
+
         private void ExitApp()
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
@@ -121,6 +141,61 @@ namespace RetroBar
             _startMenuMonitor.Dispose();
             _updater.Dispose();
             _logger.Dispose();
+        }
+
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
+
+            string inner = "";
+            if (e.Exception.InnerException != null)
+                inner = "\r\n\r\nInner exception:\r\nMessage: " + e.Exception.InnerException.Message + "\r\nTarget Site: " + e.Exception.InnerException.TargetSite + "\r\n\r\n" + e.Exception.InnerException.StackTrace;
+
+            string msg = "Would you like to restart RetroBar?\r\n\r\nPlease submit a bug report with a screenshot of this error. Thanks! \r\nMessage: " + e.Exception.Message + "\r\nTarget Site: " + e.Exception.TargetSite + "\r\nVersion: " + version + "\r\n\r\n" + e.Exception.StackTrace + inner;
+
+            ShellLogger.Error(msg, e.Exception);
+
+            string dMsg;
+
+            if (msg.Length > 1000)
+                dMsg = msg.Substring(0, 999) + "...";
+            else
+                dMsg = msg;
+
+            try
+            {
+                if (!_errorVisible)
+                {
+                    _errorVisible = true;
+
+                    // Automatically restart for known render thread failure messages.
+                    if (e.Exception.Message.StartsWith("UCEERR_RENDERTHREADFAILURE"))
+                    {
+                        RestartApp();
+                        Environment.FailFast("Automatically restarted RetroBar due to a render thread failure.");
+                    }
+                    else
+                    {
+                        if (MessageBox.Show(dMsg, "RetroBar Error", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                        {
+                            // it's like getting a morning coffee.
+                            RestartApp();
+                            Environment.FailFast("User restarted RetroBar due to an exception.");
+                        }
+                    }
+
+                    _errorVisible = false;
+                }
+            }
+            catch
+            {
+                // If this fails we're probably up the creek. Abandon ship!
+                ExitGracefully();
+            }
+
+            e.Handled = true;
         }
     }
 }

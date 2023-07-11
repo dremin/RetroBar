@@ -32,5 +32,17 @@
                 Value="13,0,10,0" />
     </Style>
 
+    <Style TargetType="Thumb"
+           x:Key="ToolbarThumb"
+           BasedOn="{StaticResource ToolbarThumb}">
+        <Setter Property="Margin"
+                    Value="3,2,0,2" />
+    </Style>
+
     <FontFamily x:Key="GlobalFontFamily">Tahoma</FontFamily>
+
+    <BitmapImage x:Key="ShowDesktopIconImageSmall"
+                 UriSource="../Resources/desktopMe2k-sm.png" />
+    <BitmapImage x:Key="ShowDesktopIconImageLarge"
+                 UriSource="../Resources/desktopMe2k-lg.png" />
 </ResourceDictionary>

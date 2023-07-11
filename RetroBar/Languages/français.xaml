@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Propriétés de RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Barre des tâches</s:String>
+    <s:String x:Key="taskbar_tab">Barre des tâches</s:String>
     <s:String x:Key="autostart">_Démarrer automatiquement à la connexion</s:String>
     <s:String x:Key="language_text">Lan_gue:</s:String>
     <s:String x:Key="language_tip">Sélectionnez la langue à utiliser.</s:String>
@@ -37,6 +37,7 @@
     <s:String x:Key="toolbars">Barres d'ou_tils</s:String>
     <s:String x:Key="quick_launch">Lancement _rapide</s:String>
     <s:String x:Key="new_toolbar">_Nouvelle barre d'outils...</s:String>
+    <s:String x:Key="set_time">Ajuster la _date/l'heure</s:String>
     <s:String x:Key="show_taskman_2k">_Gestionnaire des tâches...</s:String>
     <s:String x:Key="show_taskman">_Gestionnaire des tâches</s:String>
     <s:String x:Key="tray_properties">P_ropriétés</s:String>
@@ -52,8 +53,6 @@
 
     <s:String x:Key="show_hidden">Afficher les icônes cachées</s:String>
     <s:String x:Key="hide">Masquer</s:String>
-
-    <s:String x:Key="set_time">Ajuster la _date/l'heure</s:String>
 
     <s:String x:Key="open_folder">&amp;Ouvrir le dossier</s:String>
 </ResourceDictionary>

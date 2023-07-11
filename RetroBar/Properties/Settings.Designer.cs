@@ -12,7 +12,7 @@ namespace RetroBar.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.3.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -157,6 +157,42 @@ namespace RetroBar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MiddleMouseToClose {
+            get {
+                return ((bool)(this["MiddleMouseToClose"]));
+            }
+            set {
+                this["MiddleMouseToClose"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowDesktopButton {
+            get {
+                return ((bool)(this["ShowDesktopButton"]));
+            }
+            set {
+                this["ShowDesktopButton"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PeekAtDesktop {
+            get {
+                return ((bool)(this["PeekAtDesktop"]));
+            }
+            set {
+                this["PeekAtDesktop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("7820ae76-23e3-4229-82c1-e41cb67d5b9c|7820ae75-23e3-4229-82c1-e41cb67d5b9c|7820ae7" +
             "4-23e3-4229-82c1-e41cb67d5b9c|7820ae73-23e3-4229-82c1-e41cb67d5b9c")]
         public string PinnedNotifyIcons {
@@ -177,6 +213,78 @@ namespace RetroBar.Properties {
             }
             set {
                 this["QuickLaunchOrder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowTaskThumbnails {
+            get {
+                return ((bool)(this["ShowTaskThumbnails"]));
+            }
+            set {
+                this["ShowTaskThumbnails"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MultiMonMode {
+            get {
+                return ((int)(this["MultiMonMode"]));
+            }
+            set {
+                this["MultiMonMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double TaskbarScale {
+            get {
+                return ((double)(this["TaskbarScale"]));
+            }
+            set {
+                this["TaskbarScale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DebugLogging {
+            get {
+                return ((bool)(this["DebugLogging"]));
+            }
+            set {
+                this["DebugLogging"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoHide {
+            get {
+                return ((bool)(this["AutoHide"]));
+            }
+            set {
+                this["AutoHide"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LockTaskbar {
+            get {
+                return ((bool)(this["LockTaskbar"]));
+            }
+            set {
+                this["LockTaskbar"] = value;
             }
         }
     }

@@ -1,16 +1,25 @@
 ﻿<UserControl x:Class="RetroBar.Controls.TaskButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:RetroBar.Converters"
+             xmlns:controls="clr-namespace:RetroBar.Controls"
+             xmlns:utilities="clr-namespace:RetroBar.Utilities"
              Loaded="TaskButton_OnLoaded"
              Unloaded="TaskButton_OnUnloaded">
+    <UserControl.Resources>
+        <converters:ToolTipHorizontalOffsetConverter x:Key="toolTipHorizontalOffsetConverter" />
+        <converters:ToolTipVerticalOffsetConverter x:Key="toolTipVerticalOffsetConverter" />
+        <converters:ToolTipPlacementConverter x:Key="toolTipPlacementConverter" />
+        <converters:TaskLabelConverter x:Key="taskLabelConverter" />
+    </UserControl.Resources>
     <Button Name="AppButton"
-            ToolTip="{Binding Path=Title}"
             Click="AppButton_OnClick"
             MouseUp="AppButton_OnMouseUp"
             PreviewMouseDown="AppButton_OnPreviewMouseDown"
             ContextMenuOpening="AppButton_OnContextMenuOpening"
             DragEnter="AppButton_OnDragEnter"
-            DragLeave="AppButton_OnDragLeave">
+            DragLeave="AppButton_OnDragLeave"
+            ToolTipService.ShowDuration="60000">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -19,9 +28,16 @@
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Grid.Column="0"
                    Style="{DynamicResource TaskIcon}" />
-            <TextBlock Text="{Binding Path=Title}"
-                       Grid.Column="1"
-                       Style="{DynamicResource TaskLabel}" />
+            <TextBlock Grid.Column="1"
+                       Style="{DynamicResource TaskLabel}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource taskLabelConverter}">
+                        <Binding Path="Title" />
+                        <Binding Path="ProgressValue" />
+                        <Binding Path="ProgressState" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </Grid>
         <Button.ContextMenu>
             <ContextMenu>
@@ -74,5 +90,59 @@
                 </MenuItem>
             </ContextMenu>
         </Button.ContextMenu>
+        <Button.ToolTip>
+            <ToolTip>
+                <ToolTip.Style>
+                    <Style TargetType="ToolTip"
+                           BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}"
+                                                             Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter Property="HorizontalOffset">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource toolTipHorizontalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualWidth"/>
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="VerticalOffset">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource toolTipVerticalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualHeight"/>
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Placement">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource toolTipPlacementConverter}" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToolTip">
+                                                <ContentControl Style="{DynamicResource TaskButtonThumbnail}">
+                                                    <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
+                                                                            Title="{Binding Path=Title}"/>
+                                                </ContentControl>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToolTip.Style>
+                <TextBlock Text="{Binding Path=Title}" />
+            </ToolTip>
+        </Button.ToolTip>
     </Button>
 </UserControl>

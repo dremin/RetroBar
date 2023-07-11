@@ -3,7 +3,7 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Proprietăți RetroBar</s:String>
-    <s:String x:Key="taskbar_options">Bară de activităţi</s:String>
+    <s:String x:Key="taskbar_tab">Bară de activităţi</s:String>
     <s:String x:Key="taskbar_appearance">Aspect bară de activităţi</s:String>
     <s:String x:Key="notification_area">Zona de notificări</s:String>
     <s:String x:Key="autostart">Pornire automată la _conectare</s:String>
@@ -48,6 +48,7 @@
     <s:String x:Key="toolbars">_Bare de instrumente</s:String>
     <s:String x:Key="quick_launch">_Lansare rapidă</s:String>
     <s:String x:Key="new_toolbar">_Bară de instrumente nouă...</s:String>
+    <s:String x:Key="set_time">_Reglați data/ora</s:String>
     <s:String x:Key="show_taskman_2k">Ma_nager de activități...</s:String>
     <s:String x:Key="show_taskman">Ma_nager de activități</s:String>
     <s:String x:Key="tray_properties">Propr_ietăți</s:String>
@@ -64,8 +65,6 @@
 
     <s:String x:Key="show_hidden">Arată pictogramele ascunse</s:String>
     <s:String x:Key="hide">Ascundere</s:String>
-
-    <s:String x:Key="set_time">_Reglați data/ora</s:String>
 
     <s:String x:Key="open_folder">&amp;Deschideți dosarul</s:String>
 </ResourceDictionary>

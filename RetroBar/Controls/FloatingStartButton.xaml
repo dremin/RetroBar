@@ -1,0 +1,19 @@
+﻿<Window x:Class="RetroBar.Controls.FloatingStartButton"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title=""
+        Style="{DynamicResource FloatingStartButtonWindow}"
+        SourceInitialized="Window_SourceInitialized"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        FlowDirection="{DynamicResource flow_direction}">
+    <Rectangle Name="ViewRect">
+        <Rectangle.RenderTransform>
+            <TranslateTransform X="{Binding Path=Host.AutoHideElement.RenderTransform.(TranslateTransform.X)}"
+                                Y="{Binding Path=Host.AutoHideElement.RenderTransform.(TranslateTransform.Y)}" />
+        </Rectangle.RenderTransform>
+    </Rectangle>
+</Window>

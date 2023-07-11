@@ -2,9 +2,12 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
 using Microsoft.Win32;
 using RetroBar.Utilities;
 
@@ -15,18 +18,12 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class Clock : UserControl
     {
-        public static DependencyProperty ClockTextProperty = DependencyProperty.Register("ClockText", typeof(string), typeof(Clock));
-        public string ClockText
-        {
-            get { return (string)GetValue(ClockTextProperty); }
-            set { SetValue(ClockTextProperty, value); }
-        }
+        public static DependencyProperty NowProperty = DependencyProperty.Register("Now", typeof(DateTime), typeof(Clock));
 
-        public static DependencyProperty ClockTipProperty = DependencyProperty.Register("ClockTip", typeof(string), typeof(Clock));
-        public string ClockTip
+        public DateTime Now
         {
-            get { return (string)GetValue(ClockTipProperty); }
-            set { SetValue(ClockTipProperty, value); }
+            get { return (DateTime)GetValue(NowProperty); }
+            set { SetValue(NowProperty, value); }
         }
 
         private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
@@ -39,7 +36,7 @@ namespace RetroBar.Controls
             InitializeComponent();
             DataContext = this;
 
-            clock.Interval = TimeSpan.FromMilliseconds(500);
+            clock.Interval = TimeSpan.FromMilliseconds(200);
             clock.Tick += Clock_Tick;
 
             singleClick.Interval = TimeSpan.FromMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime);
@@ -53,6 +50,10 @@ namespace RetroBar.Controls
             {
                 StartClock();
             }
+            else
+            {
+                Visibility = Visibility.Collapsed;
+            }
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
             SystemEvents.TimeChanged += TimeChanged;
@@ -64,15 +65,15 @@ namespace RetroBar.Controls
             SetTime();
 
             clock.Start();
-
-            ClockTextBlock.Visibility = Visibility.Visible;
+            
+            Visibility = Visibility.Visible;
         }
 
         private void StopClock()
         {
             clock.Stop();
 
-            ClockTextBlock.Visibility = Visibility.Collapsed;
+            Visibility = Visibility.Collapsed;
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -116,20 +117,52 @@ namespace RetroBar.Controls
             TimeZoneInfo.ClearCachedData();
         }
 
+        private static void SetConverterCultureRecursively(DependencyObject main)
+        {
+            if (main != null)
+            {
+                var binding = BindingOperations.GetBinding(main, TextBlock.TextProperty);
+
+                if (binding != null)
+                {
+                    BindingOperations.SetBinding(main, TextBlock.TextProperty,
+                        new Binding(binding.Path.Path)
+                            { StringFormat = binding.StringFormat, ConverterCulture = CultureInfo.CurrentCulture });
+                }
+
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(main); i++)
+                {
+                    if (VisualTreeHelper.GetChild(main, i) is UIElement sub)
+                    {
+                        SetConverterCultureRecursively(sub);
+                    }
+                }
+            }
+        }
+
         private void SetCurrentCulture()
         {
             try
             {
-                RegistryKey iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", false);
-                var iCI = (CultureInfo)CultureInfo.GetCultureInfo((string)iKey.GetValue("LocaleName")).Clone();
-                iCI.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
-                iCI.DateTimeFormat.LongDatePattern = (string)iKey.GetValue("sLongDate");
-                CultureInfo.CurrentCulture = iCI;
+                var iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", false);
+                if (iKey == null) return;
+                var iCi = (CultureInfo)CultureInfo.GetCultureInfo((string)iKey.GetValue("LocaleName")).Clone();
+                iCi.DateTimeFormat.ShortDatePattern = (string)iKey.GetValue("sShortDate");
+                iCi.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
+                iCi.DateTimeFormat.LongDatePattern = (string)iKey.GetValue("sLongDate");
+                iCi.DateTimeFormat.LongTimePattern = (string)iKey.GetValue("sTimeFormat");
+                iCi.DateTimeFormat.DateSeparator = (string)iKey.GetValue("sDate");
+                iCi.DateTimeFormat.TimeSeparator = (string)iKey.GetValue("sTime");
+                iCi.DateTimeFormat.AMDesignator = (string)iKey.GetValue("s1159");
+                iCi.DateTimeFormat.PMDesignator = (string)iKey.GetValue("s2359");
+
+                CultureInfo.CurrentCulture = iCi;
+                SetConverterCultureRecursively(this);
+                SetConverterCultureRecursively(ClockTip);
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                ManagedShell.Common.Logging.ShellLogger.Error
-                    ($"Clock: Unable to set the current culture: {exception.Message}");
+                ShellLogger.Error($"Clock: Unable to set the current culture: {e.Message}");
             }
         }
 
@@ -143,10 +176,7 @@ namespace RetroBar.Controls
 
         private void SetTime()
         {
-            DateTime now = DateTime.Now;
-
-            ClockText = now.ToShortTimeString();
-            ClockTip = now.ToLongDateString();
+            Now = DateTime.Now;
         }
 
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

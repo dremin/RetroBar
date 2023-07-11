@@ -182,8 +182,14 @@ namespace RetroBar.Controls
                 {
                     return;
                 }
-
-                ShellHelper.StartProcess(Window.IsUWP ? "appx:" + Window.AppUserModelID : Window.WinFileName);
+                if (Settings.Instance.MiddleMouseToClose)
+                {
+                    Window?.Close();
+                }
+                else
+                {
+                    ShellHelper.StartProcess(Window.IsUWP ? "appx:" + Window.AppUserModelID : Window.WinFileName);
+                }
             }
         }
 

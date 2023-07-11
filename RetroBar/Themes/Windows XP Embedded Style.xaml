@@ -59,6 +59,42 @@
 
     <SolidColorBrush x:Key="TaskbarBorder" Color="#012f54" />
 
+    <SolidColorBrush x:Key="TaskbarUnlockedBorderTop" Color="#034a82" />
+    <LinearGradientBrush x:Key="TaskbarUnlockedBottomBorder"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="0,3">
+        <GradientStop Color="#357cb4"
+                      Offset="0.0" />
+        <GradientStop Color="#011e36"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedTopBorder"
+                         StartPoint="0,1"
+                         EndPoint="0,0.97">
+        <GradientStop Color="#357cb4"
+                      Offset="0.0" />
+        <GradientStop Color="#011e36"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedLeftBorder"
+                         StartPoint="1,0"
+                         EndPoint="0.97,0">
+        <GradientStop Color="#357cb4"
+                      Offset="0.0" />
+        <GradientStop Color="#011e36"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarUnlockedRightBorder"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="3,0">
+        <GradientStop Color="#357cb4"
+                      Offset="0.0" />
+        <GradientStop Color="#011e36"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="TrayTopBorder" Color="#011220" />
     <SolidColorBrush x:Key="TrayBottomBorder" Color="#011220" />
     <SolidColorBrush x:Key="TrayTopBottomBorder" Color="#011220" />
@@ -401,6 +437,15 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="TaskListScrollArrow" Color="#b8dfff" />
+
+    <LinearGradientBrush x:Key="ToolbarThumbForeground"
+                         StartPoint="0.8,0.8"
+                         EndPoint="0.3,0.3">
+        <GradientStop Color="#001c33"
+                      Offset="0.0" />
+        <GradientStop Color="#3d84bc"
+                      Offset="1.0" />
+    </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
 

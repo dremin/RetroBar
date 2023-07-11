@@ -4,10 +4,10 @@
              MouseLeftButtonDown="Clock_OnMouseLeftButtonDown"
              MouseDoubleClick="Clock_OnMouseDoubleClick"
              Loaded="UserControl_Loaded"
-             Unloaded="UserControl_Unloaded">
-    <TextBlock Style="{DynamicResource Clock}"
-               Text="{Binding ClockText}"
-               ToolTip="{Binding ClockTip}"
-               Name="ClockTextBlock"
-               Visibility="Collapsed" />
+             Unloaded="UserControl_Unloaded"
+             Template="{DynamicResource ClockTemplateKey}">
+    <UserControl.ToolTip>
+        <TextBlock Text="{Binding Path=Now, StringFormat=D, Mode=OneWay}"
+                   Name="ClockTip" />
+    </UserControl.ToolTip>
 </UserControl>

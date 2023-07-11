@@ -1,0 +1,102 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Поставке RetroBar-а</s:String>
+    <s:String x:Key="taskbar_tab">Трака задатака</s:String>
+    <s:String x:Key="advanced_tab">За напредне</s:String>
+    <s:String x:Key="taskbar_appearance">Изглед траке задатака</s:String>
+    <s:String x:Key="notification_area">Системска палета</s:String>
+    <s:String x:Key="autostart">Покрени _аутоматски при пријављивању</s:String>
+    <s:String x:Key="language_text">_Језик:</s:String>
+    <s:String x:Key="language_tip">Изаберите језик апликације.</s:String>
+    <s:String x:Key="theme_text">_Тема:</s:String>
+    <s:String x:Key="theme_tip">Инсталирајте теме у потфолдер "Themes".</s:String>
+    <s:String x:Key="location_text">_Положај:</s:String>
+    <s:String x:Key="location_tip">Изаберите положај траке задатака на екрану.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Лево</s:String>
+        <s:String>Горе</s:String>
+        <s:String>Десно</s:String>
+        <s:String>Доле</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Дозволи изглађивање _фонтова</s:String>
+    <s:String x:Key="collapse_tray_icons">Скупи _иконице у системској палети</s:String>
+    <s:String x:Key="customize">Прилаго_ди...</s:String>
+    <s:String x:Key="show_clock">Прикажи _сат</s:String>
+    <s:String x:Key="show_multi_mon">Прикажи на _више екрана</s:String>
+    <s:String x:Key="show_quick_launch">Прикажи _брзо покретање</s:String>
+    <s:String x:Key="select_location">И_забери локацију...</s:String>
+    <s:String x:Key="quick_launch_folder">Брзо покретање - изаберите фасциклу</s:String>
+    <s:String x:Key="show_window_previews">Прикажи прегледе прозора (сличи_це)</s:String>
+    <s:String x:Key="use_software_rendering">_Користи софтверски рендеринг</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Средњи клик да затворите ставке на траци задатака</s:String>
+    <s:String x:Key="add_show_desktop_button">Додај дугме за приказ радне повр_шине</s:String>
+    <s:String x:Key="multiple_displays">Више екрана</s:String>
+    <s:String x:Key="show_tasks_on">Прика_жи прозоре на:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Свим тракама задатака</s:String>
+        <s:String>Траци задатака на којој је прозор</s:String>
+        <s:String>Траци задатака на којој је прозор и на главној</s:String>
+    </x:Array>
+    <s:String x:Key="version">Верзија {0}</s:String>
+    <s:String x:Key="visit_on_github">Отворите GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Размера траке задатака</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Тренутна поставка: {0}%</s:String>
+    <s:String x:Key="debug_logging">Омогући _бележење</s:String>
+    <s:String x:Key="ok_dialog">ОК</s:String>
+
+    <s:String x:Key="customize_notifications">Прилагоди обавештења</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar приказује иконе за активна и хитна обавештења, а неактивна сакрива. Можете да промените ово понашање за ставке на списку испод.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Изаберите ставку, па изаберите понашање њених обавештења:</s:String>
+    <s:String x:Key="hide_when_inactive">Сакриј када је неактивно</s:String>
+    <s:String x:Key="always_show">Увек прикажи</s:String>
+    <s:String x:Key="name_heading">Име</s:String>
+    <s:String x:Key="behavior_heading">Понашање</s:String>
+
+    <s:String x:Key="start_text">Старт</s:String>
+    <s:String x:Key="start_text_xp">старт</s:String>
+    <s:String x:Key="start_button_tip_98">Кликните овде да почнете.</s:String>
+    <s:String x:Key="start_button_tip">Кликните овде да почнете</s:String>
+    <s:String x:Key="start_button_tip_vista">Старт</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar трака задатака</s:String>
+    <s:String x:Key="toolbars">_Траке са алаткама</s:String>
+    <s:String x:Key="quick_launch">_Брзо покретање</s:String>
+    <s:String x:Key="new_toolbar">_Нова трака са алаткама...</s:String>
+    <s:String x:Key="set_time">_Прилагодите датум и време</s:String>
+    <s:String x:Key="cascade">Ка_скадно поређај прозоре</s:String>
+    <s:String x:Key="horiz_tile">Наслажи прозоре _хоризонтално</s:String>
+    <s:String x:Key="vert_tile">Наслажи прозоре _вертикално</s:String>
+    <s:String x:Key="toggle_desktop">_Прикажи радну површину</s:String>
+    <s:String x:Key="hide_desktop">_Прикажи отворене прозоре</s:String>
+    <s:String x:Key="undo_cascade">_Опозови каскадно ређање</s:String>
+    <s:String x:Key="undo_tile">_Опозови ређање</s:String>
+    <s:String x:Key="undo_minimize_all">_Опозови умањење свих</s:String>
+    <s:String x:Key="show_taskman_2k">Управљач _задацима...</s:String>
+    <s:String x:Key="show_taskman">Управљач _задацима</s:String>
+    <s:String x:Key="tray_properties">С_војства</s:String>
+    <s:String x:Key="update_available">_Ажурирање доступно...</s:String>
+    <s:String x:Key="exit_retrobar">_Напусти RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">Прилагоди _обавештења...</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Прикажи/врати радну површину</s:String>
+    <s:String x:Key="show_desktop_tip">Прикажи радну површину</s:String>
+    <s:String x:Key="show_desktop_95">_Радна површина</s:String>
+    <s:String x:Key="show_desktop">_Прикажи радну површину</s:String>
+    <s:String x:Key="peek_at_desktop">_Завири на радну површину</s:String>
+
+    <s:String x:Key="restore">_Врати у претходно стање</s:String>
+    <s:String x:Key="move">Преме_сти</s:String>
+    <s:String x:Key="size">Вели_чина</s:String>
+    <s:String x:Key="minimize">Ум_ањи</s:String>
+    <s:String x:Key="maximize">_Увећај</s:String>
+    <s:String x:Key="close">_Затвори</s:String>
+
+    <s:String x:Key="show_hidden">Прикажи скривене иконе</s:String>
+    <s:String x:Key="hide">Сакриј</s:String>
+
+    <s:String x:Key="open_folder">Отвори &amp;фасциклу</s:String>
+</ResourceDictionary>

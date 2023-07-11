@@ -137,6 +137,36 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool ShowDesktopButton
+        {
+            get
+            {
+                return settings.ShowDesktopButton;
+            }
+            set
+            {
+                if (settings.ShowDesktopButton != value)
+                {
+                    settings.ShowDesktopButton = value;
+                }
+            }
+        }
+
+        public bool PeekAtDesktop
+        {
+            get
+            {
+                return settings.PeekAtDesktop;
+            }
+            set
+            {
+                if (settings.PeekAtDesktop != value)
+                {
+                    settings.PeekAtDesktop = value;
+                }
+            }
+        }
+
         public bool ShowMultiMon
         {
             get
@@ -243,6 +273,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool MiddleMouseToClose
+        {
+            get
+            {
+                return settings.MiddleMouseToClose;
+            }
+            set
+            {
+                if (settings.MiddleMouseToClose != value)
+                {
+                    settings.MiddleMouseToClose = value;
+                }
+            }
+        }
+
         public int Edge
         {
             get
@@ -284,6 +329,101 @@ namespace RetroBar.Utilities
                 if (settings.QuickLaunchOrder != val)
                 {
                     settings.QuickLaunchOrder = val;
+                }
+            }
+        }
+
+        public bool ShowTaskThumbnails
+        {
+            get
+            {
+                return settings.ShowTaskThumbnails;
+            }
+            set
+            {
+                if (settings.ShowTaskThumbnails != value)
+                {
+                    settings.ShowTaskThumbnails = value;
+                }
+            }
+        }
+
+        public int MultiMonMode
+        {
+            get
+            {
+                if (settings.MultiMonMode >= 0 && settings.MultiMonMode <= 2)
+                {
+                    return settings.MultiMonMode;
+                }
+
+                return 0;
+            }
+            set
+            {
+                if (settings.MultiMonMode != value && value >= 0 && value <= 2)
+                {
+                    settings.MultiMonMode = value;
+                }
+            }
+        }
+
+        public double TaskbarScale
+        {
+            get
+            {
+                return settings.TaskbarScale;
+            }
+            set
+            {
+                if (settings.TaskbarScale != value)
+                {
+                    settings.TaskbarScale = value;
+                }
+            }
+        }
+
+        public bool DebugLogging
+        {
+            get
+            {
+                return settings.DebugLogging;
+            }
+            set
+            {
+                if (settings.DebugLogging != value)
+                {
+                    settings.DebugLogging = value;
+                }
+            }
+        }
+
+        public bool AutoHide
+        {
+            get
+            {
+                return settings.AutoHide;
+            }
+            set
+            {
+                if (settings.AutoHide != value)
+                {
+                    settings.AutoHide = value;
+                }
+            }
+        }
+
+        public bool LockTaskbar
+        {
+            get
+            {
+                return settings.LockTaskbar;
+            }
+            set
+            {
+                if (settings.LockTaskbar != value)
+                {
+                    settings.LockTaskbar = value;
                 }
             }
         }

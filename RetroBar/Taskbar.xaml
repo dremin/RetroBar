@@ -9,11 +9,13 @@
         Left="0"
         LocationChanged="Taskbar_OnLocationChanged"
         SizeChanged="Taskbar_OnSizeChanged"
+        MouseLeftButtonDown="Taskbar_OnMouseLeftButtonDown"
         AllowDrop="True"
         Style="{DynamicResource TaskbarWindow}">
     <Window.Resources>
         <ResourceDictionary>
             <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
+            <converters:SettingsToTextFormattingModeConverter x:Key="textFormattingModeConverter" />
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
 
@@ -30,13 +32,27 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
+    <TextOptions.TextFormattingMode>
+        <MultiBinding Converter="{StaticResource textFormattingModeConverter}" UpdateSourceTrigger="PropertyChanged">
+            <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+            <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothing"/>
+        </MultiBinding>
+    </TextOptions.TextFormattingMode>
     <TextOptions.TextRenderingMode>
         <Binding Source="{x:Static utilities:Settings.Instance}"
                  Path="AllowFontSmoothing"
                  Converter="{StaticResource textRenderingModeConverter}" />
     </TextOptions.TextRenderingMode>
-    <ContentControl Style="{DynamicResource Taskbar}">
+    <ContentControl Style="{DynamicResource Taskbar}" x:Name="TaskbarContentControl">
+        <ContentControl.LayoutTransform>
+            <ScaleTransform x:Name="TaskbarScaleTransform"
+                            ScaleX="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
+                            ScaleY="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
+                            CenterX="0"
+                            CenterY="0" />
+        </ContentControl.LayoutTransform>
         <DockPanel>
+            <Button Visibility="Collapsed" x:Name="FocusDummyButton" />
             <controls:StartButton x:Name="StartButton"
                                   Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
                 <DockPanel.Dock>
@@ -56,6 +72,16 @@
                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:Toolbar>
+            <controls:ShowDesktopButton x:Name="ShowDesktopButtonTray"
+                                        TasksService="{Binding TasksService}"
+                                        Visibility="Collapsed">
+                <DockPanel.Dock>
+                    <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="trailing"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                </DockPanel.Dock>
+            </controls:ShowDesktopButton>
             <GroupBox Style="{DynamicResource Tray}"
                       PreviewMouseRightButtonUp="NotifyArea_PreviewMouseRightButtonUp">
                 <DockPanel.Dock>
@@ -75,7 +101,8 @@
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
             </GroupBox>
-            <controls:TaskList VerticalAlignment="Top"
+            <controls:TaskList VerticalAlignment="Stretch"
+                               Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>
     </ContentControl>
@@ -108,6 +135,10 @@
                       Click="UpdateAvailableMenuItem_OnClick"
                       FontWeight="Bold"
                       Visibility="Collapsed" />
+            <MenuItem Header="{DynamicResource lock_taskbar_menu}"
+                      Name="LockTaskbarMenuItem"
+                      IsCheckable="True"
+                      IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}"/>
             <MenuItem Header="{DynamicResource tray_properties}"
                       Name="PropertiesMenuItem"
                       Click="PropertiesMenuItem_OnClick" />

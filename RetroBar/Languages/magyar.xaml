@@ -1,9 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">RetroBar tulajdonságok</s:String>
-    <s:String x:Key="taskbar_options">Tálca Beállítások</s:String>
+    <s:String x:Key="taskbar_tab">Tálca</s:String>
+    <s:String x:Key="advanced_tab">Speciális</s:String>
     <s:String x:Key="autostart">Automatikus indítás _bejelentkezéskor</s:String>
     <s:String x:Key="language_text">_Nyelv:</s:String>
     <s:String x:Key="language_tip">Vélaszd ki a használni kívánt nyelvet.</s:String>
@@ -37,6 +38,7 @@
     <s:String x:Key="toolbars">_Eszköztárak</s:String>
     <s:String x:Key="quick_launch">_Gyorsindítás</s:String>
     <s:String x:Key="new_toolbar">_Új eszköztár...</s:String>
+    <s:String x:Key="set_time">_Dátum/Idő beállítása</s:String>
     <s:String x:Key="show_taskman_2k">F_eladatkezelő...</s:String>
     <s:String x:Key="show_taskman">F_eladatkezelő</s:String>
     <s:String x:Key="tray_properties">_Tulajdonságok</s:String>
@@ -52,8 +54,6 @@
 
     <s:String x:Key="show_hidden">Rejtett ikonok mutatása</s:String>
     <s:String x:Key="hide">Elrejtés</s:String>
-
-    <s:String x:Key="set_time">_Dátum/Idő beállítása</s:String>
 
     <s:String x:Key="open_folder">&amp;Mappa megnyitása</s:String>
 </ResourceDictionary>

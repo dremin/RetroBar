@@ -125,7 +125,7 @@ namespace RetroBar.Utilities
         private void openTaskbar(AppBarScreen screen)
         {
             ShellLogger.Debug($"WindowManager: Opening taskbar on screen {screen.DeviceName}");
-            Taskbar taskbar = new Taskbar(this, _shellManager, _startMenuMonitor, _updater, screen, (AppBarEdge)Settings.Instance.Edge);
+            Taskbar taskbar = new Taskbar(this, _shellManager, _startMenuMonitor, _updater, screen, (AppBarEdge)Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
             taskbar.Show();
 
             _taskbars.Add(taskbar);
@@ -162,7 +162,10 @@ namespace RetroBar.Utilities
         private void resetScreenCache()
         {
             // use reflection to empty screens cache
-            typeof(Screen).GetField("screens", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).SetValue(null, null);
+            const System.Reflection.BindingFlags flags = System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic;
+            var fi = typeof(Screen).GetField("screens", flags) ?? typeof(Screen).GetField("s_screens", flags)
+                ?? throw new Exception("Can't find & reset screens cache inside winforms");
+            fi.SetValue(null, null);
         }
 
         public void Dispose()
