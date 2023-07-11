@@ -1,0 +1,107 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar īpašības</s:String>
+    <s:String x:Key="taskbar_tab">Uzdevumjosla</s:String>
+    <s:String x:Key="advanced_tab">Papildu</s:String>
+    <s:String x:Key="taskbar_appearance">Uzdevumjoslas izskats</s:String>
+    <s:String x:Key="notification_area">Paziņojumu zona</s:String>
+    <s:String x:Key="autostart">Automātiski sākt ar pieteikšanos</s:String>
+    <s:String x:Key="language_text">Latviski:</s:String>
+    <s:String x:Key="language_tip">Izvēlieties lietojamo valodu.</s:String>
+    <s:String x:Key="theme_text">_Tēma:</s:String>
+    <s:String x:Key="theme_tip">Instalējiet motīvus mapē Motīvi.</s:String>
+    <s:String x:Key="location_text">Atrašanās vieta:</s:String>
+    <s:String x:Key="location_tip">Mainiet uzdevumjoslas atrašanās vietu ekrānā.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Pa kreisi</s:String>
+        <s:String>Tops</s:String>
+        <s:String>Pa labi</s:String>
+        <s:String>Apakšā</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Atļaut fontu izlīdzināšanu</s:String>
+    <s:String x:Key="collapse_tray_icons">Sakļaut pazi_ņojumu apgabala ikonas</s:String>
+    <s:String x:Key="customize">_Pielāgot...</s:String>
+    <s:String x:Key="show_clock">Parādiet pul_ksteni</s:String>
+    <s:String x:Key="show_multi_mon">Rādīt vai_rākos displejos</s:String>
+    <s:String x:Key="show_quick_launch">Rādīt _Ātrā palaišana</s:String>
+    <s:String x:Key="select_location">_Izvēlieties atrašanās vietu...</s:String>
+    <s:String x:Key="quick_launch_folder">Ātrā palaišana — izvēlieties mapi</s:String>
+    <s:String x:Key="show_window_previews">Rādīt lo_gu priekšskatījumus (sīktēlus)</s:String>
+    <s:String x:Key="use_software_rendering">_Izmantojiet programmatūras renderēšanu</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Noklikšķiniet uz vidējā pogas, lai aizvērtu uzdevumjoslas vienumus</s:String>
+    <s:String x:Key="add_show_desktop_button">Pievienojiet pogu Rādīt _Darbvirsmu</s:String>
+    <s:String x:Key="enable_auto_hide">A_utomātiski paslēpt uzdevumjoslu</s:String>
+    <s:String x:Key="multiple_displays">Vairāki displeji</s:String>
+    <s:String x:Key="show_tasks_on">R_ādīt uzdevumus ieslēgts:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Visas uzdevumjoslas</s:String>
+        <s:String>Tāda pati uzdevumjosla kā logs</s:String>
+        <s:String>Tāda pati uzdevumjosla kā logs un primārā uzdevumjosla</s:String>
+    </x:Array>
+    <s:String x:Key="version">Versija {0}</s:String>
+    <s:String x:Key="visit_on_github">Apmeklējiet RetroBar vietnē GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Uzdevumjoslas mērogs</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Pašreizējais iestatījums: {0}%</s:String>
+    <s:String x:Key="debug_logging">Iespējot atkļūdošanas reģistrēšanu</s:String>
+    <s:String x:Key="ok_dialog">labi</s:String>
+
+    <s:String x:Key="customize_notifications">Pielāgojiet paziņojumus</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar parāda ikonas aktīviem un steidzamiem paziņojumiem un paslēpj neaktīvos paziņojumus. Varat mainīt šo darbību tālāk esošajā sarakstā esošajiem vienumiem.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Atlasiet vienumu un pēc tam izvēlieties tā paziņojumu darbību:</s:String>
+    <s:String x:Key="hide_when_inactive">Slēpt, kad neaktīvs</s:String>
+    <s:String x:Key="always_show">Vienmēr rādīt</s:String>
+    <s:String x:Key="name_heading">Vārds</s:String>
+    <s:String x:Key="behavior_heading">Uzvedība</s:String>
+
+    <s:String x:Key="start_text">Sākt</s:String>
+    <s:String x:Key="start_text_xp">sākt</s:String>
+    <s:String x:Key="start_button_tip_98">Noklikšķiniet šeit, lai sāktu.</s:String>
+    <s:String x:Key="start_button_tip">Noklikšķiniet šeit, lai sāktu</s:String>
+    <s:String x:Key="start_button_tip_vista">Sākt</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar uzdevumjosla</s:String>
+    <s:String x:Key="toolbars">_Rīkjoslas</s:String>
+    <s:String x:Key="quick_launch">_Ātrā palaišana</s:String>
+    <s:String x:Key="new_toolbar">_Jauna rīkjosla...</s:String>
+    <s:String x:Key="set_time">_Pielāgojiet datumu/laiku</s:String>
+    <s:String x:Key="cascade">Ka_skādes logi</s:String>
+    <s:String x:Key="horiz_tile">Flīžu logi _Horizontāli</s:String>
+    <s:String x:Key="vert_tile">Flīžu logi v_ertikāli</s:String>
+    <s:String x:Key="toggle_desktop">_Parādiet darbvirsmu</s:String>
+    <s:String x:Key="hide_desktop">_Rādīt Open Windows</s:String>
+    <s:String x:Key="undo_cascade">_Atsaukt kaskādi</s:String>
+    <s:String x:Key="undo_tile">_Atsaukt elementu</s:String>
+    <s:String x:Key="undo_minimize_all">_Atsaukt Minimizēt visu</s:String>
+    <s:String x:Key="show_taskman_2k">U_zdevumu pārvaldnieks...</s:String>
+    <s:String x:Key="show_taskman">U_zdevumu pārvaldnieks</s:String>
+    <s:String x:Key="tray_properties">Īp_ašības</s:String>
+    <s:String x:Key="update_available">_Pieejams atjauninājums...</s:String>
+    <s:String x:Key="exit_retrobar">_Iziet no RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Customize Notifications...</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Virsma/atjaunot darbvirsmu</s:String>
+    <s:String x:Key="show_desktop_tip">Rādīt darbvirsmu</s:String>
+    <s:String x:Key="show_desktop_95">_Darbvirsma</s:String>
+    <s:String x:Key="show_desktop">_Rādīt darbvirsmu</s:String>
+    <s:String x:Key="peek_at_desktop">_Paskatieties uz darbvirsmu</s:String>
+
+    <s:String x:Key="restore">_Atjaunot</s:String>
+    <s:String x:Key="move">_Kustēties</s:String>
+    <s:String x:Key="size">_Izmērs</s:String>
+    <s:String x:Key="minimize">Mi_nimizēt</s:String>
+    <s:String x:Key="maximize">Ma_ksimizēt</s:String>
+    <s:String x:Key="close">_Aizvērt</s:String>
+
+    <s:String x:Key="show_hidden">Rādīt slēptās ikonas</s:String>
+    <s:String x:Key="hide">Slēpt</s:String>
+
+    <s:String x:Key="open_folder">&amp;Atvērt mapi</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
