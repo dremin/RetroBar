@@ -320,6 +320,10 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_multi_mon}" />
                             </CheckBox>
+                            <CheckBox x:Name="cbShowStartAllMon"
+                                      IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowStartAllMon, UpdateSourceTrigger=PropertyChanged}"
+                                      Content="{DynamicResource show_start_all_mon}"/>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
                                        Target="{Binding ElementName=cboMultiMonMode}">

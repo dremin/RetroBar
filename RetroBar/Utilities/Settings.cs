@@ -182,6 +182,21 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool ShowStartAllMon
+        {
+            get
+            {
+                return settings.ShowStartAllMon;
+            }
+            set
+            {
+                if(settings.ShowStartAllMon != value)
+                {
+                    settings.ShowStartAllMon = value;
+                }
+            }
+        }
+
         public bool ShowQuickLaunch
         {
             get
