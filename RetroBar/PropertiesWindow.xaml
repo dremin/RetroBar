@@ -312,6 +312,16 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource debug_logging}" />
                         </CheckBox>
+                        <DockPanel>
+                            <Label VerticalAlignment="Center"
+                                   Target="{Binding ElementName=cboInvertIconsMode}">
+                                <AccessText Text="{DynamicResource invert_system_icons}" />
+                            </Label>
+                            <ComboBox Name="cboInvertIconsMode"
+                                      ItemsSource="{DynamicResource invert_system_icons_values}"
+                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectionChanged="cboInvertIconsMode_SelectionChanged" />
+                        </DockPanel>
                     </StackPanel>
                     <GroupBox Header="{DynamicResource multiple_displays}"
                               Margin="0,0,0,10">

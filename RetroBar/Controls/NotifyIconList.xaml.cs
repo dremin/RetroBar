@@ -51,6 +51,20 @@ namespace RetroBar.Controls
                     NotifyIcons.ItemsSource = allNotifyIconsSource.View;
                 }
             }
+            else if (e.PropertyName == "InvertIconsMode")
+            {
+                // Reload icons
+                NotifyIcons.ItemsSource = null;
+
+                if (Settings.Instance.CollapseNotifyIcons)
+                {
+                    NotifyIcons.ItemsSource = pinnedNotifyIconsSource.View;
+                }
+                else
+                {
+                    NotifyIcons.ItemsSource = allNotifyIconsSource.View;
+                }
+            }
         }
 
         private void NotifyIconList_OnLoaded(object sender, RoutedEventArgs e)

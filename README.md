@@ -18,6 +18,8 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Quick launch toolbar
 - Start button opens modern start menu
 - Ability to show or hide the clock
+- Ability to auto-hide the taskbar
+- Locked and unlocked taskbar appearances
 - Display taskbar on any side of the screen (even on Windows 11)
 - Option to display the taskbar, notification area, and clock on multiple monitors
 - Ability to show Vista-style window thumbnails
@@ -74,6 +76,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Russian (русский)
 - Serbian (Cyrillic) (српски)
 - Serbian (Latin) (srpski)
+- Slovak (slovenčina)
 - Spanish (español)
 - Swedish (svenska)
 - Turkish (Türkçe)

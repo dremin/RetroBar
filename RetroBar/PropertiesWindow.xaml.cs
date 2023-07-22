@@ -219,6 +219,14 @@ namespace RetroBar
             }
         }
 
+        private void cboInvertIconsMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboInvertIconsMode.SelectedItem == null)
+            {
+                cboInvertIconsMode.SelectedValue = cboInvertIconsMode.Items[Settings.Instance.InvertIconsMode];
+            }
+        }
+
         private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
         {
             OpenCustomizeNotifications();

@@ -41,6 +41,12 @@
         <s:String>Same taskbar as window</s:String>
         <s:String>Same taskbar as window and primary taskbar</s:String>
     </x:Array>
+    <s:String x:Key="invert_system_icons">_Invert system icons:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>When needed by theme</s:String>
+        <s:String>Always</s:String>
+        <s:String>Never</s:String>
+    </x:Array>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">Visit RetroBar on GitHub</s:String>
     <s:String x:Key="taskbar_scale">Taskbar scale</s:String>
