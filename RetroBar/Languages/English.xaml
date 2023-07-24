@@ -25,6 +25,7 @@
     <s:String x:Key="customize">_Customize...</s:String>
     <s:String x:Key="show_clock">Show the cloc_k</s:String>
     <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
+    <s:String x:Key="show_start_all_mon">Show start button on all displays</s:String>
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>

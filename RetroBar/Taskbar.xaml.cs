@@ -76,7 +76,7 @@ namespace RetroBar
             }
 
             // Hide the start button on secondary display(s)
-            if (!Screen.Primary)
+            if (!Screen.Primary && !Settings.Instance.ShowStartAllMon)
             {
                 StartButton.Visibility = Visibility.Collapsed;
             }
@@ -242,6 +242,17 @@ namespace RetroBar
                 OnPropertyChanged("IsLocked");
                 PeekDuringAutoHide();
                 RecalculateSize();
+            }
+            else if (e.PropertyName == "ShowStartAllMon")
+            {
+                if (Settings.Instance.ShowStartAllMon)
+                {
+                    StartButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    StartButton.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
