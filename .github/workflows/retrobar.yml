@@ -18,12 +18,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
     - name: Install nbgv
-      uses: dotnet/nbgv@v0.4.0
+      uses: dotnet/nbgv@v0.4.1
 
     - name: Publish app
       run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework
@@ -35,7 +35,7 @@ jobs:
       run: cp DistLicense.txt RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\License.txt
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || 'ARM64' }}
         path: |
