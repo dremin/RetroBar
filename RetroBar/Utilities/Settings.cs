@@ -288,6 +288,12 @@ namespace RetroBar.Utilities
             }
         }
 
+        /// <summary>
+        /// 0 = Left
+        /// 1 = Top
+        /// 2 = Right
+        /// 3 = Bottom
+        /// </summary>
         public int Edge
         {
             get
@@ -348,6 +354,11 @@ namespace RetroBar.Utilities
             }
         }
 
+        /// <summary>
+        /// 0 = All taskbars
+        /// 1 = Same taskbar as window
+        /// 2 = Same taskbar as window and primary taskbar
+        /// </summary>
         public int MultiMonMode
         {
             get
@@ -424,6 +435,31 @@ namespace RetroBar.Utilities
                 if (settings.LockTaskbar != value)
                 {
                     settings.LockTaskbar = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 0 = When needed by theme
+        /// 1 = Always
+        /// 2 = Never
+        /// </summary>
+        public int InvertIconsMode
+        {
+            get
+            {
+                if (settings.InvertIconsMode >= 0 && settings.InvertIconsMode <= 2)
+                {
+                    return settings.InvertIconsMode;
+                }
+
+                return 0;
+            }
+            set
+            {
+                if (settings.InvertIconsMode != value && value >= 0 && value <= 2)
+                {
+                    settings.InvertIconsMode = value;
                 }
             }
         }
