@@ -2,16 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">Eigenschaften von Retrobar</s:String>
+    <s:String x:Key="retrobar_properties">RetroBar-Eigenschaften</s:String>
     <s:String x:Key="taskbar_tab">Taskleiste</s:String>
+    <s:String x:Key="advanced_tab">Erweitert</s:String>
     <s:String x:Key="taskbar_appearance">Taskleistendarstellung</s:String>
     <s:String x:Key="notification_area">Infobereich</s:String>
-    <s:String x:Key="autostart">Beim Hochfahren automatisch starten</s:String>
-    <s:String x:Key="language_text">Sprache:</s:String>
+    <s:String x:Key="autostart">Automatisch mit _Windows starten</s:String>
+    <s:String x:Key="language_text">S_prache:</s:String>
     <s:String x:Key="language_tip">Wählen Sie die Sprache aus:</s:String>
-    <s:String x:Key="theme_text">Schema:</s:String>
-    <s:String x:Key="theme_tip">Installieren Sie Schemas im "Themes" Ordner.</s:String>
-    <s:String x:Key="location_text">Position:</s:String>
+    <s:String x:Key="theme_text">Thema:</s:String>
+    <s:String x:Key="theme_tip">Installieren Sie Themen im "Themes"-Ordner.</s:String>
+    <s:String x:Key="location_text">Posit_ion:</s:String>
     <s:String x:Key="location_tip">Ändert die Position der Taskleiste auf dem Bildschirm.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Links</s:String>
@@ -19,15 +20,40 @@
         <s:String>Rechts</s:String>
         <s:String>Unten</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Schriftglättung zulassen</s:String>
-    <s:String x:Key="collapse_tray_icons">_Inaktive Symbole ausblenden</s:String>
+    <s:String x:Key="allow_font_smoothing">Schriftglättung zul_assen</s:String>
+    <s:String x:Key="collapse_tray_icons">Infobereichsymbole ausble_nden</s:String>
     <s:String x:Key="customize">A_npassen...</s:String>
     <s:String x:Key="show_clock">_Uhr anzeigen</s:String>
     <s:String x:Key="show_multi_mon">Auf mehreren Bildschirmen anzeigen</s:String>
     <s:String x:Key="show_quick_launch">_Schnellstartleiste anzeigen</s:String>
     <s:String x:Key="select_location">Ort auswählen...</s:String>
     <s:String x:Key="quick_launch_folder">Schnellstart - Wähle ein Ordner</s:String>
-    <s:String x:Key="use_software_rendering">Nutze Software Darstellung</s:String>
+    <s:String x:Key="show_window_previews">_Fenstervorschau anzeigen (Miniaturansichten)</s:String>
+    <s:String x:Key="use_software_rendering">Software-Rendering verwenden</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Mittlere Maustaste verwenden, um Taskleistenelemente zu schließen</s:String>
+    <s:String x:Key="add_show_desktop_button">"_Desktop anzeigen" als Schaltfläche anzeigen</s:String>
+    <s:String x:Key="enable_auto_hide">Taskleiste a_utomatisch ausblenden</s:String>
+    <s:String x:Key="lock_taskbar">Taskleiste _fixieren</s:String>
+    <s:String x:Key="multiple_displays">Mehrere Bildschirme</s:String>
+    <s:String x:Key="show_tasks_on">Aufgaben a_nzeigen auf:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Allen Taskleisten</s:String>
+        <s:String>Gleiche Taskleiste wie Fenster</s:String>
+        <s:String>Gleiche Taskleiste wie Fenster und primäre Taskleiste</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">Systemsymbole _umkehren:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Je nach Thema</s:String>
+        <s:String>Immer</s:String>
+        <s:String>Niemals</s:String>
+    </x:Array>
+    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="visit_on_github">RetroBar auf GitHub besuchen</s:String>
+    <s:String x:Key="taskbar_scale">Skalierung der Taskleiste</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Aktuelle Einstellung: {0}%</s:String>
+    <s:String x:Key="debug_logging">Debug-Protokollierung aktivieren</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
@@ -40,8 +66,8 @@
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
-    <s:String x:Key="start_button_tip_98">Klicken Sie zum Starten auf diese Schaltfläche.</s:String>
-    <s:String x:Key="start_button_tip">Klicken Sie zum Starten auf diese Schaltfläche.</s:String>
+    <s:String x:Key="start_button_tip_98">Hier klicken, um zu beginnen.</s:String>
+    <s:String x:Key="start_button_tip">Hier klicken, um zu beginnen</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar Taskleiste</s:String>
@@ -49,16 +75,31 @@
     <s:String x:Key="quick_launch">Schnellstartleiste</s:String>
     <s:String x:Key="new_toolbar">Neue Symbolleiste...</s:String>
     <s:String x:Key="set_time">_Datum/Uhrzeit ändern</s:String>
+    <s:String x:Key="cascade">Fenste ka_skadieren</s:String>
+    <s:String x:Key="horiz_tile">Kachelfenster _Horizontal</s:String>
+    <s:String x:Key="vert_tile">Kachelfenster V_ertikal</s:String>
+    <s:String x:Key="toggle_desktop">De_sktop anzeigen</s:String>
+    <s:String x:Key="hide_desktop">Offene Fen_ster anzeigen</s:String>
+    <s:String x:Key="undo_cascade">Kaskadierung r_ückgängig machen</s:String>
+    <s:String x:Key="undo_tile">Kachel r_ückgängig machen</s:String>
+    <s:String x:Key="undo_minimize_all">Alles minimieren rü_ckgängig machen</s:String>
     <s:String x:Key="show_taskman_2k">_Task-Manager...</s:String>
     <s:String x:Key="show_taskman">_Task-Manager</s:String>
     <s:String x:Key="tray_properties">E_igenschaften</s:String>
     <s:String x:Key="update_available">Update verfügbar...</s:String>
     <s:String x:Key="exit_retrobar">Retrobar schließen</s:String>
     <s:String x:Key="customize_notifications_menu">Infobereich _anpassen...</s:String>
+    <s:String x:Key="lock_taskbar_menu">Die Taskleiste _fixieren</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Oberfläche/Desktop wiederherstellen</s:String>
+    <s:String x:Key="show_desktop_tip">Desktop anzeigen</s:String>
+    <s:String x:Key="show_desktop_95">_Desktop</s:String>
+    <s:String x:Key="show_desktop">De_sktop anzeigen</s:String>
+    <s:String x:Key="peek_at_desktop">_Blick auf Desktop werfen</s:String>
 
     <s:String x:Key="restore">_Wiederherstellen</s:String>
     <s:String x:Key="move">_Verschieben</s:String>
-    <s:String x:Key="size">_Größe ändern</s:String>
+    <s:String x:Key="size">_Größe</s:String>
     <s:String x:Key="minimize">Mi_nimieren</s:String>
     <s:String x:Key="maximize">Ma_ximieren</s:String>
     <s:String x:Key="close">_Schließen</s:String>
