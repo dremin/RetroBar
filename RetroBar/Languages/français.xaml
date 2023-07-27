@@ -3,29 +3,66 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="retrobar_properties">Propriétés de RetroBar</s:String>
-    <s:String x:Key="taskbar_tab">Barre des tâches</s:String>
+    <s:String x:Key="taskbar_tab">Options de la barre des tâches</s:String>
+    <s:String x:Key="advanced_tab">Avancé</s:String>
+    <s:String x:Key="taskbar_appearance">Apparence de la barre des tâches</s:String>
+    <s:String x:Key="notification_area">Zone de notification</s:String>
     <s:String x:Key="autostart">_Démarrer automatiquement à la connexion</s:String>
     <s:String x:Key="language_text">Lan_gue:</s:String>
-    <s:String x:Key="language_tip">Sélectionnez la langue à utiliser.</s:String>
+    <s:String x:Key="language_tip">Sélectionner la langue à utiliser.</s:String>
     <s:String x:Key="theme_text">_Thème:</s:String>
-    <s:String x:Key="theme_tip">Installez les thèmes dans le dossier Themes.</s:String>
-    <s:String x:Key="location_text">Posit_ion:</s:String>
-    <s:String x:Key="location_tip">Modifiez l'emplacement de la barre des tâches à l'écran.</s:String>
+    <s:String x:Key="theme_tip">Installer des thèmes dans le dossier Thèmes.</s:String>
+    <s:String x:Key="location_text">Emplace_ment:</s:String>
+    <s:String x:Key="location_tip">Modifier l’emplacement de la barre des tâches à l’écran.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
-        <s:String>À gauche</s:String>
-        <s:String>En haut</s:String>
-        <s:String>À droite</s:String>
-        <s:String>En bas</s:String>
+        <s:String>Gauche</s:String>
+        <s:String>Haut</s:String>
+        <s:String>Droite</s:String>
+        <s:String>Bas</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Autoriser le lissage des polices</s:String>
-    <s:String x:Key="collapse_tray_icons">_Réduire les icônes de la zone de notification</s:String>
-    <s:String x:Key="show_clock">Afficher l'_horloge</s:String>
+    <s:String x:Key="collapse_tray_icons">Réduire les icônes de la zone de _notification</s:String>
+    <s:String x:Key="customize">_Personnaliser...</s:String>
+    <s:String x:Key="show_clock">Afficher l’_horloge</s:String>
     <s:String x:Key="show_multi_mon">Afficher sur _plusieurs écrans</s:String>
-    <s:String x:Key="show_quick_launch">Afficher la zone de _Lancement rapide</s:String>
-    <s:String x:Key="select_location">_Changer de dossier...</s:String>
-    <s:String x:Key="quick_launch_folder">Lancement rapide - Choisir un dossier</s:String>
+    <s:String x:Key="show_quick_launch">Afficher la barre de lancement _rapide</s:String>
+    <s:String x:Key="select_location">_Sélectionner un emplacement...</s:String>
+    <s:String x:Key="quick_launch_folder">Lancement rapide - Sélectionner un dossier</s:String>
+    <s:String x:Key="show_window_previews">Afficher les aperçus de la _fenêtre (miniatures)</s:String>
     <s:String x:Key="use_software_rendering">_Utiliser le rendu logiciel</s:String>
+    <s:String x:Key="middle_mouse_to_close">Cliquez avec le bouton _central pour fermer les éléments de la barre des tâches</s:String>
+    <s:String x:Key="add_show_desktop_button">Ajouter le bouton Afficher le _bureau</s:String>
+    <s:String x:Key="enable_auto_hide">A_uto-cacher la barre des tâches</s:String>
+    <s:String x:Key="lock_taskbar">_Verrouiller la barre des tâches</s:String>
+    <s:String x:Key="multiple_displays">Plusieurs écrans</s:String>
+    <s:String x:Key="show_tasks_on">A_fficher les tâches sur:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Toutes les barres des tâches</s:String>
+        <s:String>Même barre des tâches que la fenêtre</s:String>
+        <s:String>Même barre des tâches que la fenêtre et la barre des tâches principale</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Inverser les icônes système:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>En cas de besoin par thème</s:String>
+        <s:String>Toujours</s:String>
+        <s:String>Jamais</s:String>
+    </x:Array>
+    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="visit_on_github">Visiter le site web de RetroBar sur GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Mise à l’échelle de la barre des tâches</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Réglage actuel: {0}%</s:String>
+    <s:String x:Key="debug_logging">Activer la journalisation de débogage</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Personnaliser les notifications</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar affiche des icônes pour les notifications actives et urgentes et masque les notifications inactives. Vous pouvez modifier ce comportement pour les éléments de la liste ci-dessous.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Sélectionner un élément, puis choisissez son comportement de notification:</s:String>
+    <s:String x:Key="hide_when_inactive">Cacher en cas d’inactivité</s:String>
+    <s:String x:Key="always_show">Toujours montrer</s:String>
+    <s:String x:Key="name_heading">Nom</s:String>
+    <s:String x:Key="behavior_heading">Comportement</s:String>
 
     <s:String x:Key="start_text">Démarrer</s:String>
     <s:String x:Key="start_text_xp">démarrer</s:String>
@@ -33,26 +70,46 @@
     <s:String x:Key="start_button_tip">Cliquez ici pour commencer</s:String>
     <s:String x:Key="start_button_tip_vista">Démarrer</s:String>
 
-    <s:String x:Key="retrobar_title">Barre des tâches RetroBar</s:String>
-    <s:String x:Key="toolbars">Barres d'ou_tils</s:String>
-    <s:String x:Key="quick_launch">Lancement _rapide</s:String>
-    <s:String x:Key="new_toolbar">_Nouvelle barre d'outils...</s:String>
-    <s:String x:Key="set_time">Ajuster la _date/l'heure</s:String>
-    <s:String x:Key="show_taskman_2k">_Gestionnaire des tâches...</s:String>
-    <s:String x:Key="show_taskman">_Gestionnaire des tâches</s:String>
-    <s:String x:Key="tray_properties">P_ropriétés</s:String>
+    <s:String x:Key="retrobar_title">Barre des tâches de RetroBar</s:String>
+    <s:String x:Key="show_taskman">_Gestionnaire des tâches...</s:String>
+    <s:String x:Key="quick_launch">_Lancement rapide</s:String>
+    <s:String x:Key="new_toolbar">_Nouvelle barre d’outils...</s:String>
+    <s:String x:Key="set_time">_Ajuster la date/l’heure</s:String>
+    <s:String x:Key="cascade">Fenêtres en ca_scade</s:String>
+    <s:String x:Key="horiz_tile">Fenêtres en mosaïque _horizontalement</s:String>
+    <s:String x:Key="vert_tile">Fenêtres en mosaïque v_erticalement</s:String>
+    <s:String x:Key="toggle_desktop">_Afficher le bureau</s:String>
+    <s:String x:Key="hide_desktop">_Afficher les fenêtres ouvertes</s:String>
+    <s:String x:Key="undo_cascade">_Annuler la cascade</s:String>
+    <s:String x:Key="undo_tile">_Annuler la vignette</s:String>
+    <s:String x:Key="undo_minimize_all">_Annuler tout réduire</s:String>
+    <s:String x:Key="show_taskman_2k">Gestionnaire des tâche_s...</s:String>
+    <s:String x:Key="show_taskman">Gestionnaire des tâche_s</s:String>
+    <s:String x:Key="tray_properties">_Propriétés</s:String>
     <s:String x:Key="update_available">_Mise à jour disponible...</s:String>
     <s:String x:Key="exit_retrobar">_Quitter RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Personnaliser les notifications...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Verrouiller la barre des tâches</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Surface/Restaurer le bureau</s:String>
+    <s:String x:Key="show_desktop_tip">Afficher le bureau</s:String>
+    <s:String x:Key="show_desktop_95">_Bureau</s:String>
+    <s:String x:Key="show_desktop">_Afficher le bureau</s:String>
+    <s:String x:Key="peek_at_desktop">_Coup d’oeil sur le bureau</s:String>
 
     <s:String x:Key="restore">_Restaurer</s:String>
-    <s:String x:Key="move">Dép_lacer</s:String>
+    <s:String x:Key="move">_Déplacer</s:String>
     <s:String x:Key="size">_Taille</s:String>
-    <s:String x:Key="minimize">Réd_uire</s:String>
-    <s:String x:Key="maximize">Agra_ndir</s:String>
-    <s:String x:Key="close">_Fermer</s:String>
-
+    <s:String x:Key="minimize">Ré_duire</s:String>
+    <s:String x:Key="maximize">Ag_randir</s:String>
+    <s:String x:Key="close_tip">_Fermer</s:String>
+   
     <s:String x:Key="show_hidden">Afficher les icônes cachées</s:String>
-    <s:String x:Key="hide">Masquer</s:String>
+    <s:String x:Key="hide">Cacher</s:String>
 
     <s:String x:Key="open_folder">&amp;Ouvrir le dossier</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">De gauche à droite</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
