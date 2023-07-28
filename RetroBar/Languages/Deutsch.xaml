@@ -66,8 +66,8 @@
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
-    <s:String x:Key="start_button_tip_98">Hier klicken, um zu beginnen.</s:String>
-    <s:String x:Key="start_button_tip">Hier klicken, um zu beginnen</s:String>
+    <s:String x:Key="start_button_tip_98">Klicken Sie zum Starten auf diese Schaltfläche.</s:String>
+    <s:String x:Key="start_button_tip">Klicken Sie zum Starten auf diese Schaltfläche.</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar Taskleiste</s:String>
