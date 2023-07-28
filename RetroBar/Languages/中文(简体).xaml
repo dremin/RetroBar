@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">RetroBar 属性</s:String>
     <s:String x:Key="taskbar_tab">任务栏</s:String>
+    <s:String x:Key="advanced_tab">高级</s:String>
     <s:String x:Key="taskbar_appearance">任务栏外观</s:String>
     <s:String x:Key="notification_area">通知区域</s:String>
     <s:String x:Key="autostart">开机时自动启动 (_L)</s:String>
@@ -12,7 +13,6 @@
     <s:String x:Key="theme_text">主题 (_T): </s:String>
     <s:String x:Key="theme_tip">在 Themes 文件夹中安装主题。</s:String>
     <s:String x:Key="location_text">位置 (_I): </s:String>
-    <s:String x:Key="location_tip">更改屏幕上的任务栏位置。</s:String>
     <s:String x:Key="location_tip">更改任务栏在屏幕上的位置。</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>左侧</s:String>
@@ -32,8 +32,8 @@
     <s:String x:Key="use_software_rendering">使用软件渲染 (_U)</s:String>
     <s:String x:Key="middle_mouse_to_close">单击中键关闭任务栏项目 (_M)</s:String>
     <s:String x:Key="add_show_desktop_button">添加显示桌面按钮 (_D)</s:String>
-    <s:String x:Key="enable_auto_hide">自动隐藏任务栏</s:String>
-	    <s:String x:Key="lock_taskbar">锁定任务栏 (_L)</s:String>
+    <s:String x:Key="enable_auto_hide">自动隐藏任务栏(_U)</s:String>
+    <s:String x:Key="lock_taskbar">锁定任务栏 (_L)</s:String>
     <s:String x:Key="multiple_displays">多种显示</s:String>
     <s:String x:Key="show_tasks_on">显示任务在 (_H): </s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -108,8 +108,6 @@
     <s:String x:Key="hide">隐藏</s:String>
 
     <s:String x:Key="open_folder">&amp;打开文件夹</s:String>
-  
-  <!-- 以下项目是设置，并且应始终为英文 -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+
     <FontFamily x:Key="start_text_xp_font_family">SimSun</FontFamily>
 </ResourceDictionary>
