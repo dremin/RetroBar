@@ -31,7 +31,7 @@
     <s:String x:Key="show_window_previews">Mostrar _vistas previas de las ventanas (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">Usar procesamiento por soft_ware</s:String>
     <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central</s:String>
-    <s:String x:Key="add_show_desktop_button">Agregar el botón Mostrar _escritorio</s:String>
+    <s:String x:Key="add_show_desktop_button">Agregar botón Mostrar _escritorio</s:String>
     <s:String x:Key="enable_auto_hide">Ocultar automáticam_ente la barra de tareas</s:String>
     <s:String x:Key="lock_taskbar">_Bloquear la barra de tareas</s:String>
     <s:String x:Key="multiple_displays">Varias pantallas</s:String>
@@ -43,7 +43,7 @@
     </x:Array>
     <s:String x:Key="invert_system_icons">_Invertir iconos del sistema:</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
-        <s:String>Cuando lo necesite el tema</s:String>
+        <s:String>Cuando el tema lo requiera</s:String>
         <s:String>Siempre</s:String>
         <s:String>Nunca</s:String>
     </x:Array>
