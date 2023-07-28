@@ -21,9 +21,9 @@
         <s:String>底部</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">允许字体平滑 (_A)</s:String>
-    <s:String x:Key="collapse_tray_icons">收起通知区域图标 (_N)</s:String>
-    <s:String x:Key="customize">自定义 (_E)...</s:String>
-    <s:String x:Key="show_clock">显示时钟 (_C)</s:String>
+    <s:String x:Key="collapse_tray_icons">收起通知区域图标 (_H)</s:String>
+    <s:String x:Key="customize">自定义 (_C)...</s:String>
+    <s:String x:Key="show_clock">显示时钟 (_K)</s:String>
     <s:String x:Key="show_multi_mon">在多个显示器上显示 (_M)</s:String>
     <s:String x:Key="show_quick_launch">显示快速启动 (_Q)</s:String>
     <s:String x:Key="select_location">选择位置 (_S)...</s:String>
@@ -32,7 +32,7 @@
     <s:String x:Key="use_software_rendering">使用软件渲染 (_U)</s:String>
     <s:String x:Key="middle_mouse_to_close">单击中键关闭任务栏项目 (_M)</s:String>
     <s:String x:Key="add_show_desktop_button">添加显示桌面按钮 (_D)</s:String>
-    <s:String x:Key="enable_auto_hide">自动隐藏任务栏(_U)</s:String>
+    <s:String x:Key="enable_auto_hide">自动隐藏任务栏 (_U)</s:String>
     <s:String x:Key="lock_taskbar">锁定任务栏 (_L)</s:String>
     <s:String x:Key="multiple_displays">多种显示</s:String>
     <s:String x:Key="show_tasks_on">显示任务在 (_H): </s:String>
