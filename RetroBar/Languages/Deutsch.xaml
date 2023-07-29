@@ -79,7 +79,7 @@
     <s:String x:Key="horiz_tile">Kachelfenster _Horizontal</s:String>
     <s:String x:Key="vert_tile">Kachelfenster V_ertikal</s:String>
     <s:String x:Key="toggle_desktop">De_sktop anzeigen</s:String>
-    <s:String x:Key="hide_desktop">Offene Fen_ster anzeigen</s:String>
+    <s:String x:Key="hide_desktop">Geöffnete Fen_ster anzeigen</s:String>
     <s:String x:Key="undo_cascade">Kaskadierung r_ückgängig machen</s:String>
     <s:String x:Key="undo_tile">Kachel r_ückgängig machen</s:String>
     <s:String x:Key="undo_minimize_all">Alles minimieren rü_ckgängig machen</s:String>
@@ -87,9 +87,9 @@
     <s:String x:Key="show_taskman">_Task-Manager</s:String>
     <s:String x:Key="tray_properties">E_igenschaften</s:String>
     <s:String x:Key="update_available">Update verfügbar...</s:String>
-    <s:String x:Key="exit_retrobar">Retrobar schließen</s:String>
+    <s:String x:Key="exit_retrobar">RetroBar schließen</s:String>
     <s:String x:Key="customize_notifications_menu">Infobereich _anpassen...</s:String>
-    <s:String x:Key="lock_taskbar_menu">Die Taskleiste _fixieren</s:String>
+    <s:String x:Key="lock_taskbar_menu">Taskleiste _fixieren</s:String>
 
     <s:String x:Key="show_desktop_tip_95">Oberfläche/Desktop wiederherstellen</s:String>
     <s:String x:Key="show_desktop_tip">Desktop anzeigen</s:String>
@@ -99,7 +99,7 @@
 
     <s:String x:Key="restore">_Wiederherstellen</s:String>
     <s:String x:Key="move">_Verschieben</s:String>
-    <s:String x:Key="size">_Größe</s:String>
+    <s:String x:Key="size">_Größe ändern</s:String>
     <s:String x:Key="minimize">Mi_nimieren</s:String>
     <s:String x:Key="maximize">Ma_ximieren</s:String>
     <s:String x:Key="close">_Schließen</s:String>
