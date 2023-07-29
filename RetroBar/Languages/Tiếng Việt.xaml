@@ -41,7 +41,7 @@
         <s:String>Thanh tác vụ cùng cửa sổ</s:String>
         <s:String>Thanh tác vụ cùng cửa sổ và thanh tác vụ chính</s:String>
     </x:Array>
-	  <s:String x:Key="invert_system_icons">_Đảo ngược màu các biểu tượng thông báo:</s:String>
+	  <s:String x:Key="invert_system_icons">_Đảo ngược màu các biểu tượng thông báo: </s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>Theo chủ đề</s:String>
         <s:String>Luôn luôn</s:String>
