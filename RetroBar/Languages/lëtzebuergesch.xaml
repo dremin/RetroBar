@@ -1,0 +1,58 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
+    <s:String x:Key="taskbar_tab">Taskbar</s:String>
+    <s:String x:Key="autostart">_Start automatesch beim Login</s:String>
+    <s:String x:Key="language_text">Sprooch:</s:String>
+    <s:String x:Key="language_tip">Wielt d'Sprooch fir ze benotzen.</s:String>
+    <s:String x:Key="theme_text">_ Thema:</s:String>
+    <s:String x:Key="theme_tip">Installéiert Themen am Dossier Themen.</s:String>
+    <s:String x:Key="location_text">Positioun:</s:String>
+    <s:String x:Key="location_tip">Ännert de Standuert vun der Taskbar um Bildschierm.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Lénks</s:String>
+        <s:String>Uewen</s:String>
+        <s:String>Riets</s:String>
+        <s:String>Ënnen</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Erlaabt Schrëftglättung</s:String>
+    <s:String x:Key="collapse_tray_icons">_Minimiséieren Notifikatiounsberäich Ikonen</s:String>
+    <s:String x:Key="show_clock">Show Auer</s:String>
+    <s:String x:Key="show_multi_mon">Display op verschidde Schiirme</s:String>
+    <s:String x:Key="show_quick_launch">Show Quick Launch Beräich</s:String>
+    <s:String x:Key="select_location">_Dossier änneren ...</s:String>
+    <s:String x:Key="quick_launch_folder">Quick Launch - Wielt Dossier</s:String>
+    <s:String x:Key="use_software_rendering">_Benotzt Software Rendering</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="start_text">Unzefänken</s:String>
+    <s:String x:Key="start_text_xp">unzefänken</s:String>
+    <s:String x:Key="start_button_tip_98">Klickt hei fir unzefänken.</s:String>
+    <s:String x:Key="start_button_tip">Klickt hei fir unzefänken</s:String>
+    <s:String x:Key="start_button_tip_vista">Unzefänken</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
+    <s:String x:Key="toolbars">Toolbar</s:String>
+    <s:String x:Key="quick_launch">Schnellstart</s:String>
+    <s:String x:Key="new_toolbar">_Nei Toolbar ...</s:String>
+    <s:String x:Key="set_time">Ajustéieren Datum / Zäit</s:String>
+    <s:String x:Key="show_taskman_2k">_Aufgab Manager...</s:String>
+    <s:String x:Key="show_taskman">_Aufgab Manager</s:String>
+    <s:String x:Key="tray_properties">Eegeschaften</s:String>
+    <s:String x:Key="update_available">_Update verfügbar ...</s:String>
+    <s:String x:Key="exit_retrobar">_Sortie RetroBar</s:String>
+
+    <s:String x:Key="restore">_Restauréieren</s:String>
+    <s:String x:Key="move">Beweegen</s:String>
+    <s:String x:Key="size">_Gréisst</s:String>
+    <s:String x:Key="minimize">Reduzéieren</s:String>
+    <s:String x:Key="maximize">Vergréisseren</s:String>
+    <s:String x:Key="close">_Zoumaachen</s:String>
+
+    <s:String x:Key="show_hidden">Weist verstoppte Symboler</s:String>
+    <s:String x:Key="hide">Verstoppen</s:String>
+
+    <s:String x:Key="open_folder">&amp;Öffnen den Dossier</s:String>
+</ResourceDictionary>
