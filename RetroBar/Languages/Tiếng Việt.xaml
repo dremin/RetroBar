@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">Tinh chỉnh RetroBar</s:String>
+    <s:String x:Key="retrobar_properties">Tuỳ chỉnh RetroBar</s:String>
     <s:String x:Key="taskbar_tab">Thanh tác vụ</s:String>
     <s:String x:Key="advanced_tab">Nâng cao</s:String>
     <s:String x:Key="taskbar_appearance">Giao diện thanh tác vụ</s:String>
@@ -29,19 +29,19 @@
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
     <s:String x:Key="show_window_previews">Hiện hình xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
-    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất (Software Rendering)</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Nhấn chuột giữa (nút lăn trên chuột) để đóng các mục trên thanh tác vụ</s:String>
-    <s:String x:Key="add_show_desktop_button">Thêm nút Hiện bàn làm việc (Show Desktop)</s:String>
+    <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để xuất hình ảnh (Software Rendering)</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Nhấn nút lăn để đóng các mục trên thanh tác vụ</s:String>
+    <s:String x:Key="add_show_desktop_button">Thêm nút Hiện màn hình chính (Show Desktop)</s:String>
     <s:String x:Key="enable_auto_hide">Tự động ẩn thanh tác vụ</s:String>
     <s:String x:Key="lock_taskbar">_Khoá thanh tác vụ</s:String>
     <s:String x:Key="multiple_displays">Đa màn hình</s:String>
-    <s:String x:Key="show_tasks_on">_Hiện các tác vụ trên:</s:String>
+    <s:String x:Key="show_tasks_on">_Hiện mục xem trước tác vụ trên:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Tất cả các thanh tác vụ</s:String>
         <s:String>Thanh tác vụ cùng cửa sổ</s:String>
         <s:String>Thanh tác vụ cùng cửa sổ và thanh tác vụ chính</s:String>
     </x:Array>
-	  <s:String x:Key="invert_system_icons">_Đảo ngược màu các biểu tượng thông báo: </s:String>
+	  <s:String x:Key="invert_system_icons">_Đảo ngược màu các biểu tượng ở mục thông báo: </s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>Theo chủ đề</s:String>
         <s:String>Luôn luôn</s:String>
@@ -49,7 +49,7 @@
     </x:Array>
     <s:String x:Key="version">Phiên bản {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBar trên GitHub</s:String>
-    <s:String x:Key="taskbar_scale">Phóng lớn thanh tác vụ</s:String>
+    <s:String x:Key="taskbar_scale">Kích cỡ thanh tác vụ</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Cài đặt hiện tại: {0}%</s:String>
@@ -78,24 +78,24 @@
     <s:String x:Key="cascade">Xếp chồng các cửa sổ</s:String>
     <s:String x:Key="horiz_tile">Chia các cửa sổ theo chiều ngang</s:String>
     <s:String x:Key="vert_tile">Chia các cửa sổ theo chiều dọc</s:String>
-    <s:String x:Key="toggle_desktop">_Hiện bàn làm việc</s:String>
+    <s:String x:Key="toggle_desktop">_Hiện màn hình chính</s:String>
     <s:String x:Key="hide_desktop">Hiện các cửa sổ đang mở</s:String>
     <s:String x:Key="undo_cascade">Hoàn tác xếp chồng</s:String>
     <s:String x:Key="undo_tile">Hoàn tác chia cửa sổ</s:String>
     <s:String x:Key="undo_minimize_all">Hoàn tác thu nhỏ tất cả</s:String>
     <s:String x:Key="show_taskman_2k">Trình quản lý tác vụ...</s:String>
     <s:String x:Key="show_taskman">Trình quản lý tác vụ</s:String>
-    <s:String x:Key="tray_properties">Tinh chỉnh</s:String>
+    <s:String x:Key="tray_properties">Điều chỉnh</s:String>
     <s:String x:Key="update_available">_Có bản cập nhật mới...</s:String>
     <s:String x:Key="exit_retrobar">_Thoát RetroBar</s:String>
-    <s:String x:Key="customize_notifications_menu">_Tùy chỉnh thông báo...</s:String>
+    <s:String x:Key="customize_notifications_menu">_Tùy chỉnh mục thông báo...</s:String>
     <s:String x:Key="lock_taskbar_menu">_Khoá thanh tác vụ</s:String>
 
-    <s:String x:Key="show_desktop_tip_95">Khôi phục bàn làm việc</s:String>
-    <s:String x:Key="show_desktop_tip">Hiện bàn làm việc</s:String>
-    <s:String x:Key="show_desktop_95">_Bàn làm việc</s:String>
-    <s:String x:Key="show_desktop">_Hiện bàn làm việc</s:String>
-    <s:String x:Key="peek_at_desktop">_Xem nhanh bàn làm việc</s:String>
+    <s:String x:Key="show_desktop_tip_95">Khôi phục màn hình chính</s:String>
+    <s:String x:Key="show_desktop_tip">Hiện màn hình chính</s:String>
+    <s:String x:Key="show_desktop_95">_màn hình chính</s:String>
+    <s:String x:Key="show_desktop">_Hiện màn hình chính</s:String>
+    <s:String x:Key="peek_at_desktop">_Xem nhanh màn hình chính</s:String>
   
     <s:String x:Key="restore">_Khôi phục</s:String>
     <s:String x:Key="move">_Di chuyển</s:String>
