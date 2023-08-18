@@ -4,7 +4,7 @@
 
     <s:String x:Key="retrobar_properties">Поставке RetroBar-а</s:String>
     <s:String x:Key="taskbar_tab">Трака задатака</s:String>
-    <s:String x:Key="advanced_tab">За напредне</s:String>
+    <s:String x:Key="advanced_tab">Напредно</s:String>
     <s:String x:Key="taskbar_appearance">Изглед траке задатака</s:String>
     <s:String x:Key="notification_area">Системска палета</s:String>
     <s:String x:Key="autostart">Покрени _аутоматски при пријављивању</s:String>
@@ -32,12 +32,20 @@
     <s:String x:Key="use_software_rendering">_Користи софтверски рендеринг</s:String>
     <s:String x:Key="middle_mouse_to_close">_Средњи клик да затворите ставке на траци задатака</s:String>
     <s:String x:Key="add_show_desktop_button">Додај дугме за приказ радне повр_шине</s:String>
+    <s:String x:Key="enable_auto_hide">_Аутоматски сакриј траку задатака</s:String>
+    <s:String x:Key="lock_taskbar">За_кључај траку задатака</s:String>
     <s:String x:Key="multiple_displays">Више екрана</s:String>
     <s:String x:Key="show_tasks_on">Прика_жи прозоре на:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Свим тракама задатака</s:String>
         <s:String>Траци задатака на којој је прозор</s:String>
         <s:String>Траци задатака на којој је прозор и на главној</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Инвертуј системске иконице</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Када тема то захтева</s:String>
+        <s:String>Увек</s:String>
+        <s:String>Никада</s:String>
     </x:Array>
     <s:String x:Key="version">Верзија {0}</s:String>
     <s:String x:Key="visit_on_github">Отворите GitHub</s:String>
@@ -81,6 +89,7 @@
     <s:String x:Key="update_available">_Ажурирање доступно...</s:String>
     <s:String x:Key="exit_retrobar">_Напусти RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Прилагоди _обавештења...</s:String>
+    <s:String x:Key="lock_taskbar_menu">За_кључај траку задатака</s:String>
 
     <s:String x:Key="show_desktop_tip_95">Прикажи/врати радну површину</s:String>
     <s:String x:Key="show_desktop_tip">Прикажи радну површину</s:String>
