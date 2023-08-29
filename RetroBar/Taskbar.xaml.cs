@@ -36,14 +36,15 @@ namespace RetroBar
         private Point? _mouseDragStart = null;
         private ShellManager _shellManager;
         private Updater _updater;
-        private WindowManager _windowManager;
+
+        public WindowManager windowManager;
 
         public Taskbar(WindowManager windowManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, mode, 0)
         {
             _shellManager = shellManager;
             _updater = updater;
-            _windowManager = windowManager;
+            this.windowManager = windowManager;
 
             InitializeComponent();
             DataContext = _shellManager;
@@ -170,7 +171,7 @@ namespace RetroBar
                 if (AllowsTransparency != newTransparency && Screen.Primary)
                 {
                     // Transparency cannot be changed on an open window.
-                    _windowManager.ReopenTaskbars();
+                    windowManager.ReopenTaskbars();
                     return;
                 }
 
@@ -202,7 +203,7 @@ namespace RetroBar
                 if (FlowDirection != newFlowDirection && Screen.Primary)
                 {
                     // It is necessary to reopen the taskbars to refresh menu sizes.
-                    _windowManager.ReopenTaskbars();
+                    windowManager.ReopenTaskbars();
                     return;
                 }
             }
@@ -234,7 +235,7 @@ namespace RetroBar
                 {
                     // Auto hide requires transparency
                     // Transparency cannot be changed on an open window.
-                    _windowManager.ReopenTaskbars();
+                    windowManager.ReopenTaskbars();
                 }
             }
             else if (e.PropertyName == "LockTaskbar")
@@ -361,7 +362,7 @@ namespace RetroBar
             if (Settings.Instance.ShowMultiMon)
             {
                 // Re-create RetroBar windows based on new screen setup
-                _windowManager.NotifyDisplayChange(reason);
+                windowManager.NotifyDisplayChange(reason);
             }
             else
             {
