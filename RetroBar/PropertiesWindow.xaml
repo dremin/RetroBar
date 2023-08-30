@@ -126,24 +126,26 @@
                                                            Style="{DynamicResource StartLabel}" />
                                             </Grid>
                                         </ToggleButton>
-                                        <Thumb Style="{DynamicResource ToolbarThumb}"
-                                               DockPanel.Dock="Left"
-                                               Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}" />
-                                        <ItemsControl DockPanel.Dock="Left"
-                                                      Focusable="False"
-                                                      Style="{DynamicResource ToolbarItems}"
-                                                      Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel Orientation="Horizontal"></WrapPanel>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <Button Style="{DynamicResource ToolbarButton}"
-                                                    Focusable="False">
-                                                <Image Source="Resources\retrobar.ico"
-                                                       Style="{DynamicResource ToolbarIcon}" />
-                                            </Button>
-                                        </ItemsControl>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}">
+                                            <Thumb Style="{DynamicResource ToolbarThumb}"
+                                                   DockPanel.Dock="Left"
+                                                   Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}" />
+                                            <ItemsControl DockPanel.Dock="Left"
+                                                          Focusable="False"
+                                                          Style="{DynamicResource ToolbarItems}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <Button Style="{DynamicResource ToolbarButton}"
+                                                        Focusable="False">
+                                                    <Image Source="Resources\retrobar.ico"
+                                                           Style="{DynamicResource ToolbarIcon}" />
+                                                </Button>
+                                            </ItemsControl>
+                                        </StackPanel>
                                         <Thumb Style="{DynamicResource ToolbarThumb}"
                                                DockPanel.Dock="Left"
                                                Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}" />
