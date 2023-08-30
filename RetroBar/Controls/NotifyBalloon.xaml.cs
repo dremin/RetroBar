@@ -47,7 +47,7 @@ namespace RetroBar.Controls
 
             DpiScale dpiScale = VisualTreeHelper.GetDpi(this);
 
-            switch ((AppBarEdge)Settings.Instance.Edge)
+            switch (Settings.Instance.Edge)
             {
                 case AppBarEdge.Top:
                     if (FlowDirection == FlowDirection.LeftToRight)

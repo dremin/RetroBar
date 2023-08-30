@@ -11,7 +11,7 @@ namespace RetroBar.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            bool vertical = Settings.Instance.Edge == (int)AppBarEdge.Left || Settings.Instance.Edge == (int)AppBarEdge.Right;
+            bool vertical = Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right;
 
             // parameter is a string "leading" or "trailing"
 

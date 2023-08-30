@@ -1,58 +1,13 @@
 ﻿using ManagedShell.AppBar;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Runtime.CompilerServices;
 
 namespace RetroBar.Utilities
 {
-    public class Settings : INotifyPropertyChanged
+    internal class Settings : INotifyPropertyChanged
     {
-        public delegate void SettingsEventHandler(object sender, EventArgs args);
-        public static event SettingsEventHandler Initializing;
-        public static event SettingsEventHandler Initialized;
-        private static bool _initialized;
-
-        // For Reference
-        // https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/how-to-implement-property-change-notification
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private static Settings instance;
-        private bool _upgrading;
-        private readonly Properties.Settings settings;
-
-        private Settings()
-        {
-            settings = Properties.Settings.Default;
-            settings.PropertyChanged += Settings_PropertyChanged;
-
-            if (IsFirstRun)
-            {
-                Upgrade();
-            }
-        }
-
-        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (_upgrading)
-                return;
-
-            // Save the planet, one property at a time.
-            Save();
-
-            // Tell the rest of the app.
-            OnNotifyPropertyChanged(e.PropertyName);
-        }
-
-
-        // This method is called by the Set accessor of each property.
-        // The CallerMemberName attribute that is applied to the optional propertyName
-        // parameter causes the property name of the caller to be substituted as an argument.
-        private void OnNotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public static Settings Instance
         {
@@ -60,503 +15,431 @@ namespace RetroBar.Utilities
             {
                 if (instance == null)
                 {
-                    // add SettingsInitializing event handler
-                    // this should be where plugins can register PropertySettings with our core
-                    Initializing?.Invoke(null, new EventArgs());
-
-                    instance = new Settings();
-                    _initialized = true;
-
-                    // add SettingsInitialized event handler
-                    // This should inform the system that all PropertySettings should be added and can now be accessed safely
-                    Initialized?.Invoke(instance, new EventArgs());
+                    instance = _settingsManager.Settings;
+                    _isInitializing = false;
                 }
 
                 return instance;
             }
         }
 
-        #region Properties
-        public bool IsFirstRun
+        private static bool _isInitializing = true;
+        private static SettingsManager<Settings> _settingsManager = new SettingsManager<Settings>(new Settings());
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This should not be used directly! Unfortunately it must be public for JsonSerializer.
+        public Settings()
         {
-            get
-            {
-                return settings.IsFirstRun;
-            }
-            set
-            {
-                if (settings.IsFirstRun != value)
-                {
-                    settings.IsFirstRun = value;
-                }
-            }
+            PropertyChanged += Settings_PropertyChanged;
         }
 
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (_isInitializing)
+            {
+                return;
+            }
+
+            _settingsManager.Settings = this;
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #region Properties
+        private string _language = "System";
         public string Language
         {
             get
             {
-                return settings.Language;
+                return _language;
             }
             set
             {
-                if (settings.Language != value)
+                if (_language != value)
                 {
-                    settings.Language = value;
+                    _language = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private string _theme = "Windows 95-98";
         public string Theme
         {
             get
             {
-                return settings.Theme;
+                return _theme;
             }
             set
             {
-                if (settings.Theme != value)
+                if (_theme != value)
                 {
-                    settings.Theme = value;
+                    _theme = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _showClock = true;
         public bool ShowClock
         {
             get
             {
-                return settings.ShowClock;
+                return _showClock;
             }
             set
             {
-                if (settings.ShowClock != value)
+                if (_showClock != value)
                 {
-                    settings.ShowClock = value;
+                    _showClock = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _showDesktopButton = false;
         public bool ShowDesktopButton
         {
             get
             {
-                return settings.ShowDesktopButton;
+                return _showDesktopButton;
             }
             set
             {
-                if (settings.ShowDesktopButton != value)
+                if (_showDesktopButton != value)
                 {
-                    settings.ShowDesktopButton = value;
+                    _showDesktopButton = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _peekAtDesktop = false;
         public bool PeekAtDesktop
         {
             get
             {
-                return settings.PeekAtDesktop;
+                return _peekAtDesktop;
             }
             set
             {
-                if (settings.PeekAtDesktop != value)
+                if (_peekAtDesktop != value)
                 {
-                    settings.PeekAtDesktop = value;
+                    _peekAtDesktop = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _showMultiMon = false;
         public bool ShowMultiMon
         {
             get
             {
-                return settings.ShowMultiMon;
+                return _showMultiMon;
             }
             set
             {
-                if (settings.ShowMultiMon != value)
+                if (_showMultiMon != value)
                 {
-                    settings.ShowMultiMon = value;
+                    _showMultiMon = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _showQuickLaunch = true;
         public bool ShowQuickLaunch
         {
             get
             {
-                return settings.ShowQuickLaunch;
+                return _showQuickLaunch;
             }
             set
             {
-                if (settings.ShowQuickLaunch != value)
+                if (_showQuickLaunch != value)
                 {
-                    settings.ShowQuickLaunch = value;
+                    _showQuickLaunch = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private string _quickLaunchPath = "%appdata%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar";
         public string QuickLaunchPath
         {
             get
             {
-                return settings.QuickLaunchPath;
+                return _quickLaunchPath;
             }
             set
             {
-                if (settings.QuickLaunchPath != value)
+                if (_quickLaunchPath != value)
                 {
-                    settings.QuickLaunchPath = value;
+                    _quickLaunchPath = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _collapseNotifyIcons = false;
         public bool CollapseNotifyIcons
         {
             get
             {
-                return settings.CollapseNotifyIcons;
+                return _collapseNotifyIcons;
             }
             set
             {
-                if (settings.CollapseNotifyIcons != value)
+                if (_collapseNotifyIcons != value)
                 {
-                    settings.CollapseNotifyIcons = value;
+                    _collapseNotifyIcons = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private string[] _pinnedNotifyIcons = { "7820ae76-23e3-4229-82c1-e41cb67d5b9c", "7820ae75-23e3-4229-82c1-e41cb67d5b9c", "7820ae74-23e3-4229-82c1-e41cb67d5b9c", "7820ae73-23e3-4229-82c1-e41cb67d5b9c" };
         public string[] PinnedNotifyIcons
         {
             get
             {
-                return parseConcatString(settings.PinnedNotifyIcons, '|').ToArray();
+                return _pinnedNotifyIcons;
             }
             set
             {
-                string val = concatStringList(value, '|');
-                if (settings.PinnedNotifyIcons != val)
+                if (_pinnedNotifyIcons != value)
                 {
-                    settings.PinnedNotifyIcons = val;
+                    _pinnedNotifyIcons = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _allowFontSmoothing = false;
         public bool AllowFontSmoothing
         {
             get
             {
-                return settings.AllowFontSmoothing;
+                return _allowFontSmoothing;
             }
             set
             {
-                if (settings.AllowFontSmoothing != value)
+                if (_allowFontSmoothing != value)
                 {
-                    settings.AllowFontSmoothing = value;
+                    _allowFontSmoothing = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _useSoftwareRendering = false;
         public bool UseSoftwareRendering
         {
             get
             {
-                return settings.UseSoftwareRendering;
+                return _useSoftwareRendering;
             }
             set
             {
-                if (settings.UseSoftwareRendering != value)
+                if (_useSoftwareRendering != value)
                 {
-                    settings.UseSoftwareRendering = value;
+                    _useSoftwareRendering = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _middleMouseToClose = false;
         public bool MiddleMouseToClose
         {
             get
             {
-                return settings.MiddleMouseToClose;
+                return _middleMouseToClose;
             }
             set
             {
-                if (settings.MiddleMouseToClose != value)
+                if (_middleMouseToClose != value)
                 {
-                    settings.MiddleMouseToClose = value;
+                    _middleMouseToClose = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
-        /// <summary>
-        /// 0 = Left
-        /// 1 = Top
-        /// 2 = Right
-        /// 3 = Bottom
-        /// </summary>
-        public int Edge
+        private AppBarEdge _edge = AppBarEdge.Bottom;
+        public AppBarEdge Edge
         {
             get
             {
-                if (settings.Edge >= 0 && settings.Edge <= 3)
-                {
-                    return settings.Edge;
-                }
-
-                return (int)AppBarEdge.Bottom;
+                return _edge;
             }
             set
             {
-                if (settings.Edge != value && value >= 0 && value <= 3)
+                if (_edge != value)
                 {
-                    settings.Edge = value;
+                    _edge = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
-        private List<string> _quickLaunchOrder;
+        private List<string> _quickLaunchOrder = new List<string>();
 
         public List<string> QuickLaunchOrder
         {
             get
             {
-                if (_quickLaunchOrder == null)
-                {
-                    _quickLaunchOrder = parseConcatString(settings.QuickLaunchOrder, '|');
-                }
-
                 return _quickLaunchOrder;
             }
             set
             {
-                _quickLaunchOrder = value;
-
-                string val = concatStringList(value, '|');
-                if (settings.QuickLaunchOrder != val)
+                if (_quickLaunchOrder != value)
                 {
-                    settings.QuickLaunchOrder = val;
+                    _quickLaunchOrder = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _showTaskThumbnails = false;
         public bool ShowTaskThumbnails
         {
             get
             {
-                return settings.ShowTaskThumbnails;
+                return _showTaskThumbnails;
             }
             set
             {
-                if (settings.ShowTaskThumbnails != value)
+                if (_showTaskThumbnails != value)
                 {
-                    settings.ShowTaskThumbnails = value;
+                    _showTaskThumbnails = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
-        /// <summary>
-        /// 0 = All taskbars
-        /// 1 = Same taskbar as window
-        /// 2 = Same taskbar as window and primary taskbar
-        /// </summary>
-        public int MultiMonMode
+        private MultiMonOption _multiMonMode = MultiMonOption.AllTaskbars;
+        public MultiMonOption MultiMonMode
         {
             get
             {
-                if (settings.MultiMonMode >= 0 && settings.MultiMonMode <= 2)
-                {
-                    return settings.MultiMonMode;
-                }
-
-                return 0;
+                return _multiMonMode;
             }
             set
             {
-                if (settings.MultiMonMode != value && value >= 0 && value <= 2)
+                if (_multiMonMode != value)
                 {
-                    settings.MultiMonMode = value;
+                    _multiMonMode = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private double _taskbarScale = 1.0;
         public double TaskbarScale
         {
             get
             {
-                return settings.TaskbarScale;
+                return _taskbarScale;
             }
             set
             {
-                if (settings.TaskbarScale != value)
+                if (_taskbarScale != value)
                 {
-                    settings.TaskbarScale = value;
+                    _taskbarScale = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _debugLogging = false;
         public bool DebugLogging
         {
             get
             {
-                return settings.DebugLogging;
+                return _debugLogging;
             }
             set
             {
-                if (settings.DebugLogging != value)
+                if (_debugLogging != value)
                 {
-                    settings.DebugLogging = value;
+                    _debugLogging = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _autoHide = false;
         public bool AutoHide
         {
             get
             {
-                return settings.AutoHide;
+                return _autoHide;
             }
             set
             {
-                if (settings.AutoHide != value)
+                if (_autoHide != value)
                 {
-                    settings.AutoHide = value;
+                    _autoHide = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private bool _lockTaskbar = false;
         public bool LockTaskbar
         {
             get
             {
-                return settings.LockTaskbar;
+                return _lockTaskbar;
             }
             set
             {
-                if (settings.LockTaskbar != value)
+                if (_lockTaskbar != value)
                 {
-                    settings.LockTaskbar = value;
+                    _lockTaskbar = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
-        /// <summary>
-        /// 0 = When needed by theme
-        /// 1 = Always
-        /// 2 = Never
-        /// </summary>
-        public int InvertIconsMode
+        private InvertIconsOption _invertIconsMode = InvertIconsOption.WhenNeededByTheme;
+        public InvertIconsOption InvertIconsMode
         {
             get
             {
-                if (settings.InvertIconsMode >= 0 && settings.InvertIconsMode <= 2)
-                {
-                    return settings.InvertIconsMode;
-                }
-
-                return 0;
+                return _invertIconsMode;
             }
             set
             {
-                if (settings.InvertIconsMode != value && value >= 0 && value <= 2)
+                if (_invertIconsMode != value)
                 {
-                    settings.InvertIconsMode = value;
+                    _invertIconsMode = value;
+                    OnPropertyChanged();
                 }
             }
         }
         #endregion
 
-        #region Helpers
-        private List<string> parseConcatString(string concat, char separator)
+        #region Enums
+        public enum InvertIconsOption
         {
-            List<string> parsed = new List<string>();
-
-            foreach (string key in concat.Split(separator))
-            {
-                if (!string.IsNullOrEmpty(key))
-                {
-                    parsed.Add(key);
-                }
-            }
-
-            return parsed;
+            WhenNeededByTheme,
+            Always,
+            Never
         }
 
-        private string concatStringList(IEnumerable<string> list, char separator)
+        public enum MultiMonOption
         {
-            string concatenated = "";
-
-            foreach (string key in list)
-            {
-                if (!string.IsNullOrEmpty(concatenated))
-                {
-                    concatenated += separator.ToString();
-                }
-
-                concatenated += key;
-            }
-
-            return concatenated;
+            AllTaskbars,
+            SameAsWindow,
+            SameAsWindowAndPrimary
         }
         #endregion
-
-        public void Save()
-        {
-            settings.Save();
-        }
-
-        public void Upgrade()
-        {
-            _upgrading = true;
-            settings.Upgrade();
-            _upgrading = false;
-
-            if (IsFirstRun) IsFirstRun = false;
-        }
-
-        public object this[string propertyName]
-        {
-            get
-            {
-                return settings[propertyName];
-            }
-            set
-            {
-                settings[propertyName] = value;
-            }
-        }
-
-        public bool Exists(string name)
-        {
-            return settings.Properties[name] != null;
-        }
-
-        public void AddPropertySetting(string name, Type type, object defaultValue)
-        {
-            // Only allow settings to be added during initialization
-            if (!_initialized)
-            {
-                string providerName = "LocalFileSettingsProvider";
-
-                SettingsAttributeDictionary attributes = new SettingsAttributeDictionary();
-                UserScopedSettingAttribute attr = new UserScopedSettingAttribute();
-                attributes.Add(attr.TypeId, attr);
-
-                var prop = new SettingsProperty(
-                    new SettingsProperty(name
-                    , type
-                    , settings.Providers[providerName]
-                    , false
-                    , defaultValue
-                    , SettingsSerializeAs.String
-                    , attributes
-                    , false
-                    , false));
-
-                settings.Properties.Add(prop);
-                settings.Save();
-                settings.Reload();
-            }
-        }
-
     }
 }

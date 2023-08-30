@@ -11,15 +11,15 @@ namespace RetroBar.Converters
     {
         public object Convert(object[] value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (Settings.Instance.Edge == (int)AppBarEdge.Left)
+            if (Settings.Instance.Edge == AppBarEdge.Left)
             {
                 return PlacementMode.Right;
             }
-            else if (Settings.Instance.Edge == (int)AppBarEdge.Right)
+            else if (Settings.Instance.Edge == AppBarEdge.Right)
             {
                 return PlacementMode.Left;
             }
-            else if (Settings.Instance.Edge == (int)AppBarEdge.Top)
+            else if (Settings.Instance.Edge == AppBarEdge.Top)
             {
                 return PlacementMode.Bottom;
             }

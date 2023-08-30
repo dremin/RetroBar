@@ -119,19 +119,19 @@ namespace RetroBar
         {
             switch (Settings.Instance.Edge)
             {
-                case (int)AppBarEdge.Left:
+                case AppBarEdge.Left:
                     Left = (_screen.Bounds.Left / _dpiScale) + _barSize + 10;
                     Top = (_screen.WorkingArea.Top / _dpiScale) + 10;
                     break;
-                case (int)AppBarEdge.Top:
+                case AppBarEdge.Top:
                     Left = (_screen.WorkingArea.Left / _dpiScale) + 10;
                     Top = (_screen.Bounds.Top / _dpiScale) + _barSize + 10;
                     break;
-                case (int)AppBarEdge.Right:
+                case AppBarEdge.Right:
                     Left = (_screen.Bounds.Right / _dpiScale) - _barSize - Width - 10;
                     Top = (_screen.WorkingArea.Top / _dpiScale) + 10;
                     break;
-                case (int)AppBarEdge.Bottom:
+                case AppBarEdge.Bottom:
                     Left = (_screen.WorkingArea.Left / _dpiScale) + 10;
                     Top = (_screen.Bounds.Bottom / _dpiScale) - _barSize - Height - 10;
                     break;
@@ -207,7 +207,7 @@ namespace RetroBar
         {
             if (cboEdgeSelect.SelectedItem == null)
             {
-                cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[Settings.Instance.Edge];
+                cboEdgeSelect.SelectedValue = cboEdgeSelect.Items[(int)Settings.Instance.Edge];
             }
         }
 
@@ -215,7 +215,7 @@ namespace RetroBar
         {
             if (cboMultiMonMode.SelectedItem == null)
             {
-                cboMultiMonMode.SelectedValue = cboMultiMonMode.Items[Settings.Instance.MultiMonMode];
+                cboMultiMonMode.SelectedValue = cboMultiMonMode.Items[(int)Settings.Instance.MultiMonMode];
             }
         }
 
@@ -223,7 +223,7 @@ namespace RetroBar
         {
             if (cboInvertIconsMode.SelectedItem == null)
             {
-                cboInvertIconsMode.SelectedValue = cboInvertIconsMode.Items[Settings.Instance.InvertIconsMode];
+                cboInvertIconsMode.SelectedValue = cboInvertIconsMode.Items[(int)Settings.Instance.InvertIconsMode];
             }
         }
 

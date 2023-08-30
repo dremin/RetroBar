@@ -33,7 +33,7 @@ namespace RetroBar.Controls
 
         private void applyEffects()
         {
-            if ((!EnvironmentHelper.IsWindows10OrBetter && Settings.Instance.InvertIconsMode == 0) || TrayIcon == null || Settings.Instance.InvertIconsMode == 2)
+            if ((!EnvironmentHelper.IsWindows10OrBetter && Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.WhenNeededByTheme) || TrayIcon == null || Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.Never)
             {
                 return;
             }
@@ -53,7 +53,7 @@ namespace RetroBar.Controls
             }
 
             bool invertByTheme = Application.Current.FindResource("InvertSystemNotifyIcons") as bool? ?? false;
-            bool performInvert = invertByTheme || Settings.Instance.InvertIconsMode == 1;
+            bool performInvert = invertByTheme || Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.Always;
 
             if (NotifyIconImage.Effect == null != performInvert)
             {

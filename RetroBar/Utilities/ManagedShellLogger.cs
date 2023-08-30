@@ -29,7 +29,8 @@ namespace RetroBar.Utilities
 
         private void SetSeverity()
         {
-            ShellLogger.Severity = Settings.Instance.DebugLogging ? LogSeverity.Debug : LogSeverity.Info;
+            // Handle null settings instance in case of an error while initializing settings
+            ShellLogger.Severity = Settings.Instance?.DebugLogging == true ? LogSeverity.Debug : LogSeverity.Info;
         }
 
         private void SetupLogging()

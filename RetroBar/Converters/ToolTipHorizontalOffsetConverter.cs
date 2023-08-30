@@ -18,7 +18,7 @@ namespace RetroBar.Converters
                 return double.NaN;
             }
 
-            if (Settings.Instance.Edge == (int)AppBarEdge.Left || Settings.Instance.Edge == (int)AppBarEdge.Right)
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
             {
                 return (double)0;
             }

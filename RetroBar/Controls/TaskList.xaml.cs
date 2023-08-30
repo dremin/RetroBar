@@ -56,7 +56,7 @@ namespace RetroBar.Controls
             MinButtonWidth = Application.Current.FindResource("TaskButtonMinWidth") as double? ?? 0;
             Thickness buttonMargin;
 
-            if (Settings.Instance.Edge == (int)AppBarEdge.Left || Settings.Instance.Edge == (int)AppBarEdge.Right)
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
             {
                 buttonMargin = Application.Current.FindResource("TaskButtonVerticalMargin") as Thickness? ?? new Thickness();
             }
@@ -98,7 +98,7 @@ namespace RetroBar.Controls
             }
             else if (e.PropertyName == "ShowMultiMon")
             {
-                if (Settings.Instance.MultiMonMode != 0)
+                if (Settings.Instance.MultiMonMode != Settings.MultiMonOption.AllTaskbars)
                 {
                     taskbarItems?.Refresh();
                 }
@@ -114,12 +114,12 @@ namespace RetroBar.Controls
                     return false;
                 }
 
-                if (!Settings.Instance.ShowMultiMon || Settings.Instance.MultiMonMode == 0)
+                if (!Settings.Instance.ShowMultiMon || Settings.Instance.MultiMonMode == Settings.MultiMonOption.AllTaskbars)
                 {
                     return true;
                 }
 
-                if (Settings.Instance.MultiMonMode == 2 && Host.Screen.Primary)
+                if (Settings.Instance.MultiMonMode == Settings.MultiMonOption.SameAsWindowAndPrimary && Host.Screen.Primary)
                 {
                     return true;
                 }
@@ -154,7 +154,7 @@ namespace RetroBar.Controls
 
         private void SetTaskButtonWidth()
         {
-            if (Settings.Instance.Edge == (int)AppBarEdge.Left || Settings.Instance.Edge == (int)AppBarEdge.Right)
+            if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
             {
                 ButtonWidth = ActualWidth;
                 SetScrollable(true); // while technically not always scrollable, we don't run into DPI-specific issues with it enabled while vertical

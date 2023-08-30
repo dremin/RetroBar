@@ -192,7 +192,7 @@ namespace RetroBar
             else if (e.PropertyName == "Edge")
             {
                 PeekDuringAutoHide();
-                AppBarEdge = (AppBarEdge)Settings.Instance.Edge;
+                AppBarEdge = Settings.Instance.Edge;
                 SetScreenPosition();
             }
             else if (e.PropertyName == "Language")
@@ -548,7 +548,7 @@ namespace RetroBar
                     AppBarEdge newEdge = DragCoordsToScreenEdge(e.HookStruct.pt.X, e.HookStruct.pt.Y);
                     if (newEdge != AppBarEdge)
                     {
-                        Settings.Instance.Edge = (int)newEdge;
+                        Settings.Instance.Edge = newEdge;
                     }
                     break;
                 case NativeMethods.WM.LBUTTONUP:
