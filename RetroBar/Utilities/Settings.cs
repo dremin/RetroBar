@@ -1,6 +1,8 @@
 ﻿using ManagedShell.AppBar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace RetroBar.Utilities
@@ -23,8 +25,9 @@ namespace RetroBar.Utilities
             }
         }
 
+        private static string _settingsPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar"), "settings.json");
         private static bool _isInitializing = true;
-        private static SettingsManager<Settings> _settingsManager = new SettingsManager<Settings>(new Settings());
+        private static SettingsManager<Settings> _settingsManager = new SettingsManager<Settings>(_settingsPath, new Settings());
 
         public event PropertyChangedEventHandler PropertyChanged;
 

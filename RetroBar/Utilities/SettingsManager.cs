@@ -10,9 +10,9 @@ namespace RetroBar.Utilities
 {
     public class SettingsManager<T> : INotifyPropertyChanged
     {
-        private string _fileName = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\RetroBar\\settings.json";
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _fileName;
 
         private T _settings;
         public T Settings
@@ -27,8 +27,9 @@ namespace RetroBar.Utilities
             }
         }
 
-        public SettingsManager(T defaultSettings)
+        public SettingsManager(string fileName, T defaultSettings)
         {
+            _fileName = fileName;
             _settings = defaultSettings;
 
             if (!loadFromFile())
@@ -67,6 +68,11 @@ namespace RetroBar.Utilities
 
             try
             {
+                if (!Directory.Exists(Path.GetDirectoryName(_fileName)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(_fileName));
+                }
+
                 string jsonString = JsonSerializer.Serialize(Settings, options);
                 File.WriteAllText(_fileName, jsonString);
             }

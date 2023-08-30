@@ -56,6 +56,12 @@ namespace RetroBar.Utilities
         {
             try
             {
+                if (!Directory.Exists(_logPath))
+                {
+                    // Nothing to delete
+                    return;
+                }
+
                 // look for all of the log files
                 DirectoryInfo info = new DirectoryInfo(_logPath);
                 FileInfo[] files = info.GetFiles($"*.{_logExt}", SearchOption.TopDirectoryOnly);
