@@ -90,6 +90,19 @@ namespace RetroBar.Utilities
             ShellLogger.Debug($"WindowManager: Finished processing display events");
         }
 
+        public bool IsValidHMonitor(IntPtr hMonitor)
+        {
+            foreach(var screen in _screenState)
+            {
+                if (screen.HMonitor == hMonitor)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void closeTaskbars()
         {
             ShellLogger.Debug($"WindowManager: Closing all taskbars");

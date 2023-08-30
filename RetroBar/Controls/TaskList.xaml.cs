@@ -124,6 +124,11 @@ namespace RetroBar.Controls
                     return true;
                 }
 
+                if (Host.Screen.Primary && !Host.windowManager.IsValidHMonitor(window.HMonitor))
+                {
+                    return true;
+                }
+
                 if (window.HMonitor != Host.Screen.HMonitor)
                 {
                     return false;
