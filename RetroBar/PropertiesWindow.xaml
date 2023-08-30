@@ -22,6 +22,7 @@
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
+            <converters:EnumConverter x:Key="enumConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
@@ -197,7 +198,7 @@
                                 </Label>
                                 <ComboBox Name="cboEdgeSelect"
                                           ItemsSource="{DynamicResource location_values}"
-                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="cboEdgeSelect_SelectionChanged" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
@@ -319,7 +320,7 @@
                             </Label>
                             <ComboBox Name="cboInvertIconsMode"
                                       ItemsSource="{DynamicResource invert_system_icons_values}"
-                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                       SelectionChanged="cboInvertIconsMode_SelectionChanged" />
                         </DockPanel>
                     </StackPanel>
@@ -338,7 +339,7 @@
                                 <ComboBox Name="cboMultiMonMode"
                                           IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
                                           ItemsSource="{DynamicResource show_tasks_on_values}"
-                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="cboMultiMonMode_SelectionChanged" />
                             </DockPanel>
                         </StackPanel>
