@@ -283,7 +283,7 @@ namespace RetroBar.Utilities
             }
             set
             {
-                if (_edge != value)
+                if (_edge != value && (int)value >= 0)
                 {
                     _edge = value;
                     OnPropertyChanged();
@@ -335,7 +335,7 @@ namespace RetroBar.Utilities
             }
             set
             {
-                if (_multiMonMode != value)
+                if (_multiMonMode != value && (int)value >= 0)
                 {
                     _multiMonMode = value;
                     OnPropertyChanged();
@@ -420,7 +420,7 @@ namespace RetroBar.Utilities
             }
             set
             {
-                if (_invertIconsMode != value)
+                if (_invertIconsMode != value && (int)value >= 0)
                 {
                     _invertIconsMode = value;
                     OnPropertyChanged();
