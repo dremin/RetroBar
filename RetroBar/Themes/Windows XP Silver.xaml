@@ -530,6 +530,27 @@
                                 <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                            Value="AutoHide" />
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Right" />
+                                <Condition Binding="{Binding Path=FlowDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="RightToLeft" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorderTop"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,3,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedLeftBorder}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                            Value="Left" />
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
@@ -542,6 +563,27 @@
                                 <Setter TargetName="TaskbarUnlockedBorder"
                                         Property="BorderBrush"
                                         Value="{DynamicResource TaskbarUnlockedLeftBorder}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Left" />
+                                <Condition Binding="{Binding Path=FlowDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="RightToLeft" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorderTop"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderThickness"
+                                        Value="3,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedRightBorder}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -603,6 +645,27 @@
                                 <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                            Value="False" />
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Right" />
+                                <Condition Binding="{Binding Path=FlowDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="RightToLeft" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorderTop"
+                                        Property="BorderThickness"
+                                        Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderThickness"
+                                        Value="0,0,3,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedLeftBorder}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                            Value="Left" />
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
@@ -615,6 +678,27 @@
                                 <Setter TargetName="TaskbarUnlockedBorder"
                                         Property="BorderBrush"
                                         Value="{DynamicResource TaskbarUnlockedLeftBorder}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Left" />
+                                <Condition Binding="{Binding Path=FlowDirection, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="RightToLeft" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorderTop"
+                                        Property="BorderThickness"
+                                        Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderThickness"
+                                        Value="3,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarUnlockedRightBorder}" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
