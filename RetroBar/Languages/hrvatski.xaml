@@ -89,6 +89,7 @@
     <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
     <s:String x:Key="exit_retrobar">_Izlaz RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Prilagodi obavjesti...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Zaključaj programsku traku</s:String>
   
     <s:String x:Key="show_desktop_tip_95">Pojavi/vrati se na radnu površinu</s:String>
     <s:String x:Key="show_desktop_tip">Pokaži radnu površinu</s:String>
