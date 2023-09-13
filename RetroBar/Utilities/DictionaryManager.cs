@@ -130,9 +130,7 @@ namespace RetroBar.Utilities
                 if (!File.Exists(dictFilePath))
                 {
                     // Installed dictionary in AppData directory
-                    dictFilePath = 
-                        Path.ChangeExtension(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar", dictFolder, dictionary),
-                                             dictExtension);
+                    dictFilePath = Path.ChangeExtension(dictFolder.InLocalAppData(dictionary), dictExtension);
 
                     if (!File.Exists(dictFilePath))
                     {
@@ -183,7 +181,7 @@ namespace RetroBar.Utilities
             dictionaries.AddFrom(builtInDictDir, dictExtension);
 
             // Installed AppData dictionaries
-            string installedDictDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar", dictFolder);
+            string installedDictDir = dictFolder.InLocalAppData();
             dictionaries.AddFrom(installedDictDir, dictExtension);
 
             // Same-folder dictionaries

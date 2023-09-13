@@ -7,7 +7,7 @@ namespace RetroBar.Utilities
 {
     class ManagedShellLogger : IDisposable
     {
-        private string _logPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar"), "Logs");
+        private string _logPath = "Logs".InLocalAppData();
         private string _logName = DateTime.Now.ToString("yyyy-MM-dd_HHmmssfff");
         private string _logExt = "log";
         private TimeSpan _logRetention = new TimeSpan(7, 0, 0);

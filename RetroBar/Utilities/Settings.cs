@@ -25,7 +25,7 @@ namespace RetroBar.Utilities
             }
         }
 
-        private static string _settingsPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar"), "settings.json");
+        private static string _settingsPath = "settings.json".InLocalAppData();
         private static bool _isInitializing = true;
         private static SettingsManager<Settings> _settingsManager = new SettingsManager<Settings>(_settingsPath, new Settings());
 
