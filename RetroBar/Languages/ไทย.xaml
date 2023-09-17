@@ -1,0 +1,115 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">คุณสมบัติของ RetroBar</s:String>
+    <s:String x:Key="taskbar_tab">แถบงาน</s:String>
+    <s:String x:Key="advanced_tab">ขั้นสูง</s:String>
+    <s:String x:Key="taskbar_appearance">ลักษณะของแถบงาน</s:String>
+    <s:String x:Key="notification_area">พื้นที่แจ้งเตือน</s:String>
+    <s:String x:Key="autostart">เริ่มทำงานอัตโนมัติเมื่อ_เข้าระบบ</s:String>
+    <s:String x:Key="language_text">_ภาษา:</s:String>
+    <s:String x:Key="language_tip">เลือกภาษาที่จะใช้</s:String>
+    <s:String x:Key="theme_text">ชุด_รูปแบบ:</s:String>
+    <s:String x:Key="theme_tip">ติดตั้งชุดรูปแบบในโฟลเดอร์ Themes</s:String>
+    <s:String x:Key="location_text">_ตำแหน่ง:</s:String>
+    <s:String x:Key="location_tip">เปลี่ยนตำแหน่งของแถบงานบนหน้าจอ</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>ซ้าย</s:String>
+        <s:String>บน</s:String>
+        <s:String>ขวา</s:String>
+        <s:String>ล่าง</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_ใช้การปรับตัวอักษรให้คมชัด</s:String>
+    <s:String x:Key="collapse_tray_icons">ยุบไอคอนใน_พื้นที่แจ้งเตือน</s:String>
+    <s:String x:Key="customize">_ปรับแต่ง...</s:String>
+    <s:String x:Key="show_clock">แสดง_นาฬิกา</s:String>
+    <s:String x:Key="show_multi_mon">แสดงบนจอภาพ_หลายจอ</s:String>
+    <s:String x:Key="show_quick_launch">แสดงการเปิดใช้งาน_ด่วน</s:String>
+    <s:String x:Key="select_location">เ_ลือกตำแหน่ง...</s:String>
+    <s:String x:Key="quick_launch_folder">การเปิดใช้งานด่วน - เลือกโฟลเดอร์</s:String>
+    <s:String x:Key="show_window_previews">แสดงภาพ_ตัวอย่าง (ภาพย่อ) ของหน้าต่าง</s:String>
+    <s:String x:Key="use_software_rendering">ใ_ช้การเรนเดอร์ด้วยซอฟต์แวร์</s:String>
+    <s:String x:Key="middle_mouse_to_close">_คลิกกลางเพื่อปิดรายการในแถบงาน</s:String>
+    <s:String x:Key="add_show_desktop_button">เพิ่มปุ่ม แ_สดงเดสก์ท็อป</s:String>
+    <s:String x:Key="enable_auto_hide">ซ่_อนแถบงานอัตโนมัติ</s:String>
+    <s:String x:Key="lock_taskbar">_ล็อกแถบงาน</s:String>
+    <s:String x:Key="multiple_displays">จอภาพหลายจอ</s:String>
+    <s:String x:Key="show_tasks_on">_แสดงงานบน:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>ทุกแถบงาน</s:String>
+        <s:String>แถบงานเดียวกับหน้าต่าง</s:String>
+        <s:String>แถบงานเดียวกับหน้าต่างและแถบงานหลัก</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_กลับสีไอคอนระบบ:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>เมื่อชุดรูปแบบต้องการ</s:String>
+        <s:String>เสมอ</s:String>
+        <s:String>ไม่ต้อง</s:String>
+    </x:Array>
+    <s:String x:Key="version">เวอร์ชัน {0}</s:String>
+    <s:String x:Key="visit_on_github">เยี่ยมชม RetroBar บน GitHub</s:String>
+    <s:String x:Key="taskbar_scale">สัดส่วนของแถบงาน</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">ค่าปัจจุบัน: {0}%</s:String>
+    <s:String x:Key="debug_logging">เปิดใช้การบันทึกการแก้จุดบกพร่อง</s:String>
+    <s:String x:Key="ok_dialog">ตกลง</s:String>
+
+    <s:String x:Key="customize_notifications">ปรับแต่งการแจ้งเตือน</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar จะแสดงไอคอนสำหรับการแจ้งเตือนที่เรียกใช้อยู่และการแจ้งเตือนแบบเร่งด่วน และซ่อนไอคอนที่ไม่ได้เรียกใช้ คุณสามารถเปลี่ยนลักษณะการทำงานนี้สำหรับรายการด้านล่าง</s:String>
+    <s:String x:Key="customize_notifications_instruction">เลือกรายการ จากนั้นเลือกลักษณะการทำงานการแจ้งเตือนของรายการ:</s:String>
+    <s:String x:Key="hide_when_inactive">ซ่อนเมื่อไม่ใช้งาน</s:String>
+    <s:String x:Key="always_show">แสดงเสมอ</s:String>
+    <s:String x:Key="name_heading">ชื่อ</s:String>
+    <s:String x:Key="behavior_heading">ลักษณะการทำงาน</s:String>
+
+    <s:String x:Key="start_text">เริ่ม</s:String>
+    <s:String x:Key="start_text_xp">เริ่ม</s:String>
+    <s:String x:Key="start_button_tip_98">คลิกที่นี่เพื่อเริ่มต้น</s:String>
+    <s:String x:Key="start_button_tip">คลิกที่นี่เพื่อเริ่มต้น</s:String>
+    <s:String x:Key="start_button_tip_vista">เริ่ม</s:String>
+
+    <s:String x:Key="retrobar_title">แถบงาน RetroBar</s:String>
+    <s:String x:Key="toolbars">_แถบเครื่องมือ</s:String>
+    <s:String x:Key="quick_launch">_การเปิดใช้งานด่วน</s:String>
+    <s:String x:Key="new_toolbar">_สร้างแถบเครื่องมือ...</s:String>
+    <s:String x:Key="set_time">_ปรับเปลี่ยนวัน/เวลา</s:String>
+    <s:String x:Key="cascade">เ_รียงหน้าต่างซ้อน</s:String>
+    <s:String x:Key="horiz_tile">เรียงหน้าต่างต่อกันในแนว_นอน</s:String>
+    <s:String x:Key="vert_tile">เรียงหน้าต่างต่อกันในแนว_ตั้ง</s:String>
+    <s:String x:Key="toggle_desktop">แ_สดงเดสก์ท็อป</s:String>
+    <s:String x:Key="hide_desktop">แ_สดงหน้าต่างที่เปิดอยู่</s:String>
+    <s:String x:Key="undo_cascade">_ยกเลิกการเรียงซ้อน</s:String>
+    <s:String x:Key="undo_tile">_ยกเลิกการเรียงต่อกัน</s:String>
+    <s:String x:Key="undo_minimize_all">_ยกเลิกการย่อทั้งหมดให้เล็กสุด</s:String>
+    <s:String x:Key="show_taskman_2k">ตัวจัดการ_งาน...</s:String>
+    <s:String x:Key="show_taskman">ตัวจัดการ_งาน</s:String>
+    <s:String x:Key="tray_properties">คุณ_สมบัติ</s:String>
+    <s:String x:Key="update_available">_มีอัปเดต...</s:String>
+    <s:String x:Key="exit_retrobar">_ออกจาก RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">ป_รับแต่งการแจ้งเตือน...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_ล็อกแถบงาน</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">แสดง/เรียกเดสก์ท็อป</s:String>
+    <s:String x:Key="show_desktop_tip">แสดงเดสก์ท็อป</s:String>
+    <s:String x:Key="show_desktop_95">เ_ดสก์ท็อป</s:String>
+    <s:String x:Key="show_desktop">แ_สดงเดสก์ท็อป</s:String>
+    <s:String x:Key="peek_at_desktop">_มองที่เดสก์ท็อป</s:String>
+
+    <s:String x:Key="restore">_คืนค่า</s:String>
+    <s:String x:Key="move">_ย้าย</s:String>
+    <s:String x:Key="size">_ขนาด</s:String>
+    <s:String x:Key="minimize">ย่_อเล็กสุด</s:String>
+    <s:String x:Key="maximize">ขย_ายใหญ่สุด</s:String>
+    <s:String x:Key="close">_ปิด</s:String>
+
+    <s:String x:Key="show_hidden">แสดงไอคอนที่ซ่อน</s:String>
+    <s:String x:Key="hide">ซ่อน</s:String>
+
+    <s:String x:Key="open_folder">&amp;เปิดโฟลเดอร์</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
+</ResourceDictionary>
