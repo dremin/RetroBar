@@ -177,18 +177,15 @@ namespace RetroBar.Utilities
             List<string> dictionaries = new List<string> { dictDefault };
 
             // Built-in dictionaries
-            string builtInDictDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder);
-            dictionaries.AddFrom(builtInDictDir, dictExtension);
+            dictionaries.AddFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dictFolder), dictExtension);
 
             // Installed AppData dictionaries
-            string installedDictDir = dictFolder.InLocalAppData();
-            dictionaries.AddFrom(installedDictDir, dictExtension);
+            dictionaries.AddFrom(dictFolder.InLocalAppData(), dictExtension);
 
             // Same-folder dictionaries
             // Because RetroBar is published as a single-file app, it gets extracted to a temp directory, so custom dictionaries won't be there.
             // Get the executable path to find the custom dictionaries directory when not a debug build.
-            string customDictDir = Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder);
-            dictionaries.AddFrom(customDictDir, dictExtension, skipExisting: true);
+            dictionaries.AddFrom(Path.Combine(Path.GetDirectoryName(ExePath.GetExecutablePath()), dictFolder), dictExtension, true);
 
             return dictionaries;
         }
