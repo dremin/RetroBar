@@ -32,12 +32,20 @@
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
     <s:String x:Key="middle_mouse_to_close">_Pritisak na srednju tipku miša zatvara stavke programske trake.</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj gumb za radnu površinu</s:String>
+    <s:String x:Key="enable_auto_hide">Automatski sakrij programsku traku</s:String>
+    <s:String x:Key="lock_taskbar">_Zaključaj programsku traku</s:String>
     <s:String x:Key="multiple_displays">Više zaslona</s:String>
     <s:String x:Key="show_tasks_on">P_rikaži zadatke na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Sve programske trake</s:String>
         <s:String>Ista programska traka kao prozor</s:String>
         <s:String>Ista programska traka kao prozor i primarna programska traka</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Invertiraj ikone sustava:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Po potrebi teme</s:String>
+        <s:String>Uvijek</s:String>
+        <s:String>Nikad</s:String>
     </x:Array>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Posjete na GitHubu</s:String>
@@ -81,6 +89,7 @@
     <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
     <s:String x:Key="exit_retrobar">_Izlaz RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Prilagodi obavjesti...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Zaključaj programsku traku</s:String>
   
     <s:String x:Key="show_desktop_tip_95">Pojavi/vrati se na radnu površinu</s:String>
     <s:String x:Key="show_desktop_tip">Pokaži radnu površinu</s:String>
