@@ -290,6 +290,12 @@ namespace RetroBar
             StartButton?.UpdateFloatingStartCoordinates();
         }
 
+        private void Taskbar_Deactivated(object sender, EventArgs e)
+        {
+            // Prevent focus indicators and tooltips while not the active window
+            ResetControlFocus();
+        }
+
         private void DateTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ShellHelper.StartProcess("timedate.cpl");
@@ -334,6 +340,11 @@ namespace RetroBar
             }
         }
 
+        private void ResetControlFocus()
+        {
+            FocusDummyButton.MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
+        }
+
         protected override bool ShouldAllowAutoHide()
         {
             return (!_startMenuOpen || !Screen.Primary) && base.ShouldAllowAutoHide();
@@ -376,7 +387,7 @@ namespace RetroBar
             base.OnAutoHideAnimationBegin(isHiding);
 
             // Prevent focus indicators and tooltips while hidden
-            FocusDummyButton.MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
+            ResetControlFocus();
         }
 
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
