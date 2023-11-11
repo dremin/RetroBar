@@ -292,8 +292,12 @@ namespace RetroBar
 
         private void Taskbar_Deactivated(object sender, EventArgs e)
         {
-            // Prevent focus indicators and tooltips while not the active window
-            ResetControlFocus();
+            if (AppBarMode != AppBarMode.AutoHide)
+            {
+                // Prevent focus indicators and tooltips while not the active window
+                // When auto-hide is enabled, this is performed by auto-hide events instead
+                ResetControlFocus();
+            }
         }
 
         private void DateTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
