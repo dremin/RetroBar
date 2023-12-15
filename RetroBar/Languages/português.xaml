@@ -8,11 +8,11 @@
     <s:String x:Key="taskbar_appearance">Aparência da barra de tarefas</s:String>
     <s:String x:Key="notification_area">Área de notificação</s:String>
     <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>
-    <s:String x:Key="language_text">I_dioma:</s:String>
+    <s:String x:Key="language_text">Idio_ma:</s:String>
     <s:String x:Key="language_tip">Selecione o idioma a ser usado.</s:String>
     <s:String x:Key="theme_text">_Tema:</s:String>
     <s:String x:Key="theme_tip">Instale temas na pasta Themes.</s:String>
-    <s:String x:Key="location_text">L_ocal:</s:String>
+    <s:String x:Key="location_text">_Local:</s:String>
     <s:String x:Key="location_tip">Mude o local da barra de tarefas na tela.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Esquerda</s:String>
@@ -31,6 +31,9 @@
     <s:String x:Key="show_window_previews">Mo_strar visualizações de janela (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">_Usar renderização de software</s:String>
     <s:String x:Key="middle_mouse_to_close">Fechar itens da barra de tarefas ao clicar com o botão do _meio do mouse</s:String>
+    <s:String x:Key="add_show_desktop_button">A_dicionar o botão Mostrar área de trabalho</s:String>
+    <s:String x:Key="enable_auto_hide">_Ocultar automaticamente a barra de tarefas</s:String>
+    <s:String x:Key="lock_taskbar">_Bloquear a barra de tarefas</s:String>
     <s:String x:Key="multiple_displays">Vários monitores</s:String>
     <s:String x:Key="show_tasks_on">Mostrar tare_fas em:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -38,8 +41,19 @@
         <s:String>Mesma barra de tarefas que a janela</s:String>
         <s:String>Mesma barra de tarefas que a janela e barra de tarefas principal</s:String>
     </x:Array>
+    <s:String x:Key="invert_system_icons">_Inverter ícones do sistema:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Quando necessário pelo tema</s:String>
+        <s:String>Sempre</s:String>
+        <s:String>Nunca</s:String>
+    </x:Array>
     <s:String x:Key="version">Versão {0}</s:String>
-    <s:String x:Key="visit_on_github">Visitar no GitHub</s:String>
+    <s:String x:Key="visit_on_github">Visite RetroBar no GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Escala da barra de tarefas</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Configuração atual: {0}%</s:String>
+    <s:String x:Key="debug_logging">Habilitar logging de depuração</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificações</s:String>
@@ -61,12 +75,27 @@
     <s:String x:Key="quick_launch">_Inicialização rápida</s:String>
     <s:String x:Key="new_toolbar">_Nova barra de ferramentas...</s:String>
     <s:String x:Key="set_time">Aj_ustar data/hora</s:String>
+    <s:String x:Key="cascade">_Janelas em cascata</s:String>
+    <s:String x:Key="horiz_tile">Janelas lado a lado _horizontalmente</s:String>
+    <s:String x:Key="vert_tile">Janelas lado a lado _verticalmente</s:String>
+    <s:String x:Key="toggle_desktop">Mostrar a área de trabal_ho</s:String>
+    <s:String x:Key="hide_desktop">M_ostrar janelas abertas</s:String>
+    <s:String x:Key="undo_cascade">Desfa_zer Em cascata</s:String>
+    <s:String x:Key="undo_tile">Desfa_zer Lado a lado</s:String>
+    <s:String x:Key="undo_minimize_all">Desfa_zer Minimizar tudo</s:String>
     <s:String x:Key="show_taskman_2k">_Gerenciador de tarefas...</s:String>
     <s:String x:Key="show_taskman">_Gerenciador de tarefas</s:String>
     <s:String x:Key="tray_properties">P_ropriedades</s:String>
     <s:String x:Key="update_available">_Atualização disponível...</s:String>
     <s:String x:Key="exit_retrobar">_Sair da RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Personalizar notificações...</s:String>
+    <s:String x:Key="lock_taskbar_menu">Bl_oquear a barra de tarefas</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Emergir ou restaurar área de trabalho</s:String>
+    <s:String x:Key="show_desktop_tip">Mostrar área de trabalho</s:String>
+    <s:String x:Key="show_desktop_95">Área _de trabalho</s:String>
+    <s:String x:Key="show_desktop">_Mostrar área de trabalho</s:String>
+    <s:String x:Key="peek_at_desktop">Es_piar área de trabalho</s:String>
 
     <s:String x:Key="restore">_Restaurar</s:String>
     <s:String x:Key="move">_Mover</s:String>
@@ -78,5 +107,5 @@
     <s:String x:Key="show_hidden">Mostrar ícones ocultos</s:String>
     <s:String x:Key="hide">Ocultar</s:String>
 
-    <s:String x:Key="open_folder">&amp;Abrir pasta</s:String>
+    <s:String x:Key="open_folder">A&amp;brir pasta</s:String>
 </ResourceDictionary>
