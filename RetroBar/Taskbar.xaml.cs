@@ -89,7 +89,6 @@ namespace RetroBar
         {
             base.OnSourceInitialized(sender, e);
 
-            SetLayoutRounding();
             SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
             UpdateTrayPosition();
         }
@@ -109,19 +108,6 @@ namespace RetroBar
             }
 
             return IntPtr.Zero;
-        }
-
-        private void SetLayoutRounding()
-        {
-            // Layout rounding causes incorrect sizing on non-integer scales
-            if (DpiScale % 1 != 0)
-            {
-                UseLayoutRounding = false;
-            }
-            else
-            {
-                UseLayoutRounding = true;
-            }
         }
 
         private void UpdateTrayPosition()
@@ -370,7 +356,6 @@ namespace RetroBar
             {
                 // DPI change is per-monitor, update ourselves
                 SetScreenPosition();
-                SetLayoutRounding();
                 return;
             }
 

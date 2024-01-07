@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:Double x:Key="TaskbarHeight">30</system:Double>
+    <system:Double x:Key="TaskbarHeight">34</system:Double>
     <system:Double x:Key="TaskbarWidth">80</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">True</system:Boolean>
