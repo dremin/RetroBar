@@ -29,6 +29,14 @@ namespace RetroBar
             }
         }
 
+        public bool IsScaled
+        {
+            get
+            {
+                return DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
+            }
+        }
+
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
@@ -83,6 +91,16 @@ namespace RetroBar
             }
 
             AutoHideElement = TaskbarContentControl;
+
+            PropertyChanged += Taskbar_PropertyChanged;
+        }
+
+        private void Taskbar_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "DpiScale")
+            {
+                OnPropertyChanged("IsScaled");
+            }
         }
 
         protected override void OnSourceInitialized(object sender, EventArgs e)
@@ -222,6 +240,7 @@ namespace RetroBar
             {
                 PeekDuringAutoHide();
                 RecalculateSize();
+                OnPropertyChanged("IsScaled");
             }
             else if (e.PropertyName == "AutoHide")
             {
@@ -488,7 +507,7 @@ namespace RetroBar
             double relativeY = ((double)y - Screen.Bounds.Top) / Screen.Bounds.Height;
 
             // We will use the relative coordinates to form quadrants
-            // Within each quadrant,
+            // Determine the edge based on the quadrant
 
             if (relativeX < 0.5 && relativeY < 0.5)
             {
@@ -496,7 +515,8 @@ namespace RetroBar
                 if (relativeX >= relativeY)
                 {
                     return AppBarEdge.Top;
-                } else
+                }
+                else
                 {
                     return AppBarEdge.Left;
                 }
