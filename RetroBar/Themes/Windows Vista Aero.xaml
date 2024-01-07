@@ -363,10 +363,16 @@
 
     <BitmapImage x:Key="StartButtonImageBottom"
                  UriSource="../Resources/startvistabuttonbot.png" />
+    <BitmapImage x:Key="StartButtonImageBottomScaled"
+                 UriSource="../Resources/startvistabuttonbotscaled.png" />
     <BitmapImage x:Key="StartButtonImageTop"
                  UriSource="../Resources/startvistabuttontop.png" />
+    <BitmapImage x:Key="StartButtonImageTopScaled"
+                 UriSource="../Resources/startvistabuttontopscaled.png" />
     <BitmapImage x:Key="StartButtonImageLarge"
                  UriSource="../Resources/startvistabuttonlg.png" />
+    <BitmapImage x:Key="StartButtonImageLargeScaled"
+                 UriSource="../Resources/startvistabuttonlgscaled.png" />
 
     <Style TargetType="MenuItem"
            x:Key="TaskManMenuItem">
@@ -942,6 +948,40 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageLargeScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageLargeScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.3333,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <Trigger Property="IsChecked"
                                  Value="True">
                             <Setter TargetName="StartButtonBorder"
@@ -953,6 +993,24 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageLargeScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.6666,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
                             <Setter TargetName="StartButtonBorder"
@@ -964,6 +1022,24 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageLargeScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.6666,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="Bottom">
                             <DataTrigger.Setters>
@@ -981,6 +1057,24 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Bottom" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Bottom" />
                                 <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
                             </MultiDataTrigger.Conditions>
@@ -989,6 +1083,26 @@
                                         Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageBottom}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.3333,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Bottom" />
+                                <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
                                                     Viewbox="0,0.3333,1,0.3333" />
                                     </Setter.Value>
@@ -1017,6 +1131,26 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Bottom" />
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.6666,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Bottom" />
                                 <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
                             </MultiDataTrigger.Conditions>
@@ -1025,6 +1159,26 @@
                                         Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageBottom}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.6666,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Bottom" />
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
                                                     Viewbox="0,0.6666,1,0.3333" />
                                     </Setter.Value>
@@ -1048,6 +1202,24 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Top" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Top" />
                                 <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
                             </MultiDataTrigger.Conditions>
@@ -1056,6 +1228,26 @@
                                         Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageTop}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.3333,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Top" />
+                                <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
                                                     Viewbox="0,0.3333,1,0.3333" />
                                     </Setter.Value>
@@ -1084,6 +1276,26 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Top" />
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.6666,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Top" />
                                 <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
                             </MultiDataTrigger.Conditions>
@@ -1092,6 +1304,26 @@
                                         Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageTop}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0.6666,1,0.3333" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Top" />
+                                <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="StartButtonBorder"
+                                        Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
                                                     Viewbox="0,0.6666,1,0.3333" />
                                     </Setter.Value>
