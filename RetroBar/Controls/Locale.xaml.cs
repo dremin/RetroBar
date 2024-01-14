@@ -23,13 +23,13 @@ namespace RetroBar.Controls
         private static extern IntPtr GetKeyboardLayout(uint thread);
         #endregion
         
-        public static DependencyProperty LocaleProperty = DependencyProperty.Register("LocaleIdentifier", typeof(string), typeof(Locale));
+        public static DependencyProperty LocaleProperty = DependencyProperty.Register("LocaleIdentifier", typeof(CultureInfo), typeof(Locale));
 
         private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
         
-        public string LocaleIdentifier
+        public CultureInfo LocaleIdentifier
         {
-            get { return (string)GetValue(LocaleProperty); }
+            get { return (CultureInfo)GetValue(LocaleProperty); }
             set { SetValue(LocaleProperty, value); }
         }
 
@@ -40,7 +40,7 @@ namespace RetroBar.Controls
             InitializeComponent();
             DataContext = this;
             
-            clock.Interval = TimeSpan.FromMilliseconds(1000);
+            clock.Interval = TimeSpan.FromMilliseconds(200);
             clock.Tick += Clock_Tick;
         }
         
@@ -71,7 +71,7 @@ namespace RetroBar.Controls
             var fProc = GetWindowThreadProcessId(fWnd, IntPtr.Zero);
             var layout = GetKeyboardLayout(fProc).ToInt32() & 0xFFFF;
             
-            LocaleIdentifier = new CultureInfo(layout).TwoLetterISOLanguageName;
+            LocaleIdentifier = new CultureInfo(layout);
         }
 
         private void StopClock()

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:converters="clr-namespace:RetroBar.Converters">
 
     <system:Double x:Key="TaskbarHeight">28</system:Double>
     <system:Double x:Key="TaskbarWidth">98</system:Double>
@@ -51,6 +52,8 @@
     <system:Boolean x:Key="InvertSystemNotifyIcons">False</system:Boolean>
     <system:Boolean x:Key="UseLargeIcons">False</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">False</system:Boolean>
+    
+    <converters:CultureInfoToLocaleNameConverter x:Key="cultureInfoToLocaleNameConverter" />
 
     <Style x:Key="GlobalFonts">
         <Setter Property="Control.FontFamily"
@@ -868,7 +871,7 @@
     <ControlTemplate TargetType="{x:Type UserControl}"
                      x:Key="LocaleTemplateKey">
         <TextBlock Style="{DynamicResource Locale}"
-                   Text="{Binding Path=LocaleIdentifier, Mode=OneWay}"
+                   Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}"
                    Name="LocaleText">
         </TextBlock>
         
