@@ -21,6 +21,7 @@
     <SolidColorBrush x:Key="ButtonForeground" Color="{x:Static SystemColors.ControlTextColor}" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
     <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="LocaleForeground" Color="{x:Static SystemColors.ControlTextColor}" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="{x:Static SystemColors.InfoColor}" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="{x:Static SystemColors.InfoTextColor}" />
@@ -840,6 +841,37 @@
                    Text="{Binding Path=Now, StringFormat=t, Mode=OneWay}"
                    Name="ClockText">
         </TextBlock>
+    </ControlTemplate>
+    
+    <Style TargetType="TextBlock"
+           x:Key="Locale"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Auto" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource LocaleForeground}" />
+        <Setter Property="Margin"
+                Value="0,0" />
+        <Setter Property="TextAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,3" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <ControlTemplate TargetType="{x:Type UserControl}"
+                     x:Key="LocaleTemplateKey">
+        <TextBlock Style="{DynamicResource Locale}"
+                   Text="{Binding Path=LocaleIdentifier, Mode=OneWay}"
+                   Name="LocaleText">
+        </TextBlock>
+        
     </ControlTemplate>
 
     <Style TargetType="Button"

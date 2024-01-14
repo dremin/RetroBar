@@ -98,6 +98,7 @@
                                  RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
                     <controls:NotifyIconList NotificationArea="{Binding NotificationArea}" />
+                    <controls:Locale VerticalAlignment="Center"/>
                     <controls:Clock VerticalAlignment="Center"
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>

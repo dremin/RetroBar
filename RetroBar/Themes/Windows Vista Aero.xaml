@@ -278,6 +278,7 @@
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="LocaleForeground" Color="#ffffff" />
 
     <LinearGradientBrush x:Key="ShowDesktopButtonBorderHorizontal"
                          StartPoint="0,0"
