@@ -20,6 +20,7 @@
     <s:String x:Key="allow_font_smoothing">Consenti anti-alia_sing caratteri</s:String>
     <s:String x:Key="collapse_tray_icons">Nascondi _icone nell'area di notifica</s:String>
     <s:String x:Key="customize">Personalizz_a...</s:String>
+    <s:String x:Key="show_keyboard_layout">Mostra il layout della _tastiera</s:String>
     <s:String x:Key="show_clock">M_ostra orologio</s:String>
     <s:String x:Key="show_multi_mon">Mostra su _più schermi</s:String>
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>

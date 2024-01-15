@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">Permitir suavizado de _fuentes</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar _iconos de notificación</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
+    <s:String x:Key="show_keyboard_layout">Mostrar la distribución del _teclado</s:String>
     <s:String x:Key="show_clock">Mostrar el _reloj</s:String>
     <s:String x:Key="show_multi_mon">Mostrar en _varias pantallas</s:String>
     <s:String x:Key="show_quick_launch">Mostrar inicio rápi_do</s:String>

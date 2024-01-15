@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">フォントをなめらかにする(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">通知領域のアイコンを折りたたむ(_N)</s:String>
     <s:String x:Key="customize">カスタマイズ(_C)...</s:String>
+    <s:String x:Key="show_keyboard_layout">キーボードのレイアウトを表示する(_T)</s:String>
     <s:String x:Key="show_clock">時計を表示する(_K)</s:String>
     <s:String x:Key="show_multi_mon">複数のディスプレイで表示する(_M)</s:String>
     <s:String x:Key="show_quick_launch">クイック起動を表示(_Q)</s:String>

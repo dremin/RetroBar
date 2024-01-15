@@ -22,6 +22,7 @@
     <s:String x:Key="allow_font_smoothing">_Lettertype vloeiend maken</s:String>
     <s:String x:Key="collapse_tray_icons">_Niet-actieve pictogrammen opruimen</s:String>
     <s:String x:Key="customize">Aanpassen...</s:String>
+    <s:String x:Key="show_keyboard_layout">Toon de _toetsenbordindeling</s:String>
     <s:String x:Key="show_clock">_Klok weergeven</s:String>
     <s:String x:Key="show_multi_mon">Laat op _meerdere beeldschermen zien</s:String>
     <s:String x:Key="show_quick_launch">Werkbalk _Snel starten weergeven</s:String>

@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_אפשר החלקת גופנים</s:String>
     <s:String x:Key="collapse_tray_icons">סמלי אזור הודעה מכווץ</s:String>
     <s:String x:Key="customize">התא_מה אישית...</s:String>
+    <s:String x:Key="show_keyboard_layout">הצג את פריסת המקלדת</s:String>
     <s:String x:Key="show_clock">הצג את שעון המערכת</s:String>
     <s:String x:Key="show_quick_launch">הצג הפעלה מהירה</s:String>
     <s:String x:Key="select_location">_בחירת מיקום...</s:String>

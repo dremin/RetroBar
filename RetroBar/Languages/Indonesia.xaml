@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">Izink_an penghalusan font</s:String>
     <s:String x:Key="collapse_tray_icons">Ciutkan ikon area _notifikasi</s:String>
     <s:String x:Key="customize">S_esuaikan...</s:String>
+    <s:String x:Key="show_keyboard_layout">Tampilkan tata letak _keyboard</s:String>
     <s:String x:Key="show_clock">Tunjukkan jam</s:String>
     <s:String x:Key="show_multi_mon">Tampilkan di beberapa tampilan</s:String>
     <s:String x:Key="show_quick_launch">Tampilkan Luncur Cepat</s:String>

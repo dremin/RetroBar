@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">Schriftglättung zul_assen</s:String>
     <s:String x:Key="collapse_tray_icons">Infobereichsymbole ausble_nden</s:String>
     <s:String x:Key="customize">A_npassen...</s:String>
+    <s:String x:Key="show_keyboard_layout">Zeigen Sie das Tastaturlayout an</s:String>
     <s:String x:Key="show_clock">_Uhr anzeigen</s:String>
     <s:String x:Key="show_multi_mon">Auf mehreren Bildschirmen anzeigen</s:String>
     <s:String x:Key="show_quick_launch">_Schnellstartleiste anzeigen</s:String>

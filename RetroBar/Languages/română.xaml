@@ -22,6 +22,7 @@
     <s:String x:Key="allow_font_smoothing">Activați _netezirea fontului</s:String>
     <s:String x:Key="collapse_tray_icons">_Ascundeți pictogramele din bara de notificări</s:String>
     <s:String x:Key="customize">_Personalizați...</s:String>
+    <s:String x:Key="show_keyboard_layout">Afișați aspectul _tastaturii</s:String>
     <s:String x:Key="show_clock">Afișați _ceasul</s:String>
     <s:String x:Key="show_multi_mon">Afisați pe _ecrane multiple</s:String>
     <s:String x:Key="show_quick_launch">Afișați _Meniul de Lansare Rapidă</s:String>

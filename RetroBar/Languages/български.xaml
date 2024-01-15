@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_Позволи изглаждането на шрифтовете</s:String>
     <s:String x:Key="collapse_tray_icons">Събери и_коните в района на известията</s:String>
     <s:String x:Key="customize">Персонали_зирай...</s:String>
+    <s:String x:Key="show_keyboard_layout">Показване на клавиатурната подредба</s:String>
     <s:String x:Key="show_clock">Показвай _часовника</s:String>
     <s:String x:Key="show_multi_mon">Показвай върху множество _екрани</s:String>
     <s:String x:Key="show_quick_launch">Показвай _Бърз достъп</s:String>

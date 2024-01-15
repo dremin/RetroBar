@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">允许字体平滑 (_A)</s:String>
     <s:String x:Key="collapse_tray_icons">收起通知区域图标 (_H)</s:String>
     <s:String x:Key="customize">自定义 (_C)...</s:String>
+    <s:String x:Key="show_keyboard_layout">显示键盘布局 (_T)</s:String>
     <s:String x:Key="show_clock">显示时钟 (_K)</s:String>
     <s:String x:Key="show_multi_mon">在多个显示器上显示 (_M)</s:String>
     <s:String x:Key="show_quick_launch">显示快速启动 (_Q)</s:String>

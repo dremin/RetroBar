@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">Povolit vyhlazovaní _textu</s:String>
     <s:String x:Key="collapse_tray_icons">Skrýt upozornění</s:String>
     <s:String x:Key="customize">_Přizspůsobit...</s:String>
+    <s:String x:Key="show_keyboard_layout">Zobrazit rozložení _klávesnice</s:String>
     <s:String x:Key="show_clock">Zobrazit _hodiny</s:String>
     <s:String x:Key="show_multi_mon">Zobrazit na více _obrazovkách</s:String>
     <s:String x:Key="show_quick_launch">Zobrazit _Rychlý Přístup</s:String>

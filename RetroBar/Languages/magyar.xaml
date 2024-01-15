@@ -20,6 +20,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Betűsimítás engedélyezése</s:String>
     <s:String x:Key="collapse_tray_icons">Az _értesítési terület ikonjainak összecsukása</s:String>
+    <s:String x:Key="show_keyboard_layout">Mutassa meg a _billentyűzetkiosztást</s:String>
     <s:String x:Key="show_clock">Mutasd az _órát</s:String>
     <s:String x:Key="show_multi_mon">Megjelenítés _több kijelzőn</s:String>
     <s:String x:Key="show_quick_launch">Mutasd a _Gyorsindítást</s:String>

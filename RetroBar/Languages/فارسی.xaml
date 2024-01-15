@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_فونت نرم</s:String>
     <s:String x:Key="collapse_tray_icons">جمع شدن در مکان نوتیفیکیشن</s:String>
     <s:String x:Key="customize">کاستومایز</s:String>
+    <s:String x:Key="show_keyboard_layout">نمایش چیدمان صفحه کلید</s:String>
     <s:String x:Key="show_clock">نشان دادن ساعت</s:String>
     <s:String x:Key="show_multi_mon">در چند مانیتور نشان داده شود</s:String>
     <s:String x:Key="show_quick_launch">کوییک لانچ</s:String>

@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_السماح بتجانس الخط</s:String>
     <s:String x:Key="collapse_tray_icons">تقليص رموز منطقة الرسالة</s:String>
     <s:String x:Key="customize">ت_خصيص...</s:String>
+    <s:String x:Key="show_keyboard_layout">إظهار تخطيط لوحة المفاتيح</s:String>
     <s:String x:Key="show_clock">عرض ساعة النظام</s:String>
     <s:String x:Key="show_multi_mon">عرض على شاشات متعددة</s:String>
     <s:String x:Key="show_quick_launch">عرض البداية السريعة</s:String>

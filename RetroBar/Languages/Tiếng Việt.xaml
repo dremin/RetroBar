@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
     <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở phần thông báo</s:String>
     <s:String x:Key="customize">Tùy chỉnh...</s:String>
+    <s:String x:Key="show_keyboard_layout">Hiển thị bố cục bàn _phím</s:String>
     <s:String x:Key="show_clock">Hiển thị _đồng hồ</s:String>
     <s:String x:Key="show_multi_mon">Hiện ở tất cả màn hình</s:String>
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>

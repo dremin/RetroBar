@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">Згладжування шрифту</s:String>
     <s:String x:Key="collapse_tray_icons">Згорнути іконки панелі сповіщень</s:String>
     <s:String x:Key="customize">Змінити...</s:String>
+    <s:String x:Key="show_keyboard_layout">Показати розкладку _клавіатури</s:String>
     <s:String x:Key="show_clock">Показати годинник</s:String>
     <s:String x:Key="show_multi_mon">Показати на усіх дисплеях</s:String>
     <s:String x:Key="show_quick_launch">Показати ікони швидкого запуску</s:String>

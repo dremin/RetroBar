@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_Zezwól na wygładzanie czcionek</s:String>
     <s:String x:Key="collapse_tray_icons">Zwiń ikony w pasku powiadomień</s:String>
     <s:String x:Key="customize">_Dostosuj...</s:String>
+    <s:String x:Key="show_keyboard_layout">Pokaż układ _klawiatury</s:String>
     <s:String x:Key="show_clock">_Pokaż zegar</s:String>
     <s:String x:Key="show_multi_mon">Pokazuj pasek zadań na wielu ekranach</s:String>
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>

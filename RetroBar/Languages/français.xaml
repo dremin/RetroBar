@@ -19,6 +19,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Autoriser le lissage des polices</s:String>
     <s:String x:Key="collapse_tray_icons">_Réduire les icônes de la zone de notification</s:String>
+    <s:String x:Key="show_keyboard_layout">Afficher la disposition du _clavier</s:String>
     <s:String x:Key="show_clock">Afficher l'_horloge</s:String>
     <s:String x:Key="show_multi_mon">Afficher sur _plusieurs écrans</s:String>
     <s:String x:Key="show_quick_launch">Afficher la zone de _Lancement rapide</s:String>

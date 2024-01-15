@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">폰트 스무딩 활성화(_S)</s:String>
     <s:String x:Key="collapse_tray_icons">사용하지 않은 아이콘 숨기기(_H)</s:String>
     <s:String x:Key="customize">사용자 지정(_C)...</s:String>
+    <s:String x:Key="show_keyboard_layout">키보드 레이아웃 표시(_T)</s:String>
     <s:String x:Key="show_clock">시계 표시(_K)</s:String>
     <s:String x:Key="show_multi_mon">여러 모니터에서 표시(_M)</s:String>
     <s:String x:Key="show_quick_launch">빠른 실행 아이콘 표시(_Q)</s:String>

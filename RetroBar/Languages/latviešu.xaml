@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_Atļaut fontu izlīdzināšanu</s:String>
     <s:String x:Key="collapse_tray_icons">Sakļaut pazi_ņojumu apgabala ikonas</s:String>
     <s:String x:Key="customize">_Pielāgot...</s:String>
+    <s:String x:Key="show_keyboard_layout">Parādiet _tastatūras izkārtojumu</s:String>
     <s:String x:Key="show_clock">Parādiet pul_ksteni</s:String>
     <s:String x:Key="show_multi_mon">Rādīt vai_rākos displejos</s:String>
     <s:String x:Key="show_quick_launch">Rādīt _Ātrā palaišana</s:String>

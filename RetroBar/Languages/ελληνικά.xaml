@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_Επιτροπή εξομάλυσης της γραμματοσειράς</s:String>
     <s:String x:Key="collapse_tray_icons">Απόκρ_υψη εικονιδίων περιοχής ειδοποιήσεων</s:String>
     <s:String x:Key="customize">Πρ_οσαρμογή...</s:String>
+    <s:String x:Key="show_keyboard_layout">Εμφάνιση της διάταξης του _πληκτρολογίου</s:String>
     <s:String x:Key="show_clock">Εμφάνιση του ρο_λογιού</s:String>
     <s:String x:Key="show_multi_mon">Εμφάνιση σε _πολλαπλές οθόνες</s:String>
     <s:String x:Key="show_quick_launch">Εμφάνιση _Γρήγορης Εκκίνησης</s:String>

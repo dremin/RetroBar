@@ -19,6 +19,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Erlaabt Schrëftglättung</s:String>
     <s:String x:Key="collapse_tray_icons">_Minimiséieren Notifikatiounsberäich Ikonen</s:String>
+    <s:String x:Key="show_keyboard_layout">Show de _Keyboard Layout</s:String>
     <s:String x:Key="show_clock">Show Auer</s:String>
     <s:String x:Key="show_multi_mon">Display op verschidde Schiirme</s:String>
     <s:String x:Key="show_quick_launch">Show Quick Launch Beräich</s:String>
