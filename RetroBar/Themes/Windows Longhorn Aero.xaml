@@ -1198,7 +1198,7 @@
            x:Key="KeyboardLayout"
            BasedOn="{StaticResource KeyboardLayout}">
         <Setter Property="Margin"
-                Value="4,0,0,0" />
+                Value="4,1,0,0" />
         <Setter Property="Effect"
                 Value="{StaticResource ForegroundShadow}" />
     </Style>

@@ -98,7 +98,9 @@
                                  RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
                     <controls:NotifyIconList NotificationArea="{Binding NotificationArea}" />
-                    <controls:KeyboardLayout VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="20"/>
+                    <controls:KeyboardLayout VerticalAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             VerticalContentAlignment="Center"/>
                     <controls:Clock VerticalAlignment="Center"
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
