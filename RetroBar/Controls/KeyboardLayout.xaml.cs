@@ -50,6 +50,15 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
+        private void SetLocaleIdentifier()
+        {
+            var fWnd = GetForegroundWindow();
+            var fProc = GetWindowThreadProcessId(fWnd, IntPtr.Zero);
+            var layout = GetKeyboardLayout(fProc).ToInt32() & 0xFFFF;
+            
+            LocaleIdentifier = new CultureInfo(layout);
+        }
+        
         private void StartWatch()
         {
             layoutWatch.Start();
@@ -59,11 +68,7 @@ namespace RetroBar.Controls
         
         private void LayoutWatchTick(object sender, EventArgs args)
         {
-            var fWnd = GetForegroundWindow();
-            var fProc = GetWindowThreadProcessId(fWnd, IntPtr.Zero);
-            var layout = GetKeyboardLayout(fProc).ToInt32() & 0xFFFF;
-            
-            LocaleIdentifier = new CultureInfo(layout);
+            SetLocaleIdentifier();
         }
 
         private void StopWatch()
