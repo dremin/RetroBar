@@ -41,7 +41,7 @@
         <s:String>Thanh tác vụ cùng cửa sổ</s:String>
         <s:String>Thanh tác vụ cùng cửa sổ và thanh tác vụ chính</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Đảo ngược màu các biểu tượng thông báo: </s:String>
+	  <s:String x:Key="invert_system_icons">_Đảo ngược màu các biểu tượng thông báo: </s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>Theo chủ đề</s:String>
         <s:String>Luôn luôn</s:String>
@@ -96,7 +96,7 @@
     <s:String x:Key="show_desktop_95">_Bàn làm việc</s:String>
     <s:String x:Key="show_desktop">_Hiện bàn làm việc</s:String>
     <s:String x:Key="peek_at_desktop">_Xem nhanh bàn làm việc</s:String>
-
+  
     <s:String x:Key="restore">_Khôi phục</s:String>
     <s:String x:Key="move">_Di chuyển</s:String>
     <s:String x:Key="size">_Kích thước</s:String>
