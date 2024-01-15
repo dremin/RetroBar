@@ -463,7 +463,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
-    <SolidColorBrush x:Key="LocaleForeground" Color="#000000" />
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#000000" />
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxproyalebutton.png" />

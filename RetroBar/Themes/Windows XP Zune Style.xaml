@@ -450,7 +450,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="LocaleForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxpzunebutton.png" />
