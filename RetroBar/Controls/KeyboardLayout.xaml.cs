@@ -46,7 +46,7 @@ namespace RetroBar.Controls
         
         private void Initialize()
         {
-            if (Settings.Instance.ShowClock)
+            if (Settings.Instance.ShowKeyboardLayout)
             {
                 StartClock();
             }
@@ -83,9 +83,9 @@ namespace RetroBar.Controls
         
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ShowClock")
+            if (e.PropertyName == "ShowKeyboardLayout")
             {
-                if (Settings.Instance.ShowClock)
+                if (Settings.Instance.ShowKeyboardLayout)
                 {
                     StartClock();
                 }

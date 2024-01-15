@@ -87,6 +87,23 @@ namespace RetroBar.Utilities
             }
         }
 
+        private bool _showKeyboardLayout = false;
+        public bool ShowKeyboardLayout
+        {
+            get
+            {
+                return _showKeyboardLayout;
+            }
+            set
+            {
+                if (_showKeyboardLayout != value)
+                {
+                    _showKeyboardLayout = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        
         private bool _showClock = true;
         public bool ShowClock
         {

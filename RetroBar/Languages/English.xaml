@@ -24,6 +24,7 @@
     <s:String x:Key="collapse_tray_icons">Collapse _notification area icons</s:String>
     <s:String x:Key="customize">_Customize...</s:String>
     <s:String x:Key="show_clock">Show the cloc_k</s:String>
+    <s:String x:Key="show_keyboard_layout">Show the keyboard _layout</s:String>
     <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
