@@ -4,7 +4,7 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Özellikleri</s:String>
     <s:String x:Key="taskbar_tab">Görev Çubuğu</s:String>
-    <s:String x:Key="advanced_tab">Gelişmiş Seçenekler</s:String>
+	<s:String x:Key="advanced_tab">Gelişmiş Seçenekler</s:String>
     <s:String x:Key="taskbar_appearance">Görev çubuğu görünümü</s:String>
     <s:String x:Key="notification_area">Bildirim alanı</s:String>
     <s:String x:Key="autostart">_Oturum açarken otomatik olarak başlat</s:String>
@@ -23,7 +23,6 @@
     <s:String x:Key="allow_font_smoothing">_Yazı tipi yumuşatmaya izin ver</s:String>
     <s:String x:Key="collapse_tray_icons">Bildirim _alanı simgelerini daralt</s:String>
     <s:String x:Key="customize">Ö_zelleştir...</s:String>
-    <s:String x:Key="show_keyboard_layout">_Klavye düzenini göster</s:String>
     <s:String x:Key="show_clock">_Saati göster</s:String>
     <s:String x:Key="show_multi_mon">Birden çok _ekranda göster</s:String>
     <s:String x:Key="show_quick_launch">_Hızlı Başlat'ı Göster</s:String>
@@ -35,14 +34,14 @@
     <s:String x:Key="add_show_desktop_button">_Masaüstünü göster butonu ekle</s:String>
     <s:String x:Key="enable_auto_hide">_Görev çubuğunu otomatik olarak gizle</s:String>
     <s:String x:Key="lock_taskbar">Görev _çubuğunu kilitle</s:String>
-    <s:String x:Key="multiple_displays">Birden çok ekran</s:String>
+	<s:String x:Key="multiple_displays">Birden çok ekran</s:String>
     <s:String x:Key="show_tasks_on">Görev _düğmelerini şurada göster:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Tüm görev çubukları</s:String>
         <s:String>Pencerenin açıldığı görev çubuğu</s:String>
         <s:String>Ana görev çubuğu ve pencerenin açıldığı görev çubuğu</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Sistem simgelerini tersine çevir:</s:String>
+	<s:String x:Key="invert_system_icons">_Sistem simgelerini tersine çevir:</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>Tema için gerekli olduğunda</s:String>
         <s:String>Her zaman</s:String>
@@ -50,7 +49,7 @@
     </x:Array>
     <s:String x:Key="version">Sürüm {0}</s:String>
     <s:String x:Key="visit_on_github">GitHub'da ziyaret edin</s:String>
-    <s:String x:Key="taskbar_scale">Görev çubuğu ölçeği</s:String>
+	<s:String x:Key="taskbar_scale">Görev çubuğu ölçeği</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Mevcut ayar: {0}%</s:String>
@@ -76,7 +75,7 @@
     <s:String x:Key="quick_launch">_Hızlı Başlat</s:String>
     <s:String x:Key="new_toolbar">Ye_ni Araç Çubuğu...</s:String>
     <s:String x:Key="set_time">Tarih/_Zaman Ayarla</s:String>
-    <s:String x:Key="cascade">Pencereleri Basamakla</s:String>
+	<s:String x:Key="cascade">Pencereleri Basamakla</s:String>
     <s:String x:Key="horiz_tile">Pencereleri Yatay Döşe</s:String>
     <s:String x:Key="vert_tile">Pencereleri Dikey Döşe</s:String>
     <s:String x:Key="toggle_desktop">Masaüstünü Göster</s:String>
@@ -90,14 +89,14 @@
     <s:String x:Key="update_available">Güncelleme mevc_ut...</s:String>
     <s:String x:Key="exit_retrobar">R_etroBar'dan Çık</s:String>
     <s:String x:Key="customize_notifications_menu">B_ildirimleri Özelleştir...</s:String>
-    <s:String x:Key="lock_taskbar_menu">_Görev çubuğunu kilitle</s:String>
-
-    <s:String x:Key="show_desktop_tip_95">Masaüstünü Öne Çıkar/Geri Yükle</s:String>
+	<s:String x:Key="lock_taskbar_menu">_Görev çubuğunu kilitle</s:String>
+	
+	<s:String x:Key="show_desktop_tip_95">Masaüstünü Öne Çıkar/Geri Yükle</s:String>
     <s:String x:Key="show_desktop_tip">Masaüstünü Göster</s:String>
     <s:String x:Key="show_desktop_95">_Masaüstü</s:String>
     <s:String x:Key="show_desktop">Masaüstünü _Göster</s:String>
     <s:String x:Key="peek_at_desktop">Masaüstüne _Bak</s:String>
-
+	
     <s:String x:Key="restore">Ön_ceki Boyut</s:String>
     <s:String x:Key="move">_Taşı</s:String>
     <s:String x:Key="size">_Boyut</s:String>
