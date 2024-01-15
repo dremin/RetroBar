@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Threading;
 using RetroBar.Utilities;
 namespace RetroBar.Controls
@@ -13,19 +10,12 @@ namespace RetroBar.Controls
     public partial class KeyboardLayout : UserControl
     {
         #region DllImports
-        [DllImport("user32.dll")] 
-        private static extern IntPtr GetForegroundWindow();
-    
-        [DllImport("user32.dll")] 
-        private static extern uint GetWindowThreadProcessId(IntPtr hwnd, IntPtr proccess);
-    
-        [DllImport("user32.dll")] 
-        private static extern IntPtr GetKeyboardLayout(uint thread);
+        [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hwnd, IntPtr proccess);
+        [DllImport("user32.dll")] private static extern IntPtr GetKeyboardLayout(uint thread);
         #endregion
         
         public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register("LocaleIdentifierProperty", typeof(CultureInfo), typeof(KeyboardLayout));
-
-        private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
         
         public CultureInfo LocaleIdentifier
         {
@@ -33,6 +23,8 @@ namespace RetroBar.Controls
             set { SetValue(LocaleIdentifierProperty, value); }
         }
 
+        private readonly DispatcherTimer layoutWatch = new DispatcherTimer(DispatcherPriority.Background);
+        
         private bool _isLoaded;
         
         public KeyboardLayout()
@@ -40,15 +32,15 @@ namespace RetroBar.Controls
             InitializeComponent();
             DataContext = this;
             
-            clock.Interval = TimeSpan.FromMilliseconds(200);
-            clock.Tick += Clock_Tick;
+            layoutWatch.Interval = TimeSpan.FromMilliseconds(200);
+            layoutWatch.Tick += LayoutWatchTick;
         }
         
         private void Initialize()
         {
             if (Settings.Instance.ShowKeyboardLayout)
             {
-                StartClock();
+                StartWatch();
             }
             else
             {
@@ -58,14 +50,14 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
-        private void StartClock()
+        private void StartWatch()
         {
-            clock.Start();
+            layoutWatch.Start();
             
             Visibility = Visibility.Visible;
         }
         
-        private void Clock_Tick(object sender, EventArgs args)
+        private void LayoutWatchTick(object sender, EventArgs args)
         {
             var fWnd = GetForegroundWindow();
             var fProc = GetWindowThreadProcessId(fWnd, IntPtr.Zero);
@@ -74,9 +66,9 @@ namespace RetroBar.Controls
             LocaleIdentifier = new CultureInfo(layout);
         }
 
-        private void StopClock()
+        private void StopWatch()
         {
-            clock.Stop();
+            layoutWatch.Stop();
 
             Visibility = Visibility.Collapsed;
         }
@@ -87,15 +79,15 @@ namespace RetroBar.Controls
             {
                 if (Settings.Instance.ShowKeyboardLayout)
                 {
-                    StartClock();
+                    StartWatch();
                 }
                 else
                 {
-                    StopClock();
+                    StopWatch();
                 }
             }
         }
-      
+        
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (!_isLoaded)
@@ -108,7 +100,7 @@ namespace RetroBar.Controls
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            StopClock();
+            StopWatch();
             
             _isLoaded = false;
         }

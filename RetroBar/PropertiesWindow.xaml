@@ -272,13 +272,13 @@
                                     </DockPanel>
                                 </ContentControl>
                             </Border>
-                            <CheckBox x:Name="cbShowClock"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_clock}" />
-                            </CheckBox>
                             <CheckBox x:Name="cbShowKeyboardLayout"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowKeyboardLayout, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_keyboard_layout}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowClock"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_clock}" />
                             </CheckBox>
                             <CheckBox x:Name="cbShowDesktopButton"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged}">
