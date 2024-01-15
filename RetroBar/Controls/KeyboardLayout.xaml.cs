@@ -4,16 +4,12 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 namespace RetroBar.Controls
 {
     public partial class KeyboardLayout : UserControl
     {
-        #region DllImports
-        [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
-        [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hwnd, IntPtr proccess);
-        [DllImport("user32.dll")] private static extern IntPtr GetKeyboardLayout(uint thread);
-        #endregion
         
         public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register("LocaleIdentifierProperty", typeof(CultureInfo), typeof(KeyboardLayout));
         
@@ -52,11 +48,8 @@ namespace RetroBar.Controls
 
         private void SetLocaleIdentifier()
         {
-            var fWnd = GetForegroundWindow();
-            var fProc = GetWindowThreadProcessId(fWnd, IntPtr.Zero);
-            var layout = GetKeyboardLayout(fProc).ToInt32() & 0xFFFF;
-            
-            LocaleIdentifier = new CultureInfo(layout);
+            var managedShellLayout = KeyboardLayoutHelper.GetKeyboardLayout(false);
+            LocaleIdentifier = CultureInfo.GetCultureInfo((short)managedShellLayout.HKL);
         }
         
         private void StartWatch()
