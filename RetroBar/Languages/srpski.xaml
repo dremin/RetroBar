@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">Dozvoli izglađivanje _fontova</s:String>
     <s:String x:Key="collapse_tray_icons">Skupi _ikonice u sistemskoj paleti</s:String>
     <s:String x:Key="customize">Prilago_di...</s:String>
+    <s:String x:Key="show_keyboard_layout">Prikaži raspored _tastature</s:String>
     <s:String x:Key="show_clock">Prikaži _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži na _više ekrana</s:String>
     <s:String x:Key="show_quick_launch">Prikaži _brzo pokretanje</s:String>
