@@ -1363,6 +1363,13 @@
     </Style>
 
     <Style TargetType="TextBlock"
+           x:Key="KeyboardLayout"
+           BasedOn="{StaticResource KeyboardLayout}">
+        <Setter Property="Margin"
+                Value="4,0,0,1" />
+    </Style>
+    
+    <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"

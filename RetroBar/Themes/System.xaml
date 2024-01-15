@@ -854,7 +854,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource KeyboardLayoutForeground}" />
         <Setter Property="Margin"
-                Value="0,0" />
+                Value="4,0,0,0" />
         <Setter Property="TextAlignment"
                 Value="Center" />
         <Style.Triggers>
