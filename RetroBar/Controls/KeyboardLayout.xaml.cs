@@ -53,6 +53,8 @@ namespace RetroBar.Controls
 
         private void StartWatch()
         {
+            SetLocaleIdentifier();
+            
             layoutWatch.Start();
 
             Visibility = Visibility.Visible;
