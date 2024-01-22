@@ -867,17 +867,7 @@
     </Style>
     
     <ControlTemplate TargetType="{x:Type UserControl}"
-                     x:Key="KeyboardLayoutTemplateKey">
-        <Viewbox Width="24"
-                 MaxWidth="24"
-                 Stretch="Fill" StretchDirection="DownOnly"
-                 Margin="4,0,0,0">
-            <TextBlock Style="{DynamicResource KeyboardLayout}"
-                       Text="{Binding Path=LocaleIdentifierProperty, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}"
-                       Name="KeyboardLayoutText">
-            </TextBlock>
-        </Viewbox>
-    </ControlTemplate>
+                     x:Key="KeyboardLayoutTemplateKey"/>
 
     <Style TargetType="Button"
            x:Key="ToolbarButton">
