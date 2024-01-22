@@ -100,6 +100,8 @@ namespace RetroBar.Controls
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             StopWatch();
+            
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             _isLoaded = false;
         }
