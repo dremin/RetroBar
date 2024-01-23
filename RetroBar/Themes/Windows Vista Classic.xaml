@@ -25,6 +25,13 @@
     </Style>
 
     <Style TargetType="TextBlock"
+           x:Key="KeyboardLayout"
+           BasedOn="{StaticResource KeyboardLayout}">
+        <Setter Property="Padding"
+                Value="0,0,0,2" />
+    </Style>
+    
+    <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"

@@ -55,8 +55,8 @@
 
     <SolidColorBrush x:Key="ButtonForeground" Color="#000000" />
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#006ec3" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#000000" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
@@ -803,5 +803,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="Viewbox"
+           x:Key="KeyboardLayoutViewBox"
+           BasedOn="{StaticResource KeyboardLayoutViewBox}">
+        <Setter Property="Margin"
+                Value="0,0,2,0" />
     </Style>
 </ResourceDictionary>

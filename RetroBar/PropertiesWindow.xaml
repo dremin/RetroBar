@@ -264,11 +264,11 @@
                                                         </Border>
                                                     </ItemsControl>
                                                 </StackPanel>
-                                                <controls:KeyboardLayout VerticalAlignment="Center" />
                                                 <controls:Clock VerticalAlignment="Center" />
                                             </StackPanel>
                                         </GroupBox>
                                         <StackPanel></StackPanel>
+                                        <controls:KeyboardLayout VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                     </DockPanel>
                                 </ContentControl>
                             </Border>

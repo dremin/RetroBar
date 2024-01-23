@@ -11,9 +11,8 @@
     </UserControl.Resources>
     
     <Viewbox Width="24"
-             MaxWidth="24"
              Stretch="Fill" StretchDirection="DownOnly"
-             Margin="4,0,0,0">
+             Style="{DynamicResource KeyboardLayoutViewBox}">
         <TextBlock Style="{DynamicResource KeyboardLayout}"
                    Text="{Binding Path=LocaleIdentifierProperty, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
         </TextBlock>
