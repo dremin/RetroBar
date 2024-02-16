@@ -348,6 +348,7 @@
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
@@ -1570,6 +1571,22 @@
                 Value="{DynamicResource StartLabelShadow}" />
         <Setter Property="TextOptions.TextRenderingMode"
                 Value="Grayscale" />
+    </Style>
+
+    <Style TargetType="Viewbox"
+           x:Key="KeyboardLayoutViewBox"
+           BasedOn="{StaticResource KeyboardLayoutViewBox}">
+        <Setter Property="Margin"
+                Value="0,0,13,0" />
+    </Style>
+    
+    <Style TargetType="TextBlock"
+           x:Key="KeyboardLayout"
+           BasedOn="{StaticResource KeyboardLayout}">
+        <Setter Property="Height"
+                Value="15" />
+        <Setter Property="Padding"
+                Value="0" />
     </Style>
 
     <Style TargetType="TextBlock"

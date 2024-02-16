@@ -23,6 +23,7 @@
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone</s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
+    <s:String x:Key="show_keyboard_layout">Prikaži raspored _tipkovnice</s:String>
     <s:String x:Key="show_clock">Prikaži  _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
     <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
@@ -90,7 +91,7 @@
     <s:String x:Key="exit_retrobar">_Izlaz RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Prilagodi obavjesti...</s:String>
     <s:String x:Key="lock_taskbar_menu">_Zaključaj programsku traku</s:String>
-  
+
     <s:String x:Key="show_desktop_tip_95">Pojavi/vrati se na radnu površinu</s:String>
     <s:String x:Key="show_desktop_tip">Pokaži radnu površinu</s:String>
     <s:String x:Key="show_desktop_95">_Radna površina</s:String>

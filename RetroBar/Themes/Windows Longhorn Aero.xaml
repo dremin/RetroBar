@@ -337,6 +337,8 @@
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="Transparent" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="#f4f4f4" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#00025c" />
@@ -1193,6 +1195,22 @@
                 Value="{StaticResource ForegroundShadow}" />
     </Style>
 
+    <Style TargetType="Viewbox"
+           x:Key="KeyboardLayoutViewBox"
+           BasedOn="{StaticResource KeyboardLayoutViewBox}">
+        <Setter Property="Margin"
+                Value="0,1,0,0" />
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="KeyboardLayout"
+           BasedOn="{StaticResource KeyboardLayout}">
+        <Setter Property="Height"
+                Value="17" />
+        <Setter Property="Effect"
+                Value="{StaticResource ForegroundShadow}" />
+    </Style>
+    
     <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">

@@ -402,6 +402,7 @@
                       Opacity="1" />
 
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startnoir.png" />
