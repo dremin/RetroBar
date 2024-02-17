@@ -87,6 +87,50 @@
                 <Setter Property="Width"
                         Value="335" />
             </Style>
+            <ControlTemplate x:Key="NotificationAreaPreview">
+                <Border Style="{StaticResource PreviewBorder}">
+                    <ContentControl Height="{DynamicResource TaskbarHeight}"
+                                    IsHitTestVisible="False"
+                                    Focusable="False"
+                                    ClipToBounds="True"
+                                    Style="{DynamicResource Taskbar}">
+                        <TextOptions.TextRenderingMode>
+                            <Binding Source="{x:Static Settings:Settings.Instance}"
+                                     Path="AllowFontSmoothing"
+                                     Converter="{StaticResource textRenderingModeConverter}" />
+                        </TextOptions.TextRenderingMode>
+                        <DockPanel>
+                            <controls:ShowDesktopButton DockPanel.Dock="Right" HorizontalAlignment="Center" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
+                            <GroupBox Style="{DynamicResource Tray}"
+                                        DockPanel.Dock="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
+                                        <ToggleButton x:Name="NotifyIconToggleButton"
+                                                      Focusable="False"
+                                                      Visibility="{Binding CollapseNotifyIcons, Converter={StaticResource boolToVisibilityConverter}, Source={x:Static Settings:Settings.Instance}, UpdateSourceTrigger=PropertyChanged}"
+                                                      Style="{DynamicResource TrayToggleButton}"/>
+                                        <ItemsControl Focusable="False"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <Border>
+                                                <Image Source="Resources\retrobar.ico"
+                                                       Style="{DynamicResource NotifyIcon}" />
+                                            </Border>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <controls:Clock VerticalAlignment="Center" />
+                                </StackPanel>
+                            </GroupBox>
+                            <StackPanel/>
+                        </DockPanel>
+                    </ContentControl>
+                </Border>
+            </ControlTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <Grid Margin="7">
@@ -229,53 +273,8 @@
                     </GroupBox>
                     <GroupBox Header="{DynamicResource notification_area}">
                         <StackPanel Orientation="Vertical">
-                            <Border Style="{StaticResource PreviewBorder}">
-                                <ContentControl Height="{DynamicResource TaskbarHeight}"
-                                                IsHitTestVisible="False"
-                                                Focusable="False"
-                                                ClipToBounds="True"
-                                                Style="{DynamicResource Taskbar}">
-                                    <TextOptions.TextRenderingMode>
-                                        <Binding Source="{x:Static Settings:Settings.Instance}"
-                                                 Path="AllowFontSmoothing"
-                                                 Converter="{StaticResource textRenderingModeConverter}" />
-                                    </TextOptions.TextRenderingMode>
-                                    <DockPanel>
-                                        <controls:ShowDesktopButton DockPanel.Dock="Right" HorizontalAlignment="Center" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
-                                        <GroupBox Style="{DynamicResource Tray}"
-                                                  DockPanel.Dock="Right">
-                                            <StackPanel Orientation="Horizontal">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <ToggleButton Name="NotifyIconToggleButton"
-                                                                  Focusable="False"
-                                                                  Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}"
-                                                                  Style="{DynamicResource TrayToggleButton}"/>
-                                                    <ItemsControl Focusable="False"
-                                                                  HorizontalAlignment="Center"
-                                                                  VerticalAlignment="Center">
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel Orientation="Horizontal"></WrapPanel>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <Border>
-                                                            <Image Source="Resources\retrobar.ico"
-                                                                   Style="{DynamicResource NotifyIcon}" />
-                                                        </Border>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                                <controls:Clock VerticalAlignment="Center" />
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <StackPanel></StackPanel>
-                                        <controls:KeyboardLayout VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                                    </DockPanel>
-                                </ContentControl>
-                            </Border>
-                            <CheckBox x:Name="cbShowKeyboardLayout"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowKeyboardLayout, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_keyboard_layout}" />
-                            </CheckBox>
+                            <ContentControl Template="{StaticResource NotificationAreaPreview}"
+                                            Focusable="False" />
                             <CheckBox x:Name="cbShowClock"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_clock}" />
@@ -296,6 +295,72 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{DynamicResource clock_tab}" >
+                <StackPanel Orientation="Vertical"
+                            Margin="10">
+                    <DockPanel>
+                        <GroupBox Header="{DynamicResource clock_appearance}"
+                                  Margin="0,0,0,10">
+                            <StackPanel Orientation="Vertical">
+                                <ContentControl Template="{StaticResource NotificationAreaPreview}"
+                                                Focusable="False" />
+                                <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
+                                    <Label Content="{DynamicResource show_clock}" />
+                                </CheckBox>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <CheckBox x:Name="cbOverrideClockFormat"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideClockFormat, UpdateSourceTrigger=PropertyChanged}">
+                                        <Label Content="{DynamicResource override_clock_format}" />
+                                    </CheckBox>
+                                    <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockFormat, UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap"
+                                             VerticalAlignment="Center"
+                                             Margin="5,0,0,0"
+                                             IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideClockFormat, UpdateSourceTrigger=PropertyChanged}" />
+                                </DockPanel>
+                                <DockPanel VerticalAlignment="Top" >
+                                    <CheckBox x:Name="cbOverrideAMPMDesignators"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}">
+                                        <Label Content="{DynamicResource override_ampm_designators}" />
+                                    </CheckBox>
+                                    <UniformGrid Columns="2">
+                                        <DockPanel>
+                                            <Label Content="{DynamicResource am_designator}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10,0,0,2"
+                                                   IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance}, Path=AMDesignator, UpdateSourceTrigger=PropertyChanged}"
+                                                     TextWrapping="Wrap"
+                                                     VerticalAlignment="Center"
+                                                     Margin="5,0,0,0"
+                                                     IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <Label Content="{DynamicResource pm_designator}"
+                                                   Margin="10,0,0,2"
+                                                   VerticalAlignment="Center"
+                                                   IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance}, Path=PMDesignator, UpdateSourceTrigger=PropertyChanged}"
+                                                     TextWrapping="Wrap"
+                                                     VerticalAlignment="Center"
+                                                     Margin="5,0,0,0"
+                                                     IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DockPanel>
+                                    </UniformGrid>
+                                </DockPanel>
+                                <TextBlock Text="{DynamicResource clock_format_warning}"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Center"
+                                           Margin="0,3,0,3" />
+                            </StackPanel>
+                        </GroupBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource clock_format_info}"
+                               TextWrapping="Wrap" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="{DynamicResource advanced_tab}">

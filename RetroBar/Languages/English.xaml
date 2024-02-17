@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
     <s:String x:Key="taskbar_tab">Taskbar</s:String>
+    <s:String x:Key="clock_tab">Clock</s:String>
     <s:String x:Key="advanced_tab">Advanced</s:String>
     <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
     <s:String x:Key="notification_area">Notification area</s:String>
@@ -56,6 +57,14 @@
     <s:String x:Key="taskbar_scale_current">Current setting: {0}%</s:String>
     <s:String x:Key="debug_logging">Enable debug logging</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="clock_appearance">Clock appearance</s:String>
+    <s:String x:Key="clock_format_info" xml:space="preserve">What the notations mean:&#10;&#10;h = hour; m = minute, s = second, tt = AM/PM&#10;d = day; M = month; yy, yyyy = year&#10;ddd, dddd = weekday; MMM, MMMM = month name&#10;&#10;h/H = 12/24 hour&#10;hh, mm, ss, dd, MM = display leading zero&#10;h, m, s, d, M = do not display leading zero&#10;&#10;\n = split clock into multiple lines&#10;(not recommended on all themes)&#10;&#10;Use "\" in front of other notations to use their actual characters</s:String>
+    <s:String x:Key="clock_format_warning" xml:space="preserve">Note: Custom clock formatting may not be applied&#10;if your selected theme specifies its own format.</s:String>
+    <s:String x:Key="override_clock_format">Custom clock _format:</s:String>
+    <s:String x:Key="override_ampm_designators">Custom _designators:</s:String>
+    <s:String x:Key="am_designator">AM:</s:String>
+    <s:String x:Key="pm_designator">PM:</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behavior for items in the list below.</s:String>
