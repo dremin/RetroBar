@@ -78,16 +78,26 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ShowClock")
-            {
-                if (Settings.Instance.ShowClock)
-                {
-                    StartClock();
-                }
-                else
-                {
-                    StopClock();
-                }
+            switch (e.PropertyName) {
+                case "ShowClock":
+                    if (Settings.Instance.ShowClock)
+                    {
+                        StartClock();
+                    }
+                    else
+                    {
+                        StopClock();
+                    }
+                    break;
+
+                case "Theme":
+                case "OverrideClockFormat":
+                case "ClockFormat":
+                case "OverrideAMPMDesignators":
+                case "AMDesignator":
+                case "PMDesignator":
+                    SetCurrentCulture();
+                    break;
             }
         }
 
@@ -155,6 +165,24 @@ namespace RetroBar.Controls
                 iCi.DateTimeFormat.TimeSeparator = (string)iKey.GetValue("sTime");
                 iCi.DateTimeFormat.AMDesignator = (string)iKey.GetValue("s1159");
                 iCi.DateTimeFormat.PMDesignator = (string)iKey.GetValue("s2359");
+
+                // Override culture info if desired, inserting newlines where appropriate
+                if (Settings.Instance.OverrideClockFormat && Settings.Instance.ClockFormat != "")
+                {
+                    iCi.DateTimeFormat.ShortTimePattern = Settings.Instance.ClockFormat.Replace("\\n", "\n");
+                }
+
+                if (Settings.Instance.OverrideAMPMDesignators)
+                {
+                    if (Settings.Instance.AMDesignator != "")
+                    {
+                        iCi.DateTimeFormat.AMDesignator = Settings.Instance.AMDesignator;
+                    }
+                    if (Settings.Instance.PMDesignator != "")
+                    {
+                        iCi.DateTimeFormat.PMDesignator = Settings.Instance.PMDesignator;
+                    }
+                }
 
                 CultureInfo.CurrentCulture = iCi;
                 SetConverterCultureRecursively(this);
