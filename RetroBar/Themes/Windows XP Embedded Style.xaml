@@ -448,7 +448,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#3e9de8" />
+    <SolidColorBrush x:Key="InputLanguageBackground" Color="#3e9de8" />
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxpembeddedbutton.png" />

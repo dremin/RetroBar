@@ -21,8 +21,8 @@
     <SolidColorBrush x:Key="ButtonForeground" Color="{x:Static SystemColors.ControlTextColor}" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
     <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
-    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="{x:Static SystemColors.HighlightColor}" />
+    <SolidColorBrush x:Key="InputLanguageForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
+    <SolidColorBrush x:Key="InputLanguageBackground" Color="{x:Static SystemColors.HighlightColor}" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="{x:Static SystemColors.InfoColor}" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="{x:Static SystemColors.InfoTextColor}" />
@@ -845,12 +845,12 @@
     </ControlTemplate>
 
     <Style TargetType="TextBlock"
-           x:Key="KeyboardLayout"
+           x:Key="InputLanguage"
            BasedOn="{StaticResource GlobalFonts}">
         <Setter Property="Foreground"
-                Value="{DynamicResource KeyboardLayoutForeground}" />
+                Value="{DynamicResource InputLanguageForeground}" />
         <Setter Property="Background" 
-                Value="{DynamicResource KeyboardLayoutBackground}"/>
+                Value="{DynamicResource InputLanguageBackground}"/>
         <Setter Property="MinWidth" 
                 Value="16"/>
         <Setter Property="Height"

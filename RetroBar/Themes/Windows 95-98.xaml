@@ -15,8 +15,8 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
     
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#000080" />
+    <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="InputLanguageBackground" Color="#000080" />
     
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
