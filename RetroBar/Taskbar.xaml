@@ -102,7 +102,8 @@
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
             </GroupBox>
-            <controls:KeyboardLayout VerticalAlignment="Center">
+            <controls:KeyboardLayout VerticalAlignment="Stretch"
+                                     HorizontalAlignment="Stretch">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="trailing"

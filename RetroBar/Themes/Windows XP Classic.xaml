@@ -4,11 +4,4 @@
         <ResourceDictionary Source="Windows 2000.xaml" />
         <ResourceDictionary Source="System XP.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-    <Style TargetType="TextBlock"
-           x:Key="KeyboardLayout"
-           BasedOn="{StaticResource KeyboardLayout}">
-        <Setter Property="Padding"
-                Value="0,0,0,2" />
-    </Style>
 </ResourceDictionary>

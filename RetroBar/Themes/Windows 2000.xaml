@@ -15,6 +15,9 @@
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
 
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#0A246A" />
+
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
 
@@ -23,13 +26,6 @@
            BasedOn="{StaticResource StartLabel}">
         <Setter Property="Margin"
                 Value="0,-1,0,0" />
-    </Style>
-
-    <Style TargetType="TextBlock"
-           x:Key="KeyboardLayout"
-           BasedOn="{StaticResource KeyboardLayout}">
-        <Setter Property="Padding"
-                Value="0,1,0,1" />
     </Style>
     
     <Style TargetType="TextBlock"

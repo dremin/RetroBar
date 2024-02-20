@@ -7,17 +7,24 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:CultureInfoToLocaleNameConverter x:Key="cultureInfoToLocaleNameConverter" />
+            <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    <Viewbox Width="24"
-             Stretch="Fill" StretchDirection="DownOnly"
-             Style="{DynamicResource KeyboardLayoutViewBox}">
+
+    <DockPanel>
+        <Thumb Style="{DynamicResource ToolbarThumb}">
+            <DockPanel.Dock>
+                <Binding Converter="{StaticResource dockOrientationConverter}"
+                         ConverterParameter="leading"
+                         Path="Orientation"
+                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+            </DockPanel.Dock>
+        </Thumb>
         <TextBlock Style="{DynamicResource KeyboardLayout}"
                    Text="{Binding Path=LocaleIdentifierProperty, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
         </TextBlock>
-    </Viewbox>
-    
+    </DockPanel>
+
     <UserControl.ToolTip>
         <TextBlock Text="{Binding Path=LocaleIdentifierProperty, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=EnglishName, Mode=OneWay}" />
     </UserControl.ToolTip>

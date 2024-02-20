@@ -10,13 +10,14 @@ using Microsoft.Win32;
 using ManagedShell.AppBar;
 using System.Windows.Forms;
 using ManagedShell.WindowsTray;
+using System.Runtime.CompilerServices;
 
 namespace RetroBar
 {
     /// <summary>
     /// Interaction logic for PropertiesWindow.xaml
     /// </summary>
-    public partial class PropertiesWindow : Window
+    public partial class PropertiesWindow : Window, INotifyPropertyChanged
     {
         private static PropertiesWindow _instance;
 
@@ -25,6 +26,8 @@ namespace RetroBar
         private readonly double _dpiScale;
         private readonly NotificationArea _notificationArea;
         private readonly AppBarScreen _screen;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         // Previews should always assume bottom edge
         public AppBarEdge AppBarEdge
@@ -38,6 +41,12 @@ namespace RetroBar
             get => Orientation.Horizontal;
         }
 
+        // Previews should reflect the locked setting
+        public bool IsLocked
+        {
+            get => Settings.Instance.LockTaskbar;
+        }
+
         private PropertiesWindow(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             _barSize = barSize;
@@ -48,10 +57,26 @@ namespace RetroBar
 
             InitializeComponent();
 
+            LoadPreviewHeight();
             LoadAutoStart();
             LoadLanguages();
             LoadThemes();
             LoadVersion();
+
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "LockTaskbar")
+            {
+                OnPropertyChanged("IsLocked");
+                LoadPreviewHeight();
+            }
+            else if (e.PropertyName == "Theme")
+            {
+                LoadPreviewHeight();
+            }
         }
 
         public static PropertiesWindow Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
@@ -67,6 +92,24 @@ namespace RetroBar
             }
 
             return _instance;
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void LoadPreviewHeight()
+        {
+            double size = System.Windows.Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
+
+            if (!IsLocked)
+            {
+                size += System.Windows.Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
+            }
+
+            TaskbarAppearancePreviewControl.Height = size;
+            NotificationAreaPreviewControl.Height = size;
         }
 
         private void LoadAutoStart()

@@ -711,6 +711,8 @@
            x:Key="Tray">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
+        <Setter Property="Margin"
+                Value="10,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
@@ -772,6 +774,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,10,0,0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <SolidColorBrush x:Key="ItemButtonForeground" Color="#ffffff" />
@@ -779,6 +790,6 @@
     <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#808080" />
+    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#000000" />
+    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#b2b4bf" />
 </ResourceDictionary>

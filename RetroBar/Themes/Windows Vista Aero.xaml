@@ -1363,11 +1363,11 @@
                 Value="0" />
     </Style>
 
-    <Style TargetType="Viewbox"
-           x:Key="KeyboardLayoutViewBox"
-           BasedOn="{StaticResource KeyboardLayoutViewBox}">
+    <Style TargetType="TextBlock"
+           x:Key="KeyboardLayout"
+           BasedOn="{StaticResource KeyboardLayout}">
         <Setter Property="Margin"
-                Value="0,-4,0,0" />
+                Value="0,-2,0,0" />
     </Style>
 
     <Style TargetType="TextBlock"

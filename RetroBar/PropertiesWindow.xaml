@@ -101,7 +101,7 @@
                     <GroupBox Header="{DynamicResource taskbar_appearance}">
                         <StackPanel Orientation="Vertical">
                             <Border Style="{StaticResource PreviewBorder}">
-                                <ContentControl Height="{DynamicResource TaskbarHeight}"
+                                <ContentControl x:Name="TaskbarAppearancePreviewControl"
                                                 IsHitTestVisible="False"
                                                 Focusable="False"
                                                 ClipToBounds="True"
@@ -230,7 +230,7 @@
                     <GroupBox Header="{DynamicResource notification_area}">
                         <StackPanel Orientation="Vertical">
                             <Border Style="{StaticResource PreviewBorder}">
-                                <ContentControl Height="{DynamicResource TaskbarHeight}"
+                                <ContentControl x:Name="NotificationAreaPreviewControl"
                                                 IsHitTestVisible="False"
                                                 Focusable="False"
                                                 ClipToBounds="True"
@@ -241,7 +241,7 @@
                                                  Converter="{StaticResource textRenderingModeConverter}" />
                                     </TextOptions.TextRenderingMode>
                                     <DockPanel>
-                                        <controls:ShowDesktopButton DockPanel.Dock="Right" HorizontalAlignment="Center" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
+                                        <controls:ShowDesktopButton DockPanel.Dock="Right" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
                                         <GroupBox Style="{DynamicResource Tray}"
                                                   DockPanel.Dock="Right">
                                             <StackPanel Orientation="Horizontal">
@@ -267,8 +267,8 @@
                                                 <controls:Clock VerticalAlignment="Center" />
                                             </StackPanel>
                                         </GroupBox>
+                                        <controls:KeyboardLayout VerticalAlignment="Stretch" DockPanel.Dock="Right" />
                                         <StackPanel></StackPanel>
-                                        <controls:KeyboardLayout VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                     </DockPanel>
                                 </ContentControl>
                             </Border>

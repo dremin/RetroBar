@@ -388,6 +388,5 @@
     <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#41400a" />
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#fdfde5" />
-    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#808000" />
+    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="#93a070" />
 </ResourceDictionary>
