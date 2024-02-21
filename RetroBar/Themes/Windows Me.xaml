@@ -18,13 +18,6 @@
                 Value="{StaticResource ClassicFocusVisual}" />
     </Style>
 
-    <Style TargetType="Viewbox"
-           x:Key="KeyboardLayoutViewBox"
-           BasedOn="{StaticResource KeyboardLayoutViewBox}">
-        <Setter Property="Margin"
-                Value="0,0,1,0" />
-    </Style>
-    
     <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">

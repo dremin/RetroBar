@@ -87,18 +87,18 @@ namespace RetroBar.Utilities
             }
         }
 
-        private bool _showKeyboardLayout = false;
-        public bool ShowKeyboardLayout
+        private bool _showInputLanguage = false;
+        public bool ShowInputLanguage
         {
             get
             {
-                return _showKeyboardLayout;
+                return _showInputLanguage;
             }
             set
             {
-                if (_showKeyboardLayout != value)
+                if (_showInputLanguage != value)
                 {
-                    _showKeyboardLayout = value;
+                    _showInputLanguage = value;
                     OnPropertyChanged();
                 }
             }

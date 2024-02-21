@@ -102,14 +102,15 @@
                                     PreviewMouseRightButtonUp="Clock_PreviewMouseRightButtonUp" />
                 </StackPanel>
             </GroupBox>
-            <controls:KeyboardLayout VerticalAlignment="Center">
+            <controls:InputLanguage VerticalAlignment="Stretch"
+                                     HorizontalAlignment="Stretch">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="trailing"
                              Path="Orientation"
                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
-            </controls:KeyboardLayout>
+            </controls:InputLanguage>
             <controls:TaskList VerticalAlignment="Stretch"
                                Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                Tasks="{Binding Tasks}"></controls:TaskList>

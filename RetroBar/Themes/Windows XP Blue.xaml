@@ -348,7 +348,8 @@
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="InputLanguageBackground" Color="#316ac5" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="#FFFFE1" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#000000" />
@@ -690,6 +691,8 @@
            x:Key="Tray">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
+        <Setter Property="Margin"
+                Value="10,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
@@ -751,6 +754,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,10,0,0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Button"
@@ -1573,22 +1585,6 @@
                 Value="Grayscale" />
     </Style>
 
-    <Style TargetType="Viewbox"
-           x:Key="KeyboardLayoutViewBox"
-           BasedOn="{StaticResource KeyboardLayoutViewBox}">
-        <Setter Property="Margin"
-                Value="0,0,13,0" />
-    </Style>
-    
-    <Style TargetType="TextBlock"
-           x:Key="KeyboardLayout"
-           BasedOn="{StaticResource KeyboardLayout}">
-        <Setter Property="Height"
-                Value="15" />
-        <Setter Property="Padding"
-                Value="0" />
-    </Style>
-
     <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
@@ -2012,7 +2008,7 @@
            TargetType="ScrollViewer"
            BasedOn="{StaticResource TaskListScrollViewer}">
         <Setter Property="Margin"
-                Value="4,0,10,0" />
+                Value="4,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -2112,7 +2108,7 @@
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Margin"
-                            Value="0,3,0,10" />
+                            Value="0,3,0,0" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>

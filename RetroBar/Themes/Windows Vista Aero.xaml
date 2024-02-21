@@ -278,8 +278,8 @@
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="KeyboardLayoutForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="KeyboardLayoutBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="InputLanguageBackground" Color="Transparent" />
 
     <LinearGradientBrush x:Key="ShowDesktopButtonBorderHorizontal"
                          StartPoint="0,0"
@@ -1363,11 +1363,11 @@
                 Value="0" />
     </Style>
 
-    <Style TargetType="Viewbox"
-           x:Key="KeyboardLayoutViewBox"
-           BasedOn="{StaticResource KeyboardLayoutViewBox}">
+    <Style TargetType="TextBlock"
+           x:Key="InputLanguage"
+           BasedOn="{StaticResource InputLanguage}">
         <Setter Property="Margin"
-                Value="0,-4,0,0" />
+                Value="0,-2,0,0" />
     </Style>
 
     <Style TargetType="TextBlock"

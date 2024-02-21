@@ -8,9 +8,9 @@ using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
-    public partial class KeyboardLayout : UserControl
+    public partial class InputLanguage : UserControl
     {
-        public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register("LocaleIdentifierProperty", typeof(CultureInfo), typeof(KeyboardLayout));
+        public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register("LocaleIdentifierProperty", typeof(CultureInfo), typeof(InputLanguage));
 
         public CultureInfo LocaleIdentifier
         {
@@ -22,7 +22,7 @@ namespace RetroBar.Controls
 
         private bool _isLoaded;
 
-        public KeyboardLayout()
+        public InputLanguage()
         {
             InitializeComponent();
             DataContext = this;
@@ -33,7 +33,7 @@ namespace RetroBar.Controls
 
         private void Initialize()
         {
-            if (Settings.Instance.ShowKeyboardLayout)
+            if (Settings.Instance.ShowInputLanguage)
             {
                 StartWatch();
             }
@@ -74,9 +74,9 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ShowKeyboardLayout")
+            if (e.PropertyName == "ShowInputLanguage")
             {
-                if (Settings.Instance.ShowKeyboardLayout)
+                if (Settings.Instance.ShowInputLanguage)
                 {
                     StartWatch();
                 }
