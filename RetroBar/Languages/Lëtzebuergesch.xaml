@@ -4,6 +4,9 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Properties</s:String>
     <s:String x:Key="taskbar_tab">Taskbar</s:String>
+    <s:String x:Key="advanced_tab">Fortgeschratt</s:String>
+    <s:String x:Key="taskbar_appearance">Taskbar Erscheinung</s:String>
+    <s:String x:Key="notification_area">Notifikatioun Beräich</s:String>
     <s:String x:Key="autostart">_Start automatesch beim Login</s:String>
     <s:String x:Key="language_text">Sprooch:</s:String>
     <s:String x:Key="language_tip">Wielt d'Sprooch fir ze benotzen.</s:String>
@@ -19,13 +22,48 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Erlaabt Schrëftglättung</s:String>
     <s:String x:Key="collapse_tray_icons">_Minimiséieren Notifikatiounsberäich Ikonen</s:String>
+    <s:String x:Key="customize">_Personnaliséieren...</s:String>
+    <s:String x:Key="show_input_language">Weist d'Input _Sprooch</s:String>
     <s:String x:Key="show_clock">Show Auer</s:String>
     <s:String x:Key="show_multi_mon">Display op verschidde Schiirme</s:String>
     <s:String x:Key="show_quick_launch">Show Quick Launch Beräich</s:String>
     <s:String x:Key="select_location">_Dossier änneren ...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Wielt Dossier</s:String>
+    <s:String x:Key="show_window_previews">Show _fënster virschau (Miniaturbiller)</s:String>
     <s:String x:Key="use_software_rendering">_Benotzt Software Rendering</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Mëtt-klickt fir Taskbar Elementer zouzemaachen</s:String>
+    <s:String x:Key="add_show_desktop_button">Füügt de Vue Büro Knäppchen derbäi</s:String>
+    <s:String x:Key="enable_auto_hide">Automatesch verstoppen d'Taskbar</s:String>
+    <s:String x:Key="lock_taskbar">_Spär d'Taskbar</s:String>
+    <s:String x:Key="multiple_displays">Multiple Affichage</s:String>
+    <s:String x:Key="show_tasks_on">Show Programm op:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>All taskbars</s:String>
+        <s:String>Selwecht Taskbar wéi Fënster</s:String>
+        <s:String>Selwecht Taskbar wéi Fënster a primär Taskbar</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Invert System Ikonen:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Wann néideg vum Thema</s:String>
+        <s:String>Ëmmer</s:String>
+        <s:String>Ni</s:String>
+    </x:Array>
+    <s:String x:Key="version">Versioun {0}</s:String>
+    <s:String x:Key="visit_on_github">Besicht RetroBar op GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Taskbar Skala</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Aktuell Astellung: {0}%</s:String>
+    <s:String x:Key="debug_logging">Aktivéiert Debug Logging</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Personaliséiere Notifikatiounen</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar weist Symboler fir aktiv an dréngend Notifikatiounen, a verstoppt inaktiv. Dir kënnt dëst Verhalen fir Elementer an der Lëscht hei ënnen änneren.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Wielt en Element, wielt dann säin Notifikatiounsverhalen:</s:String>
+    <s:String x:Key="hide_when_inactive">Verstoppen wann inaktiv</s:String>
+    <s:String x:Key="always_show">Ëmmer weisen</s:String>
+    <s:String x:Key="name_heading">Numm</s:String>
+    <s:String x:Key="behavior_heading">Verhalen</s:String>
 
     <s:String x:Key="start_text">Unzefänken</s:String>
     <s:String x:Key="start_text_xp">unzefänken</s:String>
@@ -38,11 +76,27 @@
     <s:String x:Key="quick_launch">Schnellstart</s:String>
     <s:String x:Key="new_toolbar">_Nei Toolbar ...</s:String>
     <s:String x:Key="set_time">Ajustéieren Datum / Zäit</s:String>
+    <s:String x:Key="cascade">Kaskade Windows</s:String>
+    <s:String x:Key="horiz_tile">Fliesen Windows horizontal</s:String>
+    <s:String x:Key="vert_tile">Fliesen Windows Vertikal</s:String>
+    <s:String x:Key="toggle_desktop">_Weist den Büro</s:String>
+    <s:String x:Key="hide_desktop">_Show oppe Fënsteren</s:String>
+    <s:String x:Key="undo_cascade">_Kaskade undoen</s:String>
+    <s:String x:Key="undo_tile">_Fliesen undoen</s:String>
+    <s:String x:Key="undo_minimize_all">_Undoen All Minimaliséieren</s:String>
     <s:String x:Key="show_taskman_2k">_Aufgab Manager...</s:String>
     <s:String x:Key="show_taskman">_Aufgab Manager</s:String>
     <s:String x:Key="tray_properties">Eegeschaften</s:String>
     <s:String x:Key="update_available">_Update verfügbar ...</s:String>
     <s:String x:Key="exit_retrobar">_Sortie RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Benotzerdefinéiert Notifikatiounen...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Spär d'Taskbar</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Vue / Restauréieren Büro</s:String>
+    <s:String x:Key="show_desktop_tip">Vue Büro</s:String>
+    <s:String x:Key="show_desktop_95">_Büro</s:String>
+    <s:String x:Key="show_desktop">_Vue Büro</s:String>
+    <s:String x:Key="peek_at_desktop">_Kuckt op Büro</s:String>
 
     <s:String x:Key="restore">_Restauréieren</s:String>
     <s:String x:Key="move">Beweegen</s:String>
@@ -55,4 +109,8 @@
     <s:String x:Key="hide">Verstoppen</s:String>
 
     <s:String x:Key="open_folder">&amp;Öffnen den Dossier</s:String>
+
+  <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
