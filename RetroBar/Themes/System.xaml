@@ -572,12 +572,14 @@
                 Value="0,0,1,1" />
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
+        <Setter Property="Padding"
+                Value="2,2,0,2" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="Transparent"
                             x:Name="ButtonPaddingBorder"
-                            Padding="2,2,0,2">
+                            Padding="{TemplateBinding Padding}">
                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{DynamicResource ButtonDarkShadow}"
                                 x:Name="ButtonOuterBottomBorder">

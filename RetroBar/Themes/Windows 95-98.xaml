@@ -112,8 +112,8 @@
     <Style TargetType="ToggleButton"
            x:Key="ShowDesktopButton"
            BasedOn="{StaticResource StartButton}">
-        <Setter Property="Margin"
-                Value="-2,0,2,0" />
+        <Setter Property="Padding"
+                Value="0,2,2,2" />
         <Setter Property="HorizontalAlignment"
                 Value="Center" />
         <Style.Triggers>
