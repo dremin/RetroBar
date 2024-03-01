@@ -32,7 +32,9 @@
     <s:String x:Key="show_window_previews">Отобра_жать образцы окон (эскизы)</s:String>
     <s:String x:Key="use_software_rendering">Использовать п_рограммную отрисовку</s:String>
     <s:String x:Key="middle_mouse_to_close">_Закрывать элементы щелчком средней кнопки мыши</s:String>
-    <s:String x:Key="add_show_desktop_button">Отображать кнопку "Показать Рабочий Стол"</s:String>
+    <s:String x:Key="add_show_desktop_button">Отображать кнопку "Показать _рабочий стол"</s:String>
+    <s:String x:Key="enable_auto_hide">_Автоматически скрывать панель задач</s:String>
+    <s:String x:Key="lock_taskbar">_Закрепить панель задач</s:String>
     <s:String x:Key="multiple_displays">Несколько дисплеев</s:String>
     <s:String x:Key="show_tasks_on">_Отображать кнопки окон:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -40,8 +42,19 @@
         <s:String>На панели задач, в которой открыто окно</s:String>
         <s:String>На главной панели задач и панели задач, в которой открыто окно</s:String>
     </x:Array>
+        <s:String x:Key="invert_system_icons">_Инвертировать системные значки:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Когда требуется теме</s:String>
+        <s:String>Всегда</s:String>
+        <s:String>Никогда</s:String>
+    </x:Array>
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Масштаб панели задач</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Текущее значение: {0}%</s:String>
+    <s:String x:Key="debug_logging">Включить логирование</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
@@ -77,6 +90,13 @@
     <s:String x:Key="update_available">Доступно об_новление...</s:String>
     <s:String x:Key="exit_retrobar">Вы_йти из RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Настройка _уведомлений...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Закрепить панель задач</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Показать рабочий стол</s:String>
+    <s:String x:Key="show_desktop_tip">Показать рабочий стол</s:String>
+    <s:String x:Key="show_desktop_95">_Рабочий стол</s:String>
+    <s:String x:Key="show_desktop">_Показать рабочий стол</s:String>
+    <s:String x:Key="peek_at_desktop">_Показывать рабочий стол при наведении</s:String>
 
     <s:String x:Key="restore">_Восстановить</s:String>
     <s:String x:Key="move">_Переместить</s:String>
