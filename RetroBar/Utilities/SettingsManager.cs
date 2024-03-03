@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace RetroBar.Utilities
 {
-    public class SettingsManager<T> : INotifyPropertyChanged
+    public class SettingsManager<T> : INotifyPropertyChanged where T : new()
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,7 +23,7 @@ namespace RetroBar.Utilities
             {
                 _settings = value;
                 OnPropertyChanged();
-                saveToFile();
+                SaveToFile();
             }
         }
 
@@ -32,13 +32,13 @@ namespace RetroBar.Utilities
             _fileName = fileName;
             _settings = defaultSettings;
 
-            if (!loadFromFile())
+            if (!LoadFromFile())
             {
                 ShellLogger.Info("SettingsManager: Using default settings");
             }
         }
 
-        private bool loadFromFile()
+        private bool LoadFromFile()
         {
             try
             {
@@ -58,9 +58,9 @@ namespace RetroBar.Utilities
             }
         }
 
-        private void saveToFile()
+        private void SaveToFile()
         {
-            JsonSerializerOptions options = new JsonSerializerOptions()
+            JsonSerializerOptions options = new()
             {
                 IgnoreReadOnlyProperties = true,
                 WriteIndented = true
@@ -82,7 +82,7 @@ namespace RetroBar.Utilities
             }
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
