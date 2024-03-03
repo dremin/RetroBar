@@ -68,10 +68,7 @@ namespace RetroBar.Utilities
 
             try
             {
-                if (!Directory.Exists(Path.GetDirectoryName(_fileName)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(_fileName));
-                }
+                Directory.CreateDirectory(Path.GetDirectoryName(_fileName));
 
                 string jsonString = JsonSerializer.Serialize(Settings, options);
                 File.WriteAllText(_fileName, jsonString);
