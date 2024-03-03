@@ -32,7 +32,6 @@
     <s:String x:Key="show_badges">Mostrar _notificações nos ícones</s:String>
     <s:String x:Key="show_window_previews">Mo_strar visualizações de janela (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">_Usar renderização de software</s:String>
-    <s:String x:Key="middle_mouse_to_close">Fechar itens da barra de tarefas ao clicar com o botão do _meio do mouse</s:String>
     <s:String x:Key="add_show_desktop_button">_Adicionar o botão 'Mostrar área de trabalho'</s:String>
     <s:String x:Key="enable_auto_hide">_Ocultar automaticamente a barra de tarefas</s:String>
     <s:String x:Key="lock_taskbar">_Bloquear a barra de tarefas</s:String>

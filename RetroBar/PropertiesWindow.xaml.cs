@@ -245,7 +245,7 @@ namespace RetroBar
         {
             LoadVersion();
         }
-        
+
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboEdgeSelect.SelectedItem == null)
@@ -267,6 +267,14 @@ namespace RetroBar
             if (cboInvertIconsMode.SelectedItem == null)
             {
                 cboInvertIconsMode.SelectedValue = cboInvertIconsMode.Items[(int)Settings.Instance.InvertIconsMode];
+            }
+        }
+
+        private void cboMiddleMouseAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboMiddleMouseAction.SelectedItem == null)
+            {
+                cboMiddleMouseAction.SelectedValue = cboMiddleMouseAction.Items[(int)Settings.Instance.TaskMiddleClickAction];
             }
         }
 

@@ -32,7 +32,6 @@
     <s:String x:Key="show_badges">Show _badges</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Middle-click to close taskbar items</s:String>
     <s:String x:Key="add_show_desktop_button">Add the Show _Desktop button</s:String>
     <s:String x:Key="enable_auto_hide">A_uto-hide the taskbar</s:String>
     <s:String x:Key="lock_taskbar">_Lock the taskbar</s:String>
@@ -48,6 +47,12 @@
         <s:String>When needed by theme</s:String>
         <s:String>Always</s:String>
         <s:String>Never</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Middle-click action:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Do nothing</s:String>
+        <s:String>Open a new instance</s:String>
+        <s:String>Close the task</s:String>
     </x:Array>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">Visit RetroBar on GitHub</s:String>

@@ -17,8 +17,7 @@ namespace RetroBar.Utilities
         private T _settings;
         public T Settings
         {
-            get { return _settings; }
-
+            get => _settings;
             set
             {
                 _settings = value;
@@ -63,7 +62,8 @@ namespace RetroBar.Utilities
             JsonSerializerOptions options = new()
             {
                 IgnoreReadOnlyProperties = true,
-                WriteIndented = true
+                WriteIndented = true,
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
             };
 
             try

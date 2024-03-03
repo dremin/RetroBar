@@ -32,7 +32,6 @@
     <s:String x:Key="show_badges">Mostrar _distintivos</s:String>
     <s:String x:Key="show_window_previews">Mostrar _vistas previas de las ventanas (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">Usar procesamiento por soft_ware</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Cerrar elementos de la barra de tareas con el botón central</s:String>
     <s:String x:Key="add_show_desktop_button">Agregar botón Mostrar _escritorio</s:String>
     <s:String x:Key="enable_auto_hide">Ocultar automáticam_ente la barra de tareas</s:String>
     <s:String x:Key="lock_taskbar">_Bloquear la barra de tareas</s:String>
@@ -48,6 +47,12 @@
         <s:String>Cuando el tema lo requiera</s:String>
         <s:String>Siempre</s:String>
         <s:String>Nunca</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Acción del botón central:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>No hacer nada</s:String>
+        <s:String>Abrir una nueva instancia</s:String>
+        <s:String>Cerrar la tarea</s:String>
     </x:Array>
     <s:String x:Key="version">Versión {0}</s:String>
     <s:String x:Key="visit_on_github">Visitar RetroBar en GitHub</s:String>

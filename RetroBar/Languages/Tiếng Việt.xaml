@@ -30,7 +30,6 @@
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
     <s:String x:Key="show_window_previews">Hiện hình xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
     <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất (Software Rendering)</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Nhấn chuột giữa (nút lăn trên chuột) để đóng các mục trên thanh tác vụ</s:String>
     <s:String x:Key="add_show_desktop_button">Thêm nút Hiện bàn làm việc (Show Desktop)</s:String>
     <s:String x:Key="enable_auto_hide">Tự động ẩn thanh tác vụ</s:String>
     <s:String x:Key="lock_taskbar">_Khoá thanh tác vụ</s:String>

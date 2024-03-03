@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Brzo pokretanje - izaberite fasciklu</s:String>
     <s:String x:Key="show_window_previews">Prikaži preglede prozora (sliči_ce)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi softverski rendering</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Srednji klik da zatvorite stavke na traci zadataka</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj dugme za prikaz radne povr_šine</s:String>
     <s:String x:Key="enable_auto_hide">_Automatski sakrij traku zadataka</s:String>
     <s:String x:Key="lock_taskbar">Za_ključaj traku zadataka</s:String>

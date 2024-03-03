@@ -66,6 +66,22 @@ namespace RetroBar.Utilities
             }
         }
 
+        #region Old Properties
+        private bool? _middleMouseToClose = null;
+        public bool? MiddleMouseToClose
+        {
+            get => _middleMouseToClose;
+            set
+            {
+                if (value != null)
+                {
+                    _taskMiddleClickAction = (bool)value ? TaskMiddleClickOption.CloseTask : TaskMiddleClickOption.OpenNewInstance;
+                }
+                _middleMouseToClose = null;
+            }
+        }
+        #endregion
+
         #region Properties
         private string _language = "System";
         public string Language
@@ -158,13 +174,6 @@ namespace RetroBar.Utilities
             set => Set(ref _useSoftwareRendering, value);
         }
 
-        private bool _middleMouseToClose = false;
-        public bool MiddleMouseToClose
-        {
-            get => _middleMouseToClose;
-            set => Set(ref _middleMouseToClose, value);
-        }
-
         private AppBarEdge _edge = AppBarEdge.Bottom;
         public AppBarEdge Edge
         {
@@ -234,6 +243,13 @@ namespace RetroBar.Utilities
             get => _showTaskBadges;
             set => Set(ref _showTaskBadges, value);
         }
+
+        private TaskMiddleClickOption _taskMiddleClickAction = TaskMiddleClickOption.OpenNewInstance;
+        public TaskMiddleClickOption TaskMiddleClickAction
+        {
+            get => _taskMiddleClickAction;
+            set => Set(ref _taskMiddleClickAction, value);
+        }
         #endregion
 
         #region Enums
@@ -249,6 +265,13 @@ namespace RetroBar.Utilities
             AllTaskbars,
             SameAsWindow,
             SameAsWindowAndPrimary
+        }
+
+        public enum TaskMiddleClickOption
+        {
+            DoNothing,
+            OpenNewInstance,
+            CloseTask
         }
         #endregion
     }

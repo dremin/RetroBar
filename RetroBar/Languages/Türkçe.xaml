@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Hızlı Başlat - Bir klasör seç</s:String>
     <s:String x:Key="show_window_previews">_Pencere önizlemelerini (önizleme görseli) göster</s:String>
     <s:String x:Key="use_software_rendering">_Yazılım ile işleme kullan</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Görev çubuğu öğelerini kapatmak için farenin orta tuşunu kullan</s:String>
     <s:String x:Key="add_show_desktop_button">_Masaüstünü göster butonu ekle</s:String>
     <s:String x:Key="enable_auto_hide">_Görev çubuğunu otomatik olarak gizle</s:String>
     <s:String x:Key="lock_taskbar">Görev _çubuğunu kilitle</s:String>
