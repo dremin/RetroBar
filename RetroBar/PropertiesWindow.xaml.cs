@@ -123,11 +123,11 @@ namespace RetroBar
                 {
                     if (rKeyValueNames.Contains("RetroBar"))
                     {
-                        AutoStartCheckBox.IsChecked = true;
+                        cbAutoStart.IsChecked = true;
                     }
                     else
                     {
-                        AutoStartCheckBox.IsChecked = false;
+                        cbAutoStart.IsChecked = false;
                     }
                 }
             }
@@ -219,7 +219,7 @@ namespace RetroBar
             UpdateWindowPosition();
         }
 
-        private void AutoStartCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        private void CbAutoStart_OnChecked(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -241,12 +241,12 @@ namespace RetroBar
             }
         }
 
-        private void cboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             LoadVersion();
         }
         
-        private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboEdgeSelect.SelectedItem == null)
             {
@@ -254,7 +254,7 @@ namespace RetroBar
             }
         }
 
-        private void cboMultiMonMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void CboMultiMonMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboMultiMonMode.SelectedItem == null)
             {
