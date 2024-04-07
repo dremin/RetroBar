@@ -23,12 +23,38 @@
     <s:String x:Key="allow_font_smoothing">允許字體平滑(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">隱藏非使用中時圖示(_N)</s:String>
     <s:String x:Key="customize">自訂(_E)...</s:String>
+    <s:String x:Key="show_input_language">顯示語言列</s:String>
     <s:String x:Key="show_clock">顯示小時鐘(_C)</s:String>
     <s:String x:Key="show_multi_mon">在多個顯示器上顯示(_M)</s:String>
     <s:String x:Key="show_quick_launch">顯示快速啟動(_Q)</s:String>
     <s:String x:Key="select_location">選擇位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速啟動 - 選擇一個資料夾</s:String>
+    <s:String x:Key="show_window_previews">顯示視窗縮圖(_W)</s:String>
     <s:String x:Key="use_software_rendering">使用軟體渲染(_U)</s:String>
+    <s:String x:Key="middle_mouse_to_close">按下滑鼠中鍵來結束程式(_M)</s:String>
+    <s:String x:Key="add_show_desktop_button">啟用「顯示桌面」按鈕</s:String>
+    <s:String x:Key="enable_auto_hide">自動隱藏工作列(_U)</s:String>
+    <s:String x:Key="lock_taskbar">鎖定工作列(_L)</s:String>
+    <s:String x:Key="multiple_displays">多重螢幕顯示</s:String>
+    <s:String x:Key="show_tasks_on">在...的工作列上顯示程式(_H):</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>所有</s:String>
+        <s:String>視窗所在螢幕</s:String>
+        <s:String>主螢幕及視窗所在螢幕</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">反轉工作列圖示顏色(_I):</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>按主題需要</s:String>
+        <s:String>始終啟用</s:String>
+        <s:String>從不</s:String>
+    </x:Array>
+    <s:String x:Key="version">版本 {0}</s:String>
+    <s:String x:Key="visit_on_github">瀏覽GitHub上的RetroBar</s:String>
+    <s:String x:Key="taskbar_scale">縮放工作列</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">目前設定: {0}%</s:String>
+    <s:String x:Key="debug_logging">啟用除錯記錄</s:String>
     <s:String x:Key="ok_dialog">確定</s:String>
 
     <s:String x:Key="customize_notifications">自訂通知</s:String>
