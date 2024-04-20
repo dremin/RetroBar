@@ -1,0 +1,111 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar-en propietateak</s:String>
+    <s:String x:Key="taskbar_tab">Ataza barra</s:String>
+    <s:String x:Key="advanced_tab">Ezarpen aurreratuak</s:String>
+    <s:String x:Key="taskbar_appearance">Ataza barraren itxura</s:String>
+    <s:String x:Key="notification_area">Jakinarazpen eremua</s:String>
+    <s:String x:Key="autostart">_Abiarazi automatikoki saioa hastean</s:String>
+    <s:String x:Key="language_text">Hiz_kuntza:</s:String>
+    <s:String x:Key="language_tip">Hautatu erabiltzeko hizkuntza:</s:String>
+    <s:String x:Key="theme_text">_Gaia:</s:String>
+    <s:String x:Key="theme_tip">Instalatu gaiak Themes karpetan.</s:String>
+    <s:String x:Key="location_text">_Kokalekua:</s:String>
+    <s:String x:Key="location_tip">Aldatu ataza barraren kokalekua pantailan.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Ezkerrean</s:String>
+        <s:String>Goian</s:String>
+        <s:String>Eskuinean</s:String>
+        <s:String>Behean</s:String>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">Onartu _letra leuntzea</s:String>
+    <s:String x:Key="collapse_tray_icons">Ezkutatu jakinarazpen _ikonoak</s:String>
+    <s:String x:Key="customize">_Personalizatu...</s:String>
+    <s:String x:Key="show_clock">Erakutsi _erlojua</s:String>
+    <s:String x:Key="show_multi_mon">Erakutsi _hainbat pantailetan</s:String>
+    <s:String x:Key="show_quick_launch">Erakutsi abiarazte az_karra</s:String>
+    <s:String x:Key="select_location">_Aldatu karpeta...</s:String>
+    <s:String x:Key="quick_launch_folder">Abiarazte azkarra: hautatu karpeta bat</s:String>
+    <s:String x:Key="show_window_previews">Erakutsi leihoen aurrebistak</s:String>
+    <s:String x:Key="use_software_rendering">Erabili soft_ware prozesatzea</s:String>
+    <s:String x:Key="middle_mouse_to_close">_Itxi lehioak saguko erdiko botoiarekin</s:String>
+    <s:String x:Key="add_show_desktop_button">Gehitu _mahaigaina ezkutatzeko botoia</s:String>
+    <s:String x:Key="enable_auto_hide">Ataza barra automatikoki ezkutatu</s:String>
+    <s:String x:Key="lock_taskbar">_Blokeatu ataza barra</s:String>
+    <s:String x:Key="multiple_displays">Hainbat pantaila</s:String>
+    <s:String x:Key="show_tasks_on">Erakutsi _atazak hemen:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Ataza barra guztietan</s:String>
+        <s:String>Leihoaren ataza barra berdinean</s:String>
+        <s:String>Lehenetsitako ataza barran eta leihoaren ataza barra berdinean</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Alderantzizkatu sistema ikonoak:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Gaiak behar duenean</s:String>
+        <s:String>Beti</s:String>
+        <s:String>Inoiz ez</s:String>
+    </x:Array>
+    <s:String x:Key="version">{0} bertsioa</s:String>
+    <s:String x:Key="visit_on_github">Bisitatu RetroBar GitHub-en</s:String>
+    <s:String x:Key="taskbar_scale">Ataza barraren tamaina</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Oraingo ezarpena: {0}%</s:String>
+    <s:String x:Key="debug_logging">Arazketa erregistroa aktibatu</s:String>
+    <s:String x:Key="ok_dialog">Onartu</s:String>
+
+    <s:String x:Key="customize_notifications">Pertsonalizatu jakinarazpenak</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar-ek jakinarazpen garrantzitsuen ikonoak erakusten ditu, eta besteak ezkutatu egiten ditu. Jarrera hau hurrego elementuentzat hautatu dezakezu.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Hautatu elementu bat ezarri eta haren jakinarazpenen jarrera:</s:String>
+    <s:String x:Key="hide_when_inactive">Ezkutatu aktibo ez dagoenean</s:String>
+    <s:String x:Key="always_show">Erakutsi beti</s:String>
+    <s:String x:Key="name_heading">Izena</s:String>
+    <s:String x:Key="behavior_heading">Jarrera</s:String>
+
+    <s:String x:Key="start_text">Hasi</s:String>
+    <s:String x:Key="start_text_xp">Hasi</s:String>
+    <s:String x:Key="start_button_tip_98">Egin klik hemen hasteko.</s:String>
+    <s:String x:Key="start_button_tip">Egin klik hemen hasteko</s:String>
+    <s:String x:Key="start_button_tip_vista">Hasi</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar ataza barra</s:String>
+    <s:String x:Key="toolbars">_Tresna-barrak</s:String>
+    <s:String x:Key="quick_launch">Abiarazte azkarra</s:String>
+    <s:String x:Key="new_toolbar">_Tresna-barra berria...</s:String>
+    <s:String x:Key="set_time">Data eta ordua ezarri</s:String>
+    <s:String x:Key="cascade">Ka_skada</s:String>
+    <s:String x:Key="horiz_tile">Mosaiko _horizontala</s:String>
+    <s:String x:Key="vert_tile">Mosaiko bertikala</s:String>
+    <s:String x:Key="toggle_desktop">Erakutsi _mahaigaina</s:String>
+    <s:String x:Key="hide_desktop">Erakutsi irekitako _leihoak</s:String>
+    <s:String x:Key="undo_cascade">_Desegin kaskada</s:String>
+    <s:String x:Key="undo_tile">_Desegin mosaikoa</s:String>
+    <s:String x:Key="undo_minimize_all">_Desegin guztia ikonotzea</s:String>
+    <s:String x:Key="show_taskman_2k">Ata_za kudeatzailea...</s:String>
+    <s:String x:Key="show_taskman">Ata_za kudeatzailea</s:String>
+    <s:String x:Key="tray_properties">_Propietateak</s:String>
+    <s:String x:Key="update_available">_Eguneraketa eskuragarri...</s:String>
+    <s:String x:Key="exit_retrobar">_Itxi RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">Pertsonalizatu jakinarazpenak...</s:String>
+    <s:String x:Key="lock_taskbar_menu">Blokeatu _ataza barra</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Sortu edo leheneratu mahaigaina</s:String>
+    <s:String x:Key="show_desktop_tip">Erakutsi mahaigaina</s:String>
+    <s:String x:Key="show_desktop_95">_Mahaigaina</s:String>
+    <s:String x:Key="show_desktop">_Erakutsi mahaigaina</s:String>
+    <s:String x:Key="peek_at_desktop">_Mahaigainera begirada</s:String>
+
+    <s:String x:Key="restore">_Berrezarri</s:String>
+    <s:String x:Key="move">_Mugitu</s:String>
+    <s:String x:Key="size">_Tamaina</s:String>
+    <s:String x:Key="minimize">Ik_onotu</s:String>
+    <s:String x:Key="maximize">Ma_ximizatu</s:String>
+    <s:String x:Key="close">_Itxi</s:String>
+
+    <s:String x:Key="show_hidden">Erakutsi ezkutuko ikonoak</s:String>
+    <s:String x:Key="hide">Ezkutatu</s:String>
+
+    <s:String x:Key="open_folder">&amp;Ireki karpeta</s:String>
+</ResourceDictionary>
