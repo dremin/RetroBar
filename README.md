@@ -49,6 +49,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 
 ## Supported languages
 - Arabic (العربية)
+- Basque (euskara)
 - Bulgarian (български)
 - Catalan (català)
 - Chinese (Simplified) (中文(简体))
@@ -81,6 +82,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Slovak (slovenčina)
 - Spanish (español)
 - Swedish (svenska)
+- Thai (ไทย)
 - Turkish (Türkçe)
 - Ukrainian (українська)
 - Vietnamese (Tiếng Việt)
