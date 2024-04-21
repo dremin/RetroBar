@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -47,8 +48,15 @@ namespace RetroBar.Controls
 
         private void SetLocaleIdentifier()
         {
-            var managedShellLayout = KeyboardLayoutHelper.GetKeyboardLayout(false);
-            LocaleIdentifier = CultureInfo.GetCultureInfo((short)managedShellLayout.HKL);
+            try
+            {
+                var managedShellLayout = KeyboardLayoutHelper.GetKeyboardLayout(false);
+                LocaleIdentifier = CultureInfo.GetCultureInfo((short)managedShellLayout.HKL);
+            }
+            catch (Exception ex)
+            {
+                ShellLogger.Error($"Error getting locale identifier: {ex.Message}");
+            }
         }
 
         private void StartWatch()
