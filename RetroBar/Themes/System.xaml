@@ -760,7 +760,7 @@
 
     <Style TargetType="Image"
            x:Key="TaskOverlayIcon"
-           BasedOn="{StaticResource TaskIcon}">
+           BasedOn="{StaticResource DefaultDirection}">
         <Setter Property="Width"
                 Value="11" />
         <Setter Property="Height"
@@ -769,6 +769,8 @@
                 Value="Right" />
         <Setter Property="VerticalAlignment"
                 Value="Bottom" />
+        <Setter Property="Margin"
+                Value="0,0,2,-1" />
     </Style>
 
     <Style TargetType="Image"

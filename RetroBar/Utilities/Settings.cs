@@ -442,6 +442,23 @@ namespace RetroBar.Utilities
                 }
             }
         }
+
+        private bool _showTaskBadges = true;
+        public bool ShowTaskBadges
+        {
+            get
+            {
+                return _showTaskBadges;
+            }
+            set
+            {
+                if (_showTaskBadges != value)
+                {
+                    _showTaskBadges = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         #endregion
 
         #region Enums

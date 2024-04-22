@@ -1190,7 +1190,7 @@
            x:Key="TaskOverlayIcon"
            BasedOn="{StaticResource TaskOverlayIcon}">
         <Setter Property="Margin"
-                Value="0,0,2,1" />
+                Value="0,0,1,0" />
     </Style>
 
     <Style TargetType="TextBlock"
