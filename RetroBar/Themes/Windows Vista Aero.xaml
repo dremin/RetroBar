@@ -1356,6 +1356,13 @@
                 Value="0,0,4,0" />
     </Style>
 
+    <Style TargetType="Image"
+           x:Key="TaskOverlayIcon"
+           BasedOn="{StaticResource TaskOverlayIcon}">
+        <Setter Property="Margin"
+                Value="0,0,4,0" />
+    </Style>
+
     <Style TargetType="TextBlock"
            x:Key="TaskLabel"
            BasedOn="{StaticResource TaskLabel}">

@@ -28,6 +28,9 @@
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Grid.Column="0"
                    Style="{DynamicResource TaskIcon}" />
+            <Image Source="{Binding Path=OverlayIcon, Mode=OneWay}"
+                   Grid.Column="0"
+                   Style="{DynamicResource TaskOverlayIcon}" />
             <TextBlock Grid.Column="1"
                        Style="{DynamicResource TaskLabel}">
                 <TextBlock.Text>
