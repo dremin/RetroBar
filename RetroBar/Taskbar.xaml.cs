@@ -63,7 +63,7 @@ namespace RetroBar
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
-                double unlockedSize = Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
+                double unlockedSize = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
                 DesiredHeight += unlockedSize;
                 DesiredWidth += unlockedSize;
             }
@@ -157,7 +157,7 @@ namespace RetroBar
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
-                double unlockedSize = Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0;
+                double unlockedSize = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
                 newHeight += unlockedSize;
                 newWidth += unlockedSize;
             }
