@@ -212,6 +212,10 @@
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHide, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource enable_auto_hide}" />
                             </CheckBox>
+                            <CheckBox x:Name="cbShowBadges"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskBadges, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_badges}" />
+                            </CheckBox>
                             <DockPanel>
                                 <CheckBox x:Name="cbShowQuickLaunch"
                                           IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
