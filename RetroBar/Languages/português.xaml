@@ -9,29 +9,31 @@
     <s:String x:Key="notification_area">Área de notificação</s:String>
     <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>
     <s:String x:Key="language_text">Idio_ma:</s:String>
-    <s:String x:Key="language_tip">Selecione o idioma a ser usado.</s:String>
+    <s:String x:Key="language_tip">Seleciona o idioma a ser usado.</s:String>
     <s:String x:Key="theme_text">_Tema:</s:String>
-    <s:String x:Key="theme_tip">Instale temas na pasta Themes.</s:String>
+    <s:String x:Key="theme_tip">Temas devem ser instalados na pasta Themes.</s:String>
     <s:String x:Key="location_text">_Local:</s:String>
-    <s:String x:Key="location_tip">Mude o local da barra de tarefas na tela.</s:String>
+    <s:String x:Key="location_tip">Muda o local da barra de tarefas na tela.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Esquerda</s:String>
         <s:String>Superior</s:String>
         <s:String>Direita</s:String>
         <s:String>Inferior</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">Permitir su_avização de fonte</s:String>
+    <s:String x:Key="allow_font_smoothing">Permitir s_uavização de fonte</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar ícones _inativos</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
+    <s:String x:Key="show_input_language">Mostrar o i_dioma de entrada</s:String>
     <s:String x:Key="show_clock">Mostrar o _relógio</s:String>
     <s:String x:Key="show_multi_mon">Mostrar em _vários monitores</s:String>
     <s:String x:Key="show_quick_launch">Mostrar barra 'Iniciali_zação rápida'</s:String>
     <s:String x:Key="select_location">S_elecionar local...</s:String>
     <s:String x:Key="quick_launch_folder">Inicialização rápida - Escolha uma pasta</s:String>
+    <s:String x:Key="show_badges">Mostrar _notificações nos ícones</s:String>
     <s:String x:Key="show_window_previews">Mo_strar visualizações de janela (miniaturas)</s:String>
     <s:String x:Key="use_software_rendering">_Usar renderização de software</s:String>
     <s:String x:Key="middle_mouse_to_close">Fechar itens da barra de tarefas ao clicar com o botão do _meio do mouse</s:String>
-    <s:String x:Key="add_show_desktop_button">A_dicionar o botão Mostrar área de trabalho</s:String>
+    <s:String x:Key="add_show_desktop_button">_Adicionar o botão 'Mostrar área de trabalho'</s:String>
     <s:String x:Key="enable_auto_hide">_Ocultar automaticamente a barra de tarefas</s:String>
     <s:String x:Key="lock_taskbar">_Bloquear a barra de tarefas</s:String>
     <s:String x:Key="multiple_displays">Vários monitores</s:String>
