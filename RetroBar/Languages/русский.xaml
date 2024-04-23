@@ -42,7 +42,7 @@
         <s:String>На панели задач, в которой открыто окно</s:String>
         <s:String>На главной панели задач и панели задач, в которой открыто окно</s:String>
     </x:Array>
-        <s:String x:Key="invert_system_icons">_Инвертировать системные значки:</s:String>
+    <s:String x:Key="invert_system_icons">_Инвертировать системные значки:</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>Когда требуется теме</s:String>
         <s:String>Всегда</s:String>

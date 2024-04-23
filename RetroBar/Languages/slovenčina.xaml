@@ -102,8 +102,4 @@
     <s:String x:Key="hide">Skryť</s:String>
 
     <s:String x:Key="open_folder">&amp;Otvoriť priečinok</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
