@@ -250,6 +250,13 @@ namespace RetroBar.Utilities
             get => _taskMiddleClickAction;
             set => Set(ref _taskMiddleClickAction, value);
         }
+
+        private bool _updates = true;
+        public bool Updates
+        {
+            get => _updates;
+            set => Set(ref _updates, value);
+        }
         #endregion
 
         #region Enums
