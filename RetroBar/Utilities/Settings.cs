@@ -1,4 +1,5 @@
 ﻿using ManagedShell.AppBar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -54,7 +55,18 @@ namespace RetroBar.Utilities
         {
             if (!field.Equals(value))
             {
-                if (typeof(T).IsEnum && System.Convert.ToInt32(value) < 0)
+                // TODO: Should we log setting change?
+
+                field = value;
+                OnPropertyChanged(propertyName);
+            }
+        }
+
+        protected void SetEnum<T>(ref T field, T value, [CallerMemberName] string propertyName = "") where T : struct, Enum
+        {
+            if (!field.Equals(value))
+            {
+                if (Convert.ToInt32(value) < 0)
                 {
                     return;
                 }
@@ -178,7 +190,7 @@ namespace RetroBar.Utilities
         public AppBarEdge Edge
         {
             get => _edge;
-            set => Set(ref _edge, value);
+            set => SetEnum(ref _edge, value);
         }
 
         private List<string> _quickLaunchOrder = [];
@@ -199,7 +211,7 @@ namespace RetroBar.Utilities
         public MultiMonOption MultiMonMode
         {
             get => _multiMonMode;
-            set => Set(ref _multiMonMode, value);
+            set => SetEnum(ref _multiMonMode, value);
         }
 
         private double _taskbarScale = 1.0;
@@ -234,7 +246,7 @@ namespace RetroBar.Utilities
         public InvertIconsOption InvertIconsMode
         {
             get => _invertIconsMode;
-            set => Set(ref _invertIconsMode, value);
+            set => SetEnum(ref _invertIconsMode, value);
         }
 
         private bool _showTaskBadges = true;
@@ -248,7 +260,7 @@ namespace RetroBar.Utilities
         public TaskMiddleClickOption TaskMiddleClickAction
         {
             get => _taskMiddleClickAction;
-            set => Set(ref _taskMiddleClickAction, value);
+            set => SetEnum(ref _taskMiddleClickAction, value);
         }
 
         private bool _updates = true;
