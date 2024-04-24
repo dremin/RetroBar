@@ -195,7 +195,7 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Theme")
+            if (e.PropertyName == nameof(Settings.Theme))
             {
                 SetStyle();
             }

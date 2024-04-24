@@ -192,11 +192,11 @@ namespace RetroBar.Utilities
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Language")
+            if (e.PropertyName == nameof(Settings.Language))
             {
                 SetLanguageFromSettings();
             }
-            if (e.PropertyName == "Theme")
+            if (e.PropertyName == nameof(Settings.Theme))
             {
                 SetThemeFromSettings();
             }

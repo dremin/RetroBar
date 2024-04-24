@@ -112,7 +112,7 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "TaskbarScale")
+            if (e.PropertyName == nameof(Settings.TaskbarScale))
             {
                 SetIconSize();
             }

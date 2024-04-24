@@ -68,12 +68,12 @@ namespace RetroBar
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "LockTaskbar")
+            if (e.PropertyName == nameof(Settings.LockTaskbar))
             {
-                OnPropertyChanged("IsLocked");
+                OnPropertyChanged(nameof(IsLocked));
                 LoadPreviewHeight();
             }
-            else if (e.PropertyName == "Theme")
+            else if (e.PropertyName == nameof(Settings.Theme))
             {
                 LoadPreviewHeight();
             }

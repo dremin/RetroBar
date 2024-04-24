@@ -92,11 +92,11 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "MultiMonMode")
+            if (e.PropertyName == nameof(Settings.MultiMonMode))
             {
                 taskbarItems?.Refresh();
             }
-            else if (e.PropertyName == "ShowMultiMon")
+            else if (e.PropertyName == nameof(Settings.ShowMultiMon))
             {
                 if (Settings.Instance.MultiMonMode != Settings.MultiMonOption.AllTaskbars)
                 {
