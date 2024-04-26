@@ -6,6 +6,7 @@ using System.Windows.Input;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTray;
+using RetroBar.Extensions;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -33,21 +34,12 @@ namespace RetroBar.Controls
 
         private void applyEffects()
         {
-            if ((!EnvironmentHelper.IsWindows10OrBetter && Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.WhenNeededByTheme) || TrayIcon == null || Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.Never)
+            if (TrayIcon == null || Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.Never)
             {
                 return;
             }
 
-            string iconGuid = TrayIcon.GUID.ToString();
-
-            if (!(iconGuid == NotificationArea.HARDWARE_GUID ||
-                iconGuid == NotificationArea.UPDATE_GUID ||
-                iconGuid == NotificationArea.MICROPHONE_GUID ||
-                iconGuid == NotificationArea.LOCATION_GUID ||
-                iconGuid == NotificationArea.MEETNOW_GUID ||
-                iconGuid == NotificationArea.NETWORK_GUID ||
-                iconGuid == NotificationArea.POWER_GUID ||
-                iconGuid == NotificationArea.VOLUME_GUID))
+            if (!TrayIcon.CanInvert())
             {
                 return;
             }
