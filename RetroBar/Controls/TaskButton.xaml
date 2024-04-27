@@ -45,7 +45,7 @@
             </TextBlock>
         </Grid>
         <Button.ContextMenu>
-            <ContextMenu>
+            <controls:ContextMenu>
                 <MenuItem Header="{DynamicResource restore}"
                           Click="RestoreMenuItem_OnClick"
                           Name="RestoreMenuItem"
@@ -88,7 +88,7 @@
                                    VerticalAlignment="Center" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </ContextMenu>
+            </controls:ContextMenu>
         </Button.ContextMenu>
         <Button.ToolTip>
             <ToolTip>

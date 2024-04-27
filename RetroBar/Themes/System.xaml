@@ -31,6 +31,7 @@
     <SolidColorBrush x:Key="MenuBackground" Color="{x:Static SystemColors.MenuColor}" />
     <SolidColorBrush x:Key="MenuForeground" Color="{x:Static SystemColors.MenuTextColor}" />
     <SolidColorBrush x:Key="DisabledForeground" Color="{x:Static SystemColors.GrayTextColor}" />
+    <SolidColorBrush x:Key="DisabledForegroundSS" Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
 
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
@@ -62,7 +63,7 @@
     <DropShadowEffect x:Key="DisabledDropShadow"
                       ShadowDepth="1.42"
                       Direction="315"
-                      Color="#ffffff"
+                      Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"
                       BlurRadius="0"
                       Opacity="1" />
 
@@ -1012,7 +1013,7 @@
         <Setter Property="Height"
                 Value="16" />
         <Setter Property="Margin"
-                Value="0,0,3,0" />
+                Value="0,0,2,0" />
     </Style>
 
     <Style TargetType="Image"
@@ -1052,13 +1053,13 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource TaskIcon}">
         <Setter Property="Margin"
-                Value="0,0,4,0" />
+                Value="0,0,1,0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="2,1" />
+                            Value="1,0,0,1" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
@@ -1084,8 +1085,6 @@
                 Value="{DynamicResource start_text}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
-        <Setter Property="TextOptions.TextRenderingMode"
-                Value="Auto" />
     </Style>
 
     <Style TargetType="TextBlock"

@@ -85,7 +85,7 @@
             </controls:ShowDesktopButton>
             <GroupBox Style="{DynamicResource Tray}">
                 <GroupBox.ContextMenu>
-                    <ContextMenu>
+                    <controls:ContextMenu>
                         <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
                         <Separator /-->
                         <StaticResourceExtension ResourceKey="SetTimeMenuItem" />
@@ -96,7 +96,7 @@
                         <StaticResourceExtension ResourceKey="LockTaskbarMenuItem" />
                         <StaticResourceExtension ResourceKey="PropertiesMenuItem" />
                         <StaticResourceExtension ResourceKey="ExitMenuItem" />
-                    </ContextMenu>
+                    </controls:ContextMenu>
                 </GroupBox.ContextMenu>
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
@@ -129,7 +129,7 @@
         </DockPanel>
     </ContentControl>
     <appbar:AppBarWindow.ContextMenu>
-        <ContextMenu Opened="ContextMenu_Opened">
+        <controls:ContextMenu Opened="ContextMenu_Opened">
             <!-- TODO: Add when desk bands and additional taskbars are supported. -->
             <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
             <Separator /-->
@@ -143,6 +143,6 @@
             <StaticResourceExtension ResourceKey="LockTaskbarMenuItem" />
             <StaticResourceExtension ResourceKey="PropertiesMenuItem" />
             <StaticResourceExtension ResourceKey="ExitMenuItem" />
-        </ContextMenu>
+        </controls:ContextMenu>
     </appbar:AppBarWindow.ContextMenu>
 </appbar:AppBarWindow>
