@@ -108,7 +108,7 @@ namespace RetroBar
             SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
             UpdateTrayPosition();
         }
-        
+        private const int WM_ENTERSIZEMOVE = 0x0231;
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             base.WndProc(hwnd, msg, wParam, lParam, ref handled);
@@ -121,6 +121,15 @@ namespace RetroBar
 
                 // If the color scheme changes, re-apply the current theme to get updated colors.
                 ((App)Application.Current).DictionaryManager.SetThemeFromSettings();
+            }
+
+            if (msg == (int)NativeMethods.WM.SYSCOMMAND)
+            {
+                if ((int)wParam == NativeMethods.SC_CLOSE)
+                {
+                    IntPtr progmanHwnd = NativeMethods.FindWindow("Progman", "Program Manager");
+                    NativeMethods.SendMessage(progmanHwnd, (int)NativeMethods.WM.CLOSE, IntPtr.Zero, IntPtr.Zero);
+                }
             }
 
             return IntPtr.Zero;

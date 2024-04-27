@@ -909,6 +909,8 @@
 
     <ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip_vista}" />
 
+    <Image x:Key="MenuIconKey" Source="../Resources/ress.png" />
+
     <Style TargetType="ToggleButton"
            x:Key="StartButton">
         <Setter Property="OverridesDefaultStyle"
