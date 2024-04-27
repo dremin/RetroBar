@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Reflection;
 using ManagedShell.Common.Logging;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace RetroBar
 {
@@ -57,9 +58,28 @@ namespace RetroBar
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
 
+            EventManager.RegisterClassHandler(typeof(ContextMenu), ContextMenu.OpenedEvent, new RoutedEventHandler((sender, args) => MenuOpened()));
+            EventManager.RegisterClassHandler(typeof(MenuItem), MenuItem.ClickEvent, new RoutedEventHandler(MenuItemClicked));
+            EventManager.RegisterClassHandler(typeof(MenuItem), MenuItem.SubmenuOpenedEvent, new RoutedEventHandler((sender, args) => MenuOpened()));
+
             _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
             _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater, _hotkeyManager);
+        }
+
+        private static void MenuOpened()
+        {
+            SoundHelper.PlaySystemSound("MenuPopup");
+        }
+
+        private static void MenuItemClicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem && menuItem.StaysOpenOnClick)
+            {
+                return;
+            }
+
+            SoundHelper.PlaySystemSound("MenuCommand");
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
