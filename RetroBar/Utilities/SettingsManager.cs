@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace RetroBar.Utilities
 {
-    public class SettingsManager<T> : INotifyPropertyChanged
+    public class SettingsManager<T> : INotifyPropertyChanged where T : new()
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,13 +17,12 @@ namespace RetroBar.Utilities
         private T _settings;
         public T Settings
         {
-            get { return _settings; }
-
+            get => _settings;
             set
             {
                 _settings = value;
                 OnPropertyChanged();
-                saveToFile();
+                SaveToFile();
             }
         }
 
@@ -32,13 +31,13 @@ namespace RetroBar.Utilities
             _fileName = fileName;
             _settings = defaultSettings;
 
-            if (!loadFromFile())
+            if (!LoadFromFile())
             {
                 ShellLogger.Info("SettingsManager: Using default settings");
             }
         }
 
-        private bool loadFromFile()
+        private bool LoadFromFile()
         {
             try
             {
@@ -58,20 +57,18 @@ namespace RetroBar.Utilities
             }
         }
 
-        private void saveToFile()
+        private void SaveToFile()
         {
-            JsonSerializerOptions options = new JsonSerializerOptions()
+            JsonSerializerOptions options = new()
             {
                 IgnoreReadOnlyProperties = true,
-                WriteIndented = true
+                WriteIndented = true,
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
             };
 
             try
             {
-                if (!Directory.Exists(Path.GetDirectoryName(_fileName)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(_fileName));
-                }
+                Directory.CreateDirectory(Path.GetDirectoryName(_fileName));
 
                 string jsonString = JsonSerializer.Serialize(Settings, options);
                 File.WriteAllText(_fileName, jsonString);
@@ -82,7 +79,7 @@ namespace RetroBar.Utilities
             }
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

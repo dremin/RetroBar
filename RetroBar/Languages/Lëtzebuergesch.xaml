@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Quick Launch - Wielt Dossier</s:String>
     <s:String x:Key="show_window_previews">Show _fënster virschau (Miniaturbiller)</s:String>
     <s:String x:Key="use_software_rendering">_Benotzt Software Rendering</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Mëtt-klickt fir Taskbar Elementer zouzemaachen</s:String>
     <s:String x:Key="add_show_desktop_button">Füügt de Vue Büro Knäppchen derbäi</s:String>
     <s:String x:Key="enable_auto_hide">Automatesch verstoppen d'Taskbar</s:String>
     <s:String x:Key="lock_taskbar">_Spär d'Taskbar</s:String>

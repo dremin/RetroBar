@@ -36,7 +36,7 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "CollapseNotifyIcons")
+            if (e.PropertyName == nameof(Settings.CollapseNotifyIcons))
             {
                 if (Settings.Instance.CollapseNotifyIcons)
                 {
@@ -51,7 +51,7 @@ namespace RetroBar.Controls
                     NotifyIcons.ItemsSource = allNotifyIconsSource.View;
                 }
             }
-            else if (e.PropertyName == "InvertIconsMode" || e.PropertyName == "InvertNotifyIcons")
+            else if (e.PropertyName == nameof(Settings.InvertIconsMode) || e.PropertyName == nameof(Settings.InvertNotifyIcons))
             {
                 // Reload icons
                 NotifyIcons.ItemsSource = null;

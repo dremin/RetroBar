@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Брзо покретање - изаберите фасциклу</s:String>
     <s:String x:Key="show_window_previews">Прикажи прегледе прозора (сличи_це)</s:String>
     <s:String x:Key="use_software_rendering">_Користи софтверски рендеринг</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Средњи клик да затворите ставке на траци задатака</s:String>
     <s:String x:Key="add_show_desktop_button">Додај дугме за приказ радне повр_шине</s:String>
     <s:String x:Key="enable_auto_hide">_Аутоматски сакриј траку задатака</s:String>
     <s:String x:Key="lock_taskbar">За_кључај траку задатака</s:String>

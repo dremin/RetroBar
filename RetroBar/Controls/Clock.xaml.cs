@@ -78,7 +78,7 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ShowClock")
+            if (e.PropertyName == nameof(Settings.ShowClock))
             {
                 if (Settings.Instance.ShowClock)
                 {

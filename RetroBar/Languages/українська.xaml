@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Швидкий запуск - Виберіть теку</s:String>
     <s:String x:Key="show_window_previews">Показувати попередній перегляд вікон</s:String>
     <s:String x:Key="use_software_rendering">Вимк. апаратне оброблення</s:String>
-    <s:String x:Key="middle_mouse_to_close">[КОЛЕСО МИШІ], щоб закрити програму в панелі завдань</s:String>
     <s:String x:Key="add_show_desktop_button">Кнопка "Показати робочий стіл"</s:String>
     <s:String x:Key="enable_auto_hide">Автоматично ховати панель завдань</s:String>
     <s:String x:Key="multiple_displays">Дисплеї</s:String>

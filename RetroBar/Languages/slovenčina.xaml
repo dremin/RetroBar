@@ -30,7 +30,6 @@
     <s:String x:Key="quick_launch_folder">Rýchly prístup - Vyberte priečinok</s:String>
     <s:String x:Key="show_window_previews">Zobraziť náhľad _okien (miniatúry)</s:String>
     <s:String x:Key="use_software_rendering">_Použiť softvérové vykresľovanie</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Stredný klik pre zatvorenie aplikácie</s:String>
     <s:String x:Key="add_show_desktop_button">Pridať tlačidlo pre zobrazenie _Pracovnej plochy</s:String>
     <s:String x:Key="enable_auto_hide">A_utomaticky skryť panel úloh</s:String>
     <s:String x:Key="lock_taskbar">_Zamknúť panel úloh</s:String>

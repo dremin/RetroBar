@@ -30,7 +30,6 @@
     <s:String x:Key="quick_launch_folder">การเปิดใช้งานด่วน - เลือกโฟลเดอร์</s:String>
     <s:String x:Key="show_window_previews">แสดงภาพ_ตัวอย่าง (ภาพย่อ) ของหน้าต่าง</s:String>
     <s:String x:Key="use_software_rendering">ใ_ช้การเรนเดอร์ด้วยซอฟต์แวร์</s:String>
-    <s:String x:Key="middle_mouse_to_close">_คลิกกลางเพื่อปิดรายการในแถบงาน</s:String>
     <s:String x:Key="add_show_desktop_button">เพิ่มปุ่ม แ_สดงเดสก์ท็อป</s:String>
     <s:String x:Key="enable_auto_hide">ซ่_อนแถบงานอัตโนมัติ</s:String>
     <s:String x:Key="lock_taskbar">_ล็อกแถบงาน</s:String>

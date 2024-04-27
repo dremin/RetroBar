@@ -30,7 +30,6 @@
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
     <s:String x:Key="show_window_previews">显示窗口预览 (缩略图) (_W)</s:String>
     <s:String x:Key="use_software_rendering">使用软件渲染 (_U)</s:String>
-    <s:String x:Key="middle_mouse_to_close">单击中键关闭任务栏项目 (_M)</s:String>
     <s:String x:Key="add_show_desktop_button">添加显示桌面按钮 (_D)</s:String>
     <s:String x:Key="enable_auto_hide">自动隐藏任务栏 (_U)</s:String>
     <s:String x:Key="lock_taskbar">锁定任务栏 (_L)</s:String>

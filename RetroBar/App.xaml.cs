@@ -70,7 +70,7 @@ namespace RetroBar
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "UseSoftwareRendering")
+            if (e.PropertyName == nameof(Settings.UseSoftwareRendering))
             {
                 if (Settings.Instance.UseSoftwareRendering)
                 {
@@ -81,7 +81,7 @@ namespace RetroBar
                     RenderOptions.ProcessRenderMode = RenderMode.Default;
                 }
             }
-            else if (e.PropertyName == "Theme" || e.PropertyName == "TaskbarScale")
+            else if (e.PropertyName == nameof(Settings.Theme) || e.PropertyName == nameof(Settings.TaskbarScale))
             {
                 setTaskIconSize();
             }

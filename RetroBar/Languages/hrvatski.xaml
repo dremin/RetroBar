@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
     <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena sličica)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Pritisak na srednju tipku miša zatvara stavke programske trake.</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj gumb za radnu površinu</s:String>
     <s:String x:Key="enable_auto_hide">Automatski sakrij programsku traku</s:String>
     <s:String x:Key="lock_taskbar">_Zaključaj programsku traku</s:String>

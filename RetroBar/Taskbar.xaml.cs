@@ -97,9 +97,9 @@ namespace RetroBar
 
         private void Taskbar_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "DpiScale")
+            if (e.PropertyName == nameof(DpiScale))
             {
-                OnPropertyChanged("IsScaled");
+                OnPropertyChanged(nameof(IsScaled));
             }
         }
 
@@ -182,7 +182,7 @@ namespace RetroBar
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Theme")
+            if (e.PropertyName == nameof(Settings.Theme))
             {
                 bool newTransparency = AppBarMode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
@@ -197,7 +197,7 @@ namespace RetroBar
                 PeekDuringAutoHide();
                 RecalculateSize();
             }
-            else if (e.PropertyName == "ShowQuickLaunch")
+            else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
             {
                 if (Settings.Instance.ShowQuickLaunch)
                 {
@@ -208,13 +208,13 @@ namespace RetroBar
                     QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 }
             }
-            else if (e.PropertyName == "Edge")
+            else if (e.PropertyName == nameof(Settings.Edge))
             {
                 PeekDuringAutoHide();
                 AppBarEdge = Settings.Instance.Edge;
                 SetScreenPosition();
             }
-            else if (e.PropertyName == "Language")
+            else if (e.PropertyName == nameof(Settings.Language))
             {
                 FlowDirection newFlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
 
@@ -225,7 +225,7 @@ namespace RetroBar
                     return;
                 }
             }
-            else if (e.PropertyName == "ShowDesktopButton")
+            else if (e.PropertyName == nameof(Settings.ShowDesktopButton))
             {
                 if (Settings.Instance.ShowDesktopButton)
                 {
@@ -236,13 +236,13 @@ namespace RetroBar
                     ShowDesktopButtonTray.Visibility = Visibility.Collapsed;
                 }
             }
-            else if (e.PropertyName == "TaskbarScale")
+            else if (e.PropertyName == nameof(Settings.TaskbarScale))
             {
                 PeekDuringAutoHide();
                 RecalculateSize();
-                OnPropertyChanged("IsScaled");
+                OnPropertyChanged(nameof(IsScaled));
             }
-            else if (e.PropertyName == "AutoHide")
+            else if (e.PropertyName == nameof(Settings.AutoHide))
             {
                 bool newTransparency = Settings.Instance.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
@@ -257,9 +257,9 @@ namespace RetroBar
                     windowManager.ReopenTaskbars();
                 }
             }
-            else if (e.PropertyName == "LockTaskbar")
+            else if (e.PropertyName == nameof(Settings.LockTaskbar))
             {
-                OnPropertyChanged("IsLocked");
+                OnPropertyChanged(nameof(IsLocked));
                 PeekDuringAutoHide();
                 RecalculateSize();
             }
@@ -475,7 +475,7 @@ namespace RetroBar
 
             if (AllowAutoHide != currentAutoHide)
             {
-                OnPropertyChanged("AllowAutoHide");
+                OnPropertyChanged(nameof(AllowAutoHide));
             }
         }
 
