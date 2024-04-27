@@ -1,14 +1,11 @@
 ﻿using ManagedShell.WindowsTray;
 using RetroBar.Utilities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RetroBar.Extensions
 {
     public static class NotifyIconExtensions
     {
-
         public static string GetInvertIdentifier(this NotifyIcon icon)
         {
             if (icon.GUID != default) return icon.GUID.ToString();
