@@ -334,6 +334,9 @@
                                       SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                       SelectionChanged="cboInvertIconsMode_SelectionChanged" />
                         </DockPanel>
+                        <Button HorizontalAlignment="Right"
+                                        Content="{DynamicResource customize}"
+                                        Click="CustomizeNotifications_OnClick" />
                     </StackPanel>
                     <GroupBox Header="{DynamicResource multiple_displays}"
                               Margin="0,0,0,10">

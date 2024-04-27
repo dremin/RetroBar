@@ -65,6 +65,7 @@
     <s:String x:Key="always_show">Always show</s:String>
     <s:String x:Key="name_heading">Name</s:String>
     <s:String x:Key="behavior_heading">Behavior</s:String>
+    <s:String x:Key="invert_heading">Invert</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
