@@ -320,6 +320,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource debug_logging}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbCheckForUpdates"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=Updates, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource check_for_updates}" />
+                        </CheckBox>
                         <DockPanel>
                             <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboInvertIconsMode}">
