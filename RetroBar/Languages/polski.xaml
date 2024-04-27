@@ -30,7 +30,6 @@
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
     <s:String x:Key="show_window_previews">Pokaż podgląd okien</s:String>
     <s:String x:Key="use_software_rendering">_Użyj renderowania oprogramowania</s:String>
-    <s:String x:Key="middle_mouse_to_close">Kliknij środkowym przyciskiem myszy, aby zamknąć element paska zadań</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj przycisk "pokaż pulpit"</s:String>
     <s:String x:Key="multiple_displays">Wiele monitorów</s:String>
     <s:String x:Key="show_tasks_on">Pokaż zadania na:</s:String>

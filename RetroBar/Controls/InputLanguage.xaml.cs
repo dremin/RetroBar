@@ -82,7 +82,7 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ShowInputLanguage")
+            if (e.PropertyName == nameof(Settings.ShowInputLanguage))
             {
                 if (Settings.Instance.ShowInputLanguage)
                 {

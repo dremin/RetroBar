@@ -68,12 +68,12 @@ namespace RetroBar
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "LockTaskbar")
+            if (e.PropertyName == nameof(Settings.LockTaskbar))
             {
-                OnPropertyChanged("IsLocked");
+                OnPropertyChanged(nameof(IsLocked));
                 LoadPreviewHeight();
             }
-            else if (e.PropertyName == "Theme")
+            else if (e.PropertyName == nameof(Settings.Theme))
             {
                 LoadPreviewHeight();
             }
@@ -245,7 +245,7 @@ namespace RetroBar
         {
             LoadVersion();
         }
-        
+
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboEdgeSelect.SelectedItem == null)
@@ -267,6 +267,14 @@ namespace RetroBar
             if (cboInvertIconsMode.SelectedItem == null)
             {
                 cboInvertIconsMode.SelectedValue = cboInvertIconsMode.Items[(int)Settings.Instance.InvertIconsMode];
+            }
+        }
+
+        private void cboMiddleMouseAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboMiddleMouseAction.SelectedItem == null)
+            {
+                cboMiddleMouseAction.SelectedValue = cboMiddleMouseAction.Items[(int)Settings.Instance.TaskMiddleClickAction];
             }
         }
 

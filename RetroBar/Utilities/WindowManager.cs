@@ -33,7 +33,7 @@ namespace RetroBar.Utilities
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "ShowMultiMon")
+            if (e.PropertyName == nameof(Settings.ShowMultiMon))
             {
                 // Update screen state in case it has changed since last checked
                 _screenState = AppBarScreen.FromAllScreens();

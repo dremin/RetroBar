@@ -10,12 +10,9 @@
     <AssemblyVersion>1.0.0.8</AssemblyVersion>
     <FileVersion>1.0.0.8</FileVersion>
     <ApplicationIcon>Resources\retrobar.ico</ApplicationIcon>
-	<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <Platforms>AnyCPU;x86;ARM64</Platforms>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net480'">
-    <LangVersion>8</LangVersion>
+    <LangVersion>12</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

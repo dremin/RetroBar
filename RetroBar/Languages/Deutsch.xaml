@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Schnellstart - Wähle ein Ordner</s:String>
     <s:String x:Key="show_window_previews">_Fenstervorschau anzeigen (Miniaturansichten)</s:String>
     <s:String x:Key="use_software_rendering">Software-Rendering verwenden</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Mittlere Maustaste verwenden, um Taskleistenelemente zu schließen</s:String>
     <s:String x:Key="add_show_desktop_button">"_Desktop anzeigen" als Schaltfläche anzeigen</s:String>
     <s:String x:Key="enable_auto_hide">Taskleiste a_utomatisch ausblenden</s:String>
     <s:String x:Key="lock_taskbar">Taskleiste _fixieren</s:String>

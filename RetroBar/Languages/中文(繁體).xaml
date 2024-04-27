@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">快速啟動 - 選擇一個資料夾</s:String>
     <s:String x:Key="show_window_previews">顯示視窗縮圖(_W)</s:String>
     <s:String x:Key="use_software_rendering">使用軟體渲染(_U)</s:String>
-    <s:String x:Key="middle_mouse_to_close">按下滑鼠中鍵來結束程式(_M)</s:String>
     <s:String x:Key="add_show_desktop_button">啟用「顯示桌面」按鈕</s:String>
     <s:String x:Key="enable_auto_hide">自動隱藏工作列(_U)</s:String>
     <s:String x:Key="lock_taskbar">鎖定工作列(_L)</s:String>

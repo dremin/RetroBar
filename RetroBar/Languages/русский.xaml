@@ -31,7 +31,6 @@
     <s:String x:Key="quick_launch_folder">Панель быстого запуска - выберите папку</s:String>
     <s:String x:Key="show_window_previews">Отобра_жать образцы окон (эскизы)</s:String>
     <s:String x:Key="use_software_rendering">Использовать п_рограммную отрисовку</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Закрывать элементы щелчком средней кнопки мыши</s:String>
     <s:String x:Key="add_show_desktop_button">Отображать кнопку "Показать _рабочий стол"</s:String>
     <s:String x:Key="enable_auto_hide">_Автоматически скрывать панель задач</s:String>
     <s:String x:Key="lock_taskbar">_Закрепить панель задач</s:String>

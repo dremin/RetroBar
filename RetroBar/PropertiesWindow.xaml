@@ -312,10 +312,6 @@
                                   Name="AutoStartCheckBox">
                             <Label Content="{DynamicResource autostart}" />
                         </CheckBox>
-                        <CheckBox x:Name="cbMiddleMouseToClose"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=MiddleMouseToClose, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource middle_mouse_to_close}" />
-                        </CheckBox>
                         <CheckBox x:Name="cbUseSoftwareRendering"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource use_software_rendering}" />
@@ -323,6 +319,10 @@
                         <CheckBox x:Name="cbDebugLogging"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource debug_logging}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbCheckForUpdates"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=Updates, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource check_for_updates}" />
                         </CheckBox>
                         <DockPanel>
                             <Label VerticalAlignment="Center"
@@ -333,6 +333,16 @@
                                       ItemsSource="{DynamicResource invert_system_icons_values}"
                                       SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                       SelectionChanged="cboInvertIconsMode_SelectionChanged" />
+                        </DockPanel>
+                        <DockPanel>
+                            <Label VerticalAlignment="Center"
+                                   Target="{Binding ElementName=cboMiddleMouseAction}">
+                                <AccessText Text="{DynamicResource middle_mouse_task_action}" />
+                            </Label>
+                            <ComboBox x:Name="cboMiddleMouseAction"
+                                      ItemsSource="{DynamicResource middle_mouse_task_action_values}"
+                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskMiddleClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                      SelectionChanged="cboMiddleMouseAction_SelectionChanged" />
                         </DockPanel>
                     </StackPanel>
                     <GroupBox Header="{DynamicResource multiple_displays}"

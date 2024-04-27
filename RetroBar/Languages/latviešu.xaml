@@ -30,7 +30,6 @@
     <s:String x:Key="quick_launch_folder">Ātrā palaišana — izvēlieties mapi</s:String>
     <s:String x:Key="show_window_previews">Rādīt lo_gu priekšskatījumus (sīktēlus)</s:String>
     <s:String x:Key="use_software_rendering">_Izmantojiet programmatūras renderēšanu</s:String>
-    <s:String x:Key="middle_mouse_to_close">_Noklikšķiniet uz vidējā pogas, lai aizvērtu uzdevumjoslas vienumus</s:String>
     <s:String x:Key="add_show_desktop_button">Pievienojiet pogu Rādīt _Darbvirsmu</s:String>
     <s:String x:Key="enable_auto_hide">A_utomātiski paslēpt uzdevumjoslu</s:String>
     <s:String x:Key="multiple_displays">Vairāki displeji</s:String>

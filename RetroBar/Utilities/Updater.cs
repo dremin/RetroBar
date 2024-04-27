@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace RetroBar.Utilities
 {
@@ -26,10 +27,34 @@ namespace RetroBar.Utilities
         {
             _currentVersion = (Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly()).GetName().Version;
 
-            updateCheck = new System.Timers.Timer(_initialInterval);
-            updateCheck.Elapsed += UpdateCheck_Elapsed;
-            updateCheck.AutoReset = true;
-            updateCheck.Start();
+            SetTimer();
+            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Settings.Updates))
+            {
+                SetTimer();
+            }
+        }
+
+        private void SetTimer()
+        {
+            if (Settings.Instance.Updates)
+            {
+                if (updateCheck == null)
+                {
+                    updateCheck = new System.Timers.Timer(_initialInterval);
+                    updateCheck.Elapsed += UpdateCheck_Elapsed;
+                    updateCheck.AutoReset = true;
+                }
+                updateCheck.Start();
+            }
+            else
+            {
+                updateCheck?.Stop();
+            }
         }
 
         private async void UpdateCheck_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -52,6 +77,7 @@ namespace RetroBar.Utilities
         public void Dispose()
         {
             updateCheck?.Stop();
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
 
         private async Task<bool> CheckForUpdate()
