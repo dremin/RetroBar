@@ -34,11 +34,19 @@ namespace RetroBar.Extensions
 
             if (currentSettingIndex >= 0)
             {
-                settings[currentSettingIndex] = new NotifyIconBehaviorSetting
+                if (behavior == NotifyIconBehavior.HideWhenInactive)
                 {
-                    Identifier = icon.Identifier,
-                    Behavior = behavior
-                };
+                    // Switching back to default value; remove from settings
+                    settings.RemoveAt(currentSettingIndex);
+                }
+                else
+                {
+                    settings[currentSettingIndex] = new NotifyIconBehaviorSetting
+                    {
+                        Identifier = icon.Identifier,
+                        Behavior = behavior
+                    };
+                }
             }
             else
             {
@@ -50,7 +58,24 @@ namespace RetroBar.Extensions
             }
 
             Settings.Instance.NotifyIconBehaviors = settings;
-            icon.OnPropertyChanged("IsPinned");
+
+            if (icon.IsPinned != (behavior == NotifyIconBehavior.AlwaysShow))
+            {
+                // Update pinned values in ManagedShell
+                if (behavior == NotifyIconBehavior.AlwaysShow)
+                {
+                    icon.Pin();
+                }
+                else
+                {
+                    icon.Unpin();
+                }
+            }
+            else
+            {
+                // Trigger a refresh of the collections
+                icon.OnPropertyChanged("IsPinned");
+            }
         }
 
         public static bool CanInvert(this NotifyIcon icon) {

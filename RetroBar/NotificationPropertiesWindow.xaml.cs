@@ -1,7 +1,6 @@
 ﻿using ManagedShell.WindowsTray;
 using RetroBar.Extensions;
 using RetroBar.Utilities;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -76,7 +75,6 @@ namespace RetroBar
                 }
 
                 notifyIcon.SetBehavior(behavior);
-                _notificationArea.SetPinnedIcons(Settings.Instance.NotifyIconBehaviors.Where(setting => setting.Behavior == NotifyIconBehavior.AlwaysShow).Select(setting => setting.Identifier).ToArray());
             }
         }
 
