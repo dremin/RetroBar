@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace RetroBar.Utilities
 {
-    public class SettingsManager<T> : INotifyPropertyChanged where T : new()
+    public class SettingsManager<T> : INotifyPropertyChanged where T : IMigratableSettings
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -48,6 +48,13 @@ namespace RetroBar.Utilities
 
                 string jsonString = File.ReadAllText(_fileName);
                 _settings = JsonSerializer.Deserialize<T>(jsonString);
+
+                if (_settings.MigrationPerformed)
+                {
+                    // Save post-migration state so that we don't need to migrate every startup
+                    SaveToFile();
+                }
+
                 return true;
             }
             catch (Exception ex)
@@ -83,5 +90,10 @@ namespace RetroBar.Utilities
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+    public interface IMigratableSettings
+    {
+        public bool MigrationPerformed { get; }
     }
 }

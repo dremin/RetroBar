@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace RetroBar.Utilities
 {
-    internal class Settings : INotifyPropertyChanged
+    internal class Settings : INotifyPropertyChanged, IMigratableSettings
     {
         private static Settings instance;
 
@@ -30,6 +30,8 @@ namespace RetroBar.Utilities
         private static bool _isInitializing = true;
         private static SettingsManager<Settings> _settingsManager = new(_settingsPath, new Settings());
 
+        private bool _migrationPerformed = false;
+        public bool MigrationPerformed { get => _migrationPerformed; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         // This should not be used directly! Unfortunately it must be public for JsonSerializer.
@@ -79,22 +81,6 @@ namespace RetroBar.Utilities
                 OnPropertyChanged(propertyName);
             }
         }
-
-        #region Old Properties
-        private bool? _middleMouseToClose = null;
-        public bool? MiddleMouseToClose
-        {
-            get => _middleMouseToClose;
-            set
-            {
-                if (value != null)
-                {
-                    _taskMiddleClickAction = (bool)value ? TaskMiddleClickOption.CloseTask : TaskMiddleClickOption.OpenNewInstance;
-                }
-                _middleMouseToClose = null;
-            }
-        }
-        #endregion
 
         #region Properties
         private string _language = "System";
@@ -301,6 +287,47 @@ namespace RetroBar.Utilities
             set => Set(ref _updates, value);
         }
         #endregion
+
+        #region Old Properties
+        public bool? MiddleMouseToClose
+        {
+            get => null;
+            set
+            {
+                // Migrate to TaskMiddleClickAction
+                if (value != null)
+                {
+                    TaskMiddleClickAction = (bool)value ? TaskMiddleClickOption.CloseTask : TaskMiddleClickOption.OpenNewInstance;
+                    _migrationPerformed = true;
+                }
+            }
+        }
+
+        public string[] PinnedNotifyIcons
+        {
+            get => [];
+            set
+            {
+                // Migrate to NotifyIconBehaviors
+                if (value.Length > 0)
+                {
+                    var newSettings = new List<NotifyIconBehaviorSetting>();
+
+                    foreach (var identifier in value)
+                    {
+                        newSettings.Add(new NotifyIconBehaviorSetting
+                        {
+                            Identifier = identifier,
+                            Behavior = NotifyIconBehavior.AlwaysShow
+                        });
+                    }
+
+                    NotifyIconBehaviors = newSettings;
+                    _migrationPerformed = true;
+                }
+            }
+        }
+        #endregion
     }
 
     #region Enums
@@ -334,9 +361,11 @@ namespace RetroBar.Utilities
     }
     #endregion
 
+    #region Structs
     public struct NotifyIconBehaviorSetting
     {
         public string Identifier {  get; set; }
         public NotifyIconBehavior Behavior { get; set; }
     }
+    #endregion
 }
