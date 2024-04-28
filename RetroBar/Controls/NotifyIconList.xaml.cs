@@ -51,12 +51,12 @@ namespace RetroBar.Controls
                     NotifyIcons.ItemsSource = allNotifyIconsSource.View;
                 }
             }
-            else if (e.PropertyName == nameof(Settings.InvertIconsMode))
+            else if (e.PropertyName == nameof(Settings.InvertIconsMode) || e.PropertyName == nameof(Settings.InvertNotifyIcons))
             {
                 // Reload icons
                 NotifyIcons.ItemsSource = null;
 
-                if (Settings.Instance.CollapseNotifyIcons)
+                if (Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true)
                 {
                     NotifyIcons.ItemsSource = pinnedNotifyIconsSource.View;
                 }

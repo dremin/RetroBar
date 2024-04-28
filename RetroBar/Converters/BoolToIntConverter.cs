@@ -10,7 +10,12 @@ namespace RetroBar.Converters
         {
             if (value is bool boolValue)
             {
-                return boolValue ? 1 : 0;
+                var multiplier = 1;
+                if (parameter is string strValue)
+                {
+                    multiplier = System.Convert.ToInt32(strValue);
+                }
+                return boolValue ? 1 * multiplier : 0;
             }
 
             return Binding.DoNothing;

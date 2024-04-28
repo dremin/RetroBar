@@ -1,4 +1,6 @@
 ﻿using ManagedShell.AppBar;
+using ManagedShell.Common.Helpers;
+using ManagedShell.WindowsTray;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -165,6 +167,13 @@ namespace RetroBar.Utilities
             set => Set(ref _collapseNotifyIcons, value);
         }
 
+        private List<string> _invertNotifyIcons = new List<string> { NotificationArea.HARDWARE_GUID, NotificationArea.UPDATE_GUID, NotificationArea.MICROPHONE_GUID, NotificationArea.LOCATION_GUID, NotificationArea.MEETNOW_GUID, NotificationArea.NETWORK_GUID, NotificationArea.POWER_GUID, NotificationArea.VOLUME_GUID };
+        public List<string> InvertNotifyIcons
+        {
+            get => _invertNotifyIcons;
+            set => Set(ref _invertNotifyIcons, value);
+        }
+
         private string[] _pinnedNotifyIcons = ["7820ae76-23e3-4229-82c1-e41cb67d5b9c", "7820ae75-23e3-4229-82c1-e41cb67d5b9c", "7820ae74-23e3-4229-82c1-e41cb67d5b9c", "7820ae73-23e3-4229-82c1-e41cb67d5b9c"];
         public string[] PinnedNotifyIcons
         {
@@ -242,7 +251,7 @@ namespace RetroBar.Utilities
             set => Set(ref _lockTaskbar, value);
         }
 
-        private InvertIconsOption _invertIconsMode = InvertIconsOption.WhenNeededByTheme;
+        private InvertIconsOption _invertIconsMode = EnvironmentHelper.IsWindows10OrBetter ? InvertIconsOption.WhenNeededByTheme : InvertIconsOption.Never;
         public InvertIconsOption InvertIconsMode
         {
             get => _invertIconsMode;
