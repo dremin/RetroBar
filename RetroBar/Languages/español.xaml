@@ -71,6 +71,7 @@
     <s:String x:Key="always_show">Mostrar siempre</s:String>
     <s:String x:Key="name_heading">Nombre</s:String>
     <s:String x:Key="behavior_heading">Comportamiento</s:String>
+    <s:String x:Key="invert_heading">Invertir</s:String>
 
     <s:String x:Key="start_text">Inicio</s:String>
     <s:String x:Key="start_text_xp">Inicio</s:String>
