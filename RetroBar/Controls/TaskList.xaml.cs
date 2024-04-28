@@ -98,7 +98,7 @@ namespace RetroBar.Controls
             }
             else if (e.PropertyName == nameof(Settings.ShowMultiMon))
             {
-                if (Settings.Instance.MultiMonMode != Settings.MultiMonOption.AllTaskbars)
+                if (Settings.Instance.MultiMonMode != MultiMonOption.AllTaskbars)
                 {
                     taskbarItems?.Refresh();
                 }
@@ -114,12 +114,12 @@ namespace RetroBar.Controls
                     return false;
                 }
 
-                if (!Settings.Instance.ShowMultiMon || Settings.Instance.MultiMonMode == Settings.MultiMonOption.AllTaskbars)
+                if (!Settings.Instance.ShowMultiMon || Settings.Instance.MultiMonMode == MultiMonOption.AllTaskbars)
                 {
                     return true;
                 }
 
-                if (Settings.Instance.MultiMonMode == Settings.MultiMonOption.SameAsWindowAndPrimary && Host.Screen.Primary)
+                if (Settings.Instance.MultiMonMode == MultiMonOption.SameAsWindowAndPrimary && Host.Screen.Primary)
                 {
                     return true;
                 }

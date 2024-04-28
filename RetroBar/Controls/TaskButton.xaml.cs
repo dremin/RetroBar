@@ -178,11 +178,11 @@ namespace RetroBar.Controls
         {
             if (e.ChangedButton == MouseButton.Middle)
             {
-                if (Window == null || Settings.Instance.TaskMiddleClickAction == Settings.TaskMiddleClickOption.DoNothing)
+                if (Window == null || Settings.Instance.TaskMiddleClickAction == TaskMiddleClickOption.DoNothing)
                 {
                     return;
                 }
-                if (Settings.Instance.TaskMiddleClickAction == Settings.TaskMiddleClickOption.CloseTask)
+                if (Settings.Instance.TaskMiddleClickAction == TaskMiddleClickOption.CloseTask)
                 {
                     Window?.Close();
                 }

@@ -174,11 +174,33 @@ namespace RetroBar.Utilities
             set => Set(ref _invertNotifyIcons, value);
         }
 
-        private string[] _pinnedNotifyIcons = ["7820ae76-23e3-4229-82c1-e41cb67d5b9c", "7820ae75-23e3-4229-82c1-e41cb67d5b9c", "7820ae74-23e3-4229-82c1-e41cb67d5b9c", "7820ae73-23e3-4229-82c1-e41cb67d5b9c"];
-        public string[] PinnedNotifyIcons
+        private List<NotifyIconBehaviorSetting> _notifyIconBehaviors = new List<NotifyIconBehaviorSetting>
         {
-            get => _pinnedNotifyIcons;
-            set => Set(ref _pinnedNotifyIcons, value);
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.HEALTH_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.POWER_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.NETWORK_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.VOLUME_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+        };
+        public List<NotifyIconBehaviorSetting> NotifyIconBehaviors
+        {
+            get => _notifyIconBehaviors;
+            set => Set(ref _notifyIconBehaviors, value);
         }
 
         private bool _allowFontSmoothing = false;
@@ -279,28 +301,42 @@ namespace RetroBar.Utilities
             set => Set(ref _updates, value);
         }
         #endregion
+    }
 
-        #region Enums
-        public enum InvertIconsOption
-        {
-            WhenNeededByTheme,
-            Always,
-            Never
-        }
+    #region Enums
+    public enum InvertIconsOption
+    {
+        WhenNeededByTheme,
+        Always,
+        Never
+    }
 
-        public enum MultiMonOption
-        {
-            AllTaskbars,
-            SameAsWindow,
-            SameAsWindowAndPrimary
-        }
+    public enum MultiMonOption
+    {
+        AllTaskbars,
+        SameAsWindow,
+        SameAsWindowAndPrimary
+    }
 
-        public enum TaskMiddleClickOption
-        {
-            DoNothing,
-            OpenNewInstance,
-            CloseTask
-        }
-        #endregion
+    public enum TaskMiddleClickOption
+    {
+        DoNothing,
+        OpenNewInstance,
+        CloseTask
+    }
+
+    public enum NotifyIconBehavior
+    {
+        HideWhenInactive,
+        AlwaysHide,
+        AlwaysShow,
+        Disabled
+    }
+    #endregion
+
+    public struct NotifyIconBehaviorSetting
+    {
+        public string Identifier {  get; set; }
+        public NotifyIconBehavior Behavior { get; set; }
     }
 }
