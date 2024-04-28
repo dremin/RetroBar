@@ -45,16 +45,11 @@
             </TextBlock>
         </Grid>
         <Button.ContextMenu>
-            <ContextMenu>
+            <controls:ContextMenu>
                 <MenuItem Header="{DynamicResource restore}"
                           Click="RestoreMenuItem_OnClick"
-                          Name="RestoreMenuItem">
-                    <MenuItem.Icon>
-                        <TextBlock FontFamily="Marlett"
-                                   Text="&#x32;"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </MenuItem.Icon>
+                          Name="RestoreMenuItem"
+                          Style="{DynamicResource RestoreMenuItem}">
                 </MenuItem>
                 <MenuItem Header="{DynamicResource move}"
                           Click="MoveMenuItem_OnClick"
@@ -93,7 +88,7 @@
                                    VerticalAlignment="Center" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </ContextMenu>
+            </controls:ContextMenu>
         </Button.ContextMenu>
         <Button.ToolTip>
             <ToolTip>
