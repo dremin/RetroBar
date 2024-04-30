@@ -69,6 +69,8 @@
     <s:String x:Key="customize_notifications_instruction">Seleccione un elemento y elija el comportamiento de notificación correspondiente:</s:String>
     <s:String x:Key="hide_when_inactive">Ocultar cuando esté inactivo</s:String>
     <s:String x:Key="always_show">Mostrar siempre</s:String>
+    <s:String x:Key="always_hide">Ocultar siempre</s:String>
+    <s:String x:Key="remove">Quitar</s:String>
     <s:String x:Key="name_heading">Nombre</s:String>
     <s:String x:Key="behavior_heading">Comportamiento</s:String>
     <s:String x:Key="invert_heading">Invertir</s:String>
