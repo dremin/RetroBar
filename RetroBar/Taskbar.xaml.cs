@@ -267,38 +267,6 @@ namespace RetroBar
 
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
         {
-            // primarily for win7/8, they will set up the appbar correctly but then put it in the wrong place
-            if (Orientation == Orientation.Vertical)
-            {
-                double desiredLeft = 0;
-
-                if (AppBarEdge == AppBarEdge.Left)
-                {
-                    desiredLeft = Screen.Bounds.Left / DpiScale;
-                }
-                else if (AppBarEdge == AppBarEdge.Right)
-                {
-                    desiredLeft = Screen.Bounds.Right / DpiScale - DesiredWidth;
-                }
-
-                if (Left != desiredLeft) Left = desiredLeft;
-            }
-            else
-            {
-                double desiredTop = 0;
-
-                if (AppBarEdge == AppBarEdge.Top)
-                {
-                    desiredTop = Screen.Bounds.Top / DpiScale;
-                }
-                else if (AppBarEdge == AppBarEdge.Bottom)
-                {
-                    desiredTop = Screen.Bounds.Bottom / DpiScale - DesiredHeight;
-                }
-
-                if (Top != desiredTop) Top = desiredTop;
-            }
-
             UpdateTrayPosition();
             StartButton?.UpdateFloatingStartCoordinates();
         }
