@@ -70,7 +70,7 @@
     <s:String x:Key="hide_when_inactive">Hide when inactive</s:String>
     <s:String x:Key="always_show">Always show</s:String>
     <s:String x:Key="always_hide">Always hide</s:String>
-    <s:String x:Key="disabled">Disabled</s:String>
+    <s:String x:Key="remove">Remove</s:String>
     <s:String x:Key="name_heading">Name</s:String>
     <s:String x:Key="behavior_heading">Behavior</s:String>
     <s:String x:Key="invert_heading">Invert</s:String>

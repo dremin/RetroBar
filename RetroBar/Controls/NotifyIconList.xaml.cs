@@ -111,7 +111,7 @@ namespace RetroBar.Controls
         {
             if (obj is ManagedShell.WindowsTray.NotifyIcon notifyIcon)
             {
-                return !notifyIcon.IsPinned && !notifyIcon.IsHidden && notifyIcon.GetBehavior() != NotifyIconBehavior.Disabled;
+                return !notifyIcon.IsPinned && !notifyIcon.IsHidden && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
             }
 
             return true;
