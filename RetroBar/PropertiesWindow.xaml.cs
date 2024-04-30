@@ -41,6 +41,12 @@ namespace RetroBar
             get => Orientation.Horizontal;
         }
 
+        // Previews should always assume normal mode
+        public AppBarMode AppBarMode
+        {
+            get => AppBarMode.Normal;
+        }
+
         // Previews should reflect the locked setting
         public bool IsLocked
         {

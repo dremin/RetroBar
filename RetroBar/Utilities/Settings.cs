@@ -280,11 +280,11 @@ namespace RetroBar.Utilities
             set => SetEnum(ref _taskMiddleClickAction, value);
         }
 
-        private bool _updates = true;
-        public bool Updates
+        private bool _checkForUpdates = true;
+        public bool CheckForUpdates
         {
-            get => _updates;
-            set => Set(ref _updates, value);
+            get => _checkForUpdates;
+            set => Set(ref _checkForUpdates, value);
         }
         #endregion
 
@@ -357,7 +357,7 @@ namespace RetroBar.Utilities
         HideWhenInactive,
         AlwaysHide,
         AlwaysShow,
-        Disabled
+        Remove
     }
     #endregion
 

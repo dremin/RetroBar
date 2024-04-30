@@ -111,7 +111,7 @@
                                                             <Setter Property="Text" Value="{DynamicResource always_show}" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Converter={StaticResource notifyIconBehaviorConverter}}" Value="3">
-                                                            <Setter Property="Text" Value="{DynamicResource disabled}" />
+                                                            <Setter Property="Text" Value="{DynamicResource remove}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -124,7 +124,7 @@
                                             <ComboBoxItem Content="{DynamicResource hide_when_inactive}" Tag="{x:Static Settings:NotifyIconBehavior.HideWhenInactive}" />
                                             <ComboBoxItem Content="{DynamicResource always_hide}" Tag="{x:Static Settings:NotifyIconBehavior.AlwaysHide}" />
                                             <ComboBoxItem Content="{DynamicResource always_show}" Tag="{x:Static Settings:NotifyIconBehavior.AlwaysShow}" />
-                                            <ComboBoxItem Content="{DynamicResource disabled}" Tag="{x:Static Settings:NotifyIconBehavior.Disabled}" />
+                                            <ComboBoxItem Content="{DynamicResource remove}" Tag="{x:Static Settings:NotifyIconBehavior.Remove}" />
                                         </ComboBox>
                                     </StackPanel>
                                     <DataTemplate.Triggers>

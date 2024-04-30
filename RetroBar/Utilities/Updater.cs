@@ -33,7 +33,7 @@ namespace RetroBar.Utilities
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.Updates))
+            if (e.PropertyName == nameof(Settings.CheckForUpdates))
             {
                 SetTimer();
             }
@@ -41,7 +41,7 @@ namespace RetroBar.Utilities
 
         private void SetTimer()
         {
-            if (Settings.Instance.Updates)
+            if (Settings.Instance.CheckForUpdates)
             {
                 if (updateCheck == null)
                 {
