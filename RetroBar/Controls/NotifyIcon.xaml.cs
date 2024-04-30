@@ -34,7 +34,7 @@ namespace RetroBar.Controls
 
         private void applyEffects()
         {
-            if (TrayIcon == null || Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.Never)
+            if (TrayIcon == null || Settings.Instance.InvertIconsMode == InvertIconsOption.Never)
             {
                 return;
             }
@@ -45,7 +45,7 @@ namespace RetroBar.Controls
             }
 
             bool invertByTheme = Application.Current.FindResource("InvertSystemNotifyIcons") as bool? ?? false;
-            bool performInvert = invertByTheme || Settings.Instance.InvertIconsMode == Settings.InvertIconsOption.Always;
+            bool performInvert = invertByTheme || Settings.Instance.InvertIconsMode == InvertIconsOption.Always;
 
             if (NotifyIconImage.Effect == null != performInvert)
             {
@@ -102,6 +102,11 @@ namespace RetroBar.Controls
         private void TrayIcon_NotificationBalloonShown(object sender, NotificationBalloonEventArgs e)
         {
             if (Host == null || !Host.Screen.Primary)
+            {
+                return;
+            }
+
+            if (TrayIcon == null || TrayIcon.GetBehavior() == NotifyIconBehavior.AlwaysHide || TrayIcon.GetBehavior() == NotifyIconBehavior.Disabled)
             {
                 return;
             }

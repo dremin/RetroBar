@@ -27,7 +27,7 @@ namespace RetroBar
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "InvertNotifyIcons")
+            if (e.PropertyName == nameof(Settings.InvertNotifyIcons) || e.PropertyName == nameof(Settings.NotifyIconBehaviors))
             {
                 // Reload icons
                 DataContext = null;
@@ -63,7 +63,19 @@ namespace RetroBar
 
         private void BehaviorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Settings.Instance.PinnedNotifyIcons = _notificationArea.PinnedNotifyIcons;
+            if (e.AddedItems.Count > 0 && 
+                (sender as FrameworkElement).DataContext is NotifyIcon notifyIcon && 
+                e.AddedItems[0] is ComboBoxItem selected && 
+                selected.Tag is NotifyIconBehavior behavior)
+            {
+                if (notifyIcon.GetBehavior() == behavior)
+                {
+                    // Same setting selected; do nothing
+                    return;
+                }
+
+                notifyIcon.SetBehavior(behavior);
+            }
         }
 
         private void InvertCheckBox_Checked(object sender, RoutedEventArgs e)

@@ -15,6 +15,7 @@
             <converters:BoolToIntConverter x:Key="boolToIntConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <converters:NewLineToSpaceConverter x:Key="newLineToSpaceConverter" />
+            <converters:NotifyIconBehaviorConverter x:Key="notifyIconBehaviorConverter" />
             <converters:NotifyIconCanInvertConverter x:Key="notifyIconCanInvertConverter" />
             <Style TargetType="{x:Type ComboBox}">
                 <Setter Property="HorizontalAlignment"
@@ -100,22 +101,30 @@
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsPinned}" Value="True">
+                                                        <DataTrigger Binding="{Binding Converter={StaticResource notifyIconBehaviorConverter}}" Value="0">
+                                                            <Setter Property="Text" Value="{DynamicResource hide_when_inactive}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Converter={StaticResource notifyIconBehaviorConverter}}" Value="1">
+                                                            <Setter Property="Text" Value="{DynamicResource always_hide}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Converter={StaticResource notifyIconBehaviorConverter}}" Value="2">
                                                             <Setter Property="Text" Value="{DynamicResource always_show}" />
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsPinned}" Value="False">
-                                                            <Setter Property="Text" Value="{DynamicResource hide_when_inactive}" />
+                                                        <DataTrigger Binding="{Binding Converter={StaticResource notifyIconBehaviorConverter}}" Value="3">
+                                                            <Setter Property="Text" Value="{DynamicResource disabled}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBlock.Style>
                                         </TextBlock>
                                         <ComboBox Name="BehaviorComboBox"
-                                                  SelectedIndex="{Binding IsPinned, Converter={StaticResource boolToIntConverter}}"
+                                                  SelectedIndex="{Binding Mode=OneWay, Converter={StaticResource notifyIconBehaviorConverter}}"
                                                   SelectionChanged="BehaviorComboBox_SelectionChanged"
                                                   Visibility="Collapsed">
-                                            <ComboBoxItem Content="{DynamicResource hide_when_inactive}" />
-                                            <ComboBoxItem Content="{DynamicResource always_show}" />
+                                            <ComboBoxItem Content="{DynamicResource hide_when_inactive}" Tag="{x:Static Settings:NotifyIconBehavior.HideWhenInactive}" />
+                                            <ComboBoxItem Content="{DynamicResource always_hide}" Tag="{x:Static Settings:NotifyIconBehavior.AlwaysHide}" />
+                                            <ComboBoxItem Content="{DynamicResource always_show}" Tag="{x:Static Settings:NotifyIconBehavior.AlwaysShow}" />
+                                            <ComboBoxItem Content="{DynamicResource disabled}" Tag="{x:Static Settings:NotifyIconBehavior.Disabled}" />
                                         </ComboBox>
                                     </StackPanel>
                                     <DataTemplate.Triggers>

@@ -11,6 +11,7 @@ using ManagedShell.Common.Enums;
 using System.Diagnostics;
 using System.Reflection;
 using ManagedShell.Common.Logging;
+using System.Linq;
 
 namespace RetroBar
 {
@@ -110,7 +111,7 @@ namespace RetroBar
             _logger = new ManagedShellLogger();
 
             ShellConfig config = ShellManager.DefaultShellConfig;
-            config.PinnedNotifyIcons = Settings.Instance.PinnedNotifyIcons;
+            config.PinnedNotifyIcons = Settings.Instance.NotifyIconBehaviors.Where(setting => setting.Behavior == NotifyIconBehavior.AlwaysShow).Select(setting => setting.Identifier).ToArray();
 
             return new ShellManager(config);
         }

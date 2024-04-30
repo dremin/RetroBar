@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace RetroBar.Utilities
 {
-    internal class Settings : INotifyPropertyChanged
+    internal class Settings : INotifyPropertyChanged, IMigratableSettings
     {
         private static Settings instance;
 
@@ -30,6 +30,8 @@ namespace RetroBar.Utilities
         private static bool _isInitializing = true;
         private static SettingsManager<Settings> _settingsManager = new(_settingsPath, new Settings());
 
+        private bool _migrationPerformed = false;
+        public bool MigrationPerformed { get => _migrationPerformed; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         // This should not be used directly! Unfortunately it must be public for JsonSerializer.
@@ -79,22 +81,6 @@ namespace RetroBar.Utilities
                 OnPropertyChanged(propertyName);
             }
         }
-
-        #region Old Properties
-        private bool? _middleMouseToClose = null;
-        public bool? MiddleMouseToClose
-        {
-            get => _middleMouseToClose;
-            set
-            {
-                if (value != null)
-                {
-                    _taskMiddleClickAction = (bool)value ? TaskMiddleClickOption.CloseTask : TaskMiddleClickOption.OpenNewInstance;
-                }
-                _middleMouseToClose = null;
-            }
-        }
-        #endregion
 
         #region Properties
         private string _language = "System";
@@ -174,11 +160,33 @@ namespace RetroBar.Utilities
             set => Set(ref _invertNotifyIcons, value);
         }
 
-        private string[] _pinnedNotifyIcons = ["7820ae76-23e3-4229-82c1-e41cb67d5b9c", "7820ae75-23e3-4229-82c1-e41cb67d5b9c", "7820ae74-23e3-4229-82c1-e41cb67d5b9c", "7820ae73-23e3-4229-82c1-e41cb67d5b9c"];
-        public string[] PinnedNotifyIcons
+        private List<NotifyIconBehaviorSetting> _notifyIconBehaviors = new List<NotifyIconBehaviorSetting>
         {
-            get => _pinnedNotifyIcons;
-            set => Set(ref _pinnedNotifyIcons, value);
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.HEALTH_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.POWER_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.NETWORK_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+            new NotifyIconBehaviorSetting
+            {
+                Identifier = NotificationArea.VOLUME_GUID,
+                Behavior = NotifyIconBehavior.AlwaysShow
+            },
+        };
+        public List<NotifyIconBehaviorSetting> NotifyIconBehaviors
+        {
+            get => _notifyIconBehaviors;
+            set => Set(ref _notifyIconBehaviors, value);
         }
 
         private bool _allowFontSmoothing = false;
@@ -280,27 +288,84 @@ namespace RetroBar.Utilities
         }
         #endregion
 
-        #region Enums
-        public enum InvertIconsOption
+        #region Old Properties
+        public bool? MiddleMouseToClose
         {
-            WhenNeededByTheme,
-            Always,
-            Never
+            get => null;
+            set
+            {
+                // Migrate to TaskMiddleClickAction
+                if (value != null)
+                {
+                    TaskMiddleClickAction = (bool)value ? TaskMiddleClickOption.CloseTask : TaskMiddleClickOption.OpenNewInstance;
+                    _migrationPerformed = true;
+                }
+            }
         }
 
-        public enum MultiMonOption
+        public string[] PinnedNotifyIcons
         {
-            AllTaskbars,
-            SameAsWindow,
-            SameAsWindowAndPrimary
-        }
+            get => [];
+            set
+            {
+                // Migrate to NotifyIconBehaviors
+                if (value.Length > 0)
+                {
+                    var newSettings = new List<NotifyIconBehaviorSetting>();
 
-        public enum TaskMiddleClickOption
-        {
-            DoNothing,
-            OpenNewInstance,
-            CloseTask
+                    foreach (var identifier in value)
+                    {
+                        newSettings.Add(new NotifyIconBehaviorSetting
+                        {
+                            Identifier = identifier,
+                            Behavior = NotifyIconBehavior.AlwaysShow
+                        });
+                    }
+
+                    NotifyIconBehaviors = newSettings;
+                    _migrationPerformed = true;
+                }
+            }
         }
         #endregion
     }
+
+    #region Enums
+    public enum InvertIconsOption
+    {
+        WhenNeededByTheme,
+        Always,
+        Never
+    }
+
+    public enum MultiMonOption
+    {
+        AllTaskbars,
+        SameAsWindow,
+        SameAsWindowAndPrimary
+    }
+
+    public enum TaskMiddleClickOption
+    {
+        DoNothing,
+        OpenNewInstance,
+        CloseTask
+    }
+
+    public enum NotifyIconBehavior
+    {
+        HideWhenInactive,
+        AlwaysHide,
+        AlwaysShow,
+        Disabled
+    }
+    #endregion
+
+    #region Structs
+    public struct NotifyIconBehaviorSetting
+    {
+        public string Identifier {  get; set; }
+        public NotifyIconBehavior Behavior { get; set; }
+    }
+    #endregion
 }

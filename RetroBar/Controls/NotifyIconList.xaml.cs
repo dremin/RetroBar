@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
 using ManagedShell.WindowsTray;
+using RetroBar.Extensions;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -75,6 +76,7 @@ namespace RetroBar.Controls
                 allNotifyIcons.Add(new CollectionContainer { Collection = NotificationArea.UnpinnedIcons });
                 allNotifyIcons.Add(new CollectionContainer { Collection = NotificationArea.PinnedIcons });
                 allNotifyIconsSource = new CollectionViewSource { Source = allNotifyIcons };
+                NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
 
                 CompositeCollection pinnedNotifyIcons = new CompositeCollection();
                 pinnedNotifyIcons.Add(new CollectionContainer { Collection = promotedIcons });
@@ -105,6 +107,16 @@ namespace RetroBar.Controls
             }
         }
 
+        private bool UnpinnedNotifyIcons_Filter(object obj)
+        {
+            if (obj is ManagedShell.WindowsTray.NotifyIcon notifyIcon)
+            {
+                return !notifyIcon.IsPinned && !notifyIcon.IsHidden && notifyIcon.GetBehavior() != NotifyIconBehavior.Disabled;
+            }
+
+            return true;
+        }
+
         private void NotificationArea_NotificationBalloonShown(object sender, NotificationBalloonEventArgs e)
         {
             // This is used to promote unpinned icons to show when the tray is collapsed.
@@ -119,6 +131,12 @@ namespace RetroBar.Controls
             if (NotificationArea.PinnedIcons.Contains(notifyIcon))
             {
                 // Do not promote pinned icons (they're already there!)
+                return;
+            }
+
+            if (notifyIcon.GetBehavior() != NotifyIconBehavior.HideWhenInactive)
+            {
+                // Do not promote icons that are always hidden
                 return;
             }
 
