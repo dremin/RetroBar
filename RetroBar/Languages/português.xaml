@@ -7,7 +7,7 @@
     <s:String x:Key="advanced_tab">Avançado</s:String>
     <s:String x:Key="taskbar_appearance">Aparência da barra de tarefas</s:String>
     <s:String x:Key="notification_area">Área de notificação</s:String>
-    <s:String x:Key="autostart">Iniciar automaticamente no _logon</s:String>
+    <s:String x:Key="autostart">Iniciar _automaticamente no logon</s:String>
     <s:String x:Key="language_text">Idio_ma:</s:String>
     <s:String x:Key="language_tip">Seleciona o idioma a ser usado.</s:String>
     <s:String x:Key="theme_text">_Tema:</s:String>
@@ -36,7 +36,7 @@
     <s:String x:Key="enable_auto_hide">_Ocultar automaticamente a barra de tarefas</s:String>
     <s:String x:Key="lock_taskbar">_Bloquear a barra de tarefas</s:String>
     <s:String x:Key="multiple_displays">Vários monitores</s:String>
-    <s:String x:Key="show_tasks_on">Mostrar tare_fas em:</s:String>
+    <s:String x:Key="show_tasks_on">Mostrar _tarefas em:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Todas as barras de tarefas</s:String>
         <s:String>Mesma barra de tarefas que a janela</s:String>
@@ -48,6 +48,12 @@
         <s:String>Sempre</s:String>
         <s:String>Nunca</s:String>
     </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Ação do _clique com o botão do meio do mouse:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Não fazer nada</s:String>
+        <s:String>Abrir uma nova instância</s:String>
+        <s:String>Fechar a tarefa</s:String>
+    </x:Array>
     <s:String x:Key="version">Versão {0}</s:String>
     <s:String x:Key="visit_on_github">Visite RetroBar no GitHub</s:String>
     <s:String x:Key="taskbar_scale">Escala da barra de tarefas</s:String>
@@ -55,6 +61,7 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Configuração atual: {0}%</s:String>
     <s:String x:Key="debug_logging">Habilitar logging de depuração</s:String>
+    <s:String x:Key="check_for_updates">Verificar se há atualizações</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificações</s:String>
@@ -62,8 +69,11 @@
     <s:String x:Key="customize_notifications_instruction">Selecione um item e escolha seu comportamento de notificação:</s:String>
     <s:String x:Key="hide_when_inactive">Ocultar quando inativo</s:String>
     <s:String x:Key="always_show">Sempre mostrar</s:String>
+    <s:String x:Key="always_hide">Sempre ocultar</s:String>
+    <s:String x:Key="remove">Remover</s:String>
     <s:String x:Key="name_heading">Nome</s:String>
     <s:String x:Key="behavior_heading">Comportamento</s:String>
+    <s:String x:Key="invert_heading">Inverter</s:String>
 
     <s:String x:Key="start_text">Iniciar</s:String>
     <s:String x:Key="start_text_xp">Iniciar</s:String>
