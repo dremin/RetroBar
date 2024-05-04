@@ -7,7 +7,7 @@
     <s:String x:Key="advanced_tab">Speciális</s:String>
     <s:String x:Key="autostart">Automatikus indítás _bejelentkezéskor</s:String>
     <s:String x:Key="language_text">_Nyelv:</s:String>
-    <s:String x:Key="language_tip">Vélaszd ki a használni kívánt nyelvet.</s:String>
+    <s:String x:Key="language_tip">Válaszd ki a használni kívánt nyelvet.</s:String>
     <s:String x:Key="theme_text">_Téma:</s:String>
     <s:String x:Key="theme_tip">A témákat a Themes mappába telepítsd.</s:String>
     <s:String x:Key="location_text">H_ely:</s:String>
