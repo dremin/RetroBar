@@ -29,6 +29,7 @@
     <s:String x:Key="show_quick_launch">_Schnellstartleiste anzeigen</s:String>
     <s:String x:Key="select_location">Ort auswählen...</s:String>
     <s:String x:Key="quick_launch_folder">Schnellstart - Wähle ein Ordner</s:String>
+    <s:String x:Key="show_badges">_Badges anzeigen</s:String>
     <s:String x:Key="show_window_previews">_Fenstervorschau anzeigen (Miniaturansichten)</s:String>
     <s:String x:Key="use_software_rendering">Software-Rendering verwenden</s:String>
     <s:String x:Key="add_show_desktop_button">"_Desktop anzeigen" als Schaltfläche anzeigen</s:String>
@@ -47,6 +48,12 @@
         <s:String>Immer</s:String>
         <s:String>Niemals</s:String>
     </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Mittelklick-Aktion:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Nichts tun</s:String>
+        <s:String>Eine neue Instanz öffnen</s:String>
+        <s:String>Task schließen</s:String>
+    </x:Array>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBar auf GitHub besuchen</s:String>
     <s:String x:Key="taskbar_scale">Skalierung der Taskleiste</s:String>
@@ -54,6 +61,7 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Aktuelle Einstellung: {0}%</s:String>
     <s:String x:Key="debug_logging">Debug-Protokollierung aktivieren</s:String>
+    <s:String x:Key="check_for_updates">Auf Updates prüfen</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
@@ -61,8 +69,11 @@
     <s:String x:Key="customize_notifications_instruction">Markieren Sie ein Element und wählen Sie dessen Verhalten im Infobereich:</s:String>
     <s:String x:Key="hide_when_inactive">Ausblenden wenn inaktiv</s:String>
     <s:String x:Key="always_show">Immer einblenden</s:String>
+    <s:String x:Key="always_hide">Immer ausblenden</s:String>
+    <s:String x:Key="remove">Entfernen</s:String>
     <s:String x:Key="name_heading">Name</s:String>
     <s:String x:Key="behavior_heading">Verhalten</s:String>
+    <s:String x:Key="invert_heading">Umkehren</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
