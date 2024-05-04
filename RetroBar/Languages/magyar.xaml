@@ -7,15 +7,15 @@
     <s:String x:Key="advanced_tab">Speciális</s:String>
     <s:String x:Key="autostart">Automatikus indítás _bejelentkezéskor</s:String>
     <s:String x:Key="language_text">_Nyelv:</s:String>
-    <s:String x:Key="language_tip">Vélaszd ki a használni kívánt nyelvet.</s:String>
+    <s:String x:Key="language_tip">Válaszd ki a használni kívánt nyelvet.</s:String>
     <s:String x:Key="theme_text">_Téma:</s:String>
     <s:String x:Key="theme_tip">A témákat a Themes mappába telepítsd.</s:String>
     <s:String x:Key="location_text">H_ely:</s:String>
     <s:String x:Key="location_tip">Tálca elhelyezkedésének megváltoztatása a képernyőn.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
-        <s:String>Bal oldalt</s:String>
+        <s:String>Baloldalt</s:String>
         <s:String>Fent</s:String>
-        <s:String>Jobb oldalt</s:String>
+        <s:String>Jobboldalt</s:String>
         <s:String>Lent</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Betűsimítás engedélyezése</s:String>
