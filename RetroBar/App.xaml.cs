@@ -57,6 +57,7 @@ namespace RetroBar
             DictionaryManager.SetLanguageFromSettings();
             loadTheme();
             _windowManager = new WindowManager(_shellManager, _startMenuMonitor, _updater);
+            Api.Api.StartListening();
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
