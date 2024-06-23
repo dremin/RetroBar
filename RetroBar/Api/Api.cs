@@ -20,9 +20,9 @@ public class Api
         listener.Start();
         Task.Run(async () =>
         {
-            while (true)
+            while (true) // only loops once per api call
             {
-                HttpListenerContext context = await listener.GetContextAsync();
+                HttpListenerContext context = await listener.GetContextAsync(); // GetContextAsync waits for an api call
                 HttpListenerRequest request = context.Request;
                 HttpListenerResponse response = context.Response;
                 response.StatusCode = 200;
