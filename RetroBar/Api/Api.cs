@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ public class Api
     public static void StartListening()
     {
         HttpListener listener = new();
-        listener.Prefixes.Add ("http://localhost:51111/"); // Listen on 51111
+        listener.Prefixes.Add ($"http://localhost:{Settings.Instance.ApiPort}/");
         listener.Start();
         Task.Run(async () =>
         {
@@ -23,18 +24,25 @@ public class Api
             {
                 HttpListenerContext context = await listener.GetContextAsync();
                 HttpListenerRequest request = context.Request;
-                using (StreamReader reader = new(request.InputStream, request.ContentEncoding))
+                HttpListenerResponse response = context.Response;
+                response.StatusCode = 200;
+                using StreamReader reader = new(request.InputStream, request.ContentEncoding);
+                string jsonPatchString = await reader.ReadToEndAsync();
+                var operations = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Operation>>(jsonPatchString);
+                JsonPatchDocument patch = new(operations, new DefaultContractResolver());
+                try
                 {
-                    string jsonPatchString = await reader.ReadToEndAsync();
-                    var operations = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Operation>>(jsonPatchString);
-                    JsonPatchDocument patch = new(operations, new DefaultContractResolver());
                     Application.Current.Dispatcher.Invoke(delegate
                     {
                         patch.ApplyTo(Settings.Instance);
                     });
                 }
-                HttpListenerResponse response = context.Response;
-                response.StatusCode = 200;
+                catch (Exception e)
+                {
+                    response.StatusCode = 401;
+                    using StreamWriter writer = new(response.OutputStream, response.ContentEncoding);
+                    writer.Write(e.Message);
+                }
                 response.Close();
             }
         });
