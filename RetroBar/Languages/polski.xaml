@@ -23,14 +23,18 @@
     <s:String x:Key="allow_font_smoothing">_Zezwól na wygładzanie czcionek</s:String>
     <s:String x:Key="collapse_tray_icons">Zwiń ikony w pasku powiadomień</s:String>
     <s:String x:Key="customize">_Dostosuj...</s:String>
+    <s:String x:Key="show_input_language">Pokaż ję_zyk wprowadzania</s:String>
     <s:String x:Key="show_clock">_Pokaż zegar</s:String>
     <s:String x:Key="show_multi_mon">Pokazuj pasek zadań na wielu ekranach</s:String>
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>
     <s:String x:Key="select_location">_Wybierz lokalizację...</s:String>
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
+    <s:String x:Key="show_badges">Pokaż _odznaki</s:String>
     <s:String x:Key="show_window_previews">Pokaż podgląd okien</s:String>
     <s:String x:Key="use_software_rendering">_Użyj renderowania oprogramowania</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj przycisk "pokaż pulpit"</s:String>
+    <s:String x:Key="enable_auto_hide">A_utoukrywanie</s:String>
+    <s:String x:Key="lock_taskbar">_Zablokuj pasek zadań</s:String>
     <s:String x:Key="multiple_displays">Wiele monitorów</s:String>
     <s:String x:Key="show_tasks_on">Pokaż zadania na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -38,13 +42,26 @@
         <s:String>Ten sam pasek zadań co okno</s:String>
         <s:String>Ten sam pasek zadań co okno i główny pasek zadań</s:String>
     </x:Array>
+    <s:String x:Key="invert_system_icons">_Odwróć kolory ikon systemowych:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Gdy potrzebuje tego motyw</s:String>
+        <s:String>Zawsze</s:String>
+        <s:String>Nigdy</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Akcja środkowego przycisku myszy:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Nic nie rób</s:String>
+        <s:String>Otwórz nowe okno</s:String>
+        <s:String>Zamknij</s:String>
+    </x:Array>
     <s:String x:Key="version">Wersja {0}</s:String>
     <s:String x:Key="visit_on_github">Zobacz na GitHub</s:String>
-    <s:String x:Key="taskbar_scale">Skala Taskbar</s:String>
+    <s:String x:Key="taskbar_scale">Skala paska zadań</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Aktualne ustawienie: {0}%</s:String>
     <s:String x:Key="debug_logging">Włącz debugowanie</s:String>
+    <s:String x:Key="check_for_updates">Sprawdź aktualizacje</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Dostosuj powiadomienia</s:String>
@@ -52,8 +69,11 @@
     <s:String x:Key="customize_notifications_instruction">Wybierz element, a następnie wybierz jego sposób powiadamiania:</s:String>
     <s:String x:Key="hide_when_inactive">Ukryj, gdy jest nieaktywny</s:String>
     <s:String x:Key="always_show">Zawsze pokazuj</s:String>
+    <s:String x:Key="always_hide">Zawsze ukrywaj</s:String>
+    <s:String x:Key="remove">Usuń</s:String>
     <s:String x:Key="name_heading">Nazwa</s:String>
     <s:String x:Key="behavior_heading">Zachowanie</s:String>
+    <s:String x:Key="invert_heading">Odwróć</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
@@ -62,7 +82,7 @@
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">Pasek zadań RetroBar</s:String>
-    <s:String x:Key="toolbars">P_aski zadań</s:String>
+    <s:String x:Key="toolbars">P_aski narzędzi</s:String>
     <s:String x:Key="quick_launch">_Pasek szybkiego uruchamiania</s:String>
     <s:String x:Key="new_toolbar">_Nowy pasek narzędzi...</s:String>
     <s:String x:Key="set_time">_Dostosuj datę i godzinę</s:String>
