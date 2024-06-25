@@ -29,6 +29,7 @@
     <s:String x:Key="show_quick_launch">Отображать панель _быстого запуска</s:String>
     <s:String x:Key="select_location">_Выбрать папку...</s:String>
     <s:String x:Key="quick_launch_folder">Панель быстого запуска - выберите папку</s:String>
+    <s:String x:Key="show_badges">Показывать _эмблемы на значках</s:String>
     <s:String x:Key="show_window_previews">Отобра_жать образцы окон (эскизы)</s:String>
     <s:String x:Key="use_software_rendering">Использовать п_рограммную отрисовку</s:String>
     <s:String x:Key="add_show_desktop_button">Отображать кнопку "Показать _рабочий стол"</s:String>
@@ -47,6 +48,12 @@
         <s:String>Всегда</s:String>
         <s:String>Никогда</s:String>
     </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Действие по средней кнопке мыши:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Ничего не делать</s:String>
+        <s:String>Открыть новое окно задачи</s:String>
+        <s:String>Закрыть задачу</s:String>
+    </x:Array>
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
     <s:String x:Key="taskbar_scale">Масштаб панели задач</s:String>
@@ -54,6 +61,7 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Текущее значение: {0}%</s:String>
     <s:String x:Key="debug_logging">Включить логирование</s:String>
+    <s:String x:Key="check_for_updates">Проверять обновления</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
@@ -61,8 +69,11 @@
     <s:String x:Key="customize_notifications_instruction">Выберите элемент, а затем задайте нужное поведение:</s:String>
     <s:String x:Key="hide_when_inactive">Скрывать, если неактивно</s:String>
     <s:String x:Key="always_show">Всегда отображать</s:String>
+    <s:String x:Key="always_hide">Всегда скрывать</s:String>
+    <s:String x:Key="remove">Убрать</s:String>
     <s:String x:Key="name_heading">Имя</s:String>
     <s:String x:Key="behavior_heading">Поведение</s:String>
+    <s:String x:Key="invert_heading">Инвертировать</s:String>
 
     <s:String x:Key="start_text">Пуск</s:String>
     <s:String x:Key="start_text_xp">пуск</s:String>
