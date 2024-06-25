@@ -12,6 +12,13 @@ namespace RetroBar.Utilities
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private static JsonSerializerOptions options = new()
+        {
+            IgnoreReadOnlyProperties = true,
+            WriteIndented = true,
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+        };
+
         private string _fileName;
 
         private T _settings;
@@ -66,13 +73,6 @@ namespace RetroBar.Utilities
 
         private void SaveToFile()
         {
-            JsonSerializerOptions options = new()
-            {
-                IgnoreReadOnlyProperties = true,
-                WriteIndented = true,
-                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
-            };
-
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(_fileName));

@@ -59,23 +59,19 @@ namespace RetroBar.Utilities
         {
             if (!field.Equals(value))
             {
-                // TODO: Should we log setting change?
-
                 field = value;
                 OnPropertyChanged(propertyName);
             }
         }
 
-        protected void SetEnum<T>(ref T field, T value, [CallerMemberName] string propertyName = "") where T : struct, Enum
+        protected void SetEnum<T>(ref T field, T value, [CallerMemberName] string propertyName = "") where T : Enum
         {
             if (!field.Equals(value))
             {
-                if (Convert.ToInt32(value) < 0)
+                if (!Enum.IsDefined(typeof(T), value))
                 {
                     return;
                 }
-
-                // TODO: Should we log setting change?
 
                 field = value;
                 OnPropertyChanged(propertyName);
