@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:Double x:Key="TaskbarHeight">28</system:Double>
+    <system:Double x:Key="TaskbarHeight">30</system:Double>
     <system:Double x:Key="TaskbarWidth">98</system:Double>
     <system:Double x:Key="TaskbarUnlockedSize">0</system:Double>
     <system:Double x:Key="TaskButtonWidth">160</system:Double>
