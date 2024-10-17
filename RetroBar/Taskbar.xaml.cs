@@ -39,10 +39,15 @@ namespace RetroBar
 
         public double DesiredRowHeight { get; private set; }
 
+        private int Rows
+        {
+            get => Settings.Instance.RowCount;
+            set => Settings.Instance.RowCount = value;
+        }
+
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
-        private int _rows;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
         private ShellManager _shellManager;
@@ -61,10 +66,9 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
-            _rows = 1;
             DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
-            DesiredHeight = DesiredRowHeight * _rows;
+            DesiredHeight = DesiredRowHeight * Rows;
             MinHeight = DesiredRowHeight;
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
@@ -162,14 +166,14 @@ namespace RetroBar
             double rowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
+            double newHeight = rowHeight * Rows;
+
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
                 double unlockedSize = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-                rowHeight += unlockedSize;
+                newHeight += unlockedSize;
                 newWidth += unlockedSize;
             }
-
-            double newHeight = rowHeight * _rows;
 
             bool heightChanged = newHeight != DesiredHeight;
             bool widthChanged = newWidth != DesiredWidth;
@@ -273,6 +277,10 @@ namespace RetroBar
                 UpdateResizingOptions();
                 RecalculateSize();
             }
+            else if (e.PropertyName == nameof(Settings.RowCount))
+            {
+                RecalculateSize();
+            }
         }
 
         private void UpdateResizingOptions()
@@ -316,7 +324,7 @@ namespace RetroBar
                 }
                 else
                 {
-                    _rows = (int)(e.NewSize.Height / DesiredRowHeight);
+                    Rows = (int)(e.NewSize.Height / DesiredRowHeight);
                     RecalculateSize();
                 }
 
