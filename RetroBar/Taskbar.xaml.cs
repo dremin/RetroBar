@@ -40,6 +40,8 @@ namespace RetroBar
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
+        private double _desiredRowHeight;
+        private int _rows;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
         private ShellManager _shellManager;
@@ -58,8 +60,11 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
-            DesiredHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            _rows = 1;
+            _desiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
+            DesiredHeight = _desiredRowHeight * _rows;
+            MinHeight = _desiredRowHeight;
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
@@ -152,15 +157,17 @@ namespace RetroBar
 
         private void RecalculateSize()
         {
-            double newHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            double rowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
                 double unlockedSize = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-                newHeight += unlockedSize;
+                rowHeight += unlockedSize;
                 newWidth += unlockedSize;
             }
+
+            double newHeight = rowHeight * _rows;
 
             bool heightChanged = newHeight != DesiredHeight;
             bool widthChanged = newWidth != DesiredWidth;
@@ -261,7 +268,28 @@ namespace RetroBar
             {
                 OnPropertyChanged(nameof(IsLocked));
                 PeekDuringAutoHide();
+                UpdateResizingOptions();
                 RecalculateSize();
+            }
+        }
+
+        private void UpdateResizingOptions()
+        {
+            if (IsLocked)
+            {
+                ResizeMode = ResizeMode.NoResize;
+                Chrome.ResizeBorderThickness = new Thickness(0);
+            }
+            else
+            {
+                ResizeMode = ResizeMode.CanResize;
+                Chrome.ResizeBorderThickness = AppBarEdge switch
+                {
+                    AppBarEdge.Left => new Thickness(0, 0, 2 ,0),
+                    AppBarEdge.Right => new Thickness(2, 0, 0 ,0),
+                    AppBarEdge.Top => new Thickness(0, 0, 0 ,2),
+                    AppBarEdge.Bottom or _ => new Thickness(0, 2, 0 ,0),
+                };
             }
         }
 
@@ -275,6 +303,23 @@ namespace RetroBar
         {
             UpdateTrayPosition();
             StartButton?.UpdateFloatingStartCoordinates();
+
+            if (e.HeightChanged && !e.WidthChanged)
+            {
+                if (Height % _desiredRowHeight != 0)
+                {
+                    var screenSize = Top + Height;
+                    Height = Math.Round(e.NewSize.Height / _desiredRowHeight) * _desiredRowHeight;
+                    Top = screenSize - Height;
+                }
+                else
+                {
+                    _rows = (int)(e.NewSize.Height / _desiredRowHeight);
+                    RecalculateSize();
+                }
+
+                e.Handled = true;
+            }
         }
 
         private void Taskbar_Deactivated(object sender, EventArgs e)
