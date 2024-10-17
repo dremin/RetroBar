@@ -963,6 +963,8 @@
                 Value="Stretch" />
         <Setter Property="Margin"
                 Value="4,0,0,0" />
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
