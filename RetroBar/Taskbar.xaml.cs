@@ -40,7 +40,7 @@ namespace RetroBar
         private double _unlockedMargin;
         public double DesiredRowHeight { get; private set; }
 
-        private int Rows
+        public int Rows
         {
             get => Settings.Instance.RowCount;
             set => Settings.Instance.RowCount = value;
@@ -284,6 +284,7 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.RowCount))
             {
                 RecalculateSize();
+                OnPropertyChanged(nameof(Rows));
             }
         }
 

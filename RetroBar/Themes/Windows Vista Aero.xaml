@@ -1042,9 +1042,14 @@
                                 </Setter>
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Bottom">
-                            <DataTrigger.Setters>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Bottom" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
                                         Property="Background">
                                     <Setter.Value>
@@ -1053,14 +1058,16 @@
                                                     Viewbox="0,0,1,0.3333" />
                                     </Setter.Value>
                                 </Setter>
-                            </DataTrigger.Setters>
-                        </DataTrigger>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Bottom" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1079,6 +1086,8 @@
                                            Value="Bottom" />
                                 <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1099,6 +1108,8 @@
                                            Value="True" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1117,6 +1128,8 @@
                                            Value="Bottom" />
                                 <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1137,6 +1150,8 @@
                                            Value="True" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1155,6 +1170,8 @@
                                            Value="Bottom" />
                                 <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1175,6 +1192,8 @@
                                            Value="True" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1187,9 +1206,14 @@
                                 </Setter>
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
-                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="Top">
-                            <DataTrigger.Setters>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Top"/>
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
                                         Property="Background">
                                     <Setter.Value>
@@ -1198,14 +1222,16 @@
                                                     Viewbox="0,0,1,0.3333" />
                                     </Setter.Value>
                                 </Setter>
-                            </DataTrigger.Setters>
-                        </DataTrigger>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Top" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1224,6 +1250,8 @@
                                            Value="Top" />
                                 <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1244,6 +1272,8 @@
                                            Value="True" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1262,6 +1292,8 @@
                                            Value="Top" />
                                 <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1282,6 +1314,8 @@
                                            Value="True" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1300,6 +1334,8 @@
                                            Value="Top" />
                                 <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
@@ -1320,6 +1356,8 @@
                                            Value="True" />
                                 <Condition Binding="{Binding Path=IsScaled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
+                                <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="1"/>
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="StartButtonBorder"
