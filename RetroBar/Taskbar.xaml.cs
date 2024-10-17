@@ -37,10 +37,11 @@ namespace RetroBar
             }
         }
 
+        public double DesiredRowHeight { get; private set; }
+
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
-        private double _desiredRowHeight;
         private int _rows;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
@@ -61,10 +62,10 @@ namespace RetroBar
             StartButton.StartMenuMonitor = startMenuMonitor;
 
             _rows = 1;
-            _desiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
-            DesiredHeight = _desiredRowHeight * _rows;
-            MinHeight = _desiredRowHeight;
+            DesiredHeight = DesiredRowHeight * _rows;
+            MinHeight = DesiredRowHeight;
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
@@ -99,6 +100,7 @@ namespace RetroBar
 
             PropertyChanged += Taskbar_PropertyChanged;
         }
+        
 
         private void Taskbar_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -306,15 +308,15 @@ namespace RetroBar
 
             if (e.HeightChanged && !e.WidthChanged)
             {
-                if (Height % _desiredRowHeight != 0)
+                if (Height % DesiredRowHeight != 0)
                 {
                     var screenSize = Top + Height;
-                    Height = Math.Round(e.NewSize.Height / _desiredRowHeight) * _desiredRowHeight;
+                    Height = Math.Round(e.NewSize.Height / DesiredRowHeight) * DesiredRowHeight;
                     Top = screenSize - Height;
                 }
                 else
                 {
-                    _rows = (int)(e.NewSize.Height / _desiredRowHeight);
+                    _rows = (int)(e.NewSize.Height / DesiredRowHeight);
                     RecalculateSize();
                 }
 
