@@ -229,6 +229,7 @@ namespace RetroBar
                 PeekDuringAutoHide();
                 AppBarEdge = Settings.Instance.Edge;
                 SetScreenPosition();
+                UpdateResizingOptions();
             }
             else if (e.PropertyName == nameof(Settings.Language))
             {
@@ -288,6 +289,10 @@ namespace RetroBar
 
         private void UpdateResizingOptions()
         {
+            /*
+            
+            Someday this is less janky it could be used. In the meantime, set the row count from the properties menu.
+            
             // This is sort of a cop-out to prevent a cycle where the primary and secondary monitors will continously loop
             // between different row counts. As a result, only the primary taskbar can be used for resizing.
             if (!Screen.Primary)
@@ -310,7 +315,7 @@ namespace RetroBar
                     AppBarEdge.Top => new Thickness(0, 0, 0 ,resizeThickness),
                     AppBarEdge.Bottom or _ => new Thickness(0, resizeThickness, 0 ,0),
                 };
-            }
+            }*/
         }
 
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
@@ -324,6 +329,10 @@ namespace RetroBar
             UpdateTrayPosition();
             StartButton?.UpdateFloatingStartCoordinates();
 
+
+
+            /*
+            This code is for drag resizing the taskbar. It's a work in progress
             if (e.HeightChanged && !e.WidthChanged)
             {
                 double extraMargin = !Settings.Instance.LockTaskbar ? _unlockedMargin : 0;
@@ -336,12 +345,15 @@ namespace RetroBar
                 }
                 else if (Screen.Primary)
                 {
-                    Rows = (int)(e.NewSize.Height / DesiredRowHeight);
+                    int rows = (int)(e.NewSize.Height / DesiredRowHeight);
+                    rows = Math.Min(rows, 5); // Max count of 5 rows
+                    Rows = rows;
+
                     RecalculateSize();
                 }
 
                 e.Handled = true;
-            }
+            }*/
         }
 
         private void Taskbar_Deactivated(object sender, EventArgs e)
