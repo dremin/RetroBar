@@ -37,6 +37,7 @@ namespace RetroBar
             }
         }
 
+        private double _unlockedMargin;
         public double DesiredRowHeight { get; private set; }
 
         private int Rows
@@ -66,6 +67,8 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
+            
+            _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
             DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
             DesiredHeight = DesiredRowHeight * Rows;
@@ -73,14 +76,15 @@ namespace RetroBar
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
-                double unlockedSize = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-                DesiredHeight += unlockedSize;
-                DesiredWidth += unlockedSize;
+                DesiredHeight += _unlockedMargin;
+                DesiredWidth += _unlockedMargin;
             }
 
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
             FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
+
+            UpdateResizingOptions();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
@@ -105,7 +109,6 @@ namespace RetroBar
             PropertyChanged += Taskbar_PropertyChanged;
         }
         
-
         private void Taskbar_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(DpiScale))
@@ -163,16 +166,16 @@ namespace RetroBar
 
         private void RecalculateSize()
         {
-            double rowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
+            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
-            double newHeight = rowHeight * Rows;
+            double newHeight = DesiredRowHeight * Rows;
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
-                double unlockedSize = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-                newHeight += unlockedSize;
-                newWidth += unlockedSize;
+                newHeight += _unlockedMargin;
+                newWidth += _unlockedMargin;
             }
 
             bool heightChanged = newHeight != DesiredHeight;
@@ -285,6 +288,13 @@ namespace RetroBar
 
         private void UpdateResizingOptions()
         {
+            // This is sort of a cop-out to prevent a cycle where the primary and secondary monitors will continously loop
+            // between different row counts. As a result, only the primary taskbar can be used for resizing.
+            if (!Screen.Primary)
+                return;
+
+            const int resizeThickness = 5;
+
             if (IsLocked)
             {
                 ResizeMode = ResizeMode.NoResize;
@@ -295,10 +305,10 @@ namespace RetroBar
                 ResizeMode = ResizeMode.CanResize;
                 Chrome.ResizeBorderThickness = AppBarEdge switch
                 {
-                    AppBarEdge.Left => new Thickness(0, 0, 2 ,0),
-                    AppBarEdge.Right => new Thickness(2, 0, 0 ,0),
-                    AppBarEdge.Top => new Thickness(0, 0, 0 ,2),
-                    AppBarEdge.Bottom or _ => new Thickness(0, 2, 0 ,0),
+                    AppBarEdge.Left => new Thickness(0, 0, resizeThickness ,0),
+                    AppBarEdge.Right => new Thickness(resizeThickness, 0, 0 ,0),
+                    AppBarEdge.Top => new Thickness(0, 0, 0 ,resizeThickness),
+                    AppBarEdge.Bottom or _ => new Thickness(0, resizeThickness, 0 ,0),
                 };
             }
         }
@@ -316,13 +326,15 @@ namespace RetroBar
 
             if (e.HeightChanged && !e.WidthChanged)
             {
-                if (Height % DesiredRowHeight != 0)
+                double extraMargin = !Settings.Instance.LockTaskbar ? _unlockedMargin : 0;
+
+                if ((Height - extraMargin) % DesiredRowHeight != 0)
                 {
                     var screenSize = Top + Height;
-                    Height = Math.Round(e.NewSize.Height / DesiredRowHeight) * DesiredRowHeight;
+                    Height = (Math.Round(e.NewSize.Height / DesiredRowHeight) * DesiredRowHeight) + extraMargin;
                     Top = screenSize - Height;
                 }
-                else
+                else if (Screen.Primary)
                 {
                     Rows = (int)(e.NewSize.Height / DesiredRowHeight);
                     RecalculateSize();
