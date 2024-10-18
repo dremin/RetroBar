@@ -568,6 +568,8 @@
                 Value="{DynamicResource ButtonForeground}" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
         <Setter Property="BorderThickness"
                 Value="0,0,1,1" />
         <Setter Property="FocusVisualStyle"
@@ -964,7 +966,7 @@
         <Setter Property="Margin"
                 Value="4,0,0,0" />
         <Setter Property="VerticalAlignment"
-                Value="Center"/>
+                Value="Top"/>
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
