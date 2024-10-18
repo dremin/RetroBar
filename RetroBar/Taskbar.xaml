@@ -13,9 +13,6 @@
         Deactivated="Taskbar_Deactivated"
         AllowDrop="True"
         Style="{DynamicResource TaskbarWindow}">
-    <WindowChrome.WindowChrome>
-        <WindowChrome x:Name="Chrome" CaptionHeight="0" CornerRadius="0"/>
-    </WindowChrome.WindowChrome>
     <Window.Resources>
         <ResourceDictionary>
             <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />

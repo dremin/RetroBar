@@ -72,7 +72,6 @@ namespace RetroBar
             DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
             DesiredHeight = DesiredRowHeight * Rows;
-            MinHeight = DesiredRowHeight;
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
@@ -83,8 +82,6 @@ namespace RetroBar
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
             FlowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
-
-            UpdateResizingOptions();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
@@ -229,7 +226,6 @@ namespace RetroBar
                 PeekDuringAutoHide();
                 AppBarEdge = Settings.Instance.Edge;
                 SetScreenPosition();
-                UpdateResizingOptions();
             }
             else if (e.PropertyName == nameof(Settings.Language))
             {
@@ -278,7 +274,6 @@ namespace RetroBar
             {
                 OnPropertyChanged(nameof(IsLocked));
                 PeekDuringAutoHide();
-                UpdateResizingOptions();
                 RecalculateSize();
             }
             else if (e.PropertyName == nameof(Settings.RowCount))
@@ -286,37 +281,6 @@ namespace RetroBar
                 RecalculateSize();
                 OnPropertyChanged(nameof(Rows));
             }
-        }
-
-        private void UpdateResizingOptions()
-        {
-            /*
-            
-            Someday this is less janky it could be used. In the meantime, set the row count from the properties menu.
-            
-            // This is sort of a cop-out to prevent a cycle where the primary and secondary monitors will continously loop
-            // between different row counts. As a result, only the primary taskbar can be used for resizing.
-            if (!Screen.Primary)
-                return;
-
-            const int resizeThickness = 5;
-
-            if (IsLocked)
-            {
-                ResizeMode = ResizeMode.NoResize;
-                Chrome.ResizeBorderThickness = new Thickness(0);
-            }
-            else
-            {
-                ResizeMode = ResizeMode.CanResize;
-                Chrome.ResizeBorderThickness = AppBarEdge switch
-                {
-                    AppBarEdge.Left => new Thickness(0, 0, resizeThickness ,0),
-                    AppBarEdge.Right => new Thickness(resizeThickness, 0, 0 ,0),
-                    AppBarEdge.Top => new Thickness(0, 0, 0 ,resizeThickness),
-                    AppBarEdge.Bottom or _ => new Thickness(0, resizeThickness, 0 ,0),
-                };
-            }*/
         }
 
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
