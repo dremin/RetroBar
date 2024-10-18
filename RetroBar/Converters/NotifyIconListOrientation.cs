@@ -7,9 +7,9 @@ using System.Globalization;
 
 namespace RetroBar.Converters
 {
-    public class NotificationIconsOrientation : IValueConverter
+    public class NotifyIconListOrientation : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             bool horizontal = Settings.Instance.Edge is AppBarEdge.Top or AppBarEdge.Bottom;
             int rows = Settings.Instance.RowCount;
@@ -22,7 +22,7 @@ namespace RetroBar.Converters
             return Orientation.Horizontal;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

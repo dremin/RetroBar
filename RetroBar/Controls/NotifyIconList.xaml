@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
-            <converters:NotificationIconsOrientation x:Key="notificationIconsOrientation" />
+            <converters:NotifyIconListOrientation x:Key="notificationIconsOrientation" />
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel>
@@ -29,9 +29,12 @@
                 <ItemsPanelTemplate>
                     <WrapPanel>
                         <WrapPanel.Orientation>
-                            <Binding Converter="{StaticResource notificationIconsOrientation}"
-                                     Path="Orientation"
-                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                            <MultiBinding Converter="{StaticResource notificationIconsOrientation}">
+                                <Binding Path="Orientation"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                                <Binding Path="Rows"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                            </MultiBinding>
                         </WrapPanel.Orientation>
                     </WrapPanel>
                 </ItemsPanelTemplate>
