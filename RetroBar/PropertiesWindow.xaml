@@ -23,6 +23,7 @@
             <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <converters:EnumConverter x:Key="enumConverter" />
+            <converters:EdgeIsHorizontalConverter x:Key="isHorizontalConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
@@ -203,6 +204,15 @@
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="cboEdgeSelect_SelectionChanged" />
                             </DockPanel>
+                            <DockPanel IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource isHorizontalConverter}}">
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboEdgeSelect}">
+                                    <AccessText Text="{DynamicResource rowcount_text}"
+                                                ToolTip="{DynamicResource rowcount_tip}" />
+                                </Label>
+                                <ComboBox ItemsSource="{DynamicResource rowcount_options}"
+                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged}" />
+                            </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
                             </CheckBox>
@@ -229,15 +239,6 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_window_previews}" />
                             </CheckBox>
-                            <DockPanel>
-                                <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cboEdgeSelect}">
-                                    <AccessText Text="{DynamicResource rowcount_text}"
-                                                ToolTip="{DynamicResource rowcount_tip}" />
-                                </Label>
-                                <ComboBox ItemsSource="{DynamicResource rowcount_options}"
-                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged}" />
-                            </DockPanel>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource notification_area}">
