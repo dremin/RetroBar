@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace RetroBar.Converters
 {
-    public class NotifyIconListOrientation : IMultiValueConverter
+    public class IconListOrientation : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
