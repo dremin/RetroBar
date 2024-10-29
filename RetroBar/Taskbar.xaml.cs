@@ -293,32 +293,6 @@ namespace RetroBar
         {
             UpdateTrayPosition();
             StartButton?.UpdateFloatingStartCoordinates();
-
-
-
-            /*
-            This code is for drag resizing the taskbar. It's a work in progress
-            if (e.HeightChanged && !e.WidthChanged)
-            {
-                double extraMargin = !Settings.Instance.LockTaskbar ? _unlockedMargin : 0;
-
-                if ((Height - extraMargin) % DesiredRowHeight != 0)
-                {
-                    var screenSize = Top + Height;
-                    Height = (Math.Round(e.NewSize.Height / DesiredRowHeight) * DesiredRowHeight) + extraMargin;
-                    Top = screenSize - Height;
-                }
-                else if (Screen.Primary)
-                {
-                    int rows = (int)(e.NewSize.Height / DesiredRowHeight);
-                    rows = Math.Min(rows, 5); // Max count of 5 rows
-                    Rows = rows;
-
-                    RecalculateSize();
-                }
-
-                e.Handled = true;
-            }*/
         }
 
         private void Taskbar_Deactivated(object sender, EventArgs e)
