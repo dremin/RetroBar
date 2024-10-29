@@ -53,6 +53,12 @@ namespace RetroBar
             get => Settings.Instance.LockTaskbar;
         }
 
+        // Previews should always assume 1 row
+        public int Rows
+        {
+            get => 1;
+        }
+
         private PropertiesWindow(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             _barSize = barSize;
