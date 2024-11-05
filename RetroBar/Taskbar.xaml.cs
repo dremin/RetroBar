@@ -51,6 +51,7 @@ namespace RetroBar
         private bool _startMenuOpen;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
+        private bool _mouseDragResize = false;
         private ShellManager _shellManager;
         private Updater _updater;
 
@@ -69,9 +70,9 @@ namespace RetroBar
 
             
             _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
             DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
-            DesiredHeight = DesiredRowHeight * Rows;
+            DesiredHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
@@ -164,10 +165,10 @@ namespace RetroBar
         private void RecalculateSize()
         {
             _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0);
+            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
             double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
 
-            double newHeight = DesiredRowHeight * Rows;
+            double newHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
             {
@@ -561,6 +562,28 @@ namespace RetroBar
                         return;
                     }
 
+                    if (_mouseDragResize)
+                    {
+                        int mouseY = e.HookStruct.pt.Y;
+                        double taskbarEdge = (Top + (AppBarEdge == AppBarEdge.Top ? Height : 0)) * DpiScale;
+                        double scaledRowHeight = DesiredRowHeight * DpiScale;
+                        if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
+                             AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
+                             Settings.Instance.RowCount > 1)
+                        {
+                            // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
+                            Settings.Instance.RowCount -= 1;
+                        }
+                        else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
+                                  AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
+                                  Settings.Instance.RowCount < 5)
+                        {
+                            // If mouse is outside the taskbar and at least one row height away, increment size
+                            Settings.Instance.RowCount += 1;
+                        }
+                        return;
+                    }
+
                     if (Math.Abs(e.HookStruct.pt.X - (double)(_mouseDragStart?.X)) <= SystemParameters.MinimumHorizontalDragDistance ||
                         Math.Abs(e.HookStruct.pt.Y - (double)(_mouseDragStart?.Y)) <= SystemParameters.MinimumVerticalDragDistance)
                     {
@@ -597,6 +620,7 @@ namespace RetroBar
             _mouseDragHook.LowLevelMouseEvent += MouseDragHook_LowLevelMouseEvent;
             _mouseDragHook.Initialize();
             _mouseDragStart = new Point(System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y);
+            _mouseDragResize = IsMouseInResizeArea();
 
             ShellLogger.Debug($"Mouse drag hook started");
         }
@@ -607,8 +631,41 @@ namespace RetroBar
             _mouseDragHook.Dispose();
             _mouseDragHook = null;
             _mouseDragStart = null;
+            _mouseDragResize = false;
 
             ShellLogger.Debug("Mouse drag hook removed");
+        }
+
+        private bool IsMouseInResizeArea()
+        {
+            if (IsLocked || Orientation == Orientation.Vertical) return false;
+
+            int resizeRegionSize = (int)(_unlockedMargin > 0 ? _unlockedMargin : SystemParameters.MinimumVerticalDragDistance * Settings.Instance.TaskbarScale);
+            int mouseY = System.Windows.Forms.Cursor.Position.Y;
+
+            if (AppBarEdge == AppBarEdge.Bottom && mouseY <= (int)(Top * DpiScale) + resizeRegionSize)
+            {
+                return true;
+            }
+            else if (AppBarEdge == AppBarEdge.Top && mouseY >= (int)((Top + Height) * DpiScale) - resizeRegionSize)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void Taskbar_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Show resize cursor for resizable taskbars
+            if (IsMouseInResizeArea() || _mouseDragResize)
+            {
+                Cursor = Cursors.SizeNS;
+            }
+            else
+            {
+                Cursor = Cursors.Arrow;
+            }
         }
     }
 }

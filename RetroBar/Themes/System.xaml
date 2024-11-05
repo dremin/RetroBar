@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:Double x:Key="TaskbarHeight">28</system:Double>
+    <system:Double x:Key="TaskbarRowHeight">25</system:Double>
     <system:Double x:Key="TaskbarWidth">98</system:Double>
     <system:Double x:Key="TaskbarUnlockedSize">0</system:Double>
     <system:Double x:Key="TaskButtonWidth">160</system:Double>
@@ -217,7 +218,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
-                Value="{DynamicResource TaskButtonMargin}" />
+                Value="0,0,3,-1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -273,6 +274,18 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="Horizontal"/>
+                    <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="1"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="{DynamicResource TaskButtonMargin}" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
@@ -406,6 +419,7 @@
                                         Padding="4,0"
                                         x:Name="ButtonInnerTopBorder">
                                     <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
                                                       Margin="0,-5,0,-3" />
                                 </Border>
                             </Border>
@@ -809,6 +823,14 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="ItemsControl"
+           x:Key="NotifyIconItems">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
+    </Style>
+
     <Style TargetType="TextBlock"
            x:Key="TaskLabel"
            BasedOn="{StaticResource GlobalFonts}">
@@ -900,7 +922,7 @@
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
         <Setter Property="Margin"
-                Value="0" />
+                Value="0,0,0,-1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -950,6 +972,13 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Margin"
+                        Value="0" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Image"

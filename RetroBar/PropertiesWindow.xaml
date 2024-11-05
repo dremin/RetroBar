@@ -206,11 +206,12 @@
                             </DockPanel>
                             <DockPanel IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource isHorizontalConverter}}">
                                 <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cboEdgeSelect}">
+                                       Target="{Binding ElementName=cboRowCount}">
                                     <AccessText Text="{DynamicResource rowcount_text}"
                                                 ToolTip="{DynamicResource rowcount_tip}" />
                                 </Label>
-                                <ComboBox ItemsSource="{DynamicResource rowcount_options}"
+                                <ComboBox Name="cboRowCount"
+                                          ItemsSource="{DynamicResource rowcount_options}"
                                           SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">

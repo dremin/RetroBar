@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:Double x:Key="TaskbarHeight">30</system:Double>
+    <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
 
@@ -1115,6 +1116,8 @@
                 Value="30" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Template">
@@ -1213,7 +1216,7 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="6,0,10,0" />
+                Value="6,2,10,2" />
         <Setter Property="Effect"
                 Value="{StaticResource ForegroundShadow}" />
         <Style.Triggers>
@@ -1269,7 +1272,14 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
-                Value="0,2,4,2" />
+                Value="0,1,4,1" />
+    </Style>
+
+    <Style TargetType="ItemsControl"
+           x:Key="NotifyIconItems"
+           BasedOn="{StaticResource NotifyIconItems}">
+        <Setter Property="Margin"
+                Value="0,1" />
     </Style>
 
     <Style TargetType="ItemsControl"
