@@ -170,8 +170,7 @@ namespace RetroBar.Controls
             }
 
             double height = ActualHeight;
-            int rows = (int)Math.Round(height / Host.DesiredRowHeight);
-            rows = Math.Max(rows, 1);
+            int rows = Host.Rows;
 
             int taskCount = TasksList.Items.Count;
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;

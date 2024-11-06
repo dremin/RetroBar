@@ -152,7 +152,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
-                Value="0,0,3,0" />
+                Value="0,0,3,-1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -202,6 +202,18 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="Horizontal"/>
+                    <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="1"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,0,3,0" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
@@ -415,7 +427,7 @@
         <Setter Property="Background"
                 Value="{DynamicResource ButtonFace}" />
         <Setter Property="Margin"
-                Value="0" />
+                Value="0,0,0,-1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -464,6 +476,13 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Margin"
+                        Value="0" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Thumb"
@@ -548,7 +567,8 @@
                             Background="{TemplateBinding Background}"
                             x:Name="ButtonBorder">
                         <ContentPresenter HorizontalAlignment="Center"
-                                          Margin="4,-4,4,-2"
+                                          VerticalAlignment="Center"
+                                          Margin="4,-5,4,-1"
                                           x:Name="Content" />
                     </Border>
                     <ControlTemplate.Triggers>

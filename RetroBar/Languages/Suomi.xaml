@@ -1,0 +1,135 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar Ominaisuudet</s:String>
+    <s:String x:Key="taskbar_tab">Tehtäväpalkki</s:String>
+    <s:String x:Key="advanced_tab">Lisäasetukset</s:String>
+    <s:String x:Key="taskbar_appearance">Tehtäväpalkin ulkoasu</s:String>
+    <s:String x:Key="notification_area">Ilmoitusalue</s:String>
+    <s:String x:Key="autostart">Käynnistä automaattisesti _sisäänkirjautuessa</s:String>
+    <s:String x:Key="language_text">_Kieli:</s:String>
+    <s:String x:Key="language_tip">Valitse käytettävä kieli.</s:String>
+    <s:String x:Key="theme_text">_Teema:</s:String>
+    <s:String x:Key="theme_tip">Asenna teemoja Themes-kansioon.</s:String>
+    <s:String x:Key="location_text">Sijaint_i:</s:String>
+    <s:String x:Key="location_tip">Vaihda tehtäväpalkin sijaintia näytöllä.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Vasemmalla</s:String>
+        <s:String>Ylhäällä</s:String>
+        <s:String>Oikealla</s:String>
+        <s:String>Alhaalla</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">Rivien lukumäärä:</s:String>
+    <s:String x:Key="rowcount_tip">Rivien määrä tehtäväpalkissa, kun se on ylhäällä tai alhaalla.</s:String>
+    <x:Array x:Key="rowcount_options" Type="s:Int32">
+        <s:Int32>1</s:Int32>
+        <s:Int32>2</s:Int32>
+        <s:Int32>3</s:Int32>
+        <s:Int32>4</s:Int32>
+        <s:Int32>5</s:Int32>
+    </x:Array>
+    <s:String x:Key="allow_font_smoothing">_Salli fontin pehmennys</s:String>
+    <s:String x:Key="collapse_tray_icons">Piilota _ilmoitusalueen kuvakkeet</s:String>
+    <s:String x:Key="customize">_Mukauta...</s:String>
+    <s:String x:Key="show_input_language">Näytä syötteen _kieli</s:String>
+    <s:String x:Key="show_clock">Näytä kell_o</s:String>
+    <s:String x:Key="show_multi_mon">Näytä _useilla näytöillä</s:String>
+    <s:String x:Key="show_quick_launch">Näytä _Pika-käynnistys</s:String>
+    <s:String x:Key="select_location">_Valitse sijainti...</s:String>
+    <s:String x:Key="quick_launch_folder">Pika-käynnistys - Valitse kansio</s:String>
+    <s:String x:Key="show_badges">Näytä _merkit</s:String>
+    <s:String x:Key="show_window_previews">Näytä _ikkunoiden esikatselut (pienoiskuvat)</s:String>
+    <s:String x:Key="use_software_rendering">_Käytä ohjelmisto renderöintiä</s:String>
+    <s:String x:Key="add_show_desktop_button">Lisää Näytä _työpöytä -painike</s:String>
+    <s:String x:Key="enable_auto_hide">P_iilota automaattisesti</s:String>
+    <s:String x:Key="lock_taskbar">_Lukitse tehtäväpalkki</s:String>
+    <s:String x:Key="multiple_displays">Useita näyttöjä</s:String>
+    <s:String x:Key="show_tasks_on">Näytä tehtävät _seuraavilla:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Kaikilla tehtäväpalkkeilla</s:String>
+        <s:String>Saman ikkunan tehtäväpalkilla</s:String>
+        <s:String>Pää- ja ikkunan tehtäväpalkilla</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Käännä järjestelmäkuvakkeet:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Kun teema tarvitsee</s:String>
+        <s:String>Aina</s:String>
+        <s:String>Ei koskaan</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Keskipainike-toiminto:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Älä tee mitään</s:String>
+        <s:String>Avaa uusi ikkuna</s:String>
+        <s:String>Sulje tehtävä</s:String>
+    </x:Array>
+    <s:String x:Key="version">Versio {0}</s:String>
+    <s:String x:Key="visit_on_github">RetroBarin GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Tehtäväpalkin skaalaus</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Nykyinen asetus: {0}%</s:String>
+    <s:String x:Key="debug_logging">Ota käyttöön virheenkorjausloki</s:String>
+    <s:String x:Key="check_for_updates">Tarkista päivitykset automaattisesti</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Mukauta ilmoitukset</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar näyttää aktiivisten ja kiireellisten ilmoitusten kuvakkeet ja piilottaa passiiviset. Voit muuttaa tätä asetusta alla olevien kohteiden kohdalla.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Valitse kohde ja valitse sitten sen ilmoitustoiminta:</s:String>
+    <s:String x:Key="hide_when_inactive">Piilota, kun passiivinen</s:String>
+    <s:String x:Key="always_show">Näytä aina</s:String>
+    <s:String x:Key="always_hide">Piilota aina</s:String>
+    <s:String x:Key="remove">Poista</s:String>
+    <s:String x:Key="name_heading">Nimi</s:String>
+    <s:String x:Key="behavior_heading">Käyttäytyminen</s:String>
+    <s:String x:Key="invert_heading">Käännä</s:String>
+
+    <s:String x:Key="start_text">Käynnistä</s:String>
+    <s:String x:Key="start_text_xp">Käynnistä</s:String>
+    <s:String x:Key="start_button_tip_98">Avaa käynnistä-valikko</s:String>
+    <s:String x:Key="start_button_tip">Avaa käynnistä-valikko</s:String>
+    <s:String x:Key="start_button_tip_vista">Avaa käynnistä-valikko</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Tehtäväpalkki</s:String>
+    <s:String x:Key="toolbars">Työkalupalkit</s:String>
+    <s:String x:Key="quick_launch">Pika-käynnistys</s:String>
+    <s:String x:Key="new_toolbar">Uusi työkalupalkki...</s:String>
+    <s:String x:Key="set_time">Muuta päivämäärää/aikaa</s:String>
+    <s:String x:Key="cascade">Ikkunat kaskadina</s:String>
+    <s:String x:Key="horiz_tile">Laatikoi ikkunat vaakasuunnassa</s:String>
+    <s:String x:Key="vert_tile">Laatikoi ikkunat pystysuunnassa</s:String>
+    <s:String x:Key="toggle_desktop">Näytä työpöytä</s:String>
+    <s:String x:Key="hide_desktop">Näytä avoimet ikkunat</s:String>
+    <s:String x:Key="undo_cascade">Peruuta kaskadi</s:String>
+    <s:String x:Key="undo_tile">Peruuta laatikointi</s:String>
+    <s:String x:Key="undo_minimize_all">Peruuta pienennys kaikille</s:String>
+    <s:String x:Key="show_taskman_2k">Tehtävienhallinta...</s:String>
+    <s:String x:Key="show_taskman">Tehtävienhallinta</s:String>
+    <s:String x:Key="tray_properties">Ominaisuudet</s:String>
+    <s:String x:Key="update_available">Päivitys saatavilla...</s:String>
+    <s:String x:Key="exit_retrobar">_Sulje RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">Mukauta ilmoitukset...</s:String>
+    <s:String x:Key="lock_taskbar_menu">Lukitse tehtäväpalkki</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Näytä työpöytä</s:String>
+    <s:String x:Key="show_desktop_tip">Näytä työpöytä</s:String>
+    <s:String x:Key="show_desktop_95">Näytä työpöytä</s:String>
+    <s:String x:Key="show_desktop">Näytä työpöytä</s:String>
+    <s:String x:Key="peek_at_desktop">Näytä työpöytä</s:String>
+
+    <s:String x:Key="restore">Palauta</s:String>
+    <s:String x:Key="move">Siirrä</s:String>
+    <s:String x:Key="size">Koko</s:String>
+    <s:String x:Key="minimize">Pienennä</s:String>
+    <s:String x:Key="maximize">Suurenna</s:String>
+    <s:String x:Key="close">Sulje</s:String>
+
+    <s:String x:Key="show_hidden">Näytä piilotetut kuvakkeet</s:String>
+    <s:String x:Key="hide">Piilota</s:String>
+
+    <s:String x:Key="open_folder">&amp;Avaa kansio</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>

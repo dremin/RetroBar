@@ -3,14 +3,16 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:Double x:Key="TaskbarHeight">30</system:Double>
+    <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarWidth">80</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
 
     <LinearGradientBrush x:Key="TaskbarBackground"
+                         MappingMode="Absolute"
                          StartPoint="0,0"
-                         EndPoint="0,1">
+                         EndPoint="0,26">
         <GradientStop Color="#c7767676"
                       Offset="0.0" />
         <GradientStop Color="#c7323232"
@@ -1412,14 +1414,27 @@
            x:Key="InputLanguage"
            BasedOn="{StaticResource InputLanguage}">
         <Setter Property="Margin"
-                Value="0,-2,0,0" />
+                Value="4,6,0,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="2,6,0,0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock"
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="6,0,10,1" />
+                Value="6,1,10,2" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1480,7 +1495,7 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
-                Value="0,1,4,3" />
+                Value="0,1,4,1" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1489,6 +1504,34 @@
                             Value="1,1,2,1" />
                 </DataTrigger.Setters>
             </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ItemsControl"
+           x:Key="NotifyIconItems"
+           BasedOn="{StaticResource NotifyIconItems}">
+        <Setter Property="Margin"
+                Value="0,1" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Horizontal"/>
+                    <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="1"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,0,0,2" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 
