@@ -20,7 +20,7 @@
         <s:String>Right</s:String>
         <s:String>Bottom</s:String>
     </x:Array>
-    <s:String x:Key="rowcount_text">Row Count:</s:String>
+    <s:String x:Key="rowcount_text">Number of _rows:</s:String>
     <s:String x:Key="rowcount_tip">The number of rows on the taskbar when on top or bottom.</s:String>
     <x:Array x:Key="rowcount_options" Type="s:Int32">
         <s:Int32>1</s:Int32>
