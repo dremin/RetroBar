@@ -568,7 +568,7 @@ namespace RetroBar
                         Dispatcher.BeginInvoke(() => {
                             int mouseY = e.HookStruct.pt.Y;
                             // Calculate where the resize edge should be, in case the actual resize operation is lagging behind the mouse
-                            double taskbarEdge = (AppBarEdge == AppBarEdge.Top ? Screen.Bounds.Top + DesiredHeight : Screen.Bounds.Bottom - DesiredHeight) * DpiScale;
+                            double taskbarEdge = AppBarEdge == AppBarEdge.Top ? Screen.Bounds.Top + (DesiredHeight * DpiScale) : Screen.Bounds.Bottom - (DesiredHeight * DpiScale);
                             double scaledRowHeight = DesiredRowHeight * DpiScale;
                             if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
                                  AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
