@@ -13,6 +13,7 @@ using RetroBar.Controls;
 using System.Diagnostics;
 using System.Windows.Input;
 using ManagedShell.Common.Logging;
+using System.Windows.Threading;
 
 namespace RetroBar
 {
@@ -564,23 +565,26 @@ namespace RetroBar
 
                     if (_mouseDragResize)
                     {
-                        int mouseY = e.HookStruct.pt.Y;
-                        double taskbarEdge = (Top + (AppBarEdge == AppBarEdge.Top ? Height : 0)) * DpiScale;
-                        double scaledRowHeight = DesiredRowHeight * DpiScale;
-                        if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
-                             AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
-                             Settings.Instance.RowCount > 1)
-                        {
-                            // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
-                            Settings.Instance.RowCount -= 1;
-                        }
-                        else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
-                                  AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
-                                  Settings.Instance.RowCount < 5)
-                        {
-                            // If mouse is outside the taskbar and at least one row height away, increment size
-                            Settings.Instance.RowCount += 1;
-                        }
+                        Dispatcher.BeginInvoke(() => {
+                            int mouseY = e.HookStruct.pt.Y;
+                            // Calculate where the resize edge should be, in case the actual resize operation is lagging behind the mouse
+                            double taskbarEdge = (AppBarEdge == AppBarEdge.Top ? Screen.Bounds.Top + DesiredHeight : Screen.Bounds.Bottom - DesiredHeight) * DpiScale;
+                            double scaledRowHeight = DesiredRowHeight * DpiScale;
+                            if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
+                                 AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
+                                 Settings.Instance.RowCount > 1)
+                            {
+                                // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
+                                Settings.Instance.RowCount -= 1;
+                            }
+                            else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
+                                      AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
+                                      Settings.Instance.RowCount < 5)
+                            {
+                                // If mouse is outside the taskbar and at least one row height away, increment size
+                                Settings.Instance.RowCount += 1;
+                            }
+                        });
                         return;
                     }
 
