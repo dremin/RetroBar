@@ -8,6 +8,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
+            <converters:IconListOrientation x:Key="iconsOrientation" />
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel>
@@ -22,11 +23,19 @@
                       Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="NotifyIcons"
                       Focusable="False"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center">
+                      Style="{DynamicResource NotifyIconItems}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    <WrapPanel>
+                        <WrapPanel.Orientation>
+                            <MultiBinding Converter="{StaticResource iconsOrientation}">
+                                <Binding Path="Orientation"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                                <Binding Path="Rows"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                            </MultiBinding>
+                        </WrapPanel.Orientation>
+                    </WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

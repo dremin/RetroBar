@@ -8,8 +8,9 @@
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
 
     <LinearGradientBrush x:Key="TaskbarBackground"
+                         MappingMode="Absolute"
                          StartPoint="0,0"
-                         EndPoint="0,1">
+                         EndPoint="0,26">
         <GradientStop Color="#8B8C8C"
                       Offset="0.0" />
         <GradientStop Color="#828383"

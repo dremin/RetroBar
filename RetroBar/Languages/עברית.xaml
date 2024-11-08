@@ -20,6 +20,8 @@
         <s:String>ימין</s:String>
         <s:String>ישבן</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">מספר שורות:</s:String>
+    <s:String x:Key="rowcount_tip">מספר השורות בשורת המשימות כאשר למעלה או למטה.</s:String>
     <s:String x:Key="allow_font_smoothing">_אפשר החלקת גופנים</s:String>
     <s:String x:Key="collapse_tray_icons">סמלי אזור הודעה מכווץ</s:String>
     <s:String x:Key="customize">התא_מה אישית...</s:String>

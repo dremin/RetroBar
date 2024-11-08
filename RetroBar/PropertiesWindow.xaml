@@ -23,6 +23,7 @@
             <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <converters:EnumConverter x:Key="enumConverter" />
+            <converters:EdgeIsHorizontalConverter x:Key="isHorizontalConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
@@ -202,6 +203,16 @@
                                           ItemsSource="{DynamicResource location_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="cboEdgeSelect_SelectionChanged" />
+                            </DockPanel>
+                            <DockPanel IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource isHorizontalConverter}}">
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cbRowCount}">
+                                    <AccessText Text="{DynamicResource rowcount_text}"
+                                                ToolTip="{DynamicResource rowcount_tip}" />
+                                </Label>
+                                <ComboBox x:Name="cbRowCount"
+                                          ItemsSource="{DynamicResource rowcount_options}"
+                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />

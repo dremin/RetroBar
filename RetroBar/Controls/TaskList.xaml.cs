@@ -159,6 +159,9 @@ namespace RetroBar.Controls
 
         private void SetTaskButtonWidth()
         {
+            if (Host is null)
+                return; // The state is trashed, but presumably it's just a transition
+
             if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
             {
                 ButtonWidth = ActualWidth;
@@ -166,8 +169,12 @@ namespace RetroBar.Controls
                 return;
             }
 
+            double height = ActualHeight;
+            int rows = Host.Rows;
+
+            int taskCount = TasksList.Items.Count;
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
-            double maxWidth = TasksList.ActualWidth / TasksList.Items.Count;
+            double maxWidth = TasksList.ActualWidth * rows / (taskCount + (taskCount % rows));
             double defaultWidth = DefaultButtonWidth + margin;
             double minWidth = MinButtonWidth + margin;
 

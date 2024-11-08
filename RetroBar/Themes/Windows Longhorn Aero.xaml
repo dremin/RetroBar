@@ -3,6 +3,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:Double x:Key="TaskbarHeight">30</system:Double>
+    <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
 
@@ -529,6 +530,8 @@
     <Style TargetType="Button"
            x:Key="TaskButton"
            BasedOn="{StaticResource TaskButton}">
+        <Setter Property="Margin"
+                Value="{DynamicResource TaskButtonMargin}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -1115,6 +1118,8 @@
                 Value="30" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
         <Setter Property="Template">
@@ -1213,7 +1218,7 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="6,0,10,0" />
+                Value="6,2,10,2" />
         <Setter Property="Effect"
                 Value="{StaticResource ForegroundShadow}" />
         <Style.Triggers>
@@ -1237,26 +1242,31 @@
             <TextBlock Text="{Binding Path=Now, StringFormat=dddd, Mode=OneWay}"
                        Style="{DynamicResource Clock}"
                        Name="ClockVerticalDayOfWeek"
-                       Visibility="Collapsed">
+                       Visibility="Visible">
             </TextBlock>
             <TextBlock Text="{Binding Path=Now, StringFormat=d, Mode=OneWay}"
                        Style="{DynamicResource Clock}"
                        Name="ClockVerticalDate"
-                       Visibility="Collapsed">
+                       Visibility="Visible">
             </TextBlock>
         </StackPanel>
         <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                         Value="Vertical">
-                <DataTrigger.Setters>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Horizontal"/>
+                    <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                               Value="1"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
                     <Setter TargetName="ClockVerticalDayOfWeek"
                             Property="Visibility"
-                            Value="Visible" />
+                            Value="Collapsed" />
                     <Setter TargetName="ClockVerticalDate"
                             Property="Visibility"
-                            Value="Visible" />
-                </DataTrigger.Setters>
-            </DataTrigger>
+                            Value="Collapsed" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -1264,7 +1274,14 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
-                Value="0,2,4,2" />
+                Value="0,1,4,1" />
+    </Style>
+
+    <Style TargetType="ItemsControl"
+           x:Key="NotifyIconItems"
+           BasedOn="{StaticResource NotifyIconItems}">
+        <Setter Property="Margin"
+                Value="0,1" />
     </Style>
 
     <Style TargetType="ItemsControl"

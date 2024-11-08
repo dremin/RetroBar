@@ -206,6 +206,13 @@ namespace RetroBar.Utilities
             set => SetEnum(ref _edge, value);
         }
 
+        private int _rowCount = 1;
+        public int RowCount
+        {
+            get => _rowCount;
+            set => Set(ref _rowCount, value);
+        }
+
         private List<string> _quickLaunchOrder = [];
         public List<string> QuickLaunchOrder
         {

@@ -10,6 +10,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
+            <converters:IconListOrientation x:Key="iconsOrientation" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -30,7 +31,16 @@
                       dd:DragDrop.DragDropContext="Toolbar">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    <WrapPanel>
+                        <WrapPanel.Orientation>
+                            <MultiBinding Converter="{StaticResource iconsOrientation}">
+                                <Binding Path="Orientation"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                                <Binding Path="Rows"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                            </MultiBinding>
+                        </WrapPanel.Orientation>
+                    </WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

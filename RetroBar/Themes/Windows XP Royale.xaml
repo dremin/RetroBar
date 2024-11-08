@@ -34,6 +34,30 @@
         <GradientStop Color="#254394"
                       Offset="1.0" />
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarBackgroundTall"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#99c6f1"
+                      Offset="0.0" />
+        <GradientStop Color="#99c6f1"
+                      Offset="0.05" />
+        <GradientStop Color="#83c2ed"
+                      Offset="0.05" />
+        <GradientStop Color="#5896df"
+                      Offset="0.40" />
+        <GradientStop Color="#5896df"
+                      Offset="0.53" />
+        <GradientStop Color="#397dd0"
+                      Offset="0.53" />
+        <GradientStop Color="#2c55b1"
+                      Offset="0.90" />
+        <GradientStop Color="#2c55b1"
+                      Offset="0.97" />
+        <GradientStop Color="#254394"
+                      Offset="0.97" />
+        <GradientStop Color="#254394"
+                      Offset="1.0" />
+    </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
