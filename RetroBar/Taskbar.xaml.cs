@@ -644,7 +644,7 @@ namespace RetroBar
         {
             if (IsLocked || Orientation == Orientation.Vertical) return false;
 
-            int resizeRegionSize = (int)(_unlockedMargin > 0 ? _unlockedMargin : SystemParameters.MinimumVerticalDragDistance * Settings.Instance.TaskbarScale);
+            int resizeRegionSize = (int)((_unlockedMargin > 0 ? _unlockedMargin : SystemParameters.MinimumVerticalDragDistance * Settings.Instance.TaskbarScale) * DpiScale);
             int mouseY = System.Windows.Forms.Cursor.Position.Y;
 
             if (AppBarEdge == AppBarEdge.Bottom && mouseY <= (int)(Top * DpiScale) + resizeRegionSize)
