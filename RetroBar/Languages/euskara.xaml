@@ -25,6 +25,7 @@
     <s:String x:Key="customize">_Personalizatu...</s:String>
     <s:String x:Key="show_clock">Erakutsi _erlojua</s:String>
     <s:String x:Key="show_multi_mon">Erakutsi _hainbat pantailetan</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Hasierako _botoia hainbat pantailatan erakutsi</s:String>
     <s:String x:Key="show_quick_launch">Erakutsi abiarazte az_karra</s:String>
     <s:String x:Key="select_location">_Aldatu karpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Abiarazte azkarra: hautatu karpeta bat</s:String>

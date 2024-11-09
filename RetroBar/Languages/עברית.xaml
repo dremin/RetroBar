@@ -26,6 +26,8 @@
     <s:String x:Key="collapse_tray_icons">סמלי אזור הודעה מכווץ</s:String>
     <s:String x:Key="customize">התא_מה אישית...</s:String>
     <s:String x:Key="show_clock">הצג את שעון המערכת</s:String>
+    <s:String x:Key="show_multi_mon">הצג על _מסכים מרובים</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">הצג את כפתור התחל על _מסכים מרובים</s:String>
     <s:String x:Key="show_quick_launch">הצג הפעלה מהירה</s:String>
     <s:String x:Key="select_location">_בחירת מיקום...</s:String>
     <s:String x:Key="quick_launch_folder">הפעלה מהירה - בחירת תיקיה</s:String>

@@ -242,6 +242,9 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_window_previews}" />
                             </CheckBox>
+                               <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowButtonSecondaryMonitor, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_start_button_on_secondary_monitor}" />
+                            </CheckBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource notification_area}">

@@ -35,6 +35,7 @@
     <s:String x:Key="show_input_language">Näytä syötteen _kieli</s:String>
     <s:String x:Key="show_clock">Näytä kell_o</s:String>
     <s:String x:Key="show_multi_mon">Näytä _useilla näytöillä</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Näytä aloituspainike _useilla näytöillä</s:String>
     <s:String x:Key="show_quick_launch">Näytä _Pika-käynnistys</s:String>
     <s:String x:Key="select_location">_Valitse sijainti...</s:String>
     <s:String x:Key="quick_launch_folder">Pika-käynnistys - Valitse kansio</s:String>

@@ -25,6 +25,7 @@
     <s:String x:Key="customize">Персонали_зирай...</s:String>
     <s:String x:Key="show_clock">Показвай _часовника</s:String>
     <s:String x:Key="show_multi_mon">Показвай върху множество _екрани</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Покажи бутон Начало на _няколко екрана</s:String>
     <s:String x:Key="show_quick_launch">Показвай _Бърз достъп</s:String>
     <s:String x:Key="select_location">_Избери местоположение...</s:String>
     <s:String x:Key="quick_launch_folder">Бърз достъп - избери папка</s:String>

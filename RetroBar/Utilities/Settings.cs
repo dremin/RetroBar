@@ -149,6 +149,13 @@ namespace RetroBar.Utilities
             set => Set(ref _collapseNotifyIcons, value);
         }
 
+        private bool _showButtonSecondaryMonitor = false;
+        public bool ShowButtonSecondaryMonitor
+        {
+            get => _showButtonSecondaryMonitor;
+            set => Set(ref _showButtonSecondaryMonitor, value);
+        }
+
         private List<string> _invertNotifyIcons = new List<string> { NotificationArea.HARDWARE_GUID, NotificationArea.UPDATE_GUID, NotificationArea.MICROPHONE_GUID, NotificationArea.LOCATION_GUID, NotificationArea.MEETNOW_GUID, NotificationArea.NETWORK_GUID, NotificationArea.POWER_GUID, NotificationArea.VOLUME_GUID };
         public List<string> InvertNotifyIcons
         {

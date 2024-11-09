@@ -25,6 +25,7 @@
     <s:String x:Key="customize">کاستومایز</s:String>
     <s:String x:Key="show_clock">نشان دادن ساعت</s:String>
     <s:String x:Key="show_multi_mon">در چند مانیتور نشان داده شود</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">نمایش دکمه روی _مانیتورهای متعدد</s:String>
     <s:String x:Key="show_quick_launch">کوییک لانچ</s:String>
     <s:String x:Key="select_location">_کجا...</s:String>
     <s:String x:Key="quick_launch_folder">کوییک لانچ - کدام فلدر</s:String>

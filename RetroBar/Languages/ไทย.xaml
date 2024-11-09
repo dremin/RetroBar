@@ -25,6 +25,7 @@
     <s:String x:Key="customize">_ปรับแต่ง...</s:String>
     <s:String x:Key="show_clock">แสดง_นาฬิกา</s:String>
     <s:String x:Key="show_multi_mon">แสดงบนจอภาพ_หลายจอ</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">แสดงปุ่มบน _จอภาพหลายจอ</s:String>
     <s:String x:Key="show_quick_launch">แสดงการเปิดใช้งาน_ด่วน</s:String>
     <s:String x:Key="select_location">เ_ลือกตำแหน่ง...</s:String>
     <s:String x:Key="quick_launch_folder">การเปิดใช้งานด่วน - เลือกโฟลเดอร์</s:String>

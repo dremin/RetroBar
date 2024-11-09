@@ -47,6 +47,12 @@ namespace RetroBar
             set => Settings.Instance.RowCount = value;
         }
 
+        public bool ShowButtomSecondaryMonitor
+        {
+            get => Settings.Instance.ShowButtonSecondaryMonitor;
+            set => Settings.Instance.ShowButtonSecondaryMonitor = value;
+        }
+
         private bool _clockRightClicked;
         private bool _notifyAreaRightClicked;
         private bool _startMenuOpen;
@@ -98,7 +104,7 @@ namespace RetroBar
             }
 
             // Hide the start button on secondary display(s)
-            if (!Screen.Primary)
+            if (!Screen.Primary && !Settings.Instance.ShowButtonSecondaryMonitor)
             {
                 StartButton.Visibility = Visibility.Collapsed;
             }
@@ -282,6 +288,17 @@ namespace RetroBar
             {
                 RecalculateSize();
                 OnPropertyChanged(nameof(Rows));
+            }
+            else if (e.PropertyName == nameof(Settings.ShowButtonSecondaryMonitor))
+            {  
+                  OnPropertyChanged(nameof(ShowButtomSecondaryMonitor));          
+            if (!Screen.Primary && !Settings.Instance.ShowButtonSecondaryMonitor)
+            {
+                StartButton.Visibility = Visibility.Collapsed;
+            }
+            else{
+               StartButton.Visibility = Visibility.Visible;  
+            }
             }
         }
 

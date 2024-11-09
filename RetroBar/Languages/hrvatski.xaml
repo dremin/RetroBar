@@ -26,6 +26,7 @@
     <s:String x:Key="show_input_language">Prikaži raspored _tipkovnice</s:String>
     <s:String x:Key="show_clock">Prikaži  _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Prikaži gumb za početak na _više ekrana</s:String>
     <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
     <s:String x:Key="select_location">_Odaberi lokaciju...</s:String>
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>

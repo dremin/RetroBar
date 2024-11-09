@@ -26,6 +26,7 @@
     <s:String x:Key="show_input_language">Показати розкладку _клавіатури</s:String>
     <s:String x:Key="show_clock">Показати годинник</s:String>
     <s:String x:Key="show_multi_mon">Показати на усіх дисплеях</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Показати кнопку на _багатьох екранах</s:String>
     <s:String x:Key="show_quick_launch">Показати ікони швидкого запуску</s:String>
     <s:String x:Key="select_location">Вибрати іншу теку...</s:String>
     <s:String x:Key="quick_launch_folder">Швидкий запуск - Виберіть теку</s:String>
