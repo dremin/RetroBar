@@ -290,6 +290,14 @@ namespace RetroBar
             }
         }
 
+        private void cbRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cbRowCount.SelectedItem == null)
+            {
+                cbRowCount.SelectedValue = cbRowCount.Items[Settings.Instance.RowCount - 1];
+            }
+        }
+
         private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
         {
             OpenCustomizeNotifications();
