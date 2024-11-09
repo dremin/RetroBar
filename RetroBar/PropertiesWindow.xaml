@@ -21,6 +21,7 @@
             <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
+            <converters:CountToIndexConverter x:Key="countToIndexConverter" />
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <converters:EnumConverter x:Key="enumConverter" />
             <converters:EdgeIsHorizontalConverter x:Key="isHorizontalConverter" />
@@ -212,7 +213,8 @@
                                 </Label>
                                 <ComboBox x:Name="cbRowCount"
                                           ItemsSource="{DynamicResource rowcount_options}"
-                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged}" />
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource countToIndexConverter}}"
+                                          SelectionChanged="cbRowCount_SelectionChanged" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
