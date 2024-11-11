@@ -3,6 +3,8 @@ using ManagedShell.AppBar;
 using ManagedShell.Common.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RetroBar.Utilities
@@ -18,11 +20,18 @@ namespace RetroBar.Utilities
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
+        private readonly int _monitorUpdateDelay = 500; // Update delay in ms for explorer monitor thread. NOTE: If this value is too high, explorer.exe will get stuck on a restart loop!
+        private volatile bool _monitoring;
+        private Thread _monitorThread;
+        private int _lastExplorerPid = -1;
+
         public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
             _shellManager = shellManager;
             _startMenuMonitor = startMenuMonitor;
             _updater = updater;
+
+            ExplorerMonitorStart();
 
             _shellManager.ExplorerHelper.HideExplorerTaskbar = true;
 
@@ -185,6 +194,103 @@ namespace RetroBar.Utilities
         {
             _shellManager.ExplorerHelper.HideExplorerTaskbar = false;
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+        }
+
+        public void ExplorerMonitorStart()
+        {
+            // Restarting RetroBar when explorer.exe is shutdown
+            // will allow explorer to initialize properly,
+            // this fixes "explorer restart loop bug".
+
+            // Prevent multiple monitor threads
+            if(_monitoring){return;}
+
+            _monitoring = true; // Set flag to true
+
+            // Start monitor thread
+            _monitorThread = new Thread(() =>
+            {
+                while (_monitoring) // This "while" loop is basically the main loop of the monitor thread.
+                {
+                    try
+                    {
+                        // Get the current explorer.exe process
+                        Process[] explorerProcesses = Process.GetProcessesByName("explorer");
+
+                        if (explorerProcesses.Length == 0) // explorer.exe is not running
+                        {
+                            // Only act if previously tracked explorer was running
+                            if (Interlocked.CompareExchange(ref _lastExplorerPid, 0, 0) != -1)
+                            {
+                                // If we landed here, this might indicate that explorer is trying to start but failing,
+                                // so we will restart RetroBar just in case RetroBar is crashing explorer.
+                                RestartRetroBar();
+                            }
+                        }
+                        else // explorer.exe is running
+                        {
+                            // Update current PID
+                            int currentExplorerPid = explorerProcesses[0].Id;
+
+                            // Check if PID has changed
+                            int lastExplorerPid = Interlocked.CompareExchange(ref _lastExplorerPid, 0, 0);
+                            if (lastExplorerPid != -1 && lastExplorerPid != currentExplorerPid)
+                            {
+                                // Explorer PID was changed (explorer has restarted), so we will restart RetroBar.
+                                RestartRetroBar();
+                            }
+
+                            // Update the tracked PID
+                            Interlocked.Exchange(ref _lastExplorerPid, currentExplorerPid);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error monitoring explorer.exe: {ex.Message}");
+                    }
+
+                    // Sleep for a short interval to avoid excessive CPU usage.
+                    // CPU usage was 0.00% with 500ms delay on test system.
+                    // Increase _monitorUpdateDelay value to decrease CPU usage if needed.
+                    // 500ms should be fine, unless your system is a potato.
+                    // NOTE: If this value is too high, explorer.exe will get stuck on a restart loop!
+                    Thread.Sleep(_monitorUpdateDelay);
+                }
+            });
+
+            _monitorThread.IsBackground = true; // Ensure our monitor thread exits when RetroBar is shutdown.
+            _monitorThread.Start();
+        }
+
+        private static void RestartRetroBar()
+        {
+            // RestartRetroBar function is called if we detect that explorer.exe PID has changed.
+
+            // Get RetroBar application path
+            string appPath = Process.GetCurrentProcess().MainModule?.FileName;
+
+            if (!string.IsNullOrEmpty(appPath))
+            {
+                try
+                {
+                    // Start a new instance before killing the current process.
+                    // There is a delay on RetroBar init so this is fine.
+                    // NOTE: If the start delay of RetroBar is shortened or removed in the future,
+                    // we will need to add a delay here.
+                    Process.Start(appPath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error restarting RetroBar: {ex.Message}");
+                }
+
+                // Exit current RetroBar process.
+                Environment.Exit(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unable to determine the path of RetroBar.");
+            }
         }
     }
 }
