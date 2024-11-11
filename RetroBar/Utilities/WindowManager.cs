@@ -1,11 +1,14 @@
-﻿using ManagedShell;
+using ManagedShell;
 using ManagedShell.AppBar;
 using ManagedShell.Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace RetroBar.Utilities
 {
@@ -20,10 +23,12 @@ namespace RetroBar.Utilities
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
-        private readonly int _monitorUpdateDelay = 500; // Update delay in ms for explorer monitor thread. NOTE: If this value is too high, explorer.exe will get stuck on a restart loop!
-        private volatile bool _monitoring;
-        private Thread _monitorThread;
-        private int _lastExplorerPid = -1;
+        private readonly int _ExplorerMonitorUpdateDelay = 300; // Update delay in ms for explorer monitor thread. NOTE: If this value is too high, explorer.exe will get stuck on a restart loop!
+        private volatile bool _ExplorerMonitorIsMonitoring;
+        private Thread _ExplorerMonitorThread;
+        private int _ExplorerMonitorLastExplorerPid = -1;
+        [DllImport("user32.dll")] private static extern IntPtr GetShellWindow();
+        [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
         public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
@@ -198,50 +203,81 @@ namespace RetroBar.Utilities
 
         public void ExplorerMonitorStart()
         {
-            // Restarting RetroBar when explorer.exe is shutdown
-            // will allow explorer to initialize properly,
-            // this fixes "explorer restart loop bug".
+            // Restarting RetroBar when Explorer is shutdown
+            // will allow Explorer to initialize properly,
+            // this fixes crash-restart-loop bug.
 
-            // Prevent multiple monitor threads
-            if(_monitoring){return;}
+            // Prevent multiple monitor threads.
+            if(_ExplorerMonitorIsMonitoring){return;} 
 
-            _monitoring = true; // Set flag to true
+            _ExplorerMonitorIsMonitoring = true; // Set flag to true, to prevent multiple monitor threads.
 
-            // Start monitor thread
-            _monitorThread = new Thread(() =>
+            // Get the expected shell (Explorer) executable name and path from the registry.
+            string shellExecutableName = GetShellExecutableNameFromRegistry();
+            string expectedShellPath = GetShellPathFromRegistry();
+
+            // Start monitor thread.
+            _ExplorerMonitorThread = new Thread(() =>
             {
-                while (_monitoring) // This "while" loop is basically the main loop of the monitor thread.
+                while (_ExplorerMonitorIsMonitoring) // This "while" loop is basically the main loop of the monitor thread.
                 {
                     try
                     {
-                        // Get the current explorer.exe process
-                        Process[] explorerProcesses = Process.GetProcessesByName("explorer");
+                        // Get the desktop shell process ID.
+                        uint shellProcessId = GetShellProcessId();
 
-                        if (explorerProcesses.Length == 0) // explorer.exe is not running
+                        // Get the current processes with the retrieved executable name.
+                        Process[] explorerProcesses = Process.GetProcessesByName(shellExecutableName);
+
+                        // Filter processes.
+                        var validExplorerProcesses = explorerProcesses.Where(p =>
                         {
-                            // Only act if previously tracked explorer was running
-                            if (Interlocked.CompareExchange(ref _lastExplorerPid, 0, 0) != -1)
+                            try
                             {
-                                // If we landed here, this might indicate that explorer is trying to start but failing,
-                                // so we will restart RetroBar just in case RetroBar is crashing explorer.
+                                string processPath = p.MainModule?.FileName;
+
+                                if (shellProcessId == 0) // We did not find shellProcessId, or we are using custom shell
+                                {
+                                    return string.Equals(processPath, expectedShellPath, StringComparison.OrdinalIgnoreCase);
+                                }
+                                else // shellProcessId was found
+                                {
+                                    return string.Equals(processPath, expectedShellPath, StringComparison.OrdinalIgnoreCase) && (uint)p.Id == shellProcessId;
+                                }
+                            }
+                            catch
+                            {
+                                return false; // Skip inaccessible processes.
+                            }
+                        }).ToList();
+
+
+                        if (!validExplorerProcesses.Any()) // No valid processes found.
+                        {
+                            // Only act if previously tracked Explorer was running.
+                            if (Interlocked.CompareExchange(ref _ExplorerMonitorLastExplorerPid, 0, 0) != -1)
+                            {
+                                // If we landed here, this might indicate that Explorer is trying to start but failing,
+                                // or Explorer was closed manually, so we will restart RetroBar just in case RetroBar is causing a crash.
                                 RestartRetroBar();
                             }
                         }
-                        else // explorer.exe is running
+                        else  // Valid process was found.
                         {
-                            // Update current PID
-                            int currentExplorerPid = explorerProcesses[0].Id;
+                            Process desktopShellProcess = validExplorerProcesses.First();
 
-                            // Check if PID has changed
-                            int lastExplorerPid = Interlocked.CompareExchange(ref _lastExplorerPid, 0, 0);
+                            int currentExplorerPid = desktopShellProcess.Id;
+
+                            // Check if PID has changed.
+                            int lastExplorerPid = Interlocked.CompareExchange(ref _ExplorerMonitorLastExplorerPid, 0, 0);
                             if (lastExplorerPid != -1 && lastExplorerPid != currentExplorerPid)
                             {
-                                // Explorer PID was changed (explorer has restarted), so we will restart RetroBar.
+                                // Explorer PID was changed (Explorer has restarted), so we will restart RetroBar.
                                 RestartRetroBar();
                             }
 
-                            // Update the tracked PID
-                            Interlocked.Exchange(ref _lastExplorerPid, currentExplorerPid);
+                            // Update the tracked PID.
+                            Interlocked.Exchange(ref _ExplorerMonitorLastExplorerPid, currentExplorerPid);
                         }
                     }
                     catch (Exception ex)
@@ -250,23 +286,109 @@ namespace RetroBar.Utilities
                     }
 
                     // Sleep for a short interval to avoid excessive CPU usage.
-                    // CPU usage was 0.00% with 500ms delay on test system.
-                    // Increase _monitorUpdateDelay value to decrease CPU usage if needed.
-                    // 500ms should be fine, unless your system is a potato.
-                    // NOTE: If this value is too high, explorer.exe will get stuck on a restart loop!
-                    Thread.Sleep(_monitorUpdateDelay);
+                    // CPU usage was 0.00% with 300ms delay on test systems.
+                    // 300ms should be fine, unless your system is a potato.
+                    // NOTE: You can increase _ExplorerMonitorUpdateDelay value to decrease CPU usage,
+                    // but if this value is too high, Explorer will get stuck on a crash-restart-loop!
+                    Thread.Sleep(_ExplorerMonitorUpdateDelay);
                 }
             });
 
-            _monitorThread.IsBackground = true; // Ensure our monitor thread exits when RetroBar is shutdown.
-            _monitorThread.Start();
+            _ExplorerMonitorThread.IsBackground = true; // Ensure our monitor thread exits when RetroBar exits.
+            _ExplorerMonitorThread.Start();
+        }
+
+        private static string GetShellExecutableNameFromRegistry()
+        {
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"))
+                {
+                    string shellValue = key?.GetValue("Shell") as string;
+
+                    if (!string.IsNullOrEmpty(shellValue))
+                    {
+                        return System.IO.Path.GetFileNameWithoutExtension(shellValue);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading shell executable name from registry: {ex.Message}");
+            }
+
+            // Default to "explorer" if registry lookup fails.
+            return "explorer";
+        }
+
+        private static string GetShellPathFromRegistry()
+        {
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"))
+                {
+                    // "Shell" key could either be explorer.exe or a custom shell path
+                    string shellValue = key?.GetValue("Shell") as string;
+
+                    if (!string.IsNullOrEmpty(shellValue))
+                    {
+                        // If the shell is "explorer.exe", construct its full path from the SystemRoot variable
+                        if (shellValue.Equals("explorer.exe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            string systemRoot = Environment.GetEnvironmentVariable("SystemRoot");
+                            if (!string.IsNullOrEmpty(systemRoot))
+                            {
+                                return System.IO.Path.Combine(systemRoot, "explorer.exe");
+                            }
+                        }
+                        // If the shell is a custom executable, return the full path (if its already a full path)
+                        else if (System.IO.Path.IsPathRooted(shellValue))
+                        {
+                            return shellValue; // Return the custom shells full path
+                        }
+                        else
+                        {
+                            // If the shell value is a relative path, we could assume its in the SystemRoot directory
+                            string systemRoot = Environment.GetEnvironmentVariable("SystemRoot");
+                            if (!string.IsNullOrEmpty(systemRoot))
+                            {
+                                return System.IO.Path.Combine(systemRoot, shellValue);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading shell path from registry: {ex.Message}");
+            }
+
+            // Fallback to default explorer.exe path if something goes wrong or no shell is found
+            return Environment.ExpandEnvironmentVariables(@"%SystemRoot%\explorer.exe");
+        }
+
+        private static uint GetShellProcessId()
+        {
+            // This is a call that is available on Windows 10 and 11.
+            // It will return the exact explorer process that is hosting the desktop shell,
+            // this ensures we dont accidentally target something like "File Explorer".
+            IntPtr shellWindowHandle = GetShellWindow();
+
+            if (shellWindowHandle == IntPtr.Zero)
+            {
+                Console.WriteLine("Shell window not found.");
+                return 0;
+            }
+
+            GetWindowThreadProcessId(shellWindowHandle, out uint shellProcessId);
+            return shellProcessId;
         }
 
         private static void RestartRetroBar()
         {
             // RestartRetroBar function is called if we detect that explorer.exe PID has changed.
 
-            // Get RetroBar application path
+            // Get RetroBar application path.
             string appPath = Process.GetCurrentProcess().MainModule?.FileName;
 
             if (!string.IsNullOrEmpty(appPath))
@@ -275,8 +397,8 @@ namespace RetroBar.Utilities
                 {
                     // Start a new instance before killing the current process.
                     // There is a delay on RetroBar init so this is fine.
-                    // NOTE: If the start delay of RetroBar is shortened or removed in the future,
-                    // we will need to add a delay here.
+                    // NOTE: If the start delay of RetroBar is decreased or removed in the future,
+                    // we will need to add a delay before starting new RetroBar instance.
                     Process.Start(appPath);
                 }
                 catch (Exception ex)
