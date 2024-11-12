@@ -23,6 +23,8 @@ namespace RetroBar.Utilities
         private volatile bool _ExplorerMonitorIsMonitoring;
         private ExplorerMonitor _ExplorerMonitor;
         [DllImport("user32.dll", SetLastError = true)] private static extern uint RegisterWindowMessage(string lpString);
+        [DllImport("user32.dll")] private static extern IntPtr SetWindowLong(IntPtr hwnd, int index, int newStyle);
+        [DllImport("user32.dll")] private static extern int GetWindowLong(IntPtr hwnd, int index);
 
         public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
@@ -218,6 +220,9 @@ namespace RetroBar.Utilities
         public class ExplorerMonitor : Form
         {
             private readonly WindowManager _windowManager;
+            private const int GWL_EXSTYLE = -20;
+            private const int WS_EX_TOOLWINDOW = 0x00000080;
+            private const int WS_EX_APPWINDOW = 0x00040000;
 
             public ExplorerMonitor(WindowManager windowManager)
             {
@@ -233,6 +238,10 @@ namespace RetroBar.Utilities
                 Visible = false; // Set the form as invisible
                 StartPosition = FormStartPosition.Manual; // Dont center this form
                 Location = new System.Drawing.Point(-1000, -1000); // Move it far off-screen
+
+                // Remove ExplorerMonitor from the Alt+Tab list by modifying its extended style
+                var extendedStyle = GetWindowLong(this.Handle, GWL_EXSTYLE);
+                SetWindowLong(this.Handle, GWL_EXSTYLE, extendedStyle | WS_EX_TOOLWINDOW);
             }
 
             // We will override WndProc to listen for TaskbarCreated event
