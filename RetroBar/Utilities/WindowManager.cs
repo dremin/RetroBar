@@ -1,11 +1,11 @@
 using ManagedShell;
 using ManagedShell.AppBar;
 using ManagedShell.Common.Logging;
+using ManagedShell.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
@@ -27,8 +27,6 @@ namespace RetroBar.Utilities
         private volatile bool _ExplorerMonitorIsMonitoring;
         private Thread _ExplorerMonitorThread;
         private int _ExplorerMonitorLastExplorerPid = -1;
-        [DllImport("user32.dll")] private static extern IntPtr GetShellWindow();
-        [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
         public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
@@ -372,7 +370,7 @@ namespace RetroBar.Utilities
             // This is a call that is available on Windows 10 and 11.
             // It will return the exact explorer process that is hosting the desktop shell,
             // this ensures we dont accidentally target something like "File Explorer".
-            IntPtr shellWindowHandle = GetShellWindow();
+            IntPtr shellWindowHandle = NativeMethods.GetShellWindow();
 
             if (shellWindowHandle == IntPtr.Zero)
             {
@@ -380,7 +378,7 @@ namespace RetroBar.Utilities
                 return 0;
             }
 
-            GetWindowThreadProcessId(shellWindowHandle, out uint shellProcessId);
+            NativeMethods.GetWindowThreadProcessId(shellWindowHandle, out uint shellProcessId);
             return shellProcessId;
         }
 
