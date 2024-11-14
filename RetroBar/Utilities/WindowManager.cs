@@ -26,7 +26,7 @@ namespace RetroBar.Utilities
             _startMenuMonitor = startMenuMonitor;
             _updater = updater;
 
-            _explorerMonitor.ExplorerMonitorStart();
+            _explorerMonitor.ExplorerMonitorStart(this);
 
             _shellManager.ExplorerHelper.HideExplorerTaskbar = true;
 
