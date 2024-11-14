@@ -7,46 +7,40 @@ namespace RetroBar.Utilities
 {
     public class ExplorerMonitor : IDisposable
     {
-        private bool _ExplorerMonitorIsMonitoring;
-        private MonitorWindow _explorerMonitor;
+        private bool _explorerMonitorisMonitoring;
+        private ExplorerMonitorWindow _explorerMonitorWindow;
 
-        public void ExplorerMonitorStart(WindowManager _windowManagerReference)
+        public void ExplorerMonitorStart(WindowManager windowManagerRef)
         {
-            if(_ExplorerMonitorIsMonitoring) // Prevent multiple monitors.
-            {
-                return;
-            }
-            else
-            {
-                _ExplorerMonitorIsMonitoring = true; // We will set flag to true to prevent multiple monitors.
-                _explorerMonitor = new MonitorWindow(_windowManagerReference); // Start monitoring.
-            }
+            if (_explorerMonitorisMonitoring) { return; } // Prevent multiple monitors.
+
+            _explorerMonitorisMonitoring = true;
+            _explorerMonitorWindow = new ExplorerMonitorWindow(windowManagerRef); // Start monitoring.
         }
 
         public void Dispose()
         {
-            if (_explorerMonitor != null){_explorerMonitor?.Dispose();}
+            _explorerMonitorWindow?.Dispose();
         }
 
-        // NativeWindow implementation for monitoring
-        private class MonitorWindow : NativeWindow, IDisposable
+        private class ExplorerMonitorWindow : NativeWindow, IDisposable
         {
-            private WindowManager _windowManager;
-            private static readonly int TaskbarCreatedMessage = NativeMethods.RegisterWindowMessage("TaskbarCreated");
+            private readonly WindowManager _windowManagerRef;
+            private static readonly int WM_TASKBARCREATEDMESSAGE = NativeMethods.RegisterWindowMessage("TaskbarCreated");
 
-            public MonitorWindow(WindowManager _windowManagerReference)
+            public ExplorerMonitorWindow(WindowManager windowManager)
             {
-                _windowManager = _windowManagerReference;
+                _windowManagerRef = windowManager;
                 CreateHandle(new CreateParams());
             }
 
             protected override void WndProc(ref Message m)
             {
-                if (m.Msg == TaskbarCreatedMessage)
+                if (m.Msg == WM_TASKBARCREATEDMESSAGE)
                 {
                     try
                     {
-                        _windowManager.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
+                        _windowManagerRef.ReopenTaskbars();
                     }
                     catch (Exception ex)
                     {
@@ -54,7 +48,6 @@ namespace RetroBar.Utilities
                     }
                 }
 
-                // Call the base class to process other messages so we dont accidentally cause crashes or bugs.
                 base.WndProc(ref m);
             }
 
