@@ -10,7 +10,7 @@ namespace RetroBar.Utilities
         private bool _ExplorerMonitorIsMonitoring;
         private MonitorWindow _explorerMonitor;
 
-        public void ExplorerMonitorStart()
+        public void ExplorerMonitorStart(WindowManager _windowManagerReference)
         {
             if(_ExplorerMonitorIsMonitoring) // Prevent multiple monitors.
             {
@@ -19,7 +19,7 @@ namespace RetroBar.Utilities
             else
             {
                 _ExplorerMonitorIsMonitoring = true; // We will set flag to true to prevent multiple monitors.
-                _explorerMonitor = new MonitorWindow(); // Start monitoring.
+                _explorerMonitor = new MonitorWindow(_windowManagerReference); // Start monitoring.
             }
         }
 
@@ -31,11 +31,12 @@ namespace RetroBar.Utilities
         // NativeWindow implementation for monitoring
         private class MonitorWindow : NativeWindow, IDisposable
         {
-            //private readonly WindowManager _windowManager;
+            private WindowManager _windowManager;
             private static readonly int TaskbarCreatedMessage = NativeMethods.RegisterWindowMessage("TaskbarCreated");
 
-            public MonitorWindow()
+            public MonitorWindow(WindowManager _windowManagerReference)
             {
+                _windowManager = _windowManagerReference;
                 CreateHandle(new CreateParams());
             }
 
@@ -45,15 +46,11 @@ namespace RetroBar.Utilities
                 {
                     try
                     {
-                        //_windowManager.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
-                        string appPath = Process.GetCurrentProcess().MainModule?.FileName;
-                        Process.Start(appPath); // Start a new instance of RetroBar
-                        Environment.Exit(0); // Exit the current instance of RetroBar
+                        _windowManager.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
                     }
                     catch (Exception ex)
                     {
-                        //Debug.WriteLine($"Error handling TaskbarCreated message on ExplorerMonitor: {ex.Message}");
-                        Debug.WriteLine($"Error restarting RetroBar: {ex.Message}");
+                        Debug.WriteLine($"Error handling TaskbarCreated message on ExplorerMonitor: {ex.Message}");
                     }
                 }
 
