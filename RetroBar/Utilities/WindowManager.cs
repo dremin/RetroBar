@@ -18,7 +18,7 @@ namespace RetroBar.Utilities
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
-        private readonly ExplorerMonitor _explorerMonitor = new ExplorerMonitor();
+        private readonly ExplorerMonitor _explorerMonitor = new();
 
         public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
@@ -187,7 +187,7 @@ namespace RetroBar.Utilities
 
         public void Dispose()
         {
-            if (_explorerMonitor != null){_explorerMonitor?.Dispose();}
+            _explorerMonitor?.Dispose();
             _shellManager.ExplorerHelper.HideExplorerTaskbar = false;
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
