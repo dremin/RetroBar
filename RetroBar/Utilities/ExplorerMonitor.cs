@@ -40,7 +40,7 @@ namespace RetroBar.Utilities
                 {
                     try
                     {
-                        _windowManagerRef.ReopenTaskbars();
+                        _windowManagerRef.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
                     }
                     catch (Exception ex)
                     {
@@ -48,7 +48,7 @@ namespace RetroBar.Utilities
                     }
                 }
 
-                base.WndProc(ref m);
+                base.WndProc(ref m); // Call the base class to process other messages so we dont accidentally cause crashes or bugs.
             }
 
             public void Dispose()
