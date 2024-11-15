@@ -14,14 +14,16 @@ namespace RetroBar.Utilities
         private List<AppBarScreen> _screenState = new List<AppBarScreen>();
         private List<Taskbar> _taskbars = new List<Taskbar>();
 
+        private readonly DictionaryManager _dictionaryManager;
         private readonly StartMenuMonitor _startMenuMonitor;
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
         private readonly ExplorerMonitor _explorerMonitor = new();
 
-        public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
+        public WindowManager(DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
+            _dictionaryManager = dictionaryManager;
             _shellManager = shellManager;
             _startMenuMonitor = startMenuMonitor;
             _updater = updater;
@@ -142,7 +144,7 @@ namespace RetroBar.Utilities
         private void openTaskbar(AppBarScreen screen)
         {
             ShellLogger.Debug($"WindowManager: Opening taskbar on screen {screen.DeviceName}");
-            Taskbar taskbar = new Taskbar(this, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
+            Taskbar taskbar = new Taskbar(this, _dictionaryManager, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
             taskbar.Show();
 
             _taskbars.Add(taskbar);

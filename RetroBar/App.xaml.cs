@@ -20,9 +20,8 @@ namespace RetroBar
     /// </summary>
     public partial class App : Application
     {
-        public DictionaryManager DictionaryManager { get; }
-
         private bool _errorVisible;
+        private DictionaryManager _dictionaryManager;
         private ManagedShellLogger _logger;
         private WindowManager _windowManager;
 
@@ -35,7 +34,7 @@ namespace RetroBar
             _shellManager = SetupManagedShell();
 
             _startMenuMonitor = new StartMenuMonitor(new AppVisibilityHelper(false));
-            DictionaryManager = new DictionaryManager();
+            _dictionaryManager = new DictionaryManager();
             _updater = new Updater();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -54,9 +53,9 @@ namespace RetroBar
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
 
-            DictionaryManager.SetLanguageFromSettings();
+            _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
-            _windowManager = new WindowManager(_shellManager, _startMenuMonitor, _updater);
+            _windowManager = new WindowManager(_dictionaryManager, _shellManager, _startMenuMonitor, _updater);
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
@@ -90,7 +89,7 @@ namespace RetroBar
 
         private void loadTheme()
         {
-            DictionaryManager.SetThemeFromSettings();
+            _dictionaryManager.SetThemeFromSettings();
             setTaskIconSize();
         }
 
@@ -137,7 +136,7 @@ namespace RetroBar
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             _windowManager.Dispose();
-            DictionaryManager.Dispose();
+            _dictionaryManager.Dispose();
             _shellManager.Dispose();
             _startMenuMonitor.Dispose();
             _updater.Dispose();
