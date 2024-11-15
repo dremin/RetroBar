@@ -1,4 +1,4 @@
-﻿using ManagedShell;
+using ManagedShell;
 using ManagedShell.AppBar;
 using ManagedShell.Common.Logging;
 using System;
@@ -18,11 +18,15 @@ namespace RetroBar.Utilities
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
+        private readonly ExplorerMonitor _explorerMonitor = new();
+
         public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
             _shellManager = shellManager;
             _startMenuMonitor = startMenuMonitor;
             _updater = updater;
+
+            _explorerMonitor.ExplorerMonitorStart(this);
 
             _shellManager.ExplorerHelper.HideExplorerTaskbar = true;
 
@@ -183,6 +187,7 @@ namespace RetroBar.Utilities
 
         public void Dispose()
         {
+            _explorerMonitor?.Dispose();
             _shellManager.ExplorerHelper.HideExplorerTaskbar = false;
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
