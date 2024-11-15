@@ -1,20 +1,18 @@
+using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
 using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace RetroBar.Utilities
 {
     public class ExplorerMonitor : IDisposable
     {
-        private bool _explorerMonitorisMonitoring;
         private ExplorerMonitorWindow _explorerMonitorWindow;
 
         public void ExplorerMonitorStart(WindowManager windowManagerRef)
         {
-            if (_explorerMonitorisMonitoring) { return; } // Prevent multiple monitors.
+            if (_explorerMonitorWindow != null) { return; } // Prevent multiple monitors.
 
-            _explorerMonitorisMonitoring = true;
             _explorerMonitorWindow = new ExplorerMonitorWindow(windowManagerRef); // Start monitoring.
         }
 
@@ -28,9 +26,9 @@ namespace RetroBar.Utilities
             private readonly WindowManager _windowManagerRef;
             private static readonly int WM_TASKBARCREATEDMESSAGE = NativeMethods.RegisterWindowMessage("TaskbarCreated");
 
-            public ExplorerMonitorWindow(WindowManager windowManager)
+            public ExplorerMonitorWindow(WindowManager windowManagerRef)
             {
-                _windowManagerRef = windowManager;
+                _windowManagerRef = windowManagerRef;
                 CreateHandle(new CreateParams());
             }
 
@@ -44,7 +42,7 @@ namespace RetroBar.Utilities
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"Error handling TaskbarCreated message on ExplorerMonitor: {ex.Message}");
+                        ShellLogger.Warning($"Error handling TaskbarCreated message on ExplorerMonitor: {ex.Message}");
                     }
                 }
 
