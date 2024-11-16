@@ -15,24 +15,24 @@ namespace RetroBar.Utilities
         private List<Taskbar> _taskbars = new List<Taskbar>();
 
         private readonly DictionaryManager _dictionaryManager;
+        private readonly ExplorerMonitor _explorerMonitor;
         private readonly StartMenuMonitor _startMenuMonitor;
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
-        private readonly ExplorerMonitor _explorerMonitor = new();
-
-        public WindowManager(DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
+        public WindowManager(DictionaryManager dictionaryManager, ExplorerMonitor explorerMonitor, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
             _dictionaryManager = dictionaryManager;
+            _explorerMonitor = explorerMonitor;
             _shellManager = shellManager;
             _startMenuMonitor = startMenuMonitor;
             _updater = updater;
 
-            _explorerMonitor.ExplorerMonitorStart(this);
-
             _shellManager.ExplorerHelper.HideExplorerTaskbar = true;
 
             openTaskbars();
+
+            _explorerMonitor.ExplorerMonitorStart(this);
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -189,7 +189,6 @@ namespace RetroBar.Utilities
 
         public void Dispose()
         {
-            _explorerMonitor?.Dispose();
             _shellManager.ExplorerHelper.HideExplorerTaskbar = false;
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }

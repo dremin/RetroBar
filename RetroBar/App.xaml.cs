@@ -21,18 +21,20 @@ namespace RetroBar
     public partial class App : Application
     {
         private bool _errorVisible;
-        private DictionaryManager _dictionaryManager;
         private ManagedShellLogger _logger;
         private WindowManager _windowManager;
 
-        private readonly StartMenuMonitor _startMenuMonitor;
+        private readonly DictionaryManager _dictionaryManager;
+        private readonly ExplorerMonitor _explorerMonitor;
         private readonly ShellManager _shellManager;
+        private readonly StartMenuMonitor _startMenuMonitor;
         private readonly Updater _updater;
 
         public App()
         {
             _shellManager = SetupManagedShell();
 
+            _explorerMonitor = new ExplorerMonitor();
             _startMenuMonitor = new StartMenuMonitor(new AppVisibilityHelper(false));
             _dictionaryManager = new DictionaryManager();
             _updater = new Updater();
@@ -55,7 +57,7 @@ namespace RetroBar
 
             _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
-            _windowManager = new WindowManager(_dictionaryManager, _shellManager, _startMenuMonitor, _updater);
+            _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater);
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
@@ -135,6 +137,7 @@ namespace RetroBar
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
+            _explorerMonitor.Dispose();
             _windowManager.Dispose();
             _dictionaryManager.Dispose();
             _shellManager.Dispose();
