@@ -14,23 +14,25 @@ namespace RetroBar.Utilities
         private List<AppBarScreen> _screenState = new List<AppBarScreen>();
         private List<Taskbar> _taskbars = new List<Taskbar>();
 
+        private readonly DictionaryManager _dictionaryManager;
+        private readonly ExplorerMonitor _explorerMonitor;
         private readonly StartMenuMonitor _startMenuMonitor;
         private readonly ShellManager _shellManager;
         private readonly Updater _updater;
 
-        private readonly ExplorerMonitor _explorerMonitor = new();
-
-        public WindowManager(ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
+        public WindowManager(DictionaryManager dictionaryManager, ExplorerMonitor explorerMonitor, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater)
         {
+            _dictionaryManager = dictionaryManager;
+            _explorerMonitor = explorerMonitor;
             _shellManager = shellManager;
             _startMenuMonitor = startMenuMonitor;
             _updater = updater;
 
-            _explorerMonitor.ExplorerMonitorStart(this);
-
             _shellManager.ExplorerHelper.HideExplorerTaskbar = true;
 
             openTaskbars();
+
+            _explorerMonitor.ExplorerMonitorStart(this);
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -142,7 +144,7 @@ namespace RetroBar.Utilities
         private void openTaskbar(AppBarScreen screen)
         {
             ShellLogger.Debug($"WindowManager: Opening taskbar on screen {screen.DeviceName}");
-            Taskbar taskbar = new Taskbar(this, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
+            Taskbar taskbar = new Taskbar(this, _dictionaryManager, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
             taskbar.Show();
 
             _taskbars.Add(taskbar);
@@ -187,7 +189,6 @@ namespace RetroBar.Utilities
 
         public void Dispose()
         {
-            _explorerMonitor?.Dispose();
             _shellManager.ExplorerHelper.HideExplorerTaskbar = false;
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
