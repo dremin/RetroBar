@@ -22,13 +22,6 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Broj _redova:</s:String>
     <s:String x:Key="rowcount_tip">Broj redova na programskoj traci kad je na vrhu ili dnu.</s:String>
-    <x:Array x:Key="rowcount_options" Type="s:Int32">
-        <s:Int32>1</s:Int32>
-        <s:Int32>2</s:Int32>
-        <s:Int32>3</s:Int32>
-        <s:Int32>4</s:Int32>
-        <s:Int32>5</s:Int32>
-    </x:Array>
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone</s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
