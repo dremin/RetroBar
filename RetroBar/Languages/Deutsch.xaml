@@ -20,6 +20,15 @@
         <s:String>Rechts</s:String>
         <s:String>Unten</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Anzahl der _Zeilen:</s:String>
+    <s:String x:Key="rowcount_tip">Die Anzahl der Zeilen in der Taskleiste oben oder unten.</s:String>
+    <x:Array x:Key="rowcount_options" Type="s:Int32">
+        <s:Int32>1</s:Int32>
+        <s:Int32>2</s:Int32>
+        <s:Int32>3</s:Int32>
+        <s:Int32>4</s:Int32>
+        <s:Int32>5</s:Int32>
+    </x:Array>
     <s:String x:Key="allow_font_smoothing">Schriftglättung zul_assen</s:String>
     <s:String x:Key="collapse_tray_icons">Infobereichsymbole ausble_nden</s:String>
     <s:String x:Key="customize">A_npassen...</s:String>
