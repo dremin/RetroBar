@@ -1,4 +1,4 @@
-﻿<Window x:Class="RetroBar.PropertiesWindow"
+<Window x:Class="RetroBar.PropertiesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:RetroBar.Controls"
@@ -420,6 +420,71 @@
                                 </Hyperlink>
                         </TextBlock>
                     </DockPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Customize Theme">
+                <StackPanel Orientation="Vertical"
+                            Margin="10">
+
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,0,0,10">
+                        <CheckBox Checked="ThemeCustomizationsEnabled_CheckBox_OnChecked"
+                                  Unchecked="ThemeCustomizationsEnabled_CheckBox_OnUnChecked"
+                                  Name="Test1CheckBox">
+                            <Label Content="Theme Customizations Enabled" />
+                        </CheckBox>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarBackground Color" Click="PickColorButton_Click_TaskbarBackground"/>
+                        <TextBlock Name="CurrentColorText_TaskbarBackground" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarVerticalBackground Color" Click="PickColorButton_Click_TaskbarVerticalBackground"/>
+                        <TextBlock Name="CurrentColorText_TaskbarVerticalBackground" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarTopBorder Color" Click="PickColorButton_Click_TaskbarTopBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarTopBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarTopInnerBorder Color" Click="PickColorButton_Click_TaskbarTopInnerBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarTopInnerBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarVerticalTopBorder Color" Click="PickColorButton_Click_TaskbarVerticalTopBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarVerticalTopBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarVerticalTopInnerBorder Color" Click="PickColorButton_Click_TaskbarVerticalTopInnerBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarVerticalTopInnerBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarBottomBorder Color" Click="PickColorButton_Click_TaskbarBottomBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarBottomBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarBottomInnerBorder Color" Click="PickColorButton_Click_TaskbarBottomInnerBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarBottomInnerBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarVerticalBottomBorder Color" Click="PickColorButton_Click_TaskbarVerticalBottomBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarVerticalBottomBorder" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Button Content="TaskbarVerticalBottomInnerBorder Color" Click="PickColorButton_Click_TaskbarVerticalBottomInnerBorder"/>
+                        <TextBlock Name="CurrentColorText_TaskbarVerticalBottomInnerBorder" Margin="10"/>
+                    </StackPanel>
+
                 </StackPanel>
             </TabItem>
         </TabControl>
