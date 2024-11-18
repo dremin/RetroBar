@@ -1,11 +1,19 @@
 ﻿using RetroBar.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
+using System.Xml.Linq;
+
+
+// TODO: Add localization
+// TODO: Add better support for linear gradient colors
+// TODO: Clean and optimize code
 
 
 namespace RetroBar
@@ -15,20 +23,17 @@ namespace RetroBar
         private static readonly ResourceDictionary _resourceDictionary = System.Windows.Application.Current.Resources;
         private bool _hasInitialized = false;
 
+        private static readonly string CustomizationsFilePath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "RetroBar", "ThemeCustomizations.json"
+        );
+
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
 
-            ConfigureSettings();
             InitializeComponent();
             SetupEventHandlers();
-        }
-
-        private void ConfigureSettings()
-        {
-// TODO: load settings, and we also need to save the settings first
-// TODO: enable\disable here
-// TODO: add localization
         }
 
         private void SetupEventHandlers()
@@ -63,6 +68,8 @@ namespace RetroBar
             {
                 UpdateSelectedResourceDetails(selectedKey);
             }
+
+            LoadThemeCustomizations();
         }
 
         private void ThemeCustomizationsEnabled_CheckBox_OnUnChecked(object sender, RoutedEventArgs e)
@@ -71,6 +78,80 @@ namespace RetroBar
 
             EnableCustomizationControls(false);
             _settingsCustomizeThemeEnabled = false;
+
+            RestoreResourceColor("BalloonCloseButtonBackgroundHover", ReadOriginalResourceColor("BalloonCloseButtonBackgroundHover"));
+            RestoreResourceColor("BalloonCloseButtonBackgroundPressed", ReadOriginalResourceColor("BalloonCloseButtonBackgroundPressed"));
+            RestoreResourceColor("BalloonCloseButtonForegroundHover", ReadOriginalResourceColor("BalloonCloseButtonForegroundHover"));
+            RestoreResourceColor("BalloonCloseButtonForegroundPressed", ReadOriginalResourceColor("BalloonCloseButtonForegroundPressed"));
+            RestoreResourceColor("BalloonCloseButtonInactiveForeground", ReadOriginalResourceColor("BalloonCloseButtonInactiveForeground"));
+            RestoreResourceColor("BalloonCloseButtonInnerBorderHover", ReadOriginalResourceColor("BalloonCloseButtonInnerBorderHover"));
+            RestoreResourceColor("BalloonCloseButtonInnerBorderPressed", ReadOriginalResourceColor("BalloonCloseButtonInnerBorderPressed"));
+            RestoreResourceColor("BalloonCloseButtonOuterBorder", ReadOriginalResourceColor("BalloonCloseButtonOuterBorder"));
+            RestoreResourceColor("ButtonActiveForeground", ReadOriginalResourceColor("ButtonActiveForeground"));
+            RestoreResourceColor("ButtonFlashingForeground", ReadOriginalResourceColor("ButtonFlashingForeground"));
+            RestoreResourceColor("ButtonForeground", ReadOriginalResourceColor("ButtonForeground"));
+            RestoreResourceColor("ButtonPressedForeground", ReadOriginalResourceColor("ButtonPressedForeground"));
+            RestoreResourceColor("ClockForeground", ReadOriginalResourceColor("ClockForeground"));
+            RestoreResourceColor("InputLanguageBackground", ReadOriginalResourceColor("InputLanguageBackground"));
+            RestoreResourceColor("InputLanguageForeground", ReadOriginalResourceColor("InputLanguageForeground"));
+            RestoreResourceColor("ItemButtonForeground", ReadOriginalResourceColor("ItemButtonForeground"));
+            RestoreResourceColor("TaskbarBackground", ReadOriginalResourceColor("TaskbarBackground"));
+            RestoreResourceColor("TaskbarBottomBorder", ReadOriginalResourceColor("TaskbarBottomBorder"));
+            RestoreResourceColor("TaskbarBottomInnerBorder", ReadOriginalResourceColor("TaskbarBottomInnerBorder"));
+            RestoreResourceColor("TaskbarTopBorder", ReadOriginalResourceColor("TaskbarTopBorder"));
+            RestoreResourceColor("TaskbarTopInnerBorder", ReadOriginalResourceColor("TaskbarTopInnerBorder"));
+            RestoreResourceColor("TaskbarVerticalBackground", ReadOriginalResourceColor("TaskbarVerticalBackground"));
+            RestoreResourceColor("TaskbarVerticalBottomBorder", ReadOriginalResourceColor("TaskbarVerticalBottomBorder"));
+            RestoreResourceColor("TaskbarVerticalBottomInnerBorder", ReadOriginalResourceColor("TaskbarVerticalBottomInnerBorder"));
+            RestoreResourceColor("TaskbarVerticalTopBorder", ReadOriginalResourceColor("TaskbarVerticalTopBorder"));
+            RestoreResourceColor("TaskbarVerticalTopInnerBorder", ReadOriginalResourceColor("TaskbarVerticalTopInnerBorder"));
+            RestoreResourceColor("TaskbarWindowBackground", ReadOriginalResourceColor("TaskbarWindowBackground"));
+            RestoreResourceColor("TaskButtonBackground", ReadOriginalResourceColor("TaskButtonBackground"));
+            RestoreResourceColor("TaskButtonBackgroundActive", ReadOriginalResourceColor("TaskButtonBackgroundActive"));
+            RestoreResourceColor("TaskButtonBackgroundActiveHover", ReadOriginalResourceColor("TaskButtonBackgroundActiveHover"));
+            RestoreResourceColor("TaskButtonBackgroundFlashing", ReadOriginalResourceColor("TaskButtonBackgroundFlashing"));
+            RestoreResourceColor("TaskButtonBackgroundHover", ReadOriginalResourceColor("TaskButtonBackgroundHover"));
+            RestoreResourceColor("TaskButtonInnerBorder", ReadOriginalResourceColor("TaskButtonInnerBorder"));
+            RestoreResourceColor("TaskButtonInnerBorderActive", ReadOriginalResourceColor("TaskButtonInnerBorderActive"));
+            RestoreResourceColor("TaskButtonInnerBorderFlashing", ReadOriginalResourceColor("TaskButtonInnerBorderFlashing"));
+            RestoreResourceColor("TaskButtonInnerBorderHover", ReadOriginalResourceColor("TaskButtonInnerBorderHover"));
+            RestoreResourceColor("TaskButtonInnerBottomLeftBorder", ReadOriginalResourceColor("TaskButtonInnerBottomLeftBorder"));
+            RestoreResourceColor("TaskButtonInnerBottomLeftBorderActive", ReadOriginalResourceColor("TaskButtonInnerBottomLeftBorderActive"));
+            RestoreResourceColor("TaskButtonInnerBottomLeftBorderFlashing", ReadOriginalResourceColor("TaskButtonInnerBottomLeftBorderFlashing"));
+            RestoreResourceColor("TaskButtonInnerBottomLeftBorderHover", ReadOriginalResourceColor("TaskButtonInnerBottomLeftBorderHover"));
+            RestoreResourceColor("TaskButtonInnerTopRightBorder", ReadOriginalResourceColor("TaskButtonInnerTopRightBorder"));
+            RestoreResourceColor("TaskButtonInnerTopRightBorderActive", ReadOriginalResourceColor("TaskButtonInnerTopRightBorderActive"));
+            RestoreResourceColor("TaskButtonInnerTopRightBorderFlashing", ReadOriginalResourceColor("TaskButtonInnerTopRightBorderFlashing"));
+            RestoreResourceColor("TaskButtonInnerTopRightBorderHover", ReadOriginalResourceColor("TaskButtonInnerTopRightBorderHover"));
+            RestoreResourceColor("TaskButtonOuterBorder", ReadOriginalResourceColor("TaskButtonOuterBorder"));
+            RestoreResourceColor("TaskButtonOuterBorderActive", ReadOriginalResourceColor("TaskButtonOuterBorderActive"));
+            RestoreResourceColor("TaskButtonOuterBorderFlashing", ReadOriginalResourceColor("TaskButtonOuterBorderFlashing"));
+            RestoreResourceColor("TaskButtonOuterBorderHover", ReadOriginalResourceColor("TaskButtonOuterBorderHover"));
+            RestoreResourceColor("TaskButtonThumbnailBackground", ReadOriginalResourceColor("TaskButtonThumbnailBackground"));
+            RestoreResourceColor("TaskButtonThumbnailBorder", ReadOriginalResourceColor("TaskButtonThumbnailBorder"));
+            RestoreResourceColor("TaskButtonThumbnailInnerBorder", ReadOriginalResourceColor("TaskButtonThumbnailInnerBorder"));
+            RestoreResourceColor("TaskButtonThumbnailThumbBorder", ReadOriginalResourceColor("TaskButtonThumbnailThumbBorder"));
+            RestoreResourceColor("TaskListScrollArrow", ReadOriginalResourceColor("TaskListScrollArrow"));
+            RestoreResourceColor("TaskListScrollArrowHover", ReadOriginalResourceColor("TaskListScrollArrowHover"));
+            RestoreResourceColor("TaskListScrollButtonBackground", ReadOriginalResourceColor("TaskListScrollButtonBackground"));
+            RestoreResourceColor("TaskListScrollButtonBorder", ReadOriginalResourceColor("TaskListScrollButtonBorder"));
+            RestoreResourceColor("TaskListScrollButtonInnerBorderHover", ReadOriginalResourceColor("TaskListScrollButtonInnerBorderHover"));
+            RestoreResourceColor("TaskListScrollButtonInnerBorderPressed", ReadOriginalResourceColor("TaskListScrollButtonInnerBorderPressed"));
+            RestoreResourceColor("TaskListScrollButtonOuterBorder", ReadOriginalResourceColor("TaskListScrollButtonOuterBorder"));
+            RestoreResourceColor("ToolTip", ReadOriginalResourceColor("ToolTip"));
+            RestoreResourceColor("ToolTipBackground", ReadOriginalResourceColor("ToolTipBackground"));
+            RestoreResourceColor("ToolTipBalloonBottomBackground", ReadOriginalResourceColor("ToolTipBalloonBottomBackground"));
+            RestoreResourceColor("ToolTipBalloonForeground", ReadOriginalResourceColor("ToolTipBalloonForeground"));
+            RestoreResourceColor("ToolTipBorder", ReadOriginalResourceColor("ToolTipBorder"));
+            RestoreResourceColor("ToolTipForeground", ReadOriginalResourceColor("ToolTipForeground"));
+            RestoreResourceColor("ToolbarButtonBackgroundHover", ReadOriginalResourceColor("ToolbarButtonBackgroundHover"));
+            RestoreResourceColor("ToolbarThumbFill", ReadOriginalResourceColor("ToolbarThumbFill"));
+            RestoreResourceColor("TrayToggleArrowForeground", ReadOriginalResourceColor("TrayToggleArrowForeground"));
+            RestoreResourceColor("TrayToggleArrowPressed", ReadOriginalResourceColor("TrayToggleArrowPressed"));
+            RestoreResourceColor("TrayToggleBorder", ReadOriginalResourceColor("TrayToggleBorder"));
+            RestoreResourceColor("TrayToggleHoverBackground", ReadOriginalResourceColor("TrayToggleHoverBackground"));
+            RestoreResourceColor("TrayToggleOuterBorder", ReadOriginalResourceColor("TrayToggleOuterBorder"));
+            RestoreResourceColor("TrayTogglePressedBackground", ReadOriginalResourceColor("TrayTogglePressedBackground"));
         }
 
         private void ChangeColorButton_Click(object sender, RoutedEventArgs e)
@@ -84,7 +165,11 @@ namespace RetroBar
 
         private void ResetColorButton_Click(object sender, RoutedEventArgs e)
         {
-// TODO: Get original color from theme
+            if (ResourcesList.SelectedItem is string selectedKey)
+            {
+                RestoreResourceColor(selectedKey, ReadOriginalResourceColor(selectedKey));
+                UpdateSelectedResourceDetails(selectedKey);
+            }
         }
 
         private void ResourcesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,85 +184,85 @@ namespace RetroBar
 
         private void PopulateResourcesList()
         {
-            List<string> brushKeys = [];
+            List<string> _brushKeys = [];
 
             // Add brush keys from the resource dictionary
-            ListAddUnique(brushKeys, "BalloonCloseButtonBackgroundHover");
-            ListAddUnique(brushKeys, "BalloonCloseButtonBackgroundPressed");
-            ListAddUnique(brushKeys, "BalloonCloseButtonForegroundHover");
-            ListAddUnique(brushKeys, "BalloonCloseButtonForegroundPressed");
-            ListAddUnique(brushKeys, "BalloonCloseButtonInactiveForeground");
-            ListAddUnique(brushKeys, "BalloonCloseButtonInnerBorderHover");
-            ListAddUnique(brushKeys, "BalloonCloseButtonInnerBorderPressed");
-            ListAddUnique(brushKeys, "BalloonCloseButtonOuterBorder");
-            ListAddUnique(brushKeys, "ButtonActiveForeground");
-            ListAddUnique(brushKeys, "ButtonFlashingForeground");
-            ListAddUnique(brushKeys, "ButtonForeground");
-            ListAddUnique(brushKeys, "ButtonPressedForeground");
-            ListAddUnique(brushKeys, "ClockForeground");
-            ListAddUnique(brushKeys, "InputLanguageBackground");
-            ListAddUnique(brushKeys, "InputLanguageForeground");
-            ListAddUnique(brushKeys, "ItemButtonForeground");
-            ListAddUnique(brushKeys, "TaskbarBackground");
-            ListAddUnique(brushKeys, "TaskbarBottomBorder");
-            ListAddUnique(brushKeys, "TaskbarBottomInnerBorder");
-            ListAddUnique(brushKeys, "TaskbarTopBorder");
-            ListAddUnique(brushKeys, "TaskbarTopInnerBorder");
-            ListAddUnique(brushKeys, "TaskbarVerticalBackground");
-            ListAddUnique(brushKeys, "TaskbarVerticalBottomBorder");
-            ListAddUnique(brushKeys, "TaskbarVerticalBottomInnerBorder");
-            ListAddUnique(brushKeys, "TaskbarVerticalTopBorder");
-            ListAddUnique(brushKeys, "TaskbarVerticalTopInnerBorder");
-            ListAddUnique(brushKeys, "TaskbarWindowBackground");
-            ListAddUnique(brushKeys, "TaskButtonBackground");
-            ListAddUnique(brushKeys, "TaskButtonBackgroundActive");
-            ListAddUnique(brushKeys, "TaskButtonBackgroundActiveHover");
-            ListAddUnique(brushKeys, "TaskButtonBackgroundFlashing");
-            ListAddUnique(brushKeys, "TaskButtonBackgroundHover");
-            ListAddUnique(brushKeys, "TaskButtonInnerBorder");
-            ListAddUnique(brushKeys, "TaskButtonInnerBorderActive");
-            ListAddUnique(brushKeys, "TaskButtonInnerBorderFlashing");
-            ListAddUnique(brushKeys, "TaskButtonInnerBorderHover");
-            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorder");
-            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorderActive");
-            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorderFlashing");
-            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorderHover");
-            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorder");
-            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorderActive");
-            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorderFlashing");
-            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorderHover");
-            ListAddUnique(brushKeys, "TaskButtonOuterBorder");
-            ListAddUnique(brushKeys, "TaskButtonOuterBorderActive");
-            ListAddUnique(brushKeys, "TaskButtonOuterBorderFlashing");
-            ListAddUnique(brushKeys, "TaskButtonOuterBorderHover");
-            ListAddUnique(brushKeys, "TaskButtonThumbnailBackground");
-            ListAddUnique(brushKeys, "TaskButtonThumbnailBorder");
-            ListAddUnique(brushKeys, "TaskButtonThumbnailInnerBorder");
-            ListAddUnique(brushKeys, "TaskButtonThumbnailThumbBorder");
-            ListAddUnique(brushKeys, "TaskListScrollArrow");
-            ListAddUnique(brushKeys, "TaskListScrollArrowHover");
-            ListAddUnique(brushKeys, "TaskListScrollButtonBackground");
-            ListAddUnique(brushKeys, "TaskListScrollButtonBorder");
-            ListAddUnique(brushKeys, "TaskListScrollButtonInnerBorderHover");
-            ListAddUnique(brushKeys, "TaskListScrollButtonInnerBorderPressed");
-            ListAddUnique(brushKeys, "TaskListScrollButtonOuterBorder");
-            ListAddUnique(brushKeys, "ToolTip");
-            ListAddUnique(brushKeys, "ToolTipBackground");
-            ListAddUnique(brushKeys, "ToolTipBalloonBottomBackground");
-            ListAddUnique(brushKeys, "ToolTipBalloonForeground");
-            ListAddUnique(brushKeys, "ToolTipBorder");
-            ListAddUnique(brushKeys, "ToolTipForeground");
-            ListAddUnique(brushKeys, "ToolbarButtonBackgroundHover");
-            ListAddUnique(brushKeys, "ToolbarThumbFill");
-            ListAddUnique(brushKeys, "TrayToggleArrowForeground");
-            ListAddUnique(brushKeys, "TrayToggleArrowPressed");
-            ListAddUnique(brushKeys, "TrayToggleBorder");
-            ListAddUnique(brushKeys, "TrayToggleHoverBackground");
-            ListAddUnique(brushKeys, "TrayToggleOuterBorder");
-            ListAddUnique(brushKeys, "TrayTogglePressedBackground");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonBackgroundHover");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonBackgroundPressed");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonForegroundHover");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonForegroundPressed");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonInactiveForeground");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonInnerBorderHover");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonInnerBorderPressed");
+            ListAddUnique(_brushKeys, "BalloonCloseButtonOuterBorder");
+            ListAddUnique(_brushKeys, "ButtonActiveForeground");
+            ListAddUnique(_brushKeys, "ButtonFlashingForeground");
+            ListAddUnique(_brushKeys, "ButtonForeground");
+            ListAddUnique(_brushKeys, "ButtonPressedForeground");
+            ListAddUnique(_brushKeys, "ClockForeground");
+            ListAddUnique(_brushKeys, "InputLanguageBackground");
+            ListAddUnique(_brushKeys, "InputLanguageForeground");
+            ListAddUnique(_brushKeys, "ItemButtonForeground");
+            ListAddUnique(_brushKeys, "TaskbarBackground");
+            ListAddUnique(_brushKeys, "TaskbarBottomBorder");
+            ListAddUnique(_brushKeys, "TaskbarBottomInnerBorder");
+            ListAddUnique(_brushKeys, "TaskbarTopBorder");
+            ListAddUnique(_brushKeys, "TaskbarTopInnerBorder");
+            ListAddUnique(_brushKeys, "TaskbarVerticalBackground");
+            ListAddUnique(_brushKeys, "TaskbarVerticalBottomBorder");
+            ListAddUnique(_brushKeys, "TaskbarVerticalBottomInnerBorder");
+            ListAddUnique(_brushKeys, "TaskbarVerticalTopBorder");
+            ListAddUnique(_brushKeys, "TaskbarVerticalTopInnerBorder");
+            ListAddUnique(_brushKeys, "TaskbarWindowBackground");
+            ListAddUnique(_brushKeys, "TaskButtonBackground");
+            ListAddUnique(_brushKeys, "TaskButtonBackgroundActive");
+            ListAddUnique(_brushKeys, "TaskButtonBackgroundActiveHover");
+            ListAddUnique(_brushKeys, "TaskButtonBackgroundFlashing");
+            ListAddUnique(_brushKeys, "TaskButtonBackgroundHover");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBorder");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBorderActive");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBorderFlashing");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBorderHover");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBottomLeftBorder");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBottomLeftBorderActive");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBottomLeftBorderFlashing");
+            ListAddUnique(_brushKeys, "TaskButtonInnerBottomLeftBorderHover");
+            ListAddUnique(_brushKeys, "TaskButtonInnerTopRightBorder");
+            ListAddUnique(_brushKeys, "TaskButtonInnerTopRightBorderActive");
+            ListAddUnique(_brushKeys, "TaskButtonInnerTopRightBorderFlashing");
+            ListAddUnique(_brushKeys, "TaskButtonInnerTopRightBorderHover");
+            ListAddUnique(_brushKeys, "TaskButtonOuterBorder");
+            ListAddUnique(_brushKeys, "TaskButtonOuterBorderActive");
+            ListAddUnique(_brushKeys, "TaskButtonOuterBorderFlashing");
+            ListAddUnique(_brushKeys, "TaskButtonOuterBorderHover");
+            ListAddUnique(_brushKeys, "TaskButtonThumbnailBackground");
+            ListAddUnique(_brushKeys, "TaskButtonThumbnailBorder");
+            ListAddUnique(_brushKeys, "TaskButtonThumbnailInnerBorder");
+            ListAddUnique(_brushKeys, "TaskButtonThumbnailThumbBorder");
+            ListAddUnique(_brushKeys, "TaskListScrollArrow");
+            ListAddUnique(_brushKeys, "TaskListScrollArrowHover");
+            ListAddUnique(_brushKeys, "TaskListScrollButtonBackground");
+            ListAddUnique(_brushKeys, "TaskListScrollButtonBorder");
+            ListAddUnique(_brushKeys, "TaskListScrollButtonInnerBorderHover");
+            ListAddUnique(_brushKeys, "TaskListScrollButtonInnerBorderPressed");
+            ListAddUnique(_brushKeys, "TaskListScrollButtonOuterBorder");
+            ListAddUnique(_brushKeys, "ToolTip");
+            ListAddUnique(_brushKeys, "ToolTipBackground");
+            ListAddUnique(_brushKeys, "ToolTipBalloonBottomBackground");
+            ListAddUnique(_brushKeys, "ToolTipBalloonForeground");
+            ListAddUnique(_brushKeys, "ToolTipBorder");
+            ListAddUnique(_brushKeys, "ToolTipForeground");
+            ListAddUnique(_brushKeys, "ToolbarButtonBackgroundHover");
+            ListAddUnique(_brushKeys, "ToolbarThumbFill");
+            ListAddUnique(_brushKeys, "TrayToggleArrowForeground");
+            ListAddUnique(_brushKeys, "TrayToggleArrowPressed");
+            ListAddUnique(_brushKeys, "TrayToggleBorder");
+            ListAddUnique(_brushKeys, "TrayToggleHoverBackground");
+            ListAddUnique(_brushKeys, "TrayToggleOuterBorder");
+            ListAddUnique(_brushKeys, "TrayTogglePressedBackground");
 
             // Bind the list of brush keys to the ListBox
-            ResourcesList.ItemsSource = brushKeys;
+            ResourcesList.ItemsSource = _brushKeys;
         }
 
         private void EnableCustomizationControls(bool isEnabled)
@@ -200,6 +285,164 @@ namespace RetroBar
                     Settings.Instance.PropertyChanged += Settings_PropertyChanged;
                 }
             }
+        }
+
+        private static void SaveThemeCustomizations(string resourceName, string color, string brushType)
+        {
+            var newCustomization = new { resourceName, color, brushType };
+
+            Dictionary<string, object> customizations = new Dictionary<string, object>();
+
+            if (File.Exists(CustomizationsFilePath))
+            {
+                string json = File.ReadAllText(CustomizationsFilePath);
+                customizations = JsonSerializer.Deserialize<Dictionary<string, object>>(json) ?? new Dictionary<string, object>();
+            }
+
+            customizations[resourceName] = newCustomization;
+
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string updatedJson = JsonSerializer.Serialize(customizations, options);
+
+            string directory = Path.GetDirectoryName(CustomizationsFilePath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            File.WriteAllText(CustomizationsFilePath, updatedJson);
+        }
+
+        public static void LoadThemeCustomizations()
+        {
+            if (!File.Exists(CustomizationsFilePath))
+            {
+                return; // No customizations file, do nothing
+            }
+
+            string json = File.ReadAllText(CustomizationsFilePath);
+            var customizations = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(json);
+
+            if (customizations == null)
+            {
+                return; // No customizations found in the file, do nothing
+            }
+
+            foreach (var customization in customizations)
+            {
+                string resourceName = customization.Key;
+                var customizationData = customization.Value;
+
+                if (customizationData.ContainsKey("color") && customizationData.ContainsKey("brushType"))
+                {
+                    string color = customizationData["color"];
+                    string brushType = customizationData["brushType"];
+
+                    if (_resourceDictionary.Contains(resourceName) && IsSupportedColorBrush(resourceName))
+                    {
+                        if (brushType == "SolidColorBrush")
+                        {
+                            Color solidColor = (Color)ColorConverter.ConvertFromString(color);
+                            _resourceDictionary[resourceName] = new SolidColorBrush(solidColor);
+                        }
+                        else if (brushType == "LinearGradientBrush")
+                        {
+// TODO: add better support for linear gradient colors
+                            Color gradientColor = (Color)ColorConverter.ConvertFromString(color);
+                            if (_resourceDictionary[resourceName] is LinearGradientBrush gradientBrush)
+                            {
+                                LinearGradientBrush newBrush = new();
+                                foreach (GradientStop stop in gradientBrush.GradientStops)
+                                {
+                                    newBrush.GradientStops.Add(new GradientStop(gradientColor, stop.Offset));
+                                }
+                                _resourceDictionary[resourceName] = newBrush;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static string ReadOriginalResourceColor(string resourceKey)
+        {
+            string themeName = Settings.Instance.Theme;
+
+            string themeFilePath = GetThemeFilePath(themeName);
+            if (themeFilePath == null || !File.Exists(themeFilePath))
+            {
+                return null;
+            }
+
+            try
+            {
+                XDocument themeXaml = XDocument.Load(themeFilePath);
+
+                XNamespace xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+                XNamespace xNs = "http://schemas.microsoft.com/winfx/2006/xaml";
+
+                var resourceElement = themeXaml.Descendants(xmlns + "LinearGradientBrush")
+                                               .FirstOrDefault(e => (string)e.Attribute(xNs + "Key") == resourceKey) ??
+                                      themeXaml.Descendants(xmlns + "SolidColorBrush")
+                                               .FirstOrDefault(e => (string)e.Attribute(xNs + "Key") == resourceKey);
+
+                if (resourceElement != null)
+                {
+                    string color = null;
+
+                    if (resourceElement.Name.LocalName == "LinearGradientBrush")
+                    {
+// TODO: add better support for linear gradient colors
+                        // Return gradient stop color
+                        //var firstGradientStop = resourceElement.Descendants(xmlns + "GradientStop").FirstOrDefault();
+                        var firstGradientStop = resourceElement.Descendants(xmlns + "GradientStop").LastOrDefault();
+                        if (firstGradientStop != null)
+                        {
+                            color = ((string)firstGradientStop.Attribute("Color")).TrimStart('#');
+                        }
+                    }
+                    else if (resourceElement.Name.LocalName == "SolidColorBrush")
+                    {
+                        color = ((string)resourceElement.Attribute("Color")).TrimStart('#');
+                    }
+
+                    if (!string.IsNullOrEmpty(color))
+                    {
+                        if(color.ToUpper() == "TRANSPARENT"){ return null; } // Skip "Transparent" values
+
+                        color = "#" + color; // Add the # back
+
+                        return color.ToUpper();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error reading the theme file: " + ex.Message);
+            }
+
+            return null;
+        }
+
+        private static string GetThemeFilePath(string themeName)
+        {
+            string appPath = AppDomain.CurrentDomain.BaseDirectory;
+            string localAppDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RetroBar", "Themes");
+
+            // Check if the theme exists in the app path or in the local app data
+            string appThemeFilePath = Path.Combine(appPath, "Themes", themeName + ".xaml");
+            string localAppDataThemeFilePath = Path.Combine(localAppDataPath, themeName + ".xaml");
+
+            if (File.Exists(appThemeFilePath))
+            {
+                return appThemeFilePath;
+            }
+            else if (File.Exists(localAppDataThemeFilePath))
+            {
+                return localAppDataThemeFilePath;
+            }
+
+            return null;
         }
 
         private static void ListAddUnique(List<string> list, string item)
@@ -243,17 +486,44 @@ namespace RetroBar
                     if (_resourceDictionary[resourceName] is SolidColorBrush)
                     {
                         _resourceDictionary[resourceName] = new SolidColorBrush(convertedColor);
+                        SaveThemeCustomizations(resourceName, convertedColor.ToString(), "SolidColorBrush");
                     }
                     else if (_resourceDictionary[resourceName] is LinearGradientBrush gradientBrush)
                     {
+// TODO: add better support for linear gradient colors
                         LinearGradientBrush newBrush = new();
                         foreach (GradientStop stop in gradientBrush.GradientStops)
                         {
                             newBrush.GradientStops.Add(new GradientStop(convertedColor, stop.Offset));
                         }
                         _resourceDictionary[resourceName] = newBrush;
+                        SaveThemeCustomizations(resourceName, convertedColor.ToString(), "LinearGradientBrush");
                     }
                 }
+            }
+        }
+
+        private static void RestoreResourceColor(string resourceName, string color, bool saveToFile = false)
+        {
+            if(color == null){ return; }
+
+            if (_resourceDictionary[resourceName] is SolidColorBrush)
+            {
+                Color solidColor = (Color)ColorConverter.ConvertFromString(color);
+                _resourceDictionary[resourceName] = new SolidColorBrush(solidColor);
+                if(saveToFile){ SaveThemeCustomizations(resourceName, color, "SolidColorBrush");}
+            }
+            else if (_resourceDictionary[resourceName] is LinearGradientBrush gradientBrush)
+            {
+                Color gradientColor = (Color)ColorConverter.ConvertFromString(color);
+// TODO: add better support for linear gradient colors
+                LinearGradientBrush newBrush = new();
+                foreach (GradientStop stop in gradientBrush.GradientStops)
+                {
+                    newBrush.GradientStops.Add(new GradientStop(gradientColor, stop.Offset));
+                }
+                _resourceDictionary[resourceName] = newBrush;
+                if(saveToFile){ SaveThemeCustomizations(resourceName, color, "LinearGradientBrush");}
             }
         }
 

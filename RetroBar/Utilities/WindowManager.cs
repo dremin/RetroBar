@@ -147,6 +147,8 @@ namespace RetroBar.Utilities
             Taskbar taskbar = new Taskbar(this, _dictionaryManager, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
             taskbar.Show();
 
+            if(Settings.Instance.CustomizeThemeEnabled){PropertiesWindow.LoadThemeCustomizations();}
+
             _taskbars.Add(taskbar);
         }
 
