@@ -1,8 +1,10 @@
-﻿using ManagedShell.Common.Logging;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 
 namespace RetroBar
@@ -29,24 +31,12 @@ namespace RetroBar
 
         private void SetupEventHandlers()
         {
-            // Handle loaded event (setup texts etc)
-            this.Loaded += PropertiesWindow_Loaded;
+            Loaded += PropertiesWindow_Loaded;
         }
 
         private void PropertiesWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Initialize color texts
-// TODO: maybe change color texts to the actual colors?
-            SetCurrentColorText("TaskbarBackground", CurrentColorText_TaskbarBackground);
-            SetCurrentColorText("TaskbarVerticalBackground", CurrentColorText_TaskbarVerticalBackground);
-            SetCurrentColorText("TaskbarTopBorder", CurrentColorText_TaskbarTopBorder);
-            SetCurrentColorText("TaskbarTopInnerBorder", CurrentColorText_TaskbarTopInnerBorder);
-            SetCurrentColorText("TaskbarVerticalTopBorder", CurrentColorText_TaskbarVerticalTopBorder);
-            SetCurrentColorText("TaskbarVerticalTopInnerBorder", CurrentColorText_TaskbarVerticalTopInnerBorder);
-            SetCurrentColorText("TaskbarBottomBorder", CurrentColorText_TaskbarBottomBorder);
-            SetCurrentColorText("TaskbarBottomInnerBorder", CurrentColorText_TaskbarBottomInnerBorder);
-            SetCurrentColorText("TaskbarVerticalBottomBorder", CurrentColorText_TaskbarVerticalBottomBorder);
-            SetCurrentColorText("TaskbarVerticalBottomInnerBorder", CurrentColorText_TaskbarVerticalBottomInnerBorder);
+            PopulateResourcesList();
         }
 
         private void ThemeCustomizationsEnabled_CheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -59,102 +49,116 @@ namespace RetroBar
 // TODO: disable theme customizations
         }
 
-        private void PickColorButton_Click_TaskbarBackground(object sender, RoutedEventArgs e)
+        private void ChangeColorButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeResourceColor("TaskbarBackground", CurrentColorText_TaskbarBackground);
-        }
-
-        private void PickColorButton_Click_TaskbarVerticalBackground(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarVerticalBackground", CurrentColorText_TaskbarVerticalBackground);
-        }
-
-        private void PickColorButton_Click_TaskbarTopBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarTopBorder", CurrentColorText_TaskbarTopBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarTopInnerBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarTopInnerBorder", CurrentColorText_TaskbarTopInnerBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarVerticalTopBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarVerticalTopBorder", CurrentColorText_TaskbarVerticalTopBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarVerticalTopInnerBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarVerticalTopInnerBorder", CurrentColorText_TaskbarVerticalTopInnerBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarBottomBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarBottomBorder", CurrentColorText_TaskbarBottomBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarBottomInnerBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarBottomInnerBorder", CurrentColorText_TaskbarBottomInnerBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarVerticalBottomBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarVerticalBottomBorder", CurrentColorText_TaskbarVerticalBottomBorder);
-        }
-
-        private void PickColorButton_Click_TaskbarVerticalBottomInnerBorder(object sender, RoutedEventArgs e)
-        {
-            ChangeResourceColor("TaskbarVerticalBottomInnerBorder", CurrentColorText_TaskbarVerticalBottomInnerBorder);
-        }
-
-        private static void ChangeResourceColor(string resourceName, System.Windows.Controls.TextBlock textBlock)
-        {
-            if (_resourceDictionary.Contains(resourceName))
+            if (ResourcesList.SelectedItem is string selectedKey)
             {
-                if(IsSupportedColorBrush(resourceName))
-                {
-                    ColorDialog colorDialog = new();
-                    colorDialog.AllowFullOpen = false;  // Restrict to only predefined colors by disabling custom color selection
-                    colorDialog.ShowHelp = false;       // Hide the help button
-                        if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        {
-                            System.Drawing.Color newColor = colorDialog.Color;
-
-                            if(IsSolidColorBrush(resourceName))
-                            {
-                                SetResourceSolidColorBrush(resourceName, newColor);
-                            }
-                            else if(IsLinearGradientBrush(resourceName))
-                            {
-                                SetResourceLinearGradientBrush(resourceName, newColor);
-                            }
-
-                            SetCurrentColorText(resourceName, textBlock);
-                        }
-                }
-                else
-                {
-                    ShellLogger.Debug($"Resource {resourceName} has unknown brush.");
-                }
-            }
-            else
-            {
-                textBlock.Text = "";
-                ShellLogger.Debug($"Resource {resourceName} not found.");
+                ChangeResourceColor(selectedKey);
+                UpdateSelectedResourceDetails(selectedKey);
             }
         }
 
-        private static void SetCurrentColorText(string resourceName, System.Windows.Controls.TextBlock textBlock)
+        private void ResetColorButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_resourceDictionary.Contains(resourceName))
+// TODO: Get original color from theme
+        }
+
+        private void ResourcesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ResourcesList.SelectedItem is string selectedKey)
             {
-                if(IsSupportedColorBrush(resourceName))
-                {
-                    System.Windows.Media.Brush currentColor = GetCurrentResourceColor(resourceName);
-                    textBlock.Text = $"Current {resourceName} Color: {GetColorNameFromBrush(currentColor)}";
-                }
+                UpdateSelectedResourceDetails(selectedKey);
+            }
+        }
+
+        private void PopulateResourcesList()
+        {
+            List<string> brushKeys = [];
+
+            // Add brush keys from the resource dictionary
+            ListAddUnique(brushKeys, "BalloonCloseButtonBackgroundHover");
+            ListAddUnique(brushKeys, "BalloonCloseButtonBackgroundPressed");
+            ListAddUnique(brushKeys, "BalloonCloseButtonForegroundHover");
+            ListAddUnique(brushKeys, "BalloonCloseButtonForegroundPressed");
+            ListAddUnique(brushKeys, "BalloonCloseButtonInactiveForeground");
+            ListAddUnique(brushKeys, "BalloonCloseButtonInnerBorderHover");
+            ListAddUnique(brushKeys, "BalloonCloseButtonInnerBorderPressed");
+            ListAddUnique(brushKeys, "BalloonCloseButtonOuterBorder");
+            ListAddUnique(brushKeys, "ButtonActiveForeground");
+            ListAddUnique(brushKeys, "ButtonFlashingForeground");
+            ListAddUnique(brushKeys, "ButtonForeground");
+            ListAddUnique(brushKeys, "ButtonPressedForeground");
+            ListAddUnique(brushKeys, "ClockForeground");
+            ListAddUnique(brushKeys, "InputLanguageBackground");
+            ListAddUnique(brushKeys, "InputLanguageForeground");
+            ListAddUnique(brushKeys, "ItemButtonForeground");
+            ListAddUnique(brushKeys, "TaskbarBackground");
+            ListAddUnique(brushKeys, "TaskbarBottomBorder");
+            ListAddUnique(brushKeys, "TaskbarBottomInnerBorder");
+            ListAddUnique(brushKeys, "TaskbarTopBorder");
+            ListAddUnique(brushKeys, "TaskbarTopInnerBorder");
+            ListAddUnique(brushKeys, "TaskbarVerticalBackground");
+            ListAddUnique(brushKeys, "TaskbarVerticalBottomBorder");
+            ListAddUnique(brushKeys, "TaskbarVerticalBottomInnerBorder");
+            ListAddUnique(brushKeys, "TaskbarVerticalTopBorder");
+            ListAddUnique(brushKeys, "TaskbarVerticalTopInnerBorder");
+            ListAddUnique(brushKeys, "TaskbarWindowBackground");
+            ListAddUnique(brushKeys, "TaskButtonBackground");
+            ListAddUnique(brushKeys, "TaskButtonBackgroundActive");
+            ListAddUnique(brushKeys, "TaskButtonBackgroundActiveHover");
+            ListAddUnique(brushKeys, "TaskButtonBackgroundFlashing");
+            ListAddUnique(brushKeys, "TaskButtonBackgroundHover");
+            ListAddUnique(brushKeys, "TaskButtonInnerBorder");
+            ListAddUnique(brushKeys, "TaskButtonInnerBorderActive");
+            ListAddUnique(brushKeys, "TaskButtonInnerBorderFlashing");
+            ListAddUnique(brushKeys, "TaskButtonInnerBorderHover");
+            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorder");
+            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorderActive");
+            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorderFlashing");
+            ListAddUnique(brushKeys, "TaskButtonInnerBottomLeftBorderHover");
+            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorder");
+            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorderActive");
+            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorderFlashing");
+            ListAddUnique(brushKeys, "TaskButtonInnerTopRightBorderHover");
+            ListAddUnique(brushKeys, "TaskButtonOuterBorder");
+            ListAddUnique(brushKeys, "TaskButtonOuterBorderActive");
+            ListAddUnique(brushKeys, "TaskButtonOuterBorderFlashing");
+            ListAddUnique(brushKeys, "TaskButtonOuterBorderHover");
+            ListAddUnique(brushKeys, "TaskButtonThumbnailBackground");
+            ListAddUnique(brushKeys, "TaskButtonThumbnailBorder");
+            ListAddUnique(brushKeys, "TaskButtonThumbnailInnerBorder");
+            ListAddUnique(brushKeys, "TaskButtonThumbnailThumbBorder");
+            ListAddUnique(brushKeys, "TaskListScrollArrow");
+            ListAddUnique(brushKeys, "TaskListScrollArrowHover");
+            ListAddUnique(brushKeys, "TaskListScrollButtonBackground");
+            ListAddUnique(brushKeys, "TaskListScrollButtonBorder");
+            ListAddUnique(brushKeys, "TaskListScrollButtonInnerBorderHover");
+            ListAddUnique(brushKeys, "TaskListScrollButtonInnerBorderPressed");
+            ListAddUnique(brushKeys, "TaskListScrollButtonOuterBorder");
+            ListAddUnique(brushKeys, "ToolTip");
+            ListAddUnique(brushKeys, "ToolTipBackground");
+            ListAddUnique(brushKeys, "ToolTipBalloonBottomBackground");
+            ListAddUnique(brushKeys, "ToolTipBalloonForeground");
+            ListAddUnique(brushKeys, "ToolTipBorder");
+            ListAddUnique(brushKeys, "ToolTipForeground");
+            ListAddUnique(brushKeys, "ToolbarButtonBackgroundHover");
+            ListAddUnique(brushKeys, "ToolbarThumbFill");
+            ListAddUnique(brushKeys, "TrayToggleArrowForeground");
+            ListAddUnique(brushKeys, "TrayToggleArrowPressed");
+            ListAddUnique(brushKeys, "TrayToggleBorder");
+            ListAddUnique(brushKeys, "TrayToggleHoverBackground");
+            ListAddUnique(brushKeys, "TrayToggleOuterBorder");
+            ListAddUnique(brushKeys, "TrayTogglePressedBackground");
+
+            // Bind the list of brush keys to the ListBox
+            ResourcesList.ItemsSource = brushKeys;
+        }
+
+        private static void ListAddUnique(List<string> list, string item)
+        {
+            if (!list.Contains(item))
+            {
+                list.Add(item);
             }
         }
 
@@ -163,176 +167,73 @@ namespace RetroBar
             if (_resourceDictionary.Contains(resourceName))
             {
                 object brush = _resourceDictionary[resourceName];
-
-                // If the brush is null
-                if (brush == null) { return false; }
-
-                // Supported brushes
-                if (brush is SolidColorBrush    ) { return true; }
-                if (brush is LinearGradientBrush) { return true; }
+                return brush is SolidColorBrush || brush is LinearGradientBrush;
             }
 
-            // If the brush is not supported, or the resource is not found
-            return false; 
-        }
-
-        // Method to check if a resource is a SolidColorBrush
-        private static bool IsSolidColorBrush(string resourceName)
-        {
-            var resources = System.Windows.Application.Current.Resources;
-            if (resources.Contains(resourceName))
-            {
-                var resource = resources[resourceName];
-                return resource is SolidColorBrush;
-            }
             return false;
         }
 
-        // Method to check if a resource is a LinearGradientBrush
-        private static bool IsLinearGradientBrush(string resourceName)
+        private static Brush GetCurrentResourceColor(string resourceName)
         {
-            var resources = System.Windows.Application.Current.Resources;
-            if (resources.Contains(resourceName))
-            {
-                var resource = resources[resourceName];
-                return resource is LinearGradientBrush;
-            }
-            return false;
+            return _resourceDictionary.Contains(resourceName) ? _resourceDictionary[resourceName] as Brush : null;
         }
 
-        // Method to get the current brush resource (SolidColorBrush or LinearGradientBrush)
-        private static System.Windows.Media.Brush GetCurrentResourceColor(string resourceName)
+        private static void ChangeResourceColor(string resourceName)
         {
-            var resources = System.Windows.Application.Current.Resources;
-            if (resources.Contains(resourceName))
+            if (_resourceDictionary.Contains(resourceName) && IsSupportedColorBrush(resourceName))
             {
-                var resource = resources[resourceName];
-                if (resource is SolidColorBrush || resource is LinearGradientBrush)
+                using ColorDialog colorDialog = new()
                 {
-                    return resource as System.Windows.Media.Brush;
-                }
-            }
-            return null; // Return null if the resource is not found or not a valid brush type
-        }
+                    AllowFullOpen = true
+                };
 
-        // Method to set the color for a SolidColorBrush resource
-        private static void SetResourceSolidColorBrush(string resourceName, System.Drawing.Color drawingColor)
-        {
-            var resources = System.Windows.Application.Current.Resources;
-            if (resources.Contains(resourceName))
-            {
-                // Convert System.Drawing.Color to System.Windows.Media.Color
-                System.Windows.Media.Color convertedColor = System.Windows.Media.Color.FromArgb(drawingColor.A, drawingColor.R, drawingColor.G, drawingColor.B);
-
-                // Set the new SolidColorBrush to the resource
-                resources[resourceName] = new SolidColorBrush(convertedColor);
-            }
-        }
-
-        // Method to set the color for a LinearGradientBrush resource
-        private static void SetResourceLinearGradientBrush(string resourceName, System.Drawing.Color drawingColor)
-        {
-            var resources = System.Windows.Application.Current.Resources;
-    
-            if (resources.Contains(resourceName))
-            {
-                var existingBrush = resources[resourceName] as LinearGradientBrush;
-
-                if (existingBrush != null)
+                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    // Convert System.Drawing.Color to System.Windows.Media.Color
-                    System.Windows.Media.Color convertedColor = System.Windows.Media.Color.FromArgb(drawingColor.A, drawingColor.R, drawingColor.G, drawingColor.B);
+                    System.Drawing.Color newColor = colorDialog.Color;
+                    Color convertedColor = Color.FromArgb(newColor.A, newColor.R, newColor.G, newColor.B);
 
-                    // Create a new LinearGradientBrush with the same properties as the existing one
-                    LinearGradientBrush newBrush = new LinearGradientBrush();
-
-// TODO: this is a temporary loop, we will set all gradientstops to same color for now, update gradient stops separately later
-                    foreach (var gradientStop in existingBrush.GradientStops)
+                    if (_resourceDictionary[resourceName] is SolidColorBrush)
                     {
-                        newBrush.GradientStops.Add(new GradientStop(convertedColor, gradientStop.Offset));
+                        _resourceDictionary[resourceName] = new SolidColorBrush(convertedColor);
                     }
-
-                    // If there are no gradient stops, create a default gradient stop (with the new color)
-                    if (newBrush.GradientStops.Count == 0)
+                    else if (_resourceDictionary[resourceName] is LinearGradientBrush gradientBrush)
                     {
-                        newBrush.GradientStops.Add(new GradientStop(convertedColor, 0.0));
+                        LinearGradientBrush newBrush = new();
+                        foreach (GradientStop stop in gradientBrush.GradientStops)
+                        {
+                            newBrush.GradientStops.Add(new GradientStop(convertedColor, stop.Offset));
+                        }
+                        _resourceDictionary[resourceName] = newBrush;
                     }
-
-                    // Assign the new LinearGradientBrush to the resource
-                    resources[resourceName] = newBrush;
                 }
             }
         }
 
-        // Method to get the color name from a Brush, accepting SolidColorBrush and LinearGradientBrush
-        private static string GetColorNameFromBrush(System.Windows.Media.Brush brush)
+        private void UpdateSelectedResourceDetails(string resourceName)
         {
-            if (brush == null)
+            if (_resourceDictionary.Contains(resourceName) && IsSupportedColorBrush(resourceName))
             {
-                return "Unknown"; // If the brush is null, return "Unknown"
-            }
-
-            // Check for SolidColorBrush
-            if (brush is SolidColorBrush solidColorBrush)
-            {
-                System.Windows.Media.Color color = solidColorBrush.Color;
-
-                // Check for predefined color names in System.Windows.Media.Colors
-                if (IsColorMatch(color, Colors.Black)) return "Black";
-                if (IsColorMatch(color, Colors.White)) return "White";
-                if (IsColorMatch(color, Colors.Red)) return "Red";
-                if (IsColorMatch(color, Colors.Green)) return "Green";
-                if (IsColorMatch(color, Colors.Blue)) return "Blue";
-                if (IsColorMatch(color, Colors.Yellow)) return "Yellow";
-                if (IsColorMatch(color, Colors.Cyan)) return "Cyan";
-                if (IsColorMatch(color, Colors.Magenta)) return "Magenta";
-                if (IsColorMatch(color, Colors.Gray)) return "Gray";
-                if (IsColorMatch(color, Colors.Orange)) return "Orange";
-                if (IsColorMatch(color, Colors.Purple)) return "Purple";
-                if (IsColorMatch(color, Colors.Brown)) return "Brown";
-                if (IsColorMatch(color, Colors.Pink)) return "Pink";
-
-                // Return RGB if not a predefined color
-                return $"RGB({color.R}, {color.G}, {color.B})";
-            }
-
-            // Check for LinearGradientBrush
-            if (brush is LinearGradientBrush linearGradientBrush)
-            {
-                // Get the first gradient stop (as a simple representative color)
-                if (linearGradientBrush.GradientStops.Count > 0)
+                Brush brush = GetCurrentResourceColor(resourceName);
+                if (brush is SolidColorBrush solidColorBrush)
                 {
-                    System.Windows.Media.Color color = linearGradientBrush.GradientStops[0].Color;
-
-                    // Check for predefined color names in System.Windows.Media.Colors
-                    if (IsColorMatch(color, Colors.Black)) return "Black";
-                    if (IsColorMatch(color, Colors.White)) return "White";
-                    if (IsColorMatch(color, Colors.Red)) return "Red";
-                    if (IsColorMatch(color, Colors.Green)) return "Green";
-                    if (IsColorMatch(color, Colors.Blue)) return "Blue";
-                    if (IsColorMatch(color, Colors.Yellow)) return "Yellow";
-                    if (IsColorMatch(color, Colors.Cyan)) return "Cyan";
-                    if (IsColorMatch(color, Colors.Magenta)) return "Magenta";
-                    if (IsColorMatch(color, Colors.Gray)) return "Gray";
-                    if (IsColorMatch(color, Colors.Orange)) return "Orange";
-                    if (IsColorMatch(color, Colors.Purple)) return "Purple";
-                    if (IsColorMatch(color, Colors.Brown)) return "Brown";
-                    if (IsColorMatch(color, Colors.Pink)) return "Pink";
-
-                    // Return RGB if not a predefined color
-                    return $"RGB({color.R}, {color.G}, {color.B})";
+                    SelectedColorBox.Fill = solidColorBrush;
+                    HexColorText.Text = $"#{solidColorBrush.Color.R:X2}{solidColorBrush.Color.G:X2}{solidColorBrush.Color.B:X2}";
                 }
-// TODO: Fallback for gradient brushes with multiple stops
-                return "Gradient (multiple colors)";
+                else if (brush is LinearGradientBrush gradientBrush)
+                {
+                    // Show the color of the first gradient stop
+                    Color? firstStopColor = gradientBrush.GradientStops.FirstOrDefault()?.Color;
+                    if (firstStopColor != null)
+                    {
+                        SelectedColorBox.Fill = new SolidColorBrush(firstStopColor.Value);
+                        HexColorText.Text = $"#{firstStopColor.Value.R:X2}{firstStopColor.Value.G:X2}{firstStopColor.Value.B:X2}";
+                    }
+                }
             }
-
-            return "Unknown"; // If the brush is not a SolidColorBrush or LinearGradientBrush
-        }
-
-        // Helper method to compare two colors (to handle potential rounding issues)
-        private static bool IsColorMatch(System.Windows.Media.Color color1, System.Windows.Media.Color color2)
-        {
-            return color1.R == color2.R && color1.G == color2.G && color1.B == color2.B && color1.A == color2.A;
+            else if (_resourceDictionary.Contains(resourceName) && !IsSupportedColorBrush(resourceName))
+            {
+                System.Diagnostics.Debug.WriteLine("Resource not supported brush: " + resourceName);
+            }
         }
     }
 }
