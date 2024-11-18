@@ -167,7 +167,7 @@ namespace RetroBar
         {
             if (ResourcesList.SelectedItem is string selectedKey)
             {
-                RestoreResourceColor(selectedKey, ReadOriginalResourceColor(selectedKey));
+                RestoreResourceColor(selectedKey, ReadOriginalResourceColor(selectedKey), true);
                 UpdateSelectedResourceDetails(selectedKey);
             }
         }
