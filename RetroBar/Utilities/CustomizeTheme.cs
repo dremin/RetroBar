@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RetroBar.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -12,6 +13,7 @@ namespace RetroBar
     public partial class PropertiesWindow : Window
     {
         private static readonly ResourceDictionary _resourceDictionary = System.Windows.Application.Current.Resources;
+        private bool _hasInitialized = false;
 
         protected override void OnInitialized(EventArgs e)
         {
@@ -37,13 +39,25 @@ namespace RetroBar
         private void PropertiesWindow_Loaded(object sender, RoutedEventArgs e)
         {
             PopulateResourcesList();
-// TODO: get EnableCustomizationControls value from settings
-            EnableCustomizationControls(false);
+            EnableCustomizationControls(Settings.Instance.CustomizeThemeEnabled);
+
+            if (Settings.Instance.CustomizeThemeEnabled)
+            {
+                if (ResourcesList.SelectedItem is string selectedKey)
+                {
+                    UpdateSelectedResourceDetails(selectedKey);
+                }
+            }
+
+            _hasInitialized = true;
         }
 
         private void ThemeCustomizationsEnabled_CheckBox_OnChecked(object sender, RoutedEventArgs e)
         {
+            if(!_hasInitialized){return;}
+
             EnableCustomizationControls(true);
+            _settingsCustomizeThemeEnabled = true;
 
             if (ResourcesList.SelectedItem is string selectedKey)
             {
@@ -53,7 +67,10 @@ namespace RetroBar
 
         private void ThemeCustomizationsEnabled_CheckBox_OnUnChecked(object sender, RoutedEventArgs e)
         {
+            if(!_hasInitialized){return;}
+
             EnableCustomizationControls(false);
+            _settingsCustomizeThemeEnabled = false;
         }
 
         private void ChangeColorButton_Click(object sender, RoutedEventArgs e)
@@ -72,6 +89,8 @@ namespace RetroBar
 
         private void ResourcesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(!_hasInitialized){return;}
+
             if (ResourcesList.SelectedItem is string selectedKey)
             {
                 UpdateSelectedResourceDetails(selectedKey);
@@ -168,6 +187,19 @@ namespace RetroBar
             ResetColorButton.IsEnabled = isEnabled;
             SelectedColorBox.Fill = isEnabled ? Brushes.Transparent : Brushes.Gray;
             HexColorText.Text = isEnabled ? string.Empty : "";
+        }
+
+        private bool _settingsCustomizeThemeEnabled
+        {
+            get => Settings.Instance.CustomizeThemeEnabled;
+            set
+            {
+                if (Settings.Instance.CustomizeThemeEnabled != value)
+                {
+                    Settings.Instance.CustomizeThemeEnabled = value;
+                    Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+                }
+            }
         }
 
         private static void ListAddUnique(List<string> list, string item)

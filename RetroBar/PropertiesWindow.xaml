@@ -429,7 +429,8 @@
                     <StackPanel Orientation="Vertical" Margin="10,0,0,10">
                         <CheckBox Checked="ThemeCustomizationsEnabled_CheckBox_OnChecked"
                                   Unchecked="ThemeCustomizationsEnabled_CheckBox_OnUnChecked"
-                                  Name="ThemeCustomizationsEnabled_CheckBox">
+                                  Name="ThemeCustomizationsEnabled_CheckBox"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CustomizeThemeEnabled}">
                             <Label Content="Theme Customizations Enabled" />
                         </CheckBox>
                     </StackPanel>

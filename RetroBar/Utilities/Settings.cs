@@ -289,6 +289,13 @@ namespace RetroBar.Utilities
             get => _checkForUpdates;
             set => Set(ref _checkForUpdates, value);
         }
+
+        private bool _customizeThemeEnabled = false;
+        public bool CustomizeThemeEnabled
+        {
+            get => _customizeThemeEnabled;
+            set => Set(ref _customizeThemeEnabled, value);
+        }
         #endregion
 
         #region Old Properties
