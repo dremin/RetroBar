@@ -452,10 +452,10 @@
                             <TextBlock Name="HexColorText" VerticalAlignment="Center" Margin="10,0,10,0" />
                 
                             <!-- Change Color Button -->
-                            <Button Content="Change Color" Click="ChangeColorButton_Click" Margin="10,0,0,0" HorizontalAlignment="Right"/>
+                            <Button Content="Change Color" Name="ChangeColorButton" Click="ChangeColorButton_Click" Margin="10,0,0,0" HorizontalAlignment="Right"/>
 
                             <!-- Reset Color Button -->
-                            <Button Content="Reset Color" Click="ResetColorButton_Click" Margin="10,0,0,0" HorizontalAlignment="Right"/>
+                            <Button Content="Reset Color" Name="ResetColorButton" Click="ResetColorButton_Click" Margin="10,0,0,0" HorizontalAlignment="Right"/>
                         </StackPanel>
                     </Grid>
 

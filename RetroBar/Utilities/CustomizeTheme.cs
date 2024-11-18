@@ -37,16 +37,23 @@ namespace RetroBar
         private void PropertiesWindow_Loaded(object sender, RoutedEventArgs e)
         {
             PopulateResourcesList();
+// TODO: get EnableCustomizationControls value from settings
+            EnableCustomizationControls(false);
         }
 
         private void ThemeCustomizationsEnabled_CheckBox_OnChecked(object sender, RoutedEventArgs e)
         {
-// TODO: enable theme customizations
+            EnableCustomizationControls(true);
+
+            if (ResourcesList.SelectedItem is string selectedKey)
+            {
+                UpdateSelectedResourceDetails(selectedKey);
+            }
         }
 
         private void ThemeCustomizationsEnabled_CheckBox_OnUnChecked(object sender, RoutedEventArgs e)
         {
-// TODO: disable theme customizations
+            EnableCustomizationControls(false);
         }
 
         private void ChangeColorButton_Click(object sender, RoutedEventArgs e)
@@ -152,6 +159,15 @@ namespace RetroBar
 
             // Bind the list of brush keys to the ListBox
             ResourcesList.ItemsSource = brushKeys;
+        }
+
+        private void EnableCustomizationControls(bool isEnabled)
+        {
+            ResourcesList.IsEnabled = isEnabled;
+            ChangeColorButton.IsEnabled = isEnabled;
+            ResetColorButton.IsEnabled = isEnabled;
+            SelectedColorBox.Fill = isEnabled ? Brushes.Transparent : Brushes.Gray;
+            HexColorText.Text = isEnabled ? string.Empty : "";
         }
 
         private static void ListAddUnique(List<string> list, string item)
