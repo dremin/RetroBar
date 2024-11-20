@@ -9,6 +9,8 @@ namespace RetroBar.Utilities
 {
     public class WindowManager : IDisposable
     {
+        private static object reopenLock = new object();
+
         private bool _isSettingDisplays;
         private int _pendingDisplayEvents;
         private List<AppBarScreen> _screenState = new List<AppBarScreen>();
@@ -55,8 +57,11 @@ namespace RetroBar.Utilities
 
         public void ReopenTaskbars()
         {
-            closeTaskbars();
-            openTaskbars();
+            lock (reopenLock)
+            {
+                closeTaskbars();
+                openTaskbars();
+            }
         }
 
         public void NotifyDisplayChange(ScreenSetupReason reason)
