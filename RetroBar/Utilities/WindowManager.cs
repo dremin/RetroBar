@@ -150,9 +150,8 @@ namespace RetroBar.Utilities
         {
             ShellLogger.Debug($"WindowManager: Opening taskbar on screen {screen.DeviceName}");
             Taskbar taskbar = new Taskbar(this, _dictionaryManager, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
-            taskbar.Show();
-
             _taskbars.Add(taskbar);
+            taskbar.Show();
         }
 
         private bool haveDisplaysChanged()
