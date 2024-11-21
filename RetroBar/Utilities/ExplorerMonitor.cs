@@ -2,6 +2,7 @@ using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
 using System;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace RetroBar.Utilities
 {
@@ -36,14 +37,16 @@ namespace RetroBar.Utilities
             {
                 if (m.Msg == WM_TASKBARCREATEDMESSAGE)
                 {
-                    try
-                    {
-                        _windowManagerRef.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
-                    }
-                    catch (Exception ex)
-                    {
-                        ShellLogger.Warning($"Error handling TaskbarCreated message on ExplorerMonitor: {ex.Message}");
-                    }
+                    Dispatcher.CurrentDispatcher.BeginInvoke(() => {
+                        try
+                        {
+                            _windowManagerRef.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
+                        }
+                        catch (Exception ex)
+                        {
+                            ShellLogger.Warning($"Error handling TaskbarCreated message on ExplorerMonitor: {ex.Message}");
+                        }
+                    });
                 }
 
                 base.WndProc(ref m); // Call the base class to process other messages so we dont accidentally cause crashes or bugs.
