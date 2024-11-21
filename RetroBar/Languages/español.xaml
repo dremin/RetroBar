@@ -28,6 +28,7 @@
     <s:String x:Key="show_input_language">Mostrar el idioma de _entrada</s:String>
     <s:String x:Key="show_clock">Mostrar el _reloj</s:String>
     <s:String x:Key="show_multi_mon">Mostrar en _varias pantallas</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Mostrar botón inicio en varias pan_tallas</s:String>
     <s:String x:Key="show_quick_launch">Mostrar inicio rápi_do</s:String>
     <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>

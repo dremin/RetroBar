@@ -24,6 +24,7 @@
     <s:String x:Key="customize">Aanpassen...</s:String>
     <s:String x:Key="show_clock">_Klok weergeven</s:String>
     <s:String x:Key="show_multi_mon">Laat op _meerdere beeldschermen zien</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Toon startknop op _meerdere schermen</s:String>
     <s:String x:Key="show_quick_launch">Werkbalk _Snel starten weergeven</s:String>
     <s:String x:Key="select_location">_Selecteer locatie...</s:String>
     <s:String x:Key="quick_launch_folder">Snel starten - Kies een map</s:String>

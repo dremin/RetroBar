@@ -22,6 +22,7 @@
     <s:String x:Key="customize">Personalizz_a...</s:String>
     <s:String x:Key="show_clock">M_ostra orologio</s:String>
     <s:String x:Key="show_multi_mon">Mostra su _più schermi</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Mostra il pulsante di avvio su _più schermi</s:String>
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>
     <s:String x:Key="select_location">Cam_bia cartella...</s:String>
     <s:String x:Key="quick_launch_folder">Avvio veloce - Selezione cartella</s:String>

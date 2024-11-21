@@ -24,6 +24,7 @@
     <s:String x:Key="customize">Anpa_ssa...</s:String>
     <s:String x:Key="show_clock">Visa _klockan</s:String>
     <s:String x:Key="show_multi_mon">Visa på _multipel skärmar</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Visa Start-knappen på _flera skärmar</s:String>
     <s:String x:Key="show_quick_launch">V_isa snabbstartfältet</s:String>
     <s:String x:Key="select_location">Väl_j plats...</s:String>
     <s:String x:Key="quick_launch_folder">Snabbstart - Välj en mapp</s:String>

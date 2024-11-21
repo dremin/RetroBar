@@ -150,6 +150,10 @@
                       Name="LockTaskbarMenuItem"
                       IsCheckable="True"
                       IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}"/>
+            <MenuItem Header="{DynamicResource show_start_button_on_secondary_monitor}"
+                      Name="ShowButtonSecondaryMonitor"
+                      IsCheckable="True"
+                      IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowButtonSecondaryMonitor, UpdateSourceTrigger=PropertyChanged}"/>          
             <MenuItem Header="{DynamicResource tray_properties}"
                       Name="PropertiesMenuItem"
                       Click="PropertiesMenuItem_OnClick" />

@@ -35,6 +35,7 @@
     <s:String x:Key="show_input_language">Show the input _language</s:String>
     <s:String x:Key="show_clock">Show the cloc_k</s:String>
     <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Show button on mul_tiple displays</s:String>
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>

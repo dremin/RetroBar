@@ -22,6 +22,7 @@
     <s:String x:Key="collapse_tray_icons">Az _értesítési terület ikonjainak összecsukása</s:String>
     <s:String x:Key="show_clock">Mutasd az _órát</s:String>
     <s:String x:Key="show_multi_mon">Megjelenítés _több kijelzőn</s:String>
+    <s:String x:Key="show_start_button_on_secondary_monitor">Kezdő gomb megjelenítése _több képernyőn</s:String>
     <s:String x:Key="show_quick_launch">Mutasd a _Gyorsindítást</s:String>
     <s:String x:Key="select_location">Hely ki_választása...</s:String>
     <s:String x:Key="quick_launch_folder">Gyorsindítás – Válasszon ki egy mappát</s:String>
