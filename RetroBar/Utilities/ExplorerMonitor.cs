@@ -2,6 +2,7 @@ using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
 using System;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace RetroBar.Utilities
 {
@@ -38,7 +39,9 @@ namespace RetroBar.Utilities
                 {
                     try
                     {
-                        _windowManagerRef.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
+                        Dispatcher.CurrentDispatcher.BeginInvoke(() => {
+                            _windowManagerRef.ReopenTaskbars(); // Reopen taskbars if explorer.exe is restarted.
+                        });
                     }
                     catch (Exception ex)
                     {
