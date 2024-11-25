@@ -1521,7 +1521,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Border x:Name="StartButtonBorder">
+                    <Border x:Name="StartButtonBorder" HorizontalAlignment="Left">
                         <Border.Background>
                             <ImageBrush ImageSource="{DynamicResource StartButtonImage}"
                                         ViewboxUnits="RelativeToBoundingBox"

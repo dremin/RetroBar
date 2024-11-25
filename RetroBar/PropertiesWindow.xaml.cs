@@ -53,6 +53,12 @@ namespace RetroBar
             get => Settings.Instance.LockTaskbar;
         }
 
+        // Previews should never be scaled
+        public bool IsScaled
+        {
+            get => false;
+        }
+
         // Previews should always assume 1 row
         public int Rows
         {
@@ -72,6 +78,7 @@ namespace RetroBar
             LoadPreviewHeight();
             LoadAutoStart();
             LoadLanguages();
+            LoadRows();
             LoadThemes();
             LoadVersion();
 
@@ -154,6 +161,18 @@ namespace RetroBar
             foreach (var language in _dictionaryManager.GetLanguages())
             {
                 cboLanguageSelect.Items.Add(language);
+            }
+        }
+
+        private void LoadRows()
+        {
+            for (int i = 1; i <= Settings.Instance.RowLimit; i++)
+            {
+                cboRowCount.Items.Add(i.ToString());
+            }
+            for (int i = 1; i <= Settings.Instance.RowLimitVertical; i++)
+            {
+                cboRowCountVertical.Items.Add(i.ToString());
             }
         }
 
@@ -290,11 +309,19 @@ namespace RetroBar
             }
         }
 
-        private void cbRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void cboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (cbRowCount.SelectedItem == null)
+            if (cboRowCount.SelectedItem == null)
             {
-                cbRowCount.SelectedValue = cbRowCount.Items[Settings.Instance.RowCount - 1];
+                cboRowCount.SelectedValue = cboRowCount.Items[Settings.Instance.RowCount - 1];
+            }
+        }
+
+        private void cboRowCountVertical_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboRowCountVertical.SelectedItem == null)
+            {
+                cboRowCountVertical.SelectedValue = cboRowCountVertical.Items[Settings.Instance.RowCountVertical - 1];
             }
         }
 

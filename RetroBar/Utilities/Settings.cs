@@ -213,6 +213,27 @@ namespace RetroBar.Utilities
             set => Set(ref _rowCount, value);
         }
 
+        private int _rowLimit = 5;
+        public int RowLimit
+        {
+            get => _rowLimit;
+            set => Set(ref _rowLimit, value);
+        }
+
+        private int _rowCountVertical = 1;
+        public int RowCountVertical
+        {
+            get => _rowCountVertical;
+            set => Set(ref _rowCountVertical, value);
+        }
+
+        private int _rowLimitVertical = 7;
+        public int RowLimitVertical
+        {
+            get => _rowLimitVertical;
+            set => Set(ref _rowLimitVertical, value);
+        }
+
         private List<string> _quickLaunchOrder = [];
         public List<string> QuickLaunchOrder
         {

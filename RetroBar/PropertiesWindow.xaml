@@ -24,7 +24,7 @@
             <converters:CountToIndexConverter x:Key="countToIndexConverter" />
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <converters:EnumConverter x:Key="enumConverter" />
-            <converters:EdgeIsHorizontalConverter x:Key="isHorizontalConverter" />
+            <converters:EdgeOrientationVisibilityConverter x:Key="edgeOrientationVisibilityConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
@@ -205,16 +205,25 @@
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="cboEdgeSelect_SelectionChanged" />
                             </DockPanel>
-                            <DockPanel IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource isHorizontalConverter}}">
+                            <DockPanel Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='horizontal'}">
                                 <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cbRowCount}">
+                                       Target="{Binding ElementName=cboRowCount}">
                                     <AccessText Text="{DynamicResource rowcount_text}"
                                                 ToolTip="{DynamicResource rowcount_tip}" />
                                 </Label>
-                                <ComboBox x:Name="cbRowCount"
-                                          ItemsSource="{DynamicResource rowcount_options}"
+                                <ComboBox x:Name="cboRowCount"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource countToIndexConverter}}"
-                                          SelectionChanged="cbRowCount_SelectionChanged" />
+                                          SelectionChanged="cboRowCount_SelectionChanged" />
+                            </DockPanel>
+                            <DockPanel Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='vertical'}">
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboRowCountVertical}">
+                                    <AccessText Text="{DynamicResource rowcount_text}"
+                                                ToolTip="{DynamicResource rowcount_vertical_tip}" />
+                                </Label>
+                                <ComboBox x:Name="cboRowCountVertical"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCountVertical, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource countToIndexConverter}}"
+                                          SelectionChanged="cboRowCountVertical_SelectionChanged" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
