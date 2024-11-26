@@ -171,7 +171,7 @@ namespace RetroBar.Controls
         {
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
-            if (!useFloatingStartButton || !Host.Screen.Primary) return;
+            if (!useFloatingStartButton || Host?.Screen.Primary != true) return;
 
             if (floatingStartButton == null)
             {

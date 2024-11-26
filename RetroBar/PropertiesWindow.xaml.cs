@@ -53,6 +53,12 @@ namespace RetroBar
             get => Settings.Instance.LockTaskbar;
         }
 
+        // Previews should never be scaled
+        public bool IsScaled
+        {
+            get => false;
+        }
+
         // Previews should always assume 1 row
         public int Rows
         {
@@ -72,8 +78,10 @@ namespace RetroBar
             LoadPreviewHeight();
             LoadAutoStart();
             LoadLanguages();
+            LoadRows();
             LoadThemes();
             LoadVersion();
+            LoadWidth();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -157,6 +165,14 @@ namespace RetroBar
             }
         }
 
+        private void LoadRows()
+        {
+            for (int i = 1; i <= Settings.Instance.RowLimit; i++)
+            {
+                cboRowCount.Items.Add(i.ToString());
+            }
+        }
+
         private void LoadThemes()
         {
             foreach (var theme in _dictionaryManager.GetThemes())
@@ -168,6 +184,11 @@ namespace RetroBar
         private void LoadVersion()
         {
             txtVersion.Text = string.Format((string)FindResource("version"), System.Windows.Forms.Application.ProductVersion);
+        }
+
+        private void LoadWidth()
+        {
+            sldTaskbarWidth.Maximum = Settings.Instance.TaskbarWidthLimit;
         }
 
         private void UpdateWindowPosition()
@@ -290,11 +311,11 @@ namespace RetroBar
             }
         }
 
-        private void cbRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void cboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (cbRowCount.SelectedItem == null)
+            if (cboRowCount.SelectedItem == null)
             {
-                cbRowCount.SelectedValue = cbRowCount.Items[Settings.Instance.RowCount - 1];
+                cboRowCount.SelectedValue = cboRowCount.Items[Settings.Instance.RowCount - 1];
             }
         }
 
