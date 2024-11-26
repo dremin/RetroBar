@@ -81,6 +81,7 @@ namespace RetroBar
             LoadRows();
             LoadThemes();
             LoadVersion();
+            LoadWidth();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -170,10 +171,6 @@ namespace RetroBar
             {
                 cboRowCount.Items.Add(i.ToString());
             }
-            for (int i = 1; i <= Settings.Instance.RowLimitVertical; i++)
-            {
-                cboRowCountVertical.Items.Add(i.ToString());
-            }
         }
 
         private void LoadThemes()
@@ -187,6 +184,11 @@ namespace RetroBar
         private void LoadVersion()
         {
             txtVersion.Text = string.Format((string)FindResource("version"), System.Windows.Forms.Application.ProductVersion);
+        }
+
+        private void LoadWidth()
+        {
+            sldTaskbarWidth.Maximum = Settings.Instance.TaskbarWidthLimit;
         }
 
         private void UpdateWindowPosition()
@@ -314,14 +316,6 @@ namespace RetroBar
             if (cboRowCount.SelectedItem == null)
             {
                 cboRowCount.SelectedValue = cboRowCount.Items[Settings.Instance.RowCount - 1];
-            }
-        }
-
-        private void cboRowCountVertical_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (cboRowCountVertical.SelectedItem == null)
-            {
-                cboRowCountVertical.SelectedValue = cboRowCountVertical.Items[Settings.Instance.RowCountVertical - 1];
             }
         }
 

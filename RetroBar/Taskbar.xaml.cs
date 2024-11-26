@@ -159,7 +159,7 @@ namespace RetroBar
         {
             _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
             DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
-            double newWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) + DesiredRowHeight * (Settings.Instance.RowCountVertical - 1);
+            double newWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) + DesiredRowHeight * (Settings.Instance.TaskbarWidth - 1);
             double newHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
@@ -278,7 +278,7 @@ namespace RetroBar
                 RecalculateSize();
                 OnPropertyChanged(nameof(Rows));
             }
-            else if (e.PropertyName == nameof(Settings.RowCountVertical))
+            else if (e.PropertyName == nameof(Settings.TaskbarWidth))
             {
                 PeekDuringAutoHide();
                 RecalculateSize();
@@ -593,15 +593,15 @@ namespace RetroBar
                                 double taskbarEdge = AppBarEdge == AppBarEdge.Left ? Screen.Bounds.Left + (DesiredWidth * DpiScale) : Screen.Bounds.Right - (DesiredWidth * DpiScale);
                                 if ((AppBarEdge == AppBarEdge.Left && mouseX > taskbarEdge + scaledRowHeight ||
                                      AppBarEdge == AppBarEdge.Right && mouseX < taskbarEdge - scaledRowHeight) &&
-                                    Settings.Instance.RowCountVertical < Settings.Instance.RowLimitVertical)
+                                    Settings.Instance.TaskbarWidth < Settings.Instance.TaskbarWidthLimit)
                                 {
-                                    Settings.Instance.RowCountVertical += 1;
+                                    Settings.Instance.TaskbarWidth += 1;
                                 }
                                 else if ((AppBarEdge == AppBarEdge.Left && mouseX < taskbarEdge - SystemParameters.MinimumHorizontalDragDistance ||
                                           AppBarEdge == AppBarEdge.Right && mouseX > taskbarEdge + SystemParameters.MinimumHorizontalDragDistance) &&
-                                    Settings.Instance.RowCountVertical > 1)
+                                    Settings.Instance.TaskbarWidth > 1)
                                 {
-                                    Settings.Instance.RowCountVertical -= 1;
+                                    Settings.Instance.TaskbarWidth -= 1;
                                 }
                             }
                         });

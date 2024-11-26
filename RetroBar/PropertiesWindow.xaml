@@ -217,13 +217,19 @@
                             </DockPanel>
                             <DockPanel Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='vertical'}">
                                 <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cboRowCountVertical}">
-                                    <AccessText Text="{DynamicResource rowcount_text}"
-                                                ToolTip="{DynamicResource rowcount_vertical_tip}" />
+                                       Target="{Binding ElementName=sldTaskbarWidth}">
+                                    <AccessText Text="{DynamicResource taskbar_width}" />
                                 </Label>
-                                <ComboBox x:Name="cboRowCountVertical"
-                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCountVertical, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource countToIndexConverter}}"
-                                          SelectionChanged="cboRowCountVertical_SelectionChanged" />
+                                <Slider Name="sldTaskbarWidth"
+                                        Orientation="Horizontal"
+                                        IsSnapToTickEnabled="True"
+                                        Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskbarWidth, UpdateSourceTrigger=PropertyChanged}"
+                                        Minimum="1"
+                                        TickFrequency="1"
+                                        TickPlacement="BottomRight"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,3,0,4"
+                                        Width="200" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />

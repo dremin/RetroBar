@@ -220,18 +220,18 @@ namespace RetroBar.Utilities
             set => Set(ref _rowLimit, value);
         }
 
-        private int _rowCountVertical = 1;
-        public int RowCountVertical
+        private int _taskbarWidth = 1;
+        public int TaskbarWidth
         {
-            get => _rowCountVertical;
-            set => Set(ref _rowCountVertical, value);
+            get => _taskbarWidth;
+            set => Set(ref _taskbarWidth, value);
         }
 
-        private int _rowLimitVertical = 7;
-        public int RowLimitVertical
+        private int _taskbarWidthLimit = 7;
+        public int TaskbarWidthLimit
         {
-            get => _rowLimitVertical;
-            set => Set(ref _rowLimitVertical, value);
+            get => _taskbarWidthLimit;
+            set => Set(ref _taskbarWidthLimit, value);
         }
 
         private List<string> _quickLaunchOrder = [];
