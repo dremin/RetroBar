@@ -22,6 +22,7 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Número de _filas:</s:String>
     <s:String x:Key="rowcount_tip">El número de filas en la barra de tareas cuando está en la parte superior o inferior.</s:String>
+    <s:String x:Key="taskbar_width">_Ancho de la barra de tareas:</s:String>
     <s:String x:Key="allow_font_smoothing">Permitir suavizado de _fuentes</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar _iconos de notificación</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
