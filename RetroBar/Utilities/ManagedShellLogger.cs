@@ -39,17 +39,24 @@ namespace RetroBar.Utilities
 
             SetupFileLog();
 
-            ShellLogger.Attach(new ConsoleLog());
+            ShellLogger.Attach(new ConsoleLog(), true);
         }
 
         private void SetupFileLog()
         {
             DeleteOldLogFiles();
 
-            _fileLog = new FileLog(Path.Combine(_logPath, $"{_logName}.{_logExt}"));
-            _fileLog?.Open();
+            try
+            {
+                _fileLog = new FileLog(Path.Combine(_logPath, $"{_logName}.{_logExt}"));
+                _fileLog?.Open();
 
-            ShellLogger.Attach(_fileLog);
+                ShellLogger.Attach(_fileLog);
+            }
+            catch (Exception ex)
+            {
+                ShellLogger.Error($"Unable to open and attach file logger: {ex.Message}");
+            }
         }
 
         private void DeleteOldLogFiles()
