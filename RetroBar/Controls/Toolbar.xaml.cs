@@ -108,6 +108,7 @@ namespace RetroBar.Controls
                 ToolbarItems.ItemsSource = Folder.Files;
                 ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
                 cvs.CustomSort = new ToolbarSorter(this);
+                cvs.Filter += Files_Filter;
             }
         }
 
@@ -153,6 +154,20 @@ namespace RetroBar.Controls
                     ShellLogger.Error($"Toolbar: Unable to save shortcut to {itemPath}", e);
                 }
             }
+        }
+
+        private bool Files_Filter(object obj)
+        {
+            if (obj is ShellFile file)
+            {
+                if (file.Path.EndsWith("\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\Tombstones"))
+                {
+                    // Windows moves broken shortcuts to this folder, so we should hide it
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         #region Events
