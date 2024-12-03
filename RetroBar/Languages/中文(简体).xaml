@@ -32,7 +32,7 @@
     <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
     <s:String x:Key="select_location">选择位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
-    <s:String x:Key="show_badges">Show _badges</s:String>
+    <s:String x:Key="show_badges">显示通知标记(_B)</s:String>
     <s:String x:Key="show_window_previews">显示窗口预览 (缩略图)(_W)</s:String>
     <s:String x:Key="use_software_rendering">使用软件渲染(_U)</s:String>
     <s:String x:Key="add_show_desktop_button">添加显示桌面按钮(_D)</s:String>
