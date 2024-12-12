@@ -7,12 +7,12 @@
     <s:String x:Key="advanced_tab">高级</s:String>
     <s:String x:Key="taskbar_appearance">任务栏外观</s:String>
     <s:String x:Key="notification_area">通知区域</s:String>
-    <s:String x:Key="autostart">开机时自动启动 (_L)</s:String>
-    <s:String x:Key="language_text">语言 (_G): </s:String>
+    <s:String x:Key="autostart">开机时自动启动(_L)</s:String>
+    <s:String x:Key="language_text">语言(_G): </s:String>
     <s:String x:Key="language_tip">选择要使用的语言。</s:String>
-    <s:String x:Key="theme_text">主题 (_T): </s:String>
+    <s:String x:Key="theme_text">主题(_T): </s:String>
     <s:String x:Key="theme_tip">在 Themes 文件夹中安装主题。</s:String>
-    <s:String x:Key="location_text">位置 (_I): </s:String>
+    <s:String x:Key="location_text">位置(_I): </s:String>
     <s:String x:Key="location_tip">更改任务栏在屏幕上的位置。</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>左侧</s:String>
@@ -20,31 +20,42 @@
         <s:String>右侧</s:String>
         <s:String>底部</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">允许字体平滑 (_A)</s:String>
-    <s:String x:Key="collapse_tray_icons">收起通知区域图标 (_H)</s:String>
-    <s:String x:Key="customize">自定义 (_C)...</s:String>
-    <s:String x:Key="show_clock">显示时钟 (_K)</s:String>
-    <s:String x:Key="show_multi_mon">在多个显示器上显示 (_M)</s:String>
-    <s:String x:Key="show_quick_launch">显示快速启动 (_Q)</s:String>
-    <s:String x:Key="select_location">选择位置 (_S)...</s:String>
+    <s:String x:Key="rowcount_text">行数(_R): </s:String>
+    <s:String x:Key="rowcount_tip">任务栏位于顶部或底部时的行数。</s:String>
+    <s:String x:Key="taskbar_width">任务栏宽度(_W): </s:String>
+    <s:String x:Key="allow_font_smoothing">允许字体平滑(_A)</s:String>
+    <s:String x:Key="collapse_tray_icons">收起通知区域图标(_H)</s:String>
+    <s:String x:Key="customize">自定义(_C)...</s:String>
+    <s:String x:Key="show_input_language">显示输入语言(_L)</s:String>
+    <s:String x:Key="show_clock">显示时钟(_K)</s:String>
+    <s:String x:Key="show_multi_mon">在多个显示器上显示(_M)</s:String>
+    <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
+    <s:String x:Key="select_location">选择位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
-    <s:String x:Key="show_window_previews">显示窗口预览 (缩略图) (_W)</s:String>
-    <s:String x:Key="use_software_rendering">使用软件渲染 (_U)</s:String>
-    <s:String x:Key="add_show_desktop_button">添加显示桌面按钮 (_D)</s:String>
-    <s:String x:Key="enable_auto_hide">自动隐藏任务栏 (_U)</s:String>
-    <s:String x:Key="lock_taskbar">锁定任务栏 (_L)</s:String>
+    <s:String x:Key="show_badges">显示通知标记(_B)</s:String>
+    <s:String x:Key="show_window_previews">显示窗口预览 (缩略图)(_W)</s:String>
+    <s:String x:Key="use_software_rendering">使用软件渲染(_U)</s:String>
+    <s:String x:Key="add_show_desktop_button">添加显示桌面按钮(_D)</s:String>
+    <s:String x:Key="enable_auto_hide">自动隐藏任务栏(_U)</s:String>
+    <s:String x:Key="lock_taskbar">锁定任务栏(_L)</s:String>
     <s:String x:Key="multiple_displays">多种显示</s:String>
-    <s:String x:Key="show_tasks_on">显示任务在 (_H): </s:String>
+    <s:String x:Key="show_tasks_on">显示任务在(_H): </s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>所有任务栏</s:String>
         <s:String>与窗口的任务栏相同</s:String>
         <s:String>与窗口和主任务栏相同的任务栏</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">反转系统图标 (_I):</s:String>
+    <s:String x:Key="invert_system_icons">反转系统图标(_I):</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>当主题需要时</s:String>
         <s:String>始终</s:String>
         <s:String>从不</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Middle-click action:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>什么也不做</s:String>
+        <s:String>打开一个新实例</s:String>
+        <s:String>关闭任务</s:String>
     </x:Array>
     <s:String x:Key="version">版本 {0}</s:String>
     <s:String x:Key="visit_on_github">访问 GitHub 主页</s:String>
@@ -53,6 +64,7 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">当前设置: {0}%</s:String>
     <s:String x:Key="debug_logging">启用调试日志记录</s:String>
+    <s:String x:Key="check_for_updates">检查更新</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 
     <s:String x:Key="customize_notifications">自定义通知</s:String>
@@ -60,8 +72,11 @@
     <s:String x:Key="customize_notifications_instruction">选择一个项目，然后选择其通知行为: </s:String>
     <s:String x:Key="hide_when_inactive">不活动时隐藏</s:String>
     <s:String x:Key="always_show">总是显示</s:String>
+    <s:String x:Key="always_hide">总是隐藏</s:String>
+    <s:String x:Key="remove">移除</s:String>
     <s:String x:Key="name_heading">名称</s:String>
     <s:String x:Key="behavior_heading">行为</s:String>
+    <s:String x:Key="invert_heading">反向</s:String>
 
     <s:String x:Key="start_text">开始</s:String>
     <s:String x:Key="start_text_xp">开始</s:String>
@@ -70,38 +85,38 @@
     <s:String x:Key="start_button_tip_vista">开始</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar 任务栏</s:String>
-    <s:String x:Key="toolbars">工具栏 (_T)</s:String>
-    <s:String x:Key="quick_launch">快速启动 (_Q)</s:String>
-    <s:String x:Key="new_toolbar">新建工具栏 (_N)...</s:String>
-    <s:String x:Key="set_time">调整日期/时间 (_A)</s:String>
-    <s:String x:Key="cascade">并排窗口 (_S)</s:String>
-    <s:String x:Key="horiz_tile">水平铺窗口 (_H)</s:String>
-    <s:String x:Key="vert_tile">垂直平铺窗口 (_V)</s:String>
-    <s:String x:Key="toggle_desktop">显示桌面 (_S)</s:String>
-    <s:String x:Key="hide_desktop">显示打开的窗口 (_S)</s:String>
-    <s:String x:Key="undo_cascade">撤销并排 (_U)</s:String>
-    <s:String x:Key="undo_tile">撤消平铺 (_U)</s:String>
-    <s:String x:Key="undo_minimize_all">撤消最小化全部窗口 (_U)</s:String>
-    <s:String x:Key="show_taskman_2k">任务管理器 (_K)...</s:String>
-    <s:String x:Key="show_taskman">任务管理器 (_K)</s:String>
-    <s:String x:Key="tray_properties">属性 (_R)</s:String>
-    <s:String x:Key="update_available">更新可用 (_U)...</s:String>
-    <s:String x:Key="exit_retrobar">退出 RetroBar (_E)</s:String>
-    <s:String x:Key="customize_notifications_menu">自定义通知 (_C)...</s:String>
-    <s:String x:Key="lock_taskbar_menu">锁定任务栏 (_L)</s:String>
+    <s:String x:Key="toolbars">工具栏(_T)</s:String>
+    <s:String x:Key="quick_launch">快速启动(_Q)</s:String>
+    <s:String x:Key="new_toolbar">新建工具栏(_N)...</s:String>
+    <s:String x:Key="set_time">调整日期/时间(_A)</s:String>
+    <s:String x:Key="cascade">并排窗口(_S)</s:String>
+    <s:String x:Key="horiz_tile">水平铺窗口(_H)</s:String>
+    <s:String x:Key="vert_tile">垂直平铺窗口(_V)</s:String>
+    <s:String x:Key="toggle_desktop">显示桌面(_S)</s:String>
+    <s:String x:Key="hide_desktop">显示打开的窗口(_S)</s:String>
+    <s:String x:Key="undo_cascade">撤销并排(_U)</s:String>
+    <s:String x:Key="undo_tile">撤消平铺(_U)</s:String>
+    <s:String x:Key="undo_minimize_all">撤消最小化全部窗口(_U)</s:String>
+    <s:String x:Key="show_taskman_2k">任务管理器(_K)...</s:String>
+    <s:String x:Key="show_taskman">任务管理器(_K)</s:String>
+    <s:String x:Key="tray_properties">属性(_R)</s:String>
+    <s:String x:Key="update_available">更新可用(_U)...</s:String>
+    <s:String x:Key="exit_retrobar">退出 RetroBar(_E)</s:String>
+    <s:String x:Key="customize_notifications_menu">自定义通知(_C)...</s:String>
+    <s:String x:Key="lock_taskbar_menu">锁定任务栏(_L)</s:String>
 
     <s:String x:Key="show_desktop_tip_95">浮出或还原桌面</s:String>
     <s:String x:Key="show_desktop_tip">显示桌面</s:String>
-    <s:String x:Key="show_desktop_95">桌面 (_D)</s:String>
-    <s:String x:Key="show_desktop">显示桌面 (_S)</s:String>
-    <s:String x:Key="peek_at_desktop">窥视桌面 (_P)</s:String>
+    <s:String x:Key="show_desktop_95">桌面(_D)</s:String>
+    <s:String x:Key="show_desktop">显示桌面(_S)</s:String>
+    <s:String x:Key="peek_at_desktop">窥视桌面(_P)</s:String>
 
-    <s:String x:Key="restore">恢复 (_R)</s:String>
-    <s:String x:Key="move">移动 (_M)</s:String>
-    <s:String x:Key="size">大小 (_S)</s:String>
-    <s:String x:Key="minimize">最小化 (_N)</s:String>
-    <s:String x:Key="maximize">最大化 (_X)</s:String>
-    <s:String x:Key="close">关闭 (_C)</s:String>
+    <s:String x:Key="restore">恢复(_R)</s:String>
+    <s:String x:Key="move">移动(_M)</s:String>
+    <s:String x:Key="size">大小(_S)</s:String>
+    <s:String x:Key="minimize">最小化(_N)</s:String>
+    <s:String x:Key="maximize">最大化(_X)</s:String>
+    <s:String x:Key="close">关闭(_C)</s:String>
 
     <s:String x:Key="show_hidden">显示隐藏的图标</s:String>
     <s:String x:Key="hide">隐藏</s:String>
