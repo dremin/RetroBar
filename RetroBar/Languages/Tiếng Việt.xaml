@@ -54,7 +54,7 @@
     <s:String x:Key="middle_mouse_task_action">Khi _nhấn chuột giữa:</s:String>
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>Không làm gì</s:String>
-        <s:String>Mở một phiên bản mới</s:String>
+        <s:String>Mở một phiên mới</s:String>
         <s:String>Đóng tác vụ</s:String>
     </x:Array>
     <s:String x:Key="version">Phiên bản {0}</s:String>
@@ -79,7 +79,7 @@
     <s:String x:Key="invert_heading">Đảo ngược</s:String>
 
     <s:String x:Key="start_text">Bắt đầu</s:String>
-    <s:String x:Key="start_text_xp">bắt đầu</s:String>
+    <s:String x:Key="start_text_xp">Bắt đầu</s:String>
     <s:String x:Key="start_button_tip_98">Nhấn vào đây để bắt đầu.</s:String>
     <s:String x:Key="start_button_tip">Nhấn vào đây để bắt đầu</s:String>
     <s:String x:Key="start_button_tip_vista">Bắt đầu</s:String>
