@@ -57,6 +57,13 @@
         <s:String>Abrir una nueva instancia</s:String>
         <s:String>Cerrar la tarea</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">_Acción al hacer clic en el reloj:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>No hacer nada</s:String>
+        <s:String>Abrir el calendario Aero</s:String>
+        <s:String>Abrir el calendario Moderno</s:String>
+        <s:String>Abrir el Centro de notificaciones</s:String>
+    </x:Array>
     <s:String x:Key="version">Versión {0}</s:String>
     <s:String x:Key="visit_on_github">Visitar RetroBar en GitHub</s:String>
     <s:String x:Key="taskbar_scale">Escala de barra de tareas</s:String>
