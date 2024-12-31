@@ -304,7 +304,7 @@ namespace RetroBar.Utilities
             set => SetEnum(ref _taskMiddleClickAction, value);
         }
 
-        private ClockClickOption _clockClickAction = EnvironmentHelper.IsWindows10OrBetter ? ClockClickOption.OpenActionCenter : ClockClickOption.OpenAeroClockFlyout;
+        private ClockClickOption _clockClickAction = EnvironmentHelper.IsWindows10OrBetter ? ClockClickOption.OpenActionCenter : ClockClickOption.DoNothing;
         public ClockClickOption ClockClickAction
         {
             get => _clockClickAction;

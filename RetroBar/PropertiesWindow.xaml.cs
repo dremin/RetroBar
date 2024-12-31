@@ -295,7 +295,7 @@ namespace RetroBar
             if (Settings.Instance.ClockClickAction > ClockClickOption.OpenAeroClockFlyout)
             {
                 // ClockClickAction is out of range; reverting to default
-                cboClockAction.SelectedValue = availableClockActions[(int)ClockClickOption.OpenAeroClockFlyout];
+                cboClockAction.SelectedValue = availableClockActions[(int)ClockClickOption.DoNothing];
             }
 
             availableClockActions.RemoveAt(availableClockActions.Count - 1);
