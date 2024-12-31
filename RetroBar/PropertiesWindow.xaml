@@ -364,6 +364,16 @@
                         </DockPanel>
                         <DockPanel>
                             <Label VerticalAlignment="Center"
+                                   Target="{Binding ElementName=cboClockAction}">
+                                <AccessText Text="{DynamicResource clock_click_action}" />
+                            </Label>
+                            <ComboBox x:Name="cboClockAction"
+                                      ItemsSource="{DynamicResource clock_click_action_values}"
+                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                      SelectionChanged="cboClockAction_SelectionChanged" />
+                        </DockPanel>
+                        <DockPanel>
+                            <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboInvertIconsMode}">
                                 <AccessText Text="{DynamicResource invert_system_icons}" />
                             </Label>

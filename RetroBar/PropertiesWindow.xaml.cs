@@ -277,6 +277,30 @@ namespace RetroBar
         private void cboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             LoadVersion();
+
+            if (!EnvironmentHelper.IsWindows10OrBetter)
+            {
+                PopulateClockActionsForPreWindows10();
+            }
+        }
+
+        private void PopulateClockActionsForPreWindows10()
+        {
+            var availableClockActions = (FindResource("clock_click_action_values") as Array)?.Cast<object>().ToList();
+            if (availableClockActions == null)
+            {
+                return;
+            }
+
+            if (Settings.Instance.ClockClickAction > ClockClickOption.OpenAeroClockFlyout)
+            {
+                // ClockClickAction is out of range; reverting to default
+                cboClockAction.SelectedValue = availableClockActions[(int)ClockClickOption.OpenAeroClockFlyout];
+            }
+
+            availableClockActions.RemoveAt(availableClockActions.Count - 1);
+            availableClockActions.RemoveAt(availableClockActions.Count - 1);
+            cboClockAction.ItemsSource = availableClockActions;
         }
 
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -308,6 +332,14 @@ namespace RetroBar
             if (cboMiddleMouseAction.SelectedItem == null)
             {
                 cboMiddleMouseAction.SelectedValue = cboMiddleMouseAction.Items[(int)Settings.Instance.TaskMiddleClickAction];
+            }
+        }
+
+        private void cboClockAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboClockAction.SelectedItem == null)
+            {
+                cboClockAction.SelectedValue = cboClockAction.Items[(int)Settings.Instance.ClockClickAction];
             }
         }
 
