@@ -65,9 +65,9 @@ namespace RetroBar.Utilities
 
             GetWindowRect(clockFlyoutHwnd, out Rect clockFlyoutRect);
 
-            // Keep the flyout at least 3 by 3 pixels inside the working area
-            int newX = (int)Math.Max(taskbarScreen.WorkingArea.Left + 3, Math.Min(taskbarScreen.WorkingArea.Right - (clockFlyoutRect.Width) - 3, clockFlyoutRect.Left));
-            int newY = (int)Math.Max(taskbarScreen.WorkingArea.Top + 3, Math.Min(taskbarScreen.WorkingArea.Bottom - (clockFlyoutRect.Height) - 3, clockFlyoutRect.Top));
+            // Keep the flyout at least 15 by 15 pixels inside the working area
+            int newX = (int)Math.Max(taskbarScreen.WorkingArea.Left + 15, Math.Min(taskbarScreen.WorkingArea.Right - (clockFlyoutRect.Width) - 15, clockFlyoutRect.Left));
+            int newY = (int)Math.Max(taskbarScreen.WorkingArea.Top + 15, Math.Min(taskbarScreen.WorkingArea.Bottom - (clockFlyoutRect.Height) - 15, clockFlyoutRect.Top));
             SetWindowPos(clockFlyoutHwnd, IntPtr.Zero, newX, newY, 0, 0, (int)(NoPosFlags));
         }
 
