@@ -2,9 +2,12 @@
 using ManagedShell.WindowsTasks;
 using RetroBar.Utilities;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace RetroBar.Controls
 {
@@ -76,8 +79,26 @@ namespace RetroBar.Controls
                 taskbarItems = Tasks.CreateGroupedWindowsCollection();
                 if (taskbarItems != null)
                 {
+                    var filteredTasks = new ObservableCollection<ApplicationWindow>();
+                    var seenWinFileNames = new HashSet<string>();
+
+                    foreach (CollectionViewGroup group in taskbarItems.Groups)
+                    {
+                        foreach (ApplicationWindow item in group.Items)
+                        {
+                            if (!seenWinFileNames.Contains(item.WinFileName))
+                            {
+                                seenWinFileNames.Add(item.WinFileName);
+                                filteredTasks.Add(item);
+                            }
+                        }
+                    }
+
+                    taskbarItems = CollectionViewSource.GetDefaultView(filteredTasks);
+
                     taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
                     taskbarItems.Filter = Tasks_Filter;
+
                 }
 
                 TasksList.ItemsSource = taskbarItems;
