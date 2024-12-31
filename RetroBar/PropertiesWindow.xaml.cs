@@ -277,29 +277,30 @@ namespace RetroBar
         private void cboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             LoadVersion();
-
-            if (!EnvironmentHelper.IsWindows10OrBetter)
-            {
-                PopulateClockActionsForPreWindows10();
-            }
+            PopulateClockActionsForPreWindows10();
         }
 
         private void PopulateClockActionsForPreWindows10()
         {
+            if (EnvironmentHelper.IsWindows10OrBetter)
+            {
+                return;
+            }
+
             var availableClockActions = (FindResource("clock_click_action_values") as Array)?.Cast<object>().ToList();
             if (availableClockActions == null)
             {
                 return;
             }
 
-            if (Settings.Instance.ClockClickAction > ClockClickOption.OpenAeroClockFlyout)
+            if (Settings.Instance.ClockClickAction > ClockClickOption.OpenAeroCalendar)
             {
                 // ClockClickAction is out of range; reverting to default
                 cboClockAction.SelectedValue = availableClockActions[(int)ClockClickOption.DoNothing];
             }
 
-            availableClockActions.RemoveAt(availableClockActions.Count - 1);
-            availableClockActions.RemoveAt(availableClockActions.Count - 1);
+            availableClockActions.RemoveAt((int)ClockClickOption.OpenNotificationCenter);
+            availableClockActions.RemoveAt((int)ClockClickOption.OpenModernCalendar);
             cboClockAction.ItemsSource = availableClockActions;
         }
 

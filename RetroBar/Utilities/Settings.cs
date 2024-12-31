@@ -304,7 +304,7 @@ namespace RetroBar.Utilities
             set => SetEnum(ref _taskMiddleClickAction, value);
         }
 
-        private ClockClickOption _clockClickAction = EnvironmentHelper.IsWindows10OrBetter ? ClockClickOption.OpenActionCenter : ClockClickOption.DoNothing;
+        private ClockClickOption _clockClickAction = EnvironmentHelper.IsWindows10OrBetter ? ClockClickOption.OpenNotificationCenter : ClockClickOption.DoNothing;
         public ClockClickOption ClockClickAction
         {
             get => _clockClickAction;
@@ -386,9 +386,9 @@ namespace RetroBar.Utilities
     public enum ClockClickOption
     {
         DoNothing,
-        OpenAeroClockFlyout,
-        OpenActionCenter,
+        OpenAeroCalendar,
         OpenModernCalendar,
+        OpenNotificationCenter,
     }
 
     public enum NotifyIconBehavior

@@ -43,7 +43,7 @@ namespace RetroBar.Utilities
 
             _aeroClockInstance ??= Activator.CreateInstance(AeroClockType.Value);
 
-            if (ManagedShell.Common.Helpers.EnvironmentHelper.IsWindows8OrBetter)
+            if (EnvironmentHelper.IsWindows8OrBetter)
             {
                 ((IAeroClock)_aeroClockInstance).ShowFlyout(taskbarHwnd, ref lpRect);
             }

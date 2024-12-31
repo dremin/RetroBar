@@ -166,11 +166,11 @@ namespace RetroBar.Controls
                 case ClockClickOption.OpenModernCalendar:
                     ClockFlyoutLauncher.ShowClockFlyout();
                     break;
-                case ClockClickOption.OpenAeroClockFlyout:
+                case ClockClickOption.OpenAeroCalendar:
                     IntPtr hWnd = (PresentationSource.FromVisual(this) as System.Windows.Interop.HwndSource).Handle;
                     ClockFlyoutLauncher.ShowAeroClockFlyout(hWnd);
                     break;
-                case ClockClickOption.OpenActionCenter:
+                case ClockClickOption.OpenNotificationCenter:
                     if (EnvironmentHelper.IsWindows11OrBetter)
                     {
                         ShellHelper.ShowNotificationCenter();
