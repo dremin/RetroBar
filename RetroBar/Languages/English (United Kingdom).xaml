@@ -3,6 +3,13 @@
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
     <s:String x:Key="customize">_Customise...</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Do nothing</s:String>
+        <s:String>Open Aero calendar</s:String>
+        <s:String>Open Modern calendar</s:String>
+        <s:String>Open Notification Centre</s:String>
+    </x:Array>
+
     <s:String x:Key="customize_notifications">Customise Notifications</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behaviour for items in the list below.</s:String>
     <s:String x:Key="customize_notifications_instruction">Select an item, then choose its notification behaviour:</s:String>
