@@ -80,7 +80,6 @@ namespace RetroBar
             LoadLanguages();
             LoadRows();
             LoadThemes();
-            LoadVersion();
             LoadWidth();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
