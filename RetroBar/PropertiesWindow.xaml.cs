@@ -81,6 +81,8 @@ namespace RetroBar
             LoadRows();
             LoadThemes();
             LoadWidth();
+            LoadVersion();
+            LoadClockActions();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -95,6 +97,11 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.Theme))
             {
                 LoadPreviewHeight();
+            }
+            else if (e.PropertyName == nameof(Settings.Language))
+            {
+                LoadVersion();
+                LoadClockActions();
             }
         }
 
@@ -273,19 +280,14 @@ namespace RetroBar
             }
         }
 
-        private void cboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            LoadVersion();
-            PopulateClockActionsForPreWindows10();
-        }
-
-        private void PopulateClockActionsForPreWindows10()
+        private void LoadClockActions()
         {
             if (EnvironmentHelper.IsWindows10OrBetter)
             {
-                return;
+               return;
             }
 
+            // Remove options unsupported prior to Windows 10.
             var availableClockActions = (FindResource("clock_click_action_values") as Array)?.Cast<object>().ToList();
             if (availableClockActions == null)
             {

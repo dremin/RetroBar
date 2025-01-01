@@ -182,8 +182,7 @@
                                                 ToolTip="{DynamicResource language_tip}" />
                                 </Label>
                                 <ComboBox Name="cboLanguageSelect"
-                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectionChanged="cboLanguageSelect_SelectionChanged" />
+                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
