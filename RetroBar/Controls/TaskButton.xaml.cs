@@ -21,6 +21,7 @@ namespace RetroBar.Controls
         private ApplicationWindow Window;
         private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
         private ApplicationWindow.WindowState PressedWindowState = ApplicationWindow.WindowState.Inactive;
+        private ICollectionView groupedTasks;
 
         private bool _isLoaded;
 

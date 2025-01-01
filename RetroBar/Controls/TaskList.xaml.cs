@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -77,31 +78,15 @@ namespace RetroBar.Controls
             if (!isLoaded && Tasks != null)
             {
                 taskbarItems = Tasks.CreateGroupedWindowsCollection();
+                taskbarItems.GroupDescriptions.Clear();
+                taskbarItems.GroupDescriptions.Add(new PropertyGroupDescription("WinFileName"));
                 if (taskbarItems != null)
                 {
-                    var filteredTasks = new ObservableCollection<ApplicationWindow>();
-                    var seenWinFileNames = new HashSet<string>();
-
-                    foreach (CollectionViewGroup group in taskbarItems.Groups)
-                    {
-                        foreach (ApplicationWindow item in group.Items)
-                        {
-                            if (!seenWinFileNames.Contains(item.WinFileName))
-                            {
-                                seenWinFileNames.Add(item.WinFileName);
-                                filteredTasks.Add(item);
-                            }
-                        }
-                    }
-
-                    taskbarItems = CollectionViewSource.GetDefaultView(filteredTasks);
-
                     taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
                     taskbarItems.Filter = Tasks_Filter;
-
                 }
 
-                TasksList.ItemsSource = taskbarItems;
+                TasksList.ItemsSource = taskbarItems.Groups;
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
