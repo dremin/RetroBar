@@ -63,12 +63,43 @@ namespace RetroBar.Utilities
                 return;
             }
 
-            GetWindowRect(clockFlyoutHwnd, out Rect clockFlyoutRect);
+            if (!GetWindowRect(clockFlyoutHwnd, out Rect rect))
+            {
+                return;
+            }
 
-            // Keep the flyout at least 15 by 15 pixels inside the working area
-            int newX = (int)Math.Max(taskbarScreen.WorkingArea.Left + 15, Math.Min(taskbarScreen.WorkingArea.Right - (clockFlyoutRect.Width) - 15, clockFlyoutRect.Left));
-            int newY = (int)Math.Max(taskbarScreen.WorkingArea.Top + 15, Math.Min(taskbarScreen.WorkingArea.Bottom - (clockFlyoutRect.Height) - 15, clockFlyoutRect.Top));
-            SetWindowPos(clockFlyoutHwnd, IntPtr.Zero, newX, newY, 0, 0, (int)(NoPosFlags));
+            var wa = taskbarScreen.WorkingArea;
+            int newX = rect.Left, newY = rect.Top;
+
+            // Max margin (as used in Windows 7)
+            int snap = 15;
+            // Vista margin
+            int margin = 7;
+
+            // Move to closest edge if the flyout is too close to the screen edge
+            if (Math.Abs(newX - wa.Left) <= snap) // Left
+            {
+                newX = wa.Left + margin;
+            }
+            else if (Math.Abs(rect.Right - wa.Right) <= snap) // Right
+            {
+                newX = wa.Right - rect.Width - margin;
+            }
+
+            if (Math.Abs(newY - wa.Top) <= snap) // Top
+            {
+                newY = wa.Top + margin;
+            }
+            else if (Math.Abs(rect.Bottom - wa.Bottom) <= snap) // Bottom
+            {
+                newY = wa.Bottom - rect.Height - margin;
+            }
+
+            // Keep the flyout inside the working area
+            newX = Math.Max(wa.Left + margin, Math.Min(newX, wa.Right - rect.Width - margin));
+            newY = Math.Max(wa.Top + margin, Math.Min(newY, wa.Bottom - rect.Height - margin));
+
+            SetWindowPos(clockFlyoutHwnd, IntPtr.Zero, newX, newY, 0, 0, (int)NoPosFlags);
         }
 
         #endregion Aero clock

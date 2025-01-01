@@ -284,7 +284,7 @@ namespace RetroBar
         {
             if (EnvironmentHelper.IsWindows10OrBetter)
             {
-               return;
+                return;
             }
 
             // Remove options unsupported prior to Windows 10.
