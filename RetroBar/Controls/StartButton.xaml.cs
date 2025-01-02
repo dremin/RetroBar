@@ -79,6 +79,10 @@ namespace RetroBar.Controls
             }
 
             SetStartMenuState(false);
+            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon)
+            {
+                StartMenuMonitor.HideStartMenu(Host.Handle);
+            }
         }
 
         private void OpenStartMenu()
@@ -86,7 +90,14 @@ namespace RetroBar.Controls
             Host?.SetTrayHost();
             Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
-            ShellHelper.ShowStartMenu();
+            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon)
+            {
+                StartMenuMonitor.ShowStartMenu(Host.Handle);
+            }
+            else
+            {
+                ShellHelper.ShowStartMenu();
+            }
         }
 
         #region Drag
