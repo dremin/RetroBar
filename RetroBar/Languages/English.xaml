@@ -22,13 +22,7 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Number of _rows:</s:String>
     <s:String x:Key="rowcount_tip">The number of rows on the taskbar when on top or bottom.</s:String>
-    <x:Array x:Key="rowcount_options" Type="s:Int32">
-        <s:Int32>1</s:Int32>
-        <s:Int32>2</s:Int32>
-        <s:Int32>3</s:Int32>
-        <s:Int32>4</s:Int32>
-        <s:Int32>5</s:Int32>
-    </x:Array>
+    <s:String x:Key="taskbar_width">Taskba_r width:</s:String>
     <s:String x:Key="allow_font_smoothing">_Allow font smoothing</s:String>
     <s:String x:Key="collapse_tray_icons">Collapse _notification area icons</s:String>
     <s:String x:Key="customize">_Customize...</s:String>

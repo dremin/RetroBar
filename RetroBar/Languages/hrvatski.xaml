@@ -20,6 +20,8 @@
         <s:String>Desno</s:String>
         <s:String>Dno</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Broj _redova:</s:String>
+    <s:String x:Key="rowcount_tip">Broj redova na programskoj traci kad je na vrhu ili dnu.</s:String>
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone</s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
@@ -30,8 +32,9 @@
     <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
     <s:String x:Key="select_location">_Odaberi lokaciju...</s:String>
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
+    <s:String x:Key="show_badges">Prikaži _značke</s:String>
     <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena sličica)</s:String>
-    <s:String x:Key="use_software_rendering">_Koristi software prikazivanje</s:String>
+    <s:String x:Key="use_software_rendering">_Koristi softversko renderanje</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj gumb za radnu površinu</s:String>
     <s:String x:Key="enable_auto_hide">Automatski sakrij programsku traku</s:String>
     <s:String x:Key="lock_taskbar">_Zaključaj programsku traku</s:String>
@@ -48,6 +51,12 @@
         <s:String>Uvijek</s:String>
         <s:String>Nikad</s:String>
     </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Akcija srednjeg gumba miša:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Ništa</s:String>
+        <s:String>Otvaranje nove instance</s:String>
+        <s:String>Zatvori zadatak</s:String>
+    </x:Array>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Posjete na GitHubu</s:String>
     <s:String x:Key="taskbar_scale">Omjer programske trake</s:String>
@@ -55,6 +64,7 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Trenutačne postavke: {0}%</s:String>
     <s:String x:Key="debug_logging">Omogući bilježenje</s:String>
+    <s:String x:Key="check_for_updates">Provjeravaj za ažuriranja</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
@@ -62,8 +72,11 @@
     <s:String x:Key="customize_notifications_instruction">Odaberi savku, onda odaberite njezino obavjesno ponašanje:</s:String>
     <s:String x:Key="hide_when_inactive">Sakriji kad je neaktivno</s:String>
     <s:String x:Key="always_show">Uvjek prikaži</s:String>
+    <s:String x:Key="always_hide">Uvjek sakriji</s:String>
+    <s:String x:Key="remove">Ukloni</s:String>
     <s:String x:Key="name_heading">Naziv</s:String>
     <s:String x:Key="behavior_heading">Ponašanje</s:String>
+    <s:String x:Key="invert_heading">Invertiraj</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>

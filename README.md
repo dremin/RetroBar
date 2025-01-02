@@ -21,13 +21,14 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Ability to auto-hide the taskbar
 - Locked and unlocked taskbar appearances
 - Display taskbar on any side of the screen (even on Windows 11)
+- Resizable taskbar with support for multiple rows
 - Option to display the taskbar, notification area, and clock on multiple monitors
 - Ability to show Vista-style window thumbnails
 - Customizable XP-style collapsible notification area
 - Custom theme support
 
 ## Included themes
-- System (Classic and XP)
+- System (Classic, XP, and Vista)
 - Watercolor
 - Windows 95-98
 - Windows Me

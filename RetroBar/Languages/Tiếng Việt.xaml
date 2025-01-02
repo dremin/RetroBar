@@ -20,15 +20,20 @@
         <s:String>Bên phải</s:String>
         <s:String>Dưới cùng</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Số _hàng:</s:String>
+    <s:String x:Key="rowcount_tip">Số hàng trên thanh tác vụ khi ở trên cùng hoặc dưới cùng.</s:String>
+    <s:String x:Key="taskbar_width">Độ dài thanh tác vụ:</s:String>
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
     <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở phần thông báo</s:String>
     <s:String x:Key="customize">Tùy chỉnh...</s:String>
+    <s:String x:Key="show_input_language">Hiển thị _ngôn ngữ nhập liệu</s:String>
     <s:String x:Key="show_clock">Hiển thị _đồng hồ</s:String>
-    <s:String x:Key="show_multi_mon">Hiện ở tất cả màn hình</s:String>
+    <s:String x:Key="show_multi_mon">Hiện trên nhiều màn hình</s:String>
     <s:String x:Key="show_start_button_on_secondary_monitor">Hiển thị nút Bắt đầu trên _nhiều màn hình</s:String>
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
+    <s:String x:Key="show_badges">Hiện _huy hiệu</s:String>
     <s:String x:Key="show_window_previews">Hiện hình xem trước các _cửa sổ (ảnh thu nhỏ)</s:String>
     <s:String x:Key="use_software_rendering">_Sử dụng phần mềm để kết xuất (Software Rendering)</s:String>
     <s:String x:Key="add_show_desktop_button">Thêm nút Hiện bàn làm việc (Show Desktop)</s:String>
@@ -47,6 +52,12 @@
         <s:String>Luôn luôn</s:String>
         <s:String>Không bao giờ</s:String>
     </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Khi _nhấn chuột giữa:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Không làm gì</s:String>
+        <s:String>Mở một phiên mới</s:String>
+        <s:String>Đóng tác vụ</s:String>
+    </x:Array>
     <s:String x:Key="version">Phiên bản {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBar trên GitHub</s:String>
     <s:String x:Key="taskbar_scale">Phóng lớn thanh tác vụ</s:String>
@@ -54,6 +65,7 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Cài đặt hiện tại: {0}%</s:String>
     <s:String x:Key="debug_logging">Kích hoạt ghi nhật ký gỡ lỗi</s:String>
+    <s:String x:Key="check_for_updates">Kiểm tra cập nhật</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -61,8 +73,11 @@
     <s:String x:Key="customize_notifications_instruction">Chọn một mục nào đó, rồi chọn hành vi thông báo cho mục đó:</s:String>
     <s:String x:Key="hide_when_inactive">Ẩn nếu không hoạt động</s:String>
     <s:String x:Key="always_show">Luôn luôn hiện</s:String>
+    <s:String x:Key="always_hide">Luôn luôn ẩn</s:String>
+    <s:String x:Key="remove">Xoá</s:String>
     <s:String x:Key="name_heading">Tên</s:String>
     <s:String x:Key="behavior_heading">Hành vi</s:String>
+    <s:String x:Key="invert_heading">Đảo ngược</s:String>
 
     <s:String x:Key="start_text">Bắt đầu</s:String>
     <s:String x:Key="start_text_xp">Bắt đầu</s:String>

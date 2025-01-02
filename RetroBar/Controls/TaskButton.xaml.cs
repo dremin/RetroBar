@@ -182,7 +182,8 @@ namespace RetroBar.Controls
                 {
                     return;
                 }
-                if (Settings.Instance.TaskMiddleClickAction == TaskMiddleClickOption.CloseTask)
+                if (Settings.Instance.TaskMiddleClickAction == TaskMiddleClickOption.CloseTask !=
+                    (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
                 {
                     Window?.Close();
                 }

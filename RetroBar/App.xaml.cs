@@ -20,22 +20,23 @@ namespace RetroBar
     /// </summary>
     public partial class App : Application
     {
-        public DictionaryManager DictionaryManager { get; }
-
         private bool _errorVisible;
         private ManagedShellLogger _logger;
         private WindowManager _windowManager;
 
-        private readonly StartMenuMonitor _startMenuMonitor;
+        private readonly DictionaryManager _dictionaryManager;
+        private readonly ExplorerMonitor _explorerMonitor;
         private readonly ShellManager _shellManager;
+        private readonly StartMenuMonitor _startMenuMonitor;
         private readonly Updater _updater;
 
         public App()
         {
             _shellManager = SetupManagedShell();
 
+            _explorerMonitor = new ExplorerMonitor();
             _startMenuMonitor = new StartMenuMonitor(new AppVisibilityHelper(false));
-            DictionaryManager = new DictionaryManager();
+            _dictionaryManager = new DictionaryManager();
             _updater = new Updater();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -54,9 +55,9 @@ namespace RetroBar
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
 
-            DictionaryManager.SetLanguageFromSettings();
+            _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
-            _windowManager = new WindowManager(_shellManager, _startMenuMonitor, _updater);
+            _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater);
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
@@ -90,7 +91,7 @@ namespace RetroBar
 
         private void loadTheme()
         {
-            DictionaryManager.SetThemeFromSettings();
+            _dictionaryManager.SetThemeFromSettings();
             setTaskIconSize();
         }
 
@@ -136,8 +137,9 @@ namespace RetroBar
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
+            _explorerMonitor.Dispose();
             _windowManager.Dispose();
-            DictionaryManager.Dispose();
+            _dictionaryManager.Dispose();
             _shellManager.Dispose();
             _startMenuMonitor.Dispose();
             _updater.Dispose();

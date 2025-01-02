@@ -20,6 +20,9 @@
         <s:String>Справа</s:String>
         <s:String>Внизу</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Число _строк:</s:String>
+    <s:String x:Key="rowcount_tip">Число строк панели задач при расположении вверху или внизу.</s:String>
+    <s:String x:Key="taskbar_width">_Ширина панели задач:</s:String>
     <s:String x:Key="allow_font_smoothing">Пр_именять сглаживание шрифтов</s:String>
     <s:String x:Key="collapse_tray_icons">Скр_ывать неиспользуемые значки</s:String>
     <s:String x:Key="customize">_Настроить...</s:String>

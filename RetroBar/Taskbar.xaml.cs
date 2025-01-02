@@ -59,14 +59,16 @@ namespace RetroBar
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
         private bool _mouseDragResize = false;
+        private DictionaryManager _dictionaryManager;
         private ShellManager _shellManager;
         private Updater _updater;
 
         public WindowManager windowManager;
 
-        public Taskbar(WindowManager windowManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
+        public Taskbar(WindowManager windowManager, DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, mode, 0)
         {
+            _dictionaryManager = dictionaryManager;
             _shellManager = shellManager;
             _updater = updater;
             this.windowManager = windowManager;
@@ -75,17 +77,7 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
-            
-            _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
-            DesiredWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
-            DesiredHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
-
-            if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
-            {
-                DesiredHeight += _unlockedMargin;
-                DesiredWidth += _unlockedMargin;
-            }
+            RecalculateSize(false);
 
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
 
@@ -142,7 +134,7 @@ namespace RetroBar
                 handled = true;
 
                 // If the color scheme changes, re-apply the current theme to get updated colors.
-                ((App)Application.Current).DictionaryManager.SetThemeFromSettings();
+                _dictionaryManager.SetThemeFromSettings();
             }
 
             return IntPtr.Zero;
@@ -169,12 +161,11 @@ namespace RetroBar
             }
         }
 
-        private void RecalculateSize()
+        private void RecalculateSize(bool performResize = true)
         {
             _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
             DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
-            double newWidth = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0);
-
+            double newWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) + DesiredRowHeight * (Settings.Instance.TaskbarWidth - 1);
             double newHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
 
             if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
@@ -189,15 +180,18 @@ namespace RetroBar
             DesiredHeight = newHeight;
             DesiredWidth = newWidth;
 
-            if (Orientation == Orientation.Horizontal && heightChanged)
+            if (performResize)
             {
-                Height = DesiredHeight;
-                SetScreenPosition();
-            }
-            else if (Orientation == Orientation.Vertical && widthChanged)
-            {
-                Width = DesiredWidth;
-                SetScreenPosition();
+                if (Orientation == Orientation.Horizontal && heightChanged)
+                {
+                    Height = DesiredHeight;
+                    SetScreenPosition();
+                }
+                else if (Orientation == Orientation.Vertical && widthChanged)
+                {
+                    Width = DesiredWidth;
+                    SetScreenPosition();
+                }
             }
         }
 
@@ -286,19 +280,26 @@ namespace RetroBar
             }
             else if (e.PropertyName == nameof(Settings.RowCount))
             {
+                PeekDuringAutoHide();
                 RecalculateSize();
                 OnPropertyChanged(nameof(Rows));
             }
             else if (e.PropertyName == nameof(Settings.ShowButtonSecondaryMonitor))
             {  
-                  OnPropertyChanged(nameof(ShowButtomSecondaryMonitor));          
-            if (!Screen.Primary && !Settings.Instance.ShowButtonSecondaryMonitor)
+                OnPropertyChanged(nameof(ShowButtonSecondaryMonitor));          
+                if (!Screen.Primary && !Settings.Instance.ShowButtonSecondaryMonitor)
+                {
+                    StartButton.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                   StartButton.Visibility = Visibility.Visible;  
+                }
+            }
+            else if (e.PropertyName == nameof(Settings.TaskbarWidth))
             {
-                StartButton.Visibility = Visibility.Collapsed;
-            }
-            else{
-               StartButton.Visibility = Visibility.Visible;  
-            }
+                PeekDuringAutoHide();
+                RecalculateSize();
             }
         }
 
@@ -331,7 +332,7 @@ namespace RetroBar
 
         private void CustomizeNotificationsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow propWindow = PropertiesWindow.Open(_shellManager.NotificationArea, ((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
+            PropertiesWindow propWindow = PropertiesWindow.Open(_shellManager.NotificationArea, _dictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
             propWindow.OpenCustomizeNotifications();
         }
 
@@ -353,7 +354,7 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow.Open(_shellManager.NotificationArea, ((App)Application.Current).DictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
+            PropertiesWindow.Open(_shellManager.NotificationArea, _dictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
         }
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -583,23 +584,43 @@ namespace RetroBar
                     if (_mouseDragResize)
                     {
                         Dispatcher.BeginInvoke(() => {
+                            int mouseX = e.HookStruct.pt.X;
                             int mouseY = e.HookStruct.pt.Y;
                             // Calculate where the resize edge should be, in case the actual resize operation is lagging behind the mouse
-                            double taskbarEdge = AppBarEdge == AppBarEdge.Top ? Screen.Bounds.Top + (DesiredHeight * DpiScale) : Screen.Bounds.Bottom - (DesiredHeight * DpiScale);
                             double scaledRowHeight = DesiredRowHeight * DpiScale;
-                            if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
-                                 AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
-                                 Settings.Instance.RowCount > 1)
+                            if (Orientation == Orientation.Horizontal)
                             {
-                                // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
-                                Settings.Instance.RowCount -= 1;
+                                double taskbarEdge = AppBarEdge == AppBarEdge.Top ? Screen.Bounds.Top + (DesiredHeight * DpiScale) : Screen.Bounds.Bottom - (DesiredHeight * DpiScale);
+                                if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
+                                     AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
+                                     Settings.Instance.RowCount > 1)
+                                {
+                                    // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
+                                    Settings.Instance.RowCount -= 1;
+                                }
+                                else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
+                                          AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
+                                          Settings.Instance.RowCount < Settings.Instance.RowLimit)
+                                {
+                                    // If mouse is outside the taskbar and at least one row height away, increment size
+                                    Settings.Instance.RowCount += 1;
+                                }
                             }
-                            else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
-                                      AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
-                                      Settings.Instance.RowCount < 5)
+                            else
                             {
-                                // If mouse is outside the taskbar and at least one row height away, increment size
-                                Settings.Instance.RowCount += 1;
+                                double taskbarEdge = AppBarEdge == AppBarEdge.Left ? Screen.Bounds.Left + (DesiredWidth * DpiScale) : Screen.Bounds.Right - (DesiredWidth * DpiScale);
+                                if ((AppBarEdge == AppBarEdge.Left && mouseX > taskbarEdge + scaledRowHeight ||
+                                     AppBarEdge == AppBarEdge.Right && mouseX < taskbarEdge - scaledRowHeight) &&
+                                    Settings.Instance.TaskbarWidth < Settings.Instance.TaskbarWidthLimit)
+                                {
+                                    Settings.Instance.TaskbarWidth += 1;
+                                }
+                                else if ((AppBarEdge == AppBarEdge.Left && mouseX < taskbarEdge - SystemParameters.MinimumHorizontalDragDistance ||
+                                          AppBarEdge == AppBarEdge.Right && mouseX > taskbarEdge + SystemParameters.MinimumHorizontalDragDistance) &&
+                                    Settings.Instance.TaskbarWidth > 1)
+                                {
+                                    Settings.Instance.TaskbarWidth -= 1;
+                                }
                             }
                         });
                         return;
@@ -659,9 +680,10 @@ namespace RetroBar
 
         private bool IsMouseInResizeArea()
         {
-            if (IsLocked || Orientation == Orientation.Vertical) return false;
+            if (IsLocked) return false;
 
             int resizeRegionSize = (int)((_unlockedMargin > 0 ? _unlockedMargin : SystemParameters.MinimumVerticalDragDistance * Settings.Instance.TaskbarScale) * DpiScale);
+            int mouseX = System.Windows.Forms.Cursor.Position.X;
             int mouseY = System.Windows.Forms.Cursor.Position.Y;
 
             if (AppBarEdge == AppBarEdge.Bottom && mouseY <= (int)(Top * DpiScale) + resizeRegionSize)
@@ -669,6 +691,14 @@ namespace RetroBar
                 return true;
             }
             else if (AppBarEdge == AppBarEdge.Top && mouseY >= (int)((Top + Height) * DpiScale) - resizeRegionSize)
+            {
+                return true;
+            }
+            else if (AppBarEdge == AppBarEdge.Left && mouseX >= (int)((Left + Width) * DpiScale) - resizeRegionSize)
+            {
+                return true;
+            }
+            else if (AppBarEdge == AppBarEdge.Right && mouseX <= (int)(Left * DpiScale) + resizeRegionSize)
             {
                 return true;
             }
@@ -681,7 +711,7 @@ namespace RetroBar
             // Show resize cursor for resizable taskbars
             if (IsMouseInResizeArea() || _mouseDragResize)
             {
-                Cursor = Cursors.SizeNS;
+                Cursor = Orientation == Orientation.Horizontal ? Cursors.SizeNS : Cursors.SizeWE;
             }
             else
             {
