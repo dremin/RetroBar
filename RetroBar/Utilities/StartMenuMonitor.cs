@@ -143,7 +143,7 @@ namespace RetroBar.Utilities
 
         internal void ShowStartMenu(IntPtr taskbarHwnd)
         {
-            if (!EnvironmentHelper.IsWindows10RS4OrBetter || 
+            if (!EnvironmentHelper.IsWindows10RS1OrBetter || 
                 FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) != IntPtr.Zero)
             {
                 // Always use the Windows key when IImmersiveLauncher is unavailable
@@ -172,7 +172,7 @@ namespace RetroBar.Utilities
 
         internal void HideStartMenu(IntPtr taskbarHwnd)
         {
-            if (!EnvironmentHelper.IsWindows10RS4OrBetter || !isModernStartMenuOpen())
+            if (!EnvironmentHelper.IsWindows10RS1OrBetter || !isModernStartMenuOpen())
             {
                 return;
             }
