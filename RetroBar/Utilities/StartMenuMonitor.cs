@@ -122,7 +122,7 @@ namespace RetroBar.Utilities
 
         private IImmersiveMonitor GetImmersiveMonitor(IServiceProvider shell, IntPtr hWnd)
         {
-            if (shell.QueryService(ref CLSID_MonitorManager, ref IID_MonitorManager, out object monitorManagerObj) != 0)
+            if (shell.QueryService(ref CLSID_ImmersiveMonitorManager, ref IID_ImmersiveMonitorManager, out object monitorManagerObj) != 0)
             {
                 ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveMonitorManager");
                 return null;
@@ -193,6 +193,10 @@ namespace RetroBar.Utilities
 
             try
             {
+                // Allow Explorer to steal focus
+                GetWindowThreadProcessId(FindWindowEx(IntPtr.Zero, IntPtr.Zero, "Progman", "Program Manager"), out uint procId);
+                AllowSetForegroundWindow(procId);
+
                 if (EnvironmentHelper.IsWindows10RS1OrBetter)
                 {
                     IImmersiveLauncher_Win10RS1 immersiveLauncher = GetImmersiveLauncher_Win10RS1(taskbarHwnd);
@@ -268,7 +272,7 @@ namespace RetroBar.Utilities
         {
             public int GetIdentity(out uint pIdentity);
             public int Append(object unknown);
-            public int GetHandle(nint phMonitor);
+            public int GetHandle(out nint phMonitor);
             public int IsConnected(out bool pfConnected);
             public int IsPrimary(out bool pfPrimary);
             public int GetTrustLevel(out uint level);
@@ -294,7 +298,7 @@ namespace RetroBar.Utilities
         {
             public int GetCount(out uint pcMonitors);
             public int GetConnectedCount(out uint pcMonitors);
-            public int GetAt(out uint idxMonitor, out IImmersiveMonitor monitor);
+            public int GetAt(uint idxMonitor, out IImmersiveMonitor monitor);
             public int GetFromHandle(nint monitor, out IImmersiveMonitor monitor2);
             public int GetFromIdentity(uint identity, out IImmersiveMonitor monitor);
             public int GetImmersiveProxyMonitor(out IImmersiveMonitor monitor);
@@ -379,8 +383,8 @@ namespace RetroBar.Utilities
             public int GetMonitor(out IImmersiveMonitor monitor);
         }
 
-        static Guid CLSID_MonitorManager = new Guid("47094e3a-0cf2-430f-806f-cf9e4f0f12dd");
-        static Guid IID_MonitorManager = new Guid("4d4c1e64-e410-4faa-bafa-59ca069bfec2");
+        static Guid CLSID_ImmersiveMonitorManager = new Guid("47094e3a-0cf2-430f-806f-cf9e4f0f12dd");
+        static Guid IID_ImmersiveMonitorManager = new Guid("4d4c1e64-e410-4faa-bafa-59ca069bfec2");
         static Guid CLSID_ImmersiveLauncher = new Guid("6f86e01c-c649-4d61-be23-f1322ddeca9d");
         static Guid IID_ImmersiveLauncher_Win10RS1 = new Guid("d8d60399-a0f1-f987-5551-321fd1b49864");
         static Guid IID_ImmersiveLauncher_Win81 = new Guid("93f91f5a-a4ca-4205-9beb-ce4d17c708f9");
