@@ -310,6 +310,13 @@ namespace RetroBar.Utilities
             get => _checkForUpdates;
             set => Set(ref _checkForUpdates, value);
         }
+
+        private bool _showExitMenuItem = true;
+        public bool ShowExitMenuItem
+        {
+            get => _showExitMenuItem;
+            set => Set(ref _showExitMenuItem, value);
+        }
         #endregion
 
         #region Old Properties
