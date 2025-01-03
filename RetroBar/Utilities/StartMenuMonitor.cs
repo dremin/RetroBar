@@ -13,8 +13,9 @@ namespace RetroBar.Utilities
         private AppVisibilityHelper _appVisibilityHelper;
         private DispatcherTimer _poller;
         private bool _isVisible;
+        private IntPtr _taskbarHwndActivated;
 
-        public event EventHandler<LauncherVisibilityEventArgs> StartMenuVisibilityChanged;
+        public event EventHandler<StartMenuMonitorEventArgs> StartMenuVisibilityChanged;
 
         public StartMenuMonitor(AppVisibilityHelper appVisibilityHelper)
         {
@@ -39,23 +40,26 @@ namespace RetroBar.Utilities
 
         private void poller_Tick(object sender, EventArgs e)
         {
-            if (EnvironmentHelper.IsWindows8OrBetter)
+            bool newIsVisible = false;
+            if (EnvironmentHelper.IsWindows8OrBetter && isModernStartMenuOpen())
             {
                 // Windows 8+
-                setVisibility(isModernStartMenuOpen());
+                newIsVisible = true;
             }
 
-            if (!EnvironmentHelper.IsWindows8OrBetter || !_isVisible)
+            if (!newIsVisible && isClassicStartMenuOpen())
             {
                 // Windows 7, StartIsBack, Start8+
-                setVisibility(isClassicStartMenuOpen());
+                newIsVisible = true;
             }
 
-            if (!_isVisible)
+            if (!newIsVisible && isOpenShellMenuOpen())
             {
                 // Open Shell Menu
-                setVisibility(isOpenShellMenuOpen());
+                newIsVisible = true;
             }
+
+            setVisibility(newIsVisible);
         }
 
         private void setVisibility(bool isVisible)
@@ -67,12 +71,20 @@ namespace RetroBar.Utilities
 
             _isVisible = isVisible;
 
-            LauncherVisibilityEventArgs args = new LauncherVisibilityEventArgs
+            StartMenuMonitorEventArgs args = new StartMenuMonitorEventArgs
             {
-                Visible = _isVisible
+                Visible = _isVisible,
+                TaskbarHwndActivated = _taskbarHwndActivated
             };
 
             StartMenuVisibilityChanged?.Invoke(this, args);
+
+            if (_taskbarHwndActivated != IntPtr.Zero)
+            {
+                // Now that it has been consumed, reset to prevent sending stale data
+                // if the menu is opened again not by the start button.
+                _taskbarHwndActivated = IntPtr.Zero;
+            }
         }
 
         private bool isModernStartMenuOpen()
@@ -108,10 +120,8 @@ namespace RetroBar.Utilities
             return IsWindowVisible(hStartMenu);
         }
 
-        private IImmersiveLauncher GetImmersiveLauncher(IntPtr taskbarHwnd)
+        private IImmersiveMonitor GetImmersiveMonitor(IServiceProvider shell, IntPtr hWnd)
         {
-            var shell = (IServiceProvider)new CImmersiveShell();
-
             if (shell.QueryService(ref CLSID_MonitorManager, ref IID_MonitorManager, out object monitorManagerObj) != 0)
             {
                 ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveMonitorManager");
@@ -119,22 +129,49 @@ namespace RetroBar.Utilities
             }
             IImmersiveMonitorManager monitorManager = (IImmersiveMonitorManager)monitorManagerObj;
 
-            if (shell.QueryService(ref CLSID_ImmersiveLauncher, ref IID_ImmersiveLauncher, out object immersiveLauncherObj) != 0)
-            {
-                ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveLauncher");
-                return null;
-            }
-            IImmersiveLauncher immersiveLauncher = (IImmersiveLauncher)immersiveLauncherObj;
-
-            if (monitorManager.GetFromHandle(MonitorFromWindow(taskbarHwnd, MONITOR_DEFAULTTONEAREST), out IImmersiveMonitor monitor) != 0)
+            if (monitorManager.GetFromHandle(MonitorFromWindow(hWnd, MONITOR_DEFAULTTONEAREST), out IImmersiveMonitor monitor) != 0)
             {
                 ShellLogger.Warning("StartMenuMonitor: Failed to get monitor from taskbar window handle");
                 return null;
             }
 
-            if (immersiveLauncher.ConnectToMonitor(monitor) != 0)
+            return monitor;
+        }
+
+        private IImmersiveLauncher_Win10RS1 GetImmersiveLauncher_Win10RS1(IntPtr taskbarHwnd)
+        {
+            var shell = (IServiceProvider)new CImmersiveShell();
+            if (shell.QueryService(ref CLSID_ImmersiveLauncher, ref IID_ImmersiveLauncher_Win10RS1, out object immersiveLauncherObj) != 0)
             {
-                ShellLogger.Warning("StartMenuMonitor: Failed to connect IImmersiveLauncher to monitor");
+                ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveLauncher_Win10RS1");
+                return null;
+            }
+            IImmersiveLauncher_Win10RS1 immersiveLauncher = (IImmersiveLauncher_Win10RS1)immersiveLauncherObj;
+
+            IImmersiveMonitor monitor = GetImmersiveMonitor(shell, taskbarHwnd);
+            if (monitor == null || immersiveLauncher.ConnectToMonitor(monitor) != 0)
+            {
+                ShellLogger.Warning("StartMenuMonitor: Failed to connect IImmersiveLauncher_Win10RS1 to monitor");
+                return null;
+            }
+
+            return immersiveLauncher;
+        }
+
+        private IImmersiveLauncher_Win81 GetImmersiveLauncher_Win81(IntPtr taskbarHwnd)
+        {
+            var shell = (IServiceProvider)new CImmersiveShell();
+            if (shell.QueryService(ref CLSID_ImmersiveLauncher, ref IID_ImmersiveLauncher_Win81, out object immersiveLauncherObj) != 0)
+            {
+                ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveLauncher_Win81");
+                return null;
+            }
+            IImmersiveLauncher_Win81 immersiveLauncher = (IImmersiveLauncher_Win81)immersiveLauncherObj;
+
+            IImmersiveMonitor monitor = GetImmersiveMonitor(shell, taskbarHwnd);
+            if (monitor == null || immersiveLauncher.ConnectToMonitor(monitor) != 0)
+            {
+                ShellLogger.Warning("StartMenuMonitor: Failed to connect IImmersiveLauncher_Win81 to monitor");
                 return null;
             }
 
@@ -143,10 +180,12 @@ namespace RetroBar.Utilities
 
         internal void ShowStartMenu(IntPtr taskbarHwnd)
         {
-            if (!EnvironmentHelper.IsWindows10RS1OrBetter || 
+            _taskbarHwndActivated = taskbarHwnd;
+
+            if (!EnvironmentHelper.IsWindows10OrBetter ||
                 FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) != IntPtr.Zero)
             {
-                // Always use the Windows key when IImmersiveLauncher is unavailable
+                // Always use the Windows key when IImmersiveLauncher or IImmersiveMonitor is unavailable
                 // Also use the Windows key when Open Shell Menu is running, because we cannot otherwise invoke it
                 ShellHelper.ShowStartMenu();
                 return;
@@ -154,11 +193,23 @@ namespace RetroBar.Utilities
 
             try
             {
-                IImmersiveLauncher immersiveLauncher = GetImmersiveLauncher(taskbarHwnd);
-                if (immersiveLauncher != null && 
-                    immersiveLauncher.ShowStartView(IMMERSIVELAUNCHERSHOWMETHOD.ILSM_STARTBUTTON, IMMERSIVELAUNCHERSHOWFLAGS.ILSF_IGNORE_SET_FOREGROUND_ERROR) == 0)
+                if (EnvironmentHelper.IsWindows10RS1OrBetter)
                 {
-                    return;
+                    IImmersiveLauncher_Win10RS1 immersiveLauncher = GetImmersiveLauncher_Win10RS1(taskbarHwnd);
+                    if (immersiveLauncher != null &&
+                        immersiveLauncher.ShowStartView(IMMERSIVELAUNCHERSHOWMETHOD.ILSM_STARTBUTTON, IMMERSIVELAUNCHERSHOWFLAGS.ILSF_IGNORE_SET_FOREGROUND_ERROR) == 0)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    IImmersiveLauncher_Win81 immersiveLauncher = GetImmersiveLauncher_Win81(taskbarHwnd);
+                    if (immersiveLauncher != null &&
+                        immersiveLauncher.ShowStartView(IMMERSIVELAUNCHERSHOWMETHOD.ILSM_STARTBUTTON, IMMERSIVELAUNCHERSHOWFLAGS.ILSF_IGNORE_SET_FOREGROUND_ERROR) == 0)
+                    {
+                        return;
+                    }
                 }
                 ShellLogger.Warning("StartMenuMonitor: Failed to show Start menu via IImmersiveLauncher");
             }
@@ -172,15 +223,26 @@ namespace RetroBar.Utilities
 
         internal void HideStartMenu(IntPtr taskbarHwnd)
         {
-            if (!EnvironmentHelper.IsWindows10RS1OrBetter || !isModernStartMenuOpen())
+            if (!EnvironmentHelper.IsWindows10OrBetter || !isModernStartMenuOpen())
             {
                 return;
             }
 
-            IImmersiveLauncher immersiveLauncher = GetImmersiveLauncher(taskbarHwnd);
-            if (immersiveLauncher != null)
+            if (EnvironmentHelper.IsWindows10RS1OrBetter)
             {
-                immersiveLauncher.Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD.ILDM_STARTTIP);
+                IImmersiveLauncher_Win10RS1 immersiveLauncher = GetImmersiveLauncher_Win10RS1(taskbarHwnd);
+                if (immersiveLauncher != null)
+                {
+                    immersiveLauncher.Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD.ILDM_STARTTIP);
+                }
+            }
+            else
+            {
+                IImmersiveLauncher_Win81 immersiveLauncher = GetImmersiveLauncher_Win81(taskbarHwnd);
+                if (immersiveLauncher != null)
+                {
+                    immersiveLauncher.Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD.ILDM_STARTTIP);
+                }
             }
         }
 
@@ -191,7 +253,7 @@ namespace RetroBar.Utilities
 
         #region Immersive launcher interfaces
 
-        // Managed interface definitions c/o https://github.com/MishaProductions/CustomShell/
+        // Most managed interface definitions c/o https://github.com/MishaProductions/CustomShell/
 
         enum IMMERSIVE_MONITOR_FILTER_FLAGS
         {
@@ -278,7 +340,7 @@ namespace RetroBar.Utilities
         [ComImport]
         [Guid("d8d60399-a0f1-f987-5551-321fd1b49864")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        interface IImmersiveLauncher
+        interface IImmersiveLauncher_Win10RS1
         {
             public int ShowStartView(IMMERSIVELAUNCHERSHOWMETHOD showMethod, IMMERSIVELAUNCHERSHOWFLAGS showFlags);
             public int Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD dismissMethod);
@@ -293,10 +355,35 @@ namespace RetroBar.Utilities
             public int Prelaunch();
         }
 
+        [ComImport]
+        [Guid("93f91f5a-a4ca-4205-9beb-ce4d17c708f9")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        interface IImmersiveLauncher_Win81
+        {
+            public int ShowStartView(IMMERSIVELAUNCHERSHOWMETHOD showMethod, IMMERSIVELAUNCHERSHOWFLAGS showFlags);
+            public int Unknown2();
+            public int Unknown3();
+            public int Unknown4();
+            public int Unknown5();
+            public int Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD dismissMethod);
+            public int Unknown7();
+            public int IsVisible(out bool p0);
+            public int Unknown9();
+            public int Unknown10();
+            public int Unknown11();
+            public int Unknown12();
+            public int Unknown13();
+            public int Unknown14();
+            public int Unknown15();
+            public int ConnectToMonitor(IImmersiveMonitor monitor);
+            public int GetMonitor(out IImmersiveMonitor monitor);
+        }
+
         static Guid CLSID_MonitorManager = new Guid("47094e3a-0cf2-430f-806f-cf9e4f0f12dd");
         static Guid IID_MonitorManager = new Guid("4d4c1e64-e410-4faa-bafa-59ca069bfec2");
         static Guid CLSID_ImmersiveLauncher = new Guid("6f86e01c-c649-4d61-be23-f1322ddeca9d");
-        static Guid IID_ImmersiveLauncher = new Guid("d8d60399-a0f1-f987-5551-321fd1b49864");
+        static Guid IID_ImmersiveLauncher_Win10RS1 = new Guid("d8d60399-a0f1-f987-5551-321fd1b49864");
+        static Guid IID_ImmersiveLauncher_Win81 = new Guid("93f91f5a-a4ca-4205-9beb-ce4d17c708f9");
 
         [ComImport]
         [Guid("6d5140c1-7436-11ce-8034-00aa006009fa")]
@@ -314,5 +401,10 @@ namespace RetroBar.Utilities
         {
         }
         #endregion
+
+        public class StartMenuMonitorEventArgs : LauncherVisibilityEventArgs
+        {
+            public IntPtr TaskbarHwndActivated;
+        }
     }
 }

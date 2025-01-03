@@ -171,8 +171,13 @@ namespace RetroBar.Controls
             hideFloatingStart();
         }
 
-        private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
+        private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
+            if (e.Visible && e.TaskbarHwndActivated != IntPtr.Zero && Host != null && e.TaskbarHwndActivated != Host.Handle)
+            {
+                // Only set as visible when activated from our taskbar
+                return;
+            }
             SetStartMenuState(e.Visible);
         }
 
