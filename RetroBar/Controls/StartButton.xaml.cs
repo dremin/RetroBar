@@ -79,11 +79,7 @@ namespace RetroBar.Controls
             }
 
             SetStartMenuState(false);
-            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon)
-            {
-                StartMenuMonitor.HideStartMenu(Host.Handle);
             }
-        }
 
         private void OpenStartMenu()
         {

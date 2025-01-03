@@ -225,31 +225,6 @@ namespace RetroBar.Utilities
             ShellHelper.ShowStartMenu();
         }
 
-        internal void HideStartMenu(IntPtr taskbarHwnd)
-        {
-            if (!EnvironmentHelper.IsWindows10OrBetter || !isModernStartMenuOpen())
-            {
-                return;
-            }
-
-            if (EnvironmentHelper.IsWindows10RS1OrBetter)
-            {
-                IImmersiveLauncher_Win10RS1 immersiveLauncher = GetImmersiveLauncher_Win10RS1(taskbarHwnd);
-                if (immersiveLauncher != null)
-                {
-                    immersiveLauncher.Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD.ILDM_STARTTIP);
-                }
-            }
-            else
-            {
-                IImmersiveLauncher_Win81 immersiveLauncher = GetImmersiveLauncher_Win81(taskbarHwnd);
-                if (immersiveLauncher != null)
-                {
-                    immersiveLauncher.Dismiss(IMMERSIVELAUNCHERDISMISSMETHOD.ILDM_STARTTIP);
-                }
-            }
-        }
-
         public void Dispose()
         {
             _poller?.Stop();
