@@ -183,10 +183,11 @@ namespace RetroBar.Utilities
             _taskbarHwndActivated = taskbarHwnd;
 
             if (!EnvironmentHelper.IsWindows10OrBetter ||
-                FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) != IntPtr.Zero)
+                FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) != IntPtr.Zero ||
+                FindWindowEx(IntPtr.Zero, IntPtr.Zero, "DV2ControlHost", IntPtr.Zero) != IntPtr.Zero)
             {
                 // Always use the Windows key when IImmersiveLauncher or IImmersiveMonitor is unavailable
-                // Also use the Windows key when Open Shell Menu is running, because we cannot otherwise invoke it
+                // Also use the Windows key when Open Shell Menu or StartIsBack is running, because we cannot otherwise invoke it
                 ShellHelper.ShowStartMenu();
                 return;
             }
