@@ -17,6 +17,7 @@ namespace RetroBar.Controls
     {
         private FloatingStartButton? floatingStartButton;
         private bool allowOpenStart;
+        private bool visibilityChanged;
         private readonly DispatcherTimer pendingOpenTimer;
 
         public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(StartButton));
@@ -79,14 +80,14 @@ namespace RetroBar.Controls
             }
 
             SetStartMenuState(false);
-            }
+        }
 
         private void OpenStartMenu()
         {
             Host?.SetTrayHost();
             Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
-            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon)
+            if (Host != null && StartMenuMonitor != null)
             {
                 StartMenuMonitor.ShowStartMenu(Host.Handle);
             }
@@ -156,6 +157,9 @@ namespace RetroBar.Controls
             dragTimer.Tick += dragTimer_Tick;
 
             openFloatingStart();
+
+            IsVisibleChanged += StartButton_IsVisibleChanged;
+            LayoutUpdated += StartButton_LayoutUpdated;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -177,13 +181,37 @@ namespace RetroBar.Controls
             SetStartMenuState(e.Visible);
         }
 
+        private void StartButton_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            visibilityChanged = true;
+        }
+
+        private void StartButton_LayoutUpdated(object? sender, EventArgs e)
+        {
+            if (!visibilityChanged)
+            {
+                return;
+            }
+
+            visibilityChanged = false;
+
+            if (IsVisible)
+            {
+                openFloatingStart();
+            }
+            else
+            {
+                hideFloatingStart();
+            }
+        }
+
         #region Floating start button
 
         private void openFloatingStart()
         {
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
-            if (!useFloatingStartButton || Host?.Screen.Primary != true) return;
+            if (!useFloatingStartButton || Visibility != Visibility.Visible) return;
 
             if (floatingStartButton == null)
             {
