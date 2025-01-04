@@ -3,12 +3,10 @@ using ManagedShell.WindowsTasks;
 using RetroBar.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace RetroBar.Controls
 {
@@ -75,21 +73,26 @@ namespace RetroBar.Controls
 
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (!isLoaded && Tasks != null)
+            if (!isLoaded && Tasks?.GroupedWindows != null)
             {
-                taskbarItems = Tasks.CreateGroupedWindowsCollection();
-                taskbarItems.GroupDescriptions.Clear();
-                taskbarItems.GroupDescriptions.Add(new PropertyGroupDescription("WinFileName"));
-                if (taskbarItems != null)
+                // extract the source collection from GroupedWindows
+                var sourceCollection = Tasks.GroupedWindows.SourceCollection;
+
+                // de-duplicate tasks if sourceCollection is a valid IEnumerable
+                if (sourceCollection is IEnumerable<ApplicationWindow> windows)
                 {
-                    taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
-                    taskbarItems.Filter = Tasks_Filter;
+                    var uniqueTasks = windows.GroupBy(t => t.WinFileName)
+                                             .Select(g => g.First())
+                                             .ToList();
+
+                    TasksList.ItemsSource = uniqueTasks;
                 }
 
-                TasksList.ItemsSource = taskbarItems.Groups;
+                taskbarItems = Tasks.GroupedWindows;
+                taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
+                taskbarItems.Filter = Tasks_Filter;
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
-
                 isLoaded = true;
             }
 

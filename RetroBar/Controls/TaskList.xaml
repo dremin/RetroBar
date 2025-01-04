@@ -17,9 +17,9 @@
         <Thumb Style="{DynamicResource ToolbarThumb}">
             <DockPanel.Dock>
                 <Binding Converter="{StaticResource dockOrientationConverter}"
-                             ConverterParameter="leading"
-                             Path="Orientation"
-                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                         ConverterParameter="leading"
+                         Path="Orientation"
+                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
             </DockPanel.Dock>
         </Thumb>
         <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
@@ -45,9 +45,10 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <ItemContainerTemplate>
-                        <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"></local:TaskButton>
-                    </ItemContainerTemplate>
+                    <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                        <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"
+                              Tasks="{Binding Items}" />
+                    </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>

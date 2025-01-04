@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,9 +24,29 @@ namespace RetroBar.Controls
         private ApplicationWindow Window;
         private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
         private ApplicationWindow.WindowState PressedWindowState = ApplicationWindow.WindowState.Inactive;
-        private ICollectionView groupedTasks;
 
         private bool _isLoaded;
+
+        public static readonly DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(IEnumerable), typeof(TaskButton));
+
+        public IEnumerable Tasks
+        {
+            get => (IEnumerable)GetValue(TasksProperty);
+            set
+            {
+                if (value is IEnumerable<ApplicationWindow> windows)
+                {
+                    var distinctWindows = windows.GroupBy(w => w.WinFileName)
+                                                 .Select(g => g.First())
+                                                 .ToList();
+                    SetValue(TasksProperty, distinctWindows);
+                }
+                else
+                {
+                    SetValue(TasksProperty, value);
+                }
+            }
+        }
 
         public TaskButton()
         {
