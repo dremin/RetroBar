@@ -17,6 +17,7 @@ namespace RetroBar.Controls
     {
         private FloatingStartButton? floatingStartButton;
         private bool allowOpenStart;
+        private bool visibilityChanged;
         private readonly DispatcherTimer pendingOpenTimer;
 
         public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(StartButton));
@@ -86,7 +87,14 @@ namespace RetroBar.Controls
             Host?.SetTrayHost();
             Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
-            ShellHelper.ShowStartMenu();
+            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon && Settings.Instance.ShowStartButtonMultiMon)
+            {
+                StartMenuMonitor.ShowStartMenu(Host.Handle);
+            }
+            else
+            {
+                ShellHelper.ShowStartMenu();
+            }
         }
 
         #region Drag
@@ -149,6 +157,9 @@ namespace RetroBar.Controls
             dragTimer.Tick += dragTimer_Tick;
 
             openFloatingStart();
+
+            IsVisibleChanged += StartButton_IsVisibleChanged;
+            LayoutUpdated += StartButton_LayoutUpdated;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -160,9 +171,38 @@ namespace RetroBar.Controls
             hideFloatingStart();
         }
 
-        private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, ManagedShell.Common.SupportingClasses.LauncherVisibilityEventArgs e)
+        private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
+            if (e.Visible && e.TaskbarHwndActivated != IntPtr.Zero && Host != null && e.TaskbarHwndActivated != Host.Handle)
+            {
+                // Only set as visible when activated from our taskbar
+                return;
+            }
             SetStartMenuState(e.Visible);
+        }
+
+        private void StartButton_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            visibilityChanged = true;
+        }
+
+        private void StartButton_LayoutUpdated(object? sender, EventArgs e)
+        {
+            if (!visibilityChanged)
+            {
+                return;
+            }
+
+            visibilityChanged = false;
+
+            if (IsVisible)
+            {
+                openFloatingStart();
+            }
+            else
+            {
+                hideFloatingStart();
+            }
         }
 
         #region Floating start button
@@ -171,7 +211,7 @@ namespace RetroBar.Controls
         {
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
-            if (!useFloatingStartButton || Host?.Screen.Primary != true) return;
+            if (!useFloatingStartButton || Visibility != Visibility.Visible) return;
 
             if (floatingStartButton == null)
             {

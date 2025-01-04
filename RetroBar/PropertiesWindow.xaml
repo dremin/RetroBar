@@ -351,6 +351,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CheckForUpdates, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource check_for_updates}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbShowExitMenuItem"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource show_exit_menu_item}" />
+                        </CheckBox>
                         <DockPanel>
                             <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboMiddleMouseAction}">
@@ -391,6 +395,11 @@
                             <CheckBox x:Name="cbShowMultiMon"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_multi_mon}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowStartButtonMultiMon"
+                                      IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowStartButtonMultiMon, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_start_button_multi_mon}" />
                             </CheckBox>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
