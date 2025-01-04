@@ -307,7 +307,21 @@ namespace RetroBar.Utilities
         private ClockClickOption _clockClickAction = EnvironmentHelper.IsWindows10OrBetter ? ClockClickOption.OpenNotificationCenter : ClockClickOption.DoNothing;
         public ClockClickOption ClockClickAction
         {
-            get => _clockClickAction;
+            get
+            {
+                // On Windows versions prior to 10, neither the Modern calendar nor the Notification Center is available
+                if (!EnvironmentHelper.IsWindows10OrBetter && _clockClickAction > ClockClickOption.OpenAeroCalendar)
+                {
+                    return ClockClickOption.DoNothing;
+                }
+                // On Windows 11, the Notification Center replaces the Modern calendar
+                else if (EnvironmentHelper.IsWindows11OrBetter && _clockClickAction == ClockClickOption.OpenModernCalendar)
+                {
+                    return ClockClickOption.OpenNotificationCenter;
+                }
+
+                return _clockClickAction;
+            }
             set => SetEnum(ref _clockClickAction, value);
         }
 
