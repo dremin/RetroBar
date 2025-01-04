@@ -29,6 +29,7 @@
     <s:String x:Key="show_input_language">Show the input _language</s:String>
     <s:String x:Key="show_clock">Show the cloc_k</s:String>
     <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Show _Start button on all taskbars</s:String>
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
@@ -63,8 +64,8 @@
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Current setting: {0}%</s:String>
-    <s:String x:Key="debug_logging">Enable debug logging</s:String>
-    <s:String x:Key="check_for_updates">Check for updates</s:String>
+    <s:String x:Key="debug_logging">Enable _debug logging</s:String>
+    <s:String x:Key="check_for_updates">Check for u_pdates</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>
