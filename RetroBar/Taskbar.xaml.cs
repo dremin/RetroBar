@@ -89,11 +89,7 @@ namespace RetroBar
                 ShowDesktopButtonTray.Visibility = Visibility.Visible;
             }
 
-            // Hide the start button on secondary display(s)
-            if (!Screen.Primary)
-            {
-                StartButton.Visibility = Visibility.Collapsed;
-            }
+            UpdateStartButton();
 
             AutoHideElement = TaskbarContentControl;
 
@@ -153,6 +149,17 @@ namespace RetroBar
             {
                 SetTrayHost();
             }
+        }
+
+        private void UpdateStartButton()
+        {
+            if (!Screen.Primary && !Settings.Instance.ShowStartButtonMultiMon)
+            {
+                StartButton.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            StartButton.Visibility = Visibility.Visible;
         }
 
         private void RecalculateSize(bool performResize = true)
@@ -282,6 +289,10 @@ namespace RetroBar
             {
                 PeekDuringAutoHide();
                 RecalculateSize();
+            }
+            else if (e.PropertyName == nameof(Settings.ShowStartButtonMultiMon))
+            {
+                UpdateStartButton();
             }
         }
 

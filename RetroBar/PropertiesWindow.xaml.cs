@@ -78,6 +78,7 @@ namespace RetroBar
             LoadPreviewHeight();
             LoadAutoStart();
             LoadLanguages();
+            LoadOSSupport();
             LoadRows();
             LoadThemes();
             LoadVersion();
@@ -162,6 +163,14 @@ namespace RetroBar
             foreach (var language in _dictionaryManager.GetLanguages())
             {
                 cboLanguageSelect.Items.Add(language);
+            }
+        }
+
+        private void LoadOSSupport()
+        {
+            if (!EnvironmentHelper.IsWindows10OrBetter)
+            {
+                cbShowStartButtonMultiMon.Visibility = Visibility.Collapsed;
             }
         }
 

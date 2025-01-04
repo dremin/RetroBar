@@ -317,6 +317,13 @@ namespace RetroBar.Utilities
             get => _showExitMenuItem;
             set => Set(ref _showExitMenuItem, value);
         }
+
+        private bool _showStartButtonMultiMon = false;
+        public bool ShowStartButtonMultiMon
+        {
+            get => _showStartButtonMultiMon;
+            set => Set(ref _showStartButtonMultiMon, value);
+        }
         #endregion
 
         #region Old Properties
