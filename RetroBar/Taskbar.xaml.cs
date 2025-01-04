@@ -448,6 +448,15 @@ namespace RetroBar
                 NotificationAreaSeparator.Visibility = Visibility.Collapsed;
             }
 
+            if (Settings.Instance.ShowExitMenuItem)
+            {
+                ExitMenuItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ExitMenuItem.Visibility = Visibility.Collapsed;
+            }
+
             _clockRightClicked = false;
             _notifyAreaRightClicked = false;
         }
