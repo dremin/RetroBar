@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
+using ManagedShell.UWPInterop;
 using Microsoft.Win32;
 using RetroBar.Utilities;
 
@@ -164,21 +165,20 @@ namespace RetroBar.Controls
             switch (Settings.Instance.ClockClickAction)
             {
                 case ClockClickOption.OpenModernCalendar:
-                    ClockFlyoutLauncher.ShowClockFlyout();
+                    Point screenPosition = PointToScreen(new(0, 0));
+                    ManagedShell.Interop.NativeMethods.Rect rect = new(
+                        (int)screenPosition.X, (int)screenPosition.Y,
+                        (int)(screenPosition.X + RenderSize.Width),
+                        (int)(screenPosition.Y + RenderSize.Height)
+                    );
+                    ImmersiveShellHelper.ShowClockFlyout(rect);
                     break;
                 case ClockClickOption.OpenAeroCalendar:
                     IntPtr hWnd = (PresentationSource.FromVisual(this) as System.Windows.Interop.HwndSource).Handle;
                     ClockFlyoutLauncher.ShowAeroClockFlyout(hWnd);
                     break;
                 case ClockClickOption.OpenNotificationCenter:
-                    if (EnvironmentHelper.IsWindows11OrBetter)
-                    {
-                        ShellHelper.ShowNotificationCenter();
-                    }
-                    else if (EnvironmentHelper.IsWindows10OrBetter)
-                    {
-                        ShellHelper.ShowActionCenter();
-                    }
+                    ImmersiveShellHelper.ShowActionCenter();
                     break;
             }
         }

@@ -314,11 +314,6 @@ namespace RetroBar.Utilities
                 {
                     return ClockClickOption.DoNothing;
                 }
-                // On Windows 11, the Notification Center replaces the Modern calendar
-                else if (EnvironmentHelper.IsWindows11OrBetter && _clockClickAction == ClockClickOption.OpenModernCalendar)
-                {
-                    return ClockClickOption.OpenNotificationCenter;
-                }
 
                 return _clockClickAction;
             }

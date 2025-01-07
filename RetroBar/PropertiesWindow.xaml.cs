@@ -291,22 +291,19 @@ namespace RetroBar
 
         private void LoadClockActions()
         {
-            if (EnvironmentHelper.IsWindows10OrBetter && !EnvironmentHelper.IsWindows11OrBetter)
+            if (EnvironmentHelper.IsWindows10OrBetter)
             {
                 return;
             }
 
-            // Remove options unsupported prior to Windows 10 or not available for Windows 11.
+            // Remove options unsupported prior to Windows 10.
             var availableClockActions = (FindResource("clock_click_action_values") as Array)?.Cast<object>().ToList();
             if (availableClockActions == null)
             {
                 return;
             }
 
-            if (!EnvironmentHelper.IsWindows10OrBetter)
-            {
-                availableClockActions.RemoveAt((int)ClockClickOption.OpenNotificationCenter);
-            }
+            availableClockActions.RemoveAt((int)ClockClickOption.OpenNotificationCenter);
             availableClockActions.RemoveAt((int)ClockClickOption.OpenModernCalendar);
             cboClockAction.ItemsSource = availableClockActions;
         }
