@@ -29,6 +29,7 @@
     <s:String x:Key="show_input_language">Mostrar el idioma de _entrada</s:String>
     <s:String x:Key="show_clock">Mostrar el _reloj</s:String>
     <s:String x:Key="show_multi_mon">Mostrar en _varias pantallas</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Mostrar el _botón Inicio en todas las barras de tareas</s:String>
     <s:String x:Key="show_quick_launch">Mostrar inicio rápi_do</s:String>
     <s:String x:Key="select_location">_Cambiar carpeta...</s:String>
     <s:String x:Key="quick_launch_folder">Inicio rápido: elegir una carpeta</s:String>
@@ -57,7 +58,7 @@
         <s:String>Abrir una nueva instancia</s:String>
         <s:String>Cerrar la tarea</s:String>
     </x:Array>
-    <s:String x:Key="clock_click_action">_Acción al hacer clic en el reloj:</s:String>
+    <s:String x:Key="clock_click_action">Acción al hacer clic en el _reloj:</s:String>
     <x:Array x:Key="clock_click_action_values" Type="s:String">
         <s:String>No hacer nada</s:String>
         <s:String>Abrir el calendario Aero</s:String>
@@ -70,8 +71,9 @@
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Configuración actual: {0}%</s:String>
-    <s:String x:Key="debug_logging">Habilitar registro de depuración</s:String>
-    <s:String x:Key="check_for_updates">Comprobar actualizaciones</s:String>
+    <s:String x:Key="debug_logging">Habilitar registro de _depuración</s:String>
+    <s:String x:Key="check_for_updates">Comprobar _actualizaciones</s:String>
+    <s:String x:Key="show_exit_menu_item">Mostrar opción de _salida en el menú contextual</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
