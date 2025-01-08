@@ -52,11 +52,18 @@
         <s:String>始终</s:String>
         <s:String>从不</s:String>
     </x:Array>
-    <s:String x:Key="middle_mouse_task_action">_Middle-click action:</s:String>
+    <s:String x:Key="middle_mouse_task_action">中键单击后的行为(_M):</s:String>
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>什么也不做</s:String>
         <s:String>打开一个新实例</s:String>
         <s:String>关闭任务</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">单击时钟时后的行为(_C):</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>什么也不做</s:String>
+        <s:String>打开 Aero 样式日历</s:String>
+        <s:String>打开现代样式日历</s:String>
+        <s:String>打开通知中心</s:String>
     </x:Array>
     <s:String x:Key="version">版本 {0}</s:String>
     <s:String x:Key="visit_on_github">访问 GitHub 主页</s:String>
