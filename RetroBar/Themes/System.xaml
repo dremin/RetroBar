@@ -48,6 +48,7 @@
     </Style>
 
     <system:Double x:Key="GlobalFontSize">11</system:Double>
+    <FontWeight x:Key="SetTimeMenuItemWeight">Bold</FontWeight>
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
     <system:Boolean x:Key="InvertSystemNotifyIcons">False</system:Boolean>

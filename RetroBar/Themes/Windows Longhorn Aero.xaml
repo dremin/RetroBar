@@ -6,6 +6,7 @@
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
+    <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
