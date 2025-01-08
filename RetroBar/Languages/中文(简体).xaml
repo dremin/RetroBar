@@ -58,7 +58,7 @@
         <s:String>打开一个新实例</s:String>
         <s:String>关闭任务</s:String>
     </x:Array>
-    <s:String x:Key="clock_click_action">单击时钟时后的行为(_C):</s:String>
+    <s:String x:Key="clock_click_action">单击时钟后的行为(_C):</s:String>
     <x:Array x:Key="clock_click_action_values" Type="s:String">
         <s:String>什么也不做</s:String>
         <s:String>打开 Aero 样式日历</s:String>
