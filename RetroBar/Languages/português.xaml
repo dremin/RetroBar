@@ -20,12 +20,16 @@
         <s:String>Direita</s:String>
         <s:String>Inferior</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Número de lin_has:</s:String>
+    <s:String x:Key="rowcount_tip">O número de linhas na barra de tarefas quando estiver na parte superior ou inferior.</s:String>
+    <s:String x:Key="taskbar_width">Lar_gura da barra de tarefas:</s:String>
     <s:String x:Key="allow_font_smoothing">Permitir s_uavização de fonte</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar ícones _inativos</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
     <s:String x:Key="show_input_language">Mostrar o i_dioma de entrada</s:String>
     <s:String x:Key="show_clock">Mostrar o _relógio</s:String>
-    <s:String x:Key="show_multi_mon">Mostrar em _vários monitores</s:String>
+    <s:String x:Key="show_multi_mon">_Mostrar em vários monitores</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Mostrar o _botão Iniciar em todas as barras de tarefas</s:String>
     <s:String x:Key="show_quick_launch">Mostrar barra 'Iniciali_zação rápida'</s:String>
     <s:String x:Key="select_location">S_elecionar local...</s:String>
     <s:String x:Key="quick_launch_folder">Inicialização rápida - Escolha uma pasta</s:String>
@@ -54,14 +58,22 @@
         <s:String>Abrir uma nova instância</s:String>
         <s:String>Fechar a tarefa</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">Ação do clique no _relógio:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Não fazer nada</s:String>
+        <s:String>Abrir o calendário Aero</s:String>
+        <s:String>Abrir o calendário moderno</s:String>
+        <s:String>Abrir a Central de Notificação</s:String>
+    </x:Array>
     <s:String x:Key="version">Versão {0}</s:String>
-    <s:String x:Key="visit_on_github">Visite RetroBar no GitHub</s:String>
+    <s:String x:Key="visit_on_github">Visite a RetroBar no GitHub</s:String>
     <s:String x:Key="taskbar_scale">Escala da barra de tarefas</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Configuração atual: {0}%</s:String>
-    <s:String x:Key="debug_logging">Habilitar logging de depuração</s:String>
-    <s:String x:Key="check_for_updates">Verificar se há atualizações</s:String>
+    <s:String x:Key="debug_logging">_Habilitar logging de depuração</s:String>
+    <s:String x:Key="check_for_updates">_Verificar se há atualizações</s:String>
+    <s:String x:Key="show_exit_menu_item">Mostrar _opção de saída no menu de contexto</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificações</s:String>
