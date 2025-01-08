@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Common.SupportingClasses;
+using ManagedShell.UWPInterop;
 using static ManagedShell.Interop.NativeMethods;
 
 namespace RetroBar.Utilities
@@ -120,7 +121,7 @@ namespace RetroBar.Utilities
             return IsWindowVisible(hStartMenu);
         }
 
-        private IImmersiveMonitor GetImmersiveMonitor(IServiceProvider shell, IntPtr hWnd)
+        private IImmersiveMonitor GetImmersiveMonitor(ManagedShell.UWPInterop.Interfaces.IServiceProvider shell, IntPtr hWnd)
         {
             if (shell.QueryService(ref CLSID_ImmersiveMonitorManager, ref IID_ImmersiveMonitorManager, out object monitorManagerObj) != 0)
             {
@@ -140,7 +141,7 @@ namespace RetroBar.Utilities
 
         private IImmersiveLauncher_Win10RS1 GetImmersiveLauncher_Win10RS1(IntPtr taskbarHwnd)
         {
-            var shell = (IServiceProvider)new CImmersiveShell();
+            var shell = ImmersiveShellHelper.GetImmersiveShell();
             if (shell.QueryService(ref CLSID_ImmersiveLauncher, ref IID_ImmersiveLauncher_Win10RS1, out object immersiveLauncherObj) != 0)
             {
                 ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveLauncher_Win10RS1");
@@ -160,7 +161,7 @@ namespace RetroBar.Utilities
 
         private IImmersiveLauncher_Win81 GetImmersiveLauncher_Win81(IntPtr taskbarHwnd)
         {
-            var shell = (IServiceProvider)new CImmersiveShell();
+            var shell = ImmersiveShellHelper.GetImmersiveShell();
             if (shell.QueryService(ref CLSID_ImmersiveLauncher, ref IID_ImmersiveLauncher_Win81, out object immersiveLauncherObj) != 0)
             {
                 ShellLogger.Warning("StartMenuMonitor: Failed to query for IImmersiveLauncher_Win81");
@@ -364,22 +365,6 @@ namespace RetroBar.Utilities
         static Guid CLSID_ImmersiveLauncher = new Guid("6f86e01c-c649-4d61-be23-f1322ddeca9d");
         static Guid IID_ImmersiveLauncher_Win10RS1 = new Guid("d8d60399-a0f1-f987-5551-321fd1b49864");
         static Guid IID_ImmersiveLauncher_Win81 = new Guid("93f91f5a-a4ca-4205-9beb-ce4d17c708f9");
-
-        [ComImport]
-        [Guid("6d5140c1-7436-11ce-8034-00aa006009fa")]
-        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        interface IServiceProvider
-        {
-            int QueryService(ref Guid guidService, ref Guid riid,
-                       [MarshalAs(UnmanagedType.Interface)] out object ppvObject);
-        }
-
-        [ComImport]
-        [Guid("c2f03a33-21f5-47fa-b4bb-156362a2f239")]
-        [ClassInterface(ClassInterfaceType.None)]
-        class CImmersiveShell
-        {
-        }
         #endregion
 
         public class StartMenuMonitorEventArgs : LauncherVisibilityEventArgs

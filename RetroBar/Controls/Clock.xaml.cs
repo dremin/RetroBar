@@ -178,7 +178,14 @@ namespace RetroBar.Controls
                     ClockFlyoutLauncher.ShowAeroClockFlyout(hWnd);
                     break;
                 case ClockClickOption.OpenNotificationCenter:
-                    ImmersiveShellHelper.ShowActionCenter();
+                    if (EnvironmentHelper.IsWindows10RS4OrBetter)
+                    {
+                        ImmersiveShellHelper.ShowActionCenter();
+                    }
+                    else
+                    {
+                        ShellHelper.ShowActionCenter();
+                    }
                     break;
             }
         }
