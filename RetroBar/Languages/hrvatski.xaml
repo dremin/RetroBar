@@ -28,6 +28,7 @@
     <s:String x:Key="show_input_language">Prikaži raspored _tipkovnice</s:String>
     <s:String x:Key="show_clock">Prikaži  _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
+	<s:String x:Key="show_start_button_multi_mon">Prikaži _Start gumb na sve zaslone</s:String>
     <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
     <s:String x:Key="select_location">_Odaberi lokaciju...</s:String>
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
@@ -56,14 +57,22 @@
         <s:String>Otvaranje nove instance</s:String>
         <s:String>Zatvori zadatak</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">_Akcija pritiska na sat:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Ništa</s:String>
+        <s:String>Otvori aero kalendar</s:String>
+        <s:String>Otvori moderni kalendar</s:String>
+        <s:String>Otvori centar za obavijesti</s:String>
+    </x:Array>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Posjete na GitHubu</s:String>
     <s:String x:Key="taskbar_scale">Omjer programske trake</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Trenutačne postavke: {0}%</s:String>
-    <s:String x:Key="debug_logging">Omogući bilježenje</s:String>
-    <s:String x:Key="check_for_updates">Provjeravaj za ažuriranja</s:String>
+    <s:String x:Key="debug_logging">Omogući _bilježenje</s:String>
+    <s:String x:Key="check_for_updates">Provjeravaj za a_žuriranja</s:String>
+	<s:String x:Key="show_exit_menu_item">Prikaži I_zlaznu opciju u kontekstnom izborniku</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
@@ -100,7 +109,7 @@
     <s:String x:Key="show_taskman">Uparvite_lj zadataka</s:String>
     <s:String x:Key="tray_properties">S_vojstava</s:String>
     <s:String x:Key="update_available">_Ažuriranje dostupno...</s:String>
-    <s:String x:Key="exit_retrobar">_Izlaz RetroBar</s:String>
+    <s:String x:Key="exit_retrobar">_Izađi iz RetroBara</s:String>
     <s:String x:Key="customize_notifications_menu">_Prilagodi obavjesti...</s:String>
     <s:String x:Key="lock_taskbar_menu">_Zaključaj programsku traku</s:String>
 
