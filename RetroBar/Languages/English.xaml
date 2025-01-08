@@ -58,6 +58,13 @@
         <s:String>Open a new instance</s:String>
         <s:String>Close the task</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">_Clock click action:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Do nothing</s:String>
+        <s:String>Open Aero calendar</s:String>
+        <s:String>Open Modern calendar</s:String>
+        <s:String>Open Notification Center</s:String>
+    </x:Array>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">Visit RetroBar on GitHub</s:String>
     <s:String x:Key="taskbar_scale">Taskbar scale</s:String>

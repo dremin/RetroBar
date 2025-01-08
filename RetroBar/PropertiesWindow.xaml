@@ -182,8 +182,7 @@
                                                 ToolTip="{DynamicResource language_tip}" />
                                 </Label>
                                 <ComboBox Name="cboLanguageSelect"
-                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectionChanged="cboLanguageSelect_SelectionChanged" />
+                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
@@ -365,6 +364,16 @@
                                       ItemsSource="{DynamicResource middle_mouse_task_action_values}"
                                       SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskMiddleClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                       SelectionChanged="cboMiddleMouseAction_SelectionChanged" />
+                        </DockPanel>
+                        <DockPanel>
+                            <Label VerticalAlignment="Center"
+                                   Target="{Binding ElementName=cboClockAction}">
+                                <AccessText Text="{DynamicResource clock_click_action}" />
+                            </Label>
+                            <ComboBox x:Name="cboClockAction"
+                                      ItemsSource="{DynamicResource clock_click_action_values}"
+                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                      SelectionChanged="cboClockAction_SelectionChanged" />
                         </DockPanel>
                         <DockPanel>
                             <Label VerticalAlignment="Center"

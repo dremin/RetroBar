@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
+using ManagedShell.UWPInterop;
 using Microsoft.Win32;
 using RetroBar.Utilities;
 
@@ -27,7 +28,6 @@ namespace RetroBar.Controls
         }
 
         private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
-        private readonly DispatcherTimer singleClick = new DispatcherTimer(DispatcherPriority.Input);
 
         private bool _isLoaded;
 
@@ -38,9 +38,6 @@ namespace RetroBar.Controls
 
             clock.Interval = TimeSpan.FromMilliseconds(200);
             clock.Tick += Clock_Tick;
-
-            singleClick.Interval = TimeSpan.FromMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime);
-            singleClick.Tick += SingleClick_Tick;
         }
 
         private void Initialize()
@@ -65,7 +62,7 @@ namespace RetroBar.Controls
             SetTime();
 
             clock.Start();
-            
+
             Visibility = Visibility.Visible;
         }
 
@@ -94,22 +91,6 @@ namespace RetroBar.Controls
         private void Clock_Tick(object sender, EventArgs args)
         {
             SetTime();
-        }
-
-        private void SingleClick_Tick(object sender, EventArgs args)
-        {
-            // Windows 10-11 single-click action
-            // A double-click will cancel the timer so that this doesn't run
-
-            singleClick.Stop();
-            if (EnvironmentHelper.IsWindows11OrBetter)
-            {
-                ShellHelper.ShowNotificationCenter();
-            }
-            else
-            {
-                ShellHelper.ShowActionCenter();
-            }
         }
 
         private void TimeChanged(object sender, EventArgs e)
@@ -181,15 +162,36 @@ namespace RetroBar.Controls
 
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (EnvironmentHelper.IsWindows10OrBetter)
+            switch (Settings.Instance.ClockClickAction)
             {
-                singleClick.Start();
+                case ClockClickOption.OpenModernCalendar:
+                    Point screenPosition = PointToScreen(new(0, 0));
+                    ManagedShell.Interop.NativeMethods.Rect rect = new(
+                        (int)screenPosition.X, (int)screenPosition.Y,
+                        (int)(screenPosition.X + RenderSize.Width),
+                        (int)(screenPosition.Y + RenderSize.Height)
+                    );
+                    ImmersiveShellHelper.ShowClockFlyout(rect);
+                    break;
+                case ClockClickOption.OpenAeroCalendar:
+                    IntPtr hWnd = (PresentationSource.FromVisual(this) as System.Windows.Interop.HwndSource).Handle;
+                    ClockFlyoutLauncher.ShowAeroClockFlyout(hWnd);
+                    break;
+                case ClockClickOption.OpenNotificationCenter:
+                    if (EnvironmentHelper.IsWindows10RS4OrBetter)
+                    {
+                        ImmersiveShellHelper.ShowActionCenter();
+                    }
+                    else
+                    {
+                        ShellHelper.ShowActionCenter();
+                    }
+                    break;
             }
         }
 
         private void Clock_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            singleClick.Stop();
             ShellHelper.StartProcess("timedate.cpl");
 
             e.Handled = true;

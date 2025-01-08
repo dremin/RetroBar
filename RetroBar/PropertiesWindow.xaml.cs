@@ -81,8 +81,9 @@ namespace RetroBar
             LoadOSSupport();
             LoadRows();
             LoadThemes();
-            LoadVersion();
             LoadWidth();
+            LoadVersion();
+            LoadClockActions();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -97,6 +98,11 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.Theme))
             {
                 LoadPreviewHeight();
+            }
+            else if (e.PropertyName == nameof(Settings.Language))
+            {
+                LoadVersion();
+                LoadClockActions();
             }
         }
 
@@ -283,9 +289,23 @@ namespace RetroBar
             }
         }
 
-        private void cboLanguageSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void LoadClockActions()
         {
-            LoadVersion();
+            if (EnvironmentHelper.IsWindows10OrBetter)
+            {
+                return;
+            }
+
+            // Remove options unsupported prior to Windows 10.
+            var availableClockActions = (FindResource("clock_click_action_values") as Array)?.Cast<object>().ToList();
+            if (availableClockActions == null)
+            {
+                return;
+            }
+
+            availableClockActions.RemoveAt((int)ClockClickOption.OpenNotificationCenter);
+            availableClockActions.RemoveAt((int)ClockClickOption.OpenModernCalendar);
+            cboClockAction.ItemsSource = availableClockActions;
         }
 
         private void cboEdgeSelect_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -317,6 +337,14 @@ namespace RetroBar
             if (cboMiddleMouseAction.SelectedItem == null)
             {
                 cboMiddleMouseAction.SelectedValue = cboMiddleMouseAction.Items[(int)Settings.Instance.TaskMiddleClickAction];
+            }
+        }
+
+        private void cboClockAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboClockAction.SelectedItem == null)
+            {
+                cboClockAction.SelectedValue = cboClockAction.Items[(int)Settings.Instance.ClockClickAction];
             }
         }
 
