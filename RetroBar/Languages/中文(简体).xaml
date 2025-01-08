@@ -29,6 +29,7 @@
     <s:String x:Key="show_input_language">显示输入语言(_L)</s:String>
     <s:String x:Key="show_clock">显示时钟(_K)</s:String>
     <s:String x:Key="show_multi_mon">在多个显示器上显示(_M)</s:String>
+    <s:String x:Key="show_start_button_multi_mon">在所有任务栏上显示“开始”按钮(_S)</s:String>
     <s:String x:Key="show_quick_launch">显示快速启动(_Q)</s:String>
     <s:String x:Key="select_location">选择位置(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">快速启动 - 选择一个文件夹</s:String>
@@ -63,8 +64,8 @@
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">当前设置: {0}%</s:String>
-    <s:String x:Key="debug_logging">启用调试日志记录</s:String>
-    <s:String x:Key="check_for_updates">检查更新</s:String>
+    <s:String x:Key="debug_logging">启用调试日志记录(_D)</s:String>
+    <s:String x:Key="check_for_updates">检查更新(_U)</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 
     <s:String x:Key="customize_notifications">自定义通知</s:String>
