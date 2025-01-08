@@ -6,6 +6,7 @@
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarUnlockedSize">4</system:Double>
     <Thickness x:Key="TaskButtonMargin" />
+    <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"

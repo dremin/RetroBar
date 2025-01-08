@@ -26,7 +26,7 @@
                 <Separator />
                 <MenuItem Header="{DynamicResource new_toolbar}" x:Name="NewToolbarMenuItem" />
             </MenuItem>
-            <MenuItem x:Shared="false" x:Key="SetTimeMenuItem" Header="{DynamicResource set_time}" Click="SetTimeMenuItem_OnClick" />
+            <MenuItem x:Shared="false" x:Key="SetTimeMenuItem" Header="{DynamicResource set_time}" Click="SetTimeMenuItem_OnClick" FontWeight="{DynamicResource SetTimeMenuItemWeight}" />
             <MenuItem x:Shared="false" x:Key="CustomizeNotificationsMenuItem" Header="{DynamicResource customize_notifications_menu}" Click="CustomizeNotificationsMenuItem_OnClick" />
             <MenuItem x:Shared="false" x:Key="TaskManagerMenuItem" Style="{DynamicResource TaskManMenuItem}" Click="TaskManagerMenuItem_OnClick" />
             <MenuItem x:Shared="false" x:Key="LockTaskbarMenuItem" Header="{DynamicResource lock_taskbar_menu}" IsCheckable="True" IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged}" />
