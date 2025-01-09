@@ -162,6 +162,13 @@ namespace RetroBar.Controls
 
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (Settings.Instance.ClockClickAction == ClockClickOption.DoNothing)
+            {
+                return;
+            }
+
+            e.Handled = true;
+
             switch (Settings.Instance.ClockClickAction)
             {
                 case ClockClickOption.OpenModernCalendar:
