@@ -29,6 +29,7 @@
     <s:String x:Key="show_input_language">Отображать раскладку _клавиатуры</s:String>
     <s:String x:Key="show_clock">Отображать _часы</s:String>
     <s:String x:Key="show_multi_mon">Показывать на н_ескольких дисплеях</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Отображать кнопку "_Пуск" на всех панелях задач</s:String>
     <s:String x:Key="show_quick_launch">Отображать панель _быстого запуска</s:String>
     <s:String x:Key="select_location">_Выбрать папку...</s:String>
     <s:String x:Key="quick_launch_folder">Панель быстого запуска - выберите папку</s:String>
@@ -39,7 +40,7 @@
     <s:String x:Key="enable_auto_hide">_Автоматически скрывать панель задач</s:String>
     <s:String x:Key="lock_taskbar">_Закрепить панель задач</s:String>
     <s:String x:Key="multiple_displays">Несколько дисплеев</s:String>
-    <s:String x:Key="show_tasks_on">_Отображать кнопки окон:</s:String>
+    <s:String x:Key="show_tasks_on">Отображать _кнопки окон:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>На всех панелях задач</s:String>
         <s:String>На панели задач, в которой открыто окно</s:String>
@@ -51,11 +52,18 @@
         <s:String>Всегда</s:String>
         <s:String>Никогда</s:String>
     </x:Array>
-    <s:String x:Key="middle_mouse_task_action">_Действие по средней кнопке мыши:</s:String>
+    <s:String x:Key="middle_mouse_task_action">Действие по _средней кнопке мыши:</s:String>
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>Ничего не делать</s:String>
         <s:String>Открыть новое окно задачи</s:String>
         <s:String>Закрыть задачу</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">Действие по нажатию на _часы:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Ничего не делать</s:String>
+        <s:String>Открыть Aero-календарь</s:String>
+        <s:String>Открыть Modern-календарь</s:String>
+        <s:String>Открыть центр уведомлений</s:String>
     </x:Array>
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
@@ -63,8 +71,9 @@
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Текущее значение: {0}%</s:String>
-    <s:String x:Key="debug_logging">Включить логирование</s:String>
-    <s:String x:Key="check_for_updates">Проверять обновления</s:String>
+    <s:String x:Key="debug_logging">Включить отла_дочное логирование</s:String>
+    <s:String x:Key="check_for_updates">Проверять _наличие обновлений</s:String>
+    <s:String x:Key="show_exit_menu_item">Отображать опцию в_ыхода в контекстном меню</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
