@@ -124,6 +124,73 @@ namespace RetroBar.Utilities
             return IsWindowVisible(hStartMenu);
         }
 
+        private void relocateStartMenuByClass(string className)
+        {
+            if (_taskbarHwndActivated == IntPtr.Zero)
+            {
+                return;
+            }
+
+            // Get current window rects
+            IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+            if (hStartMenu == IntPtr.Zero)
+            {
+                return;
+            }
+            FlowDirection flowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
+            GetWindowRect(hStartMenu, out ManagedShell.Interop.NativeMethods.Rect startMenuRect);
+            GetWindowRect(_taskbarHwndActivated, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
+
+            int x = 0, y = 0;
+            switch (Settings.Instance.Edge)
+            {
+                case AppBarEdge.Left:
+                    // Top right of taskbar is menu top left
+                    x = taskbarRect.Right;
+                    y = taskbarRect.Top;
+                    break;
+                case AppBarEdge.Right:
+                    // Top left of taskbar is menu top right
+                    x = taskbarRect.Left - startMenuRect.Width;
+                    y = taskbarRect.Top;
+                    break;
+                case AppBarEdge.Top:
+                    if (flowDirection == FlowDirection.LeftToRight)
+                    {
+                        // Bottom left of taskbar is menu top left
+                        x = taskbarRect.Left;
+                    }
+                    else
+                    {
+                        // Bottom right of taskbar is menu top right
+                        x = taskbarRect.Right - startMenuRect.Width;
+                    }
+                    y = taskbarRect.Bottom;
+                    break;
+                case AppBarEdge.Bottom:
+                    if (flowDirection == FlowDirection.LeftToRight)
+                    {
+                        // Top left of taskbar is menu bottom left
+                        x = taskbarRect.Left;
+                    }
+                    else
+                    {
+                        // Top right of taskbar is menu bottom right
+                        x = taskbarRect.Right - startMenuRect.Width;
+                    }
+                    y = taskbarRect.Top - startMenuRect.Height;
+                    break;
+            }
+
+            if (y == startMenuRect.Top && x == startMenuRect.Left)
+            {
+                // Start menu is already in the correct position
+                return;
+            }
+
+            SetWindowPos(hStartMenu, IntPtr.Zero, x, y, 0, 0, (int)(SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_FRAMECHANGED));
+        }
+
         private IImmersiveMonitor GetImmersiveMonitor(ManagedShell.UWPInterop.Interfaces.IServiceProvider shell, IntPtr hWnd)
         {
             if (shell.QueryService(ref CLSID_ImmersiveMonitorManager, ref IID_ImmersiveMonitorManager, out object monitorManagerObj) != 0)
@@ -180,102 +247,6 @@ namespace RetroBar.Utilities
             }
 
             return immersiveLauncher;
-        }
-
-        private void relocateStartMenuByClass(string className)
-        {
-            if (_taskbarHwndActivated == IntPtr.Zero)
-            {
-                return;
-            }
-
-            // Get current window rects
-            IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
-            if (hStartMenu == IntPtr.Zero)
-            {
-                return;
-            }
-            FlowDirection flowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
-            GetWindowRect(hStartMenu, out ManagedShell.Interop.NativeMethods.Rect startMenuRect);
-            GetWindowRect(_taskbarHwndActivated, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
-
-            // Check if the start menu is mis-positioned
-            bool needsReposition = false;
-            switch (Settings.Instance.Edge)
-            {
-                case AppBarEdge.Left:
-                    // Top right of taskbar is menu top left
-                    needsReposition = !(taskbarRect.Top == startMenuRect.Top && taskbarRect.Right == startMenuRect.Left);
-                    break;
-                case AppBarEdge.Right:
-                    // Top left of taskbar is menu top right
-                    needsReposition = !(taskbarRect.Top == startMenuRect.Top && taskbarRect.Left == startMenuRect.Right);
-                    break;
-                case AppBarEdge.Top:
-                    // Bottom left of taskbar is menu top left
-                    if (flowDirection == FlowDirection.LeftToRight)
-                    {
-                        needsReposition = !(taskbarRect.Bottom == startMenuRect.Top && taskbarRect.Left == startMenuRect.Left);
-                    }
-                    else
-                    {
-                        needsReposition = !(taskbarRect.Bottom == startMenuRect.Top && taskbarRect.Right == startMenuRect.Right);
-                    }
-                    break;
-                case AppBarEdge.Bottom:
-                    // Top left of taskbar is menu bottom left
-                    if (flowDirection == FlowDirection.LeftToRight)
-                    {
-                        needsReposition = !(taskbarRect.Top == startMenuRect.Bottom && taskbarRect.Left == startMenuRect.Left);
-                    }
-                    else
-                    {
-                        needsReposition = !(taskbarRect.Top == startMenuRect.Bottom && taskbarRect.Right == startMenuRect.Right);
-                    }
-                    break;
-            }
-
-            if (!needsReposition)
-            {
-                return;
-            }
-
-            int x = 0, y = 0;
-            switch (Settings.Instance.Edge)
-            {
-                case AppBarEdge.Left:
-                    x = taskbarRect.Right;
-                    y = taskbarRect.Top;
-                    break;
-                case AppBarEdge.Right:
-                    x = taskbarRect.Left - startMenuRect.Width;
-                    y = taskbarRect.Top;
-                    break;
-                case AppBarEdge.Top:
-                    if (flowDirection == FlowDirection.LeftToRight)
-                    {
-                        x = taskbarRect.Left;
-                    }
-                    else
-                    {
-                        x = taskbarRect.Right - startMenuRect.Width;
-                    }
-                    y = taskbarRect.Bottom;
-                    break;
-                case AppBarEdge.Bottom:
-                    if (flowDirection == FlowDirection.LeftToRight)
-                    {
-                        x = taskbarRect.Left;
-                    }
-                    else
-                    {
-                        x = taskbarRect.Right - startMenuRect.Width;
-                    }
-                    y = taskbarRect.Top - startMenuRect.Height;
-                    break;
-            }
-
-            SetWindowPos(hStartMenu, IntPtr.Zero, x, y, 0, 0, (int)(SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_FRAMECHANGED));
         }
 
         internal void ShowStartMenu(IntPtr taskbarHwnd)
