@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Threading;
+using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Common.SupportingClasses;
@@ -58,6 +60,7 @@ namespace RetroBar.Utilities
             {
                 // Open Shell Menu
                 newIsVisible = true;
+                relocateStartMenuByClass("OpenShell.CMenuContainer");
             }
 
             setVisibility(newIsVisible);
@@ -119,6 +122,73 @@ namespace RetroBar.Utilities
             }
 
             return IsWindowVisible(hStartMenu);
+        }
+
+        private void relocateStartMenuByClass(string className)
+        {
+            if (_taskbarHwndActivated == IntPtr.Zero)
+            {
+                return;
+            }
+
+            // Get current window rects
+            IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+            if (hStartMenu == IntPtr.Zero)
+            {
+                return;
+            }
+            FlowDirection flowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
+            GetWindowRect(hStartMenu, out ManagedShell.Interop.NativeMethods.Rect startMenuRect);
+            GetWindowRect(_taskbarHwndActivated, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
+
+            int x = 0, y = 0;
+            switch (Settings.Instance.Edge)
+            {
+                case AppBarEdge.Left:
+                    // Top right of taskbar is menu top left
+                    x = taskbarRect.Right;
+                    y = taskbarRect.Top;
+                    break;
+                case AppBarEdge.Right:
+                    // Top left of taskbar is menu top right
+                    x = taskbarRect.Left - startMenuRect.Width;
+                    y = taskbarRect.Top;
+                    break;
+                case AppBarEdge.Top:
+                    if (flowDirection == FlowDirection.LeftToRight)
+                    {
+                        // Bottom left of taskbar is menu top left
+                        x = taskbarRect.Left;
+                    }
+                    else
+                    {
+                        // Bottom right of taskbar is menu top right
+                        x = taskbarRect.Right - startMenuRect.Width;
+                    }
+                    y = taskbarRect.Bottom;
+                    break;
+                case AppBarEdge.Bottom:
+                    if (flowDirection == FlowDirection.LeftToRight)
+                    {
+                        // Top left of taskbar is menu bottom left
+                        x = taskbarRect.Left;
+                    }
+                    else
+                    {
+                        // Top right of taskbar is menu bottom right
+                        x = taskbarRect.Right - startMenuRect.Width;
+                    }
+                    y = taskbarRect.Top - startMenuRect.Height;
+                    break;
+            }
+
+            if (y == startMenuRect.Top && x == startMenuRect.Left)
+            {
+                // Start menu is already in the correct position
+                return;
+            }
+
+            SetWindowPos(hStartMenu, IntPtr.Zero, x, y, 0, 0, (int)(SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOZORDER));
         }
 
         private IImmersiveMonitor GetImmersiveMonitor(ManagedShell.UWPInterop.Interfaces.IServiceProvider shell, IntPtr hWnd)
@@ -253,9 +323,9 @@ namespace RetroBar.Utilities
             public int IsConnected(out bool pfConnected);
             public int IsPrimary(out bool pfPrimary);
             public int GetTrustLevel(out uint level);
-            public int GetDisplayRect(out Rect prcDisplayRect);
+            public int GetDisplayRect(out ManagedShell.Interop.NativeMethods.Rect prcDisplayRect);
             public int GetOrientation(out uint pdwOrientation);
-            public int GetWorkArea(out Rect prcWorkArea);
+            public int GetWorkArea(out ManagedShell.Interop.NativeMethods.Rect prcWorkArea);
             public int IsEqual(IImmersiveMonitor pMonitor, out bool pfEqual);
             public int GetTrustLevel2(out uint level);
             public int GetEffectiveDpi(out uint dpiX, out uint dpiY);
