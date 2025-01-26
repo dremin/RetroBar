@@ -160,11 +160,21 @@ namespace RetroBar.Controls
 
             IsVisibleChanged += StartButton_IsVisibleChanged;
             LayoutUpdated += StartButton_LayoutUpdated;
+
+            if (Host != null)
+            {
+                Host.PropertyChanged += Taskbar_PropertyChanged;
+            }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             StartMenuMonitor.StartMenuVisibilityChanged -= AppVisibilityHelper_StartMenuVisibilityChanged;
+
+            if (Host != null)
+            {
+                Host.PropertyChanged -= Taskbar_PropertyChanged;
+            }
 
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
@@ -202,6 +212,21 @@ namespace RetroBar.Controls
             else
             {
                 hideFloatingStart();
+            }
+        }
+
+        private void Taskbar_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (Host != null && e.PropertyName == "Opacity")
+            {
+                if (Host.Opacity == 1)
+                {
+                    openFloatingStart();
+                }
+                else
+                {
+                    hideFloatingStart();
+                }
             }
         }
 
