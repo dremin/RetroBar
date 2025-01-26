@@ -340,6 +340,13 @@ namespace RetroBar.Utilities
             get => _showStartButtonMultiMon;
             set => Set(ref _showStartButtonMultiMon, value);
         }
+
+        private bool _autoHideTransparent = false;
+        public bool AutoHideTransparent
+        {
+            get => _autoHideTransparent;
+            set => Set(ref _autoHideTransparent, value);
+        }
         #endregion
 
         #region Old Properties

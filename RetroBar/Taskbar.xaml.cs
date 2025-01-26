@@ -291,6 +291,10 @@ namespace RetroBar
             {
                 UpdateStartButton();
             }
+            else if (e.PropertyName == nameof(Settings.AutoHideTransparent))
+            {
+                PeekDuringAutoHide();
+            }
         }
 
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
@@ -407,6 +411,21 @@ namespace RetroBar
 
             // Prevent focus indicators and tooltips while hidden
             ResetControlFocus();
+
+            if (!isHiding && Opacity < 1)
+            {
+                Opacity = 1;
+            }
+        }
+
+        protected override void OnAutoHideAnimationComplete(bool isHiding)
+        {
+            base.OnAutoHideAnimationComplete(isHiding);
+
+            if (isHiding && Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
+            {
+                Opacity = 0.01;
+            }
         }
 
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
