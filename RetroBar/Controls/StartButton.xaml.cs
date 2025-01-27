@@ -217,7 +217,7 @@ namespace RetroBar.Controls
 
         private void Taskbar_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (Host != null && e.PropertyName == "Opacity")
+            if (Host != null && e.PropertyName == nameof(Opacity))
             {
                 if (Host.Opacity == 1)
                 {
