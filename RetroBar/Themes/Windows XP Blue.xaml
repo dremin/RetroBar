@@ -5,6 +5,7 @@
     <system:Double x:Key="TaskbarHeight">30</system:Double>
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarUnlockedSize">4</system:Double>
+    <system:Boolean x:Key="AnimateTasks">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" />
     <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
 

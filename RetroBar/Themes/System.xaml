@@ -51,6 +51,7 @@
     <FontWeight x:Key="SetTimeMenuItemWeight">Bold</FontWeight>
 
     <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
+    <system:Boolean x:Key="AnimateTasks">False</system:Boolean>
     <system:Boolean x:Key="InvertSystemNotifyIcons">False</system:Boolean>
     <system:Boolean x:Key="UseLargeIcons">False</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">False</system:Boolean>
