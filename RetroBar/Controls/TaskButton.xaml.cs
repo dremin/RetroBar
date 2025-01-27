@@ -97,8 +97,7 @@ namespace RetroBar.Controls
                 Window.PropertyChanged += Window_PropertyChanged;
             }
 
-            if (Host?.Host?.Orientation == Orientation.Horizontal && 
-                (Application.Current.FindResource("AnimateTasks") as bool? ?? false))
+            if (Settings.Instance.SlideTaskbarButtons && Host?.Host?.Orientation == Orientation.Horizontal)
             {
                 Animate();
             }
