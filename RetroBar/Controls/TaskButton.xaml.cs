@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
@@ -18,6 +19,14 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class TaskButton : UserControl
     {
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(TaskList), typeof(TaskButton));
+
+        public TaskList Host
+        {
+            get { return (TaskList)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
+
         private ApplicationWindow Window;
         private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
         private ApplicationWindow.WindowState PressedWindowState = ApplicationWindow.WindowState.Inactive;
@@ -54,6 +63,25 @@ namespace RetroBar.Controls
             }
         }
 
+        private void Animate()
+        {
+            var ease = new SineEase();
+            ease.EasingMode = EasingMode.EaseInOut;
+
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.From = 0;
+            animation.To = Host?.ButtonWidth ?? ActualWidth;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(250));
+            animation.FillBehavior = FillBehavior.Stop;
+            animation.EasingFunction = ease;
+            Storyboard.SetTarget(animation, this);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(WidthProperty));
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(animation);
+            storyboard.Begin();
+        }
+
         private void TaskButton_OnLoaded(object sender, RoutedEventArgs e)
         {
             Window = DataContext as ApplicationWindow;
@@ -67,6 +95,11 @@ namespace RetroBar.Controls
             if (Window != null)
             {
                 Window.PropertyChanged += Window_PropertyChanged;
+            }
+
+            if (Settings.Instance.SlideTaskbarButtons && Host?.Host?.Orientation == Orientation.Horizontal)
+            {
+                Animate();
             }
 
             _isLoaded = true;
