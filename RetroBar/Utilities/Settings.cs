@@ -340,6 +340,13 @@ namespace RetroBar.Utilities
             get => _showStartButtonMultiMon;
             set => Set(ref _showStartButtonMultiMon, value);
         }
+
+        private bool _slideTaskbarButtons = false;
+        public bool SlideTaskbarButtons
+        {
+            get => _slideTaskbarButtons;
+            set => Set(ref _slideTaskbarButtons, value);
+        }
         #endregion
 
         #region Old Properties
