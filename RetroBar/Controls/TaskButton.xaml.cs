@@ -108,6 +108,12 @@ namespace RetroBar.Controls
 
         private void Window_GetButtonRect(ref NativeMethods.ShortRect rect)
         {
+            if (Host?.Host?.Screen.Primary != true && Settings.Instance.MultiMonMode != MultiMonOption.SameAsWindow)
+            {
+                // If there are multiple instances of a button, use the button on the primary display only
+                return;
+            }
+
             Point buttonTopLeft = PointToScreen(new Point(0, 0));
             Point buttonBottomRight = PointToScreen(new Point(ActualWidth, ActualHeight));
             rect.Top = (short)buttonTopLeft.Y;
