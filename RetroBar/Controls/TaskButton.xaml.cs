@@ -94,6 +94,7 @@ namespace RetroBar.Controls
 
             if (Window != null)
             {
+                Window.GetButtonRect += Window_GetButtonRect;
                 Window.PropertyChanged += Window_PropertyChanged;
             }
 
@@ -103,6 +104,16 @@ namespace RetroBar.Controls
             }
 
             _isLoaded = true;
+        }
+
+        private void Window_GetButtonRect(ref NativeMethods.ShortRect rect)
+        {
+            Point buttonTopLeft = PointToScreen(new Point(0, 0));
+            Point buttonBottomRight = PointToScreen(new Point(ActualWidth, ActualHeight));
+            rect.Top = (short)buttonTopLeft.Y;
+            rect.Left = (short)buttonTopLeft.X;
+            rect.Bottom = (short)buttonBottomRight.Y;
+            rect.Right = (short)buttonBottomRight.X;
         }
 
         private void Window_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -124,6 +135,7 @@ namespace RetroBar.Controls
 
             if (Window != null)
             {
+                Window.GetButtonRect -= Window_GetButtonRect;
                 Window.PropertyChanged -= Window_PropertyChanged;
             }
 
@@ -141,9 +153,9 @@ namespace RetroBar.Controls
             int ws = Window.WindowStyles;
 
             // disable window operations depending on current window state. originally tried implementing via bindings but found there is no notification we get regarding maximized state
-            MaximizeMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
-            MinimizeMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowMinimized && (ws & (int)NativeMethods.WindowStyles.WS_MINIMIZEBOX) != 0);
-            if (RestoreMenuItem.IsEnabled = (wss != NativeMethods.WindowShowStyle.ShowNormal))
+            MaximizeMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0;
+            MinimizeMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowMinimized && (ws & (int)NativeMethods.WindowStyles.WS_MINIMIZEBOX) != 0;
+            if (RestoreMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowNormal)
             {
                 CloseMenuItem.FontWeight = FontWeights.Normal;
                 RestoreMenuItem.FontWeight = FontWeights.Bold;
@@ -154,7 +166,7 @@ namespace RetroBar.Controls
                 RestoreMenuItem.FontWeight = FontWeights.Normal;
             }
             MoveMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal;
-            SizeMenuItem.IsEnabled = (wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
+            SizeMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0;
         }
 
         private void CloseMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -189,7 +201,7 @@ namespace RetroBar.Controls
 
         private void AppButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (PressedWindowState == ApplicationWindow.WindowState.Active)
+            if (PressedWindowState == ApplicationWindow.WindowState.Active && Window?.CanMinimize == true)
             {
                 Window?.Minimize();
             }
