@@ -102,7 +102,7 @@ namespace RetroBar.Controls
             OpenDisplayPropertiesCpl();
         }
 
-        private void HandleWindowActivated(object sender, WindowActivatedEventArgs e)
+        private void HandleWindowActivated(object sender, WindowEventArgs e)
         {
             if (ShowDesktop.IsChecked == true)
             {
