@@ -257,7 +257,8 @@
                                 <Label Content="{DynamicResource show_window_previews}" />
                             </CheckBox>
                             <CheckBox x:Name="cbSlideTaskbarButtons"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=SlideTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=SlideTaskbarButtons, UpdateSourceTrigger=PropertyChanged}"
+                                      Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='horizontal'}">
                                 <Label Content="{DynamicResource slide_taskbar_buttons}" />
                             </CheckBox>
                         </StackPanel>
@@ -354,6 +355,10 @@
                         <CheckBox x:Name="cbCheckForUpdates"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CheckForUpdates, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource check_for_updates}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbAutoHideTransparent"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHideTransparent, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource auto_hide_transparent}" />
                         </CheckBox>
                         <CheckBox x:Name="cbShowExitMenuItem"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged}">
