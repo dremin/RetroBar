@@ -341,6 +341,13 @@ namespace RetroBar.Utilities
             set => Set(ref _showStartButtonMultiMon, value);
         }
 
+        private bool _autoHideTransparent = false;
+        public bool AutoHideTransparent
+        {
+            get => _autoHideTransparent;
+            set => Set(ref _autoHideTransparent, value);
+        }
+
         private bool _slideTaskbarButtons = false;
         public bool SlideTaskbarButtons
         {

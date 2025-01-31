@@ -65,6 +65,7 @@
         <s:String>Open Modern calendar</s:String>
         <s:String>Open Notification Center</s:String>
     </x:Array>
+    <s:String x:Key="auto_hide_transparent">Hide _taskbar line when hidden with auto-hide</s:String>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">Visit RetroBar on GitHub</s:String>
     <s:String x:Key="taskbar_scale">Taskbar scale</s:String>
