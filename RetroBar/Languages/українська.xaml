@@ -20,19 +20,25 @@
         <s:String>Справа</s:String>
         <s:String>Внизу</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Кількість рядків:</s:String>
+    <s:String x:Key="rowcount_tip">Кількість рядків панелі завдань при розташуванні вгорі або внизу.</s:String>
+    <s:String x:Key="taskbar_width">Ширина панелі завдань:</s:String>
     <s:String x:Key="allow_font_smoothing">Згладжування шрифту</s:String>
     <s:String x:Key="collapse_tray_icons">Згорнути іконки панелі сповіщень</s:String>
     <s:String x:Key="customize">Змінити...</s:String>
     <s:String x:Key="show_input_language">Показати розкладку _клавіатури</s:String>
     <s:String x:Key="show_clock">Показати годинник</s:String>
     <s:String x:Key="show_multi_mon">Показати на усіх дисплеях</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Відображати кнопку "_Пуск" на всіх панелях завдань</s:String>
     <s:String x:Key="show_quick_launch">Показати ікони швидкого запуску</s:String>
     <s:String x:Key="select_location">Вибрати іншу теку...</s:String>
     <s:String x:Key="quick_launch_folder">Швидкий запуск - Виберіть теку</s:String>
-    <s:String x:Key="show_window_previews">Показувати попередній перегляд вікон</s:String>
+    <s:String x:Key="show_badges">Показувати емблеми на значках</s:String>
+    <s:String x:Key="show_window_previews">Показувати попередній перегляд вікон (мініатюри)</s:String>
     <s:String x:Key="use_software_rendering">Вимк. апаратне оброблення</s:String>
     <s:String x:Key="add_show_desktop_button">Кнопка "Показати робочий стіл"</s:String>
     <s:String x:Key="enable_auto_hide">Автоматично ховати панель завдань</s:String>
+    <s:String x:Key="lock_taskbar">Закріпити П/З</s:String>
     <s:String x:Key="multiple_displays">Дисплеї</s:String>
     <s:String x:Key="show_tasks_on">Показувати активні програми:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
@@ -40,22 +46,46 @@
         <s:String>Та сама панель, що й у вікні</s:String>
         <s:String>Та сама панель, що й у вікні та основній панелі</s:String>
     </x:Array>
+    <s:String x:Key="invert_system_icons">Інвертувати системні значки:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Коли потрібна тема</s:String>
+        <s:String>Завжди</s:String>
+        <s:String>Ніколи</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Дія з середньою кнопкою миші:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Нічого не робити</s:String>
+        <s:String>Відкрити нове вікно завдань</s:String>
+        <s:String>Закрити завдань</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">Дія після натискання на годинник:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Нічого не робити</s:String>
+        <s:String>Відкрити Aero-календар</s:String>
+        <s:String>Відкрити Modern-календар</s:String>
+        <s:String>Відкрити центр сповіщень</s:String>
+    </x:Array>
     <s:String x:Key="version">Версія {0}</s:String>
     <s:String x:Key="visit_on_github">Сторінка програми в GitHub</s:String>
     <s:String x:Key="taskbar_scale">Розмір П/З</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Розмір налаштовано на: {0}%</s:String>
-    <s:String x:Key="debug_logging">Дебаг</s:String>
-    <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="debug_logging">Увімкнути налагоджувальне логування (Дебаг)</s:String>
+    <s:String x:Key="check_for_updates">Перевіряти наявність оновлень</s:String>
+    <s:String x:Key="show_exit_menu_item">Відображати опцію виходу в контекстному меню</s:String>
+    <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Налаштувати панель сповіщень</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar показує іконки сповіщень та фонових програм і ховає неактивні. Ви можете змінити поведінку показу в списку нижче.</s:String>
     <s:String x:Key="customize_notifications_instruction">Вибери іконку та вибери поведінку сповіщення:</s:String>
     <s:String x:Key="hide_when_inactive">Ховати коли неактивне</s:String>
     <s:String x:Key="always_show">Завжди показувати</s:String>
+    <s:String x:Key="always_hide">Завжди приховувати</s:String>
+    <s:String x:Key="remove">Прибрати</s:String>
     <s:String x:Key="name_heading">Назва</s:String>
     <s:String x:Key="behavior_heading">Поведінка</s:String>
+    <s:String x:Key="invert_heading">Инвертировать</s:String>
 
     <s:String x:Key="start_text">Пуск</s:String>
     <s:String x:Key="start_text_xp">Пуск</s:String>
@@ -69,9 +99,12 @@
     <s:String x:Key="new_toolbar">Нова панель інструментів...</s:String>
     <s:String x:Key="set_time">Налаштувати Дату та Час</s:String>
     <s:String x:Key="cascade">Сховати вікна</s:String>
+    <s:String x:Key="horiz_tile">Вікна зверху вниз</s:String>
+    <s:String x:Key="vert_tile">Вікна зліва направо</s:String>
     <s:String x:Key="toggle_desktop">Показати робочий стіл</s:String>
     <s:String x:Key="hide_desktop">Показати відкриті вікна</s:String>
     <s:String x:Key="undo_cascade">Скасувати сховування вікон</s:String>
+    <s:String x:Key="undo_tile">Скасувати Вікна поруч</s:String>
     <s:String x:Key="undo_minimize_all">Скасувати сховування усіх вікон</s:String>
     <s:String x:Key="show_taskman_2k">Диспетчер завдань...</s:String>
     <s:String x:Key="show_taskman">Диспетчер завдань</s:String>
@@ -79,6 +112,7 @@
     <s:String x:Key="update_available">Доступне оновлення...</s:String>
     <s:String x:Key="exit_retrobar">Вийти з RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Налаштувати панель сповіщень...</s:String>
+    <s:String x:Key="lock_taskbar_menu">Закріпити П/З</s:String>
 
     <s:String x:Key="show_desktop_tip_95">Показати робочий стіл</s:String>
     <s:String x:Key="show_desktop_tip">Показати робочий стіл</s:String>
