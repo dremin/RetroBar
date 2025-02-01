@@ -65,6 +65,7 @@
         <s:String>Abrir el calendario Moderno</s:String>
         <s:String>Abrir el Centro de notificaciones</s:String>
     </x:Array>
+    <s:String x:Key="auto_hide_transparent">Esconder _la barra de tareas al ocultar automáticamente</s:String>
     <s:String x:Key="version">Versión {0}</s:String>
     <s:String x:Key="visit_on_github">Visitar RetroBar en GitHub</s:String>
     <s:String x:Key="taskbar_scale">Escala de barra de tareas</s:String>
@@ -74,6 +75,7 @@
     <s:String x:Key="debug_logging">Habilitar registro de _depuración</s:String>
     <s:String x:Key="check_for_updates">Comprobar _actualizaciones</s:String>
     <s:String x:Key="show_exit_menu_item">Mostrar opción de _salida en el menú contextual</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Deslizar _botones de la barra de tareas</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
