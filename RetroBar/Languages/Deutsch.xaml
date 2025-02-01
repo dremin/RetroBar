@@ -22,12 +22,14 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Anzahl der _Zeilen:</s:String>
     <s:String x:Key="rowcount_tip">Die Anzahl der Zeilen in der Taskleiste oben oder unten.</s:String>
+    <s:String x:Key="taskbar_width">Taskleistenb_reite:</s:String>
     <s:String x:Key="allow_font_smoothing">Schriftglättung zul_assen</s:String>
     <s:String x:Key="collapse_tray_icons">Infobereichsymbole ausble_nden</s:String>
     <s:String x:Key="customize">A_npassen...</s:String>
     <s:String x:Key="show_input_language">Eingabe_sprache anzeigen</s:String>
     <s:String x:Key="show_clock">_Uhr anzeigen</s:String>
     <s:String x:Key="show_multi_mon">Auf mehreren Bildschirmen anzeigen</s:String>
+    <s:String x:Key="show_start_button_multi_mon">_Start auf allen Taskleisten anzeigen</s:String>
     <s:String x:Key="show_quick_launch">_Schnellstartleiste anzeigen</s:String>
     <s:String x:Key="select_location">Ort auswählen...</s:String>
     <s:String x:Key="quick_launch_folder">Schnellstart - Wähle ein Ordner</s:String>
@@ -56,6 +58,14 @@
         <s:String>Eine neue Instanz öffnen</s:String>
         <s:String>Task schließen</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">Kli_ckaktion für Uhr:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Keine Aktion</s:String>
+        <s:String>Aero-Kalender öffnen</s:String>
+        <s:String>Modernen Kalender öffnen</s:String>
+        <s:String>Benachrichtigungszentrum öffnen</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Linie der _Taskleistenausblenden, wenn Automatisch ausblenden aktiviert ist</s:String>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBar auf GitHub besuchen</s:String>
     <s:String x:Key="taskbar_scale">Skalierung der Taskleiste</s:String>
@@ -64,6 +74,8 @@
     <s:String x:Key="taskbar_scale_current">Aktuelle Einstellung: {0}%</s:String>
     <s:String x:Key="debug_logging">Debug-Protokollierung aktivieren</s:String>
     <s:String x:Key="check_for_updates">Auf Updates prüfen</s:String>
+    <s:String x:Key="show_exit_menu_item">Be_enden im Rechtsklickmenü anzeigen</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Schaltfläch_en der Taskleiste schieben</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
