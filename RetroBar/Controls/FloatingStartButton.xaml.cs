@@ -14,15 +14,15 @@ namespace RetroBar.Controls
     {
         private WindowInteropHelper helper;
         private IntPtr handle;
+        private NativeMethods.Rect startupRect;
 
-        public FloatingStartButton(StartButton mainButton, Point position, Size size)
+        public FloatingStartButton(StartButton mainButton, NativeMethods.Rect rect)
         {
             Owner = mainButton.Host;
             DataContext = mainButton;
 
             InitializeComponent();
-
-            SetPosition(position, size);
+            startupRect = rect;
 
             // Render the existing start button control as the ViewRect fill
             VisualBrush visualBrush = new VisualBrush(mainButton.Start);
@@ -43,6 +43,8 @@ namespace RetroBar.Controls
             NativeMethods.SetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
 
             WindowHelper.ExcludeWindowFromPeek(helper.Handle);
+
+            SetPosition(startupRect);
         }
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -58,24 +60,10 @@ namespace RetroBar.Controls
             return IntPtr.Zero;
         }
 
-        internal void SetPosition(Point position, Size size)
+        internal void SetPosition(NativeMethods.Rect rect)
         {
-            Visibility = Visibility.Hidden;
-
-            if (FlowDirection == FlowDirection.LeftToRight)
-            {
-                Left = position.X;
-            }
-            else
-            {
-                Left = position.X - size.Width;
-            }
-            
-            Top = position.Y;
-            Width = size.Width;
-            Height = size.Height;
-
-            Visibility = Visibility.Visible;
+            int swp = (int)NativeMethods.SetWindowPosFlags.SWP_NOZORDER | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE;
+            NativeMethods.SetWindowPos(handle, IntPtr.Zero, rect.Left, rect.Top, rect.Width, rect.Height, swp);
         }
     }
 }

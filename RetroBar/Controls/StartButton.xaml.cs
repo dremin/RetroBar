@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Interop;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -240,7 +241,7 @@ namespace RetroBar.Controls
 
             if (floatingStartButton == null)
             {
-                floatingStartButton = new FloatingStartButton(this, getButtonCoordinates(), getButtonSize());
+                floatingStartButton = new FloatingStartButton(this, getButtonRect());
                 floatingStartButton.Show();
             }
             else
@@ -270,29 +271,23 @@ namespace RetroBar.Controls
             floatingStartButton = null;
         }
 
-        private Point getButtonCoordinates()
+        private NativeMethods.Rect getButtonRect()
         {
-            // Get the location of the start button's top left
-            Point buttonPosPixels = Start.PointToScreen(new Point(0, 0));
-
-            // Convert from pixels to WPF points
-            PresentationSource source = PresentationSource.FromVisual(this);
-            Point buttonPosPoints = source.CompositionTarget.TransformFromDevice.Transform(buttonPosPixels);
+            // Get the pixel values of the start button's bounds
+            Point buttonPosPixels = Start.PointToScreen(new Point(FlowDirection == FlowDirection.LeftToRight ? 0 : Start.ActualWidth, 0));
+            Point buttonSizePixels = Start.PointToScreen(new Point(FlowDirection == FlowDirection.LeftToRight ? Start.ActualWidth : 0, Start.ActualHeight));
 
             // If the start button is currently translated, we get the translated position
             // and need to offset by that much to be positioned correctly.
             if (Host?.AutoHideElement?.RenderTransform is TranslateTransform tt)
             {
-                buttonPosPoints.X += (tt.X * -1);
-                buttonPosPoints.Y += (tt.Y * -1);
+                buttonPosPixels.X -= (tt.X * Host.DpiScale);
+                buttonPosPixels.Y -= (tt.Y * Host.DpiScale);
+                buttonSizePixels.X -= (tt.X * Host.DpiScale);
+                buttonSizePixels.Y -= (tt.Y * Host.DpiScale);
             }
 
-            return buttonPosPoints;
-        }
-
-        private Size getButtonSize()
-        {
-            return new Size(Start.ActualWidth * Settings.Instance.TaskbarScale, Start.ActualHeight * Settings.Instance.TaskbarScale);
+            return new NativeMethods.Rect((int)buttonPosPixels.X, (int)buttonPosPixels.Y, (int)buttonSizePixels.X, (int)buttonSizePixels.Y);
         }
 
         public void UpdateFloatingStartCoordinates()
@@ -300,7 +295,7 @@ namespace RetroBar.Controls
             // Can't get our coordinates if we aren't visible.
             if (!IsVisible || floatingStartButton == null) return;
 
-            floatingStartButton.SetPosition(getButtonCoordinates(), getButtonSize());
+            floatingStartButton.SetPosition(getButtonRect());
         }
 
         #endregion
