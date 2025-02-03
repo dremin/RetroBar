@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    name: Build RetroBar
+    name: Build
     strategy:
       matrix:
         publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows] ]
@@ -84,3 +84,9 @@ jobs:
       uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
       with:
         path: ${{ env.installer }}
+
+    - name: Upload installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: RetroBar Installer
+        path: bin\RetroBarSetup.exe
