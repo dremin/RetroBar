@@ -4,7 +4,9 @@
 #define RetroBarURL "https://github.com/dremin/RetroBar"
 #define RetroBarExeName "RetroBar.exe"
 
-#define DotNetVersion "6.0.36"
+#define DotNetVersionDownload "6.0.36"
+#define DotNetVersionMinimum "6.0.2"
+#define DotNetVersionMaximum "6.1.0"
 #define DotNetInstallerExe "RetroBar_DotNetRuntimeInstaller.exe"
 
 #define TargetFramework "net6.0-windows"
@@ -64,10 +66,9 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "autostart"; Description: "{cm:AutoStartProgram,{#StringChange(RetroBarName, '&', '&&')}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
+Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
 
 [Files]
-Source: "DistLicense.txt"; DestDir: "{app}"; DestName: "License.txt"; Flags: ignoreversion
 Source: "RetroBar\bin\Release\{#TargetFramework}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs
 Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs
 Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs
@@ -76,6 +77,7 @@ Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86\*"; DestDir: "{app}
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
 Type: files; Name: "{localappdata}\RetroBar\settings.json"
 Type: dirifempty; Name: "{localappdata}\RetroBar"
+Type: files; Name: "{tmp}\{#DotNetInstallerExe}"
 
 [Icons]
 Name: "{autoprograms}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"
@@ -85,8 +87,8 @@ Name: "{autodesktop}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"; Tas
 Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "RetroBar"; ValueType: string; ValueData: "{app}\{#RetroBarExeName}"; Tasks: autostart; Flags: uninsdeletevalue
 
 [Run]
-Filename: "{app}\{#RetroBarExeName}"; Description: "{cm:LaunchProgram,{#StringChange(RetroBarName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing Microsoft .NET 6 Desktop Runtime..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#StringChange(RetroBarName, '&', '&&')}}"; Check: NetRuntimeIsMissing; Flags: skipifdoesntexist
+Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing Microsoft .NET 6 Desktop Runtime..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
+Filename: "{app}\{#RetroBarExeName}"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
 var
@@ -155,15 +157,13 @@ begin
   end;
 end;
 
-function NetRuntimeIsMissing(): Boolean;
+function DotNetRuntimeIsMissing(): Boolean;
 var
   runtimes: TArrayOfString;
   registryKey: string;
   I: Integer;
   meetsMinimumVersion: Boolean;
   meetsMaximumVersion: Boolean;
-  minimumVersion: string;
-  maximumExclusiveVersion: string;
 begin
   Result := True;
   
@@ -175,15 +175,18 @@ begin
 
   DotNetChecked := True;
   DotNetMissing := True;
-  minimumVersion := '6.0.0';
-  maximumExclusiveVersion := '6.1.0';
-  registryKey := 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.WindowsDesktop.App';
+  if PreferArm64Files() then
+    registryKey := 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\arm64\sharedfx\Microsoft.WindowsDesktop.App'
+  else if PreferX64Files() then
+    registryKey := 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.WindowsDesktop.App'
+  else if PreferX86Files() then
+    registryKey := 'SOFTWARE\dotnet\Setup\InstalledVersions\x86\sharedfx\Microsoft.WindowsDesktop.App';
   if RegGetValueNames(HKLM, registryKey, runtimes) then
   begin
     for I := 0 to GetArrayLength(runtimes)-1 do
     begin
-      meetsMinimumVersion := not (CompareVersion(runtimes[I], minimumVersion) = -1);
-      meetsMaximumVersion := CompareVersion(runtimes[I], maximumExclusiveVersion) = -1;
+      meetsMinimumVersion := not (CompareVersion(runtimes[I], '{#DotNetVersionMinimum}') = -1);
+      meetsMaximumVersion := CompareVersion(runtimes[I], '{#DotNetVersionMaximum}') = -1;
       if meetsMinimumVersion and meetsMaximumVersion then
       begin
         Log(Format('[.NET] Selecting %s', [runtimes[I]]));
@@ -192,6 +195,57 @@ begin
           Exit;
       end;
     end;
+  end;
+end;
+
+// To be used if we switch to a version that actually gets updates
+// function DownloadDotNetVersion(baseVersion: String): Boolean;
+// begin
+  // DownloadPage.Clear;
+  // DownloadPage.Add(Format('https://dotnetcli.azureedge.net/dotnet/WindowsDesktop/%s/latest.version', [baseVersion]), '{#DotNetVersionFile}', '');
+  // DownloadPage.Show;
+  // try
+    // try
+      // DownloadPage.Download; // This downloads the files to {tmp}
+      // Result := True;
+    // except
+      // if DownloadPage.AbortedByUser then
+        // Log('Aborted by user.')
+      // else
+        // SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+      // Result := False;
+    // end;
+  // finally
+    // DownloadPage.Hide;
+  // end;
+// end;
+
+function DownloadDotNetRuntime(version: AnsiString): Boolean;
+var
+  baseUrl: String;
+begin
+  baseUrl := Format('https://dotnetcli.azureedge.net/dotnet/WindowsDesktop/%s/windowsdesktop-runtime-%s', [version, version]);
+  DownloadPage.Clear;
+  if PreferArm64Files() then
+    DownloadPage.Add(Format('%s-win-arm64.exe', [baseUrl]), '{#DotNetInstallerExe}', '')
+  else if PreferX64Files() then
+    DownloadPage.Add(Format('%s-win-x64.exe', [baseUrl]), '{#DotNetInstallerExe}', '')
+  else if PreferX86Files() then
+    DownloadPage.Add(Format('%s-win-x86.exe', [baseUrl]), '{#DotNetInstallerExe}', '');
+  DownloadPage.Show;
+  try
+    try
+      DownloadPage.Download; // This downloads the files to {tmp}
+      Result := True;
+    except
+      if DownloadPage.AbortedByUser then
+        Log('Aborted by user.')
+      else
+        SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+      Result := False;
+    end;
+  finally
+    DownloadPage.Hide;
   end;
 end;
 
@@ -209,34 +263,16 @@ end;
 
 function NextButtonClick(CurPageID: Integer): Boolean;
 begin
-  if CurPageID = wpReady then begin
-    if not NetRuntimeIsMissing() then begin
-      Result := True;
-      Exit;
-    end;
-    DownloadPage.Clear;
-    if PreferArm64Files() then
-      DownloadPage.Add('https://dotnetcli.azureedge.net/dotnet/WindowsDesktop/{#DotNetVersion}/windowsdesktop-runtime-{#DotNetVersion}-win-arm64.exe', '{#DotNetInstallerExe}', '')
-    else if PreferX64Files() then
-      DownloadPage.Add('https://dotnetcli.azureedge.net/dotnet/WindowsDesktop/{#DotNetVersion}/windowsdesktop-runtime-{#DotNetVersion}-win-x64.exe', '{#DotNetInstallerExe}', '')
-    else if PreferX86Files() then
-      DownloadPage.Add('https://dotnetcli.azureedge.net/dotnet/WindowsDesktop/{#DotNetVersion}/windowsdesktop-runtime-{#DotNetVersion}-win-x86.exe', '{#DotNetInstallerExe}', '');
-    DownloadPage.Show;
-    try
-      try
-        DownloadPage.Download; // This downloads the files to {tmp}
-        Result := True;
-      except
-        if DownloadPage.AbortedByUser then
-          Log('Aborted by user.')
-        else
-          SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
-        Result := False;
-      end;
-    finally
-      DownloadPage.Hide;
-      Exit;
-    end;
-  end;
   Result := True;
+  if CurPageID = wpReady then begin
+    if not DotNetRuntimeIsMissing() then Exit;
+    
+    // To be used if we switch to a version that actually gets updates
+    // if not DownloadDotNetVersion('6.0') then Exit;
+    // if not LoadStringFromFile(ExpandConstant('{tmp}\{#DotNetVersionFile}'), downloadVersion) then Exit;
+    
+    // Allow the install to proceed even if the download fails
+    // The user will be prompted again when they launch RetroBar
+    DownloadDotNetRuntime('{#DotNetVersionDownload}');
+  end;
 end;

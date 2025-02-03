@@ -43,12 +43,13 @@ jobs:
         path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
 
   installer:
-    name: Generate Installer
+    name: Installer
     needs: [ build ]
     runs-on: windows-latest
 
     env:
       installer: setup.iss
+      targetFramework: net6.0-windows
 
     steps:
     - name: Checkout
@@ -60,19 +61,19 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: RetroBar ARM64
-        path: RetroBar\bin\Release\net6.0-windows\publish-ARM64\
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-ARM64\
 
     - name: Download build artifacts - x64
       uses: actions/download-artifact@v4
       with:
         name: RetroBar 64-bit
-        path: RetroBar\bin\Release\net6.0-windows\publish-x64\
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x64\
 
     - name: Download build artifacts - x86
       uses: actions/download-artifact@v4
       with:
         name: RetroBar 32-bit
-        path: RetroBar\bin\Release\net6.0-windows\publish-x86\
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
 
     - name: Set installer version
       shell: pwsh
