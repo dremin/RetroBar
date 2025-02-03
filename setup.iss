@@ -77,7 +77,6 @@ Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86\*"; DestDir: "{app}
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
 Type: files; Name: "{localappdata}\RetroBar\settings.json"
 Type: dirifempty; Name: "{localappdata}\RetroBar"
-Type: files; Name: "{tmp}\{#DotNetInstallerExe}"
 
 [Icons]
 Name: "{autoprograms}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"
