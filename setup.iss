@@ -8,6 +8,7 @@
 #define DotNetVersionMinimum "6.0.2"
 #define DotNetVersionMaximum "6.1.0"
 #define DotNetInstallerExe "RetroBar_DotNetRuntimeInstaller.exe"
+#define DotNetInstallerTitle "Microsoft .NET 6 Desktop Runtime"
 
 #define TargetFramework "net6.0-windows"
 
@@ -86,7 +87,7 @@ Name: "{autodesktop}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"; Tas
 Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "RetroBar"; ValueType: string; ValueData: "{app}\{#RetroBarExeName}"; Tasks: autostart; Flags: uninsdeletevalue
 
 [Run]
-Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing Microsoft .NET 6 Desktop Runtime..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
+Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing {#DotNetInstallerTitle}..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
 Filename: "{app}\{#RetroBarExeName}"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
@@ -274,4 +275,10 @@ begin
     // The user will be prompted again when they launch RetroBar
     DownloadDotNetRuntime('{#DotNetVersionDownload}');
   end;
+end;
+
+function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
+begin
+  if DotNetRuntimeIsMissing() then Result := 'Setup will also download and install required dependencies:' + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
+  Result := Result + MemoTasksInfo;
 end;
