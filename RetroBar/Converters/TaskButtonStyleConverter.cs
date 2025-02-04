@@ -15,7 +15,7 @@ namespace RetroBar.Converters
                 return null;
             }
 
-            if (fxElement.ContextMenu.IsOpen)
+            if (fxElement.ContextMenu?.IsOpen == true)
             {
                 // Always show as active with an open context menu
                 return fxElement.FindResource("TaskButtonActive");
