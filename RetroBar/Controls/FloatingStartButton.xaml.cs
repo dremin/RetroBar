@@ -62,6 +62,14 @@ namespace RetroBar.Controls
 
         internal void SetPosition(NativeMethods.Rect rect)
         {
+            NativeMethods.Rect currentRect;
+            NativeMethods.GetWindowRect(handle, out currentRect);
+
+            if (rect.Left == currentRect.Left && rect.Top == currentRect.Top && rect.Right == currentRect.Right && rect.Bottom == currentRect.Bottom)
+            {
+                return;
+            }
+
             int swp = (int)NativeMethods.SetWindowPosFlags.SWP_NOZORDER | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE;
             NativeMethods.SetWindowPos(handle, IntPtr.Zero, rect.Left, rect.Top, rect.Width, rect.Height, swp);
         }

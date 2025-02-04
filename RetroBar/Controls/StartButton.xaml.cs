@@ -201,6 +201,7 @@ namespace RetroBar.Controls
         {
             if (!visibilityChanged)
             {
+                UpdateFloatingStartCoordinates();
                 return;
             }
 
