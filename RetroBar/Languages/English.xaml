@@ -134,6 +134,13 @@
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 
+    <s:String x:Key="install_custom_themes">Install custom themes...</s:String>
+    <s:String x:Key="theme_files">Theme files</s:String>
+    <s:String x:Key="themes_installed_title">Themes installed</s:String>
+    <s:String x:Key="themes_installed_text">The following themes were installed:</s:String>
+    <s:String x:Key="error_installing_theme_title">Error installing theme</s:String>
+    <s:String x:Key="error_installing_theme_text">Unable to install {0}. Check the log file for more details.</s:String>
+
     <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
