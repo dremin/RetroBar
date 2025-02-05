@@ -76,6 +76,7 @@ namespace RetroBar.Utilities
             try
             {
                 var fileName = Path.GetFileName(file);
+                Directory.CreateDirectory(_dictionaryManager.GetThemeInstallDir());
                 File.Copy(file, Path.Combine(_dictionaryManager.GetThemeInstallDir(), fileName), true);
 
                 if (Path.GetExtension(file).ToLower() == ".xaml")
