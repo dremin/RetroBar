@@ -178,18 +178,14 @@ namespace RetroBar
             DesiredHeight = newHeight;
             DesiredWidth = newWidth;
 
-            if (performResize)
+            if (!performResize)
             {
-                if (Orientation == Orientation.Horizontal && heightChanged)
-                {
-                    Height = DesiredHeight;
-                    SetScreenPosition();
-                }
-                else if (Orientation == Orientation.Vertical && widthChanged)
-                {
-                    Width = DesiredWidth;
-                    SetScreenPosition();
-                }
+                return;
+            }
+
+            if ((Orientation == Orientation.Horizontal && heightChanged) || (Orientation == Orientation.Vertical && widthChanged))
+            {
+                SetScreenPosition();
             }
         }
 
@@ -300,13 +296,11 @@ namespace RetroBar
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
         {
             UpdateTrayPosition();
-            StartButton?.UpdateFloatingStartCoordinates();
         }
 
         private void Taskbar_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             UpdateTrayPosition();
-            StartButton?.UpdateFloatingStartCoordinates();
         }
 
         private void Taskbar_Deactivated(object sender, EventArgs e)
