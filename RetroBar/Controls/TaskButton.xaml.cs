@@ -286,5 +286,10 @@ namespace RetroBar.Controls
             }
         }
         #endregion
+
+        private void ContextMenu_OpenedOrClosed(object sender, RoutedEventArgs e)
+        {
+            BindingOperations.GetMultiBindingExpression(AppButton, StyleProperty).UpdateTarget();
+        }
     }
 }

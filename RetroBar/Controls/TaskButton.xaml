@@ -45,7 +45,8 @@
             </TextBlock>
         </Grid>
         <Button.ContextMenu>
-            <ContextMenu>
+            <ContextMenu Opened="ContextMenu_OpenedOrClosed"
+                         Closed="ContextMenu_OpenedOrClosed">
                 <MenuItem Header="{DynamicResource restore}"
                           Click="RestoreMenuItem_OnClick"
                           Name="RestoreMenuItem">
