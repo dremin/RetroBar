@@ -296,11 +296,13 @@ namespace RetroBar
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
         {
             UpdateTrayPosition();
+            StartButton?.UpdateFloatingStartCoordinates();
         }
 
         private void Taskbar_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             UpdateTrayPosition();
+            StartButton?.UpdateFloatingStartCoordinates();
         }
 
         private void Taskbar_Deactivated(object sender, EventArgs e)
