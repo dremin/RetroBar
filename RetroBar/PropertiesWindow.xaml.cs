@@ -371,5 +371,21 @@ namespace RetroBar
             ShellHelper.ExecuteProcess(e.Uri.AbsoluteUri);
             e.Handled = true;
         }
+
+        private void InstallThemes_OnClick(object sender, RoutedEventArgs e)
+        {
+            ThemeInstaller installer = new ThemeInstaller(_dictionaryManager);
+            if (installer.ShowDialog())
+            {
+                foreach (string theme in installer.NewThemes)
+                {
+                    if (!cboThemeSelect.Items.Contains(theme))
+                    {
+                        cboThemeSelect.Items.Add(theme);
+                    }
+                }
+                installer.ShowNewThemesAlert();
+            }
+        }
     }
 }
