@@ -90,6 +90,10 @@ namespace RetroBar.Controls
                     StopClock();
                 }
             }
+            else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
+            {
+                UpdateUserCulture();
+            }
         }
 
         private void Clock_Tick(object sender, EventArgs args)
@@ -146,6 +150,11 @@ namespace RetroBar.Controls
             {
                 ShellLogger.Error($"Clock: Unable to get the user culture: {e.Message}, defaulting to en-US");
                 _userCulture = new CultureInfo("en-US");
+            }
+
+            if (Settings.Instance.ShowClockSeconds)
+            {
+                _userCulture.DateTimeFormat.ShortTimePattern = _userCulture.DateTimeFormat.LongTimePattern;
             }
 
             // Make mutable if necessary...
