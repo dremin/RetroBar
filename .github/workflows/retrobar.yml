@@ -12,7 +12,7 @@ jobs:
     name: Build
     strategy:
       matrix:
-        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows] ]
+        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows], [x64-full, net6.0-windows], [x86-full, net6.0-windows], [ARM64-full, net6.0-windows] ]
     outputs:
       version: ${{ steps.nbgv.outputs.SimpleVersion }}
     runs-on: windows-latest
@@ -39,7 +39,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || 'ARM64' }}
+        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-full' && '32-bit Full' || matrix.publishprofile[0] == 'x64-full' && '64-bit Full' || 'ARM64 Full' }}
         path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
 
   installer:
@@ -48,7 +48,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      installer: setup.iss
+      installer: installer.iss
       targetFramework: net6.0-windows
 
     steps:
@@ -60,20 +60,20 @@ jobs:
     - name: Download build artifacts - ARM64
       uses: actions/download-artifact@v4
       with:
-        name: RetroBar ARM64
-        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-ARM64\
+        name: RetroBar ARM64 Full
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-ARM64-full\
 
     - name: Download build artifacts - x64
       uses: actions/download-artifact@v4
       with:
-        name: RetroBar 64-bit
-        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x64\
+        name: RetroBar 64-bit Full
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x64-full\
 
     - name: Download build artifacts - x86
       uses: actions/download-artifact@v4
       with:
-        name: RetroBar 32-bit
-        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
+        name: RetroBar 32-bit Full
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86-full\
 
     - name: Set installer version
       shell: pwsh
@@ -90,4 +90,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: RetroBar Installer
-        path: bin\RetroBarSetup.exe
+        path: bin\RetroBarInstaller.exe
