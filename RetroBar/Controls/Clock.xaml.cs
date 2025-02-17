@@ -152,15 +152,15 @@ namespace RetroBar.Controls
                 _userCulture = new CultureInfo("en-US");
             }
 
-            if (Settings.Instance.ShowClockSeconds)
-            {
-                _userCulture.DateTimeFormat.ShortTimePattern = _userCulture.DateTimeFormat.LongTimePattern;
-            }
-
             // Make mutable if necessary...
             if (_userCulture.IsReadOnly)
             {
                 _userCulture = (CultureInfo)_userCulture.Clone();
+            }
+
+            if (Settings.Instance.ShowClockSeconds)
+            {
+                _userCulture.DateTimeFormat.ShortTimePattern = _userCulture.DateTimeFormat.LongTimePattern;
             }
 
             SetConverterCultureRecursively(this, _userCulture);
