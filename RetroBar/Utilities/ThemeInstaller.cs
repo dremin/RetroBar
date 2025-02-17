@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using ManagedShell.Common.Logging;
+using System.Windows.Markup;
 
 namespace RetroBar.Utilities
 {
@@ -20,7 +21,6 @@ namespace RetroBar.Utilities
 
         public bool ShowDialog()
         {
-
             using (System.Windows.Forms.OpenFileDialog dlg = new System.Windows.Forms.OpenFileDialog
             {
                 Filter = $"{(string)Application.Current.FindResource("theme_files")}|*.xaml;*.png",
@@ -75,19 +75,39 @@ namespace RetroBar.Utilities
         {
             try
             {
+                bool isXaml = Path.GetExtension(file).ToLower() == ".xaml";
+
+                if (isXaml)
+                {
+                    // Validate that this XAML file is a ResourceDictionary
+                    bool isDict = false;
+                    using (FileStream fs = File.OpenRead(file))
+                    {
+                        if (XamlReader.Load(fs) is ResourceDictionary dict)
+                        {
+                            isDict = true;
+                        }
+                    }
+
+                    if (!isDict)
+                    {
+                        throw new Exception("Selected file is not a ResourceDictionary.");
+                    }
+                }
+
                 var fileName = Path.GetFileName(file);
                 Directory.CreateDirectory(_dictionaryManager.GetThemeInstallDir());
                 File.Copy(file, Path.Combine(_dictionaryManager.GetThemeInstallDir(), fileName), true);
 
-                if (Path.GetExtension(file).ToLower() == ".xaml")
+                if (isXaml)
                 {
                     NewThemes.Add(Path.GetFileNameWithoutExtension(file));
                 }
             }
             catch (Exception e)
             {
-                ShellLogger.Error($"ThemeInstaller: Error copying file: {e}");
-                System.Windows.MessageBox.Show(string.Format((string)Application.Current.FindResource("error_installing_theme_text"), file), (string)Application.Current.FindResource("error_installing_theme_title"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                ShellLogger.Error($"ThemeInstaller: Error installing theme: {e}");
+                MessageBox.Show(string.Format((string)Application.Current.FindResource("error_installing_theme_text"), file), (string)Application.Current.FindResource("error_installing_theme_title"), MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
 

@@ -139,7 +139,7 @@
     <s:String x:Key="themes_installed_title">Themes installed</s:String>
     <s:String x:Key="themes_installed_text">The following themes were installed:</s:String>
     <s:String x:Key="error_installing_theme_title">Error installing theme</s:String>
-    <s:String x:Key="error_installing_theme_text">Unable to install {0}. Check the log file for more details.</s:String>
+    <s:String x:Key="error_installing_theme_text">Unable to install {0}. Check that you have selected a valid theme, or open the log file for more details.</s:String>
 
     <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>

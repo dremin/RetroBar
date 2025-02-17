@@ -11,6 +11,7 @@ using ManagedShell.AppBar;
 using System.Windows.Forms;
 using ManagedShell.WindowsTray;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace RetroBar
 {
@@ -374,18 +375,26 @@ namespace RetroBar
 
         private void InstallThemes_OnClick(object sender, RoutedEventArgs e)
         {
-            ThemeInstaller installer = new ThemeInstaller(_dictionaryManager);
-            if (installer.ShowDialog())
+            var thread = new Thread(() =>
             {
-                foreach (string theme in installer.NewThemes)
+                ThemeInstaller installer = new ThemeInstaller(_dictionaryManager);
+                if (installer.ShowDialog())
                 {
-                    if (!cboThemeSelect.Items.Contains(theme))
+                    Dispatcher.BeginInvoke(() =>
                     {
-                        cboThemeSelect.Items.Add(theme);
-                    }
+                        foreach (string theme in installer.NewThemes)
+                        {
+                            if (!cboThemeSelect.Items.Contains(theme))
+                            {
+                                cboThemeSelect.Items.Add(theme);
+                            }
+                        }
+                        installer.ShowNewThemesAlert();
+                    });
                 }
-                installer.ShowNewThemesAlert();
-            }
+            });
+            thread.TrySetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
     }
 }
