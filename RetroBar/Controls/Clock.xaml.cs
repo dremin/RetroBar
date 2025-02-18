@@ -30,7 +30,6 @@ namespace RetroBar.Controls
         }
 
         private readonly DispatcherTimer _clock = new DispatcherTimer(DispatcherPriority.Background);
-        private CultureInfo _userCulture;
         private bool _isLoaded;
 
         private const int LOCALE_NAME_MAX_LENGTH = 85;
@@ -131,40 +130,41 @@ namespace RetroBar.Controls
 
         private void UpdateUserCulture()
         {
+            CultureInfo userCulture;
+
             try
             {
                 string localeName = GetUserDefaultLocaleNameWrapper();
 
                 if (!string.IsNullOrEmpty(localeName))
                 {
-                    _userCulture = new CultureInfo(localeName);
+                    userCulture = new CultureInfo(localeName);
                 }
                 else
                 {
                     // Fallback: use LCID if locale name isn't available.
                     int lcid = GetUserDefaultLCID();
-                    _userCulture = new CultureInfo(lcid);
+                    userCulture = new CultureInfo(lcid);
                 }
             }
             catch (Exception e)
             {
-                ShellLogger.Error($"Clock: Unable to get the user culture: {e.Message}, defaulting to en-US");
-                _userCulture = new CultureInfo("en-US");
+                ShellLogger.Error($"Clock: Unable to get the user culture: {e.Message}, defaulting to current culture");
+                userCulture = CultureInfo.CurrentCulture;
             }
 
-            // Make mutable if necessary...
-            if (_userCulture.IsReadOnly)
+            if (userCulture.IsReadOnly)
             {
-                _userCulture = (CultureInfo)_userCulture.Clone();
+                userCulture = (CultureInfo)userCulture.Clone();
             }
 
             if (Settings.Instance.ShowClockSeconds)
             {
-                _userCulture.DateTimeFormat.ShortTimePattern = _userCulture.DateTimeFormat.LongTimePattern;
+                userCulture.DateTimeFormat.ShortTimePattern = userCulture.DateTimeFormat.LongTimePattern;
             }
 
-            SetConverterCultureRecursively(this, _userCulture);
-            SetConverterCultureRecursively(ClockTip, _userCulture);
+            SetConverterCultureRecursively(this, userCulture);
+            SetConverterCultureRecursively(ClockTip, userCulture);
         }
 
         private void UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
