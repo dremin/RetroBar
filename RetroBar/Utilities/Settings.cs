@@ -354,6 +354,13 @@ namespace RetroBar.Utilities
             get => _slideTaskbarButtons;
             set => Set(ref _slideTaskbarButtons, value);
         }
+
+        private bool _showClockSeconds = false;
+        public bool ShowClockSeconds
+        {
+            get => _showClockSeconds;
+            set => Set(ref _showClockSeconds, value);
+        }
         #endregion
 
         #region Old Properties

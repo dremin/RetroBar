@@ -90,6 +90,10 @@ namespace RetroBar.Controls
                     StopClock();
                 }
             }
+            else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
+            {
+                UpdateUserCulture();
+            }
         }
 
         private void Clock_Tick(object sender, EventArgs args)
@@ -152,6 +156,11 @@ namespace RetroBar.Controls
             if (_userCulture.IsReadOnly)
             {
                 _userCulture = (CultureInfo)_userCulture.Clone();
+            }
+
+            if (Settings.Instance.ShowClockSeconds)
+            {
+                _userCulture.DateTimeFormat.ShortTimePattern = _userCulture.DateTimeFormat.LongTimePattern;
             }
 
             SetConverterCultureRecursively(this, _userCulture);
