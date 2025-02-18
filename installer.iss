@@ -70,9 +70,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
 
 [Files]
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-ARM64-full\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x64-full\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86-full\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs
+Source: "RetroBar\bin\Release\{#TargetFramework}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs
+Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs
+Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
