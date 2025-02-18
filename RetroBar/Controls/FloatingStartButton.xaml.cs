@@ -42,7 +42,7 @@ namespace RetroBar.Controls
             // Makes click-through by adding transparent style
             NativeMethods.SetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
 
-            WindowHelper.ExcludeWindowFromPeek(helper.Handle);
+            WindowHelper.HideWindowFromTasks(helper.Handle);
 
             SetPosition(startupRect);
         }
