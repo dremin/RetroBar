@@ -114,7 +114,7 @@
     <s:String x:Key="update_available">更新可能(_U)...</s:String>
     <s:String x:Key="exit_retrobar">RetroBarを終了(_E)</s:String>
     <s:String x:Key="customize_notifications_menu">通知のカスタマイズ...</s:String>
-    <s:String x:Key="lock_taskbar_menu">_Lock the Taskbar</s:String>
+    <s:String x:Key="lock_taskbar_menu">タスクバーをロック</s:String>
 
     <s:String x:Key="show_desktop_tip_95">デスクトップのサーフェス/リストア</s:String>
     <s:String x:Key="show_desktop_tip">デスクトップを表示する</s:String>
