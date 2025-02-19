@@ -39,10 +39,10 @@ namespace RetroBar.Controls
             HwndSource source = HwndSource.FromHwnd(handle);
             source.AddHook(WndProc);
 
-            // Makes click-through by adding transparent style
-            NativeMethods.SetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
+            // Makes click-through by adding transparent style, hide from taskbar
+            NativeMethods.SetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE, (NativeMethods.GetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
 
-            WindowHelper.HideWindowFromTasks(helper.Handle);
+            WindowHelper.ExcludeWindowFromPeek(helper.Handle);
 
             SetPosition(startupRect);
         }
