@@ -39,8 +39,8 @@ namespace RetroBar.Controls
             HwndSource source = HwndSource.FromHwnd(handle);
             source.AddHook(WndProc);
 
-            // Makes click-through by adding transparent style
-            NativeMethods.SetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
+            // Makes click-through by adding transparent style, hide from taskbar
+            NativeMethods.SetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE, (NativeMethods.GetWindowLong(helper.Handle, NativeMethods.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
 
             WindowHelper.ExcludeWindowFromPeek(helper.Handle);
 
@@ -54,6 +54,23 @@ namespace RetroBar.Controls
             {
                 handled = true;
                 return (IntPtr)(-1);
+            }
+
+            if (msg == (int)NativeMethods.WM.WINDOWPOSCHANGING)
+            {
+                // Extract the WINDOWPOS structure corresponding to this message
+                NativeMethods.WINDOWPOS wndPos = NativeMethods.WINDOWPOS.FromMessage(lParam);
+
+                // WORKAROUND WPF bug: https://github.com/dotnet/wpf/issues/7561
+                // If there is no NOMOVE or NOSIZE or NOACTIVATE flag, and there is a NOZORDER flag, add the NOACTIVATE flag
+                if ((wndPos.flags & NativeMethods.SetWindowPosFlags.SWP_NOMOVE) == 0 &&
+                    (wndPos.flags & NativeMethods.SetWindowPosFlags.SWP_NOSIZE) == 0 &&
+                    (wndPos.flags & NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE) == 0 &&
+                    (wndPos.flags & NativeMethods.SetWindowPosFlags.SWP_NOZORDER) != 0)
+                {
+                    wndPos.flags |= NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE;
+                    wndPos.UpdateMessage(lParam);
+                }
             }
 
             handled = false;
