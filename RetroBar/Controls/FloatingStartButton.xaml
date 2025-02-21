@@ -5,7 +5,6 @@
         Style="{DynamicResource FloatingStartButtonWindow}"
         SourceInitialized="Window_SourceInitialized"
         ResizeMode="NoResize"
-        ShowInTaskbar="False"
         Topmost="True"
         WindowStyle="None"
         AllowsTransparency="True"
