@@ -76,6 +76,7 @@
     <s:String x:Key="check_for_updates">Auf Updates prüfen</s:String>
     <s:String x:Key="show_exit_menu_item">Be_enden im Rechtsklickmenü anzeigen</s:String>
     <s:String x:Key="slide_taskbar_buttons">Schaltfläch_en der Taskleiste schieben</s:String>
+    <s:String x:Key="show_clock_seconds">Sekunden in der U_hr anzeigen</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
