@@ -76,6 +76,7 @@
     <s:String x:Key="check_for_updates">Check for u_pdates</s:String>
     <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
     <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
+    <s:String x:Key="show_clock_seconds">S_how seconds in the clock</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>

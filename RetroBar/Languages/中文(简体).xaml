@@ -24,7 +24,7 @@
     <s:String x:Key="rowcount_tip">任务栏位于顶部或底部时的行数。</s:String>
     <s:String x:Key="taskbar_width">任务栏宽度(_W): </s:String>
     <s:String x:Key="allow_font_smoothing">允许字体平滑(_A)</s:String>
-    <s:String x:Key="collapse_tray_icons">收起通知区域图标(_H)</s:String>
+    <s:String x:Key="collapse_tray_icons">收起通知区域图标(_N)</s:String>
     <s:String x:Key="customize">自定义(_C)...</s:String>
     <s:String x:Key="show_input_language">显示输入语言(_L)</s:String>
     <s:String x:Key="show_clock">显示时钟(_K)</s:String>
@@ -65,6 +65,7 @@
         <s:String>打开现代样式日历</s:String>
         <s:String>打开通知中心</s:String>
     </x:Array>
+    <s:String x:Key="auto_hide_transparent">若此选项不被选中，则自动隐藏时保留一根细线(_T)</s:String>
     <s:String x:Key="version">版本 {0}</s:String>
     <s:String x:Key="visit_on_github">访问 GitHub 主页</s:String>
     <s:String x:Key="taskbar_scale">任务栏比例</s:String>
@@ -73,6 +74,9 @@
     <s:String x:Key="taskbar_scale_current">当前设置: {0}%</s:String>
     <s:String x:Key="debug_logging">启用调试日志记录(_D)</s:String>
     <s:String x:Key="check_for_updates">检查更新(_U)</s:String>
+    <s:String x:Key="show_exit_menu_item">在右键打开的菜单中显示退出RetroBar的选项(_X)</s:String>
+    <s:String x:Key="slide_taskbar_buttons">任务被拖动时的平滑效果(_E)</s:String>
+    <s:String x:Key="show_clock_seconds">时钟显示秒数(_H)</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 
     <s:String x:Key="customize_notifications">自定义通知</s:String>

@@ -76,6 +76,7 @@
     <s:String x:Key="check_for_updates">Comprobar _actualizaciones</s:String>
     <s:String x:Key="show_exit_menu_item">Mostrar opción de _salida en el menú contextual</s:String>
     <s:String x:Key="slide_taskbar_buttons">Deslizar _botones de la barra de tareas</s:String>
+    <s:String x:Key="show_clock_seconds">Mostrar _segundos en el reloj</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>

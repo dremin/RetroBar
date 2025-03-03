@@ -178,18 +178,14 @@ namespace RetroBar
             DesiredHeight = newHeight;
             DesiredWidth = newWidth;
 
-            if (performResize)
+            if (!performResize)
             {
-                if (Orientation == Orientation.Horizontal && heightChanged)
-                {
-                    Height = DesiredHeight;
-                    SetScreenPosition();
-                }
-                else if (Orientation == Orientation.Vertical && widthChanged)
-                {
-                    Width = DesiredWidth;
-                    SetScreenPosition();
-                }
+                return;
+            }
+
+            if ((Orientation == Orientation.Horizontal && heightChanged) || (Orientation == Orientation.Vertical && widthChanged))
+            {
+                UpdatePosition();
             }
         }
 
@@ -225,7 +221,7 @@ namespace RetroBar
             {
                 PeekDuringAutoHide();
                 AppBarEdge = Settings.Instance.Edge;
-                SetScreenPosition();
+                UpdatePosition();
             }
             else if (e.PropertyName == nameof(Settings.Language))
             {
@@ -388,7 +384,7 @@ namespace RetroBar
             if (reason == ScreenSetupReason.DpiChange)
             {
                 // DPI change is per-monitor, update ourselves
-                SetScreenPosition();
+                UpdatePosition();
                 SetLayoutRounding();
                 return;
             }

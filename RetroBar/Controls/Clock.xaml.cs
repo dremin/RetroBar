@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,30 +21,31 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class Clock : UserControl
     {
-        public static DependencyProperty NowProperty = DependencyProperty.Register("Now", typeof(DateTime), typeof(Clock));
+        public static readonly DependencyProperty NowProperty = DependencyProperty.Register(nameof(Now), typeof(DateTime), typeof(Clock));
 
         public DateTime Now
         {
-            get { return (DateTime)GetValue(NowProperty); }
-            set { SetValue(NowProperty, value); }
+            get => (DateTime)GetValue(NowProperty);
+            set => SetValue(NowProperty, value);
         }
 
-        private readonly DispatcherTimer clock = new DispatcherTimer(DispatcherPriority.Background);
-
+        private readonly DispatcherTimer _clock = new DispatcherTimer(DispatcherPriority.Background);
         private bool _isLoaded;
+
+        private const int LOCALE_NAME_MAX_LENGTH = 85;
 
         public Clock()
         {
             InitializeComponent();
             DataContext = this;
 
-            clock.Interval = TimeSpan.FromMilliseconds(200);
-            clock.Tick += Clock_Tick;
+            _clock.Interval = TimeSpan.FromMilliseconds(200);
+            _clock.Tick += Clock_Tick;
         }
 
         private void Initialize()
         {
-            SetCurrentCulture();
+            UpdateUserCulture();
             if (Settings.Instance.ShowClock)
             {
                 StartClock();
@@ -61,14 +64,14 @@ namespace RetroBar.Controls
         {
             SetTime();
 
-            clock.Start();
+            _clock.Start();
 
             Visibility = Visibility.Visible;
         }
 
         private void StopClock()
         {
-            clock.Stop();
+            _clock.Stop();
 
             Visibility = Visibility.Collapsed;
         }
@@ -86,6 +89,10 @@ namespace RetroBar.Controls
                     StopClock();
                 }
             }
+            else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
+            {
+                UpdateUserCulture();
+            }
         }
 
         private void Clock_Tick(object sender, EventArgs args)
@@ -98,7 +105,7 @@ namespace RetroBar.Controls
             TimeZoneInfo.ClearCachedData();
         }
 
-        private static void SetConverterCultureRecursively(DependencyObject main)
+        private static void SetConverterCultureRecursively(DependencyObject main, CultureInfo ci)
         {
             if (main != null)
             {
@@ -108,50 +115,64 @@ namespace RetroBar.Controls
                 {
                     BindingOperations.SetBinding(main, TextBlock.TextProperty,
                         new Binding(binding.Path.Path)
-                            { StringFormat = binding.StringFormat, ConverterCulture = CultureInfo.CurrentCulture });
+                            { StringFormat = binding.StringFormat, ConverterCulture = ci });
                 }
 
                 for (int i = 0; i < VisualTreeHelper.GetChildrenCount(main); i++)
                 {
                     if (VisualTreeHelper.GetChild(main, i) is UIElement sub)
                     {
-                        SetConverterCultureRecursively(sub);
+                        SetConverterCultureRecursively(sub, ci);
                     }
                 }
             }
         }
 
-        private void SetCurrentCulture()
+        private void UpdateUserCulture()
         {
+            CultureInfo userCulture;
+
             try
             {
-                var iKey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", false);
-                if (iKey == null) return;
-                var iCi = (CultureInfo)CultureInfo.GetCultureInfo((string)iKey.GetValue("LocaleName")).Clone();
-                iCi.DateTimeFormat.ShortDatePattern = (string)iKey.GetValue("sShortDate");
-                iCi.DateTimeFormat.ShortTimePattern = (string)iKey.GetValue("sShortTime");
-                iCi.DateTimeFormat.LongDatePattern = (string)iKey.GetValue("sLongDate");
-                iCi.DateTimeFormat.LongTimePattern = (string)iKey.GetValue("sTimeFormat");
-                iCi.DateTimeFormat.DateSeparator = (string)iKey.GetValue("sDate");
-                iCi.DateTimeFormat.TimeSeparator = (string)iKey.GetValue("sTime");
-                iCi.DateTimeFormat.AMDesignator = (string)iKey.GetValue("s1159");
-                iCi.DateTimeFormat.PMDesignator = (string)iKey.GetValue("s2359");
+                string localeName = GetUserDefaultLocaleNameWrapper();
 
-                CultureInfo.CurrentCulture = iCi;
-                SetConverterCultureRecursively(this);
-                SetConverterCultureRecursively(ClockTip);
+                if (!string.IsNullOrEmpty(localeName))
+                {
+                    userCulture = new CultureInfo(localeName);
+                }
+                else
+                {
+                    // Fallback: use LCID if locale name isn't available.
+                    int lcid = GetUserDefaultLCID();
+                    userCulture = new CultureInfo(lcid);
+                }
             }
             catch (Exception e)
             {
-                ShellLogger.Error($"Clock: Unable to set the current culture: {e.Message}");
+                ShellLogger.Error($"Clock: Unable to get the user culture: {e.Message}, defaulting to current culture");
+                userCulture = CultureInfo.CurrentCulture;
             }
+
+            if (userCulture.IsReadOnly)
+            {
+                userCulture = (CultureInfo)userCulture.Clone();
+            }
+
+            if (Settings.Instance.ShowClockSeconds)
+            {
+                userCulture.DateTimeFormat.ShortTimePattern = userCulture.DateTimeFormat.LongTimePattern;
+            }
+
+            SetConverterCultureRecursively(this, userCulture);
+            SetConverterCultureRecursively(ClockTip, userCulture);
         }
 
         private void UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
         {
             if (e.Category == UserPreferenceCategory.Locale)
             {
-                SetCurrentCulture();
+                CultureInfo.CurrentCulture.ClearCachedData();
+                UpdateUserCulture();
             }
         }
 
@@ -159,6 +180,19 @@ namespace RetroBar.Controls
         {
             Now = DateTime.Now;
         }
+
+        private static string GetUserDefaultLocaleNameWrapper()
+        {
+            var sb = new StringBuilder(LOCALE_NAME_MAX_LENGTH);
+            int ret = GetUserDefaultLocaleName(sb, sb.Capacity);
+            return ret > 0 ? sb.ToString() : null;
+        }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        private static extern int GetUserDefaultLocaleName(StringBuilder lpLocaleName, int cchLocaleName);
+
+        [DllImport("kernel32.dll")]
+        private static extern int GetUserDefaultLCID();
 
         private void Clock_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

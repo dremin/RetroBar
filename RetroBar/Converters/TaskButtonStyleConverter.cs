@@ -15,19 +15,17 @@ namespace RetroBar.Converters
                 return null;
             }
 
+            if (fxElement.ContextMenu?.IsOpen == true)
+            {
+                // Always show as active with an open context menu
+                return fxElement.FindResource("TaskButtonActive");
+            }
+
             // Default style is Inactive...
             var fxStyle = fxElement.FindResource("TaskButton");
 
-            if (values[1] == null)
+            if (values[1] is ApplicationWindow.WindowState state)
             {
-                // Default - couldn't get window state.
-                return fxStyle;
-            }
-
-            if (values[1] is ApplicationWindow.WindowState)
-            {
-                ApplicationWindow.WindowState state = (ApplicationWindow.WindowState) values[1];
-
                 switch (state)
                 {
                     case ApplicationWindow.WindowState.Active:
