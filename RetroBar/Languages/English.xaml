@@ -77,6 +77,7 @@
     <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
     <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
     <s:String x:Key="show_clock_seconds">S_how seconds in the clock</s:String>
+    <s:String x:Key="open_custom_themes_folder">Open custom themes folder</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>
@@ -134,13 +135,6 @@
     <s:String x:Key="hide">Hide</s:String>
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
-
-    <s:String x:Key="install_custom_themes">Install custom themes...</s:String>
-    <s:String x:Key="theme_files">Theme files</s:String>
-    <s:String x:Key="themes_installed_title">Themes installed</s:String>
-    <s:String x:Key="themes_installed_text">The following themes were installed:</s:String>
-    <s:String x:Key="error_installing_theme_title">Error installing theme</s:String>
-    <s:String x:Key="error_installing_theme_text">Unable to install {0}. Check that you have selected a valid theme, or open the log file for more details.</s:String>
 
     <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>

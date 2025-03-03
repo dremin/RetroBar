@@ -11,7 +11,7 @@ using ManagedShell.AppBar;
 using System.Windows.Forms;
 using ManagedShell.WindowsTray;
 using System.Runtime.CompilerServices;
-using System.Threading;
+using System.IO;
 
 namespace RetroBar
 {
@@ -27,6 +27,8 @@ namespace RetroBar
         private readonly double _dpiScale;
         private readonly NotificationArea _notificationArea;
         private readonly AppBarScreen _screen;
+
+        private FileSystemWatcher _themesWatcher;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -195,6 +197,62 @@ namespace RetroBar
             {
                 cboThemeSelect.Items.Add(theme);
             }
+
+            _themesWatcher = new FileSystemWatcher(_dictionaryManager.GetThemeInstallDir());
+            _themesWatcher.Created += ThemesWatcher_Created;
+            _themesWatcher.Deleted += ThemesWatcher_Deleted;
+            _themesWatcher.Renamed += ThemesWatcher_Renamed;
+            _themesWatcher.Filter = "*.xaml";
+            _themesWatcher.EnableRaisingEvents = true;
+        }
+
+        private void ThemesWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            string newTheme = Path.GetFileNameWithoutExtension(e.FullPath);
+            Dispatcher.BeginInvoke(() => 
+            {
+                if (!cboThemeSelect.Items.Contains(newTheme))
+                {
+                    cboThemeSelect.Items.Add(newTheme);
+                }
+            });
+        }
+
+        private void ThemesWatcher_Deleted(object sender, FileSystemEventArgs e)
+        {
+            string removedTheme = Path.GetFileNameWithoutExtension(e.FullPath);
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (cboThemeSelect.Items.Contains(removedTheme))
+                {
+                    if (cboThemeSelect.SelectedItem is string selected && selected == removedTheme)
+                    {
+                        cboThemeSelect.SelectedIndex = 0;
+                    }
+                    cboThemeSelect.Items.Remove(removedTheme);
+                }
+            });
+        }
+
+        private void ThemesWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            string removedTheme = Path.GetFileNameWithoutExtension(e.OldFullPath);
+            string newTheme = Path.GetFileNameWithoutExtension(e.FullPath);
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (cboThemeSelect.Items.Contains(removedTheme))
+                {
+                    if (cboThemeSelect.SelectedItem is string selected && selected == removedTheme)
+                    {
+                        cboThemeSelect.SelectedIndex = 0;
+                    }
+                    cboThemeSelect.Items.Remove(removedTheme);
+                }
+                if (!cboThemeSelect.Items.Contains(newTheme))
+                {
+                    cboThemeSelect.Items.Add(newTheme);
+                }
+            });
         }
 
         private void LoadVersion()
@@ -254,6 +312,12 @@ namespace RetroBar
         private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)
         {
             _instance = null;
+            if (_themesWatcher != null)
+            {
+                _themesWatcher.Created -= ThemesWatcher_Created;
+                _themesWatcher.Deleted -= ThemesWatcher_Deleted;
+                _themesWatcher.Renamed -= ThemesWatcher_Renamed;
+            }
         }
 
         private void PropertiesWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -373,28 +437,11 @@ namespace RetroBar
             e.Handled = true;
         }
 
-        private void InstallThemes_OnClick(object sender, RoutedEventArgs e)
+        private void OpenCustomThemesFolder_OnClick(object sender, RoutedEventArgs e)
         {
-            var thread = new Thread(() =>
-            {
-                ThemeInstaller installer = new ThemeInstaller(_dictionaryManager);
-                if (installer.ShowDialog())
-                {
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        foreach (string theme in installer.NewThemes)
-                        {
-                            if (!cboThemeSelect.Items.Contains(theme))
-                            {
-                                cboThemeSelect.Items.Add(theme);
-                            }
-                        }
-                        installer.ShowNewThemesAlert();
-                    });
-                }
-            });
-            thread.TrySetApartmentState(ApartmentState.STA);
-            thread.Start();
+            string path = _dictionaryManager.GetThemeInstallDir();
+            Directory.CreateDirectory(path);
+            ShellHelper.StartProcess(path);
         }
     }
 }
