@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Interop;
 
@@ -187,7 +188,11 @@ namespace RetroBar.Controls
             DpiScale = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
 
             if (NativeMethods.DwmIsCompositionEnabled() && SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
+            {
                 Refresh();
+                // once loaded, we need to refresh the thumbnail...
+                CompositionTarget.Rendering += (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
+            }
 
             _toolTipTimer.Start();
         }
