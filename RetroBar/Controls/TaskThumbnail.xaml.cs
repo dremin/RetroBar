@@ -191,7 +191,7 @@ namespace RetroBar.Controls
             {
                 Refresh();
                 // once loaded, we need to refresh the thumbnail...
-                CompositionTarget.Rendering += (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
+                CompositionTarget.Rendering += (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(Refresh));
             }
 
             _toolTipTimer.Start();
