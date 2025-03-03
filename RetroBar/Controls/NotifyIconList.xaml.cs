@@ -68,11 +68,6 @@ namespace RetroBar.Controls
             }
         }
 
-        private void NotifyIconList_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            SetNotificationAreaCollections();
-        }
-
         private void SetNotificationAreaCollections()
         {
             if (!_isLoaded && NotificationArea != null)

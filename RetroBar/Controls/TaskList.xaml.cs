@@ -71,7 +71,6 @@ namespace RetroBar.Controls
 
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
-            SetTasksCollection();
             SetStyles();
         }
 
