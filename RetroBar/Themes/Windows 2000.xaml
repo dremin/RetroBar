@@ -24,7 +24,7 @@
 
     <SolidColorBrush x:Key="MenuBackground" Color="#D4D0C8" />
     <SolidColorBrush x:Key="MenuForeground" Color="#000000" />
-    <SolidColorBrush x:Key="DisabledForeground" Color="#808080" />
+    <SolidColorBrush x:Key="MenuDisabledForeground" Color="#808080" />
 
     <Style TargetType="TextBlock"
            x:Key="StartLabel"

@@ -31,7 +31,8 @@
 
     <SolidColorBrush x:Key="MenuBackground" Color="{x:Static SystemColors.MenuColor}" />
     <SolidColorBrush x:Key="MenuForeground" Color="{x:Static SystemColors.MenuTextColor}" />
-    <SolidColorBrush x:Key="DisabledForeground" Color="{x:Static SystemColors.GrayTextColor}" />
+    <SolidColorBrush x:Key="MenuDisabledForeground" Color="{x:Static SystemColors.ControlDarkColor}" />
+    <SolidColorBrush x:Key="MenuDisabledForegroundShadow" Color="{x:Static SystemColors.ControlLightLightColor}" />
 
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/start9x.png" />
@@ -67,6 +68,52 @@
                       Color="#ffffff"
                       BlurRadius="0"
                       Opacity="1" />
+
+    <DataTemplate x:Key="DisabledMenuItemTemplate">
+        <Grid>
+            <AccessText Text="{Binding}"
+                        Foreground="{DynamicResource MenuDisabledForegroundShadow}" RenderTransformOrigin="0.5,0.5">
+                <AccessText.RenderTransform>
+                    <TranslateTransform X="1" Y="1"/>
+                </AccessText.RenderTransform>
+            </AccessText>
+            <AccessText Text="{Binding}"
+                        Foreground="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=Foreground}"/>
+        </Grid>
+    </DataTemplate>
+
+    <Style x:Key="SystemMenuItemIcon" TargetType="ContentControl">
+        <Setter Property="FontFamily"
+                Value="Marlett" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type MenuItem}}}"
+                         Value="Disabled">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Grid>
+                                <!-- Shadow layer -->
+                                <TextBlock Text="{TemplateBinding Content}"
+                                   Foreground="Black"
+                                   RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <TranslateTransform X="3" Y="3"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <!-- Foreground layer -->
+                                <TextBlock Text="{TemplateBinding Content}"
+                                   Foreground="{TemplateBinding Foreground}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <Geometry x:Key="Checkmark">M0 2 0 5 2.5 7.6 7.1 3 7.1 0 2.5 4.6Z</Geometry>
 
@@ -130,13 +177,11 @@
             <Trigger Property="StaysOpenOnClick"
                      Value="True">
                 <Setter Property="Foreground"
-                        Value="{DynamicResource DisabledForeground}" />
-                <Setter TargetName="Icon"
-                        Property="Effect"
-                        Value="{DynamicResource DisabledDropShadow}" />
-                <Setter TargetName="Header"
-                        Property="Effect"
-                        Value="{DynamicResource DisabledDropShadow}" />
+                        Value="{DynamicResource MenuDisabledForeground}" />
+                <Setter Property="HeaderTemplate"
+                        Value="{StaticResource DisabledMenuItemTemplate}" />
+                <Setter Property="Tag"
+                        Value="Disabled" />
             </Trigger>
             <Trigger Property="IsHighlighted"
                      Value="True">
@@ -151,11 +196,6 @@
                 <Setter TargetName="Header"
                         Property="Effect"
                         Value="{x:Null}" />
-            </Trigger>
-            <Trigger Property="StaysOpenOnClick"
-                     Value="True">
-                <Setter Property="Foreground"
-                        Value="{DynamicResource DisabledForeground}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -419,6 +459,8 @@
         </Setter>
     </Style>
 
+
+
     <Style TargetType="GroupBox"
            x:Key="Tray">
         <Setter Property="OverridesDefaultStyle"
@@ -442,6 +484,43 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <ContextMenu x:Key="TaskButtonContextMenu"
+                 x:Shared="False">
+        <MenuItem x:Name="RestoreMenuItem"
+                  Header="{DynamicResource restore}" >
+            <MenuItem.Icon>
+                <ContentControl Style="{StaticResource SystemMenuItemIcon}"
+                                Content="&#x32;" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem x:Name="MoveMenuItem"
+                  Header="{DynamicResource move}" />
+        <MenuItem x:Name="SizeMenuItem"
+                  Header="{DynamicResource size}" />
+        <MenuItem x:Name="MinimizeMenuItem"
+                  Header="{DynamicResource minimize}">
+            <MenuItem.Icon>
+                <ContentControl Style="{StaticResource SystemMenuItemIcon}"
+                                Content="&#x30;" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem x:Name="MaximizeMenuItem"
+                  Header="{DynamicResource maximize}">
+            <MenuItem.Icon>
+                <ContentControl Style="{StaticResource SystemMenuItemIcon}"
+                                Content="&#x31;" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem x:Name="CloseMenuItem"
+                  Header="{DynamicResource close}">
+            <MenuItem.Icon>
+                <ContentControl Style="{StaticResource SystemMenuItemIcon}"
+                                Content="&#x72;" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
 
     <Style TargetType="Button"
            x:Key="TaskButton">
