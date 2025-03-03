@@ -48,6 +48,8 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Basic
   - Classic
 
+Looking for more themes? [Check out the great community-made RetroBar themes on DeviantArt](https://www.deviantart.com/tag/retrobar)!
+
 ## Supported languages
 - Arabic (العربية)
 - Basque (euskara)
@@ -97,3 +99,10 @@ Valid locations to create a `Languages` or a `Themes` directory:
 - In `%localappdata%\RetroBar`
 
 Themes use the XAML `ResourceDictionary` format. [View the included example themes](https://github.com/dremin/RetroBar/tree/master/RetroBar/Themes) to get started.
+
+## Open-Shell Menu users
+
+You may need to adjust some Open-Shell Menu settings for the best compatibility with RetroBar. We recommend the following settings:
+
+- Controls > Windows Key opens > Open-Shell Menu
+- Menu Look > Align start menu to working area
