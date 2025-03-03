@@ -13,7 +13,7 @@
 
     <SolidColorBrush x:Key="MenuBackground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="MenuForeground" Color="#000000" />
-    <SolidColorBrush x:Key="DisabledForeground" Color="#ACA899" />
+    <SolidColorBrush x:Key="MenuDisabledForeground" Color="#ACA899" />
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
@@ -792,7 +792,7 @@
             <Trigger Property="StaysOpenOnClick"
                      Value="True">
                 <Setter Property="Foreground"
-                        Value="{DynamicResource DisabledForeground}" />
+                        Value="{DynamicResource MenuDisabledForeground}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -804,7 +804,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
                     <Border Name="ContextMenuBorder" Background="{TemplateBinding Background}"
-                            BorderBrush="{DynamicResource DisabledForeground}"
+                            BorderBrush="{DynamicResource MenuDisabledForeground}"
                             BorderThickness="1">
                             <ScrollViewer Name="ContextMenuScrollViewer"
                                           Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=MenuScrollViewer}}">
