@@ -452,6 +452,14 @@
                             </TextBlock>
                         </StackPanel>
                     </GroupBox>
+                    <TextBlock Margin="0,10,0,0"
+                               TextAlignment="Right">
+                        <Hyperlink Click="OpenCustomThemesFolder_OnClick">
+                            <Hyperlink.Inlines>
+                                <Run Text="{DynamicResource open_custom_themes_folder}" />
+                            </Hyperlink.Inlines>
+                        </Hyperlink>
+                    </TextBlock>
                     <DockPanel Margin="0,10,0,0">
                         <TextBlock x:Name="txtVersion"
                                    DockPanel.Dock="Left"

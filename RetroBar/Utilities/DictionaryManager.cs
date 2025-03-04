@@ -160,6 +160,11 @@ namespace RetroBar.Utilities
             }
         }
 
+        public string GetThemeInstallDir()
+        {
+            return THEME_FOLDER.InLocalAppData();
+        }
+
         public List<string> GetThemes()
         {
             return GetDictionaries(THEME_DEFAULT, THEME_FOLDER, THEME_EXT);
