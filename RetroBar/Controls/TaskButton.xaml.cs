@@ -74,13 +74,6 @@ namespace RetroBar.Controls
             animation.Duration = new Duration(TimeSpan.FromMilliseconds(250));
             animation.FillBehavior = FillBehavior.Stop;
             animation.EasingFunction = ease;
-            animation.CurrentStateInvalidated += (object sender, EventArgs e) => {
-                // If the animation gets interrupted for some reason, just complete it
-                if (((AnimationClock)sender).CurrentState == ClockState.Stopped && Host != null && Width != Host.ButtonWidth)
-                {
-                    Width = Host.ButtonWidth;
-                }
-            };
             Storyboard.SetTarget(animation, this);
             Storyboard.SetTargetProperty(animation, new PropertyPath(WidthProperty));
 

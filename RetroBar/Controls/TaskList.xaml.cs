@@ -29,7 +29,7 @@ namespace RetroBar.Controls
             set { SetValue(ButtonWidthProperty, value); }
         }
 
-        public static DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(Tasks), typeof(TaskList));
+        public static DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(Tasks), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
 
         public Tasks Tasks
         {
@@ -71,6 +71,11 @@ namespace RetroBar.Controls
 
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
+            SetStyles();
+        }
+
+        private void SetTasksCollection()
+        {
             if (!isLoaded && Tasks != null)
             {
                 taskbarItems = Tasks.CreateGroupedWindowsCollection();
@@ -86,8 +91,14 @@ namespace RetroBar.Controls
 
                 isLoaded = true;
             }
+        }
 
-            SetStyles();
+        private static void TasksChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is TaskList taskList && e.OldValue == null && e.NewValue != null)
+            {
+                taskList.SetTasksCollection();
+            }
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
