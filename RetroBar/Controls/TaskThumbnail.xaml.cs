@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Interop;
 
@@ -18,6 +19,7 @@ namespace RetroBar.Controls
         public double DpiScale = 1.0;
 
         private DispatcherTimer _toolTipTimer;
+        private EventHandler _renderingHandler;
 
         public TaskThumbnail()
         {
@@ -45,9 +47,9 @@ namespace RetroBar.Controls
         }
 
         private IntPtr _thumbHandle;
-        
+
         public static DependencyProperty SourceWindowHandleProperty = DependencyProperty.Register("SourceWindowHandle", typeof(IntPtr), typeof(TaskThumbnail), new PropertyMetadata(new IntPtr()));
-        
+
         public IntPtr SourceWindowHandle
         {
             get
@@ -169,6 +171,12 @@ namespace RetroBar.Controls
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            if (_renderingHandler != null)
+            {
+                CompositionTarget.Rendering -= _renderingHandler;
+                _renderingHandler = null;
+            }
+
             if (_thumbHandle != IntPtr.Zero)
             {
                 NativeMethods.DwmUnregisterThumbnail(_thumbHandle);
@@ -187,7 +195,12 @@ namespace RetroBar.Controls
             DpiScale = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
 
             if (NativeMethods.DwmIsCompositionEnabled() && SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
+            {
                 Refresh();
+                // once loaded, we need to refresh the thumbnail...
+                _renderingHandler = (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
+                CompositionTarget.Rendering += _renderingHandler;
+            }
 
             _toolTipTimer.Start();
         }
