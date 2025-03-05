@@ -106,6 +106,7 @@ namespace RetroBar.Controls
 
             AppButton.ContextMenu.Opened += ContextMenu_OpenedOrClosed;
             AppButton.ContextMenu.Closed += ContextMenu_OpenedOrClosed;
+            AppButton.ContextMenu.KeyDown += ContextMenu_KeyDown;
 
             _isLoaded = true;
         }
@@ -198,7 +199,20 @@ namespace RetroBar.Controls
             {
                 closeMenuItem.Click += CloseMenuItem_OnClick;
             }
+        }
 
+        private void ContextMenu_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if Alt+F4 is pressed
+            if (Keyboard.Modifiers == ModifierKeys.Alt && Keyboard.IsKeyDown(Key.F4))
+            {
+                e.Handled = true;
+                Window?.Close();
+                if (AppButton.ContextMenu is { IsOpen: true })
+                {
+                    AppButton.ContextMenu.IsOpen = false;
+                }
+            }
         }
 
         private static bool MenuItemEnabled(object sender) => !((MenuItem)sender).StaysOpenOnClick;
