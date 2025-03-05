@@ -13,6 +13,7 @@ using System.Reflection;
 using ManagedShell.Common.Logging;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace RetroBar
 {
@@ -58,21 +59,21 @@ namespace RetroBar
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
 
-            EventManager.RegisterClassHandler(typeof(ContextMenu), ContextMenu.OpenedEvent, new RoutedEventHandler((sender, args) => MenuOpened()));
+            EventManager.RegisterClassHandler(typeof(ContextMenu), ContextMenu.OpenedEvent, new RoutedEventHandler(MenuOpened));
+            EventManager.RegisterClassHandler(typeof(ContextMenu), UIElement.KeyDownEvent, new KeyEventHandler(MenuOnKeyDown));
             EventManager.RegisterClassHandler(typeof(MenuItem), MenuItem.ClickEvent, new RoutedEventHandler(MenuItemClicked));
-            EventManager.RegisterClassHandler(typeof(MenuItem), MenuItem.SubmenuOpenedEvent, new RoutedEventHandler((sender, args) => MenuOpened()));
-
+            EventManager.RegisterClassHandler(typeof(MenuItem), MenuItem.SubmenuOpenedEvent, new RoutedEventHandler(MenuOpened));
             _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
             _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater, _hotkeyManager);
         }
 
-        private static void MenuOpened()
+        private void MenuOpened(object sender, RoutedEventArgs e)
         {
             SoundHelper.PlaySystemSound("MenuPopup");
         }
 
-        private static void MenuItemClicked(object sender, RoutedEventArgs e)
+        private void MenuItemClicked(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuItem && menuItem.StaysOpenOnClick)
             {
@@ -80,6 +81,15 @@ namespace RetroBar
             }
 
             SoundHelper.PlaySystemSound("MenuCommand");
+        }
+
+        private void MenuOnKeyDown(object sender, KeyEventArgs e)
+        {
+            // don't close if alt is pressed
+            if (e.SystemKey is Key.LeftAlt or Key.RightAlt)
+            {
+                e.Handled = true;
+            }
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
