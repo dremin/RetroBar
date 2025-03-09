@@ -123,6 +123,10 @@ namespace RetroBar
                 // If the color scheme changes, re-apply the current theme to get updated colors.
                 _dictionaryManager.SetThemeFromSettings();
             }
+            else if (msg == (int)NativeMethods.WM.SETTINGCHANGE && wParam == (IntPtr)NativeMethods.SPI.SETWORKAREA && Settings.Instance.ShowMultiMon)
+            {
+                windowManager.NotifyWorkAreaChange();
+            }
 
             return IntPtr.Zero;
         }
