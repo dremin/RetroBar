@@ -64,16 +64,26 @@ namespace RetroBar.Utilities
             }
         }
 
+        public void NotifyWorkAreaChange()
+        {
+            ShellLogger.Debug($"WindowManager: Work area change notification received");
+            handleDisplayChange();
+        }
+
         public void NotifyDisplayChange(ScreenSetupReason reason)
         {
-            ShellLogger.Debug($"WindowManager: Display change notification received ({reason})");
-
             if (reason == ScreenSetupReason.DwmChange)
             {
                 // RetroBar doesn't care when DWM is toggled
                 return;
             }
 
+            ShellLogger.Debug($"WindowManager: Display change notification received ({reason})");
+            handleDisplayChange();
+        }
+
+        private void handleDisplayChange()
+        {
             _pendingDisplayEvents++;
 
             if (_isSettingDisplays)
@@ -167,7 +177,6 @@ namespace RetroBar.Utilities
                     Screen current = Screen.AllScreens[i];
                     if (!(_screenState[i].Bounds == current.Bounds && _screenState[i].DeviceName == current.DeviceName && _screenState[i].Primary == current.Primary))
                     {
-
                         same = false;
                         break;
                     }
