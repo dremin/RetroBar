@@ -128,6 +128,13 @@ namespace RetroBar
                 windowManager.NotifyWorkAreaChange();
             }
 
+            if (msg == (int)NativeMethods.WM.SYSCOMMAND &&
+                (int)wParam == NativeMethods.SC_CLOSE)
+            {
+                IntPtr progmanHwnd = NativeMethods.FindWindow("Progman", "Program Manager");
+                NativeMethods.SendMessage(progmanHwnd, (int)NativeMethods.WM.CLOSE, IntPtr.Zero, IntPtr.Zero);
+            }
+
             return IntPtr.Zero;
         }
 
