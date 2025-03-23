@@ -92,106 +92,6 @@ namespace RetroBar
 
             PropertyChanged += Taskbar_PropertyChanged;
         }
-        
-        private void Taskbar_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(DpiScale))
-            {
-                OnPropertyChanged(nameof(IsScaled));
-            }
-        }
-
-        protected override void OnSourceInitialized(object sender, EventArgs e)
-        {
-            base.OnSourceInitialized(sender, e);
-
-            SetLayoutRounding();
-            SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
-            UpdateTrayPosition();
-        }
-        
-        protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            base.WndProc(hwnd, msg, wParam, lParam, ref handled);
-
-            if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
-                    msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
-                Settings.Instance.Theme.StartsWith(DictionaryManager.THEME_DEFAULT))
-            {
-                handled = true;
-
-                // If the color scheme changes, re-apply the current theme to get updated colors.
-                _dictionaryManager.SetThemeFromSettings();
-            }
-            else if (msg == (int)NativeMethods.WM.SETTINGCHANGE && wParam == (IntPtr)NativeMethods.SPI.SETWORKAREA && Settings.Instance.ShowMultiMon)
-            {
-                windowManager.NotifyWorkAreaChange();
-            }
-
-            return IntPtr.Zero;
-        }
-
-        private void SetLayoutRounding()
-        {
-            // Layout rounding causes incorrect sizing on non-integer scales
-            if (DpiScale % 1 != 0)
-            {
-                UseLayoutRounding = false;
-            }
-            else
-            {
-                UseLayoutRounding = true;
-            }
-        }
-
-        private void UpdateTrayPosition()
-        {
-            if (Screen.Primary)
-            {
-                SetTrayHost();
-            }
-        }
-
-        private void UpdateStartButton()
-        {
-            if (!Screen.Primary && !Settings.Instance.ShowStartButtonMultiMon)
-            {
-                StartButton.Visibility = Visibility.Collapsed;
-                return;
-            }
-
-            StartButton.Visibility = Visibility.Visible;
-        }
-
-        private void RecalculateSize(bool performResize = true)
-        {
-            _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
-            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
-            double newWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) + DesiredRowHeight * (Settings.Instance.TaskbarWidth - 1);
-            double newHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
-
-            if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
-            {
-                newHeight += _unlockedMargin;
-                newWidth += _unlockedMargin;
-            }
-
-            bool heightChanged = newHeight != DesiredHeight;
-            bool widthChanged = newWidth != DesiredWidth;
-
-            DesiredHeight = newHeight;
-            DesiredWidth = newWidth;
-
-            if (!performResize)
-            {
-                return;
-            }
-
-            if ((Orientation == Orientation.Horizontal && heightChanged) || (Orientation == Orientation.Vertical && widthChanged))
-            {
-                UpdatePosition();
-            }
-        }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -297,6 +197,109 @@ namespace RetroBar
             }
         }
 
+        #region AppBarWindow overrides
+        protected override void OnSourceInitialized(object sender, EventArgs e)
+        {
+            base.OnSourceInitialized(sender, e);
+
+            SetLayoutRounding();
+            SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
+            UpdateTrayPosition();
+        }
+        
+        protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            base.WndProc(hwnd, msg, wParam, lParam, ref handled);
+
+            if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
+                    msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
+                Settings.Instance.Theme.StartsWith(DictionaryManager.THEME_DEFAULT))
+            {
+                handled = true;
+
+                // If the color scheme changes, re-apply the current theme to get updated colors.
+                _dictionaryManager.SetThemeFromSettings();
+            }
+            else if (msg == (int)NativeMethods.WM.SETTINGCHANGE && wParam == (IntPtr)NativeMethods.SPI.SETWORKAREA && Settings.Instance.ShowMultiMon)
+            {
+                windowManager.NotifyWorkAreaChange();
+            }
+
+            return IntPtr.Zero;
+        }
+
+        protected override void CustomClosing()
+        {
+            if (AllowClose)
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
+
+                Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            }
+        }
+
+        protected override void SetScreenProperties(ScreenSetupReason reason)
+        {
+            if (reason == ScreenSetupReason.DpiChange)
+            {
+                // DPI change is per-monitor, update ourselves
+                UpdatePosition();
+                SetLayoutRounding();
+                return;
+            }
+
+            if (Settings.Instance.ShowMultiMon)
+            {
+                // Re-create RetroBar windows based on new screen setup
+                windowManager.NotifyDisplayChange(reason);
+            }
+            else
+            {
+                // Update window as necessary
+                base.SetScreenProperties(reason);
+            }
+        }
+
+        protected override bool ShouldAllowAutoHide()
+        {
+            return (!_startMenuOpen || !Screen.Primary) && base.ShouldAllowAutoHide();
+        }
+
+        protected override void OnAutoHideAnimationBegin(bool isHiding)
+        {
+            base.OnAutoHideAnimationBegin(isHiding);
+
+            // Prevent focus indicators and tooltips while hidden
+            ResetControlFocus();
+
+            if (!isHiding && Opacity < 1)
+            {
+                Opacity = 1;
+                OnPropertyChanged(nameof(Opacity));
+            }
+        }
+
+        protected override void OnAutoHideAnimationComplete(bool isHiding)
+        {
+            base.OnAutoHideAnimationComplete(isHiding);
+
+            if (isHiding && Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
+            {
+                Opacity = 0.01;
+                OnPropertyChanged(nameof(Opacity));
+            }
+        }
+        #endregion
+
+        #region Taskbar events
+        private void Taskbar_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(DpiScale))
+            {
+                OnPropertyChanged(nameof(IsScaled));
+            }
+        }
+
         private void Taskbar_OnLocationChanged(object sender, EventArgs e)
         {
             UpdateTrayPosition();
@@ -316,6 +319,16 @@ namespace RetroBar
                 // Prevent focus indicators and tooltips while not the active window
                 // When auto-hide is enabled, this is performed by auto-hide events instead
                 ResetControlFocus();
+            }
+        }
+        #endregion
+
+        #region Context menu
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            if (_updater.IsUpdateAvailable)
+            {
+                UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
         }
 
@@ -362,79 +375,64 @@ namespace RetroBar
                 ((App)Application.Current).ExitGracefully();
             }
         }
+        #endregion
+
+        private void RecalculateSize(bool performResize = true)
+        {
+            _unlockedMargin = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarUnlockedSize") as double? ?? 0);
+            DesiredRowHeight = Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarRowHeight") as double? ?? 0);
+            double newWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) + DesiredRowHeight * (Settings.Instance.TaskbarWidth - 1);
+            double newHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) + DesiredRowHeight * (Rows - 1);
+
+            if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
+            {
+                newHeight += _unlockedMargin;
+                newWidth += _unlockedMargin;
+            }
+
+            bool heightChanged = newHeight != DesiredHeight;
+            bool widthChanged = newWidth != DesiredWidth;
+
+            DesiredHeight = newHeight;
+            DesiredWidth = newWidth;
+
+            if (!performResize)
+            {
+                return;
+            }
+
+            if ((Orientation == Orientation.Horizontal && heightChanged) || (Orientation == Orientation.Vertical && widthChanged))
+            {
+                UpdatePosition();
+            }
+        }
 
         private void ResetControlFocus()
         {
             FocusDummyButton.MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
         }
 
-        protected override bool ShouldAllowAutoHide()
+        private void SetLayoutRounding()
         {
-            return (!_startMenuOpen || !Screen.Primary) && base.ShouldAllowAutoHide();
-        }
-
-        protected override void CustomClosing()
-        {
-            if (AllowClose)
+            // Layout rounding causes incorrect sizing on non-integer scales
+            if (DpiScale % 1 != 0)
             {
-                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
-                
-                Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
-            }
-        }
-
-        protected override void SetScreenProperties(ScreenSetupReason reason)
-        {
-            if (reason == ScreenSetupReason.DpiChange)
-            {
-                // DPI change is per-monitor, update ourselves
-                UpdatePosition();
-                SetLayoutRounding();
-                return;
-            }
-
-            if (Settings.Instance.ShowMultiMon)
-            {
-                // Re-create RetroBar windows based on new screen setup
-                windowManager.NotifyDisplayChange(reason);
+                UseLayoutRounding = false;
             }
             else
             {
-                // Update window as necessary
-                base.SetScreenProperties(reason);
+                UseLayoutRounding = true;
             }
         }
 
-        protected override void OnAutoHideAnimationBegin(bool isHiding)
+        public void SetStartMenuOpen(bool isOpen)
         {
-            base.OnAutoHideAnimationBegin(isHiding);
+            bool currentAutoHide = AllowAutoHide;
+            _startMenuOpen = isOpen;
 
-            // Prevent focus indicators and tooltips while hidden
-            ResetControlFocus();
-
-            if (!isHiding && Opacity < 1)
+            if (AllowAutoHide != currentAutoHide)
             {
-                Opacity = 1;
-                OnPropertyChanged(nameof(Opacity));
-            }
-        }
-
-        protected override void OnAutoHideAnimationComplete(bool isHiding)
-        {
-            base.OnAutoHideAnimationComplete(isHiding);
-
-            if (isHiding && Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
-            {
-                Opacity = 0.01;
-                OnPropertyChanged(nameof(Opacity));
-            }
-        }
-
-        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
-        {
-            if (_updater.IsUpdateAvailable)
-            {
-                UpdateAvailableMenuItem.Visibility = Visibility.Visible;
+                OnPropertyChanged(nameof(AllowAutoHide));
             }
         }
 
@@ -453,17 +451,26 @@ namespace RetroBar
             });
         }
 
-        public void SetStartMenuOpen(bool isOpen)
+        private void UpdateTrayPosition()
         {
-            bool currentAutoHide = AllowAutoHide;
-            _startMenuOpen = isOpen;
-
-            if (AllowAutoHide != currentAutoHide)
+            if (Screen.Primary)
             {
-                OnPropertyChanged(nameof(AllowAutoHide));
+                SetTrayHost();
             }
         }
 
+        private void UpdateStartButton()
+        {
+            if (!Screen.Primary && !Settings.Instance.ShowStartButtonMultiMon)
+            {
+                StartButton.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            StartButton.Visibility = Visibility.Visible;
+        }
+
+        #region Unlocked taskbar drag hook
         private void Taskbar_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (!IsLocked)
@@ -687,5 +694,6 @@ namespace RetroBar
                 Cursor = Cursors.Arrow;
             }
         }
+        #endregion
     }
 }
