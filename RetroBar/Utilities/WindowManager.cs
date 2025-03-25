@@ -34,7 +34,7 @@ namespace RetroBar.Utilities
 
             openTaskbars();
 
-            _explorerMonitor.ExplorerMonitorStart(this);
+            _explorerMonitor.ExplorerMonitorStart(this, _shellManager);
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -72,12 +72,6 @@ namespace RetroBar.Utilities
 
         public void NotifyDisplayChange(ScreenSetupReason reason)
         {
-            if (reason == ScreenSetupReason.DwmChange)
-            {
-                // RetroBar doesn't care when DWM is toggled
-                return;
-            }
-
             ShellLogger.Debug($"WindowManager: Display change notification received ({reason})");
             handleDisplayChange();
         }
