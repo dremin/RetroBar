@@ -65,8 +65,22 @@ Name: "tamil"; MessagesFile: "compiler:Languages\Tamil.isl"
 Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
+[LangOptions]
+spanish.LanguageName=español
+
 [Messages]
 spanish.StopDownload=¿Desea detener la descarga?
+spanish.ExitSetupTitle=Salir de la instalación
+spanish.SelectLanguageTitle=Seleccione el idioma de la instalación
+spanish.WizardSelectTasks=Seleccione las tareas adicionales
+spanish.WizardSelectDir=Seleccione la carpeta de destino
+spanish.BrowseDialogTitle=Instalar: elegir una carpeta
+spanish.WizardReady=Listo para instalar
+spanish.WizardPreparing=Preparando la instalación
+spanish.ExitSetupTitle=Salir de la instalación
+spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
+spanish.WizardUninstalling=Estado de la desinstalación
+spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
