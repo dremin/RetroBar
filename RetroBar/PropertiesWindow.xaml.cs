@@ -197,13 +197,22 @@ namespace RetroBar
             {
                 cboThemeSelect.Items.Add(theme);
             }
+            try
+            {
+                string path = _dictionaryManager.GetThemeInstallDir();
+                Directory.CreateDirectory(path);
 
-            _themesWatcher = new FileSystemWatcher(_dictionaryManager.GetThemeInstallDir());
-            _themesWatcher.Created += ThemesWatcher_Created;
-            _themesWatcher.Deleted += ThemesWatcher_Deleted;
-            _themesWatcher.Renamed += ThemesWatcher_Renamed;
-            _themesWatcher.Filter = "*.xaml";
-            _themesWatcher.EnableRaisingEvents = true;
+                _themesWatcher = new FileSystemWatcher(_dictionaryManager.GetThemeInstallDir());
+                _themesWatcher.Created += ThemesWatcher_Created;
+                _themesWatcher.Deleted += ThemesWatcher_Deleted;
+                _themesWatcher.Renamed += ThemesWatcher_Renamed;
+                _themesWatcher.Filter = "*.xaml";
+                _themesWatcher.EnableRaisingEvents = true;
+            }
+            catch (Exception e)
+            {
+                ShellLogger.Warning($"Unable to watch custom themes directory: {e}");
+            }
         }
 
         private void ThemesWatcher_Created(object sender, FileSystemEventArgs e)
