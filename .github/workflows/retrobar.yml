@@ -28,7 +28,7 @@ jobs:
       uses: dotnet/nbgv@v0.4.2
 
     - name: Publish app
-      run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework
+      run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework -p:DebugType=None -p:DebugSymbols=false
       env:
         Profile: ${{ matrix.publishprofile[0] }}
         Framework: ${{ matrix.publishprofile[1] }}
