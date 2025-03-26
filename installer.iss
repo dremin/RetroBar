@@ -68,6 +68,10 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 [Messages]
 spanish.StopDownload=¿Desea detener la descarga?
 
+[CustomMessages]
+DependenciesMessage=Setup will also download and install required dependencies:
+spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
@@ -282,6 +286,6 @@ end;
 
 function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
 begin
-  if DotNetRuntimeIsMissing() then Result := 'Setup will also download and install required dependencies:' + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
+  if DotNetRuntimeIsMissing() then Result := CustomMessage('DependenciesMessage') + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
   Result := Result + MemoTasksInfo;
 end;
