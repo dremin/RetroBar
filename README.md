@@ -10,6 +10,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 ## Requirements
 - Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
 - [.NET 6.0.2 or later desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime) (select the appropriate download button under "Run desktop apps")
+  - When using the RetroBar installer, this is automatically downloaded and installed if necessary.
 
 ## Features
 - Replaces default Windows taskbar with classic layout
@@ -92,13 +93,11 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - Vietnamese (Tiếng Việt)
 
 ## Custom languages and themes
-RetroBar supports custom languages and themes. To use custom languages or themes, create a `Languages` or a `Themes` directory and place valid `.xaml` language or theme files there.
+RetroBar supports custom languages and themes. You may install community-made theme files that you have downloaded in RetroBar Properties > Advanced.
 
-Valid locations to create a `Languages` or a `Themes` directory:
-- In the same directory as `RetroBar.exe`
-- In `%localappdata%\RetroBar`
+You may manually install custom languages or themes by creating a `Languages` or a `Themes` directory in `%localappdata%\RetroBar`, and placing valid `.xaml` language or theme files there.
 
-Themes use the XAML `ResourceDictionary` format. [View the included example themes](https://github.com/dremin/RetroBar/tree/master/RetroBar/Themes) to get started.
+Themes use the XAML `ResourceDictionary` format. When creating a new theme, [view the included example themes](https://github.com/dremin/RetroBar/tree/master/RetroBar/Themes) to get started.
 
 ## Open-Shell Menu users
 

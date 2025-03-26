@@ -9,11 +9,12 @@ on:
 jobs:
 
   build:
-
+    name: Build
     strategy:
       matrix:
-        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows] ]
-
+        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [ARM64-portable, net6.0-windows] ]
+    outputs:
+      version: ${{ steps.nbgv.outputs.SimpleVersion }}
     runs-on: windows-latest
 
     steps:
@@ -23,6 +24,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install nbgv
+      id: nbgv
       uses: dotnet/nbgv@v0.4.2
 
     - name: Publish app
@@ -37,7 +39,55 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || 'ARM64' }}
-        path: |
-          RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\RetroBar.exe
-          RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\License.txt
+        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}
+        path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
+
+  installer:
+    name: Installer
+    needs: [ build ]
+    runs-on: windows-latest
+
+    env:
+      installer: installer.iss
+      targetFramework: net6.0-windows
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Download build artifacts - ARM64
+      uses: actions/download-artifact@v4
+      with:
+        name: RetroBar ARM64
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-ARM64\
+
+    - name: Download build artifacts - x64
+      uses: actions/download-artifact@v4
+      with:
+        name: RetroBar 64-bit
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x64\
+
+    - name: Download build artifacts - x86
+      uses: actions/download-artifact@v4
+      with:
+        name: RetroBar 32-bit
+        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
+
+    - name: Set installer version
+      shell: pwsh
+      run: |
+        $fileContent = [System.IO.File]::ReadAllText("${{ env.installer }}").Replace("BUILD_VERSION", "${{ needs.build.outputs.version }}")
+        [System.IO.File]::WriteAllText("${{ env.installer }}", $fileContent)
+
+    - name: Compile Inno Setup installer
+      uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+      with:
+        path: ${{ env.installer }}
+
+    - name: Upload installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: RetroBar Installer
+        path: bin\RetroBarInstaller.exe
