@@ -85,6 +85,7 @@ spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez f
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
