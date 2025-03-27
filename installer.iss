@@ -65,6 +65,27 @@ Name: "tamil"; MessagesFile: "compiler:Languages\Tamil.isl"
 Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
+[LangOptions]
+spanish.LanguageName=español
+
+[Messages]
+spanish.StopDownload=¿Desea detener la descarga?
+spanish.ExitSetupTitle=Salir de la instalación
+spanish.SelectLanguageTitle=Seleccione el idioma de la instalación
+spanish.WizardSelectTasks=Seleccione las tareas adicionales
+spanish.WizardSelectDir=Seleccione la carpeta de destino
+spanish.BrowseDialogTitle=Instalar: elegir una carpeta
+spanish.WizardReady=Listo para instalar
+spanish.WizardPreparing=Preparando la instalación
+spanish.ExitSetupTitle=Salir de la instalación
+spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
+spanish.WizardUninstalling=Estado de la desinstalación
+spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
+
+[CustomMessages]
+DependenciesMessage=Setup will also download and install required dependencies:
+spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
@@ -279,6 +300,6 @@ end;
 
 function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
 begin
-  if DotNetRuntimeIsMissing() then Result := 'Setup will also download and install required dependencies:' + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
+  if DotNetRuntimeIsMissing() then Result := CustomMessage('DependenciesMessage') + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
   Result := Result + MemoTasksInfo;
 end;
