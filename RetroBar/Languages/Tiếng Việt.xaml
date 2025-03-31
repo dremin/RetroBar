@@ -57,6 +57,14 @@
         <s:String>Mở một phiên mới</s:String>
         <s:String>Đóng tác vụ</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">_Khi nhấn đồng hồ:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Không làm gì</s:String>
+        <s:String>Mở lịch với giao diện Aero</s:String>
+        <s:String>Mở lịch với giao diện hiện đại</s:String>
+        <s:String>Mở Trung tâm Thông báo</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Ẩn _dòng kẻ của thanh tác vụ khi ẩn bằng chế độ tự động ẩn</s:String>
     <s:String x:Key="version">Phiên bản {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBar trên GitHub</s:String>
     <s:String x:Key="taskbar_scale">Phóng lớn thanh tác vụ</s:String>
@@ -65,6 +73,9 @@
     <s:String x:Key="taskbar_scale_current">Cài đặt hiện tại: {0}%</s:String>
     <s:String x:Key="debug_logging">Kích hoạt ghi nhật ký gỡ lỗi</s:String>
     <s:String x:Key="check_for_updates">Kiểm tra cập nhật</s:String>
+    <s:String x:Key="show_exit_menu_item">Hiển thị tùy chọn _Thoát trong menu chuột phải</s:String>
+    <s:String x:Key="slide_taskbar_buttons">_Di chuyển các nút thanh tác vụ</s:String>
+    <s:String x:Key="show_clock_seconds">Hiển thị _giây trong đồng hồ</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -123,5 +134,11 @@
 
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
 
+    <s:String x:Key="install_custom_themes">Cài đặt chủ đề tùy chỉnh...</s:String>
+    <s:String x:Key="theme_files">Tệp chủ đề</s:String>
+    <s:String x:Key="themes_installed_title">Các chủ đề đã cài đặt</s:String>
+    <s:String x:Key="themes_installed_text">Các chủ đề sau đã được cài đặt:</s:String>
+    <s:String x:Key="error_installing_theme_title">Đã có lỗi khi cài đặt chủ đề</s:String>
+    <s:String x:Key="error_installing_theme_text">Không thể cài đặt {0}. Kiểm tra xem bạn đã chọn chủ đề hợp lệ hay chưa hoặc mở tệp nhật ký để biết thêm chi tiết.</s:String>
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>
