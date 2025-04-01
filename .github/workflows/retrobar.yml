@@ -42,7 +42,7 @@ jobs:
   installer:
     name: Installer
     needs: [ build ]
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     env:
       installer: installer.iss
@@ -73,9 +73,7 @@ jobs:
         path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
 
     - name: Compile Inno Setup installer
-      uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
-      with:
-        path: ${{ env.installer }}
+      run: ISCC.exe "${{ env.installer }}"
 
     - name: Upload installer
       uses: actions/upload-artifact@v4
