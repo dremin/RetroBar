@@ -40,6 +40,8 @@ Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 LicenseFile=DistLicense.txt
+WizardImageFile=compiler:WizClassicImage.bmp
+WizardSmallImageFile=compiler:WizClassicSmallImage.bmp
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
