@@ -39,6 +39,7 @@ OutputDir=bin
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+LicenseFile=DistLicense.txt
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -87,6 +88,7 @@ spanish.ExitSetupTitle=Salir de la instalación
 spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
 spanish.WizardUninstalling=Estado de la desinstalación
 spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
+spanish.WizardLicense=Acuerdo de licencia
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
