@@ -42,7 +42,7 @@ function Get-InnoSetupLanguageSections {
 
 	# Generate components section
 	$componentsSection = "; Components - Languages`n"
-	$componentsSection += "Name: `"languages`"; Description: `"Languages`"; Types: full compact custom; Flags: fixed`n"
+	$componentsSection += "Name: `"languages`"; Description: `"{cm:LanguagesComponentName}`"; Types: full compact custom; Flags: fixed`n"
 	$componentsSection += "Name: `"languages\en`"; Description: `"English`"; Types: full compact custom; Flags: fixed`n"
 
 	# Generate files section
