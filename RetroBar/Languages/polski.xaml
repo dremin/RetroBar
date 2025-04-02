@@ -77,7 +77,7 @@
     <s:String x:Key="show_exit_menu_item">Pokaż opcję "Wyjdź z RetroBar" w menu podręcznym (prawy przycisk myszy)</s:String>
     <s:String x:Key="slide_taskbar_buttons">Stosuj efekt ślizgania przy przesuwaniu przycisków paska zadań</s:String>
     <s:String x:Key="show_clock_seconds">Pokaż sekundy na zegarze</s:String>
-    <s:String x:Key="open_custom_themes_folder">Otwórz folder motywów własnych</s:String>	
+    <s:String x:Key="open_custom_themes_folder">Otwórz folder motywów własnych ("themes")</s:String>	
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Dostosuj powiadomienia</s:String>
