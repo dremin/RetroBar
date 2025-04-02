@@ -92,16 +92,26 @@ spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
 spanish.WizardUninstalling=Estado de la desinstalación
 spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
 spanish.WizardLicense=Acuerdo de licencia
+spanish.WizardSelectComponents=Seleccione los componentes
+spanish.FullInstallation=Instalación completa
+spanish.CompactInstallation=Instalación compacta
+spanish.CustomInstallation=Instalación personalizada
+spanish.NoUninstallWarningTitle=Componentes encontrados
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
+LanguagesComponentName=Languages
+
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+spanish.LanguagesComponentName=Idiomas
+
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
+german.LanguagesComponentName=Sprachen
 
 [Components]
 ; [auto-generated components section]
 ; Components - Languages
-Name: "languages"; Description: "Languages"; Types: full compact custom; Flags: fixed
+Name: "languages"; Description: "{cm:LanguagesComponentName}"; Types: full compact custom; Flags: fixed
 Name: "languages\en"; Description: "English"; Types: full compact custom; Flags: fixed
 Name: "languages\ca"; Description: "català"; Types: full custom
 Name: "languages\cs"; Description: "čeština"; Types: full custom
