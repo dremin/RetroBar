@@ -65,7 +65,7 @@
         <s:String>Открыть Modern-календарь</s:String>
         <s:String>Открыть центр уведомлений</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">Скрывать _линию панели задач, когда она скрыта автоматически</s:String>	
+    <s:String x:Key="auto_hide_transparent">Скрывать _линию панели задач, когда панель задач скрыта автоматически</s:String>	
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
     <s:String x:Key="taskbar_scale">Масштаб панели задач</s:String>
