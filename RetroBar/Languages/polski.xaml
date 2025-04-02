@@ -29,7 +29,7 @@
     <s:String x:Key="show_input_language">Pokaż ję_zyk wprowadzania</s:String>
     <s:String x:Key="show_clock">_Pokaż zegar</s:String>
     <s:String x:Key="show_multi_mon">Pokaż pasek zadań na wielu ekranach</s:String>
-    <s:String x:Key="show_start_button_multi_mon">Pokaż przycisk 'Start' na wszystkich paskach zadań</s:String>	
+    <s:String x:Key="show_start_button_multi_mon">Pokaż przycisk "Start" na wszystkich paskach zadań</s:String>	
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>
     <s:String x:Key="select_location">_Wybierz lokalizację...</s:String>
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
@@ -65,7 +65,7 @@
         <s:String>Otwórz kalendarz Modern</s:String>
         <s:String>Otwórz Centrum powiadomień</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">Ukryj linię paska zadań gdy jest on ukryty przez Autoukrywanie</s:String>	
+    <s:String x:Key="auto_hide_transparent">Ukryj także linię paska zadań, gdy jest on ukryty przez Autoukrywanie</s:String>	
     <s:String x:Key="version">Wersja {0}</s:String>
     <s:String x:Key="visit_on_github">Zobacz na GitHub</s:String>
     <s:String x:Key="taskbar_scale">Skala paska zadań</s:String>
@@ -74,8 +74,8 @@
     <s:String x:Key="taskbar_scale_current">Aktualne ustawienie: {0}%</s:String>
     <s:String x:Key="debug_logging">Włącz debugowanie</s:String>
     <s:String x:Key="check_for_updates">Sprawdź aktualizacje</s:String>
-    <s:String x:Key="show_exit_menu_item">Pokaż opcję 'Wyjdź z RetroBar' w menu podręcznym (prawy przycisk myszy)</s:String>
-    <s:String x:Key="slide_taskbar_buttons">Przesuwaj przyciski na pasku zadań</s:String>
+    <s:String x:Key="show_exit_menu_item">Pokaż opcję "Wyjdź z RetroBar" w menu podręcznym (prawy przycisk myszy)</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Stosuj efekt ślizgania przy przesuwaniu przycisków paska zadań</s:String>
     <s:String x:Key="show_clock_seconds">Pokaż sekundy na zegarze</s:String>
     <s:String x:Key="open_custom_themes_folder">Otwórz folder motywów własnych</s:String>	
     <s:String x:Key="ok_dialog">OK</s:String>
@@ -116,7 +116,7 @@
     <s:String x:Key="update_available">_Dostępna aktualizacja...</s:String>
     <s:String x:Key="exit_retrobar">_Wyjdź z RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Dostosuj powiadomienia...</s:String>
-    <s:String x:Key="lock_taskbar_menu">Zablokuj pasek zadań</s:String>	
+    <s:String x:Key="lock_taskbar_menu">_Zablokuj pasek zadań</s:String>	
 
     <s:String x:Key="show_desktop_tip_95">Przywracanie pulpitu</s:String>
     <s:String x:Key="show_desktop_tip">Pokaż pulpit</s:String>
