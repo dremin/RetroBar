@@ -65,6 +65,7 @@
         <s:String>Открыть Modern-календарь</s:String>
         <s:String>Открыть центр уведомлений</s:String>
     </x:Array>
+    <s:String x:Key="auto_hide_transparent">Скрывать _линию панели задач, когда она скрыта автоматически</s:String>	
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
     <s:String x:Key="taskbar_scale">Масштаб панели задач</s:String>
@@ -74,6 +75,9 @@
     <s:String x:Key="debug_logging">Включить отла_дочное логирование</s:String>
     <s:String x:Key="check_for_updates">Проверять _наличие обновлений</s:String>
     <s:String x:Key="show_exit_menu_item">Отображать опцию в_ыхода в контекстном меню</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Эффект с_кользания при перемещении кнопок панели задач</s:String>
+    <s:String x:Key="show_clock_seconds">Отображать _секунды на часах</s:String>
+    <s:String x:Key="open_custom_themes_folder">Открыть папку для собственных _тем оформления (themes)</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
