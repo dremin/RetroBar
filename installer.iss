@@ -1,6 +1,7 @@
 ﻿#define RetroBarName "RetroBar"
 #define RetroBarPublisher "Sam Johnson"
 #define RetroBarURL "https://github.com/dremin/RetroBar"
+#define RetroBarReleasesURL RetroBarURL + "/releases"
 #define RetroBarExeName "RetroBar.exe"
 
 #define DotNetVersionDownload "6.0.36"
@@ -103,8 +104,10 @@ spanish.NoUninstallWarningTitle=Componentes encontrados
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
+UpdateAvailableMessage=A new version of RetroBar is available!%n%nCurrent version: %s%nNew version: %s%n%nWould you like to visit the download page to get the latest version?
 
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible!%n%nVersión actual: %s%nNueva versión: %s%n%n¿Desea visitar la página de descarga para obtener la última versión?
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 
@@ -143,7 +146,7 @@ var
   DownloadPage: TDownloadWizardPage;
   DotNetChecked: boolean;
   DotNetMissing: boolean;
- 
+
 function PreferArm64Files: Boolean;
 begin
   Result := IsArm64;
@@ -205,6 +208,47 @@ begin
   end;
 end;
 
+procedure CheckForUpdates;
+var
+  LatestVersion: string;
+  CurrentVersion: string;
+  JSONStr: AnsiString;
+  PosStart, PosEnd: Integer;
+  MsgResult: Integer;
+begin
+  CurrentVersion := '{#RetroBarVersion}';
+
+  try
+    DownloadTemporaryFile('{#VersionURL}', 'retrobar.json', '', nil);
+  except
+    Log('Failed to download update information: ' + GetExceptionMessage);
+    Exit;
+  end;
+
+  if LoadStringFromFile(ExpandConstant('{tmp}\retrobar.json'), JSONStr) then
+  begin
+    PosStart := Pos('"version": "', JSONStr) + Length('"version": "');
+    PosEnd := Pos('"', Copy(JSONStr, PosStart, Length(JSONStr))) + PosStart - 1;
+    LatestVersion := Copy(JSONStr, PosStart, PosEnd - PosStart);
+
+    case CompareVersion(CurrentVersion, LatestVersion) of
+      -1: begin
+        Log(Format('CheckForUpdates: Current version %s is older than latest version %s', [CurrentVersion, LatestVersion]));
+        MsgResult := MsgBox(Format(CustomMessage('UpdateAvailableMessage'), [CurrentVersion, LatestVersion]), 
+          mbInformation, MB_YESNO);
+        if MsgResult = IDYES then
+          ShellExec('open', '{#RetroBarReleasesURL}', '', '', SW_SHOW, ewNoWait, MsgResult);
+          end;
+       0: Log(Format('CheckForUpdates: Current version %s matches latest version %s', [CurrentVersion, LatestVersion]));
+       1: Log(Format('CheckForUpdates: Current version %s is newer than latest version %s', [CurrentVersion, LatestVersion]));
+    end;
+  end
+  else
+  begin
+    Log('Failed to read the version information file.');
+  end;
+end;
+
 function DotNetRuntimeIsMissing(): Boolean;
 var
   runtimes: TArrayOfString;
@@ -214,7 +258,7 @@ var
   meetsMaximumVersion: Boolean;
 begin
   Result := True;
-  
+
   if DotNetChecked then
   begin
     Result := DotNetMissing;
@@ -304,6 +348,13 @@ begin
   Result := True;
 end;
 
+// run CheckForUpdates
+function InitializeSetup: Boolean;
+begin
+  CheckForUpdates;
+  Result := True;
+end;
+
 procedure InitializeWizard;
 begin
   DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
@@ -314,11 +365,11 @@ begin
   Result := True;
   if CurPageID = wpReady then begin
     if not DotNetRuntimeIsMissing() then Exit;
-    
+
     // To be used if we switch to a version that actually gets updates
     // if not DownloadDotNetVersion('6.0') then Exit;
     // if not LoadStringFromFile(ExpandConstant('{tmp}\{#DotNetVersionFile}'), downloadVersion) then Exit;
-    
+
     // Allow the install to proceed even if the download fails
     // The user will be prompted again when they launch RetroBar
     DownloadDotNetRuntime('{#DotNetVersionDownload}');
