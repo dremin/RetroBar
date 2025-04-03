@@ -76,6 +76,7 @@
     <s:String x:Key="show_exit_menu_item">Hiển thị tùy chọn _Thoát trong menu chuột phải</s:String>
     <s:String x:Key="slide_taskbar_buttons">_Di chuyển các nút thanh tác vụ</s:String>
     <s:String x:Key="show_clock_seconds">Hiển thị _giây trong đồng hồ</s:String>
+    <s:String x:Key="open_custom_themes_folder">Mở thư mục chủ đề tủy chỉnh</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -134,11 +135,5 @@
 
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
 
-    <s:String x:Key="install_custom_themes">Cài đặt chủ đề tùy chỉnh...</s:String>
-    <s:String x:Key="theme_files">Tệp chủ đề</s:String>
-    <s:String x:Key="themes_installed_title">Các chủ đề đã cài đặt</s:String>
-    <s:String x:Key="themes_installed_text">Các chủ đề sau đã được cài đặt:</s:String>
-    <s:String x:Key="error_installing_theme_title">Đã có lỗi khi cài đặt chủ đề</s:String>
-    <s:String x:Key="error_installing_theme_text">Không thể cài đặt {0}. Kiểm tra xem bạn đã chọn chủ đề hợp lệ hay chưa hoặc mở tệp nhật ký để biết thêm chi tiết.</s:String>
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>
