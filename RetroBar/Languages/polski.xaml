@@ -20,12 +20,16 @@
         <s:String>Po prawej</s:String>
         <s:String>Na dole</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Liczba wierszy:</s:String>
+    <s:String x:Key="rowcount_tip">Liczba wierszy na pasku zadań, gdy jest on na górze lub na dole.</s:String>
+    <s:String x:Key="taskbar_width">Szerokość paska zadań:</s:String>	
     <s:String x:Key="allow_font_smoothing">_Zezwól na wygładzanie czcionek</s:String>
     <s:String x:Key="collapse_tray_icons">Zwiń ikony w pasku powiadomień</s:String>
     <s:String x:Key="customize">_Dostosuj...</s:String>
     <s:String x:Key="show_input_language">Pokaż ję_zyk wprowadzania</s:String>
     <s:String x:Key="show_clock">_Pokaż zegar</s:String>
-    <s:String x:Key="show_multi_mon">Pokazuj pasek zadań na wielu ekranach</s:String>
+    <s:String x:Key="show_multi_mon">Pokaż pasek zadań na wielu ekranach</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Pokaż przycisk "Start" na wszystkich paskach zadań</s:String>	
     <s:String x:Key="show_quick_launch">Pokaż pasek szybkiego uruchamiania</s:String>
     <s:String x:Key="select_location">_Wybierz lokalizację...</s:String>
     <s:String x:Key="quick_launch_folder">Pasek szybkiego uruchamiania - Wybierz folder</s:String>
@@ -54,6 +58,14 @@
         <s:String>Otwórz nowe okno</s:String>
         <s:String>Zamknij</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">_Kliknięcie na zegar:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Nic nie rób</s:String>
+        <s:String>Otwórz kalendarz Aero</s:String>
+        <s:String>Otwórz kalendarz Modern</s:String>
+        <s:String>Otwórz Centrum powiadomień</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Ukryj także linię paska zadań, gdy jest on ukryty przez Autoukrywanie</s:String>	
     <s:String x:Key="version">Wersja {0}</s:String>
     <s:String x:Key="visit_on_github">Zobacz na GitHub</s:String>
     <s:String x:Key="taskbar_scale">Skala paska zadań</s:String>
@@ -62,6 +74,10 @@
     <s:String x:Key="taskbar_scale_current">Aktualne ustawienie: {0}%</s:String>
     <s:String x:Key="debug_logging">Włącz debugowanie</s:String>
     <s:String x:Key="check_for_updates">Sprawdź aktualizacje</s:String>
+    <s:String x:Key="show_exit_menu_item">Pokaż opcję "Wyjdź z RetroBar" w menu podręcznym (prawy przycisk myszy)</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Stosuj efekt ślizgania przy przesuwaniu przycisków paska zadań</s:String>
+    <s:String x:Key="show_clock_seconds">Pokaż sekundy na zegarze</s:String>
+    <s:String x:Key="open_custom_themes_folder">Otwórz folder motywów własnych ("themes")</s:String>	
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Dostosuj powiadomienia</s:String>
@@ -100,6 +116,7 @@
     <s:String x:Key="update_available">_Dostępna aktualizacja...</s:String>
     <s:String x:Key="exit_retrobar">_Wyjdź z RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Dostosuj powiadomienia...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Zablokuj pasek zadań</s:String>	
 
     <s:String x:Key="show_desktop_tip_95">Przywracanie pulpitu</s:String>
     <s:String x:Key="show_desktop_tip">Pokaż pulpit</s:String>
