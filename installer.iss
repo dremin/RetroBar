@@ -12,6 +12,9 @@
 #define TargetFramework "net6.0-windows"
 #define ReleasePath "RetroBar\bin\Release\" + TargetFramework
 #define LanguagePath "RetroBar\Languages"
+#define ThemePath "RetroBar\Themes"
+#define ResourcesPath "RetroBar\Resources"
+#define Excludes "Languages,Themes,Resources,System.Diagnostics.EventLog.Messages.dll"
 
 #define Major
 #define Minor
@@ -100,107 +103,24 @@ spanish.NoUninstallWarningTitle=Componentes encontrados
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
-LanguagesComponentName=Languages
 
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
-spanish.LanguagesComponentName=Idiomas
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
-german.LanguagesComponentName=Sprachen
-
-[Components]
-; [auto-generated components section]
-; Components - Languages
-Name: "languages"; Description: "{cm:LanguagesComponentName}"; Types: full compact custom; Flags: fixed
-Name: "languages\en"; Description: "English"; Types: full compact custom; Flags: fixed
-Name: "languages\ca"; Description: "català"; Types: full custom
-Name: "languages\cs"; Description: "čeština"; Types: full custom
-Name: "languages\de"; Description: "Deutsch"; Types: full custom
-Name: "languages\en_gb"; Description: "English (United Kingdom)"; Types: full custom
-Name: "languages\es"; Description: "español"; Types: full custom
-Name: "languages\eu"; Description: "euskara"; Types: full custom
-Name: "languages\fr"; Description: "français"; Types: full custom
-Name: "languages\hr"; Description: "hrvatski"; Types: full custom
-Name: "languages\id"; Description: "Indonesia"; Types: full custom
-Name: "languages\it"; Description: "italiano"; Types: full custom
-Name: "languages\lv"; Description: "latviešu"; Types: full custom
-Name: "languages\lb"; Description: "Lëtzebuergesch"; Types: full custom
-Name: "languages\lt"; Description: "lietuvių"; Types: full custom
-Name: "languages\hu"; Description: "magyar"; Types: full custom
-Name: "languages\ms"; Description: "Melayu"; Types: full custom
-Name: "languages\nl"; Description: "Nederlands"; Types: full custom
-Name: "languages\pl"; Description: "polski"; Types: full custom
-Name: "languages\pt"; Description: "português"; Types: full custom
-Name: "languages\ro"; Description: "română"; Types: full custom
-Name: "languages\sk"; Description: "slovenčina"; Types: full custom
-Name: "languages\sr"; Description: "srpski"; Types: full custom
-Name: "languages\fi"; Description: "Suomi"; Types: full custom
-Name: "languages\sv"; Description: "svenska"; Types: full custom
-Name: "languages\vi"; Description: "Tiếng Việt"; Types: full custom
-Name: "languages\tr"; Description: "Türkçe"; Types: full custom
-Name: "languages\el"; Description: "ελληνικά"; Types: full custom
-Name: "languages\bg"; Description: "български"; Types: full custom
-Name: "languages\ru"; Description: "русский"; Types: full custom
-Name: "languages\sr_cyrl"; Description: "српски"; Types: full custom
-Name: "languages\uk"; Description: "українська"; Types: full custom
-Name: "languages\he"; Description: "עברית"; Types: full custom
-Name: "languages\ar"; Description: "العربية"; Types: full custom
-Name: "languages\fa"; Description: "فارسی"; Types: full custom
-Name: "languages\th"; Description: "ไทย"; Types: full custom
-Name: "languages\ko"; Description: "한국어"; Types: full custom
-Name: "languages\zh_hans"; Description: "中文(简体)"; Types: full custom
-Name: "languages\zh_hant"; Description: "中文(繁體)"; Types: full custom
-Name: "languages\ja"; Description: "日本語"; Types: full custom
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
 
 [Files]
-Source: "{#ReleasePath}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs; Excludes: "Languages"
-Source: "{#ReleasePath}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "Languages"
-Source: "{#ReleasePath}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "Languages"
+Source: "{#ReleasePath}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "{#Excludes}"
 
-; [auto-generated files section]
-; Files - Languages
-Source: "{#LanguagePath}\català.xaml"; DestDir: "{app}\Languages"; Components: "languages\ca"; Flags: ignoreversion
-Source: "{#LanguagePath}\čeština.xaml"; DestDir: "{app}\Languages"; Components: "languages\cs"; Flags: ignoreversion
-Source: "{#LanguagePath}\Deutsch.xaml"; DestDir: "{app}\Languages"; Components: "languages\de"; Flags: ignoreversion
-Source: "{#LanguagePath}\English (United Kingdom).xaml"; DestDir: "{app}\Languages"; Components: "languages\en_gb"; Flags: ignoreversion
-Source: "{#LanguagePath}\español.xaml"; DestDir: "{app}\Languages"; Components: "languages\es"; Flags: ignoreversion
-Source: "{#LanguagePath}\euskara.xaml"; DestDir: "{app}\Languages"; Components: "languages\eu"; Flags: ignoreversion
-Source: "{#LanguagePath}\français.xaml"; DestDir: "{app}\Languages"; Components: "languages\fr"; Flags: ignoreversion
-Source: "{#LanguagePath}\hrvatski.xaml"; DestDir: "{app}\Languages"; Components: "languages\hr"; Flags: ignoreversion
-Source: "{#LanguagePath}\Indonesia.xaml"; DestDir: "{app}\Languages"; Components: "languages\id"; Flags: ignoreversion
-Source: "{#LanguagePath}\italiano.xaml"; DestDir: "{app}\Languages"; Components: "languages\it"; Flags: ignoreversion
-Source: "{#LanguagePath}\latviešu.xaml"; DestDir: "{app}\Languages"; Components: "languages\lv"; Flags: ignoreversion
-Source: "{#LanguagePath}\Lëtzebuergesch.xaml"; DestDir: "{app}\Languages"; Components: "languages\lb"; Flags: ignoreversion
-Source: "{#LanguagePath}\lietuvių.xaml"; DestDir: "{app}\Languages"; Components: "languages\lt"; Flags: ignoreversion
-Source: "{#LanguagePath}\magyar.xaml"; DestDir: "{app}\Languages"; Components: "languages\hu"; Flags: ignoreversion
-Source: "{#LanguagePath}\Melayu.xaml"; DestDir: "{app}\Languages"; Components: "languages\ms"; Flags: ignoreversion
-Source: "{#LanguagePath}\Nederlands.xaml"; DestDir: "{app}\Languages"; Components: "languages\nl"; Flags: ignoreversion
-Source: "{#LanguagePath}\polski.xaml"; DestDir: "{app}\Languages"; Components: "languages\pl"; Flags: ignoreversion
-Source: "{#LanguagePath}\português.xaml"; DestDir: "{app}\Languages"; Components: "languages\pt"; Flags: ignoreversion
-Source: "{#LanguagePath}\română.xaml"; DestDir: "{app}\Languages"; Components: "languages\ro"; Flags: ignoreversion
-Source: "{#LanguagePath}\slovenčina.xaml"; DestDir: "{app}\Languages"; Components: "languages\sk"; Flags: ignoreversion
-Source: "{#LanguagePath}\srpski.xaml"; DestDir: "{app}\Languages"; Components: "languages\sr"; Flags: ignoreversion
-Source: "{#LanguagePath}\Suomi.xaml"; DestDir: "{app}\Languages"; Components: "languages\fi"; Flags: ignoreversion
-Source: "{#LanguagePath}\svenska.xaml"; DestDir: "{app}\Languages"; Components: "languages\sv"; Flags: ignoreversion
-Source: "{#LanguagePath}\Tiếng Việt.xaml"; DestDir: "{app}\Languages"; Components: "languages\vi"; Flags: ignoreversion
-Source: "{#LanguagePath}\Türkçe.xaml"; DestDir: "{app}\Languages"; Components: "languages\tr"; Flags: ignoreversion
-Source: "{#LanguagePath}\ελληνικά.xaml"; DestDir: "{app}\Languages"; Components: "languages\el"; Flags: ignoreversion
-Source: "{#LanguagePath}\български.xaml"; DestDir: "{app}\Languages"; Components: "languages\bg"; Flags: ignoreversion
-Source: "{#LanguagePath}\русский.xaml"; DestDir: "{app}\Languages"; Components: "languages\ru"; Flags: ignoreversion
-Source: "{#LanguagePath}\српски.xaml"; DestDir: "{app}\Languages"; Components: "languages\sr_cyrl"; Flags: ignoreversion
-Source: "{#LanguagePath}\українська.xaml"; DestDir: "{app}\Languages"; Components: "languages\uk"; Flags: ignoreversion
-Source: "{#LanguagePath}\עברית.xaml"; DestDir: "{app}\Languages"; Components: "languages\he"; Flags: ignoreversion
-Source: "{#LanguagePath}\العربية.xaml"; DestDir: "{app}\Languages"; Components: "languages\ar"; Flags: ignoreversion
-Source: "{#LanguagePath}\فارسی.xaml"; DestDir: "{app}\Languages"; Components: "languages\fa"; Flags: ignoreversion
-Source: "{#LanguagePath}\ไทย.xaml"; DestDir: "{app}\Languages"; Components: "languages\th"; Flags: ignoreversion
-Source: "{#LanguagePath}\한국어.xaml"; DestDir: "{app}\Languages"; Components: "languages\ko"; Flags: ignoreversion
-Source: "{#LanguagePath}\中文(简体).xaml"; DestDir: "{app}\Languages"; Components: "languages\zh_hans"; Flags: ignoreversion
-Source: "{#LanguagePath}\中文(繁體).xaml"; DestDir: "{app}\Languages"; Components: "languages\zh_hant"; Flags: ignoreversion
-Source: "{#LanguagePath}\日本語.xaml"; DestDir: "{app}\Languages"; Components: "languages\ja"; Flags: ignoreversion
+Source: "{#ReleasePath}\publish-x64\System.Diagnostics.EventLog.Messages.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#LanguagePath}\*"; DestDir: "{app}\Languages"; Flags: ignoreversion recursesubdirs; Excludes: "English.xaml"
+Source: "{#ThemePath}\*"; DestDir: "{app}\Themes"; Flags: ignoreversion recursesubdirs; Excludes: "System.xaml"
+Source: "{#ResourcesPath}\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs; Excludes: "retrobar.ico,desktop95-lg.png,desktop95-sm.png,shader_invert.ps,start9x.png"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
