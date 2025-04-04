@@ -101,6 +101,7 @@ spanish.FullInstallation=Instalación completa
 spanish.CompactInstallation=Instalación compacta
 spanish.CustomInstallation=Instalación personalizada
 spanish.NoUninstallWarningTitle=Componentes encontrados
+spanish.ReadyMemoTasks=Tareas adicionales:
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
