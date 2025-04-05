@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using ManagedShell.Common.Logging;
 using System.Windows.Threading;
+using ManagedShell.WindowsTasks;
 
 namespace RetroBar
 {
@@ -50,6 +51,8 @@ namespace RetroBar
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
         private bool _mouseDragResize = false;
+        private LowLevelKeyboardHook _keyboardHook;
+        private bool _keyWinDown = false;
         private DictionaryManager _dictionaryManager;
         private ShellManager _shellManager;
         private Updater _updater;
@@ -205,6 +208,7 @@ namespace RetroBar
             SetLayoutRounding();
             SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
             UpdateTrayPosition();
+            ListenHotkeys();
         }
         
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -468,6 +472,64 @@ namespace RetroBar
             }
 
             StartButton.Visibility = Visibility.Visible;
+        }
+
+        private void ListenHotkeys()
+        {
+            _keyboardHook = new LowLevelKeyboardHook();
+            _keyboardHook.LowLevelKeyboardEvent += HotkeyHook_LowLevelKeyboardEvent;
+            _keyboardHook.Initialize();
+        }
+
+        private void HotkeyHook_LowLevelKeyboardEvent(object sender, LowLevelKeyboardHook.LowLevelKeyboardEventArgs e)
+        {
+            switch (e.Message)
+            {
+                case NativeMethods.WM.KEYDOWN:
+                case NativeMethods.WM.SYSKEYDOWN:
+
+                    if (e.HookStruct.vkCode == 0x5B /*VK_LWIN*/ || e.HookStruct.vkCode == 0x5C /*VK_RWIN*/)
+                    {
+                        _keyWinDown = true;
+                    }
+
+                    else if (_keyWinDown && e.HookStruct.vkCode >= '0' && e.HookStruct.vkCode <= '9')
+                    {
+                        int index = (e.HookStruct.vkCode == 0x30) ? 9 : e.HookStruct.vkCode - 0x31;
+                        
+                        try
+                        {
+                            bool exists = _shellManager.Tasks.GroupedWindows.MoveCurrentToPosition(index);
+
+                            if (exists)
+                            {
+                                ApplicationWindow window = _shellManager.Tasks.GroupedWindows.CurrentItem as ApplicationWindow;
+
+                                if (window.State == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                                {
+                                    window.Minimize();
+                                }
+                                else
+                                {
+                                    window.BringToFront();
+                                }
+                            }
+                        }
+                        catch (ArgumentOutOfRangeException) { }
+                    }
+
+                    break;
+
+                case NativeMethods.WM.KEYUP:
+                case NativeMethods.WM.SYSKEYUP:
+
+                    if (e.HookStruct.vkCode == 0x5B /*VK_LWIN*/ || e.HookStruct.vkCode == 0x5C /*VK_RWIN*/)
+                    {
+                        _keyWinDown = false;
+                    }
+
+                    break;
+            }
         }
 
         #region Unlocked taskbar drag hook
