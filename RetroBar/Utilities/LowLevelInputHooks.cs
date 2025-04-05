@@ -99,4 +99,91 @@ namespace RetroBar.Utilities
             _hook = IntPtr.Zero;
         }
     }
+
+    public class LowLevelKeyboardHook : IDisposable
+    {
+        [DllImport("user32.dll")]
+        static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProcDelegate callback, IntPtr hInstance, uint threadId);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr CallNextHookEx(IntPtr idHook, int nCode, uint wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        public delegate IntPtr LowLevelKeyboardProcDelegate(int code, uint wParam, IntPtr lParam);
+
+        const int WH_KEYBOARD_LL = 13;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct KBDLLHOOKSTRUCT
+        {
+            public int vkCode;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public UIntPtr dwExtraInfo;
+        }
+
+        public class LowLevelKeyboardEventArgs : HandledEventArgs
+        {
+            public WM Message;
+            public KBDLLHOOKSTRUCT HookStruct;
+        }
+
+        public event EventHandler<LowLevelKeyboardEventArgs> LowLevelKeyboardEvent;
+
+        private IntPtr _hook = IntPtr.Zero;
+        private LowLevelKeyboardProcDelegate _hookDelegate;
+
+        public LowLevelKeyboardHook()
+        {
+            _hookDelegate = KeyboardHookProc;
+        }
+
+        public bool Initialize()
+        {
+            using (Process curProcess = Process.GetCurrentProcess())
+            using (ProcessModule curModule = curProcess.MainModule)
+            {
+                _hook = SetWindowsHookEx(WH_KEYBOARD_LL, _hookDelegate, GetModuleHandle(curModule.ModuleName), 0);
+
+                if (_hook == IntPtr.Zero)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        private IntPtr KeyboardHookProc(int code, uint wParam, IntPtr lParam)
+        {
+            LowLevelKeyboardEventArgs args = new LowLevelKeyboardEventArgs
+            {
+                Message = (WM)wParam,
+                HookStruct = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(KBDLLHOOKSTRUCT))
+            };
+
+            LowLevelKeyboardEvent?.Invoke(this, args);
+
+            if (args.Handled)
+            {
+                return (IntPtr)1;
+            }
+
+            return CallNextHookEx(_hook, code, wParam, lParam);
+        }
+
+        public void Dispose()
+        {
+            if (_hook == IntPtr.Zero)
+            {
+                return;
+            }
+
+            UnhookWindowsHookEx(_hook);
+            _hook = IntPtr.Zero;
+        }
+    }
 }
