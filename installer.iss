@@ -106,9 +106,11 @@ spanish.ReadyMemoTasks=Tareas adicionales:
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
 UpdateAvailableMessage=A new version of RetroBar is available!%n%nCurrent version: %s%nNew version: %s%n%nWould you like to visit the download page to get the latest version?
+ConfirmDeleteSettingsMessage=Do you want to delete the RetroBar user settings?
 
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
 spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible!%n%nVersión actual: %s%nNueva versión: %s%n%n¿Desea visitar la página de descarga para obtener la última versión?
+spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuario de RetroBar?
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 
@@ -128,7 +130,6 @@ Source: "{#ResourcesPath}\*"; DestDir: "{app}\Resources"; Flags: ignoreversion r
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
-Type: files; Name: "{localappdata}\RetroBar\settings.json"
 Type: dirifempty; Name: "{localappdata}\RetroBar"
 
 [Icons]
@@ -381,4 +382,21 @@ function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoType
 begin
   if DotNetRuntimeIsMissing() then Result := CustomMessage('DependenciesMessage') + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
   Result := Result + MemoTasksInfo;
+end;
+
+// ask if user wants to delete the settings.json file
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  settingsPath: string;
+begin
+  if CurUninstallStep <> usPostUninstall then
+    Exit;
+
+  settingsPath := ExpandConstant('{localappdata}\RetroBar\settings.json');
+  if FileExists(settingsPath) and 
+     (MsgBox(CustomMessage('ConfirmDeleteSettingsMessage'), mbConfirmation, MB_YESNO) = IDYES) then
+  begin
+    if not DeleteFile(settingsPath) then
+      Log('Warning: Could not delete user settings file: ' + settingsPath);
+  end;
 end;
