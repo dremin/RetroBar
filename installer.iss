@@ -67,6 +67,9 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [LangOptions]
 spanish.LanguageName=español
+polish.LanguageName=polski
+russian.LanguageName=русский
+french.LanguageName=français
 
 [Messages]
 spanish.StopDownload=¿Desea detener la descarga?
@@ -82,10 +85,49 @@ spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
 spanish.WizardUninstalling=Estado de la desinstalación
 spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
 
+polish.StopDownload=Czy zatrzymać pobieranie?
+polish.ExitSetupTitle=Wyjdź z instalacji
+polish.SelectLanguageTitle=Wybierz język instalacji
+polish.WizardSelectTasks=Wybierz zadania dodatkowe
+polish.WizardSelectDir=Wybierz folder docelowy
+polish.BrowseDialogTitle=Instalowanie: wybierz folder
+polish.WizardReady=Gotowy do instalacji
+polish.WizardPreparing=Przygotowanie instalacji
+polish.ConfirmUninstall=Czy na pewno chcesz odinstalować {#RetroBarName}?
+polish.WizardUninstalling=Stan odinstalowywania
+polish.TranslatorNote=Zaktualizowane tłumaczenie polskie dla: {#RetroBarPublisher}.
+
+russian.StopDownload=Остановить загрузку?
+russian.ExitSetupTitle=Выйти из установки
+russian.SelectLanguageTitle=Выбрать язык установки
+russian.WizardSelectTasks=Выбрать дополнительные задачи
+russian.WizardSelectDir=Выбрать целевую папку
+russian.BrowseDialogTitle=Установка: выберите папку
+russian.WizardReady=Готов к установке
+russian.WizardPreparing=Подготовка установки
+russian.ConfirmUninstall=Вы уверены, что хотите удалить {#RetroBarName}?
+russian.WizardUninstalling=Состояние удаления (деинсталляции)
+russian.TranslatorNote=Обновлённый русский перевод для: {#RetroBarPublisher}.
+
+french.StopDownload=Arrêtez-vous le téléchargement?
+french.ExitSetupTitle=Quitter l'installation
+french.SelectLanguageTitle=Choisir la langue d'installation
+french.WizardSelectTasks=Choisir des tâches supplémentaires
+french.WizardSelectDir=Choisir le dossier pour l'installation
+french.BrowseDialogTitle=Installation: choisissez le dossier
+french.WizardReady=Prêt pour l'installation
+french.WizardPreparing=Préparation de l'installation
+french.ConfirmUninstall=Êtes-vous sûr de vouloir désinstaller? {#RetroBarName}?
+french.WizardUninstalling=Statut de désinstallation
+french.TranslatorNote=Traduction française mise à jour pour: {#RetroBarPublisher}.
+
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
+polish.DependenciesMessage=Instalator pobierze i zainstaluje także następujące składniki dodatkowe:
+russian.DependenciesMessage=Установщик также загрузит и установит следующие дополнительные компоненты:
+french.DependenciesMessage=Le programme d'installation téléchargera et installera également les dépendances requises:
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
