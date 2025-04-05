@@ -63,7 +63,7 @@
         <s:String>Ne rien faire</s:String>
         <s:String>Ouvrir le calendrier "Aero"</s:String>
         <s:String>Ouvrir le calendrier "Modern"</s:String>
-        <s:String>Ouvrir le Centre des notifications</s:String>
+        <s:String>Ouvrir le Centre de notifications</s:String>
     </x:Array>
     <s:String x:Key="auto_hide_transparent">Masquer la ligne de la barre des _tâches lorsque la barre des tâches est auto-masquée</s:String>
     <s:String x:Key="version">Version {0}</s:String>
