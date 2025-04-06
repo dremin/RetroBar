@@ -401,7 +401,7 @@ begin
     case CompareVersion(CurrentVersion, LatestVersion) of
       -1: begin
         Log(Format('CheckForUpdates: Current version %s is older than latest version %s', [CurrentVersion, LatestVersion]));
-        MsgResult := MsgBox(Format(CustomMessage('UpdateAvailableMessage'), [CurrentVersion, LatestVersion]), 
+        MsgResult := MsgBox(Format(CustomMessage('UpdateAvailableMessage'), [CurrentVersion, LatestVersion]),
           mbInformation, MB_YESNO);
         if MsgResult = IDYES then
           ShellExec('open', '{#RetroBarReleasesURL}', '', '', SW_SHOW, ewNoWait, MsgResult);
@@ -615,7 +615,7 @@ begin
     Exit;
 
   settingsPath := ExpandConstant('{localappdata}\RetroBar\settings.json');
-  if FileExists(settingsPath) and 
+  if FileExists(settingsPath) and
      (MsgBox(CustomMessage('ConfirmDeleteSettingsMessage'), mbConfirmation, MB_YESNO) = IDYES) then
   begin
     if not DeleteFile(settingsPath) then

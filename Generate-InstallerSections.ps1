@@ -82,7 +82,7 @@ function Get-XamlThemeReferencedDictionaryFiles {
 	param(
 		[string]$XamlFile
 	)
-	
+
 	([xml](Get-Content $XamlFile)).SelectNodes("//*[@Source]") | ForEach-Object {
 		$_.Source
 	}
@@ -99,12 +99,12 @@ function Get-ThemeEntry {
 	$name = [System.IO.Path]::GetFileNameWithoutExtension($File)
 	$componentName = Get-ComponentName -FileName $File
 	$componentsTypes = if ($componentName -eq "windows9598") { "full compact custom" } else { "full custom" }
-	
+
 	$componentLine = "Name: `"themes\$GroupName\$componentName`"; Description: `"$name`"; Types: $componentsTypes`n"
 	$filesLine = "Source: `"{#ThemePath}\$File`"; DestDir: `"{app}\Themes`"; Components: `"themes\$GroupName\$componentName`"; Flags: ignoreversion`n"
 
 	$dependsOnArray = @()
-	
+
 	# Process referenced dictionary files
 	foreach ($referencedDictionaryFile in Get-XamlThemeReferencedDictionaryFiles -XamlFile "$ThemesDir\$File") {
 		$dependsOnGroupName = Get-ThemeCategorySingle -ThemeFile $referencedDictionaryFile
@@ -116,12 +116,12 @@ function Get-ThemeEntry {
 	if ($dependsOnString) {
 		$global:codeSection += "    AddDependencies('themes\$GroupName\$componentName', ['$dependsOnString']);`n"
 	}
-	
+
 	# Process additional referenced files
 	foreach ($referencedFile in Get-XamlThemeReferencedFiles -XamlFile "$ThemesDir\$File") {
 		$filesLine += "Source: `"$referencedFile`"; DestDir: `"{app}\Resources`"; Components: `"themes\$GroupName\$componentName`"; Flags: ignoreversion`n"
 	}
-	
+
 	return ,@($componentLine, $filesLine)
 }
 
