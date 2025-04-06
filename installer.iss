@@ -91,7 +91,6 @@ spanish.WizardSelectDir=Seleccione la carpeta de destino
 spanish.BrowseDialogTitle=Instalar: elegir una carpeta
 spanish.WizardReady=Listo para instalar
 spanish.WizardPreparing=Preparando la instalación
-spanish.ExitSetupTitle=Salir de la instalación
 spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
 spanish.WizardUninstalling=Estado de la desinstalación
 spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
@@ -102,15 +101,19 @@ spanish.CompactInstallation=Instalación compacta
 spanish.CustomInstallation=Instalación personalizada
 spanish.NoUninstallWarningTitle=Componentes encontrados
 spanish.ReadyMemoTasks=Tareas adicionales:
+spanish.DirExistsTitle=La carpeta ya existe
+spanish.DirExists=La carpeta "%1" ya existe. ¿Desea realizar la instalación en esa carpeta de todos modos?
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
 UpdateAvailableMessage=A new version of RetroBar is available!%n%nCurrent version: %s%nNew version: %s%n%nWould you like to visit the download page to get the latest version?
 ConfirmDeleteSettingsMessage=Do you want to delete the RetroBar user settings?
+InstallingDotNetRuntime=Installing {#DotNetInstallerTitle}...
 
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
 spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible!%n%nVersión actual: %s%nNueva versión: %s%n%n¿Desea visitar la página de descarga para obtener la última versión?
 spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuario de RetroBar?
+spanish.InstallingDotNetRuntime=Instalando {#DotNetInstallerTitle}...
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 
@@ -140,7 +143,7 @@ Name: "{autodesktop}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"; Tas
 Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "RetroBar"; ValueType: string; ValueData: "{app}\{#RetroBarExeName}"; Tasks: autostart; Flags: uninsdeletevalue
 
 [Run]
-Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing {#DotNetInstallerTitle}..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
+Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg: "{cm:InstallingDotNetRuntime}"; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
 Filename: "{app}\{#RetroBarExeName}"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
