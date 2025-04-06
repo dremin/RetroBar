@@ -554,6 +554,13 @@ begin
   EnforceComponentDependencies;
 end;
 
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  // When the components page becomes visible, enforce dependencies
+  if CurPageID = wpSelectComponents then
+    EnforceComponentDependencies;
+end;
+
 // run CheckForUpdates
 function InitializeSetup: Boolean;
 begin
