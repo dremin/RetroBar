@@ -42,9 +42,9 @@
     <s:String x:Key="multiple_displays">Plusieurs écrans</s:String>
     <s:String x:Key="show_tasks_on">_Afficher des tâches sur:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
-        <s:String>Toutes les barres de tâches</s:String>
-        <s:String>La même barre de tâches que la fenêtre</s:String>
-        <s:String>La même barre de tâches que la fenêtre et la barre des tâches primaire</s:String>
+        <s:String>Toutes les barres des tâches</s:String>
+        <s:String>La même barre des tâches que la fenêtre</s:String>
+        <s:String>La même barre des tâches que la fenêtre et la barre des tâches primaire</s:String>
     </x:Array>
     <s:String x:Key="invert_system_icons">Icônes de systeme _inversées en couleur:</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
