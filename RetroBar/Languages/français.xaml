@@ -37,7 +37,7 @@
     <s:String x:Key="show_window_previews">Afficher l'_aperçu des fenêtres (vignettes/thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Utiliser le rendu logiciel</s:String>
     <s:String x:Key="add_show_desktop_button">Ajouter le bouton "Afficher le _bureau"</s:String>
-    <s:String x:Key="enable_auto_hide">A_uto-masquage de la barre des tâches (autohide)</s:String>
+    <s:String x:Key="enable_auto_hide">A_uto-masquage de la barre des tâches (auto-hide)</s:String>
     <s:String x:Key="lock_taskbar">_Verrouiller la barre des tâches</s:String>
     <s:String x:Key="multiple_displays">Plusieurs écrans</s:String>
     <s:String x:Key="show_tasks_on">_Afficher des tâches sur:</s:String>
@@ -83,7 +83,7 @@
     <s:String x:Key="customize_notifications">Personnaliser les notifications</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar affiche des icônes pour les notifications actives et urgentes et masque des icônes inactives. Vous pouvez modifier le comportement des éléments de la liste ci-dessous.</s:String>
     <s:String x:Key="customize_notifications_instruction">Sélectionnez un élément, puis modifiez son comportement de notification:</s:String>
-    <s:String x:Key="hide_when_inactive">Masquer quand c'est inactif</s:String>
+    <s:String x:Key="hide_when_inactive">Masquer quand inactif</s:String>
     <s:String x:Key="always_show">Toujours afficher</s:String>
     <s:String x:Key="always_hide">Toujours masquer</s:String>
     <s:String x:Key="remove">Retirer</s:String>
