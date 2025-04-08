@@ -22,37 +22,37 @@
     </x:Array>
     <s:String x:Key="rowcount_text">_Nombre de lignes:</s:String>
     <s:String x:Key="rowcount_tip">Le nombre de lignes de la barre des tâches quand elle est positionnée en haut ou en bas.</s:String>
-    <s:String x:Key="taskbar_width">_Largeur de la barre des tâches:</s:String>
+    <s:String x:Key="taskbar_width">Large_ur de la barre des tâches:&nbsp</s:String>
     <s:String x:Key="allow_font_smoothing">_Autoriser le lissage des polices</s:String>
     <s:String x:Key="collapse_tray_icons">_Réduire les icônes de la zone de notification</s:String>
     <s:String x:Key="customize">_Personaliser...</s:String>
-    <s:String x:Key="show_input_language">Afficher l'indicateur de la _langue d'entrée</s:String>
+    <s:String x:Key="show_input_language">Afficher l'indicateur de la langue d'_entrée</s:String>
     <s:String x:Key="show_clock">Afficher l'_horloge</s:String>
     <s:String x:Key="show_multi_mon">Afficher sur _plusieurs écrans</s:String>
-    <s:String x:Key="show_start_button_multi_mon">Afficher le bouton "_Démarrer" sur toutes les barres des tâches</s:String>
-    <s:String x:Key="show_quick_launch">Afficher la zone de _lancement rapide</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Afficher le _bouton "Démarrer" sur toutes les barres des tâches</s:String>
+    <s:String x:Key="show_quick_launch">Afficher la zone de _Lancement rapide</s:String>
     <s:String x:Key="select_location">_Changer de dossier...</s:String>
     <s:String x:Key="quick_launch_folder">Lancement rapide - Choisir un dossier</s:String>
     <s:String x:Key="show_badges">Afficher des _badges d'informations</s:String>
-    <s:String x:Key="show_window_previews">Afficher l'_aperçu des fenêtres (vignettes/thumbnails)</s:String>
+    <s:String x:Key="show_window_previews">Afficher l'aperçu des _fenêtres (vignettes/thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Utiliser le rendu logiciel</s:String>
     <s:String x:Key="add_show_desktop_button">Ajouter le bouton "Afficher le _bureau"</s:String>
-    <s:String x:Key="enable_auto_hide">A_uto-masquage de la barre des tâches (auto-hide)</s:String>
+    <s:String x:Key="enable_auto_hide">Activer l'auto-_masquage de la barre des tâches (auto-hide)</s:String>
     <s:String x:Key="lock_taskbar">_Verrouiller la barre des tâches</s:String>
     <s:String x:Key="multiple_displays">Plusieurs écrans</s:String>
-    <s:String x:Key="show_tasks_on">_Afficher des tâches sur:</s:String>
+    <s:String x:Key="show_tasks_on">Afficher des _tâches sur:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Toutes les barres des tâches</s:String>
         <s:String>La même barre des tâches que la fenêtre</s:String>
         <s:String>La même barre des tâches que la fenêtre et la barre des tâches primaire</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">Icônes de systeme _inversées en couleur:</s:String>
+    <s:String x:Key="invert_system_icons">Icônes de systeme inversées en _couleur:</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>Si nécessaire par le thème</s:String>
         <s:String>Toujours</s:String>
         <s:String>Jamais</s:String>
     </x:Array>
-    <s:String x:Key="middle_mouse_task_action">Action de clic _moyen:</s:String>
+    <s:String x:Key="middle_mouse_task_action">Action de clic mo_yen:</s:String>
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>Ne rien faire</s:String>
         <s:String>Ouvrir une nouvelle instance</s:String>
@@ -65,15 +65,15 @@
         <s:String>Ouvrir le calendrier "Modern"</s:String>
         <s:String>Ouvrir le Centre de notifications</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">Masquer la ligne de la barre des _tâches lorsque la barre des tâches est auto-masquée</s:String>
+    <s:String x:Key="auto_hide_transparent">_Masquer la ligne de la barre des tâches lorsque la barre des tâches est auto-masquée</s:String>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">Visiter RetroBar sur GitHub</s:String>
     <s:String x:Key="taskbar_scale">Échelle de la barre des tâches</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Le réglage actuel: {0}%</s:String>
-    <s:String x:Key="debug_logging">Activer la journalisation de _débogage</s:String>
-    <s:String x:Key="check_for_updates">Vérifier la disponibilité des _mises à jour</s:String>
+    <s:String x:Key="debug_logging">_Activer la journalisation de débogage</s:String>
+    <s:String x:Key="check_for_updates">_Vérifier la disponibilité des mises à jour</s:String>
     <s:String x:Key="show_exit_menu_item">Afficher l'option "_Quitter RetroBar" dans le menu contextuel sous le clic droit</s:String>
     <s:String x:Key="slide_taskbar_buttons">Utiliser l'effet de _glissement au déplacement des boutons</s:String>
     <s:String x:Key="show_clock_seconds">Afficher des _secondes dans l'horloge</s:String>
@@ -81,7 +81,7 @@
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personnaliser les notifications</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar affiche des icônes pour les notifications actives et urgentes et masque des icônes inactives. Vous pouvez modifier le comportement des éléments de la liste ci-dessous.</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar affiche des icônes pour les notifications actives et urgentes et cache des icônes inactives. Vous pouvez modifier le comportement des éléments de la liste ci-dessous.</s:String>
     <s:String x:Key="customize_notifications_instruction">Sélectionnez un élément, puis modifiez son comportement de notification:</s:String>
     <s:String x:Key="hide_when_inactive">Masquer quand inactif</s:String>
     <s:String x:Key="always_show">Toujours afficher</s:String>
@@ -107,9 +107,9 @@
     <s:String x:Key="vert_tile">Carreler les fenêtres _verticalement</s:String>
     <s:String x:Key="toggle_desktop">Afficher le _bureau</s:String>
     <s:String x:Key="hide_desktop">Afficher les _fenêtres ouvertes</s:String>
-    <s:String x:Key="undo_cascade">_Annuler la cascade</s:String>
-    <s:String x:Key="undo_tile">_Annuler le carrelage</s:String>
-    <s:String x:Key="undo_minimize_all">_Annuler l'action de réduire tout</s:String>
+    <s:String x:Key="undo_cascade">Annuler la ca_scade</s:String>
+    <s:String x:Key="undo_tile">Annuler le ca_rrelage</s:String>
+    <s:String x:Key="undo_minimize_all">Annuler l'action de réduire _tout</s:String>
     <s:String x:Key="show_taskman_2k">_Gestionnaire des tâches...</s:String>
     <s:String x:Key="show_taskman">_Gestionnaire des tâches</s:String>
     <s:String x:Key="tray_properties">P_ropriétés</s:String>
