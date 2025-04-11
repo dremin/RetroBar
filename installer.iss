@@ -1,7 +1,7 @@
-#define RetroBarName "RetroBar"
-#define RetroBarVersion "BUILD_VERSION"
+﻿#define RetroBarName "RetroBar"
 #define RetroBarPublisher "Sam Johnson"
 #define RetroBarURL "https://github.com/dremin/RetroBar"
+#define RetroBarReleasesURL RetroBarURL + "/releases"
 #define RetroBarExeName "RetroBar.exe"
 
 #define DotNetVersionDownload "6.0.36"
@@ -11,6 +11,17 @@
 #define DotNetInstallerTitle "Microsoft .NET 6 Desktop Runtime"
 
 #define TargetFramework "net6.0-windows"
+#define ReleasePath "RetroBar\bin\Release\" + TargetFramework
+#define LanguagePath "RetroBar\Languages"
+#define ThemePath "RetroBar\Themes"
+#define ResourcesPath "RetroBar\Resources"
+#define Excludes "Languages,Themes,Resources,System.Diagnostics.EventLog.Messages.dll"
+
+#define Major
+#define Minor
+#define Revision
+#define RetroBarVersion GetVersionComponents(ReleasePath + "\publish-x64\" + RetroBarExeName, Major, Minor, Revision, null), Str(Major) + "." + Str(Minor) + "." + Str(Revision)
+#define VersionURL "https://dremin.github.io/updates/retrobar.json"
 
 [Setup]
 AppId={{574527FE-00A4-4F85-92AD-B4B8B4077D73}
@@ -33,6 +44,9 @@ OutputDir=bin
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+LicenseFile=DistLicense.txt
+WizardImageFile=compiler:WizClassicImage.bmp
+WizardSmallImageFile=compiler:WizClassicSmallImage.bmp
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -77,28 +91,206 @@ spanish.WizardSelectDir=Seleccione la carpeta de destino
 spanish.BrowseDialogTitle=Instalar: elegir una carpeta
 spanish.WizardReady=Listo para instalar
 spanish.WizardPreparing=Preparando la instalación
-spanish.ExitSetupTitle=Salir de la instalación
 spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
 spanish.WizardUninstalling=Estado de la desinstalación
 spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
+spanish.WizardLicense=Acuerdo de licencia
+spanish.WizardSelectComponents=Seleccione los componentes
+spanish.FullInstallation=Instalación completa
+spanish.CompactInstallation=Instalación compacta
+spanish.CustomInstallation=Instalación personalizada
+spanish.NoUninstallWarningTitle=Componentes encontrados
+spanish.ReadyMemoTasks=Tareas adicionales:
+spanish.DirExistsTitle=La carpeta ya existe
+spanish.DirExists=La carpeta "%1" ya existe. ¿Desea realizar la instalación en esa carpeta de todos modos?
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
+UpdateAvailableMessage=A new version of RetroBar is available!%n%nCurrent version: %s%nNew version: %s%n%nWould you like to visit the download page to get the latest version?
+ConfirmDeleteSettingsMessage=Do you want to delete the RetroBar user settings?
+InstallingDotNetRuntime=Installing {#DotNetInstallerTitle}...
+LanguagesComponentName=Languages
+ThemesComponentName=Themes
+
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible!%n%nVersión actual: %s%nNueva versión: %s%n%n¿Desea visitar la página de descarga para obtener la última versión?
+spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuario de RetroBar?
+spanish.InstallingDotNetRuntime=Instalando {#DotNetInstallerTitle}...
+spanish.LanguagesComponentName=Idiomas
+spanish.ThemesComponentName=Temas
+
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
+german.LanguagesComponentName=Sprachen
+german.ThemesComponentName=Themen
+
+[Components]
+; [auto-generated components section]
+; Components - Languages
+Name: "languages"; Description: "{cm:LanguagesComponentName}"; Types: full compact custom
+Name: "languages\en"; Description: "English"; Types: full compact custom; Flags: fixed
+Name: "languages\ca"; Description: "català"; Types: full custom
+Name: "languages\cs"; Description: "čeština"; Types: full custom
+Name: "languages\de"; Description: "Deutsch"; Types: full custom
+Name: "languages\en_gb"; Description: "English (United Kingdom)"; Types: full custom
+Name: "languages\es"; Description: "español"; Types: full custom
+Name: "languages\eu"; Description: "euskara"; Types: full custom
+Name: "languages\fr"; Description: "français"; Types: full custom
+Name: "languages\hr"; Description: "hrvatski"; Types: full custom
+Name: "languages\id"; Description: "Indonesia"; Types: full custom
+Name: "languages\it"; Description: "italiano"; Types: full custom
+Name: "languages\lv"; Description: "latviešu"; Types: full custom
+Name: "languages\lb"; Description: "Lëtzebuergesch"; Types: full custom
+Name: "languages\lt"; Description: "lietuvių"; Types: full custom
+Name: "languages\hu"; Description: "magyar"; Types: full custom
+Name: "languages\ms"; Description: "Melayu"; Types: full custom
+Name: "languages\nl"; Description: "Nederlands"; Types: full custom
+Name: "languages\pl"; Description: "polski"; Types: full custom
+Name: "languages\pt"; Description: "português"; Types: full custom
+Name: "languages\ro"; Description: "română"; Types: full custom
+Name: "languages\sk"; Description: "slovenčina"; Types: full custom
+Name: "languages\sr"; Description: "srpski"; Types: full custom
+Name: "languages\fi"; Description: "Suomi"; Types: full custom
+Name: "languages\sv"; Description: "svenska"; Types: full custom
+Name: "languages\vi"; Description: "Tiếng Việt"; Types: full custom
+Name: "languages\tr"; Description: "Türkçe"; Types: full custom
+Name: "languages\el"; Description: "ελληνικά"; Types: full custom
+Name: "languages\bg"; Description: "български"; Types: full custom
+Name: "languages\ru"; Description: "русский"; Types: full custom
+Name: "languages\sr_cyrl"; Description: "српски"; Types: full custom
+Name: "languages\uk"; Description: "українська"; Types: full custom
+Name: "languages\he"; Description: "עברית"; Types: full custom
+Name: "languages\ar"; Description: "العربية"; Types: full custom
+Name: "languages\fa"; Description: "فارسی"; Types: full custom
+Name: "languages\th"; Description: "ไทย"; Types: full custom
+Name: "languages\ko"; Description: "한국어"; Types: full custom
+Name: "languages\zh_hans"; Description: "中文(简体)"; Types: full custom
+Name: "languages\zh_hant"; Description: "中文(繁體)"; Types: full custom
+Name: "languages\ja"; Description: "日本語"; Types: full custom
+; Components - Themes
+Name: "themes"; Description: "{cm:ThemesComponentName}"; Types: full compact custom
+Name: "themes\system"; Description: "System"; Types: full compact custom; Flags: checkablealone fixed
+Name: "themes\system\systemvista"; Description: "System Vista"; Types: full custom
+Name: "themes\system\systemxp"; Description: "System XP"; Types: full custom
+Name: "themes\classic"; Description: "Classic Windows Themes"; Types: full compact custom
+Name: "themes\classic\windows2000"; Description: "Windows 2000"; Types: full custom
+Name: "themes\classic\windows9598"; Description: "Windows 95-98"; Types: full compact custom
+Name: "themes\classic\windowsme"; Description: "Windows Me"; Types: full custom
+Name: "themes\classic\windowsvistaclassic"; Description: "Windows Vista Classic"; Types: full custom
+Name: "themes\classic\windowsxpclassic"; Description: "Windows XP Classic"; Types: full custom
+Name: "themes\xp"; Description: "Windows XP Themes"; Types: full compact custom
+Name: "themes\xp\windowsxpblue"; Description: "Windows XP Blue"; Types: full custom
+Name: "themes\xp\windowsxpembeddedstyle"; Description: "Windows XP Embedded Style"; Types: full custom
+Name: "themes\xp\windowsxpolivegreen"; Description: "Windows XP Olive Green"; Types: full custom
+Name: "themes\xp\windowsxproyalenoir"; Description: "Windows XP Royale Noir"; Types: full custom
+Name: "themes\xp\windowsxproyale"; Description: "Windows XP Royale"; Types: full custom
+Name: "themes\xp\windowsxpsilver"; Description: "Windows XP Silver"; Types: full custom
+Name: "themes\xp\windowsxpzunestyle"; Description: "Windows XP Zune Style"; Types: full custom
+Name: "themes\vista"; Description: "Windows Vista Themes"; Types: full compact custom
+Name: "themes\vista\windowsvistaaero"; Description: "Windows Vista Aero"; Types: full custom
+Name: "themes\vista\windowsvistabasic"; Description: "Windows Vista Basic"; Types: full custom
+Name: "themes\other"; Description: "Other Themes"; Types: full compact custom
+Name: "themes\other\watercolor"; Description: "Watercolor"; Types: full custom
+Name: "themes\other\windowslonghornaero"; Description: "Windows Longhorn Aero"; Types: full custom
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
 
 [Files]
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs
+Source: "{#ReleasePath}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+
+Source: "{#ReleasePath}\publish-x64\System.Diagnostics.EventLog.Messages.dll"; DestDir: "{app}"; Flags: ignoreversion
+; [auto-generated files section]
+; Files - Languages
+Source: "{#LanguagePath}\català.xaml"; DestDir: "{app}\Languages"; Components: "languages\ca"; Flags: ignoreversion
+Source: "{#LanguagePath}\čeština.xaml"; DestDir: "{app}\Languages"; Components: "languages\cs"; Flags: ignoreversion
+Source: "{#LanguagePath}\Deutsch.xaml"; DestDir: "{app}\Languages"; Components: "languages\de"; Flags: ignoreversion
+Source: "{#LanguagePath}\English (United Kingdom).xaml"; DestDir: "{app}\Languages"; Components: "languages\en_gb"; Flags: ignoreversion
+Source: "{#LanguagePath}\español.xaml"; DestDir: "{app}\Languages"; Components: "languages\es"; Flags: ignoreversion
+Source: "{#LanguagePath}\euskara.xaml"; DestDir: "{app}\Languages"; Components: "languages\eu"; Flags: ignoreversion
+Source: "{#LanguagePath}\français.xaml"; DestDir: "{app}\Languages"; Components: "languages\fr"; Flags: ignoreversion
+Source: "{#LanguagePath}\hrvatski.xaml"; DestDir: "{app}\Languages"; Components: "languages\hr"; Flags: ignoreversion
+Source: "{#LanguagePath}\Indonesia.xaml"; DestDir: "{app}\Languages"; Components: "languages\id"; Flags: ignoreversion
+Source: "{#LanguagePath}\italiano.xaml"; DestDir: "{app}\Languages"; Components: "languages\it"; Flags: ignoreversion
+Source: "{#LanguagePath}\latviešu.xaml"; DestDir: "{app}\Languages"; Components: "languages\lv"; Flags: ignoreversion
+Source: "{#LanguagePath}\Lëtzebuergesch.xaml"; DestDir: "{app}\Languages"; Components: "languages\lb"; Flags: ignoreversion
+Source: "{#LanguagePath}\lietuvių.xaml"; DestDir: "{app}\Languages"; Components: "languages\lt"; Flags: ignoreversion
+Source: "{#LanguagePath}\magyar.xaml"; DestDir: "{app}\Languages"; Components: "languages\hu"; Flags: ignoreversion
+Source: "{#LanguagePath}\Melayu.xaml"; DestDir: "{app}\Languages"; Components: "languages\ms"; Flags: ignoreversion
+Source: "{#LanguagePath}\Nederlands.xaml"; DestDir: "{app}\Languages"; Components: "languages\nl"; Flags: ignoreversion
+Source: "{#LanguagePath}\polski.xaml"; DestDir: "{app}\Languages"; Components: "languages\pl"; Flags: ignoreversion
+Source: "{#LanguagePath}\português.xaml"; DestDir: "{app}\Languages"; Components: "languages\pt"; Flags: ignoreversion
+Source: "{#LanguagePath}\română.xaml"; DestDir: "{app}\Languages"; Components: "languages\ro"; Flags: ignoreversion
+Source: "{#LanguagePath}\slovenčina.xaml"; DestDir: "{app}\Languages"; Components: "languages\sk"; Flags: ignoreversion
+Source: "{#LanguagePath}\srpski.xaml"; DestDir: "{app}\Languages"; Components: "languages\sr"; Flags: ignoreversion
+Source: "{#LanguagePath}\Suomi.xaml"; DestDir: "{app}\Languages"; Components: "languages\fi"; Flags: ignoreversion
+Source: "{#LanguagePath}\svenska.xaml"; DestDir: "{app}\Languages"; Components: "languages\sv"; Flags: ignoreversion
+Source: "{#LanguagePath}\Tiếng Việt.xaml"; DestDir: "{app}\Languages"; Components: "languages\vi"; Flags: ignoreversion
+Source: "{#LanguagePath}\Türkçe.xaml"; DestDir: "{app}\Languages"; Components: "languages\tr"; Flags: ignoreversion
+Source: "{#LanguagePath}\ελληνικά.xaml"; DestDir: "{app}\Languages"; Components: "languages\el"; Flags: ignoreversion
+Source: "{#LanguagePath}\български.xaml"; DestDir: "{app}\Languages"; Components: "languages\bg"; Flags: ignoreversion
+Source: "{#LanguagePath}\русский.xaml"; DestDir: "{app}\Languages"; Components: "languages\ru"; Flags: ignoreversion
+Source: "{#LanguagePath}\српски.xaml"; DestDir: "{app}\Languages"; Components: "languages\sr_cyrl"; Flags: ignoreversion
+Source: "{#LanguagePath}\українська.xaml"; DestDir: "{app}\Languages"; Components: "languages\uk"; Flags: ignoreversion
+Source: "{#LanguagePath}\עברית.xaml"; DestDir: "{app}\Languages"; Components: "languages\he"; Flags: ignoreversion
+Source: "{#LanguagePath}\العربية.xaml"; DestDir: "{app}\Languages"; Components: "languages\ar"; Flags: ignoreversion
+Source: "{#LanguagePath}\فارسی.xaml"; DestDir: "{app}\Languages"; Components: "languages\fa"; Flags: ignoreversion
+Source: "{#LanguagePath}\ไทย.xaml"; DestDir: "{app}\Languages"; Components: "languages\th"; Flags: ignoreversion
+Source: "{#LanguagePath}\한국어.xaml"; DestDir: "{app}\Languages"; Components: "languages\ko"; Flags: ignoreversion
+Source: "{#LanguagePath}\中文(简体).xaml"; DestDir: "{app}\Languages"; Components: "languages\zh_hans"; Flags: ignoreversion
+Source: "{#LanguagePath}\中文(繁體).xaml"; DestDir: "{app}\Languages"; Components: "languages\zh_hant"; Flags: ignoreversion
+Source: "{#LanguagePath}\日本語.xaml"; DestDir: "{app}\Languages"; Components: "languages\ja"; Flags: ignoreversion
+; Files - Themes
+Source: "{#ThemePath}\System Vista.xaml"; DestDir: "{app}\Themes"; Components: "themes\system\systemvista"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistaclassic.png"; DestDir: "{app}\Resources"; Components: "themes\system\systemvista"; Flags: ignoreversion
+Source: "{#ThemePath}\System XP.xaml"; DestDir: "{app}\Themes"; Components: "themes\system\systemxp"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpclassic.png"; DestDir: "{app}\Resources"; Components: "themes\system\systemxp"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-sm.png"; DestDir: "{app}\Resources"; Components: "themes\system\systemxp"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-lg.png"; DestDir: "{app}\Resources"; Components: "themes\system\systemxp"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows 2000.xaml"; DestDir: "{app}\Themes"; Components: "themes\classic\windows2000"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopMe2k-sm.png"; DestDir: "{app}\Resources"; Components: "themes\classic\windows2000"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopMe2k-lg.png"; DestDir: "{app}\Resources"; Components: "themes\classic\windows2000"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows 95-98.xaml"; DestDir: "{app}\Themes"; Components: "themes\classic\windows9598"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows Me.xaml"; DestDir: "{app}\Themes"; Components: "themes\classic\windowsme"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows Vista Classic.xaml"; DestDir: "{app}\Themes"; Components: "themes\classic\windowsvistaclassic"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Classic.xaml"; DestDir: "{app}\Themes"; Components: "themes\classic\windowsxpclassic"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Blue.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxpblue"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpblue.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpblue"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpbluebutton.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpblue"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-sm.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpblue"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-lg.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpblue"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Embedded Style.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxpembeddedstyle"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpembeddedbutton.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpembeddedstyle"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Olive Green.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxpolivegreen"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpgreenbutton.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpolivegreen"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Royale Noir.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxproyalenoir"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startnoir.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxproyalenoir"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Royale.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxproyale"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxproyalebutton.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxproyale"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Silver.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxpsilver"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpsilverbutton.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpsilver"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows XP Zune Style.xaml"; DestDir: "{app}\Themes"; Components: "themes\xp\windowsxpzunestyle"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startxpzunebutton.png"; DestDir: "{app}\Resources"; Components: "themes\xp\windowsxpzunestyle"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows Vista Aero.xaml"; DestDir: "{app}\Themes"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistabuttonbot.png"; DestDir: "{app}\Resources"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistabuttonbotscaled.png"; DestDir: "{app}\Resources"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistabuttontop.png"; DestDir: "{app}\Resources"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistabuttontopscaled.png"; DestDir: "{app}\Resources"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistabuttonlg.png"; DestDir: "{app}\Resources"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startvistabuttonlgscaled.png"; DestDir: "{app}\Resources"; Components: "themes\vista\windowsvistaaero"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows Vista Basic.xaml"; DestDir: "{app}\Themes"; Components: "themes\vista\windowsvistabasic"; Flags: ignoreversion
+Source: "{#ThemePath}\Watercolor.xaml"; DestDir: "{app}\Themes"; Components: "themes\other\watercolor"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-sm.png"; DestDir: "{app}\Resources"; Components: "themes\other\watercolor"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-lg.png"; DestDir: "{app}\Resources"; Components: "themes\other\watercolor"; Flags: ignoreversion
+Source: "{#ThemePath}\Windows Longhorn Aero.xaml"; DestDir: "{app}\Themes"; Components: "themes\other\windowslonghornaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\startlhaerobutton.png"; DestDir: "{app}\Resources"; Components: "themes\other\windowslonghornaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-sm.png"; DestDir: "{app}\Resources"; Components: "themes\other\windowslonghornaero"; Flags: ignoreversion
+Source: "{#ResourcesPath}\desktopxp-lg.png"; DestDir: "{app}\Resources"; Components: "themes\other\windowslonghornaero"; Flags: ignoreversion
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
-Type: files; Name: "{localappdata}\RetroBar\settings.json"
 Type: dirifempty; Name: "{localappdata}\RetroBar"
 
 [Icons]
@@ -109,7 +301,7 @@ Name: "{autodesktop}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"; Tas
 Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "RetroBar"; ValueType: string; ValueData: "{app}\{#RetroBarExeName}"; Tasks: autostart; Flags: uninsdeletevalue
 
 [Run]
-Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing {#DotNetInstallerTitle}..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
+Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg: "{cm:InstallingDotNetRuntime}"; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
 Filename: "{app}\{#RetroBarExeName}"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
@@ -117,7 +309,11 @@ var
   DownloadPage: TDownloadWizardPage;
   DotNetChecked: boolean;
   DotNetMissing: boolean;
- 
+
+  TypesComboOnChangePrev: TNotifyEvent;
+  ComponentsListClickCheckPrev: TNotifyEvent;
+  IgnoreDependencyCheck: Boolean;
+
 function PreferArm64Files: Boolean;
 begin
   Result := IsArm64;
@@ -179,6 +375,47 @@ begin
   end;
 end;
 
+procedure CheckForUpdates;
+var
+  LatestVersion: string;
+  CurrentVersion: string;
+  JSONStr: AnsiString;
+  PosStart, PosEnd: Integer;
+  MsgResult: Integer;
+begin
+  CurrentVersion := '{#RetroBarVersion}';
+
+  try
+    DownloadTemporaryFile('{#VersionURL}', 'retrobar.json', '', nil);
+  except
+    Log('Failed to download update information: ' + GetExceptionMessage);
+    Exit;
+  end;
+
+  if LoadStringFromFile(ExpandConstant('{tmp}\retrobar.json'), JSONStr) then
+  begin
+    PosStart := Pos('"version": "', JSONStr) + Length('"version": "');
+    PosEnd := Pos('"', Copy(JSONStr, PosStart, Length(JSONStr))) + PosStart - 1;
+    LatestVersion := Copy(JSONStr, PosStart, PosEnd - PosStart);
+
+    case CompareVersion(CurrentVersion, LatestVersion) of
+      -1: begin
+        Log(Format('CheckForUpdates: Current version %s is older than latest version %s', [CurrentVersion, LatestVersion]));
+        MsgResult := MsgBox(Format(CustomMessage('UpdateAvailableMessage'), [CurrentVersion, LatestVersion]), 
+          mbInformation, MB_YESNO);
+        if MsgResult = IDYES then
+          ShellExec('open', '{#RetroBarReleasesURL}', '', '', SW_SHOW, ewNoWait, MsgResult);
+          end;
+       0: Log(Format('CheckForUpdates: Current version %s matches latest version %s', [CurrentVersion, LatestVersion]));
+       1: Log(Format('CheckForUpdates: Current version %s is newer than latest version %s', [CurrentVersion, LatestVersion]));
+    end;
+  end
+  else
+  begin
+    Log('Failed to read the version information file.');
+  end;
+end;
+
 function DotNetRuntimeIsMissing(): Boolean;
 var
   runtimes: TArrayOfString;
@@ -188,7 +425,7 @@ var
   meetsMaximumVersion: Boolean;
 begin
   Result := True;
-  
+
   if DotNetChecked then
   begin
     Result := DotNetMissing;
@@ -271,6 +508,39 @@ begin
   end;
 end;
 
+procedure AddDependencies(Component: String; Dependencies: array of String);
+var
+  i: Integer;
+begin
+  if Pos(Component, WizardSelectedComponents(False)) > 0 then
+    for i := Low(Dependencies) to High(Dependencies) do
+      WizardSelectComponents(Dependencies[i]);
+end;
+
+procedure EnforceComponentDependencies;
+begin
+  if IgnoreDependencyCheck then
+    Exit;
+  IgnoreDependencyCheck := True;
+  try
+    // [auto-generated code section]
+    AddDependencies('themes\system\systemvista', ['themes\system\systemxp']);
+    AddDependencies('themes\classic\windowsme', ['themes\classic\windows2000']);
+    AddDependencies('themes\classic\windowsvistaclassic', ['themes\classic\windows2000', 'themes\system\systemvista']);
+    AddDependencies('themes\classic\windowsxpclassic', ['themes\classic\windows2000', 'themes\system\systemxp']);
+    AddDependencies('themes\xp\windowsxpembeddedstyle', ['themes\xp\windowsxproyale']);
+    AddDependencies('themes\xp\windowsxpolivegreen', ['themes\xp\windowsxpblue']);
+    AddDependencies('themes\xp\windowsxproyalenoir', ['themes\xp\windowsxproyale']);
+    AddDependencies('themes\xp\windowsxproyale', ['themes\xp\windowsxpblue']);
+    AddDependencies('themes\xp\windowsxpsilver', ['themes\xp\windowsxpblue']);
+    AddDependencies('themes\xp\windowsxpzunestyle', ['themes\xp\windowsxproyale']);
+    AddDependencies('themes\vista\windowsvistabasic', ['themes\vista\windowsvistaaero']);
+
+  finally
+    IgnoreDependencyCheck := False;
+  end;
+end;
+
 function OnDownloadProgress(const Url, FileName: String; const Progress, ProgressMax: Int64): Boolean;
 begin
   if Progress = ProgressMax then
@@ -278,9 +548,40 @@ begin
   Result := True;
 end;
 
+procedure ComponentsListClickCheck(Sender: TObject);
+begin
+  ComponentsListClickCheckPrev(Sender);
+  EnforceComponentDependencies;
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  // When the components page becomes visible, enforce dependencies
+  if CurPageID = wpSelectComponents then
+    EnforceComponentDependencies;
+end;
+
+// run CheckForUpdates
+function InitializeSetup: Boolean;
+begin
+  CheckForUpdates;
+  Result := True;
+end;
+
+procedure TypesComboOnChange(Sender: TObject);
+begin
+  TypesComboOnChangePrev(Sender);
+  EnforceComponentDependencies;
+end;
+
 procedure InitializeWizard;
 begin
   DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
+  IgnoreDependencyCheck := False;
+  ComponentsListClickCheckPrev := WizardForm.ComponentsList.OnClickCheck;
+  WizardForm.ComponentsList.OnClickCheck := @ComponentsListClickCheck;
+  TypesComboOnChangePrev := WizardForm.TypesCombo.OnChange;
+  WizardForm.TypesCombo.OnChange := @TypesComboOnChange;
 end;
 
 function NextButtonClick(CurPageID: Integer): Boolean;
@@ -288,11 +589,11 @@ begin
   Result := True;
   if CurPageID = wpReady then begin
     if not DotNetRuntimeIsMissing() then Exit;
-    
+
     // To be used if we switch to a version that actually gets updates
     // if not DownloadDotNetVersion('6.0') then Exit;
     // if not LoadStringFromFile(ExpandConstant('{tmp}\{#DotNetVersionFile}'), downloadVersion) then Exit;
-    
+
     // Allow the install to proceed even if the download fails
     // The user will be prompted again when they launch RetroBar
     DownloadDotNetRuntime('{#DotNetVersionDownload}');
@@ -303,4 +604,21 @@ function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoType
 begin
   if DotNetRuntimeIsMissing() then Result := CustomMessage('DependenciesMessage') + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
   Result := Result + MemoTasksInfo;
+end;
+
+// ask if user wants to delete the settings.json file
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  settingsPath: string;
+begin
+  if CurUninstallStep <> usPostUninstall then
+    Exit;
+
+  settingsPath := ExpandConstant('{localappdata}\RetroBar\settings.json');
+  if FileExists(settingsPath) and 
+     (MsgBox(CustomMessage('ConfirmDeleteSettingsMessage'), mbConfirmation, MB_YESNO) = IDYES) then
+  begin
+    if not DeleteFile(settingsPath) then
+      Log('Warning: Could not delete user settings file: ' + settingsPath);
+  end;
 end;
