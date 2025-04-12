@@ -372,14 +372,10 @@ namespace RetroBar
             if (chkBox.IsChecked.Equals(false))
             {
                 _explorerMonitor.explorerMonitorWindow.UnregisterHotkeys();
-                ExplorerMonitor.StopExplorer();
-                ExplorerMonitor.StartExplorer();
             }
             else
             {
-                ExplorerMonitor.StopExplorer();
                 _explorerMonitor.explorerMonitorWindow.RegisterHotkeys();
-                ExplorerMonitor.StartExplorer();
             }
         }
 

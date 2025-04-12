@@ -1,5 +1,4 @@
 using ManagedShell;
-using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
@@ -15,40 +14,19 @@ namespace RetroBar.Utilities
     {
         public ExplorerMonitorWindow explorerMonitorWindow;
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
-
         public void ExplorerMonitorStart(WindowManager windowManagerRef, ShellManager shellManager)
         {
             if (explorerMonitorWindow != null) { return; } // Prevent multiple monitors.
 
             explorerMonitorWindow = new ExplorerMonitorWindow(windowManagerRef, shellManager); // Start monitoring.
+
+            if (Settings.Instance.OverrideHotkeys) explorerMonitorWindow.RegisterHotkeys();
         }
 
         public void Dispose()
         {
-            if (Settings.Instance.OverrideHotkeys)
-            {
-                explorerMonitorWindow?.UnregisterHotkeys();
-                StopExplorer();
-                StartExplorer();
-            }
-
+            if (Settings.Instance.OverrideHotkeys) explorerMonitorWindow.UnregisterHotkeys();
             explorerMonitorWindow?.Dispose();
-        }
-
-        public static void StopExplorer()
-        {
-            foreach (Process p in Process.GetProcessesByName("explorer"))
-            {
-                TerminateProcess(p.Handle, 1); // Exit code 1 disables auto restart
-                p.WaitForExit();
-            }
-        }
-
-        public static void StartExplorer()
-        {
-            ShellHelper.StartProcess("explorer.exe");
         }
 
         public class ExplorerMonitorWindow : NativeWindow, IDisposable
@@ -57,24 +35,11 @@ namespace RetroBar.Utilities
             private readonly WindowManager _windowManagerRef;
             private static readonly int WM_TASKBARCREATEDMESSAGE = NativeMethods.RegisterWindowMessage("TaskbarCreated");
 
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-
-
             public ExplorerMonitorWindow(WindowManager windowManagerRef, ShellManager shellManager)
             {
                 _shellManager = shellManager;
                 _windowManagerRef = windowManagerRef;
                 CreateHandle(new CreateParams());
-
-                if (Settings.Instance.OverrideHotkeys)
-                {
-                    StopExplorer();
-                    RegisterHotkeys();
-                    StartExplorer();
-                }
             }
 
             protected override void WndProc(ref Message m)
@@ -130,12 +95,25 @@ namespace RetroBar.Utilities
             
             public void RegisterHotkeys()
             {
+                IntPtr trayWnd = NativeMethods.FindWindow("Shell_TrayWnd", "");
+
+                if (trayWnd != IntPtr.Zero)
+                {
+                    for (int i = 0x205; i <= 0x20e; i++) // 0x205-0x20e are Shell_TrayWnd's quick switch hotkey IDs
+                    {
+                        NativeMethods.SendMessage(trayWnd, 
+                            (int)NativeMethods.WM.USER + 231, // Requests Shell_TrayWnd to unregister hotkeys
+                            (IntPtr)i, 
+                            IntPtr.Zero
+                        );
+                    }
+                }
 
                 for (int i = 0; i < 10; i++)
                 {
-                    int keycode = i == 9 ? 0x30 : 0x31 + i;
+                    uint keycode = i == 9 ? 0x30 : 0x31 + (uint)i;
 
-                    RegisterHotKey( // 0-9: Quick switch hotkeys
+                    NativeMethods.RegisterHotKey( // 0-9: Quick switch hotkeys
                         Handle,
                         i,
                         0x4008, // MOD_WIN | MOD_NOREPEAT
@@ -146,10 +124,9 @@ namespace RetroBar.Utilities
 
             public void UnregisterHotkeys()
             {
-
                 for (int i = 0; i < 10; i++)
                 {
-                    UnregisterHotKey(Handle, i);
+                    NativeMethods.UnregisterHotKey(Handle, i);
                 }
             }
 
