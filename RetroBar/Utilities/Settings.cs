@@ -368,6 +368,13 @@ namespace RetroBar.Utilities
             get => _overrideHotkeys;
             set => Set(ref _overrideHotkeys, value);
         }
+
+        private bool _hotkeysQuickLaunch = false;
+        public bool HotkeysQuickLaunch
+        {
+            get => _hotkeysQuickLaunch;
+            set => Set(ref _hotkeysQuickLaunch, value);
+        }
         #endregion
 
         #region Old Properties

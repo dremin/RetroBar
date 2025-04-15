@@ -43,7 +43,7 @@ namespace RetroBar.Controls
 
         public ToolbarDropHandler DropHandler { get; set; }
 
-        private ShellFolder Folder
+        public ShellFolder Folder
         {
             get => (ShellFolder)GetValue(FolderProperty);
             set
@@ -244,7 +244,7 @@ namespace RetroBar.Controls
             return builder;
         }
 
-        private bool InvokeContextMenu(ShellFile file, bool isInteractive)
+        public bool InvokeContextMenu(ShellFile file, bool isInteractive)
         {
             if (file == null)
             {

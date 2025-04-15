@@ -2,12 +2,15 @@ using ManagedShell;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
+using ManagedShell.ShellFolders;
 using ManagedShell.WindowsTasks;
+using RetroBar.Controls;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -55,23 +58,36 @@ namespace RetroBar.Utilities
                     {
                         try
                         {
-                            bool exists = _shellManager.Tasks.GroupedWindows.MoveCurrentToPosition(hotkeyId);
-
-                            if (exists)
+                            if (Settings.Instance.HotkeysQuickLaunch)
                             {
-                                ApplicationWindow window = _shellManager.Tasks.GroupedWindows.CurrentItem as ApplicationWindow;
+                                Toolbar toolbar = _windowManagerRef.taskbars.First().QuickLaunchToolbar;
+                                ListCollectionView itemList = (ListCollectionView)CollectionViewSource.GetDefaultView(toolbar.Folder.Files);
+                                
+                                bool exists = itemList.MoveCurrentToPosition(hotkeyId);
+                                if (exists) toolbar.InvokeContextMenu((ShellFile)itemList.CurrentItem, false);
+                            }
+                            else
+                            {
+                                bool exists = _shellManager.Tasks.GroupedWindows.MoveCurrentToPosition(hotkeyId);
 
-                                if (window.State == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                                if (exists)
                                 {
-                                    window.Minimize();
-                                }
-                                else
-                                {
-                                    window.BringToFront();
+                                    ApplicationWindow window = _shellManager.Tasks.GroupedWindows.CurrentItem as ApplicationWindow;
+
+                                    if (window.State == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                                    {
+                                        window.Minimize();
+                                    }
+                                    else
+                                    {
+                                        window.BringToFront();
+                                    }
                                 }
                             }
                         }
                         catch (ArgumentOutOfRangeException) { }
+                        catch (InvalidOperationException) { }
+                        
                     }
                 }
                 else if (m.Msg == WM_TASKBARCREATEDMESSAGE)
@@ -105,7 +121,7 @@ namespace RetroBar.Utilities
 
                 if (trayWnd != IntPtr.Zero)
                 {
-                    for (int i = firstId; i <= firstId + 10; i++)
+                    for (int i = firstId; i < firstId + 10; i++)
                     {
                         NativeMethods.SendMessage(trayWnd, 
                             (int)NativeMethods.WM.USER + 231,
@@ -136,6 +152,9 @@ namespace RetroBar.Utilities
                 {
                     NativeMethods.UnregisterHotKey(Handle, i);
                 }
+
+                // TODO: Restart explorer so it registers the hotkeys again
+                // Couldn't figure out a way to do this that wouldn't clash with ManagedShell, sry :(
             }
 
             readonly byte[] explorerHotkeySearchPattern = { // 4 entries should be enough to uniquely identify the hotkey table
