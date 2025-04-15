@@ -53,15 +53,17 @@ namespace RetroBar
         private DictionaryManager _dictionaryManager;
         private ShellManager _shellManager;
         private Updater _updater;
+        private ExplorerMonitor _explorerMonitor;
 
         public WindowManager windowManager;
 
-        public Taskbar(WindowManager windowManager, DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
+        public Taskbar(WindowManager windowManager, DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode, ExplorerMonitor explorerMonitor)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, mode, 0)
         {
             _dictionaryManager = dictionaryManager;
             _shellManager = shellManager;
             _updater = updater;
+            _explorerMonitor = explorerMonitor;
             this.windowManager = windowManager;
 
             InitializeComponent();
@@ -211,7 +213,7 @@ namespace RetroBar
         {
             base.WndProc(hwnd, msg, wParam, lParam, ref handled);
 
-            if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
+           if ((msg == (int)NativeMethods.WM.SYSCOLORCHANGE || 
                     msg == (int)NativeMethods.WM.SETTINGCHANGE) && 
                 Settings.Instance.Theme.StartsWith(DictionaryManager.THEME_DEFAULT))
             {
@@ -339,7 +341,7 @@ namespace RetroBar
 
         private void CustomizeNotificationsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow propWindow = PropertiesWindow.Open(_shellManager.NotificationArea, _dictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
+            PropertiesWindow propWindow = PropertiesWindow.Open(_shellManager.NotificationArea, _dictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth, _explorerMonitor);
             propWindow.OpenCustomizeNotifications();
         }
 
@@ -361,7 +363,7 @@ namespace RetroBar
 
         private void PropertiesMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow.Open(_shellManager.NotificationArea, _dictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth);
+            PropertiesWindow.Open(_shellManager.NotificationArea, _dictionaryManager, Screen, DpiScale, Orientation == Orientation.Horizontal ? DesiredHeight : DesiredWidth, _explorerMonitor);
         }
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
