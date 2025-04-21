@@ -21,7 +21,7 @@
         <s:String>下</s:String>
     </x:Array>
     <s:String x:Key="rowcount_text">行数(_R)：</s:String>
-    <s:String x:Key="rowcount_tip">タスクバーが上または下に配置されている場合のタスクバーの行数.</s:String>
+    <s:String x:Key="rowcount_tip">タスクバーが上または下に配置されている場合のタスクバーの行数。</s:String>
     <s:String x:Key="taskbar_width">タスクバーの幅(_W)：</s:String>
     <s:String x:Key="allow_font_smoothing">フォントをなめらかにする(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">通知領域のアイコンを折りたたむ(_N)</s:String>
@@ -31,97 +31,98 @@
     <s:String x:Key="show_multi_mon">複数のディスプレイで表示する(_M)</s:String>
     <s:String x:Key="show_start_button_multi_mon">すべてのタスクバーにスタートボタンを表示(_S)</s:String>
     <s:String x:Key="show_quick_launch">クイック起動を表示(_Q)</s:String>
-    <s:String x:Key="select_location">位置を選択(_S)...</s:String>
+    <s:String x:Key="select_location">フォルダを選択(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">クイック起動 - フォルダーを選択</s:String>
     <s:String x:Key="show_badges">バッジのエンブレムを表示(_B)</s:String>
     <s:String x:Key="show_window_previews">ウィンドウのプレビュー（サムネイル）を表示する(_W)</s:String>
     <s:String x:Key="use_software_rendering">ソフトウェアレンダリングを使用(_U)</s:String>
     <s:String x:Key="add_show_desktop_button">デスクトップの表示ボタンを追加する(_D)</s:String>
     <s:String x:Key="enable_auto_hide">タスクバーを自動的に隠す(_U)</s:String>
-    <s:String x:Key="lock_taskbar">タスクバーのロック(_L)</s:String>
+    <s:String x:Key="lock_taskbar">タスクバーを固定する(_L)</s:String>
     <s:String x:Key="multiple_displays">複数のディスプレイ</s:String>
     <s:String x:Key="show_tasks_on">タスクを表示する(_H)：</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>すべてのタスクバー</s:String>
-        <s:String>ウィンドウと同じタスクバー</s:String>
-        <s:String>ウィンドウやプライマリタスクバーと同じタスクバー</s:String>
+        <s:String>ウィンドウと同じ画面のタスクバー</s:String>
+        <s:String>ウィンドウと同じ画面とプライマリタスクバー</s:String>
     </x:Array>
     <s:String x:Key="invert_system_icons">システムアイコンの色を反転させる(_I)：</s:String>
     <x:Array x:Key="invert_system_icons_values" Type="s:String">
         <s:String>テーマによって必要な場合</s:String>
-        <s:String>常に</s:String>
-        <s:String>決して</s:String>
+        <s:String>常に反転</s:String>
+        <s:String>反転しない</s:String>
     </x:Array>
-    <s:String x:Key="middle_mouse_task_action">ミドルクリックアクション(_M)：</s:String>
+    <s:String x:Key="middle_mouse_task_action">マウス中央ボタン(_M):</s:String>
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>何もしない</s:String>
         <s:String>新しいインスタンスを開く</s:String>
         <s:String>タスクを閉じる</s:String>
     </x:Array>
-    <s:String x:Key="clock_click_action">時計をクリックする動作(_C)：</s:String>
+    <s:String x:Key="clock_click_action">時計のクリック(_C):</s:String>
     <x:Array x:Key="clock_click_action_values" Type="s:String">
         <s:String>何もしない</s:String>
         <s:String>Aeroカレンダーを開く</s:String>
         <s:String>Modernカレンダーを開く</s:String>
         <s:String>通知センターを開く</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">自動非表示を有効にした状態でタスクバーの行を非表示にする(_T)</s:String>
+    <s:String x:Key="auto_hide_transparent">自動的に隠す時にタスクバーの線を非表示にする(_T)</s:String>
     <s:String x:Key="version">バージョン {0}</s:String>
     <s:String x:Key="visit_on_github">GitHubのRetroBarを見る</s:String>
-    <s:String x:Key="taskbar_scale">タスクバーのスケール</s:String>
+    <s:String x:Key="taskbar_scale">タスクバー表示倍率</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">現在の設定 {0}%</s:String>
     <s:String x:Key="debug_logging">デバッグログを有効にする(Debug)(_D)</s:String>
     <s:String x:Key="check_for_updates">アップデートを確認する(_U)</s:String>
     <s:String x:Key="show_exit_menu_item">右クリックのメニューに終了オプションを表示する(_X)</s:String>
-    <s:String x:Key="slide_taskbar_buttons">スライドタスクバーボタン(_E)</s:String>
-    <s:String x:Key="show_clock_seconds">时钟显示秒数(_H)</s:String>
+    <s:String x:Key="slide_taskbar_buttons">タスクバーボタンをスライド表示する(_E)</s:String>
+    <s:String x:Key="show_clock_seconds">時計に秒を表示する(_H)</s:String>
+    <s:String x:Key="open_custom_themes_folder">カスタムテーマフォルダを開く</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
-    <s:String x:Key="customize_notifications">通知のカスタマイズ</s:String>
+    <s:String x:Key="customize_notifications">通知領域のカスタマイズ</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar は、アクティブな通知と緊急の通知のアイコンを表示し、非アクティブな通知は非表示にします。この動作は以下のリストで変更できます。</s:String>
     <s:String x:Key="customize_notifications_instruction">アイテムを選択し、通知の動作を選択します：</s:String>
     <s:String x:Key="hide_when_inactive">非アクティブ時に隠す</s:String>
-    <s:String x:Key="always_show">常に見せる</s:String>
+    <s:String x:Key="always_show">常に表示</s:String>
     <s:String x:Key="always_hide">常に隠す</s:String>
-    <s:String x:Key="remove">取除く</s:String>
-    <s:String x:Key="name_heading">称号</s:String>
-    <s:String x:Key="behavior_heading">挙動</s:String>
-    <s:String x:Key="invert_heading">反転</s:String>
+    <s:String x:Key="remove">削除</s:String>
+    <s:String x:Key="name_heading">名前</s:String>
+    <s:String x:Key="behavior_heading">動作</s:String>
+    <s:String x:Key="invert_heading">反転表示</s:String>
 
     <s:String x:Key="start_text">スタート</s:String>
     <s:String x:Key="start_text_xp">スタート</s:String>
     <s:String x:Key="start_button_tip_98">ここをクリックしてスタート.</s:String>
     <s:String x:Key="start_button_tip">ここをクリックしてスタート</s:String>
     <s:String x:Key="start_button_tip_vista">スタート</s:String>
- 
+
     <s:String x:Key="retrobar_title">RetroBar タスクバー</s:String>
     <s:String x:Key="toolbars">ツールバー(_T)</s:String>
     <s:String x:Key="quick_launch">クイック起動(_Q)</s:String>
     <s:String x:Key="new_toolbar">新しいツールバー(_N)...</s:String>
     <s:String x:Key="set_time">日付と時刻の調整(_A)</s:String>
-    <s:String x:Key="cascade">カスケードウィンドウ(_S)</s:String>
-    <s:String x:Key="horiz_tile">タイルウィンドウを水平に(_H)</s:String>
-    <s:String x:Key="vert_tile">タイルウィンドウを垂直に(_V)</s:String>
-    <s:String x:Key="toggle_desktop">デスクトップを表示する(_S)</s:String>
-    <s:String x:Key="hide_desktop">開いているウィンドウを表示する(_S)</s:String>
-    <s:String x:Key="undo_cascade">アンドゥカスケード(_U)</s:String>
-    <s:String x:Key="undo_tile">アンドゥ タイル(_U)</s:String>
-    <s:String x:Key="undo_minimize_all">すべて最小化を元に戻す(_U)</s:String>
+    <s:String x:Key="cascade">ウインドウを重ねて表示(_S)</s:String>
+    <s:String x:Key="horiz_tile">ウィンドウを横方向へ整列(_H)</s:String>
+    <s:String x:Key="vert_tile">ウインドウを縦方向へ整列(_V)</s:String>
+    <s:String x:Key="toggle_desktop">デスクトップを表示(_S)</s:String>
+    <s:String x:Key="hide_desktop">ウィンドウを表示(_S)</s:String>
+    <s:String x:Key="undo_cascade">重ねたウインドウを戻す(_U)</s:String>
+    <s:String x:Key="undo_tile">整列したウインドウを戻す(_U)</s:String>
+    <s:String x:Key="undo_minimize_all">最小化表示を戻す(_U)</s:String>
     <s:String x:Key="show_taskman_2k">タスク マネージャ(_K)...</s:String>
     <s:String x:Key="show_taskman">タスク マネージャ(_K)</s:String>
     <s:String x:Key="tray_properties">プロパティ(_R)</s:String>
-    <s:String x:Key="update_available">更新可能(_U)...</s:String>
+    <s:String x:Key="update_available">更新が可能です(_U)...</s:String>
     <s:String x:Key="exit_retrobar">RetroBarを終了(_E)</s:String>
-    <s:String x:Key="customize_notifications_menu">通知のカスタマイズ(_C)...</s:String>
+    <s:String x:Key="customize_notifications_menu">通知領域のカスタマイズ(_C)...</s:String>
     <s:String x:Key="lock_taskbar_menu">タスクバーをロック(_L)</s:String>
 
-    <s:String x:Key="show_desktop_tip_95">デスクトップのサーフェス/リストア</s:String>
-    <s:String x:Key="show_desktop_tip">デスクトップを表示する</s:String>
+    <s:String x:Key="show_desktop_tip_95">デスクトップの表示/復元</s:String>
+    <s:String x:Key="show_desktop_tip">デスクトップの表示</s:String>
     <s:String x:Key="show_desktop_95">デスクトップ(_D)</s:String>
-    <s:String x:Key="show_desktop">デスクトップを表示する(_S)</s:String>
-    <s:String x:Key="peek_at_desktop">デスクトップを覗(_P)</s:String>
+    <s:String x:Key="show_desktop">デスクトップの表示(_S)</s:String>
+    <s:String x:Key="peek_at_desktop">デスクトップのプレビュー(_P)</s:String>
 
     <s:String x:Key="restore">復元(_R)</s:String>
     <s:String x:Key="move">移動(_M)</s:String>
@@ -129,7 +130,7 @@
     <s:String x:Key="minimize">最小化(_N)</s:String>
     <s:String x:Key="maximize">最大化(_X)</s:String>
     <s:String x:Key="close">閉じる(_C)</s:String>
- 
+
     <s:String x:Key="show_hidden">隠れたアイコンを表示</s:String>
     <s:String x:Key="hide">隠す</s:String>
 
