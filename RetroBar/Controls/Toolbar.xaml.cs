@@ -41,9 +41,17 @@ namespace RetroBar.Controls
 
         private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
 
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(Toolbar));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
+
         public ToolbarDropHandler DropHandler { get; set; }
 
-        public ShellFolder Folder
+        private ShellFolder Folder
         {
             get => (ShellFolder)GetValue(FolderProperty);
             set
@@ -221,6 +229,23 @@ namespace RetroBar.Controls
                 }
             }
         }
+
+        private void Toolbar_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
+        {
+            if (Settings.Instance.HotkeysQuickLaunch && Host.Screen.Primary)
+            {
+                try
+                {
+                    ListCollectionView items = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+
+                    bool exists = items.MoveCurrentToPosition(e.index);
+                    
+                    if (exists) InvokeContextMenu((ShellFile)items.CurrentItem, false);
+
+                }
+                catch (ArgumentOutOfRangeException) { }
+            }
+        }
         #endregion
 
         #region Context menu
@@ -244,7 +269,7 @@ namespace RetroBar.Controls
             return builder;
         }
 
-        public bool InvokeContextMenu(ShellFile file, bool isInteractive)
+        private bool InvokeContextMenu(ShellFile file, bool isInteractive)
         {
             if (file == null)
             {
@@ -272,6 +297,7 @@ namespace RetroBar.Controls
             if (!_isLoaded)
             {
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+                HotkeyManager.TaskbarHotkeyPressed += Toolbar_TaskbarHotkeyPressed;
 
                 _isLoaded = true;
             }
@@ -280,6 +306,7 @@ namespace RetroBar.Controls
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            HotkeyManager.TaskbarHotkeyPressed -= Toolbar_TaskbarHotkeyPressed;
 
             _isLoaded = false;
         }

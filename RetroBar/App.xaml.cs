@@ -29,6 +29,7 @@ namespace RetroBar
         private readonly ShellManager _shellManager;
         private readonly StartMenuMonitor _startMenuMonitor;
         private readonly Updater _updater;
+        private readonly HotkeyManager _hotkeyManager;
 
         public App()
         {
@@ -38,6 +39,7 @@ namespace RetroBar
             _startMenuMonitor = new StartMenuMonitor(new AppVisibilityHelper(false));
             _dictionaryManager = new DictionaryManager();
             _updater = new Updater();
+            _hotkeyManager = new HotkeyManager();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
@@ -143,6 +145,7 @@ namespace RetroBar
             _shellManager.Dispose();
             _startMenuMonitor.Dispose();
             _updater.Dispose();
+            _hotkeyManager.Dispose();
             _logger.Dispose();
         }
 

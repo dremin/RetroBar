@@ -72,6 +72,8 @@ namespace RetroBar.Controls
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
             SetStyles();
+
+            HotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
         }
 
         private void SetTasksCollection()
@@ -115,6 +117,32 @@ namespace RetroBar.Controls
                 }
             }
         }
+        private void TaskList_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
+        {
+            if (!Settings.Instance.HotkeysQuickLaunch && Host.Screen.Primary)
+            {
+                try
+                {
+                    bool exists = taskbarItems.MoveCurrentToPosition(e.index);
+
+                    if (exists)
+                    {
+                        ApplicationWindow window = taskbarItems.CurrentItem as ApplicationWindow;
+
+                        if (window.State == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                        {
+                            window.Minimize();
+                        }
+                        else
+                        {
+                            window.BringToFront();
+                        }
+                    }
+
+                }
+                catch (ArgumentOutOfRangeException) { }
+            }
+        }
 
         private bool Tasks_Filter(object obj)
         {
@@ -156,6 +184,8 @@ namespace RetroBar.Controls
             {
                 taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
             }
+
+            HotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
             isLoaded = false;
         }
 

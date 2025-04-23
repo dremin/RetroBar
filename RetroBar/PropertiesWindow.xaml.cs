@@ -27,7 +27,6 @@ namespace RetroBar
         private readonly double _dpiScale;
         private readonly NotificationArea _notificationArea;
         private readonly AppBarScreen _screen;
-        private readonly ExplorerMonitor _explorerMonitor;
 
         private FileSystemWatcher _themesWatcher;
 
@@ -69,14 +68,13 @@ namespace RetroBar
             get => 1;
         }
 
-        private PropertiesWindow(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize, ExplorerMonitor explorerMonitor)
+        private PropertiesWindow(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             _barSize = barSize;
             _dictionaryManager = dictionaryManager;
             _dpiScale = dpiScale;
             _notificationArea = notificationArea;
             _screen = screen;
-            _explorerMonitor = explorerMonitor;
 
             InitializeComponent();
 
@@ -111,11 +109,11 @@ namespace RetroBar
             }
         }
 
-        public static PropertiesWindow Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize, ExplorerMonitor explorerMonitor)
+        public static PropertiesWindow Open(NotificationArea notificationArea, DictionaryManager dictionaryManager, AppBarScreen screen, double dpiScale, double barSize)
         {
             if (_instance == null)
             {
-                _instance = new PropertiesWindow(notificationArea, dictionaryManager, screen, dpiScale, barSize, explorerMonitor);
+                _instance = new PropertiesWindow(notificationArea, dictionaryManager, screen, dpiScale, barSize);
                 _instance.Show();
             }
             else
@@ -362,20 +360,6 @@ namespace RetroBar
             catch (Exception exception)
             {
                 ShellLogger.Error($"PropertiesWindow: Unable to update registry autorun setting: {exception.Message}");
-            }
-        }
-
-        private void CbOverrideHotkeys_OnChecked(object sender, RoutedEventArgs e)
-        {
-            var chkBox = (System.Windows.Controls.CheckBox)sender;
-
-            if (chkBox.IsChecked.Equals(false))
-            {
-                _explorerMonitor.explorerMonitorWindow.UnregisterHotkeys();
-            }
-            else
-            {
-                _explorerMonitor.explorerMonitorWindow.RegisterHotkeys();
             }
         }
 

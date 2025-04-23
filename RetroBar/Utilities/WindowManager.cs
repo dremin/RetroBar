@@ -14,7 +14,7 @@ namespace RetroBar.Utilities
         private bool _isSettingDisplays;
         private int _pendingDisplayEvents;
         private List<AppBarScreen> _screenState = new List<AppBarScreen>();
-        public List<Taskbar> taskbars = new List<Taskbar>();
+        private List<Taskbar> _taskbars = new List<Taskbar>();
 
         private readonly DictionaryManager _dictionaryManager;
         private readonly ExplorerMonitor _explorerMonitor;
@@ -122,13 +122,13 @@ namespace RetroBar.Utilities
         {
             ShellLogger.Debug($"WindowManager: Closing all taskbars");
 
-            foreach (var taskbar in taskbars)
+            foreach (var taskbar in _taskbars)
             {
                 taskbar.AllowClose = true;
                 taskbar.Close();
             }
 
-            taskbars.Clear();
+            _taskbars.Clear();
         }
 
         private void openTaskbars()
@@ -153,10 +153,10 @@ namespace RetroBar.Utilities
         private void openTaskbar(AppBarScreen screen)
         {
             ShellLogger.Debug($"WindowManager: Opening taskbar on screen {screen.DeviceName}");
-            Taskbar taskbar = new Taskbar(this, _dictionaryManager, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal, _explorerMonitor);
+            Taskbar taskbar = new Taskbar(this, _dictionaryManager, _shellManager, _startMenuMonitor, _updater, screen, Settings.Instance.Edge, Settings.Instance.AutoHide ? AppBarMode.AutoHide : AppBarMode.Normal);
             taskbar.Show();
 
-            taskbars.Add(taskbar);
+            _taskbars.Add(taskbar);
         }
 
         private bool haveDisplaysChanged()

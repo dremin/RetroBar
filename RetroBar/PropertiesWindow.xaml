@@ -349,7 +349,6 @@
                             <Label Content="{DynamicResource autostart}" />
                         </CheckBox>
                         <CheckBox x:Name="cbOverrideHotkeys"
-                                  Click="CbOverrideHotkeys_OnChecked"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideHotkeys, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource override_hotkeys}" />
                         </CheckBox>
