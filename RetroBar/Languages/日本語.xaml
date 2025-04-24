@@ -10,9 +10,9 @@
     <s:String x:Key="autostart">ログオン時に自動的に起動する(_L)</s:String>
     <s:String x:Key="language_text">言語(_G):</s:String>
     <s:String x:Key="language_tip">使用する言語を選択します。</s:String>
-    <s:String x:Key="theme_text">テーマ(_T):</s:String>
+    <s:String x:Key="theme_text">テーマ(_T)：</s:String>
     <s:String x:Key="theme_tip">Themes フォルダーにテーマをインストールします。</s:String>
-    <s:String x:Key="location_text">位置(_I):</s:String>
+    <s:String x:Key="location_text">位置(_I)：</s:String>
     <s:String x:Key="location_tip">画面上のタスクバーの位置を変更します。</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>左</s:String>
@@ -27,13 +27,13 @@
     <s:String x:Key="collapse_tray_icons">通知領域のアイコンを折りたたむ(_N)</s:String>
     <s:String x:Key="customize">カスタマイズ(_C)...</s:String>
     <s:String x:Key="show_input_language">表示入力言語(_L)</s:String>
-    <s:String x:Key="show_clock">時計を表示する(K)</s:String>
-    <s:String x:Key="show_multi_mon">複数のディスプレイで表示する(_M)</s:String>
+    <s:String x:Key="show_clock">時計を表示する(_K)</s:String>
+    <s:String x:Key="show_multi_mon">タスクバーを複数のディスプレイに表示する(_M)</s:String>
     <s:String x:Key="show_start_button_multi_mon">すべてのタスクバーにスタートボタンを表示(_S)</s:String>
-    <s:String x:Key="show_quick_launch">クイック起動を表示する(Q)</s:String>
-    <s:String x:Key="select_location">フォルダを選択(_S)...</s:String>
+    <s:String x:Key="show_quick_launch">クイック起動を表示する(_Q)</s:String>
+    <s:String x:Key="select_location">フォルダーを選択(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">クイック起動 - フォルダーを選択</s:String>
-    <s:String x:Key="show_badges">バッジのエンブレムを表示(_B)</s:String>
+    <s:String x:Key="show_badges">バッジを表示する(_B)</s:String>
     <s:String x:Key="show_window_previews">ウィンドウのプレビュー（サムネイル）を表示する(_W)</s:String>
     <s:String x:Key="use_software_rendering">ソフトウェアレンダリングを使用(_U)</s:String>
     <s:String x:Key="add_show_desktop_button">デスクトップの表示ボタンを追加する(_D)</s:String>
@@ -58,7 +58,7 @@
         <s:String>新しいインスタンスを開く</s:String>
         <s:String>タスクを閉じる</s:String>
     </x:Array>
-    <s:String x:Key="clock_click_action">時計のクリック(_C):</s:String>
+    <s:String x:Key="clock_click_action">時計のクリック(_C)：</s:String>
     <x:Array x:Key="clock_click_action_values" Type="s:String">
         <s:String>何もしない</s:String>
         <s:String>Aeroカレンダーを開く</s:String>
@@ -71,13 +71,13 @@
     <s:String x:Key="taskbar_scale">タスクバー表示倍率</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
-    <s:String x:Key="taskbar_scale_current">現在の設定 {0}%</s:String>
-    <s:String x:Key="debug_logging">デバッグログを有効にする(Debug)(_D)</s:String>
+    <s:String x:Key="taskbar_scale_current">現在の設定： {0}%</s:String>
+    <s:String x:Key="debug_logging">デバッグログを有効にする(デバッグ)(_D)</s:String>
     <s:String x:Key="check_for_updates">アップデートを確認する(_U)</s:String>
     <s:String x:Key="show_exit_menu_item">右クリックのメニューに終了オプションを表示する(_X)</s:String>
     <s:String x:Key="slide_taskbar_buttons">タスクバーボタンをスライド表示する(_E)</s:String>
     <s:String x:Key="show_clock_seconds">時計に秒を表示する(_H)</s:String>
-    <s:String x:Key="open_custom_themes_folder">カスタムテーマフォルダを開く</s:String>
+    <s:String x:Key="open_custom_themes_folder">カスタムテーマフォルダーを開く</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">通知領域のカスタマイズ</s:String>
