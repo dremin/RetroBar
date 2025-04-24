@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">RetroBar 設定</s:String>
+    <s:String x:Key="retrobar_properties">RetroBarのプロパティ</s:String>
     <s:String x:Key="taskbar_tab">タスクバー</s:String>
     <s:String x:Key="advanced_tab">詳細設定</s:String>
-    <s:String x:Key="taskbar_appearance">タスク バーのデザイン</s:String>
+    <s:String x:Key="taskbar_appearance">タスクバーのデザイン</s:String>
     <s:String x:Key="notification_area">通知領域</s:String>
     <s:String x:Key="autostart">ログオン時に自動的に起動する(_L)</s:String>
     <s:String x:Key="language_text">言語(_G):</s:String>
@@ -27,10 +27,10 @@
     <s:String x:Key="collapse_tray_icons">通知領域のアイコンを折りたたむ(_N)</s:String>
     <s:String x:Key="customize">カスタマイズ(_C)...</s:String>
     <s:String x:Key="show_input_language">表示入力言語(_L)</s:String>
-    <s:String x:Key="show_clock">時計を表示する(_K)</s:String>
+    <s:String x:Key="show_clock">時計を表示する(K)</s:String>
     <s:String x:Key="show_multi_mon">複数のディスプレイで表示する(_M)</s:String>
     <s:String x:Key="show_start_button_multi_mon">すべてのタスクバーにスタートボタンを表示(_S)</s:String>
-    <s:String x:Key="show_quick_launch">クイック起動を表示(_Q)</s:String>
+    <s:String x:Key="show_quick_launch">クイック起動を表示する(Q)</s:String>
     <s:String x:Key="select_location">フォルダを選択(_S)...</s:String>
     <s:String x:Key="quick_launch_folder">クイック起動 - フォルダーを選択</s:String>
     <s:String x:Key="show_badges">バッジのエンブレムを表示(_B)</s:String>
@@ -65,7 +65,7 @@
         <s:String>Modernカレンダーを開く</s:String>
         <s:String>通知センターを開く</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">自動的に隠す時にタスクバーの線を非表示にする(_T)</s:String>
+    <s:String x:Key="auto_hide_transparent">自動的に隠す時にタスクバーの線を隠す(_T)</s:String>
     <s:String x:Key="version">バージョン {0}</s:String>
     <s:String x:Key="visit_on_github">GitHubのRetroBarを見る</s:String>
     <s:String x:Key="taskbar_scale">タスクバー表示倍率</s:String>
@@ -116,7 +116,7 @@
     <s:String x:Key="update_available">更新が可能です(_U)...</s:String>
     <s:String x:Key="exit_retrobar">RetroBarを終了(_E)</s:String>
     <s:String x:Key="customize_notifications_menu">通知領域のカスタマイズ(_C)...</s:String>
-    <s:String x:Key="lock_taskbar_menu">タスクバーをロック(_L)</s:String>
+    <s:String x:Key="lock_taskbar_menu">タスクバーを固定する(_L)</s:String>
 
     <s:String x:Key="show_desktop_tip_95">デスクトップの表示/復元</s:String>
     <s:String x:Key="show_desktop_tip">デスクトップの表示</s:String>
@@ -136,5 +136,6 @@
 
     <s:String x:Key="open_folder">&amp;フォルダーを開く</s:String>
 
+    <!-- Items below are settings, and should always be in English -->
     <FontFamily x:Key="start_text_xp_font_family">MS UI Gothic</FontFamily>
 </ResourceDictionary>
