@@ -73,7 +73,7 @@ namespace RetroBar.Controls
         {
             SetStyles();
 
-            HotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
+            Host.hotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
         }
 
         private void SetTasksCollection()
@@ -185,7 +185,7 @@ namespace RetroBar.Controls
                 taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
             }
 
-            HotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
+            Host.hotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
             isLoaded = false;
         }
 

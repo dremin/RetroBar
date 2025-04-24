@@ -297,7 +297,7 @@ namespace RetroBar.Controls
             if (!_isLoaded)
             {
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
-                HotkeyManager.TaskbarHotkeyPressed += Toolbar_TaskbarHotkeyPressed;
+                Host.hotkeyManager.TaskbarHotkeyPressed += Toolbar_TaskbarHotkeyPressed;
 
                 _isLoaded = true;
             }
@@ -306,7 +306,7 @@ namespace RetroBar.Controls
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
-            HotkeyManager.TaskbarHotkeyPressed -= Toolbar_TaskbarHotkeyPressed;
+            Host.hotkeyManager.TaskbarHotkeyPressed -= Toolbar_TaskbarHotkeyPressed;
 
             _isLoaded = false;
         }
