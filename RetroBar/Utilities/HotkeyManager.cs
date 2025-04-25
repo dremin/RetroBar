@@ -1,18 +1,9 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell;
-using ManagedShell.Common.SupportingClasses;
-using ManagedShell.Interop;
-using ManagedShell.ShellFolders;
-using ManagedShell.WindowsTasks;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
 using System.Windows.Forms;
-using System.Windows.Threading;
+using static ManagedShell.Interop.NativeMethods;
 
 namespace RetroBar.Utilities
 {
@@ -23,19 +14,24 @@ namespace RetroBar.Utilities
         public HotkeyManager()
         {
             listenerWindow = new HotkeyListenerWindow(this);
-            
-            if (Settings.Instance.OverrideHotkeys) listenerWindow.RegisterHotkeys();
-            
+
+            if (Settings.Instance.OverrideHotkeys)
+            {
+                listenerWindow.RegisterHotkeys();
+            }
+
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
         public void Dispose()
         {
-            if (Settings.Instance.OverrideHotkeys) listenerWindow.UnregisterHotkeys();
+            if (Settings.Instance.OverrideHotkeys)
+            {
+                listenerWindow.UnregisterHotkeys();
+            }
 
             listenerWindow?.Dispose();
         }
-
 
         #region Events
         public class TaskbarHotkeyEventArgs : EventArgs
@@ -49,15 +45,21 @@ namespace RetroBar.Utilities
         {
             if (e.PropertyName == nameof(Settings.OverrideHotkeys))
             {
-                if (Settings.Instance.OverrideHotkeys) listenerWindow.RegisterHotkeys();
-                else listenerWindow.UnregisterHotkeys();
+                if (Settings.Instance.OverrideHotkeys)
+                {
+                    listenerWindow.RegisterHotkeys();
+                }
+                else
+                {
+                    listenerWindow.UnregisterHotkeys();
+                }
             }
         }
         #endregion
 
         public class HotkeyListenerWindow : NativeWindow, IDisposable
         {
-            private HotkeyManager _manager;
+            private readonly HotkeyManager _manager;
 
             public HotkeyListenerWindow(HotkeyManager manager)
             {
@@ -67,13 +69,13 @@ namespace RetroBar.Utilities
 
             protected override void WndProc(ref Message m)
             {
-                if (m.Msg == (int)NativeMethods.WM.HOTKEY)
+                if (m.Msg == (int)WM.HOTKEY)
                 {
                     int hotkeyId = (int)m.WParam;
 
                     if (hotkeyId >= 0 && hotkeyId <= 9) // 0-9: Quick switch hotkeys
                     {
-                        TaskbarHotkeyEventArgs args = new TaskbarHotkeyEventArgs { index = hotkeyId };
+                        TaskbarHotkeyEventArgs args = new() { index = hotkeyId };
                         _manager.TaskbarHotkeyPressed?.Invoke(this, args);
                     }
                 }
@@ -81,112 +83,187 @@ namespace RetroBar.Utilities
                 base.WndProc(ref m);
             }
 
-            #region Explorer hotkey table search stuff
+            #region Explorer hotkey table detection
 
-            readonly byte[] explorerHotkeySearchPattern = { // 4 entries should be enough to uniquely identify the hotkey table
-                0x31,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
-                0x32,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
-                0x33,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
-                0x34,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
-            };
-
-            const int explorerHotkeyIndexDefault = 17; // Current index as of 24H2, used as a backup in case the index can't be determined
-
-            // Finds the index of the first taskbar hotkey in explorer's hotkey table
-            // See https://github.com/dremin/RetroBar/pull/1128#issuecomment-2802222222 for more info
-            private int FindExplorerTaskbarHotkeyIndex()
+            /// <summary>
+            /// Contains logic to locate Explorer’s built‑in taskbar hotkey table index at runtime.
+            /// </summary>
+            private static class ExplorerHotkeyTable
             {
-                int index = 0;
+                // Pattern of four consecutive hotkey entries for Win+1…Win+4 (each entry is two DWORDs: key code and modifiers)
+                private static readonly byte[] Pattern =
+                [
+                    0x31,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
+                    0x32,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
+                    0x33,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
+                    0x34,0x00,0x00,0x00, 0x08,0x00,0x00,0x00,
+                ];
 
-                try
+                // Fallback index in case detection fails (known working default on recent Windows versions)
+                private const int DefaultIndex = 17;
+
+                // Size in bytes of one hotkey entry (two 32-bit values)
+                private const int EntrySize = sizeof(int) * 2;
+
+                // Cached result to avoid repeated file scans
+                private static int? _cachedIndex;
+
+                /// <summary>
+                /// Scans the local Explorer.exe to find the zero‑based index of the first taskbar hotkey entry.
+                /// </summary>
+                /// <returns>
+                /// The index of the first taskbar hotkey entry in Explorer’s hotkey table, or <see cref="DefaultIndex" /> if detection fails.
+                /// </returns>
+                public static int GetIndex()
                 {
-                    string sysroot = Environment.GetEnvironmentVariable("SystemRoot");
-                    byte[] explorerBytes = File.ReadAllBytes(sysroot + "\\explorer.exe");
+                    if (_cachedIndex.HasValue) return _cachedIndex.Value;
 
-                    // Search for the 1234 hotkeys in the exe to find them in the table
-
-                    int patternOffset = explorerBytes.AsSpan().IndexOf(explorerHotkeySearchPattern);
-                    if (patternOffset < 0) throw new Exception("Couldn't find hotkey pattern in explorer.exe");
-
-                    // Move backwards in the table until you hit zeroes, then you have the index
-
-                    using (MemoryStream ms = new MemoryStream(explorerBytes))
+                    try
                     {
-                        ms.Seek(patternOffset, SeekOrigin.Begin);
-                        ms.Seek(-8, SeekOrigin.Current);
+                        // Read Explorer binary into memory
+                        var systemRoot = Environment.GetEnvironmentVariable("SystemRoot");
+                        var path = Path.Combine(systemRoot!, "explorer.exe");
+                        byte[] data = File.ReadAllBytes(path);
 
-                        byte[] readBuf = new byte[8];
-                        byte[] zeros = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+                        // Locate our known pattern (Win+1…4)
+                        int offset = data.AsSpan().IndexOf(Pattern);
+                        if (offset < 0)
+                            throw new InvalidOperationException("Pattern not found in explorer.exe");
 
-                        while (true)
+                        // Walk backwards entry-by-entry until we hit an all-zero entry (table header)
+                        int index = 0;
+                        int position = offset - EntrySize;
+                        while (position >= 0)
                         {
-                            ms.Read(readBuf, 0, 8);
-                            ms.Seek(-16, SeekOrigin.Current);
+                            // Check the two consecutive DWORDs
+                            bool isEmpty = true;
+                            for (int i = 0; i < EntrySize; i++)
+                            {
+                                if (data[position + i] != 0)
+                                {
+                                    isEmpty = false;
+                                    break;
+                                }
+                            }
 
-                            if (Enumerable.SequenceEqual(readBuf, zeros) || ms.Position <= 0) break;
+                            if (isEmpty)
+                                break;
 
                             index++;
+                            position -= EntrySize;
                         }
+
+                        _cachedIndex = index;
+                    }
+                    catch (Exception ex)
+                    {
+                        ShellLogger.Warning($"HotkeyManager: Explorer hotkey index detection failed: {ex.Message}");
+                        _cachedIndex = DefaultIndex;
                     }
 
+                    return _cachedIndex.Value;
                 }
-                catch (Exception e)
-                {
-                    ShellLogger.Warning(String.Format("Failed to find taskbar hotkey index in explorer: {0}", e.ToString()));
-                    index = explorerHotkeyIndexDefault;
-                }
-
-                return index;
             }
 
             #endregion
 
-            public void RegisterHotkeys()
+            /// <summary>
+            /// Custom window message to ask Explorer to unregister a hotkey.
+            /// </summary>
+            private const int EXPLORER_UNREGISTER_HOTKEY = (int)WM.USER + 231;
+
+            /// <summary>
+            /// Modifier flag to suppress auto‑repeat on hotkey registrations.
+            /// </summary>
+            private const uint MOD_NOREPEAT = 0x4000;
+
+            private static void UnregisterExplorerHotkey(IntPtr trayWnd, int id)
             {
-                // Send message to explorer to unregister its hotkeys
-
-                IntPtr trayWnd = WindowHelper.FindWindowsTray(IntPtr.Zero);
-                int firstId = FindExplorerTaskbarHotkeyIndex() + 500;
-
+                // Send message to explorer to unregister its hotkey
                 if (trayWnd != IntPtr.Zero)
                 {
-                    for (int i = firstId; i < firstId + 10; i++)
-                    {
-                        NativeMethods.SendMessage(trayWnd,
-                            (int)NativeMethods.WM.USER + 231,
-                            (IntPtr)i,
-                            IntPtr.Zero
-                        );
-                    }
-                }
-
-                // Register RetroBar hotkeys
-
-                for (int i = 0; i < 10; i++)
-                {
-                    uint keycode = i == 9 ? 0x30 : 0x31 + (uint)i;
-
-                    NativeMethods.RegisterHotKey( // 0-9: Quick switch hotkeys
-                        Handle,
-                        i,
-                        0x4008, // MOD_WIN | MOD_NOREPEAT
-                        keycode
+                    SendMessage(trayWnd,
+                        EXPLORER_UNREGISTER_HOTKEY,
+                        (IntPtr)id,
+                        IntPtr.Zero
                     );
                 }
             }
 
-            public void UnregisterHotkeys()
+            private void UnregisterExplorerHotkeys()
             {
-                // Unregister RetroBar hotkeys
+                // Send message to explorer to unregister its hotkeys
+                IntPtr trayWnd = WindowHelper.FindWindowsTray(WindowHelper.FindWindowsTray(IntPtr.Zero));
+                int firstId = ExplorerHotkeyTable.GetIndex() + 500;
 
-                for (int i = 0; i < 10; i++)
+                if (trayWnd != IntPtr.Zero)
                 {
-                    NativeMethods.UnregisterHotKey(Handle, i);
+                    UnregisterExplorerHotkey(trayWnd, firstId);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 1);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 2);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 3);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 4);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 5);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 6);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 7);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 8);
+                    UnregisterExplorerHotkey(trayWnd, firstId + 9);
+                }
+            }
+
+            private readonly System.Collections.Generic.HashSet<int> _registeredHotkeys = [];
+
+            private bool RegisterWinKey(VK key, int id)
+            {
+                bool success = RegisterHotKey(
+                    Handle,
+                    id,
+                    (uint)System.Windows.Input.ModifierKeys.Windows | MOD_NOREPEAT,
+                    (uint)key);
+
+                if (success)
+                {
+                    _registeredHotkeys.Add(id);
+                    ShellLogger.Debug($"HotkeyManager: Registered Win+{key} (id {id})");
+                }
+                else
+                {
+                    ShellLogger.Warning($"HotkeyManager: Failed to register Win+{key} (id {id})");
                 }
 
-                // TODO: Restart explorer so it registers the hotkeys again
-                // Couldn't figure out a way to do this that wouldn't clash with ManagedShell, sry :(
+                return success;
+            }
 
+            public void RegisterHotkeys()
+            {
+                // Remove explorer hotkeys
+                UnregisterExplorerHotkeys();
+
+                // Reset any prior registrations
+                _registeredHotkeys.Clear();
+
+                // Try to register Win[0-9] hotkeys for RetroBar
+                RegisterWinKey(VK.KEY_1, 0);
+                RegisterWinKey(VK.KEY_2, 1);
+                RegisterWinKey(VK.KEY_3, 2);
+                RegisterWinKey(VK.KEY_4, 3);
+                RegisterWinKey(VK.KEY_5, 4);
+                RegisterWinKey(VK.KEY_6, 5);
+                RegisterWinKey(VK.KEY_7, 6);
+                RegisterWinKey(VK.KEY_8, 7);
+                RegisterWinKey(VK.KEY_9, 8);
+                RegisterWinKey(VK.KEY_0, 9);
+            }
+
+            public void UnregisterHotkeys()
+            {
+                // Only unregister those we actually registered
+                foreach (int id in _registeredHotkeys)
+                {
+                    UnregisterHotKey(Handle, id);
+                }
+
+                _registeredHotkeys.Clear();
             }
 
             public void Dispose()
@@ -194,6 +271,5 @@ namespace RetroBar.Utilities
                 DestroyHandle();
             }
         }
-
     }
 }
