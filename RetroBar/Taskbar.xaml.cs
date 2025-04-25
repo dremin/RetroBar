@@ -53,16 +53,18 @@ namespace RetroBar
         private DictionaryManager _dictionaryManager;
         private ShellManager _shellManager;
         private Updater _updater;
-
+        
         public WindowManager windowManager;
+        public HotkeyManager hotkeyManager;
 
-        public Taskbar(WindowManager windowManager, DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
+        public Taskbar(WindowManager windowManager, DictionaryManager dictionaryManager, ShellManager shellManager, StartMenuMonitor startMenuMonitor, Updater updater, HotkeyManager hotkeyManager, AppBarScreen screen, AppBarEdge edge, AppBarMode mode)
             : base(shellManager.AppBarManager, shellManager.ExplorerHelper, shellManager.FullScreenHelper, screen, edge, mode, 0)
         {
             _dictionaryManager = dictionaryManager;
             _shellManager = shellManager;
             _updater = updater;
             this.windowManager = windowManager;
+            this.hotkeyManager = hotkeyManager;
 
             InitializeComponent();
             DataContext = _shellManager;
