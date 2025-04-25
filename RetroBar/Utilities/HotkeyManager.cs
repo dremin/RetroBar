@@ -264,6 +264,8 @@ namespace RetroBar.Utilities
                 }
 
                 _registeredHotkeys.Clear();
+
+                // TODO: Re-register explorer hotkeys
             }
 
             public void Dispose()
