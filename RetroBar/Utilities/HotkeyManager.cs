@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Windows.Forms;
 using static ManagedShell.Interop.NativeMethods;
+using static RetroBar.Utilities.Enums;
 
 namespace RetroBar.Utilities
 {
@@ -189,7 +190,7 @@ namespace RetroBar.Utilities
                     bool success = RegisterHotKey(
                         Handle,
                         taskIndex,
-                        HotkeyUtility.MOD_WIN | HotkeyUtility.MOD_NOREPEAT,
+                        (uint)(MOD.WIN | MOD.NOREPEAT),
                         (uint)key);
 
                     if (success)
@@ -216,7 +217,7 @@ namespace RetroBar.Utilities
                 try
                 {
                     // Find key with exactly MOD_WIN modifier (no other modifiers) in the Explorer hotkey table
-                    int trayHotkeyIndex = _trayHotkeyTable.FindIndex(e => e.VirtualKey == (byte)key && e.Modifier == HotkeyUtility.MOD_WIN);
+                    int trayHotkeyIndex = _trayHotkeyTable.FindIndex(e => e.VirtualKey == (byte)key && e.Modifier == (uint)MOD.WIN);
 
                     if (trayHotkeyIndex < 0)
                     {
@@ -258,9 +259,6 @@ namespace RetroBar.Utilities
 
     public static class HotkeyUtility
     {
-        public const uint MOD_WIN = 0x0008; // System.Windows.Input.ModifierKeys.Windows
-        public const uint MOD_NOREPEAT = 0x4000;
-
         /// <summary>
         /// Extracts the Windows hotkey table registered by Shell_TrayWnd from explorer.exe by reading the binary file.
         /// </summary>
@@ -339,7 +337,7 @@ namespace RetroBar.Utilities
 
             // Check that modifier has Windows key flag set and high bits are clear
             byte modifier = bytes[offset + 4];
-            return (modifier & MOD_WIN) != 0 && (modifier & 0xF0) == 0;
+            return (modifier & (uint)MOD.WIN) != 0 && (modifier & 0xF0) == 0;
         }
     }
 
@@ -348,5 +346,20 @@ namespace RetroBar.Utilities
         public int Id;
         public byte VirtualKey;
         public byte Modifier;
+    }
+
+    // TODO: Move to upstream ManagedShell library
+    internal class Enums
+    {
+        // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey
+        [Flags]
+        public enum MOD : uint
+        {
+            ALT = 0x0001,
+            CONTROL = 0x0002,
+            NOREPEAT = 0x4000,
+            SHIFT = 0x0004,
+            WIN = 0x0008 // System.Windows.Input.ModifierKeys.Windows
+        }
     }
 }
