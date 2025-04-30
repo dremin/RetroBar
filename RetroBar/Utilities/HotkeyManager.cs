@@ -11,7 +11,7 @@ using static RetroBar.Utilities.Enums;
 namespace RetroBar.Utilities
 {
     /// <summary>
-    /// Manages application hotkeys by overriding Explorer's built-in Win+VK mappings.
+    /// Manages application hotkeys by overriding Explorer's built-in Win + optional modifier + VK hotkeys
     /// </summary>
     public class HotkeyManager : IDisposable
     {
@@ -176,64 +176,66 @@ namespace RetroBar.Utilities
                 }
             }
 
-            private bool RegisterWinKey(VK key, int taskIndex)
+            private bool RegisterWinKey(VK key, int taskIndex, MOD additionalModifiers = 0)
             {
+                // Combine the base modifiers with any additional modifiers
+                MOD modifiers = MOD.WIN | MOD.NOREPEAT | additionalModifiers;
+
                 try
                 {
                     // Try to unregister from Explorer if possible
                     if (_unregisterFromExplorer)
                     {
-                        TryUnregisterTrayHotkey(key);
+                        TryUnregisterTrayHotkey(key, additionalModifiers);
                     }
 
-                    // Register the hotkey for RetroBar
+                    // Attempt to register the hotkey for RetroBar
                     bool success = RegisterHotKey(
                         Handle,
                         taskIndex,
-                        (uint)(MOD.WIN | MOD.NOREPEAT),
+                        (uint)modifiers,
                         (uint)key);
 
                     if (success)
                     {
                         _registeredHotkeys.Add(taskIndex);
-                        ShellLogger.Debug($"HotkeyManager: Registered hotkey Win+{key} with id={taskIndex}");
+                        ShellLogger.Debug($"HotkeyManager: Registered hotkey {modifiers}+{key} with id={taskIndex}");
                     }
                     else
                     {
-                        ShellLogger.Warning($"HotkeyManager: Failed to register hotkey Win+{key}");
+                        ShellLogger.Warning($"HotkeyManager: Failed to register hotkey {modifiers}+{key} with id={taskIndex}");
                     }
 
                     return success;
                 }
                 catch (Exception ex)
                 {
-                    ShellLogger.Warning($"HotkeyManager: Exception registering Win+{key} - {ex.Message}");
+                    ShellLogger.Warning($"HotkeyManager: Exception registering hotkey {modifiers}+{key} - {ex.Message}");
                     return false;
                 }
             }
 
-            private void TryUnregisterTrayHotkey(VK key)
+            private void TryUnregisterTrayHotkey(VK key, MOD additionalModifiers = 0)
             {
                 try
                 {
-                    // Find key with exactly MOD_WIN modifier (no other modifiers) in the Explorer hotkey table
-                    int trayHotkeyIndex = _trayHotkeyTable.FindIndex(e => e.VirtualKey == (byte)key && e.Modifier == (uint)MOD.WIN);
+                    // Combine WIN with any additional modifiers (no need to check for MOD.NOREPEAT here)
+                    MOD searchModifier = MOD.WIN | additionalModifiers;
 
-                    if (trayHotkeyIndex < 0)
-                    {
-                        ShellLogger.Debug($"HotkeyManager: Win+{key} not found in Explorer hotkey table");
-                        return;
-                    }
+                    // Find key with the specified modifiers in the Explorer hotkey table
+                    int trayHotkeyIndex = _trayHotkeyTable.FindIndex(e => e.VirtualKey == (byte)key && e.Modifier == (byte)searchModifier);
 
+                    // Exit if no matching hotkey found
+                    if (trayHotkeyIndex < 0) return;
+
+                    // Found a match - send unregister message to explorer
                     int trayHotkeyId = _trayHotkeyTable[trayHotkeyIndex].Id;
-
-                    // Tell Explorer to unregister this Shell_TrayWnd hotkey
                     SendMessage(_trayWindow, WMTRAY_UNREGISTERHOTKEY, new IntPtr(trayHotkeyId), IntPtr.Zero);
-                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for Win+{key} with id={trayHotkeyId}");
+                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for hotkey id={trayHotkeyId}");
                 }
                 catch (Exception ex)
                 {
-                    ShellLogger.Warning($"HotkeyManager: Exception unregistering Explorer hotkey Win+{key} - {ex.Message}");
+                    ShellLogger.Warning($"HotkeyManager: Exception unregistering Explorer hotkey - {ex.Message}");
                 }
             }
 
