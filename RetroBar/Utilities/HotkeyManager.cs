@@ -65,10 +65,10 @@ namespace RetroBar.Utilities
         private class HotkeyListenerWindow : NativeWindow, IDisposable
         {
             private readonly HotkeyManager _manager;
-            private const int HOTKEY_BASE_ID = 500;
             private readonly HashSet<int> _registeredHotkeys = [];
-            private const int EXPLORER_UNREGISTER_HOTKEY = (int)WM.USER + 231;
-            private List<HotkeyEntry> _explorerHotkeyTable;
+            private const int WMTRAY_UNREGISTERHOTKEY = (int)WM.USER + 231;
+            private List<TrayHotkeyEntry> _trayHotkeyTable;
+            private bool _unregisterFromExplorer = true;
             private IntPtr _trayWindow;
 
             public HotkeyListenerWindow(HotkeyManager manager)
@@ -101,6 +101,12 @@ namespace RetroBar.Utilities
                     // Initialize hotkey table and tray window
                     LoadExplorerResources();
 
+                    _unregisterFromExplorer = _trayWindow != IntPtr.Zero;
+                    if (!_unregisterFromExplorer)
+                    {
+                        ShellLogger.Info("HotkeyManager: Explorer resources not fully available - hotkeys will be registered but not unregistered from Explorer");
+                    }
+
                     // Register the number keys
                     RegisterWinKey(VK.KEY_1, 0);
                     RegisterWinKey(VK.KEY_2, 1);
@@ -122,41 +128,50 @@ namespace RetroBar.Utilities
             private void LoadExplorerResources()
             {
                 // Initialize with empty table as fallback
-                _explorerHotkeyTable = [];
+                _trayHotkeyTable = [];
                 _trayWindow = IntPtr.Zero;
 
+                // Step 1: Try to build the hotkey table
+                bool tableLoaded = TryBuildHotkeyTable();
+
+                // Step 2: Only find the tray window if we have a valid hotkey table
+                if (tableLoaded && _trayHotkeyTable.Count > 0)
+                {
+                    TryFindTrayWindow();
+                }
+            }
+
+            private bool TryBuildHotkeyTable()
+            {
                 try
                 {
-                    // FIXME: Try to find a better way to get the explorer.exe path, maybe use the handle of the process
                     string explorerPath = Path.Combine(Environment.GetEnvironmentVariable("SystemRoot")!, "explorer.exe");
-                    if (File.Exists(explorerPath))
+                    if (!File.Exists(explorerPath))
                     {
-                        _explorerHotkeyTable = HotkeyUtility.BuildExplorerHotkeyTableInternal(explorerPath);
-                        ShellLogger.Debug($"HotkeyManager: Found {_explorerHotkeyTable.Count} entries in explorer hotkey table");
-                    }
-                    else
-                    {
-                        // This is bad...
                         ShellLogger.Warning("HotkeyManager: explorer.exe not found at expected location");
+                        return false;
                     }
+
+                    _trayHotkeyTable = HotkeyUtility.BuildTrayHotkeyTableInternal(explorerPath);
+                    ShellLogger.Debug($"HotkeyManager: Found {_trayHotkeyTable.Count} entries in Explorer hotkey table");
+                    return true;
                 }
                 catch (Exception ex)
                 {
-                    // WTF: Using an older pre-Vista explorer or something else went wrong
-                    ShellLogger.Warning($"HotkeyManager: Failed to build explorer hotkey table - {ex.Message}");
+                    ShellLogger.Warning($"HotkeyManager: Failed to build Explorer hotkey table - {ex.Message}");
+                    return false;
                 }
+            }
 
+            private void TryFindTrayWindow()
+            {
                 try
                 {
                     _trayWindow = WindowHelper.FindWindowsTray(WindowHelper.FindWindowsTray(IntPtr.Zero));
-                    if (_trayWindow == IntPtr.Zero)
-                    {
-                        ShellLogger.Debug("HotkeyManager: Real explorer tray window not found");
-                    }
                 }
                 catch (Exception ex)
                 {
-                    ShellLogger.Warning($"HotkeyManager: Failed to find real explorer tray window - {ex.Message}");
+                    ShellLogger.Warning($"HotkeyManager: Failed to find real Explorer tray window - {ex.Message}");
                 }
             }
 
@@ -164,11 +179,13 @@ namespace RetroBar.Utilities
             {
                 try
                 {
-                    // Try to unregister from explorer if possible
-                    TryUnregisterExplorerHotkey(key);
+                    // Try to unregister from Explorer if possible
+                    if (_unregisterFromExplorer)
+                    {
+                        TryUnregisterTrayHotkey(key);
+                    }
 
                     // Register the hotkey for RetroBar
-                    // (will run even if explorer unregistration failed)
                     bool success = RegisterHotKey(
                         Handle,
                         taskIndex,
@@ -194,33 +211,24 @@ namespace RetroBar.Utilities
                 }
             }
 
-            private void TryUnregisterExplorerHotkey(VK key)
+            private void TryUnregisterTrayHotkey(VK key)
             {
-                // Skip explorer unregistration if we don't have the required info
-                if (_explorerHotkeyTable == null || _explorerHotkeyTable.Count == 0 || _trayWindow == IntPtr.Zero)
-                {
-                    ShellLogger.Debug($"HotkeyManager: Skipping Explorer hotkey unregistration for Win+{key} (resources not available)");
-                    return;
-                }
-
                 try
                 {
-                    // Find key with exactly MOD_WIN modifier (no other modifiers) in the explorer hotkey table
-                    int explorerIndex = _explorerHotkeyTable.FindIndex(
-                        e => e.VirtualKey == (byte)key && e.Modifier == HotkeyUtility.MOD_WIN);
+                    // Find key with exactly MOD_WIN modifier (no other modifiers) in the Explorer hotkey table
+                    int trayHotkeyIndex = _trayHotkeyTable.FindIndex(e => e.VirtualKey == (byte)key && e.Modifier == HotkeyUtility.MOD_WIN);
 
-                    if (explorerIndex < 0)
+                    if (trayHotkeyIndex < 0)
                     {
-                        ShellLogger.Debug($"HotkeyManager: Win+{key} not found in explorer hotkey table");
+                        ShellLogger.Debug($"HotkeyManager: Win+{key} not found in Explorer hotkey table");
                         return;
                     }
 
-                    // Calculate the hotkey ID used by explorer
-                    int hotkeyId = HOTKEY_BASE_ID + explorerIndex;
+                    int trayHotkeyId = _trayHotkeyTable[trayHotkeyIndex].Id;
 
-                    // Tell explorer to unregister this hotkey
-                    SendMessage(_trayWindow, EXPLORER_UNREGISTER_HOTKEY, new IntPtr(hotkeyId), IntPtr.Zero);
-                    ShellLogger.Debug($"HotkeyManager: Sent EXPLORER_UNREGISTER_HOTKEY for Win+{key} with id={hotkeyId}");
+                    // Tell Explorer to unregister this Shell_TrayWnd hotkey
+                    SendMessage(_trayWindow, WMTRAY_UNREGISTERHOTKEY, new IntPtr(trayHotkeyId), IntPtr.Zero);
+                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for Win+{key} with id={trayHotkeyId}");
                 }
                 catch (Exception ex)
                 {
@@ -240,8 +248,8 @@ namespace RetroBar.Utilities
 
                 _registeredHotkeys.Clear();
 
-                // TODO: Re-register explorer hotkeys
-                // (maybe sending some undocumented message to the tray again, otherwise, restart explorer process?)
+                // TODO: Re-register Explorer hotkeys
+                // (maybe sending some undocumented message to the tray again, otherwise, restart Explorer process?)
             }
 
             public void Dispose() => DestroyHandle();
@@ -254,7 +262,7 @@ namespace RetroBar.Utilities
         public const uint MOD_NOREPEAT = 0x4000;
 
         /// <summary>
-        /// Extracts the Windows hotkey table from explorer.exe by reading the binary file.
+        /// Extracts the Windows hotkey table registered by Shell_TrayWnd from explorer.exe by reading the binary file.
         /// </summary>
         /// <param name="explorerPath">The full path to explorer.exe</param>
         /// <returns>A list of hotkey entries found in explorer.exe</returns>
@@ -266,9 +274,9 @@ namespace RetroBar.Utilities
         /// - The modifier has the Windows key flag set
         ///
         /// The method finds the longest consecutive sequence of valid entries, which is likely
-        /// the hotkey table used by explorer to register system-wide Windows+Key combinations.
+        /// the hotkey table used by Explorer's Shell_TrayWnd to register system-wide Windows+Key combinations.
         /// </remarks>
-        public static List<HotkeyEntry> BuildExplorerHotkeyTableInternal(string explorerPath)
+        public static List<TrayHotkeyEntry> BuildTrayHotkeyTableInternal(string explorerPath)
         {
             using var mmf = MemoryMappedFile.CreateFromFile(explorerPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
             using var stream = mmf.CreateViewStream(0, 0, MemoryMappedFileAccess.Read);
@@ -294,13 +302,13 @@ namespace RetroBar.Utilities
                 }
             }
 
-            var table = new List<HotkeyEntry>(bestCount);
+            var table = new List<TrayHotkeyEntry>(bestCount);
             for (int i = 0; i < bestCount; i++)
             {
                 int off = bestStart + i * 8;
-                table.Add(new HotkeyEntry
+                table.Add(new TrayHotkeyEntry
                 {
-                    Index = i,
+                    Id = i + 500, // Shell_TrayWnd hotkey IDs start at 500
                     VirtualKey = data[off],
                     Modifier = data[off + 4]
                 });
@@ -335,9 +343,9 @@ namespace RetroBar.Utilities
         }
     }
 
-    public struct HotkeyEntry
+    public struct TrayHotkeyEntry
     {
-        public int Index; // ID
+        public int Id;
         public byte VirtualKey;
         public byte Modifier;
     }
