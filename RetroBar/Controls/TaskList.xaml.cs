@@ -37,7 +37,7 @@ namespace RetroBar.Controls
             set { SetValue(TasksProperty, value); }
         }
 
-        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(TaskList));
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
 
         public Taskbar Host
         {
@@ -72,14 +72,12 @@ namespace RetroBar.Controls
         private void TaskList_OnLoaded(object sender, RoutedEventArgs e)
         {
             SetStyles();
-
-            Host.hotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
             SetTasksCollection();
         }
 
         private void SetTasksCollection()
         {
-            if (!isLoaded && Tasks != null)
+            if (!isLoaded && Tasks != null && Host != null)
             {
                 taskbarItems = Tasks.CreateGroupedWindowsCollection();
                 if (taskbarItems != null)
@@ -91,6 +89,7 @@ namespace RetroBar.Controls
                 TasksList.ItemsSource = taskbarItems;
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+                Host.hotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
 
                 isLoaded = true;
             }
@@ -186,7 +185,11 @@ namespace RetroBar.Controls
                 taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
             }
 
-            Host.hotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
+            if (Host != null)
+            {
+                Host.hotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
+            }
+
             isLoaded = false;
         }
 

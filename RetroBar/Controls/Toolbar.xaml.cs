@@ -41,7 +41,7 @@ namespace RetroBar.Controls
 
         private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
 
-        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(Toolbar));
+        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(Toolbar), new PropertyMetadata(HostChangedCallback));
 
         public Taskbar Host
         {
@@ -292,9 +292,9 @@ namespace RetroBar.Controls
         }
         #endregion
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void Initialize()
         {
-            if (!_isLoaded)
+            if (!_isLoaded && Host != null)
             {
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
                 Host.hotkeyManager.TaskbarHotkeyPressed += Toolbar_TaskbarHotkeyPressed;
@@ -303,12 +303,28 @@ namespace RetroBar.Controls
             }
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Initialize();
+        }
+
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
-            Host.hotkeyManager.TaskbarHotkeyPressed -= Toolbar_TaskbarHotkeyPressed;
+            if (Host != null)
+            {
+                Host.hotkeyManager.TaskbarHotkeyPressed -= Toolbar_TaskbarHotkeyPressed;
+            }
 
             _isLoaded = false;
+        }
+
+        private static void HostChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is Toolbar toolbar && e.OldValue == null && e.NewValue != null)
+            {
+                toolbar.Initialize();
+            }
         }
     }
 }
