@@ -74,6 +74,7 @@ namespace RetroBar.Controls
             SetStyles();
 
             Host.hotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
+            SetTasksCollection();
         }
 
         private void SetTasksCollection()
