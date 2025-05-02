@@ -19,7 +19,7 @@ namespace RetroBar.Controls
         private bool isWindows81OrBetter = EnvironmentHelper.IsWindows81OrBetter;
         private bool isLoaded;
 
-        public static DependencyProperty TasksServiceProperty = DependencyProperty.Register("TasksService", typeof(TasksService), typeof(ShowDesktopButton));
+        public static DependencyProperty TasksServiceProperty = DependencyProperty.Register(nameof(TasksService), typeof(TasksService), typeof(ShowDesktopButton));
 
         public TasksService TasksService
         {
