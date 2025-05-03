@@ -348,14 +348,6 @@
                                   Unchecked="CbAutoStart_OnChecked">
                             <Label Content="{DynamicResource autostart}" />
                         </CheckBox>
-                        <CheckBox x:Name="cbOverrideHotkeys"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideHotkeys, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource override_hotkeys}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbHotkeysQuickLaunch"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=HotkeysQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource hotkeys_quick_launch}" />
-                        </CheckBox>
                         <CheckBox x:Name="cbUseSoftwareRendering"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource use_software_rendering}" />
@@ -375,6 +367,16 @@
                         <CheckBox x:Name="cbShowExitMenuItem"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource show_exit_menu_item}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbOverrideHotkeys"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideHotkeys, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Click="cbOverrideHotkeys_Click">
+                            <Label Content="{DynamicResource override_hotkeys}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbHotkeysQuickLaunch"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=HotkeysQuickLaunch, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideHotkeys, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource hotkeys_quick_launch}" />
                         </CheckBox>
                         <DockPanel>
                             <Label VerticalAlignment="Center"

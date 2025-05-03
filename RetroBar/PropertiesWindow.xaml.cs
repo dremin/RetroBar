@@ -452,5 +452,15 @@ namespace RetroBar
             Directory.CreateDirectory(path);
             ShellHelper.StartProcess(path);
         }
+
+        private void cbOverrideHotkeys_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Settings.Instance.OverrideHotkeys)
+            {
+                System.Windows.MessageBox.Show((string)System.Windows.Application.Current.FindResource("hotkey_warning_text"), (string)System.Windows.Application.Current.FindResource("hotkey_warning_title"), MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            Settings.Instance.OverrideHotkeys = !Settings.Instance.OverrideHotkeys;
+        }
     }
 }
