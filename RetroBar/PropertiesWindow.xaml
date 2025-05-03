@@ -359,6 +359,14 @@
                                   Unchecked="CbAutoStart_OnChecked">
                             <Label Content="{DynamicResource autostart}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbOverrideHotkeys"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideHotkeys, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource override_hotkeys}" />
+                        </CheckBox>
+                        <CheckBox x:Name="cbHotkeysQuickLaunch"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=HotkeysQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource hotkeys_quick_launch}" />
+                        </CheckBox>
                         <CheckBox x:Name="cbUseSoftwareRendering"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource use_software_rendering}" />

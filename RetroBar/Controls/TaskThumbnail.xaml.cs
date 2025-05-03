@@ -48,7 +48,7 @@ namespace RetroBar.Controls
 
         private IntPtr _thumbHandle;
 
-        public static DependencyProperty SourceWindowHandleProperty = DependencyProperty.Register("SourceWindowHandle", typeof(IntPtr), typeof(TaskThumbnail), new PropertyMetadata(new IntPtr()));
+        public static DependencyProperty SourceWindowHandleProperty = DependencyProperty.Register(nameof(SourceWindowHandle), typeof(IntPtr), typeof(TaskThumbnail), new PropertyMetadata(new IntPtr()));
 
         public IntPtr SourceWindowHandle
         {
@@ -62,7 +62,7 @@ namespace RetroBar.Controls
             }
         }
 
-        public static DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(TaskThumbnail), new PropertyMetadata(""));
+        public static DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string), typeof(TaskThumbnail), new PropertyMetadata(""));
 
         public string Title
         {

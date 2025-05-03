@@ -362,6 +362,20 @@ namespace RetroBar.Utilities
             set => Set(ref _showClockSeconds, value);
         }
 
+        private bool _overrideHotkeys = false;
+        public bool OverrideHotkeys
+        {
+            get => _overrideHotkeys;
+            set => Set(ref _overrideHotkeys, value);
+        }
+
+        private bool _hotkeysQuickLaunch = false;
+        public bool HotkeysQuickLaunch
+        {
+            get => _hotkeysQuickLaunch;
+            set => Set(ref _hotkeysQuickLaunch, value);
+        }
+
         private ImeShowOption _imeShow = 0;
         public ImeShowOption ImeShow
         {

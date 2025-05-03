@@ -8,6 +8,8 @@
     <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
     <s:String x:Key="notification_area">Notification area</s:String>
     <s:String x:Key="autostart">Automatically start at _logon</s:String>
+    <s:String x:Key="override_hotkeys">Override taskbar _hotkeys (Win + [1-9])</s:String>
+    <s:String x:Key="hotkeys_quick_launch">Taskbar hotkeys launch items in Quick Launch</s:String>
     <s:String x:Key="language_text">Lan_guage:</s:String>
     <s:String x:Key="language_tip">Select the language to use.</s:String>
     <s:String x:Key="theme_text">_Theme:</s:String>
