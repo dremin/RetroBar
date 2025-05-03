@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
+             Loaded="NotifyIconList_Loaded"
              Unloaded="NotifyIconList_OnUnloaded">
     <UserControl.Resources>
         <ResourceDictionary>

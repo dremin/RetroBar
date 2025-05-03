@@ -19,7 +19,7 @@ namespace RetroBar.Controls
         private bool isLoaded;
         private ManagedShell.WindowsTray.NotifyIcon TrayIcon;
 
-        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(NotifyIcon));
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(NotifyIcon));
 
         public Taskbar Host
         {

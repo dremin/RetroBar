@@ -21,7 +21,7 @@ namespace RetroBar.Controls
         private double TaskButtonRightMargin;
         private ICollectionView taskbarItems;
 
-        public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register("ButtonWidth", typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
+        public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register(nameof(ButtonWidth), typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
 
         public double ButtonWidth
         {
@@ -29,7 +29,7 @@ namespace RetroBar.Controls
             set { SetValue(ButtonWidthProperty, value); }
         }
 
-        public static DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(Tasks), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
+        public static DependencyProperty TasksProperty = DependencyProperty.Register(nameof(Tasks), typeof(Tasks), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
 
         public Tasks Tasks
         {
@@ -37,7 +37,7 @@ namespace RetroBar.Controls
             set { SetValue(TasksProperty, value); }
         }
 
-        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
 
         public Taskbar Host
         {

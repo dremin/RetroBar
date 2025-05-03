@@ -27,7 +27,7 @@ namespace RetroBar.Controls
             OpenParentFolder = CommonContextMenuItem.Paste + 1
         }
 
-        public static DependencyProperty PathProperty = DependencyProperty.Register("Path", typeof(string), typeof(Toolbar), new PropertyMetadata(OnPathChanged));
+        public static DependencyProperty PathProperty = DependencyProperty.Register(nameof(Path), typeof(string), typeof(Toolbar), new PropertyMetadata(OnPathChanged));
 
         public string Path
         {
@@ -39,9 +39,9 @@ namespace RetroBar.Controls
             }
         }
 
-        private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
+        private static DependencyProperty FolderProperty = DependencyProperty.Register(nameof(Folder), typeof(ShellFolder), typeof(Toolbar));
 
-        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(Taskbar), typeof(Toolbar), new PropertyMetadata(HostChangedCallback));
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(Toolbar), new PropertyMetadata(HostChangedCallback));
 
         public Taskbar Host
         {
