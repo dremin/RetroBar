@@ -24,6 +24,7 @@
     <SolidColorBrush x:Key="ClockForeground" Color="{x:Static SystemColors.ControlTextColor}" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="{x:Static SystemColors.HighlightColor}" />
+    <SolidColorBrush x:Key="ImeStatusForeground" Color="{x:Static SystemColors.ControlTextColor}" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="{x:Static SystemColors.InfoColor}" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="{x:Static SystemColors.InfoTextColor}" />
@@ -920,6 +921,38 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="JapaneseImeStatus"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="TextOptions.TextRenderingMode"
+                Value="Auto" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ImeStatusForeground}" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
+        <Setter Property="Margin"
+                Value="8,0" />
+        <Setter Property="TextAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,3" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate TargetType="{x:Type UserControl}"
+                     x:Key="JapaneseImeStatusTemplateKey">
+        <TextBlock Style="{DynamicResource JapaneseImeStatus}"
+                   Text="{Binding Path=JapaneseImeStatus, Mode=OneWay}"
+                   Name="JapaneseImeStatusText">
+        </TextBlock>
+    </ControlTemplate>
 
     <Style TargetType="Button"
            x:Key="ToolbarButton">

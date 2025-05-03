@@ -27,6 +27,12 @@
     <s:String x:Key="collapse_tray_icons">Collapse _notification area icons</s:String>
     <s:String x:Key="customize">_Customize...</s:String>
     <s:String x:Key="show_input_language">Show the input _language</s:String>
+    <s:String x:Key="imeshow_text">IME:</s:String>
+    <s:String x:Key="imeshow_tip">Toolbar for Switch input methods, manage character conversion.</s:String>
+    <x:Array x:Key="imeshow_values" Type="s:String">
+        <s:String>None</s:String>
+        <s:String>Japanese</s:String>
+    </x:Array>
     <s:String x:Key="show_clock">Show the cloc_k</s:String>
     <s:String x:Key="show_multi_mon">Show on _multiple displays</s:String>
     <s:String x:Key="show_start_button_multi_mon">Show _Start button on all taskbars</s:String>
@@ -135,6 +141,25 @@
     <s:String x:Key="hide">Hide</s:String>
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Right-click for IME options</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME disabled</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">full shape hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">full shape katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">full shape alphanumeric</s:String>
+    <s:String x:Key="ime_input_katakana">katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">alphanumeric</s:String>
+    <s:String x:Key="ime_input_direct">direct</s:String>
+    <s:String x:Key="ime_open_pad">IME pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">add word dictionary</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">dictionary tool</s:String>
+    <s:String x:Key="ime_open_properties">properties</s:String>
+    <s:String x:Key="ime_input_key">Romanized Input / Kana Input</s:String>
+    <s:String x:Key="ime_input_key_roma">Romanized Input</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana Input</s:String>
+    <s:String x:Key="ime_conversion">Conversion Mode</s:String>
+    <s:String x:Key="ime_conversion_general">general</s:String>
+    <s:String x:Key="ime_conversion_none">No Conversion</s:String>
 
     <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>

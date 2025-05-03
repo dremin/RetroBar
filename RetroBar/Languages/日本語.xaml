@@ -23,6 +23,12 @@
     <s:String x:Key="allow_font_smoothing">フォントをなめらかにする(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">通知領域のアイコンを折りたたむ(_N)</s:String>
     <s:String x:Key="customize">カスタマイズ(_C)...</s:String>
+    <s:String x:Key="imeshow_text">IME:</s:String>
+    <s:String x:Key="imeshow_tip">入力方法を切り替えたり、文字変換を管理したりするためのツールバー</s:String>
+    <x:Array x:Key="imeshow_values" Type="s:String">
+        <s:String>なし</s:String>
+        <s:String>日本語</s:String>
+    </x:Array>
     <s:String x:Key="show_clock">時計を表示する(_K)</s:String>
     <s:String x:Key="show_multi_mon">複数のディスプレイで表示する(_M)</s:String>
     <s:String x:Key="show_quick_launch">クイック起動を表示(_Q)</s:String>
@@ -59,6 +65,25 @@
     <s:String x:Key="hide">隠す</s:String>
 
     <s:String x:Key="open_folder">&amp;フォルダーを開く</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">右クリックで IME オプション</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME が無効です</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">ひらがな</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">全角カタカナ</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">全角英数</s:String>
+    <s:String x:Key="ime_input_katakana">半角カタカナ</s:String>
+    <s:String x:Key="ime_input_alphanumeric">半角英数</s:String>
+    <s:String x:Key="ime_input_direct">直接入力</s:String>
+    <s:String x:Key="ime_open_pad">IMEパッド</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">単語の登録</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">ユーザー辞書ツール</s:String>
+    <s:String x:Key="ime_open_properties">プロパティ</s:String>
+    <s:String x:Key="ime_input_key">ローマ字入力 / カナ入力</s:String>
+    <s:String x:Key="ime_input_key_roma">ローマ字入力</s:String>
+    <s:String x:Key="ime_input_key_kana">かな入力</s:String>
+    <s:String x:Key="ime_conversion">変換モード</s:String>
+    <s:String x:Key="ime_conversion_general">一般</s:String>
+    <s:String x:Key="ime_conversion_none">無変換</s:String>
 
     <FontFamily x:Key="start_text_xp_font_family">MS UI Gothic</FontFamily>
 </ResourceDictionary>
