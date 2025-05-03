@@ -32,6 +32,7 @@ AppSupportURL={#RetroBarURL}
 AppUpdatesURL={#RetroBarURL}
 DefaultDirName={autopf}\{#RetroBarName}
 UninstallDisplayIcon={app}\{#RetroBarExeName}
+SetupMutex={#RetroBarName}Installer
 SetupIconFile=RetroBar\Resources\retrobar.ico
 ArchitecturesInstallIn64BitMode=x64compatible or arm64
 DisableProgramGroupPage=yes
