@@ -19,7 +19,7 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class TaskButton : UserControl
     {
-        public static DependencyProperty HostProperty = DependencyProperty.Register("Host", typeof(TaskList), typeof(TaskButton));
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(TaskList), typeof(TaskButton));
 
         public TaskList Host
         {

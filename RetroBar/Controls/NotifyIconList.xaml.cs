@@ -22,7 +22,7 @@ namespace RetroBar.Controls
         private CollectionViewSource pinnedNotifyIconsSource;
         private ObservableCollection<ManagedShell.WindowsTray.NotifyIcon> promotedIcons = new ObservableCollection<ManagedShell.WindowsTray.NotifyIcon>();
 
-        public static DependencyProperty NotificationAreaProperty = DependencyProperty.Register("NotificationArea", typeof(NotificationArea), typeof(NotifyIconList), new PropertyMetadata(NotificationAreaChangedCallback));
+        public static DependencyProperty NotificationAreaProperty = DependencyProperty.Register(nameof(NotificationArea), typeof(NotificationArea), typeof(NotifyIconList), new PropertyMetadata(NotificationAreaChangedCallback));
 
         public NotificationArea NotificationArea
         {
@@ -169,6 +169,11 @@ namespace RetroBar.Controls
                 unpromoteTimer.Stop();
             };
             unpromoteTimer.Start();
+        }
+
+        private void NotifyIconList_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetNotificationAreaCollections();
         }
 
         private void NotifyIconList_OnUnloaded(object sender, RoutedEventArgs e)
