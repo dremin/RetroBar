@@ -1,18 +1,10 @@
 ﻿using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
-using ManagedShell;
-using ManagedShell.Common.SupportingClasses;
 using ManagedShell.Interop;
-using ManagedShell.ShellFolders;
-using ManagedShell.WindowsTasks;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Windows.Data;
 using System.Windows.Forms;
-using System.Windows.Threading;
 
 namespace RetroBar.Utilities
 {
@@ -24,14 +16,14 @@ namespace RetroBar.Utilities
         {
             listenerWindow = new HotkeyListenerWindow(this);
             
-            if (Settings.Instance.OverrideHotkeys) listenerWindow.RegisterHotkeys();
+            if (Settings.Instance.WinNumHotkeysAction != WinNumHotkeysOption.WindowsDefault) listenerWindow.RegisterHotkeys();
             
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
         public void Dispose()
         {
-            if (Settings.Instance.OverrideHotkeys) listenerWindow.UnregisterHotkeys();
+            if (listenerWindow.IsRegistered) listenerWindow.UnregisterHotkeys();
 
             listenerWindow?.Dispose();
         }
@@ -47,16 +39,24 @@ namespace RetroBar.Utilities
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.OverrideHotkeys))
+            if (e.PropertyName == nameof(Settings.WinNumHotkeysAction))
             {
-                if (Settings.Instance.OverrideHotkeys) listenerWindow.RegisterHotkeys();
-                else listenerWindow.UnregisterHotkeys();
+                if (!listenerWindow.IsRegistered && Settings.Instance.WinNumHotkeysAction != WinNumHotkeysOption.WindowsDefault)
+                {
+                    listenerWindow.RegisterHotkeys();
+                }
+                else if (listenerWindow.IsRegistered && Settings.Instance.WinNumHotkeysAction == WinNumHotkeysOption.WindowsDefault)
+                {
+                    listenerWindow.UnregisterHotkeys();
+                }
             }
         }
         #endregion
 
         public class HotkeyListenerWindow : NativeWindow, IDisposable
         {
+            internal bool IsRegistered;
+
             private HotkeyManager _manager;
 
             public HotkeyListenerWindow(HotkeyManager manager)
@@ -173,6 +173,8 @@ namespace RetroBar.Utilities
                         keycode
                     );
                 }
+
+                IsRegistered = true;
             }
 
             public void UnregisterHotkeys()
@@ -187,6 +189,7 @@ namespace RetroBar.Utilities
                 // TODO: Restart explorer so it registers the hotkeys again
                 // Couldn't figure out a way to do this that wouldn't clash with ManagedShell, sry :(
 
+                IsRegistered = false;
             }
 
             public void Dispose()
