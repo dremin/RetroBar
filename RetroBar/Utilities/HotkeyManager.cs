@@ -6,7 +6,6 @@ using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Windows.Forms;
 using static ManagedShell.Interop.NativeMethods;
-using static RetroBar.Utilities.Enums;
 
 namespace RetroBar.Utilities
 {
@@ -349,20 +348,5 @@ namespace RetroBar.Utilities
         public int Id;
         public byte VirtualKey;
         public byte Modifier;
-    }
-
-    // TODO: Move to upstream ManagedShell library
-    internal class Enums
-    {
-        // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey
-        [Flags]
-        public enum MOD : uint
-        {
-            ALT = 0x0001,
-            CONTROL = 0x0002,
-            NOREPEAT = 0x4000,
-            SHIFT = 0x0004,
-            WIN = 0x0008 // System.Windows.Input.ModifierKeys.Windows
-        }
     }
 }
