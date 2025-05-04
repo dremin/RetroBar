@@ -65,7 +65,7 @@ namespace RetroBar.Utilities
 
         private class HotkeyListenerWindow : NativeWindow, IDisposable
         {
-            internal bool IsRegistered;
+            internal bool IsRegistered => _registeredHotkeys.Count > 0;
             private readonly HotkeyManager _manager;
             private readonly HashSet<int> _registeredHotkeys = [];
             private const int WMTRAY_UNREGISTERHOTKEY = (int)WM.USER + 231;
@@ -120,8 +120,6 @@ namespace RetroBar.Utilities
                     RegisterWinKey(VK.KEY_8, 7);
                     RegisterWinKey(VK.KEY_9, 8);
                     RegisterWinKey(VK.KEY_0, 9);
-
-                    IsRegistered = true;
                 }
                 catch (Exception ex)
                 {
@@ -256,8 +254,6 @@ namespace RetroBar.Utilities
 
                 // TODO: Re-register Explorer hotkeys
                 // (maybe sending some undocumented message to the tray again, otherwise, restart Explorer process?)
-
-                IsRegistered = false;
             }
 
             public void Dispose() => DestroyHandle();
