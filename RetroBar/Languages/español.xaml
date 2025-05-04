@@ -8,8 +8,6 @@
     <s:String x:Key="taskbar_appearance">Apariencia de barra de tareas</s:String>
     <s:String x:Key="notification_area">Área de notificación</s:String>
     <s:String x:Key="autostart">_Iniciar automáticamente al iniciar sesión</s:String>
-    <s:String x:Key="override_hotkeys">Anular _hotkeys de barra de tareas (Win + [1-9])</s:String>
-    <s:String x:Key="hotkeys_quick_launch">Hotkeys de barra de tareas lanzan objetos en el inicio rápido</s:String>
     <s:String x:Key="language_text">Idi_oma:</s:String>
     <s:String x:Key="language_tip">Seleccione el idioma a usar.</s:String>
     <s:String x:Key="theme_text">_Tema:</s:String>
@@ -80,6 +78,15 @@
     <s:String x:Key="slide_taskbar_buttons">Deslizar _botones de la barra de tareas</s:String>
     <s:String x:Key="show_clock_seconds">Mostrar _segundos en el reloj</s:String>
     <s:String x:Key="open_custom_themes_folder">Abrir carpeta de temas personalizados</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Acción de teclas de acceso _rápido Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Predeterminado de Windows</s:String>
+        <s:String>Alternar tareas</s:String>
+        <s:String>Abrir elementos de inicio rápido</s:String>
+    </x:Array>
+    <s:String x:Key="hotkeys_quick_launch">Teclas de acceso rápido de la barra de tareas abren elementos de inicio rápido</s:String>
+    <s:String x:Key="hotkey_warning_title">Teclas de acceso rápido de RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar sustituirá las teclas de acceso rápido de la barra de tareas de Windows. Aunque cierre RetroBar, no se restaurarán en Windows hasta que cierre la sesión y vuelva a iniciarla.</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
