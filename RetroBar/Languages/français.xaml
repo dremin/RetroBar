@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <s:String x:Key="retrobar_properties">Propriétés de RetroBar - RétroBarre</s:String>
+    <s:String x:Key="retrobar_properties">Propriétés de RetroBar</s:String>
     <s:String x:Key="taskbar_tab">Barre des tâches</s:String>
     <s:String x:Key="advanced_tab">Paramètres avancés</s:String>
     <s:String x:Key="taskbar_appearance">Apparence de la barre des tâches</s:String>
@@ -22,7 +22,7 @@
     </x:Array>
     <s:String x:Key="rowcount_text">_Nombre de lignes:</s:String>
     <s:String x:Key="rowcount_tip">Le nombre de lignes de la barre des tâches quand elle est positionnée en haut ou en bas.</s:String>
-    <s:String x:Key="taskbar_width">Large_ur de la barre des tâches:&nbsp</s:String>
+    <s:String x:Key="taskbar_width">Large_ur de la barre des tâches:</s:String>
     <s:String x:Key="allow_font_smoothing">_Autoriser le lissage des polices</s:String>
     <s:String x:Key="collapse_tray_icons">_Réduire les icônes de la zone de notification</s:String>
     <s:String x:Key="customize">_Personaliser...</s:String>
@@ -97,7 +97,7 @@
     <s:String x:Key="start_button_tip">Cliquez ici pour commencer</s:String>
     <s:String x:Key="start_button_tip_vista">Démarrer</s:String>
 
-    <s:String x:Key="retrobar_title">Barre des tâches RetroBar - RétroBarre</s:String>
+    <s:String x:Key="retrobar_title">Barre des tâches RetroBar</s:String>
     <s:String x:Key="toolbars">Barres d'ou_tils</s:String>
     <s:String x:Key="quick_launch">Lancement _rapide</s:String>
     <s:String x:Key="new_toolbar">_Nouvelle barre d'outils...</s:String>
