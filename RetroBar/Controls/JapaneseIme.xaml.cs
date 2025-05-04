@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using ManagedShell.AppBar;
+using static ManagedShell.Interop.NativeMethods;
 using Microsoft.Win32;
 using RetroBar.Utilities;
 
@@ -17,36 +18,7 @@ namespace RetroBar.Controls
     public partial class JapaneseIme : UserControl
     {
         [DllImport("kernel32.dll")]
-        static extern uint GetCurrentProcessId();
-
-        [DllImport("kernel32.dll")]
         static extern IntPtr GetCurrentProcess();
-
-        [DllImport("kernel32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool IsWow64Process(IntPtr hProcess, out bool wow64Process);
-
-        // Window
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool IsWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool IsWindowVisible(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint ProcessId);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern int SendMessage(IntPtr hWnd, int uMsg, IntPtr wParam, IntPtr lParam);
 
         // IME
         [DllImport("imm32.dll")]
@@ -54,18 +26,9 @@ namespace RetroBar.Controls
 
         const int WM_IME_CONTROL = 0x0283;
 
-        const uint IME_CMODE_ALPHANUMERIC = 0x0000;
         const uint IME_CMODE_NATIVE = 0x0001;
-        const uint IME_CMODE_CHINESE = IME_CMODE_NATIVE;
-        const uint IME_CMODE_HANGUL = IME_CMODE_NATIVE;
-        const uint IME_CMODE_JAPANESE = IME_CMODE_NATIVE;
         const uint IME_CMODE_KATAKANA = 0x0002;  // only effect under IME_CMODE_NATIVE
-        const uint IME_CMODE_LANGUAGE = 0x0003;
         const uint IME_CMODE_FULLSHAPE = 0x0008;
-        const uint IME_CMODE_ROMAN = 0x0010;
-        const uint IME_CMODE_CHARCODE = 0x0020;
-        const uint IME_CMODE_HANJACONVERT = 0x0040;
-
         const uint IMC_GETCONVERSIONMODE = 0x0001;
         const uint IMC_SETCONVERSIONMODE = 0x0002;
         const uint IMC_GETSENTENCEMODE = 0x0003;
@@ -85,72 +48,16 @@ namespace RetroBar.Controls
 
         const int ERROR_SUCCESS = 0;
 
-        const uint  REG_DWORD = 4; // 32-bit number
-        const uint  REG_SIZE_DWORD = 4; // 32-bit number
+        const uint REG_DWORD = 4; // 32-bit number
+        const uint REG_SIZE_DWORD = 4; // 32-bit number
 
         // SendInput
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct INPUT
-        {
-            public uint type;
-            public InputUnion u;
-        }
-
-        [StructLayout(LayoutKind.Explicit)]
-        struct InputUnion
-        {
-            // MOUSEINPUT and HARDWAREINPUT are unused,
-            // but removing them will cause them to not work.
-            [FieldOffset(0)] public MOUSEINPUT mi;
-            [FieldOffset(0)] public KEYBDINPUT ki;
-            [FieldOffset(0)] public HARDWAREINPUT hi;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct MOUSEINPUT
-        {
-            public int dx;
-            public int dy;
-            public uint mouseData;
-            public uint dwFlags;
-            public uint time;
-            public IntPtr dwExtraInfo;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct KEYBDINPUT
-        {
-            public ushort wVk;
-            public ushort wScan;
-            public uint dwFlags;
-            public uint time;
-            public IntPtr dwExtraInfo;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct HARDWAREINPUT
-        {
-            public uint uMsg;
-            public ushort wParamL;
-            public ushort wParamH;
-        }
-
-        const uint INPUT_KEYBOARD = 1;
-
         const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
-        const uint KEYEVENTF_KEYUP = 0x0002;
 
         const ushort VK_SHIFT = 0x10;
         const ushort VK_CONTROL = 0x11;
         const ushort VK_F10 = 0x79;
         const ushort VK_OEM_COPY = 0xF2;
-
-        // KeyboardLayout
-        [DllImport("user32.dll")]
-        static extern uint GetKeyboardLayout(uint idThread);
 
         private IntPtr hWndCurFg;
         private bool NewImeEnabled;
@@ -415,12 +322,12 @@ namespace RetroBar.Controls
 			if((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
 				return (IntPtr)0;
         
-            OpenSts = SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
+            OpenSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
 
             if(OpenSts == 0)
             {
                 SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETOPENSTATUS, (IntPtr)1);
-                OpenSts = SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
+                OpenSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
 
                 if(OpenSts == 0)
                     return (IntPtr)0;
@@ -439,7 +346,7 @@ namespace RetroBar.Controls
 			if((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
 				return;
         
-            OpenSts = SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
+            OpenSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
 
             if(OpenSts != 0)
             {
@@ -476,7 +383,7 @@ namespace RetroBar.Controls
         {
             IntPtr hWkTop;
             uint WkThId, WkProcId;
-            uint WkLayout;
+            int WkLayout;
 
             if((hWkTop = GetForegroundWindow()) == (IntPtr)0)
                 return; // error, not update.
@@ -529,29 +436,29 @@ namespace RetroBar.Controls
             {
                 // [Ctrl] + [F10]
                 InBuf[0].type = INPUT_KEYBOARD;
-                InBuf[0].u.ki.wVk = VK_CONTROL;
-                InBuf[0].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
+                InBuf[0].mkhi.ki.wVk = VK_CONTROL;
+                InBuf[0].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
 
                     InBuf[1].type = INPUT_KEYBOARD;
-                    InBuf[1].u.ki.wVk = VK_F10;
-                    InBuf[1].u.ki.dwFlags = 0;
+                    InBuf[1].mkhi.ki.wVk = VK_F10;
+                    InBuf[1].mkhi.ki.dwFlags = 0;
 
                     InBuf[2].type = INPUT_KEYBOARD;
-                    InBuf[2].u.ki.wVk = VK_F10;
-                    InBuf[2].u.ki.dwFlags = KEYEVENTF_KEYUP;
+                    InBuf[2].mkhi.ki.wVk = VK_F10;
+                    InBuf[2].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
 
                 InBuf[3].type = INPUT_KEYBOARD;
-                InBuf[3].u.ki.wVk = VK_CONTROL;
-                InBuf[3].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
+                InBuf[3].mkhi.ki.wVk = VK_CONTROL;
+                InBuf[3].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
 
                 // [P]
                 InBuf[4].type = INPUT_KEYBOARD;
-                InBuf[4].u.ki.wVk = 'P';
-                InBuf[4].u.ki.dwFlags = 0;
+                InBuf[4].mkhi.ki.wVk = 'P';
+                InBuf[4].mkhi.ki.dwFlags = 0;
 
                 InBuf[5].type = INPUT_KEYBOARD;
-                InBuf[5].u.ki.wVk = 'P';
-                InBuf[5].u.ki.dwFlags = KEYEVENTF_KEYUP;
+                InBuf[5].mkhi.ki.wVk = 'P';
+                InBuf[5].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
 
                 RetCnt = SendInput(6, InBuf, Marshal.SizeOf(typeof(INPUT)));
 
@@ -646,31 +553,31 @@ namespace RetroBar.Controls
             {
                 // [Ctrl] + [Shift] + [kana]
                 InBuf[0].type = INPUT_KEYBOARD;
-                InBuf[0].u.ki.wVk = VK_CONTROL;
-                InBuf[0].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
+                InBuf[0].mkhi.ki.wVk = VK_CONTROL;
+                InBuf[0].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
 
                     InBuf[1].type = INPUT_KEYBOARD;
-                    InBuf[1].u.ki.wVk = VK_SHIFT;
-                    InBuf[1].u.ki.dwFlags = 0;
+                    InBuf[1].mkhi.ki.wVk = VK_SHIFT;
+                    InBuf[1].mkhi.ki.dwFlags = 0;
 
                         // https://atmarkit.itmedia.co.jp/bbs/phpBB/viewtopic.php?topic=42587&forum=7
                         //	VK_OEM_COPY = 0xF2,		// kana key button.
 
                         InBuf[2].type = INPUT_KEYBOARD;
-                        InBuf[2].u.ki.wVk = VK_OEM_COPY;		// kana key button.
-                        InBuf[2].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
+                        InBuf[2].mkhi.ki.wVk = VK_OEM_COPY;		// kana key button.
+                        InBuf[2].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
 
                         InBuf[3].type = INPUT_KEYBOARD;
-                        InBuf[3].u.ki.wVk = VK_OEM_COPY;		// kana key button.
-                        InBuf[3].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
+                        InBuf[3].mkhi.ki.wVk = VK_OEM_COPY;		// kana key button.
+                        InBuf[3].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
 
                     InBuf[4].type = INPUT_KEYBOARD;
-                    InBuf[4].u.ki.wVk = VK_SHIFT;
-                    InBuf[4].u.ki.dwFlags = KEYEVENTF_KEYUP;
+                    InBuf[4].mkhi.ki.wVk = VK_SHIFT;
+                    InBuf[4].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
 
                 InBuf[5].type = INPUT_KEYBOARD;
-                InBuf[5].u.ki.wVk = VK_CONTROL;
-                InBuf[5].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
+                InBuf[5].mkhi.ki.wVk = VK_CONTROL;
+                InBuf[5].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
 
                 RetCnt = SendInput(6, InBuf, Marshal.SizeOf(typeof(INPUT)));
 
@@ -735,7 +642,7 @@ namespace RetroBar.Controls
 
                 NewInputMode = 0;
 
-                ImeOpenStatus = SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
+                ImeOpenStatus = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
             
                 if(ImeOpenStatus != 0)
                 {
