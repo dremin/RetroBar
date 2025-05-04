@@ -362,18 +362,11 @@ namespace RetroBar.Utilities
             set => Set(ref _showClockSeconds, value);
         }
 
-        private bool _overrideHotkeys = false;
-        public bool OverrideHotkeys
+        private WinNumHotkeysOption _winNumHotkeysAction = WinNumHotkeysOption.WindowsDefault;
+        public WinNumHotkeysOption WinNumHotkeysAction
         {
-            get => _overrideHotkeys;
-            set => Set(ref _overrideHotkeys, value);
-        }
-
-        private bool _hotkeysQuickLaunch = false;
-        public bool HotkeysQuickLaunch
-        {
-            get => _hotkeysQuickLaunch;
-            set => Set(ref _hotkeysQuickLaunch, value);
+            get => _winNumHotkeysAction;
+            set => SetEnum(ref _winNumHotkeysAction, value);
         }
         #endregion
 
@@ -447,6 +440,13 @@ namespace RetroBar.Utilities
         OpenAeroCalendar,
         OpenModernCalendar,
         OpenNotificationCenter,
+    }
+
+    public enum WinNumHotkeysOption
+    {
+        WindowsDefault,
+        SwitchTasks,
+        InvokeQuickLaunch,
     }
 
     public enum NotifyIconBehavior

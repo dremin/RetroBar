@@ -327,6 +327,7 @@ namespace RetroBar
                 _themesWatcher.Deleted -= ThemesWatcher_Deleted;
                 _themesWatcher.Renamed -= ThemesWatcher_Renamed;
             }
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
         }
 
         private void PropertiesWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -430,6 +431,23 @@ namespace RetroBar
             }
         }
 
+        private void CboWinNumHotkeysAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (this != _instance)
+            {
+                // Don't pop a message box if we're closed but haven't been GC'd yet
+                return;
+            }
+            if (cboWinNumHotkeysAction.SelectedItem == null)
+            {
+                cboWinNumHotkeysAction.SelectedValue = cboWinNumHotkeysAction.Items[(int)Settings.Instance.WinNumHotkeysAction];
+            }
+            else if (e.RemovedItems.Count > 0 && e.RemovedItems[0] == cboWinNumHotkeysAction.Items[0])
+            {
+                System.Windows.MessageBox.Show((string)System.Windows.Application.Current.FindResource("hotkey_warning_text"), (string)System.Windows.Application.Current.FindResource("hotkey_warning_title"), MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
         private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
         {
             OpenCustomizeNotifications();
@@ -451,16 +469,6 @@ namespace RetroBar
             string path = _dictionaryManager.GetThemeInstallDir();
             Directory.CreateDirectory(path);
             ShellHelper.StartProcess(path);
-        }
-
-        private void cbOverrideHotkeys_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Settings.Instance.OverrideHotkeys)
-            {
-                System.Windows.MessageBox.Show((string)System.Windows.Application.Current.FindResource("hotkey_warning_text"), (string)System.Windows.Application.Current.FindResource("hotkey_warning_title"), MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-            Settings.Instance.OverrideHotkeys = !Settings.Instance.OverrideHotkeys;
         }
     }
 }

@@ -24,14 +24,14 @@ namespace RetroBar.Utilities
         {
             listenerWindow = new HotkeyListenerWindow(this);
             
-            if (Settings.Instance.OverrideHotkeys) listenerWindow.RegisterHotkeys();
+            if (Settings.Instance.WinNumHotkeysAction != WinNumHotkeysOption.WindowsDefault) listenerWindow.RegisterHotkeys();
             
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
         }
 
         public void Dispose()
         {
-            if (Settings.Instance.OverrideHotkeys) listenerWindow.UnregisterHotkeys();
+            if (Settings.Instance.WinNumHotkeysAction != WinNumHotkeysOption.WindowsDefault) listenerWindow.UnregisterHotkeys();
 
             listenerWindow?.Dispose();
         }
@@ -47,9 +47,9 @@ namespace RetroBar.Utilities
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.OverrideHotkeys))
+            if (e.PropertyName == nameof(Settings.WinNumHotkeysAction))
             {
-                if (Settings.Instance.OverrideHotkeys) listenerWindow.RegisterHotkeys();
+                if (Settings.Instance.WinNumHotkeysAction != WinNumHotkeysOption.WindowsDefault) listenerWindow.RegisterHotkeys();
                 else listenerWindow.UnregisterHotkeys();
             }
         }

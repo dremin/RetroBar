@@ -119,7 +119,7 @@ namespace RetroBar.Controls
         }
         private void TaskList_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
         {
-            if (!Settings.Instance.HotkeysQuickLaunch && Host.Screen.Primary)
+            if (Settings.Instance.WinNumHotkeysAction == WinNumHotkeysOption.SwitchTasks && Host.Screen.Primary)
             {
                 try
                 {
