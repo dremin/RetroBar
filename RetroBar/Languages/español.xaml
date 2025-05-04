@@ -84,7 +84,6 @@
         <s:String>Alternar tareas</s:String>
         <s:String>Abrir elementos de inicio rápido</s:String>
     </x:Array>
-    <s:String x:Key="hotkeys_quick_launch">Teclas de acceso rápido de la barra de tareas abren elementos de inicio rápido</s:String>
     <s:String x:Key="hotkey_warning_title">Teclas de acceso rápido de RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar sustituirá las teclas de acceso rápido de la barra de tareas de Windows. Aunque cierre RetroBar, no se restaurarán en Windows hasta que cierre la sesión y vuelva a iniciarla.</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
