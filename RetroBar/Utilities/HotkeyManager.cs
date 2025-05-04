@@ -199,11 +199,11 @@ namespace RetroBar.Utilities
                     if (success)
                     {
                         _registeredHotkeys.Add(taskIndex);
-                        ShellLogger.Debug($"HotkeyManager: Registered hotkey {modifiers}+{key} with id={taskIndex}");
+                        ShellLogger.Debug($"HotkeyManager: Registered hotkey {modifiers}+{key} with ID={taskIndex}");
                     }
                     else
                     {
-                        ShellLogger.Warning($"HotkeyManager: Failed to register hotkey {modifiers}+{key} with id={taskIndex}");
+                        ShellLogger.Warning($"HotkeyManager: Failed to register hotkey {modifiers}+{key} with ID={taskIndex}");
                     }
 
                     return success;
@@ -228,7 +228,7 @@ namespace RetroBar.Utilities
                     // Exit if no matching hotkey found
                     if (trayHotkeyIndex < 0) return;
 
-                    // Found a match - send unregister message to explorer
+                    // Found a match - send unregister message to Explorer
                     int trayHotkeyId = _trayHotkeyTable[trayHotkeyIndex].Id;
                     SendMessage(_trayWindow, WMTRAY_UNREGISTERHOTKEY, new IntPtr(trayHotkeyId), IntPtr.Zero);
                     ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for hotkey id={trayHotkeyId}");
@@ -246,7 +246,7 @@ namespace RetroBar.Utilities
                 foreach (int id in _registeredHotkeys)
                 {
                     UnregisterHotKey(Handle, id);
-                    ShellLogger.Debug($"HotkeyManager: Unregistered hotkey id={id}");
+                    ShellLogger.Debug($"HotkeyManager: Unregistered hotkey ID={id}");
                 }
 
                 _registeredHotkeys.Clear();
