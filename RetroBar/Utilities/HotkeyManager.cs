@@ -219,7 +219,7 @@ namespace RetroBar.Utilities
                     // Found a match - send unregister message to Explorer
                     int trayHotkeyId = _trayHotkeyTable[trayHotkeyIndex].Id;
                     SendMessage(_trayWindow, WMTRAY_UNREGISTERHOTKEY, new IntPtr(trayHotkeyId), IntPtr.Zero);
-                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for hotkey id={trayHotkeyId}");
+                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for hotkey ID={trayHotkeyId}");
                 }
                 catch (Exception ex)
                 {
