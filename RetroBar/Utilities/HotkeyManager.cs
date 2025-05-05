@@ -2,8 +2,6 @@
 using ManagedShell.Common.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.MemoryMappedFiles;
 using System.Windows.Forms;
 using static ManagedShell.Interop.NativeMethods;
 
@@ -68,7 +66,7 @@ namespace RetroBar.Utilities
             private readonly HotkeyManager _manager;
             private readonly HashSet<int> _registeredHotkeys = [];
             private const int WMTRAY_UNREGISTERHOTKEY = (int)WM.USER + 231;
-            private List<TrayHotkeyEntry> _trayHotkeyTable;
+            private List<TrayHotkey.Entry> _trayHotkeyTable;
             private bool _unregisterFromExplorer = true;
             private IntPtr _trayWindow;
 
@@ -132,35 +130,25 @@ namespace RetroBar.Utilities
                 _trayHotkeyTable = [];
                 _trayWindow = IntPtr.Zero;
 
-                // Step 1: Try to build the hotkey table
-                bool tableLoaded = TryBuildHotkeyTable();
-
-                // Step 2: Only find the tray window if we have a valid hotkey table
-                if (tableLoaded && _trayHotkeyTable.Count > 0)
-                {
-                    TryFindTrayWindow();
-                }
+                TryFindTrayWindow();
+                TryBuildHotkeyTable();
             }
 
-            private bool TryBuildHotkeyTable()
+            private void TryBuildHotkeyTable()
             {
+                if (_trayWindow == IntPtr.Zero)
+                {
+                    return;
+                }
+
                 try
                 {
-                    string explorerPath = Path.Combine(Environment.GetEnvironmentVariable("SystemRoot")!, "explorer.exe");
-                    if (!File.Exists(explorerPath))
-                    {
-                        ShellLogger.Warning("HotkeyManager: explorer.exe not found at expected location");
-                        return false;
-                    }
-
-                    _trayHotkeyTable = HotkeyUtility.BuildTrayHotkeyTableInternal(explorerPath);
+                    _trayHotkeyTable = TrayHotkey.BuildTable(_trayWindow);
                     ShellLogger.Debug($"HotkeyManager: Found {_trayHotkeyTable.Count} entries in Explorer hotkey table");
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     ShellLogger.Warning($"HotkeyManager: Failed to build Explorer hotkey table - {ex.Message}");
-                    return false;
                 }
             }
 
@@ -231,7 +219,7 @@ namespace RetroBar.Utilities
                     // Found a match - send unregister message to Explorer
                     int trayHotkeyId = _trayHotkeyTable[trayHotkeyIndex].Id;
                     SendMessage(_trayWindow, WMTRAY_UNREGISTERHOTKEY, new IntPtr(trayHotkeyId), IntPtr.Zero);
-                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for hotkey id={trayHotkeyId}");
+                    ShellLogger.Debug($"HotkeyManager: Sent WMTRAY_UNREGISTERHOTKEY for hotkey ID={trayHotkeyId}");
                 }
                 catch (Exception ex)
                 {
@@ -257,96 +245,5 @@ namespace RetroBar.Utilities
 
             public void Dispose() => DestroyHandle();
         }
-    }
-
-    public static class HotkeyUtility
-    {
-        /// <summary>
-        /// Extracts the Windows hotkey table registered by Shell_TrayWnd from explorer.exe by reading the binary file.
-        /// </summary>
-        /// <param name="explorerPath">The full path to explorer.exe</param>
-        /// <returns>A list of hotkey entries found in explorer.exe</returns>
-        /// <remarks>
-        /// This method works by scanning explorer.exe for byte patterns that match the structure of hotkey entries.
-        /// It identifies sequences of bytes that follow the pattern where:
-        /// - Each entry is 8 bytes
-        /// - Only byte 0 (virtual key code) and byte 4 (modifier) have non-zero values
-        /// - The modifier has the Windows key flag set
-        ///
-        /// The method finds the longest consecutive sequence of valid entries, which is likely
-        /// the hotkey table used by Explorer's Shell_TrayWnd to register system-wide Windows+Key combinations.
-        /// </remarks>
-        public static List<TrayHotkeyEntry> BuildTrayHotkeyTableInternal(string explorerPath)
-        {
-            using var mmf = MemoryMappedFile.CreateFromFile(explorerPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
-            using var stream = mmf.CreateViewStream(0, 0, MemoryMappedFileAccess.Read);
-            using var reader = new BinaryReader(stream);
-            byte[] data = reader.ReadBytes((int)stream.Length);
-
-            var offsets = new List<int>();
-            for (int i = 0; i <= data.Length - 8; i += 8)
-            {
-                if (IsValidEntryAt(data, i))
-                    offsets.Add(i);
-            }
-
-            int bestStart = 0, bestCount = 0;
-            foreach (int start in offsets)
-            {
-                int count = 1;
-                while (offsets.Contains(start + count * 8)) count++;
-                if (count > bestCount)
-                {
-                    bestStart = start;
-                    bestCount = count;
-                }
-            }
-
-            var table = new List<TrayHotkeyEntry>(bestCount);
-            for (int i = 0; i < bestCount; i++)
-            {
-                int off = bestStart + i * 8;
-                table.Add(new TrayHotkeyEntry
-                {
-                    Id = i + 500, // Shell_TrayWnd hotkey IDs start at 500
-                    VirtualKey = data[off],
-                    Modifier = data[off + 4]
-                });
-            }
-
-            return table;
-        }
-
-        /// <summary>
-        /// Checks if the bytes at the specified index match the pattern of a Windows hotkey entry in explorer.exe
-        /// </summary>
-        /// <param name="bytes">The byte array to check</param>
-        /// <param name="offset">The offset to start checking at</param>
-        /// <returns>True if the bytes at offset match the hotkey entry pattern</returns>
-        private static bool IsValidEntryAt(byte[] bytes, int offset)
-        {
-            // Entry must be aligned to 8 bytes (hotkey entries are 8 bytes each)
-            const int ENTRY_SIZE = 8;
-            if (offset % ENTRY_SIZE != 0)
-                return false;
-
-            // Only byte 0 (VK code) and byte 4 (modifier) should have values, rest must be zero
-            for (int i = 1; i <= 7; i++)
-            {
-                if (i != 4 && bytes[offset + i] != 0)
-                    return false;
-            }
-
-            // Check that modifier has Windows key flag set and high bits are clear
-            byte modifier = bytes[offset + 4];
-            return (modifier & (uint)MOD.WIN) != 0 && (modifier & 0xF0) == 0;
-        }
-    }
-
-    public struct TrayHotkeyEntry
-    {
-        public int Id;
-        public byte VirtualKey;
-        public byte Modifier;
     }
 }
