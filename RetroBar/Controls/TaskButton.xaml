@@ -20,7 +20,8 @@
             ContextMenuOpening="AppButton_OnContextMenuOpening"
             DragEnter="AppButton_OnDragEnter"
             DragLeave="AppButton_OnDragLeave"
-            ToolTipService.ShowDuration="60000">
+            ToolTipService.ShowDuration="60000"
+            ContextMenu="{StaticResource TaskButtonContextMenu}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -44,58 +45,6 @@
                 </TextBlock.Text>
             </TextBlock>
         </Grid>
-        <Button.ContextMenu>
-            <ContextMenu Opened="ContextMenu_OpenedOrClosed"
-                         Closed="ContextMenu_OpenedOrClosed">
-                <MenuItem Header="{DynamicResource restore}"
-                          Click="RestoreMenuItem_OnClick"
-                          Name="RestoreMenuItem">
-                    <MenuItem.Icon>
-                        <TextBlock FontFamily="Marlett"
-                                   Text="&#x32;"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="{DynamicResource move}"
-                          Click="MoveMenuItem_OnClick"
-                          Name="MoveMenuItem" />
-                <MenuItem Header="{DynamicResource size}"
-                          Click="SizeMenuItem_OnClick"
-                          Name="SizeMenuItem" />
-                <MenuItem Header="{DynamicResource minimize}"
-                          Click="MinimizeMenuItem_OnClick"
-                          Name="MinimizeMenuItem">
-                    <MenuItem.Icon>
-                        <TextBlock FontFamily="Marlett"
-                                   Text="&#x30;"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="{DynamicResource maximize}"
-                          Click="MaximizeMenuItem_OnClick"
-                          Name="MaximizeMenuItem">
-                    <MenuItem.Icon>
-                        <TextBlock FontFamily="Marlett"
-                                   Text="&#x31;"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="{DynamicResource close}"
-                          Click="CloseMenuItem_OnClick"
-                          Name="CloseMenuItem">
-                    <MenuItem.Icon>
-                        <TextBlock FontFamily="Marlett"
-                                   Text="&#x72;"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </ContextMenu>
-        </Button.ContextMenu>
         <Button.ToolTip>
             <ToolTip>
                 <ToolTip.Style>
