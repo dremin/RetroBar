@@ -115,9 +115,9 @@
     <s:String x:Key="vert_tile">Finestres en mosaic v_ertical</s:String>
     <s:String x:Key="toggle_desktop">_Mostra l'escriptori</s:String>
     <s:String x:Key="hide_desktop">_Mostra les finestres obertes</s:String>
-    <s:String x:Key="undo_cascade">Desfés _En cascada</s:String>
-    <s:String x:Key="undo_tile">Des_fés En mosaic</s:String>
-    <s:String x:Key="undo_minimize_all">De_sfés Minimitza-ho tot</s:String>
+    <s:String x:Key="undo_cascade">_Desfés En cascada</s:String>
+    <s:String x:Key="undo_tile">_Desfés En mosaic</s:String>
+    <s:String x:Key="undo_minimize_all">_Desfés Minimitza-ho tot</s:String>
     <s:String x:Key="show_taskman_2k">Administrador de _tasques...</s:String>
     <s:String x:Key="show_taskman">Administrador de _tasques</s:String>
     <s:String x:Key="tray_properties">_Propietats</s:String>
@@ -144,5 +144,4 @@
     <s:String x:Key="hide">Amaga</s:String>
 
     <s:String x:Key="open_folder">&amp;Obre la carpeta</s:String>
-
 </ResourceDictionary>
