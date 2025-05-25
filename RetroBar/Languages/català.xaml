@@ -75,7 +75,7 @@
     <s:String x:Key="debug_logging">Activa el registre de _depuració</s:String>
     <s:String x:Key="check_for_updates">Compro_va si hi ha actualitzacions</s:String>
     <s:String x:Key="show_exit_menu_item">Mostra l'opció de sortida en el menú conte_xtual</s:String>
-    <s:String x:Key="slide_taskbar_buttons">_Llista els botons de la barra de tasques</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Des_lissa els botons de la barra de tasques</s:String>
     <s:String x:Key="show_clock_seconds">M_ostra els segons al rellotge</s:String>
     <s:String x:Key="open_custom_themes_folder">Obre la carpeta dels temes personalitzats</s:String>
     <s:String x:Key="win_num_hotkeys_action">Tecles d'accé_s ràpid Win+[0-9]:</s:String>
@@ -145,7 +145,4 @@
 
     <s:String x:Key="open_folder">&amp;Obre la carpeta</s:String>
 
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
