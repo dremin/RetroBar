@@ -361,6 +361,13 @@ namespace RetroBar.Utilities
             get => _showClockSeconds;
             set => Set(ref _showClockSeconds, value);
         }
+
+        private WinNumHotkeysOption _winNumHotkeysAction = WinNumHotkeysOption.WindowsDefault;
+        public WinNumHotkeysOption WinNumHotkeysAction
+        {
+            get => _winNumHotkeysAction;
+            set => SetEnum(ref _winNumHotkeysAction, value);
+        }
         #endregion
 
         #region Old Properties
@@ -433,6 +440,13 @@ namespace RetroBar.Utilities
         OpenAeroCalendar,
         OpenModernCalendar,
         OpenNotificationCenter,
+    }
+
+    public enum WinNumHotkeysOption
+    {
+        WindowsDefault,
+        SwitchTasks,
+        InvokeQuickLaunch,
     }
 
     public enum NotifyIconBehavior

@@ -1,7 +1,7 @@
-#define RetroBarName "RetroBar"
-#define RetroBarVersion "BUILD_VERSION"
+﻿#define RetroBarName "RetroBar"
 #define RetroBarPublisher "Sam Johnson"
 #define RetroBarURL "https://github.com/dremin/RetroBar"
+#define RetroBarReleasesURL RetroBarURL + "/releases"
 #define RetroBarExeName "RetroBar.exe"
 
 #define DotNetVersionDownload "6.0.36"
@@ -11,6 +11,14 @@
 #define DotNetInstallerTitle "Microsoft .NET 6 Desktop Runtime"
 
 #define TargetFramework "net6.0-windows"
+#define ReleasePath "RetroBar\bin\Release\" + TargetFramework
+#define Excludes "Languages,Themes,Resources,System.Diagnostics.EventLog.Messages.dll"
+
+#define Major
+#define Minor
+#define Revision
+#define RetroBarVersion GetVersionComponents(ReleasePath + "\publish-x64\" + RetroBarExeName, Major, Minor, Revision, null), Str(Major) + "." + Str(Minor) + "." + Str(Revision)
+#define VersionURL "https://dremin.github.io/updates/retrobar.json"
 
 [Setup]
 AppId={{574527FE-00A4-4F85-92AD-B4B8B4077D73}
@@ -24,6 +32,7 @@ AppSupportURL={#RetroBarURL}
 AppUpdatesURL={#RetroBarURL}
 DefaultDirName={autopf}\{#RetroBarName}
 UninstallDisplayIcon={app}\{#RetroBarExeName}
+SetupMutex={#RetroBarName}Installer
 SetupIconFile=RetroBar\Resources\retrobar.ico
 ArchitecturesInstallIn64BitMode=x64compatible or arm64
 DisableProgramGroupPage=yes
@@ -33,6 +42,9 @@ OutputDir=bin
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+LicenseFile=DistLicense.txt
+WizardImageFile=compiler:WizClassicImage.bmp
+WizardSmallImageFile=compiler:WizClassicSmallImage.bmp
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -80,14 +92,30 @@ spanish.WizardSelectDir=Seleccione la carpeta de destino
 spanish.BrowseDialogTitle=Instalar: elegir una carpeta
 spanish.WizardReady=Listo para instalar
 spanish.WizardPreparing=Preparando la instalación
-spanish.ExitSetupTitle=Salir de la instalación
 spanish.ConfirmUninstall=¿Seguro que desea desinstalar {#RetroBarName}?
 spanish.WizardUninstalling=Estado de la desinstalación
 spanish.TranslatorNote=Updated Spanish translation courtesy of Amaro Martínez for {#RetroBarPublisher}.
+spanish.WizardLicense=Acuerdo de licencia
+spanish.WizardSelectComponents=Seleccione los componentes
+spanish.FullInstallation=Instalación completa
+spanish.CompactInstallation=Instalación compacta
+spanish.CustomInstallation=Instalación personalizada
+spanish.NoUninstallWarningTitle=Componentes encontrados
+spanish.ReadyMemoTasks=Tareas adicionales:
+spanish.DirExistsTitle=La carpeta ya existe
+spanish.DirExists=La carpeta "%1" ya existe. ¿Desea realizar la instalación en esa carpeta de todos modos?
 
 [CustomMessages]
 DependenciesMessage=Setup will also download and install required dependencies:
+UpdateAvailableMessage=A new version of RetroBar is available!%n%nCurrent version: %s%nNew version: %s%n%nWould you like to visit the download page to get the latest version?
+ConfirmDeleteSettingsMessage=Do you want to delete the RetroBar user settings?
+InstallingDotNetRuntime=Installing {#DotNetInstallerTitle}...
+
 spanish.DependenciesMessage=La instalación también descargará e instalará las dependencias necesarias:
+spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible!%n%nVersión actual: %s%nNueva versión: %s%n%n¿Desea visitar la página de descarga para obtener la última versión?
+spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuario de RetroBar?
+spanish.InstallingDotNetRuntime=Instalando {#DotNetInstallerTitle}...
+
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 polish.DependenciesMessage=Instalator pobierze i zainstaluje także następujące składniki dodatkowe:
 russian.DependenciesMessage=Установщик также загрузит и установит следующие дополнительные компоненты:
@@ -98,13 +126,16 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "autostart"; Description: "{cm:AutoStartProgram,{#RetroBarName}}"; GroupDescription: "{cm:AutoStartProgramGroupDescription}"; Flags: unchecked
 
 [Files]
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs
-Source: "RetroBar\bin\Release\{#TargetFramework}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs
+Source: "{#ReleasePath}\publish-ARM64\*"; DestDir: "{app}"; Check: PreferArm64Files; Flags: ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x64\*"; DestDir: "{app}"; Check: PreferX64Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x86\*"; DestDir: "{app}"; Check: PreferX86Files; Flags: solidbreak ignoreversion recursesubdirs; Excludes: "{#Excludes}"
+Source: "{#ReleasePath}\publish-x64\System.Diagnostics.EventLog.Messages.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#ReleasePath}\publish-x64\Languages\*"; DestDir: "{app}\Languages"; Flags: ignoreversion recursesubdirs
+Source: "{#ReleasePath}\publish-x64\Themes\*"; DestDir: "{app}\Themes"; Flags: ignoreversion recursesubdirs
+Source: "{#ReleasePath}\publish-x64\Resources\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{localappdata}\RetroBar\Logs"
-Type: files; Name: "{localappdata}\RetroBar\settings.json"
 Type: dirifempty; Name: "{localappdata}\RetroBar"
 
 [Icons]
@@ -115,7 +146,7 @@ Name: "{autodesktop}\{#RetroBarName}"; Filename: "{app}\{#RetroBarExeName}"; Tas
 Root: HKA; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "RetroBar"; ValueType: string; ValueData: "{app}\{#RetroBarExeName}"; Tasks: autostart; Flags: uninsdeletevalue
 
 [Run]
-Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg:"Installing {#DotNetInstallerTitle}..."; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
+Filename: "{tmp}\{#DotNetInstallerExe}"; StatusMsg: "{cm:InstallingDotNetRuntime}"; Parameters:"/install /norestart"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Check: DotNetRuntimeIsMissing; Flags: skipifdoesntexist
 Filename: "{app}\{#RetroBarExeName}"; Description: "{cm:LaunchProgram,{#RetroBarName}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
@@ -123,7 +154,7 @@ var
   DownloadPage: TDownloadWizardPage;
   DotNetChecked: boolean;
   DotNetMissing: boolean;
- 
+
 function PreferArm64Files: Boolean;
 begin
   Result := IsArm64;
@@ -185,6 +216,47 @@ begin
   end;
 end;
 
+procedure CheckForUpdates;
+var
+  LatestVersion: string;
+  CurrentVersion: string;
+  JSONStr: AnsiString;
+  PosStart, PosEnd: Integer;
+  MsgResult: Integer;
+begin
+  CurrentVersion := '{#RetroBarVersion}';
+
+  try
+    DownloadTemporaryFile('{#VersionURL}', 'retrobar.json', '', nil);
+  except
+    Log('Failed to download update information: ' + GetExceptionMessage);
+    Exit;
+  end;
+
+  if LoadStringFromFile(ExpandConstant('{tmp}\retrobar.json'), JSONStr) then
+  begin
+    PosStart := Pos('"version": "', JSONStr) + Length('"version": "');
+    PosEnd := Pos('"', Copy(JSONStr, PosStart, Length(JSONStr))) + PosStart - 1;
+    LatestVersion := Copy(JSONStr, PosStart, PosEnd - PosStart);
+
+    case CompareVersion(CurrentVersion, LatestVersion) of
+      -1: begin
+        Log(Format('CheckForUpdates: Current version %s is older than latest version %s', [CurrentVersion, LatestVersion]));
+        MsgResult := MsgBox(Format(CustomMessage('UpdateAvailableMessage'), [CurrentVersion, LatestVersion]),
+          mbInformation, MB_YESNO);
+        if MsgResult = IDYES then
+          ShellExec('open', '{#RetroBarReleasesURL}', '', '', SW_SHOW, ewNoWait, MsgResult);
+          end;
+       0: Log(Format('CheckForUpdates: Current version %s matches latest version %s', [CurrentVersion, LatestVersion]));
+       1: Log(Format('CheckForUpdates: Current version %s is newer than latest version %s', [CurrentVersion, LatestVersion]));
+    end;
+  end
+  else
+  begin
+    Log('Failed to read the version information file.');
+  end;
+end;
+
 function DotNetRuntimeIsMissing(): Boolean;
 var
   runtimes: TArrayOfString;
@@ -194,7 +266,7 @@ var
   meetsMaximumVersion: Boolean;
 begin
   Result := True;
-  
+
   if DotNetChecked then
   begin
     Result := DotNetMissing;
@@ -284,6 +356,13 @@ begin
   Result := True;
 end;
 
+// run CheckForUpdates
+function InitializeSetup: Boolean;
+begin
+  CheckForUpdates;
+  Result := True;
+end;
+
 procedure InitializeWizard;
 begin
   DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
@@ -294,11 +373,11 @@ begin
   Result := True;
   if CurPageID = wpReady then begin
     if not DotNetRuntimeIsMissing() then Exit;
-    
+
     // To be used if we switch to a version that actually gets updates
     // if not DownloadDotNetVersion('6.0') then Exit;
     // if not LoadStringFromFile(ExpandConstant('{tmp}\{#DotNetVersionFile}'), downloadVersion) then Exit;
-    
+
     // Allow the install to proceed even if the download fails
     // The user will be prompted again when they launch RetroBar
     DownloadDotNetRuntime('{#DotNetVersionDownload}');
@@ -309,4 +388,21 @@ function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoType
 begin
   if DotNetRuntimeIsMissing() then Result := CustomMessage('DependenciesMessage') + NewLine + Space + '{#DotNetInstallerTitle}' + NewLine + NewLine;
   Result := Result + MemoTasksInfo;
+end;
+
+// ask if user wants to delete the settings.json file
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  settingsPath: string;
+begin
+  if CurUninstallStep <> usPostUninstall then
+    Exit;
+
+  settingsPath := ExpandConstant('{localappdata}\RetroBar\settings.json');
+  if FileExists(settingsPath) and
+     (MsgBox(CustomMessage('ConfirmDeleteSettingsMessage'), mbConfirmation, MB_YESNO) = IDYES) then
+  begin
+    if not DeleteFile(settingsPath) then
+      Log('Warning: Could not delete user settings file: ' + settingsPath);
+  end;
 end;

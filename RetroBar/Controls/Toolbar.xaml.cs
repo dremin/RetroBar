@@ -27,7 +27,7 @@ namespace RetroBar.Controls
             OpenParentFolder = CommonContextMenuItem.Paste + 1
         }
 
-        public static DependencyProperty PathProperty = DependencyProperty.Register("Path", typeof(string), typeof(Toolbar), new PropertyMetadata(OnPathChanged));
+        public static DependencyProperty PathProperty = DependencyProperty.Register(nameof(Path), typeof(string), typeof(Toolbar), new PropertyMetadata(OnPathChanged));
 
         public string Path
         {
@@ -39,7 +39,15 @@ namespace RetroBar.Controls
             }
         }
 
-        private static DependencyProperty FolderProperty = DependencyProperty.Register("Folder", typeof(ShellFolder), typeof(Toolbar));
+        private static DependencyProperty FolderProperty = DependencyProperty.Register(nameof(Folder), typeof(ShellFolder), typeof(Toolbar));
+
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(Toolbar), new PropertyMetadata(HostChangedCallback));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
 
         public ToolbarDropHandler DropHandler { get; set; }
 
@@ -221,6 +229,23 @@ namespace RetroBar.Controls
                 }
             }
         }
+
+        private void Toolbar_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
+        {
+            if (Settings.Instance.WinNumHotkeysAction == WinNumHotkeysOption.InvokeQuickLaunch && Host.Screen.Primary)
+            {
+                try
+                {
+                    ListCollectionView items = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
+
+                    bool exists = items.MoveCurrentToPosition(e.index);
+                    
+                    if (exists) InvokeContextMenu((ShellFile)items.CurrentItem, false);
+
+                }
+                catch (ArgumentOutOfRangeException) { }
+            }
+        }
         #endregion
 
         #region Context menu
@@ -267,21 +292,39 @@ namespace RetroBar.Controls
         }
         #endregion
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void Initialize()
         {
-            if (!_isLoaded)
+            if (!_isLoaded && Host != null)
             {
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+                Host.hotkeyManager.TaskbarHotkeyPressed += Toolbar_TaskbarHotkeyPressed;
 
                 _isLoaded = true;
             }
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Initialize();
+        }
+
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            if (Host != null)
+            {
+                Host.hotkeyManager.TaskbarHotkeyPressed -= Toolbar_TaskbarHotkeyPressed;
+            }
 
             _isLoaded = false;
+        }
+
+        private static void HostChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is Toolbar toolbar && e.OldValue == null && e.NewValue != null)
+            {
+                toolbar.Initialize();
+            }
         }
     }
 }

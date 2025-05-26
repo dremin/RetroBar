@@ -11,7 +11,7 @@ namespace RetroBar.Controls
 {
     public partial class InputLanguage : UserControl
     {
-        public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register("LocaleIdentifierProperty", typeof(CultureInfo), typeof(InputLanguage));
+        public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register(nameof(LocaleIdentifier), typeof(CultureInfo), typeof(InputLanguage));
 
         public CultureInfo LocaleIdentifier
         {

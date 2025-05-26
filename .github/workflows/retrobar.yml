@@ -13,8 +13,6 @@ jobs:
     strategy:
       matrix:
         publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [ARM64-portable, net6.0-windows] ]
-    outputs:
-      version: ${{ steps.nbgv.outputs.SimpleVersion }}
     runs-on: windows-latest
 
     steps:
@@ -24,7 +22,6 @@ jobs:
         fetch-depth: 0
 
     - name: Install nbgv
-      id: nbgv
       uses: dotnet/nbgv@v0.4.2
 
     - name: Publish app
@@ -45,7 +42,7 @@ jobs:
   installer:
     name: Installer
     needs: [ build ]
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     env:
       installer: installer.iss
@@ -75,16 +72,8 @@ jobs:
         name: RetroBar 32-bit
         path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
 
-    - name: Set installer version
-      shell: pwsh
-      run: |
-        $fileContent = [System.IO.File]::ReadAllText("${{ env.installer }}").Replace("BUILD_VERSION", "${{ needs.build.outputs.version }}")
-        [System.IO.File]::WriteAllText("${{ env.installer }}", $fileContent)
-
     - name: Compile Inno Setup installer
-      uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
-      with:
-        path: ${{ env.installer }}
+      run: ISCC.exe "${{ env.installer }}"
 
     - name: Upload installer
       uses: actions/upload-artifact@v4

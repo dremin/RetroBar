@@ -21,11 +21,11 @@
             </DockPanel.Dock>
         </Thumb>
         <TextBlock Style="{DynamicResource InputLanguage}"
-                   Text="{Binding Path=LocaleIdentifierProperty, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
+                   Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
         </TextBlock>
     </DockPanel>
 
     <UserControl.ToolTip>
-        <TextBlock Text="{Binding Path=LocaleIdentifierProperty, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=EnglishName, Mode=OneWay}" />
+        <TextBlock Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=EnglishName, Mode=OneWay}" />
     </UserControl.ToolTip>
 </UserControl>
