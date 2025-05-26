@@ -79,6 +79,9 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [LangOptions]
 spanish.LanguageName=español
+polish.LanguageName=polski
+russian.LanguageName=русский
+french.LanguageName=français
 
 [Messages]
 spanish.StopDownload=¿Desea detener la descarga?
@@ -114,6 +117,9 @@ spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuar
 spanish.InstallingDotNetRuntime=Instalando {#DotNetInstallerTitle}...
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
+polish.DependenciesMessage=Instalator pobierze i zainstaluje także następujące składniki dodatkowe:
+russian.DependenciesMessage=Установщик также загрузит и установит следующие дополнительные компоненты:
+french.DependenciesMessage=Le programme d'installation téléchargera et installera également les dépendances requises:
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
