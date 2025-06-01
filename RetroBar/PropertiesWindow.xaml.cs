@@ -430,14 +430,6 @@ namespace RetroBar
             }
         }
 
-        private void CboImeShow_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (cboImeShow.SelectedItem == null)
-            {
-                cboImeShow.SelectedValue = cboImeShow.Items[(int)Settings.Instance.ImeShow];
-            }
-        }
-
         private void CustomizeNotifications_OnClick(object sender, RoutedEventArgs e)
         {
             OpenCustomizeNotifications();

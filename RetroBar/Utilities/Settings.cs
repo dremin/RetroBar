@@ -375,13 +375,6 @@ namespace RetroBar.Utilities
             get => _hotkeysQuickLaunch;
             set => Set(ref _hotkeysQuickLaunch, value);
         }
-
-        private ImeShowOption _imeShow = 0;
-        public ImeShowOption ImeShow
-        {
-            get => _imeShow;
-            set => Set(ref _imeShow, value);
-        }
         #endregion
 
         #region Old Properties
@@ -462,12 +455,6 @@ namespace RetroBar.Utilities
         AlwaysHide,
         AlwaysShow,
         Remove
-    }
-
-    public enum ImeShowOption
-    {
-        NoneIME,
-        ShowJapaneseIME,
     }
     #endregion
 

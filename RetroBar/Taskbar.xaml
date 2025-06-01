@@ -113,7 +113,6 @@
                                  RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                     </StackPanel.Orientation>
                     <controls:NotifyIconList NotificationArea="{Binding NotificationArea}" />
-                    <controls:JapaneseIme VerticalAlignment="Center" />
                     <controls:Clock VerticalAlignment="Center" />
                 </StackPanel>
             </GroupBox>

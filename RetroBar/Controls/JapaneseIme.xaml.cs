@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using ManagedShell.AppBar;
 using static ManagedShell.Interop.NativeMethods;
@@ -121,8 +122,7 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.Instance.ImeShow)
-                || e.PropertyName == nameof(Settings.Instance.Edge)
+            if (e.PropertyName == nameof(Settings.Instance.Edge)
                 || e.PropertyName == nameof(Settings.Instance.RowCount)
                 || e.PropertyName == nameof(Settings.Instance.TaskbarWidth))
             {
@@ -135,15 +135,13 @@ namespace RetroBar.Controls
             double size = System.Windows.Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
             size *= Settings.Instance.TaskbarScale;
 
-            if(Settings.Instance.ImeShow == ImeShowOption.ShowJapaneseIME)
+            if (this.Visibility == Visibility.Visible)
             {
-                this.Visibility = Visibility.Visible;
-
-                if(Settings.Instance.Edge == AppBarEdge.Top || Settings.Instance.Edge == AppBarEdge.Bottom)
+                if (Settings.Instance.Edge == AppBarEdge.Top || Settings.Instance.Edge == AppBarEdge.Bottom)
                 {
                     this.Width = size;
                 }
-                else if(Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
+                else if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
                 {
                     this.Height = size;
                 }
@@ -152,19 +150,13 @@ namespace RetroBar.Controls
             }
             else
             {
-                this.Visibility = Visibility.Hidden;
-
-                if(Settings.Instance.Edge == AppBarEdge.Top || Settings.Instance.Edge == AppBarEdge.Bottom)
-                {
-                    this.Width = 0;
-                }
-                else if(Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
-                {
-                    this.Height = 0;
-                }
-
                 ImeCheckTimer.IsEnabled = false;
             }
+        }
+
+        private void JapaneseIme_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ImmSetOpen(ImmOpenStatus.ImmToggle);
         }
 
         private void JapaneseIme_full_shape_hiragana_OnClick(object sender, RoutedEventArgs e)
@@ -172,8 +164,8 @@ namespace RetroBar.Controls
             IntPtr hImeWnd;
             uint ImmNewConversion;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             ImmNewConversion = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETCONVERSIONMODE, (IntPtr)0);
             ImmNewConversion |= IME_CMODE_FULLSHAPE;
@@ -181,14 +173,14 @@ namespace RetroBar.Controls
             ImmNewConversion &= ~IME_CMODE_KATAKANA;
             SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETCONVERSIONMODE, (IntPtr)ImmNewConversion);
         }
-        
+
         private void JapaneseIme_full_shape_katakana_OnClick(object sender, RoutedEventArgs e)
         {
             IntPtr hImeWnd;
             uint ImmNewConversion;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             ImmNewConversion = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETCONVERSIONMODE, (IntPtr)0);
             ImmNewConversion |= IME_CMODE_FULLSHAPE;
@@ -196,14 +188,14 @@ namespace RetroBar.Controls
             ImmNewConversion |= IME_CMODE_KATAKANA;
             SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETCONVERSIONMODE, (IntPtr)ImmNewConversion);
         }
- 
+
         private void JapaneseIme_full_shape_alphanumeric_OnClick(object sender, RoutedEventArgs e)
         {
             IntPtr hImeWnd;
             uint ImmNewConversion;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             ImmNewConversion = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETCONVERSIONMODE, (IntPtr)0);
             ImmNewConversion |= IME_CMODE_FULLSHAPE;
@@ -211,14 +203,14 @@ namespace RetroBar.Controls
             ImmNewConversion &= ~IME_CMODE_KATAKANA;
             SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETCONVERSIONMODE, (IntPtr)ImmNewConversion);
         }
- 
+
         private void JapaneseIme_kana_OnClick(object sender, RoutedEventArgs e)
         {
             IntPtr hImeWnd;
             uint ImmNewConversion;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             ImmNewConversion = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETCONVERSIONMODE, (IntPtr)0);
             ImmNewConversion &= ~IME_CMODE_FULLSHAPE;
@@ -232,8 +224,8 @@ namespace RetroBar.Controls
             IntPtr hImeWnd;
             uint ImmNewConversion;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             ImmNewConversion = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETCONVERSIONMODE, (IntPtr)0);
             ImmNewConversion &= ~IME_CMODE_FULLSHAPE;
@@ -241,41 +233,41 @@ namespace RetroBar.Controls
             ImmNewConversion &= ~IME_CMODE_KATAKANA;
             SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETCONVERSIONMODE, (IntPtr)ImmNewConversion);
         }
- 
+
         private void JapaneseIme_direct_OnClick(object sender, RoutedEventArgs e)
         {
-            ImmClose();
+            ImmSetOpen(ImmOpenStatus.ImmClose);
         }
 
         private void JapaneseIme_open_imepad_OnClick(object sender, RoutedEventArgs e)
         {
-			if(ImmOpenGetWindow() == (IntPtr)0)
+            if (ImmOpenGetWindow() == (IntPtr)0)
                 return;
 
             ExecImePad("");
         }
- 
+
         private void JapaneseIme_open_add_word_dictionary_OnClick(object sender, RoutedEventArgs e)
         {
             ExecImeDictionaryTool("-w");
         }
- 
+
         private void JapaneseIme_open_dictionary_tool_OnClick(object sender, RoutedEventArgs e)
         {
             ExecImeDictionaryTool("-t");
         }
- 
+
         private void JapaneseIme_open_properties_OnClick(object sender, RoutedEventArgs e)
         {
             ExecImeProperties("");
         }
- 
+
         private void JapaneseIme_input_key_roma_OnClick(object sender, RoutedEventArgs e)
         {
-			if(ImmOpenGetWindow() == (IntPtr)0)
+            if (ImmOpenGetWindow() == (IntPtr)0)
                 return;
 
-            if(CurInputRoma)
+            if (CurInputRoma)
                 return;     // no need to execute
 
             ToggleKanaMode();	// change "kana" to "roma"
@@ -283,10 +275,10 @@ namespace RetroBar.Controls
 
         private void JapaneseIme_input_key_kana_OnClick(object sender, RoutedEventArgs e)
         {
-			if(ImmOpenGetWindow() == (IntPtr)0)
+            if (ImmOpenGetWindow() == (IntPtr)0)
                 return;
 
-            if(!CurInputRoma)
+            if (!CurInputRoma)
                 return;     // no need to execute
 
             ToggleKanaMode();	// change "roma" to "kana"
@@ -296,8 +288,8 @@ namespace RetroBar.Controls
         {
             IntPtr hImeWnd;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETSENTENCEMODE, (IntPtr)0x08);
         }
@@ -306,8 +298,8 @@ namespace RetroBar.Controls
         {
             IntPtr hImeWnd;
 
-			if((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
-				return;
+            if ((hImeWnd = ImmOpenGetWindow()) == (IntPtr)0)
+                return;
 
             SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETSENTENCEMODE, (IntPtr)0x00);
         }
@@ -317,43 +309,58 @@ namespace RetroBar.Controls
             IntPtr hImeWnd;
             int OpenSts;
 
-			SetForeOtherTopWindow();
+            hImeWnd = ImmSetOpen(ImmOpenStatus.ImmOpen);
 
-			if((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
-				return (IntPtr)0;
-        
             OpenSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
 
-            if(OpenSts == 0)
-            {
-                SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETOPENSTATUS, (IntPtr)1);
-                OpenSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
-
-                if(OpenSts == 0)
-                    return (IntPtr)0;
-            }
+            if (OpenSts == 0)
+                return (IntPtr)0;
 
             return hImeWnd;
         }
 
-        private void ImmClose()
+        private enum ImmOpenStatus
+        {
+            ImmClose,
+            ImmOpen,
+            ImmToggle
+        }
+
+        private IntPtr ImmSetOpen(ImmOpenStatus SetStatus)
         {
             IntPtr hImeWnd;
-            int OpenSts;
+            int OpenCurSts;
+            int OpenNewSts;
 
-			SetForeOtherTopWindow();
+            SetForeOtherTopWindow();
 
-			if((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
-				return;
-        
-            OpenSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
+            if ((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
+                return (IntPtr)0;
 
-            if(OpenSts != 0)
+            OpenCurSts = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
+
+            switch (SetStatus)
             {
-                SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETOPENSTATUS, (IntPtr)0);
+                case ImmOpenStatus.ImmOpen:
+                    OpenNewSts = 1;
+                    break;
+
+                case ImmOpenStatus.ImmClose:
+                    OpenNewSts = 0;
+                    break;
+
+                case ImmOpenStatus.ImmToggle:
+                    OpenNewSts = OpenCurSts == 0 ? 1 : 0;
+                    break;
+
+                default:
+                    OpenNewSts = OpenCurSts;
+                    break;
             }
 
-            return;
+            SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_SETOPENSTATUS, (IntPtr)OpenNewSts);
+
+            return hImeWnd;
         }
 
         // When changing the IME state from the RetroBar,
@@ -362,13 +369,13 @@ namespace RetroBar.Controls
         {
             UpdateOtherTopWindow();
 
-            if(hWndCurFg == GetForegroundWindow())
+            if (hWndCurFg == GetForegroundWindow())
                 return;     // no need to execute
 
-            if(!IsWindow(hWndCurFg))
+            if (!IsWindow(hWndCurFg))
                 return;     // invalid Window
 
-            if(!IsWindowVisible(hWndCurFg))
+            if (!IsWindowVisible(hWndCurFg))
                 return;     // hidden Window
 
             SetForegroundWindow(hWndCurFg);
@@ -385,13 +392,13 @@ namespace RetroBar.Controls
             uint WkThId, WkProcId;
             int WkLayout;
 
-            if((hWkTop = GetForegroundWindow()) == (IntPtr)0)
+            if ((hWkTop = GetForegroundWindow()) == (IntPtr)0)
                 return; // error, not update.
 
-            if((WkThId = GetWindowThreadProcessId(hWkTop, out WkProcId)) == 0)
+            if ((WkThId = GetWindowThreadProcessId(hWkTop, out WkProcId)) == 0)
                 return; // error, not update.
-                    
-            if(WkProcId == GetCurrentProcessId())
+
+            if (WkProcId == GetCurrentProcessId())
                 return;	// foreground is current process. not update.
 
             // Reference win32api.
@@ -405,8 +412,9 @@ namespace RetroBar.Controls
 
         private bool ExecImeDictionaryTool(string ExecOpt)
         {
-            const string Dict32Name = @"C:\Windows\SysWOW64\IME\IMEJP\imjpdct.exe";
-            const string Dict64Name = @"C:\Windows\System32\IME\IMEJP\imjpdct.exe";
+            string WinDirPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            string Dict32Name = WinDirPath + @"\SysWOW64\IME\IMEJP\imjpdct.exe";
+            string Dict64Name = WinDirPath + @"\System32\IME\IMEJP\imjpdct.exe";
 
             SetForeOtherTopWindow();
 
@@ -415,8 +423,9 @@ namespace RetroBar.Controls
 
         private bool ExecImeProperties(string ExecOpt)
         {
-            const string Prop32Name = @"C:\Windows\SysWOW64\IME\IMEJP\imjpset.exe";
-            const string Prop64Name = @"C:\Windows\System32\IME\IMEJP\imjpset.exe";
+            string WinDirPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            string Prop32Name = WinDirPath + @"\SysWOW64\IME\IMEJP\imjpset.exe";
+            string Prop64Name = WinDirPath + @"\System32\IME\IMEJP\imjpset.exe";
 
             SetForeOtherTopWindow();
 
@@ -439,13 +448,13 @@ namespace RetroBar.Controls
                 InBuf[0].mkhi.ki.wVk = VK_CONTROL;
                 InBuf[0].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
 
-                    InBuf[1].type = INPUT_KEYBOARD;
-                    InBuf[1].mkhi.ki.wVk = VK_F10;
-                    InBuf[1].mkhi.ki.dwFlags = 0;
+                InBuf[1].type = INPUT_KEYBOARD;
+                InBuf[1].mkhi.ki.wVk = VK_F10;
+                InBuf[1].mkhi.ki.dwFlags = 0;
 
-                    InBuf[2].type = INPUT_KEYBOARD;
-                    InBuf[2].mkhi.ki.wVk = VK_F10;
-                    InBuf[2].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
+                InBuf[2].type = INPUT_KEYBOARD;
+                InBuf[2].mkhi.ki.wVk = VK_F10;
+                InBuf[2].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
 
                 InBuf[3].type = INPUT_KEYBOARD;
                 InBuf[3].mkhi.ki.wVk = VK_CONTROL;
@@ -462,7 +471,7 @@ namespace RetroBar.Controls
 
                 RetCnt = SendInput(6, InBuf, Marshal.SizeOf(typeof(INPUT)));
 
-                if(RetCnt != 6)
+                if (RetCnt != 6)
                     throw new System.Exception();
             }
 
@@ -478,28 +487,14 @@ namespace RetroBar.Controls
         {
             bool RetSts = true;
             bool Wow64Sts;
-            ProcessStartInfo ProcStInf = new();
-            Process Proc;
 
-            if(!IsWow64Process(GetCurrentProcess(), out Wow64Sts))
+            if (!IsWow64Process(GetCurrentProcess(), out Wow64Sts))
                 return false;
 
-            if(Wow64Sts)
-                ProcStInf.FileName = Exec32bit;     // 32bit
+            if (Wow64Sts)
+                RetSts = ManagedShell.Common.Helpers.ShellHelper.StartProcess(Exec32bit);     // 32bit
             else
-                ProcStInf.FileName = Exec64bit;     // 64bit
-
-            ProcStInf.Arguments = ExecOpt;
-
-            try
-            {
-                Proc = Process.Start(ProcStInf);
-            }
-
-            catch
-            {
-                RetSts = false;
-            }
+                RetSts = ManagedShell.Common.Helpers.ShellHelper.StartProcess(Exec64bit);     // 64bit
 
             return RetSts;
         }
@@ -518,16 +513,16 @@ namespace RetroBar.Controls
             uint GetType, GetData;
             uint GetLen = REG_SIZE_DWORD;
 
-            if((ChkWk = RegOpenKey((UIntPtr)RegistryHive.CurrentUser , RegKeyStrKanaMd, out hKey)) != ERROR_SUCCESS)
+            if ((ChkWk = RegOpenKey((UIntPtr)RegistryHive.CurrentUser, RegKeyStrKanaMd, out hKey)) != ERROR_SUCCESS)
                 return false;   // If unknown, treat as "roma"
 
             ChkWk = RegQueryValueEx(hKey, "kanaMd", (IntPtr)0, out GetType, out GetData, ref GetLen);
-            
+
             RegCloseKey(hKey);
 
-            if(ChkWk == ERROR_SUCCESS && GetType == REG_DWORD)
+            if (ChkWk == ERROR_SUCCESS && GetType == REG_DWORD)
             {
-                if(GetData == 1)
+                if (GetData == 1)
                     RetMode = true;		// 1: kana
                 else
                     RetMode = false;	// 2: roma
@@ -556,24 +551,24 @@ namespace RetroBar.Controls
                 InBuf[0].mkhi.ki.wVk = VK_CONTROL;
                 InBuf[0].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
 
-                    InBuf[1].type = INPUT_KEYBOARD;
-                    InBuf[1].mkhi.ki.wVk = VK_SHIFT;
-                    InBuf[1].mkhi.ki.dwFlags = 0;
+                InBuf[1].type = INPUT_KEYBOARD;
+                InBuf[1].mkhi.ki.wVk = VK_SHIFT;
+                InBuf[1].mkhi.ki.dwFlags = 0;
 
-                        // https://atmarkit.itmedia.co.jp/bbs/phpBB/viewtopic.php?topic=42587&forum=7
-                        //	VK_OEM_COPY = 0xF2,		// kana key button.
+                // https://atmarkit.itmedia.co.jp/bbs/phpBB/viewtopic.php?topic=42587&forum=7
+                //	VK_OEM_COPY = 0xF2,		// kana key button.
 
-                        InBuf[2].type = INPUT_KEYBOARD;
-                        InBuf[2].mkhi.ki.wVk = VK_OEM_COPY;		// kana key button.
-                        InBuf[2].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
+                InBuf[2].type = INPUT_KEYBOARD;
+                InBuf[2].mkhi.ki.wVk = VK_OEM_COPY;     // kana key button.
+                InBuf[2].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
 
-                        InBuf[3].type = INPUT_KEYBOARD;
-                        InBuf[3].mkhi.ki.wVk = VK_OEM_COPY;		// kana key button.
-                        InBuf[3].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
+                InBuf[3].type = INPUT_KEYBOARD;
+                InBuf[3].mkhi.ki.wVk = VK_OEM_COPY;     // kana key button.
+                InBuf[3].mkhi.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
 
-                    InBuf[4].type = INPUT_KEYBOARD;
-                    InBuf[4].mkhi.ki.wVk = VK_SHIFT;
-                    InBuf[4].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
+                InBuf[4].type = INPUT_KEYBOARD;
+                InBuf[4].mkhi.ki.wVk = VK_SHIFT;
+                InBuf[4].mkhi.ki.dwFlags = KEYEVENTF_KEYUP;
 
                 InBuf[5].type = INPUT_KEYBOARD;
                 InBuf[5].mkhi.ki.wVk = VK_CONTROL;
@@ -581,7 +576,7 @@ namespace RetroBar.Controls
 
                 RetCnt = SendInput(6, InBuf, Marshal.SizeOf(typeof(INPUT)));
 
-                if(RetCnt != 6)
+                if (RetCnt != 6)
                     throw new System.Exception();
             }
 
@@ -633,24 +628,24 @@ namespace RetroBar.Controls
             NewImeStatus = @"✖";
             NewImmTip = (string)this.FindResource("ime_input_tip_disabled");
 
-            if((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
+            if ((hImeWnd = ImmGetDefaultIMEWnd(hWndCurFg)) == (IntPtr)0)
                 NewImeEnabled = false;  // IME window not found
 
-            if(NewImeEnabled)
+            if (NewImeEnabled)
             {
                 NewImmTip = (string)this.FindResource("ime_input_tip_enabled");
 
                 NewInputMode = 0;
 
                 ImeOpenStatus = (int)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETOPENSTATUS, (IntPtr)0);
-            
-                if(ImeOpenStatus != 0)
+
+                if (ImeOpenStatus != 0)
                 {
                     // conversion enabled
                     NewInputFlag = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETCONVERSIONMODE, (IntPtr)0);
                     NewImmConversion = (uint)SendMessage(hImeWnd, WM_IME_CONTROL, (IntPtr)IMC_GETSENTENCEMODE, (IntPtr)0);
 
-                    if(GetRegKanaMd())
+                    if (GetRegKanaMd())
                     {
                         // Kana Input
                         NewInputRoma = false;
@@ -661,13 +656,13 @@ namespace RetroBar.Controls
                         NewInputRoma = true;
                     }
 
-                    if((NewInputFlag & IME_CMODE_FULLSHAPE) != 0)
+                    if ((NewInputFlag & IME_CMODE_FULLSHAPE) != 0)
                     {
                         // full shape
-                        if((NewInputFlag & IME_CMODE_NATIVE) != 0)
+                        if ((NewInputFlag & IME_CMODE_NATIVE) != 0)
                         {
                             // full shape / japanese
-                            if((NewInputFlag & IME_CMODE_KATAKANA) != 0)
+                            if ((NewInputFlag & IME_CMODE_KATAKANA) != 0)
                             {
                                 // full shape / katakana
                                 NewInputMode = MODE_FULL_SHAPE_KATAKANA;
@@ -690,7 +685,7 @@ namespace RetroBar.Controls
                     else
                     {
                         // nornal shape
-                        if((NewInputFlag & IME_CMODE_KATAKANA) != 0)
+                        if ((NewInputFlag & IME_CMODE_KATAKANA) != 0)
                         {
                             // nornal shape / katakana
                             NewInputMode = MODE_KANA;
@@ -714,45 +709,45 @@ namespace RetroBar.Controls
                     NewInputMode = MODE_DIRECT;
                     NewImeStatus = "A";
                 }
-            
-                if(CurInputRoma != NewInputRoma)
+
+                if (CurInputRoma != NewInputRoma)
                 {
                     CurInputRoma = NewInputRoma;
                     NeedDspUpdate = true;
                 }
 
-                if(CurInputMode != NewInputMode)
+                if (CurInputMode != NewInputMode)
                 {
                     CurInputMode = NewInputMode;
                     NeedDspUpdate = true;
                 }
 
-                if(CurImmConversion != NewImmConversion)
+                if (CurImmConversion != NewImmConversion)
                 {
                     CurImmConversion = NewImmConversion;
                     NeedDspUpdate = true;
                 }
             }
 
-            if(JapaneseImeEnabled != NewImeEnabled)
+            if (JapaneseImeEnabled != NewImeEnabled)
             {
                 JapaneseImeEnabled = NewImeEnabled;
                 NeedDspUpdate = true;
             }
 
-            if(JapaneseImeTip != NewImmTip)
+            if (JapaneseImeTip != NewImmTip)
             {
                 JapaneseImeTip = NewImmTip;
                 NeedDspUpdate = true;
             }
 
-            if(JapaneseImeStatus != NewImeStatus)
+            if (JapaneseImeStatus != NewImeStatus)
             {
                 JapaneseImeStatus = NewImeStatus;
                 NeedDspUpdate = true;
             }
 
-            if(NeedDspUpdate)
+            if (NeedDspUpdate)
             {
                 Item_FullShapeHiragana.IsChecked = CurInputMode == MODE_FULL_SHAPE_HIRAGANA;
                 Item_FullShapeKatakana.IsChecked = CurInputMode == MODE_FULL_SHAPE_KATAKANA;
@@ -761,7 +756,7 @@ namespace RetroBar.Controls
                 Item_Alphanumeric.IsChecked = CurInputMode == MODE_ALPHANUMERIC;
                 Item_Direct.IsChecked = CurInputMode == MODE_DIRECT;
 
-                if(CurInputMode != MODE_DIRECT)
+                if (CurInputMode != MODE_DIRECT)
                 {
                     Item_InputRoma.IsChecked = CurInputRoma;
                     Item_InputKana.IsChecked = !CurInputRoma;
