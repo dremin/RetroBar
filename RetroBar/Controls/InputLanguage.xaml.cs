@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
+using RetroBar.Converters;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -71,6 +72,35 @@ namespace RetroBar.Controls
         private void LayoutWatchTick(object sender, EventArgs args)
         {
             SetLocaleIdentifier();
+
+            var LocaleConverter = new CultureInfoToLocaleNameConverter();
+            string LocaleName = (string)LocaleConverter.Convert(LocaleIdentifier, typeof(string), "TwoLetterIsoLanguageName", CultureInfo.InvariantCulture);
+            string SettingsLanguage = Settings.Instance.Language;
+
+            if (SettingsLanguage == "System")
+            { 
+                var currentUICulture = System.Globalization.CultureInfo.CurrentUICulture;
+                SettingsLanguage = currentUICulture.NativeName;
+            }
+
+            if (LocaleName == "JA")
+            {
+                JapaneseImePanel.Visibility = Visibility.Visible;
+
+                if (SettingsLanguage.StartsWith("日本語"))
+                {
+                    InputLanguageText.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    InputLanguageText.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                JapaneseImePanel.Visibility = Visibility.Collapsed;
+                InputLanguageText.Visibility = Visibility.Visible;
+            }
         }
 
         private void StopWatch()
