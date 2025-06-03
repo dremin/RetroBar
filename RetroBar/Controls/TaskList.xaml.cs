@@ -183,12 +183,15 @@ namespace RetroBar.Controls
             if (taskbarItems != null)
             {
                 taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
+                taskbarItems.Filter = null;
             }
 
             if (Host != null)
             {
                 Host.hotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
             }
+
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             isLoaded = false;
         }
