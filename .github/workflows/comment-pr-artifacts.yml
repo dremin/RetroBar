@@ -1,0 +1,85 @@
+name: Comment on PR with RetroBar artifacts
+
+on:
+  workflow_run:
+    workflows: ['RetroBar']
+    types: [completed]
+
+jobs:
+
+  pr_comment:
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          # This snippet is based on
+          # https://github.com/oprypin/nightly.link/blob/master/.github/workflows/pr-comment.yml
+          script: |
+            async function upsertComment(owner, repo, issue_number, purpose, body) {
+              const {data: comments} = await github.rest.issues.listComments(
+                {owner, repo, issue_number});
+
+              const marker = `<!-- bot: ${purpose} -->`;
+              body = marker + "\n" + body;
+
+              const existing = comments.filter((c) => c.body.includes(marker));
+              if (existing.length > 0) {
+                const last = existing[existing.length - 1];
+                core.info(`Updating comment ${last.id}`);
+                await github.rest.issues.updateComment({
+                  owner, repo,
+                  body,
+                  comment_id: last.id,
+                });
+              } else {
+                core.info(`Creating a comment in issue / PR #${issue_number}`);
+                await github.rest.issues.createComment({issue_number, body, owner, repo});
+              }
+            }
+
+            const {owner, repo} = context.repo;
+            const run_id = ${{github.event.workflow_run.id}};
+            const headSHA = '${{github.event.workflow_run.head_sha}}';
+            
+            // Find PRs that match the head SHA
+            let pull_requests = [];
+            
+            // First check the standard way (works for non-fork PRs)
+            const standard_prs = ${{ toJSON(github.event.workflow_run.pull_requests) }};
+            if (standard_prs.length > 0) {
+              pull_requests = standard_prs;
+            } else {
+              // For fork PRs, search by head SHA
+              for await (const { data } of github.paginate.iterator(
+                github.rest.pulls.list, { owner, repo, state: 'open' }
+              )) {
+                for (const pull of data) {
+                  if (pull.head.sha === headSHA) {
+                    pull_requests.push({ number: pull.number });
+                    break; // Found matching PR, no need to continue
+                  }
+                }
+              }
+            }
+            
+            if (!pull_requests.length) {
+              return core.error("This workflow doesn't match any pull requests!");
+            }
+
+            const artifacts = await github.paginate(
+              github.rest.actions.listWorkflowRunArtifacts, {owner, repo, run_id});
+            if (!artifacts.length) {
+              return core.error(`No artifacts found`);
+            }
+            let body = `Download the artifacts for this pull request:\n`;
+            for (const art of artifacts) {
+              body += `\n* [${art.name}.zip](https://nightly.link/${owner}/${repo}/actions/artifacts/${art.id}.zip)`;
+            }
+
+            core.info("Review thread message body:", body);
+
+            for (const pr of pull_requests) {
+              await upsertComment(owner, repo, pr.number,
+                "nightly-link", body);
+            }

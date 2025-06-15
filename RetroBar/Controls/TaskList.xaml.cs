@@ -119,7 +119,7 @@ namespace RetroBar.Controls
         }
         private void TaskList_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
         {
-            if (!Settings.Instance.HotkeysQuickLaunch && Host.Screen.Primary)
+            if (Settings.Instance.WinNumHotkeysAction == WinNumHotkeysOption.SwitchTasks && Host.Screen.Primary)
             {
                 try
                 {
@@ -183,12 +183,15 @@ namespace RetroBar.Controls
             if (taskbarItems != null)
             {
                 taskbarItems.CollectionChanged -= GroupedWindows_CollectionChanged;
+                taskbarItems.Filter = null;
             }
 
             if (Host != null)
             {
                 Host.hotkeyManager.TaskbarHotkeyPressed -= TaskList_TaskbarHotkeyPressed;
             }
+
+            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             isLoaded = false;
         }

@@ -8,8 +8,6 @@
     <s:String x:Key="taskbar_appearance">Taskbar appearance</s:String>
     <s:String x:Key="notification_area">Notification area</s:String>
     <s:String x:Key="autostart">Automatically start at _logon</s:String>
-    <s:String x:Key="override_hotkeys">Override taskbar _hotkeys (Win + [1-9])</s:String>
-    <s:String x:Key="hotkeys_quick_launch">Taskbar hotkeys launch items in Quick Launch</s:String>
     <s:String x:Key="language_text">Lan_guage:</s:String>
     <s:String x:Key="language_tip">Select the language to use.</s:String>
     <s:String x:Key="theme_text">_Theme:</s:String>
@@ -80,6 +78,14 @@
     <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
     <s:String x:Key="show_clock_seconds">S_how seconds in the clock</s:String>
     <s:String x:Key="open_custom_themes_folder">Open custom themes folder</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _hotkeys action:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows default</s:String>
+        <s:String>Switch tasks</s:String>
+        <s:String>Open Quick Launch item</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar Hotkeys</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar will override Windows taskbar hotkeys. Even if RetroBar is closed, they will not be restored to Windows until you log out and back in.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>

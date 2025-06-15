@@ -232,7 +232,7 @@ namespace RetroBar.Controls
 
         private void Toolbar_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
         {
-            if (Settings.Instance.HotkeysQuickLaunch && Host.Screen.Primary)
+            if (Settings.Instance.WinNumHotkeysAction == WinNumHotkeysOption.InvokeQuickLaunch && Host.Screen.Primary)
             {
                 try
                 {

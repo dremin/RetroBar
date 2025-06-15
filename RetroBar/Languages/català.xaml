@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">Propietats del RetroBar</s:String>
     <s:String x:Key="taskbar_tab">Barra de tasques</s:String>
+    <s:String x:Key="advanced_tab">Avançats</s:String>
     <s:String x:Key="taskbar_appearance">Aspecte de la barra de tasques</s:String>
     <s:String x:Key="notification_area">Àrea de notificacions</s:String>
     <s:String x:Key="autostart">Inicia _automàticament en iniciar sessió</s:String>
@@ -19,15 +20,72 @@
         <s:String>Dreta</s:String>
         <s:String>Inferior</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Nombre de _files:</s:String>
+    <s:String x:Key="rowcount_tip">El nombre de files a la barra de tasques quan es trobi a la part superior o inferior.</s:String>
+    <s:String x:Key="taskbar_width">_Amplada de la barra de tasques:</s:String>
     <s:String x:Key="allow_font_smoothing">Permet el _suavitzat dels tipus de lletra</s:String>
-    <s:String x:Key="collapse_tray_icons">_Oculta les icones de notificació</s:String>
+    <s:String x:Key="collapse_tray_icons">Oculta les icones de _notificació</s:String>
     <s:String x:Key="customize">_Personalització...</s:String>
+    <s:String x:Key="show_input_language">Mostra la _llengua d'entrada</s:String>
     <s:String x:Key="show_clock">Mostra el _rellotge</s:String>
     <s:String x:Key="show_multi_mon">Mostra en _múltiples pantalles</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Mostra el botó Inicia en t_otes les barres de tasques</s:String>
     <s:String x:Key="show_quick_launch">Mostra l'_inici ràpid</s:String>
     <s:String x:Key="select_location">_Tria ubicació...</s:String>
-    <s:String x:Key="quick_launch_folder">Inici ràpid: tria una carpeta</s:String>
+    <s:String x:Key="quick_launch_folder">Inici ràpid: trieu una carpeta</s:String>
+    <s:String x:Key="show_badges">Mostra els _distintius dels icones</s:String>
+    <s:String x:Key="show_window_previews">Mostra les mi_niatures de les finestres</s:String>
     <s:String x:Key="use_software_rendering">Utilitza _processament per programari</s:String>
+    <s:String x:Key="add_show_desktop_button">Afegeix el botó de Mostra l'_escriptori</s:String>
+    <s:String x:Key="enable_auto_hide">A_maga automàticament la barra de tasques</s:String>
+    <s:String x:Key="lock_taskbar">_Bloca la barra de tasques</s:String>
+    <s:String x:Key="multiple_displays">Diverses pantalles</s:String>
+    <s:String x:Key="show_tasks_on">Mostra les _tasques en:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Totes les barres de tasques</s:String>
+        <s:String>La mateixa barra de tasques que la finestra</s:String>
+        <s:String>La mateixa barra de tasques que la finestra i la barra de tasques principal</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Inverteix les icones del sistema:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Quan el tema ho requereixi</s:String>
+        <s:String>Sempre</s:String>
+        <s:String>Mai</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Acció del botó _central:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>No facis res</s:String>
+        <s:String>Obre una nova instància</s:String>
+        <s:String>Tanca la tasca</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">Acció de _fer clic al rellotge:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>No facis res</s:String>
+        <s:String>Obre el calendari Aero</s:String>
+        <s:String>Obre el calendari Modern</s:String>
+        <s:String>Obre el centre de notificacions</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Amaga _la barra del tot quan s'amagui automàticament</s:String>
+    <s:String x:Key="version">Versió {0}</s:String>
+    <s:String x:Key="visit_on_github">Visiteu RetroBar a GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Escala de la barra de tasques</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Configuració actual: {0}%</s:String>
+    <s:String x:Key="debug_logging">Activa el registre de _depuració</s:String>
+    <s:String x:Key="check_for_updates">Compro_va si hi ha actualitzacions</s:String>
+    <s:String x:Key="show_exit_menu_item">Mostra l'opció de sortida en el menú conte_xtual</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Des_lissa els botons de la barra de tasques</s:String>
+    <s:String x:Key="show_clock_seconds">M_ostra els segons al rellotge</s:String>
+    <s:String x:Key="open_custom_themes_folder">Obre la carpeta dels temes personalitzats</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Tecles d'accé_s ràpid Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Per defecte del Windows</s:String>
+        <s:String>Alterna tasques</s:String>
+        <s:String>Obre un ítem de l'inici ràpid</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Tecles d'accés ràpid de RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">El RetroBar substituirà les tecles d'accés ràpid de la barra de tasques del Windows. Encara que tanqueu el RetroBar, no tornaran a ser utilitzades pel Windows fins que tanqueu i torneu a iniciar sessió.</s:String>
     <s:String x:Key="ok_dialog">D'acord</s:String>
 
     <s:String x:Key="customize_notifications">Personalització de notificacions</s:String>
@@ -35,8 +93,11 @@
     <s:String x:Key="customize_notifications_instruction">Seleccioneu un element i trieu el comportament de notificació adient:</s:String>
     <s:String x:Key="hide_when_inactive">Amaga'l quan estigui inactiu</s:String>
     <s:String x:Key="always_show">Sempre visible</s:String>
+    <s:String x:Key="always_hide">Sempre ocult</s:String>
+    <s:String x:Key="remove">Desactivat</s:String>
     <s:String x:Key="name_heading">Nom</s:String>
     <s:String x:Key="behavior_heading">Comportament</s:String>
+    <s:String x:Key="invert_heading">Inverteix</s:String>
 
     <s:String x:Key="start_text">Inicia</s:String>
     <s:String x:Key="start_text_xp">Inicia</s:String>
@@ -49,12 +110,28 @@
     <s:String x:Key="quick_launch">_Inici ràpid</s:String>
     <s:String x:Key="new_toolbar">Barra d'eines _nova...</s:String>
     <s:String x:Key="set_time">_Ajusta la data i l'hora</s:String>
+    <s:String x:Key="cascade">Finestres en ca_scada</s:String>
+    <s:String x:Key="horiz_tile">Finestres en mosaic _horitzontal</s:String>
+    <s:String x:Key="vert_tile">Finestres en mosaic v_ertical</s:String>
+    <s:String x:Key="toggle_desktop">_Mostra l'escriptori</s:String>
+    <s:String x:Key="hide_desktop">_Mostra les finestres obertes</s:String>
+    <s:String x:Key="undo_cascade">_Desfés En cascada</s:String>
+    <s:String x:Key="undo_tile">_Desfés En mosaic</s:String>
+    <s:String x:Key="undo_minimize_all">_Desfés Minimitza-ho tot</s:String>
     <s:String x:Key="show_taskman_2k">Administrador de _tasques...</s:String>
     <s:String x:Key="show_taskman">Administrador de _tasques</s:String>
     <s:String x:Key="tray_properties">_Propietats</s:String>
     <s:String x:Key="update_available">_Actualització disponible...</s:String>
     <s:String x:Key="exit_retrobar">_Surt del RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Personalit_zació de notificacions...</s:String>
+
+    <s:String x:Key="lock_taskbar_menu">_Bloca la barra de tasques</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Surface/Restore Desktop</s:String>
+    <s:String x:Key="show_desktop_tip">Mostra l'escriptori</s:String>
+    <s:String x:Key="show_desktop_95">_Escriptori</s:String>
+    <s:String x:Key="show_desktop">_Mostra l'escriptori</s:String>
+    <s:String x:Key="peek_at_desktop">_Fes una ullada a l'escriptori</s:String>
 
     <s:String x:Key="restore">_Restaura</s:String>
     <s:String x:Key="move">D_esplaçament</s:String>
