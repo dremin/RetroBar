@@ -12,7 +12,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <DockPanel>
+    <DockPanel x:Name="InputLanguageDockPanel">
         <Thumb Style="{DynamicResource ToolbarThumb}">
             <DockPanel.Dock>
                 <Binding Converter="{StaticResource dockOrientationConverter}"
@@ -25,7 +25,6 @@
                    Style="{DynamicResource InputLanguage}"
                    Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
         </TextBlock>
-        <controls:JapaneseIme x:Name="JapaneseImePanel" VerticalAlignment="Center" />
     </DockPanel>
 
     <UserControl.ToolTip>

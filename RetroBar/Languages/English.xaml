@@ -154,7 +154,7 @@
     <s:String x:Key="ime_input_key_roma">Off</s:String>
     <s:String x:Key="ime_input_key_kana">On</s:String>
     <s:String x:Key="ime_conversion">Conversion Mode</s:String>
-    <s:String x:Key="ime_conversion_general">general</s:String>
+    <s:String x:Key="ime_conversion_general">General</s:String>
     <s:String x:Key="ime_conversion_none">No Conversion</s:String>
 
     <!-- Items below are settings, and should always be in English -->

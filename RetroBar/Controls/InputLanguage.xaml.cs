@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,25 +70,60 @@ namespace RetroBar.Controls
             Visibility = Visibility.Visible;
         }
 
+        private void JapaneseImeAdd()
+        {
+            var ChkControl = InputLanguageDockPanel.Children
+                                .OfType<JapaneseIme>()
+                                .FirstOrDefault();
+
+            if (ChkControl != null)
+            {
+                return;
+            }
+
+            var converter = new DockOrientationConverter();
+            Dock NewDock = (Dock)converter.Convert("top", typeof(Dock), "leading", CultureInfo.InvariantCulture);
+            var NewControl = new JapaneseIme();
+            DockPanel.SetDock(NewControl, NewDock);
+            InputLanguageDockPanel.Children.Add(NewControl);
+        }
+        
+        private void JapaneseImeRemove()
+        {
+            var DelControl = InputLanguageDockPanel.Children
+                                .OfType<JapaneseIme>()
+                                .FirstOrDefault();
+
+            if (DelControl != null)
+            {
+                InputLanguageDockPanel.Children.Remove(DelControl);
+            }
+        }
+
+        private int InstalledLanguagesCount()
+        {
+            int LangCount = 0;
+
+            foreach (System.Windows.Forms.InputLanguage CurLang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
+            {
+                LangCount++;
+            }
+
+            return LangCount;
+        }
+
         private void LayoutWatchTick(object sender, EventArgs args)
         {
             SetLocaleIdentifier();
 
             var LocaleConverter = new CultureInfoToLocaleNameConverter();
             string LocaleName = (string)LocaleConverter.Convert(LocaleIdentifier, typeof(string), "TwoLetterIsoLanguageName", CultureInfo.InvariantCulture);
-            string SettingsLanguage = Settings.Instance.Language;
-
-            if (SettingsLanguage == "System")
-            { 
-                var currentUICulture = System.Globalization.CultureInfo.CurrentUICulture;
-                SettingsLanguage = currentUICulture.NativeName;
-            }
 
             if (LocaleName == "JA")
             {
-                JapaneseImePanel.Visibility = Visibility.Visible;
+                JapaneseImeAdd();
 
-                if (SettingsLanguage.StartsWith("日本語"))
+                if (InstalledLanguagesCount() == 1)
                 {
                     InputLanguageText.Visibility = Visibility.Collapsed;
                 }
@@ -98,7 +134,7 @@ namespace RetroBar.Controls
             }
             else
             {
-                JapaneseImePanel.Visibility = Visibility.Collapsed;
+                JapaneseImeRemove();
                 InputLanguageText.Visibility = Visibility.Visible;
             }
         }

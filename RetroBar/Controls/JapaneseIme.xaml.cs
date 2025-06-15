@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Threading;
 using ManagedShell.AppBar;
 using static ManagedShell.Interop.NativeMethods;
@@ -101,7 +99,6 @@ namespace RetroBar.Controls
 
             ImeCheckTimer.Interval = TimeSpan.FromMilliseconds(200);
             ImeCheckTimer.Tick += ImeChk_Event;
-            ImeCheckTimer.Start();
         }
 
         private void Initialize()
@@ -118,6 +115,9 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
             SizeUpdate();
+
+            ImeChk();
+            ImeCheckTimer.Start();
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -154,7 +154,7 @@ namespace RetroBar.Controls
             }
         }
 
-        private void JapaneseIme_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void JapaneseIme_OnClick(object sender, RoutedEventArgs e)
         {
             ImmSetOpen(ImmOpenStatus.ImmToggle);
         }
@@ -590,6 +590,13 @@ namespace RetroBar.Controls
 
         private void ImeChk_Event(object sender, EventArgs args)
         {
+            ((DispatcherTimer)sender).Stop();
+            ImeChk();
+            ((DispatcherTimer)sender).Start();
+        }
+
+        private void ImeChk()
+        {
             string NewImmTip;
             IntPtr hImeWnd;
             uint NewInputMode;
@@ -606,21 +613,6 @@ namespace RetroBar.Controls
             const int MODE_KANA = 40003;
             const int MODE_ALPHANUMERIC = 40004;
             const int MODE_DIRECT = 40005;
-
-            MenuItem Item_FullShapeHiragana = this.FindName("JapaneseIme_full_shape_hiragana") as MenuItem;
-            MenuItem Item_FullShapeKatakana = this.FindName("JapaneseIme_full_shape_katakana") as MenuItem;
-            MenuItem Item_FullShapeAlphanumeric = this.FindName("JapaneseIme_full_shape_alphanumeric") as MenuItem;
-            MenuItem Item_Kana = this.FindName("JapaneseIme_kana") as MenuItem;
-            MenuItem Item_Alphanumeric = this.FindName("JapaneseIme_alphanumeric") as MenuItem;
-            MenuItem Item_Direct = this.FindName("JapaneseIme_direct") as MenuItem;
-
-            MenuItem Item_InputRoma = this.FindName("JapaneseIme_input_key_roma") as MenuItem;
-            MenuItem Item_InputKana = this.FindName("JapaneseIme_input_key_kana") as MenuItem;
-
-            MenuItem Item_ConversionGeneral = this.FindName("JapaneseIme_conversion_general") as MenuItem;
-            MenuItem Item_ConversionNone = this.FindName("JapaneseIme_conversion_none") as MenuItem;
-
-            ((DispatcherTimer)sender).Stop();
 
             UpdateOtherTopWindow();
 
@@ -749,30 +741,28 @@ namespace RetroBar.Controls
 
             if (NeedDspUpdate)
             {
-                Item_FullShapeHiragana.IsChecked = CurInputMode == MODE_FULL_SHAPE_HIRAGANA;
-                Item_FullShapeKatakana.IsChecked = CurInputMode == MODE_FULL_SHAPE_KATAKANA;
-                Item_FullShapeAlphanumeric.IsChecked = CurInputMode == MODE_FULL_SHAPE_ALPHANUMERIC;
-                Item_Kana.IsChecked = CurInputMode == MODE_KANA;
-                Item_Alphanumeric.IsChecked = CurInputMode == MODE_ALPHANUMERIC;
-                Item_Direct.IsChecked = CurInputMode == MODE_DIRECT;
+                JapaneseIme_full_shape_hiragana.IsChecked = CurInputMode == MODE_FULL_SHAPE_HIRAGANA;
+                JapaneseIme_full_shape_katakana.IsChecked = CurInputMode == MODE_FULL_SHAPE_KATAKANA;
+                JapaneseIme_full_shape_alphanumeric.IsChecked = CurInputMode == MODE_FULL_SHAPE_ALPHANUMERIC;
+                JapaneseIme_kana.IsChecked = CurInputMode == MODE_KANA;
+                JapaneseIme_alphanumeric.IsChecked = CurInputMode == MODE_ALPHANUMERIC;
+                JapaneseIme_direct.IsChecked = CurInputMode == MODE_DIRECT;
 
                 if (CurInputMode != MODE_DIRECT)
                 {
-                    Item_InputRoma.IsChecked = CurInputRoma;
-                    Item_InputKana.IsChecked = !CurInputRoma;
-                    Item_ConversionGeneral.IsChecked = CurImmConversion != 0;
-                    Item_ConversionNone.IsChecked = CurImmConversion == 0;
+                    JapaneseIme_input_key_roma.IsChecked = CurInputRoma;
+                    JapaneseIme_input_key_kana.IsChecked = !CurInputRoma;
+                    JapaneseIme_conversion_general.IsChecked = CurImmConversion != 0;
+                    JapaneseIme_conversion_none.IsChecked = CurImmConversion == 0;
                 }
                 else
                 {
-                    Item_InputRoma.IsChecked = false;
-                    Item_InputKana.IsChecked = false;
-                    Item_ConversionGeneral.IsChecked = false;
-                    Item_ConversionNone.IsChecked = false;
+                    JapaneseIme_input_key_roma.IsChecked = false;
+                    JapaneseIme_input_key_kana.IsChecked = false;
+                    JapaneseIme_conversion_general.IsChecked = false;
+                    JapaneseIme_conversion_none.IsChecked = false;
                 }
             }
-
-            ((DispatcherTimer)sender).Start();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -787,6 +777,8 @@ namespace RetroBar.Controls
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            ImeCheckTimer.Stop();
+
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             _isLoaded = false;
