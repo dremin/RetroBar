@@ -2,6 +2,7 @@
 using ManagedShell.Common.Logging;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static ManagedShell.Interop.NativeMethods;
 
@@ -14,6 +15,7 @@ namespace RetroBar.Utilities
     {
         private readonly HotkeyListenerWindow _listenerWindow;
 
+        private const int TOGGLE_TASKBAR_HOTKEY_ID = 9999;
         public HotkeyManager()
         {
             _listenerWindow = new HotkeyListenerWindow(this);
@@ -57,6 +59,15 @@ namespace RetroBar.Utilities
                     _listenerWindow.UnregisterHotkeys();
                 }
             }
+            if (Settings.Instance.EnableTaskbarToggleHotkey)
+            {
+                _listenerWindow.RegisterToggleAutoHide();
+            }
+            else if (!Settings.Instance.EnableTaskbarToggleHotkey)
+            {
+                _listenerWindow.UnregisterHotkeys();
+                ShellLogger.Info("Alt+T toggle is disabled by settings.");
+            }
         }
         #endregion
 
@@ -81,6 +92,13 @@ namespace RetroBar.Utilities
                 if (m.Msg == (int)WM.HOTKEY)
                 {
                     int hotkeyId = m.WParam.ToInt32();
+                    if (hotkeyId == TOGGLE_TASKBAR_HOTKEY_ID)
+                    {
+                        // Toggle built-in AutoHide setting
+                        Settings.Instance.AutoHide = !Settings.Instance.AutoHide;
+                        ShellLogger.Debug($"HotkeyManager: Alt+T toggled AutoHide to {Settings.Instance.AutoHide}");
+                        return;
+                    }
                     if (_registeredHotkeys.Contains(hotkeyId))
                     {
                         _manager.TaskbarHotkeyPressed?.Invoke(this, new TaskbarHotkeyEventArgs { index = hotkeyId });
@@ -122,6 +140,37 @@ namespace RetroBar.Utilities
                 {
                     ShellLogger.Warning($"HotkeyManager: Exception during RegisterHotkeys - {ex.Message}");
                 }
+            }
+
+            public void RegisterToggleAutoHide()
+            {
+                ShellLogger.Debug("HotkeyManager: Registering toggle autohide hotkey");
+                // Register Alt+T for toggling taskbar
+                bool altTRegistered = RegisterHotKey(
+                                        Handle,
+                                        TOGGLE_TASKBAR_HOTKEY_ID,
+                                        (uint)(MOD.ALT | MOD.NOREPEAT),
+                                        (uint)VK.KEY_T);
+
+                if (altTRegistered)
+                {
+                    _registeredHotkeys.Add(TOGGLE_TASKBAR_HOTKEY_ID);
+                    ShellLogger.Info("HotkeyManager: Registered Alt+T for AutoHide toggle");
+                }
+                else if (Settings.Instance.EnableTaskbarToggleHotkey)
+                {
+                    ShellLogger.Info("HotkeyManager: Autohide toggled using Alt+T");
+                }
+                else
+                {
+                    ShellLogger.Warning("HotkeyManager: FAILED to register Alt+T for AutoHide toggle");
+                }
+            }
+
+            public void UnregisterToggleAutoHide()
+            {
+                    UnregisterHotKey(Handle, 9999);
+                    ShellLogger.Info($"HotkeyManager: Unregistered Alt+T for AutoHide toggle");
             }
 
             private void LoadExplorerResources()

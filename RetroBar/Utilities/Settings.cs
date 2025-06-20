@@ -276,6 +276,13 @@ namespace RetroBar.Utilities
             set => Set(ref _autoHide, value);
         }
 
+        private bool _enableTaskbarToggleHotkey = true;
+        public bool EnableTaskbarToggleHotkey
+        {
+            get => _enableTaskbarToggleHotkey;
+            set => Set(ref _enableTaskbarToggleHotkey, value);
+        }
+
         private bool _lockTaskbar = false;
         public bool LockTaskbar
         {
