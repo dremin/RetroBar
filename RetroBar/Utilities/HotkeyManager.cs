@@ -66,7 +66,7 @@ namespace RetroBar.Utilities
             else if (!Settings.Instance.EnableTaskbarToggleHotkey)
             {
                 _listenerWindow.UnregisterHotkeys();
-                ShellLogger.Info("Alt+T toggle is disabled by settings.");
+                ShellLogger.Debug("Alt+T toggle is disabled by settings.");
             }
         }
         #endregion

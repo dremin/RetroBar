@@ -242,6 +242,9 @@
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=EnableTaskbarToggleHotkey, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="Enable Alt+T to toggle taskbar" />
                             </CheckBox>
+                            <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DisableAnimations, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="Disable AutoHide animation" />
+                            </CheckBox>
                             <CheckBox x:Name="cbShowBadges"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskBadges, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_badges}" />

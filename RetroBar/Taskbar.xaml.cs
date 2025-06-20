@@ -274,10 +274,18 @@ namespace RetroBar
             // Prevent focus indicators and tooltips while hidden
             ResetControlFocus();
 
-            if (!isHiding && Opacity < 1)
+            if (!isHiding)
             {
-                Opacity = 1;
-                OnPropertyChanged(nameof(Opacity));
+                if (Settings.Instance.DisableAnimations)
+                {
+                    // Instantly snap to full opacity
+                    Opacity = 1;
+                }
+                else if (Opacity < 1)
+                {
+                    Opacity = 1;
+                    OnPropertyChanged(nameof(Opacity));
+                }
             }
         }
 
@@ -285,9 +293,17 @@ namespace RetroBar
         {
             base.OnAutoHideAnimationComplete(isHiding);
 
-            if (isHiding && Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
+            if (isHiding)
             {
-                Opacity = 0.01;
+                if (Settings.Instance.DisableAnimations)
+                {
+                    Opacity = 0; // Instantly hide
+                }
+                else if (Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
+                {
+                    Opacity = 0.01; // Subtle transparency
+                }
+
                 OnPropertyChanged(nameof(Opacity));
             }
         }
