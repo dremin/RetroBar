@@ -81,10 +81,7 @@ namespace RetroBar.Controls
                 return;
             }
 
-            var converter = new DockOrientationConverter();
-            Dock NewDock = (Dock)converter.Convert("top", typeof(Dock), "leading", CultureInfo.InvariantCulture);
             var NewControl = new JapaneseIme();
-            DockPanel.SetDock(NewControl, NewDock);
             InputLanguageDockPanel.Children.Add(NewControl);
         }
         
