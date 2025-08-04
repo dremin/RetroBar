@@ -12,7 +12,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <DockPanel x:Name="InputLanguageDockPanel">
+    <DockPanel>
         <Thumb Style="{DynamicResource ToolbarThumb}">
             <DockPanel.Dock>
                 <Binding Converter="{StaticResource dockOrientationConverter}"
@@ -21,10 +21,13 @@
                          RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
             </DockPanel.Dock>
         </Thumb>
-        <TextBlock x:Name="InputLanguageText"
+        <WrapPanel x:Name="InputLanguageDockPanel"
+                   Style="{DynamicResource LanguageBar}">
+            <TextBlock x:Name="InputLanguageText"
                    Style="{DynamicResource InputLanguage}"
                    Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
-        </TextBlock>
+            </TextBlock>
+        </WrapPanel>
     </DockPanel>
 
     <UserControl.ToolTip>

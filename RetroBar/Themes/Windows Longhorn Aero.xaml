@@ -1214,6 +1214,13 @@
         <Setter Property="Effect"
                 Value="{StaticResource ForegroundShadow}" />
     </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="JapaneseIme"
+           BasedOn="{StaticResource JapaneseIme}">
+        <Setter Property="Effect"
+                Value="{StaticResource ForegroundShadow}" />
+    </Style>
     
     <Style TargetType="TextBlock"
            x:Key="Clock"

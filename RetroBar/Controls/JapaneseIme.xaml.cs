@@ -112,46 +112,8 @@ namespace RetroBar.Controls
             JapaneseImeTip = (string)this.FindResource("ime_input_tip_disabled");
             JapaneseImeStatus = @"";
 
-            Settings.Instance.PropertyChanged += Settings_PropertyChanged;
-
-            SizeUpdate();
-
             ImeChk();
             ImeCheckTimer.Start();
-        }
-
-        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Settings.Instance.Edge)
-                || e.PropertyName == nameof(Settings.Instance.RowCount)
-                || e.PropertyName == nameof(Settings.Instance.TaskbarWidth))
-            {
-                SizeUpdate();
-            }
-        }
-
-        private void SizeUpdate()
-        {
-            double size = System.Windows.Application.Current.FindResource("TaskbarHeight") as double? ?? 0;
-            size *= Settings.Instance.TaskbarScale;
-
-            if (this.Visibility == Visibility.Visible)
-            {
-                if (Settings.Instance.Edge == AppBarEdge.Top || Settings.Instance.Edge == AppBarEdge.Bottom)
-                {
-                    this.Width = size;
-                }
-                else if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
-                {
-                    this.Height = size;
-                }
-
-                ImeCheckTimer.IsEnabled = true;
-            }
-            else
-            {
-                ImeCheckTimer.IsEnabled = false;
-            }
         }
 
         private void JapaneseIme_OnClick(object sender, RoutedEventArgs e)
@@ -778,8 +740,6 @@ namespace RetroBar.Controls
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             ImeCheckTimer.Stop();
-
-            Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             _isLoaded = false;
         }
