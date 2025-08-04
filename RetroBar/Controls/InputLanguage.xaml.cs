@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
+using RetroBar.Converters;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -68,9 +70,70 @@ namespace RetroBar.Controls
             Visibility = Visibility.Visible;
         }
 
+        private void JapaneseImeAdd()
+        {
+            var ChkControl = InputLanguageDockPanel.Children
+                                .OfType<JapaneseIme>()
+                                .FirstOrDefault();
+
+            if (ChkControl != null)
+            {
+                return;
+            }
+
+            var NewControl = new JapaneseIme();
+            InputLanguageDockPanel.Children.Add(NewControl);
+        }
+        
+        private void JapaneseImeRemove()
+        {
+            var DelControl = InputLanguageDockPanel.Children
+                                .OfType<JapaneseIme>()
+                                .FirstOrDefault();
+
+            if (DelControl != null)
+            {
+                InputLanguageDockPanel.Children.Remove(DelControl);
+            }
+        }
+
+        private int InstalledLanguagesCount()
+        {
+            int LangCount = 0;
+
+            foreach (System.Windows.Forms.InputLanguage CurLang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
+            {
+                LangCount++;
+            }
+
+            return LangCount;
+        }
+
         private void LayoutWatchTick(object sender, EventArgs args)
         {
             SetLocaleIdentifier();
+
+            var LocaleConverter = new CultureInfoToLocaleNameConverter();
+            string LocaleName = (string)LocaleConverter.Convert(LocaleIdentifier, typeof(string), "TwoLetterIsoLanguageName", CultureInfo.InvariantCulture);
+
+            if (LocaleName == "JA")
+            {
+                JapaneseImeAdd();
+
+                if (InstalledLanguagesCount() == 1)
+                {
+                    InputLanguageText.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    InputLanguageText.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                JapaneseImeRemove();
+                InputLanguageText.Visibility = Visibility.Visible;
+            }
         }
 
         private void StopWatch()

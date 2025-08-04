@@ -891,6 +891,25 @@
         </TextBlock>
     </ControlTemplate>
 
+    <Style TargetType="WrapPanel"
+           x:Key="LanguageBar">
+        <Setter Property="Margin"
+                Value="3,0,3,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin"
+                            Value="0,3,0,3" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="TextBlock"
            x:Key="InputLanguage"
            BasedOn="{StaticResource GlobalFonts}">
@@ -904,21 +923,8 @@
                 Value="16"/>
         <Setter Property="Padding"
                 Value="0,1,0,0" />
-        <Setter Property="Margin"
-                Value="3,0,3,0" />
-        <Setter Property="HorizontalAlignment"
-                Value="Center" />
         <Setter Property="TextAlignment"
                 Value="Center" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                         Value="Vertical">
-                <DataTrigger.Setters>
-                    <Setter Property="Margin"
-                            Value="0,3,0,3" />
-                </DataTrigger.Setters>
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="Button"
@@ -1099,6 +1105,19 @@
                         Value="2,1,2,0" />
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="JapaneseIme"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="Width" 
+                Value="16"/>
+        <Setter Property="Height"
+                Value="16"/>
+        <Setter Property="TextAlignment"
+                Value="Center" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ButtonForeground}" />
     </Style>
 
     <Style TargetType="ToggleButton"

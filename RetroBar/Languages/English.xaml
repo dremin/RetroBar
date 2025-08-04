@@ -144,6 +144,25 @@
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 
+    <s:String x:Key="ime_input_tip_enabled">Right-click for IME options</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME disabled</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Full-width Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Full-width Alphanumeric</s:String>
+    <s:String x:Key="ime_input_katakana">Half-width Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Half-width Alphanumeric</s:String>
+    <s:String x:Key="ime_input_direct">Direct Input</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Add Word</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Add-on dictionary</s:String>
+    <s:String x:Key="ime_open_properties">Settings</s:String>
+    <s:String x:Key="ime_input_key">Kana Input</s:String>
+    <s:String x:Key="ime_input_key_roma">Off</s:String>
+    <s:String x:Key="ime_input_key_kana">On</s:String>
+    <s:String x:Key="ime_conversion">Conversion Mode</s:String>
+    <s:String x:Key="ime_conversion_general">General</s:String>
+    <s:String x:Key="ime_conversion_none">No Conversion</s:String>
+
     <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>

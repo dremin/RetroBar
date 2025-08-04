@@ -1417,11 +1417,10 @@
                 Value="0" />
     </Style>
 
-    <Style TargetType="TextBlock"
-           x:Key="InputLanguage"
-           BasedOn="{StaticResource InputLanguage}">
+    <Style TargetType="WrapPanel"
+           x:Key="LanguageBar">
         <Setter Property="Margin"
-                Value="4,6,0,0" />
+                Value="4,0,0,0" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
         <Setter Property="VerticalAlignment"
@@ -1431,10 +1430,21 @@
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="2,6,0,0" />
+                            Value="2,0,0,0" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="InputLanguage"
+           BasedOn="{StaticResource InputLanguage}">
+        <Setter Property="Margin"
+                Value="0,6,0,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
     </Style>
 
     <Style TargetType="TextBlock"
