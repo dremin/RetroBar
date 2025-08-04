@@ -1,5 +1,6 @@
 ﻿using ManagedShell.AppBar;
 using ManagedShell.WindowsTasks;
+using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 using System;
 using System.ComponentModel;
@@ -129,13 +130,22 @@ namespace RetroBar.Controls
                     {
                         ApplicationWindow window = taskbarItems.CurrentItem as ApplicationWindow;
 
-                        if (window.State == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                        if (e.isShiftPressed)
                         {
-                            window.Minimize();
+                            // Open new instance when Shift is pressed
+                            ShellHelper.StartProcess(window.IsUWP ? "appx:" + window.AppUserModelID : window.WinFileName);
                         }
                         else
                         {
-                            window.BringToFront();
+                            // Normal behavior - switch to existing window
+                            if (window.State == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                            {
+                                window.Minimize();
+                            }
+                            else
+                            {
+                                window.BringToFront();
+                            }
                         }
                     }
 
