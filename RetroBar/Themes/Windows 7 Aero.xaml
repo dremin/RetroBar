@@ -1,4 +1,4 @@
-<-- https://github.com/R-D-R248 -->
+<!-- https://github.com/R-D-R248 -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
@@ -117,3 +117,4 @@
     </Style>
 
 </ResourceDictionary>
+
