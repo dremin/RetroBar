@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Windows Vista Aero.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
+
+    <LinearGradientBrush x:Key="TaskbarBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#105d91" Offset="0.2"/>
+	<GradientStop Color="#86BDFD" Offset="0.45"/>
+	<GradientStop Color="#5AA0F0" Offset="0.55"/>
+	<GradientStop Color="#105d91" Offset="0.8"/>
+
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TaskbarVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#A5C9FF" Offset="0.0" />
+        <GradientStop Color="#88B2FF" Offset="0.05" />
+        <GradientStop Color="#659BFF" Offset="0.15" />
+        <GradientStop Color="#4A8CFF" Offset="0.17" />
+        <GradientStop Color="#2D70FF" Offset="0.171" />
+        <GradientStop Color="#1F5EFF" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskbarWindowBackground" Color="#001E3C" />
+    <SolidColorBrush x:Key="TaskbarTopBorder" Color="#284C8F" />
+    <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#6F94D8" />
+    <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#0F1C2E" />
+    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#0C1726" />
+
+    <SolidColorBrush x:Key="TaskbarVerticalTopBorder" Color="#284C8F" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#6F94D8" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#0F1C2E" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#0C1726" />
+
+    <LinearGradientBrush x:Key="TaskButtonThumbnailBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#4667A6" Offset="0.0" />
+        <GradientStop Color="#30518D" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <CornerRadius x:Key="TaskListScrollUpCornerRadius">0.4,0.4,0,0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollRightCornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterBorder" Color="#001E3C" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder" Color="#2D4C8F" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderHover" Color="#7392C4" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderPressed" Color="#7392C4" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#0A1A2F" />
+
+    <Style TargetType="ToggleButton" x:Key="StartButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource ItemButtonForeground}" />
+        <Setter Property="Margin" Value="0,-4,0,-4" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="StartButtonBorder" FlowDirection="LeftToRight">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                        ViewboxUnits="RelativeToBoundingBox"
+                                        Viewbox="0,0,1,0.3333" />
+                        </Border.Background>
+                        <ContentPresenter Visibility="Collapsed" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="StartButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.3333,1,0.3333" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="StartButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.6666,1,0.3333" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="StartButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.6666,1,0.3333" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
