@@ -40,6 +40,7 @@ namespace RetroBar.Utilities
         public class TaskbarHotkeyEventArgs : EventArgs
         {
             public int index;
+            public bool isShiftPressed;
         }
 
         public event EventHandler<TaskbarHotkeyEventArgs> TaskbarHotkeyPressed;
@@ -83,8 +84,15 @@ namespace RetroBar.Utilities
                     int hotkeyId = m.WParam.ToInt32();
                     if (_registeredHotkeys.Contains(hotkeyId))
                     {
-                        _manager.TaskbarHotkeyPressed?.Invoke(this, new TaskbarHotkeyEventArgs { index = hotkeyId });
-                        ShellLogger.Debug($"HotkeyManager: Hotkey pressed: ID={hotkeyId}");
+                        // Determine if this is a Shift+Win+[0-9] hotkey based on the ID
+                        bool isShiftPressed = hotkeyId >= 10 && hotkeyId <= 19;
+                        int taskIndex = isShiftPressed ? hotkeyId - 10 : hotkeyId; // Extract the original task index (0-9)
+                        
+                        _manager.TaskbarHotkeyPressed?.Invoke(this, new TaskbarHotkeyEventArgs { 
+                            index = taskIndex,
+                            isShiftPressed = isShiftPressed 
+                        });
+                        ShellLogger.Debug($"HotkeyManager: Hotkey pressed: ID={hotkeyId}, TaskIndex={taskIndex}, Shift={isShiftPressed}");
                     }
                 }
 
@@ -106,7 +114,7 @@ namespace RetroBar.Utilities
                         ShellLogger.Info("HotkeyManager: Explorer resources not fully available - hotkeys will be registered but not unregistered from Explorer");
                     }
 
-                    // Register the number keys
+                    // Register the number keys (Win+[0-9])
                     RegisterWinKey(VK.KEY_1, 0);
                     RegisterWinKey(VK.KEY_2, 1);
                     RegisterWinKey(VK.KEY_3, 2);
@@ -117,6 +125,18 @@ namespace RetroBar.Utilities
                     RegisterWinKey(VK.KEY_8, 7);
                     RegisterWinKey(VK.KEY_9, 8);
                     RegisterWinKey(VK.KEY_0, 9);
+
+                    // Register Shift+Win+[0-9] hotkeys (using IDs 10-19)
+                    RegisterWinKey(VK.KEY_1, 10, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_2, 11, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_3, 12, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_4, 13, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_5, 14, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_6, 15, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_7, 16, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_8, 17, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_9, 18, MOD.SHIFT);
+                    RegisterWinKey(VK.KEY_0, 19, MOD.SHIFT);
                 }
                 catch (Exception ex)
                 {
