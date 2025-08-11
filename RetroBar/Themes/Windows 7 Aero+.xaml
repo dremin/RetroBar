@@ -11,10 +11,10 @@
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
-        <GradientStop Color="#105d91" Offset="0.2"/>
-	<GradientStop Color="#86BDFD" Offset="0.45"/>
-	<GradientStop Color="#5AA0F0" Offset="0.55"/>
-	<GradientStop Color="#105d91" Offset="0.8"/>
+        <GradientStop Color="#86BDFD" Offset="0.2"/>
+	<GradientStop Color="#A1C1E6" Offset="0.45"/>
+	<GradientStop Color="#A1C1E6" Offset="0.55"/>
+	<GradientStop Color="#5AA0F0" Offset="0.8"/>
 
     </LinearGradientBrush>
 
