@@ -12,15 +12,15 @@
                          StartPoint="0,0"
                          EndPoint="1,0">
         <GradientStop Color="#89C4F8" Offset="0.2"/>
-	<GradientStop Color="#a6d0f2" Offset="0.45"/>
-	<GradientStop Color="#a6d0f2" Offset="0.55"/>
-	<GradientStop Color="#5BA8E7" Offset="0.8"/>
+	    <GradientStop Color="#a6d0f2" Offset="0.45"/>
+	    <GradientStop Color="#a6d0f2" Offset="0.55"/>
+	    <GradientStop Color="#5BA8E7" Offset="0.8"/>
 
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
-        <GradientStop Color="#89C4F8" Offset="0.2"/>
+           <GradientStop Color="#89C4F8" Offset="0.2"/>
 	       <GradientStop Color="#a6d0f2" Offset="0.45"/>
 	       <GradientStop Color="#a6d0f2" Offset="0.55"/>
 	       <GradientStop Color="#5BA8E7" Offset="0.8"/>
@@ -109,4 +109,5 @@
     </Style>
 
 </ResourceDictionary>
+
 
