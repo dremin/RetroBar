@@ -1,0 +1,113 @@
+<!-- https://github.com/R-D-R248 -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Windows Vista Aero.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <system:Boolean x:Key="AllowsTransparency">False</system:Boolean>
+
+    <LinearGradientBrush x:Key="TaskbarBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#89C4F8" Offset="0.2"/>
+	    <GradientStop Color="#a6d0f2" Offset="0.45"/>
+	    <GradientStop Color="#a6d0f2" Offset="0.55"/>
+	    <GradientStop Color="#5BA8E7" Offset="0.8"/>
+
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+           <GradientStop Color="#89C4F8" Offset="0.2"/>
+	       <GradientStop Color="#a6d0f2" Offset="0.45"/>
+	       <GradientStop Color="#a6d0f2" Offset="0.55"/>
+	       <GradientStop Color="#5BA8E7" Offset="0.8"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskbarWindowBackground" Color="#000000" />
+    <SolidColorBrush x:Key="TaskbarTopBorder" Color="#545454" />
+    <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#B4B5B5" />
+    <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#17191A" />
+    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#131415" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopBorder" Color="#545454" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#B4B4B4" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#1C1E1F" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#1B1D1F" />
+
+    <LinearGradientBrush x:Key="TaskButtonThumbnailBackground"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#545454"
+                      Offset="0.0" />
+        <GradientStop Color="#444444"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+    <CornerRadius x:Key="TaskListScrollUpCornerRadius">0.4,0.4,0,0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollLeftCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="TaskListScrollRightCornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonOuterBorder" Color="#000000" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder" Color="#2D3650" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderHover" Color="#73767C" />
+    <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderPressed" Color="#73767C" />
+    <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#111218" />
+
+    <Style TargetType="ToggleButton" x:Key="StartButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource ItemButtonForeground}" />
+        <Setter Property="Margin" Value="0,-4,0,-4" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="StartButtonBorder" FlowDirection="LeftToRight">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                        ViewboxUnits="RelativeToBoundingBox"
+                                        Viewbox="0,0,1,0.3333" />
+                        </Border.Background>
+                        <ContentPresenter Visibility="Collapsed" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="StartButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.3333,1,0.3333" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="StartButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.6666,1,0.3333" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="StartButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource StartButtonImageLarge}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0.6666,1,0.3333" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
+
+
