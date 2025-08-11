@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Reflection;
 using ManagedShell.Common.Logging;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace RetroBar
 {
@@ -20,6 +21,17 @@ namespace RetroBar
     /// </summary>
     public partial class App : Application
     {
+        // --- WinAPI for taskbar hide/show ---
+        [DllImport("user32.dll")]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
+        // ------------------------------------
+
         private bool _errorVisible;
         private ManagedShellLogger _logger;
         private WindowManager _windowManager;
@@ -57,6 +69,10 @@ namespace RetroBar
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
 
+            // Hide Windows taskbar
+            IntPtr taskbarHandle = FindWindow("Shell_TrayWnd", null);
+            ShowWindow(taskbarHandle, SW_HIDE);
+
             _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
             _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater, _hotkeyManager);
@@ -64,11 +80,19 @@ namespace RetroBar
 
         private void App_OnExit(object sender, ExitEventArgs e)
         {
+            // Restore Windows taskbar
+            IntPtr taskbarHandle = FindWindow("Shell_TrayWnd", null);
+            ShowWindow(taskbarHandle, SW_SHOW);
+
             ExitApp();
         }
 
         private void App_OnSessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
+            // Restore Windows taskbar
+            IntPtr taskbarHandle = FindWindow("Shell_TrayWnd", null);
+            ShowWindow(taskbarHandle, SW_SHOW);
+
             ExitApp();
         }
 
