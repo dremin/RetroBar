@@ -272,10 +272,16 @@ namespace RetroBar.Controls
 
         private void TasksScrollViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            if (!isScrollable)
+            if (e.Delta > 0)
             {
-                e.Handled = true;
+                TasksScrollViewer.PageUp();
             }
+            if (e.Delta < 0)
+            {
+                TasksScrollViewer.PageDown();
+            }
+
+            e.Handled = true;
         }
     }
 }
