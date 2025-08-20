@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              Loaded="NotifyIconList_Loaded"
              Unloaded="NotifyIconList_OnUnloaded">
     <UserControl.Resources>
@@ -23,7 +24,10 @@
                       Style="{DynamicResource TrayToggleButton}"/>
         <ItemsControl x:Name="NotifyIcons"
                       Focusable="False"
-                      Style="{DynamicResource NotifyIconItems}">
+                      Style="{DynamicResource NotifyIconItems}"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.DragDropContext="NotifyIconList">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel>
