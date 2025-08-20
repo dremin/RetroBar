@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Threading;
 using ManagedShell.WindowsTray;
 using RetroBar.Extensions;
@@ -18,9 +18,10 @@ namespace RetroBar.Controls
     public partial class NotifyIconList : UserControl
     {
         private bool _isLoaded;
-        private CollectionViewSource allNotifyIconsSource;
-        private CollectionViewSource pinnedNotifyIconsSource;
+        private readonly ObservableCollection<ManagedShell.WindowsTray.NotifyIcon> allNotifyIcons = new ObservableCollection<ManagedShell.WindowsTray.NotifyIcon>();
+        private readonly ObservableCollection<ManagedShell.WindowsTray.NotifyIcon> pinnedNotifyIcons = new ObservableCollection<ManagedShell.WindowsTray.NotifyIcon>();
         private ObservableCollection<ManagedShell.WindowsTray.NotifyIcon> promotedIcons = new ObservableCollection<ManagedShell.WindowsTray.NotifyIcon>();
+        private NotifyIconDropHandler dropHandler;
 
         public static DependencyProperty NotificationAreaProperty = DependencyProperty.Register(nameof(NotificationArea), typeof(NotificationArea), typeof(NotifyIconList), new PropertyMetadata(NotificationAreaChangedCallback));
 
@@ -41,7 +42,7 @@ namespace RetroBar.Controls
             {
                 if (Settings.Instance.CollapseNotifyIcons)
                 {
-                    NotifyIcons.ItemsSource = pinnedNotifyIconsSource.View;
+                    NotifyIcons.ItemsSource = pinnedNotifyIcons;
                     SetToggleVisibility();
                 }
                 else
@@ -49,7 +50,7 @@ namespace RetroBar.Controls
                     NotifyIconToggleButton.IsChecked = false;
                     NotifyIconToggleButton.Visibility = Visibility.Collapsed;
 
-                    NotifyIcons.ItemsSource = allNotifyIconsSource.View;
+                    NotifyIcons.ItemsSource = allNotifyIcons;
                 }
             }
             else if (e.PropertyName == nameof(Settings.InvertIconsMode) || e.PropertyName == nameof(Settings.InvertNotifyIcons))
@@ -59,11 +60,11 @@ namespace RetroBar.Controls
 
                 if (Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true)
                 {
-                    NotifyIcons.ItemsSource = pinnedNotifyIconsSource.View;
+                    NotifyIcons.ItemsSource = pinnedNotifyIcons;
                 }
                 else
                 {
-                    NotifyIcons.ItemsSource = allNotifyIconsSource.View;
+                    NotifyIcons.ItemsSource = allNotifyIcons;
                 }
             }
         }
@@ -72,25 +73,19 @@ namespace RetroBar.Controls
         {
             if (!_isLoaded && NotificationArea != null)
             {
-                CompositeCollection allNotifyIcons = new CompositeCollection();
-                allNotifyIcons.Add(new CollectionContainer { Collection = NotificationArea.UnpinnedIcons });
-                allNotifyIcons.Add(new CollectionContainer { Collection = NotificationArea.PinnedIcons });
-                allNotifyIconsSource = new CollectionViewSource { Source = allNotifyIcons };
+                RefreshCollections();
+                
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
 
-                CompositeCollection pinnedNotifyIcons = new CompositeCollection();
-                pinnedNotifyIcons.Add(new CollectionContainer { Collection = promotedIcons });
-                pinnedNotifyIcons.Add(new CollectionContainer { Collection = NotificationArea.PinnedIcons });
-                pinnedNotifyIconsSource = new CollectionViewSource { Source = pinnedNotifyIcons };
-
                 NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
+                NotificationArea.PinnedIcons.CollectionChanged += PinnedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
                 if (Settings.Instance.CollapseNotifyIcons)
                 {
-                    NotifyIcons.ItemsSource = pinnedNotifyIconsSource.View;
+                    NotifyIcons.ItemsSource = pinnedNotifyIcons;
                     SetToggleVisibility();
 
                     if (NotifyIconToggleButton.IsChecked == true)
@@ -100,7 +95,7 @@ namespace RetroBar.Controls
                 }
                 else
                 {
-                    NotifyIcons.ItemsSource = allNotifyIconsSource.View;
+                    NotifyIcons.ItemsSource = allNotifyIcons;
                 }
 
                 _isLoaded = true;
@@ -174,6 +169,10 @@ namespace RetroBar.Controls
         private void NotifyIconList_Loaded(object sender, RoutedEventArgs e)
         {
             SetNotificationAreaCollections();
+            
+            // Set up drag/drop handler
+            dropHandler = new NotifyIconDropHandler(this);
+            GongSolutions.Wpf.DragDrop.DragDrop.SetDropHandler(NotifyIcons, dropHandler);
         }
 
         private void NotifyIconList_OnUnloaded(object sender, RoutedEventArgs e)
@@ -197,18 +196,55 @@ namespace RetroBar.Controls
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetToggleVisibility();
+            RefreshCollections();
+        }
+
+        private void PinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RefreshCollections();
+        }
+
+        private void RefreshCollections()
+        {
+            if (NotificationArea == null) return;
+
+            // Create a list of all icons
+            var icons = NotificationArea.UnpinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>()
+                .Where(icon => !icon.IsPinned && !icon.IsHidden && icon.GetBehavior() != NotifyIconBehavior.Remove)
+                .Union(NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>())
+                .ToList();
+
+            // Sort icons according to saved order
+            var sortedIcons = icons.OrderBy(i => Settings.Instance.NotifyIconOrder.IndexOf(i.GetInvertIdentifier())).ToList();
+
+            // Refresh all icons collection
+            allNotifyIcons.Clear();
+            foreach (var icon in sortedIcons)
+            {
+                allNotifyIcons.Add(icon);
+            }
+
+            // Refresh pinned icons collection
+            pinnedNotifyIcons.Clear();
+            foreach (var icon in promotedIcons)
+            {
+                pinnedNotifyIcons.Add(icon);
+            }
+            foreach (var icon in NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>().OrderBy(i => Settings.Instance.NotifyIconOrder.IndexOf(i.GetInvertIdentifier())))
+            {
+                pinnedNotifyIcons.Add(icon);
+            }
         }
 
         private void NotifyIconToggleButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (NotifyIconToggleButton.IsChecked == true)
             {
-
-                NotifyIcons.ItemsSource = allNotifyIconsSource.View;
+                NotifyIcons.ItemsSource = allNotifyIcons;
             }
             else
             {
-                NotifyIcons.ItemsSource = pinnedNotifyIconsSource.View;
+                NotifyIcons.ItemsSource = pinnedNotifyIcons;
             }
         }
 
@@ -229,6 +265,26 @@ namespace RetroBar.Controls
             {
                 NotifyIconToggleButton.Visibility = Visibility.Visible;
             }
+        }
+
+        public void SaveIconOrder()
+        {
+            var visibleIcons = new System.Collections.Generic.List<ManagedShell.WindowsTray.NotifyIcon>();
+
+            if (NotifyIcons.ItemsSource != null)
+            {
+                foreach (var item in NotifyIcons.ItemsSource)
+                {
+                    if (item is ManagedShell.WindowsTray.NotifyIcon icon)
+                    {
+                        visibleIcons.Add(icon);
+                    }
+                }
+            }
+
+            // Save the order to settings
+            var identifiers = visibleIcons.Select(icon => icon.GetInvertIdentifier()).ToList();
+            Settings.Instance.NotifyIconOrder = identifiers;
         }
     }
 }
