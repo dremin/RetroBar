@@ -29,6 +29,7 @@
     <s:String x:Key="show_input_language">Hiển thị _ngôn ngữ nhập liệu</s:String>
     <s:String x:Key="show_clock">Hiển thị _đồng hồ</s:String>
     <s:String x:Key="show_multi_mon">Hiện trên nhiều màn hình</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Hiển thị nút Bắt đầu trên tất cả thanh tác vụ</s:String>
     <s:String x:Key="show_quick_launch">Hiện thanh truy cập nhanh (Quick Launch)</s:String>
     <s:String x:Key="select_location">Chọn vị trí...</s:String>
     <s:String x:Key="quick_launch_folder">Truy cập nhanh - Chọn một thư mục</s:String>
@@ -77,6 +78,14 @@
     <s:String x:Key="slide_taskbar_buttons">_Di chuyển các nút thanh tác vụ</s:String>
     <s:String x:Key="show_clock_seconds">Hiển thị _giây trong đồng hồ</s:String>
     <s:String x:Key="open_custom_themes_folder">Mở thư mục chủ đề tùy chỉnh</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Phím tắt Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Mặc định của Windows</s:String>
+        <s:String>Chuyển đổi tác vụ</s:String>
+        <s:String>Mở mục Truy cập nhanh</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Phím tắt RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar sẽ ghi đè các phím tắt của thanh tác vụ Windows. Ngay cả khi RetroBar đóng, chúng sẽ không được khôi phục lại cho Windows cho đến khi bạn đăng xuất và đăng nhập lại.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -134,6 +143,25 @@
     <s:String x:Key="hide">Ẩn</s:String>
 
     <s:String x:Key="open_folder">&amp;Mở thư mục</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Nhấn chuột phải để chọn tùy chọn IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME đã bị vô hiệu hóa</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana đầy đủ</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Chữ số và chữ cái đầy đủ</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana nửa đầy đủ</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Chữ số và chữ cái nửa đầy đủ</s:String>
+    <s:String x:Key="ime_input_direct">Nhập trực tiếp</s:String>
+    <s:String x:Key="ime_open_pad">Bảng IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Thêm từ</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Từ điển bổ sung</s:String>
+    <s:String x:Key="ime_open_properties">Cài đặt</s:String>
+    <s:String x:Key="ime_input_key">Nhập Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">Tắt</s:String>
+    <s:String x:Key="ime_input_key_kana">Bật</s:String>
+    <s:String x:Key="ime_conversion">Chế độ chuyển đổi</s:String>
+    <s:String x:Key="ime_conversion_general">Chung</s:String>
+    <s:String x:Key="ime_conversion_none">Không chuyển đổi</s:String>
 
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>
