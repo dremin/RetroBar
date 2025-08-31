@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -103,6 +104,10 @@ namespace RetroBar.Controls
                 Animate();
             }
 
+            AppButton.ContextMenu.Opened += ContextMenu_OpenedOrClosed;
+            AppButton.ContextMenu.Closed += ContextMenu_OpenedOrClosed;
+            AppButton.ContextMenu.KeyDown += ContextMenu_KeyDown;
+
             _isLoaded = true;
         }
 
@@ -158,51 +163,106 @@ namespace RetroBar.Controls
             NativeMethods.WindowShowStyle wss = Window.ShowStyle;
             int ws = Window.WindowStyles;
 
-            // disable window operations depending on current window state. originally tried implementing via bindings but found there is no notification we get regarding maximized state
-            MaximizeMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0;
-            MinimizeMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowMinimized && Window.CanMinimize;
-            if (RestoreMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowNormal)
+            var menuItems = AppButton.ContextMenu.Items.OfType<MenuItem>().ToDictionary(item => item.Name);
+
+            if (menuItems.TryGetValue("RestoreMenuItem", out var restoreMenuItem))
             {
-                CloseMenuItem.FontWeight = FontWeights.Normal;
-                RestoreMenuItem.FontWeight = FontWeights.Bold;
+                restoreMenuItem.Click += RestoreMenuItem_OnClick;
+                restoreMenuItem.StaysOpenOnClick = wss == NativeMethods.WindowShowStyle.ShowNormal;
             }
-            if (!RestoreMenuItem.IsEnabled || RestoreMenuItem.IsEnabled && !MaximizeMenuItem.IsEnabled)
+
+            if (menuItems.TryGetValue("MoveMenuItem", out var moveMenuItem))
             {
-                CloseMenuItem.FontWeight = FontWeights.Bold;
-                RestoreMenuItem.FontWeight = FontWeights.Normal;
+                moveMenuItem.Click += MoveMenuItem_OnClick;
+                moveMenuItem.StaysOpenOnClick = !(wss == NativeMethods.WindowShowStyle.ShowNormal);
             }
-            MoveMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal;
-            SizeMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0;
+
+            if (menuItems.TryGetValue("SizeMenuItem", out var sizeMenuItem))
+            {
+                sizeMenuItem.Click += SizeMenuItem_OnClick;
+                sizeMenuItem.StaysOpenOnClick = !(wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
+            }
+
+            if (menuItems.TryGetValue("MinimizeMenuItem", out var minimizeMenuItem))
+            {
+                minimizeMenuItem.Click += MinimizeMenuItem_OnClick;
+                minimizeMenuItem.StaysOpenOnClick = !(wss != NativeMethods.WindowShowStyle.ShowMinimized && (ws & (int)NativeMethods.WindowStyles.WS_MINIMIZEBOX) != 0);
+            }
+
+            if (menuItems.TryGetValue("MaximizeMenuItem", out var maximizeMenuItem))
+            {
+                maximizeMenuItem.Click += MaximizeMenuItem_OnClick;
+                maximizeMenuItem.StaysOpenOnClick = !(wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
+            }
+
+            if (menuItems.TryGetValue("CloseMenuItem", out var closeMenuItem))
+            {
+                closeMenuItem.Click += CloseMenuItem_OnClick;
+            }
         }
+
+        private void ContextMenu_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if Alt+F4 is pressed
+            if (Keyboard.Modifiers == ModifierKeys.Alt && Keyboard.IsKeyDown(Key.F4))
+            {
+                e.Handled = true;
+                Window?.Close();
+                if (AppButton.ContextMenu is { IsOpen: true })
+                {
+                    AppButton.ContextMenu.IsOpen = false;
+                }
+            }
+        }
+
+        private static bool MenuItemEnabled(object sender) => !((MenuItem)sender).StaysOpenOnClick;
 
         private void CloseMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window?.Close();
+            if (MenuItemEnabled(sender))
+            {
+                Window?.Close();
+            }
         }
 
         private void RestoreMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window?.Restore();
+            if (MenuItemEnabled(sender))
+            {
+                Window?.Restore();
+            }
         }
 
         private void MoveMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window?.Move();
+            if (MenuItemEnabled(sender))
+            {
+                Window?.Move();
+            }
         }
 
         private void SizeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window?.Size();
+            if (MenuItemEnabled(sender))
+            {
+                Window?.Size();
+            }
         }
 
         private void MinimizeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window?.Minimize();
+            if (MenuItemEnabled(sender))
+            {
+                Window?.Minimize();
+            }
         }
 
         private void MaximizeMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            Window?.Maximize();
+            if (MenuItemEnabled(sender))
+            {
+                Window?.Maximize();
+            }
         }
 
         private void AppButton_OnClick(object sender, RoutedEventArgs e)
