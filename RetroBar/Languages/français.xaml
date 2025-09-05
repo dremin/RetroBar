@@ -130,6 +130,7 @@
     <s:String x:Key="minimize">Réd_uire</s:String>
     <s:String x:Key="maximize">Agra_ndir</s:String>
     <s:String x:Key="close">_Fermer</s:String>
+    <s:String x:Key="end_task">_Forcer l'arrêt</s:String>
 
     <s:String x:Key="show_hidden">Afficher les icônes cachées</s:String>
     <s:String x:Key="hide">Masquer</s:String>

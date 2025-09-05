@@ -138,6 +138,7 @@
     <s:String x:Key="minimize">Mi_nimizar</s:String>
     <s:String x:Key="maximize">Ma_ximizar</s:String>
     <s:String x:Key="close">_Cerrar</s:String>
+    <s:String x:Key="end_task">_Finalizar tarea</s:String>
 
     <s:String x:Key="show_hidden">Mostrar iconos ocultos</s:String>
     <s:String x:Key="hide">Ocultar</s:String>

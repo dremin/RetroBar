@@ -84,6 +84,17 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
+                <MenuItem Header="{DynamicResource end_task}"
+                          Click="EndTaskMenuItem_OnClick"
+                          Name="EndTaskMenuItem">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="Marlett"
+                                   Text="&#x72;"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold" />
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="{DynamicResource close}"
                           Click="CloseMenuItem_OnClick"
                           Name="CloseMenuItem">

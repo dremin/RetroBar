@@ -138,6 +138,7 @@
     <s:String x:Key="minimize">Mi_nimize</s:String>
     <s:String x:Key="maximize">Ma_ximize</s:String>
     <s:String x:Key="close">_Close</s:String>
+    <s:String x:Key="end_task">_End task</s:String>
 
     <s:String x:Key="show_hidden">Show hidden icons</s:String>
     <s:String x:Key="hide">Hide</s:String>

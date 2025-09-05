@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -178,6 +179,37 @@ namespace RetroBar.Controls
         private void CloseMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             Window?.Close();
+        }
+
+        private void EndTaskMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Window != null)
+            {
+                ForceEndTask();
+            }
+        }
+
+        private void ForceEndTask()
+        {
+            try
+            {
+                // First try to get the process ID from the window handle
+                uint processId;
+                NativeMethods.GetWindowThreadProcessId(Window.Handle, out processId);
+                
+                if (processId != 0)
+                {
+                    // Get the process and forcefully terminate it
+                    Process process = Process.GetProcessById((int)processId);
+                    process.Kill();
+                }
+            }
+            catch (Exception)
+            {
+                // If we can't get the process or kill it, fall back to WM_CLOSE
+                // This might happen with system processes or elevated processes
+                Window?.Close();
+            }
         }
 
         private void RestoreMenuItem_OnClick(object sender, RoutedEventArgs e)
