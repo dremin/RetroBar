@@ -15,9 +15,6 @@ using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
-    /// <summary>
-    /// Interaction logic for TaskButton.xaml
-    /// </summary>
     public partial class TaskButton : UserControl
     {
         public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(TaskList), typeof(TaskButton));
@@ -89,7 +86,6 @@ namespace RetroBar.Controls
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
-            // drag support - delayed activation using system setting
             dragTimer = new DispatcherTimer { Interval = SystemParameters.MouseHoverTime };
             dragTimer.Tick += dragTimer_Tick;
 
@@ -111,7 +107,6 @@ namespace RetroBar.Controls
         {
             if (Host?.Host?.Screen.Primary != true && Settings.Instance.MultiMonMode != MultiMonOption.SameAsWindow)
             {
-                // If there are multiple instances of a button, use the button on the primary display only
                 return;
             }
 
@@ -159,7 +154,6 @@ namespace RetroBar.Controls
             NativeMethods.WindowShowStyle wss = Window.ShowStyle;
             int ws = Window.WindowStyles;
 
-            // disable window operations depending on current window state. originally tried implementing via bindings but found there is no notification we get regarding maximized state
             MaximizeMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0;
             MinimizeMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowMinimized && Window.CanMinimize;
             if (RestoreMenuItem.IsEnabled = wss != NativeMethods.WindowShowStyle.ShowNormal)
@@ -193,21 +187,17 @@ namespace RetroBar.Controls
         {
             try
             {
-                // First try to get the process ID from the window handle
                 uint processId;
                 NativeMethods.GetWindowThreadProcessId(Window.Handle, out processId);
                 
                 if (processId != 0)
                 {
-                    // Get the process and forcefully terminate it
                     Process process = Process.GetProcessById((int)processId);
                     process.Kill();
                 }
             }
             catch (Exception)
             {
-                // If we can't get the process or kill it, fall back to WM_CLOSE
-                // This might happen with system processes or elevated processes
                 Window?.Close();
             }
         }
@@ -301,7 +291,6 @@ namespace RetroBar.Controls
 
         private void AppButton_OnDragEnter(object sender, DragEventArgs e)
         {
-            // Ignore drag operations from a reorder
             if (!inDrag && !e.Data.GetDataPresent("GongSolutions.Wpf.DragDrop"))
             {
                 inDrag = true;

@@ -164,7 +164,6 @@
     <s:String x:Key="ime_conversion_general">General</s:String>
     <s:String x:Key="ime_conversion_none">No Conversion</s:String>
 
-    <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
