@@ -75,6 +75,7 @@
     <s:String x:Key="debug_logging">Enable _debug logging</s:String>
     <s:String x:Key="check_for_updates">Check for u_pdates</s:String>
     <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
+    <s:String x:Key="show_end_task_button">Show End _task button in context menu</s:String>
     <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
     <s:String x:Key="show_clock_seconds">S_how seconds in the clock</s:String>
     <s:String x:Key="open_custom_themes_folder">Open custom themes folder</s:String>
@@ -164,6 +165,7 @@
     <s:String x:Key="ime_conversion_general">General</s:String>
     <s:String x:Key="ime_conversion_none">No Conversion</s:String>
 
+    <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

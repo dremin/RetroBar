@@ -334,6 +334,13 @@ namespace RetroBar.Utilities
             set => Set(ref _showExitMenuItem, value);
         }
 
+        private bool _showEndTaskButton = true;
+        public bool ShowEndTaskButton
+        {
+            get => _showEndTaskButton;
+            set => Set(ref _showEndTaskButton, value);
+        }
+
         private bool _showStartButtonMultiMon = false;
         public bool ShowStartButtonMultiMon
         {

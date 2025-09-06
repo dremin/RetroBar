@@ -75,6 +75,7 @@
     <s:String x:Key="debug_logging">_Activer la journalisation de débogage</s:String>
     <s:String x:Key="check_for_updates">_Vérifier la disponibilité des mises à jour</s:String>
     <s:String x:Key="show_exit_menu_item">Afficher l'option "_Quitter RetroBar" dans le menu contextuel sous le clic droit</s:String>
+    <s:String x:Key="show_end_task_button">Afficher le bouton "_Forcer l'arrêt" dans le menu contextuel</s:String>
     <s:String x:Key="slide_taskbar_buttons">Utiliser l'effet de _glissement au déplacement des boutons</s:String>
     <s:String x:Key="show_clock_seconds">Afficher des _secondes dans l'horloge</s:String>
     <s:String x:Key="open_custom_themes_folder">Ouvrir le dossier des thèmes personnalisés ("Themes")</s:String>

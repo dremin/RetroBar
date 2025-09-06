@@ -86,7 +86,8 @@
                 <Separator />
                 <MenuItem Header="{DynamicResource end_task}"
                           Click="EndTaskMenuItem_OnClick"
-                          Name="EndTaskMenuItem">
+                          Name="EndTaskMenuItem"
+                          Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}">
                     <MenuItem.Icon>
                         <TextBlock FontFamily="Marlett"
                                    Text="&#x72;"
