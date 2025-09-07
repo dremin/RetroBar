@@ -52,6 +52,7 @@ namespace RetroBar
         private bool _mouseDragResize = false;
         private DictionaryManager _dictionaryManager;
         private ShellManager _shellManager;
+        private StartMenuMonitor _startMenuMonitor;
         private Updater _updater;
         
         public WindowManager windowManager;
@@ -62,6 +63,7 @@ namespace RetroBar
         {
             _dictionaryManager = dictionaryManager;
             _shellManager = shellManager;
+            _startMenuMonitor = startMenuMonitor;
             _updater = updater;
             this.windowManager = windowManager;
             this.hotkeyManager = hotkeyManager;
@@ -93,6 +95,25 @@ namespace RetroBar
             AutoHideElement = TaskbarContentControl;
 
             PropertyChanged += Taskbar_PropertyChanged;
+
+            _startMenuMonitor.StartMenuVisibilityChanged += StartMenuMonitor_StartMenuVisibilityChanged;
+        }
+
+        private void StartMenuMonitor_StartMenuVisibilityChanged(object sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
+        {
+            if (_fullScreenHelper.FullScreenApps.Count < 1)
+            {
+                return;
+            }
+
+            if (e.Visible)
+            {
+                base.OnFullScreenLeave();
+            }
+            else if (!e.Visible)
+            {
+                base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[_fullScreenHelper.FullScreenApps.Count - 1]);
+            }
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -237,6 +258,7 @@ namespace RetroBar
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
 
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+                _startMenuMonitor.StartMenuVisibilityChanged -= StartMenuMonitor_StartMenuVisibilityChanged;
             }
         }
 
