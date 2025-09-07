@@ -55,19 +55,19 @@ jobs:
         fetch-depth: 0
 
     - name: Download build artifacts - ARM64
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v5
       with:
         name: RetroBar ARM64
         path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-ARM64\
 
     - name: Download build artifacts - x64
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v5
       with:
         name: RetroBar 64-bit
         path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x64\
 
     - name: Download build artifacts - x86
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v5
       with:
         name: RetroBar 32-bit
         path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
