@@ -193,12 +193,17 @@ namespace RetroBar.Controls
         {
             try
             {
-                uint processId;
-                NativeMethods.GetWindowThreadProcessId(Window.Handle, out processId);
-                
-                if (processId != 0)
+                if (Window.ProcId.HasValue && Window.ProcId.Value != 0)
                 {
-                    Process process = Process.GetProcessById((int)processId);
+                    // Don't kill RetroBar itself - just close the window gracefully
+                    int currentProcId = System.Diagnostics.Process.GetCurrentProcess().Id;
+                    if (Window.ProcId.Value == currentProcId)
+                    {
+                        Window?.Close();
+                        return;
+                    }
+
+                    Process process = Process.GetProcessById((int)Window.ProcId.Value);
                     process.Kill();
                 }
             }
