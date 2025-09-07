@@ -75,6 +75,7 @@
     <s:String x:Key="debug_logging">Habilitar registro de _depuración</s:String>
     <s:String x:Key="check_for_updates">Comprobar _actualizaciones</s:String>
     <s:String x:Key="show_exit_menu_item">Mostrar opción de _salida en el menú contextual</s:String>
+    <s:String x:Key="show_end_task_button">Mostrar opción "_Finalizar tarea" en el menú contextual</s:String>
     <s:String x:Key="slide_taskbar_buttons">Deslizar _botones de la barra de tareas</s:String>
     <s:String x:Key="show_clock_seconds">Mostrar _segundos en el reloj</s:String>
     <s:String x:Key="open_custom_themes_folder">Abrir carpeta de temas personalizados</s:String>
@@ -138,6 +139,7 @@
     <s:String x:Key="minimize">Mi_nimizar</s:String>
     <s:String x:Key="maximize">Ma_ximizar</s:String>
     <s:String x:Key="close">_Cerrar</s:String>
+    <s:String x:Key="end_task">_Finalizar tarea</s:String>
 
     <s:String x:Key="show_hidden">Mostrar iconos ocultos</s:String>
     <s:String x:Key="hide">Ocultar</s:String>

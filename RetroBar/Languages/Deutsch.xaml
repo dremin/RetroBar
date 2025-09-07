@@ -75,6 +75,7 @@
     <s:String x:Key="debug_logging">Debug-Protokollierung aktivieren</s:String>
     <s:String x:Key="check_for_updates">Auf Updates prüfen</s:String>
     <s:String x:Key="show_exit_menu_item">Be_enden im Rechtsklickmenü anzeigen</s:String>
+    <s:String x:Key="show_end_task_button">Task _beenden Option im Rechtsklickmenü anzeigen</s:String>
     <s:String x:Key="slide_taskbar_buttons">Schaltfläch_en der Taskleiste schieben</s:String>
     <s:String x:Key="show_clock_seconds">Sekunden in der U_hr anzeigen</s:String>
     <s:String x:Key="open_custom_themes_folder">Ordner mit benutzerdefinierten Themen öffnen</s:String>
@@ -130,6 +131,7 @@
     <s:String x:Key="minimize">Mi_nimieren</s:String>
     <s:String x:Key="maximize">Ma_ximieren</s:String>
     <s:String x:Key="close">_Schließen</s:String>
+    <s:String x:Key="end_task">Task _beenden</s:String>
 
     <s:String x:Key="show_hidden">Versteckte Symbole anzeigen</s:String>
     <s:String x:Key="hide">Ausblenden</s:String>

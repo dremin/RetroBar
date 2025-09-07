@@ -84,6 +84,11 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
+                <MenuItem Header="{DynamicResource end_task}"
+                          Click="EndTaskMenuItem_OnClick"
+                          Name="EndTaskMenuItem"
+                          Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}">
+                </MenuItem>
                 <MenuItem Header="{DynamicResource close}"
                           Click="CloseMenuItem_OnClick"
                           Name="CloseMenuItem">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -178,6 +179,38 @@ namespace RetroBar.Controls
         private void CloseMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             Window?.Close();
+        }
+
+        private void EndTaskMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Window != null)
+            {
+                ForceEndTask();
+            }
+        }
+
+        private void ForceEndTask()
+        {
+            try
+            {
+                if (Window.ProcId.HasValue && Window.ProcId.Value != 0)
+                {
+                    // Don't kill RetroBar itself - just close the window gracefully
+                    int currentProcId = System.Diagnostics.Process.GetCurrentProcess().Id;
+                    if (Window.ProcId.Value == currentProcId)
+                    {
+                        Window?.Close();
+                        return;
+                    }
+
+                    Process process = Process.GetProcessById((int)Window.ProcId.Value);
+                    process.Kill();
+                }
+            }
+            catch (Exception)
+            {
+                Window?.Close();
+            }
         }
 
         private void RestoreMenuItem_OnClick(object sender, RoutedEventArgs e)
