@@ -529,6 +529,7 @@ namespace RetroBar
                 if (app.screen.DeviceName == Screen.DeviceName || app.screen.IsVirtualScreen)
                 {
                     hasFullScreenApp = true;
+                    break;
                 }
             }
 
