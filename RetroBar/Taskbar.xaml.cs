@@ -54,6 +54,7 @@ namespace RetroBar
         private ShellManager _shellManager;
         private StartMenuMonitor _startMenuMonitor;
         private Updater _updater;
+        private bool _fullScreenSuppressed;
         
         public WindowManager windowManager;
         public HotkeyManager hotkeyManager;
@@ -97,22 +98,46 @@ namespace RetroBar
             PropertyChanged += Taskbar_PropertyChanged;
 
             _startMenuMonitor.StartMenuVisibilityChanged += StartMenuMonitor_StartMenuVisibilityChanged;
+            _shellManager.TasksService.WindowActivated += TasksService_WindowActivated;
+        }
+
+        private void TasksService_WindowActivated(object sender, ManagedShell.WindowsTasks.WindowEventArgs e)
+        {
+            // If full-screen is suppressed, and a full-screen window is activated, it's time to un-suppress.
+
+            if (!_fullScreenSuppressed)
+            {
+                return;
+            }
+
+            _fullScreenSuppressed = false;
+
+            if (!HasFullScreenApp())
+            {
+                return;
+            }
+
+            for (int i = 0; i < _fullScreenHelper.FullScreenApps.Count; i++)
+            {
+                if (_fullScreenHelper.FullScreenApps[i].hWnd == e.Window.Handle)
+                {
+                    base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
+                    return;
+                }
+            }
         }
 
         private void StartMenuMonitor_StartMenuVisibilityChanged(object sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
-            if (_fullScreenHelper.FullScreenApps.Count < 1)
+            if (!HasFullScreenApp())
             {
                 return;
             }
 
             if (e.Visible)
             {
+                _fullScreenSuppressed = true;
                 base.OnFullScreenLeave();
-            }
-            else if (!e.Visible)
-            {
-                base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[_fullScreenHelper.FullScreenApps.Count - 1]);
             }
         }
 
@@ -259,6 +284,7 @@ namespace RetroBar
 
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
                 _startMenuMonitor.StartMenuVisibilityChanged -= StartMenuMonitor_StartMenuVisibilityChanged;
+                _shellManager.TasksService.WindowActivated -= TasksService_WindowActivated;
             }
         }
 
@@ -492,6 +518,22 @@ namespace RetroBar
             }
 
             StartButton.Visibility = Visibility.Visible;
+        }
+
+        private bool HasFullScreenApp()
+        {
+            bool hasFullScreenApp = false;
+
+            foreach (var app in _fullScreenHelper.FullScreenApps)
+            {
+                if (app.screen.DeviceName == Screen.DeviceName || app.screen.IsVirtualScreen)
+                {
+                    hasFullScreenApp = true;
+                    break;
+                }
+            }
+
+            return hasFullScreenApp;
         }
 
         #region Unlocked taskbar drag hook
