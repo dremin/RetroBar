@@ -75,10 +75,18 @@
     <s:String x:Key="debug_logging">Debug-Protokollierung aktivieren</s:String>
     <s:String x:Key="check_for_updates">Auf Updates prüfen</s:String>
     <s:String x:Key="show_exit_menu_item">Be_enden im Rechtsklickmenü anzeigen</s:String>
-    <s:String x:Key="show_end_task_button">Task _beenden Option im Rechtsklickmenü anzeigen</s:String>
+    <s:String x:Key="show_end_task_button">_Task beenden im Rechtsklickmenü anzeigen</s:String>
     <s:String x:Key="slide_taskbar_buttons">Schaltfläch_en der Taskleiste schieben</s:String>
     <s:String x:Key="show_clock_seconds">Sekunden in der U_hr anzeigen</s:String>
     <s:String x:Key="open_custom_themes_folder">Ordner mit benutzerdefinierten Themen öffnen</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] Tasten_kürzel-Aktion:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windowsstandard</s:String>
+        <s:String>Tasks wechseln</s:String>
+        <s:String>Schnellstarteintrag öffnen</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar Tastenkürzel</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar wird die Tastenkürzel der Windows-Taskleiste überschreiben. Selbst wenn RetroBar geschlossen wird, werden diese nicht wiederhergestellt, bevor Sie sich nicht von Windows abgemeldet und wieder angemeldet haben.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
@@ -131,10 +139,28 @@
     <s:String x:Key="minimize">Mi_nimieren</s:String>
     <s:String x:Key="maximize">Ma_ximieren</s:String>
     <s:String x:Key="close">_Schließen</s:String>
-    <s:String x:Key="end_task">Task _beenden</s:String>
 
     <s:String x:Key="show_hidden">Versteckte Symbole anzeigen</s:String>
     <s:String x:Key="hide">Ausblenden</s:String>
 
     <s:String x:Key="open_folder">&amp;Ordner öffnen</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Rechtsklick für Optionen der Eingabemethoden (IME)</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME deaktiviert</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Volle-Breite Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Volle-Breite Alphanumerisch</s:String>
+    <s:String x:Key="ime_input_katakana">Halbe-Breite Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Halbe-Breite Alphanumerisch</s:String>
+    <s:String x:Key="ime_input_direct">Direkte Eingabe</s:String>
+    <s:String x:Key="ime_open_pad">IME-Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Wort hinzufügen</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Add-on Wörterbuch</s:String>
+    <s:String x:Key="ime_open_properties">Einstellungen</s:String>
+    <s:String x:Key="ime_input_key">Kana-Eingabe</s:String>
+    <s:String x:Key="ime_input_key_roma">Aus</s:String>
+    <s:String x:Key="ime_input_key_kana">An</s:String>
+    <s:String x:Key="ime_conversion">Konvertierungsmodus</s:String>
+    <s:String x:Key="ime_conversion_general">Allgemein</s:String>
+    <s:String x:Key="ime_conversion_none">Kein Konvertierung</s:String>
 </ResourceDictionary>
