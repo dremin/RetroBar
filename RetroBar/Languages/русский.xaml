@@ -20,7 +20,7 @@
         <s:String>Справа</s:String>
         <s:String>Внизу</s:String>
     </x:Array>
-    <s:String x:Key="rowcount_text">Число _строк:</s:String>
+    <s:String x:Key="rowcount_text">Чис_ло строк:</s:String>
     <s:String x:Key="rowcount_tip">Число строк панели задач при расположении вверху или внизу.</s:String>
     <s:String x:Key="taskbar_width">_Ширина панели задач:</s:String>
     <s:String x:Key="allow_font_smoothing">Пр_именять сглаживание шрифтов</s:String>
@@ -65,7 +65,7 @@
         <s:String>Открыть Modern-календарь</s:String>
         <s:String>Открыть центр уведомлений</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">Скрывать _линию панели задач, когда панель задач скрыта автоматически</s:String>	
+    <s:String x:Key="auto_hide_transparent">Не показывать _линию панели задач, когда она скрыта автоматически</s:String>	
     <s:String x:Key="version">Версия {0}</s:String>
     <s:String x:Key="visit_on_github">Посетить на GitHub</s:String>
     <s:String x:Key="taskbar_scale">Масштаб панели задач</s:String>
@@ -73,11 +73,20 @@
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
     <s:String x:Key="taskbar_scale_current">Текущее значение: {0}%</s:String>
     <s:String x:Key="debug_logging">Включить отла_дочное логирование</s:String>
-    <s:String x:Key="check_for_updates">Проверять _наличие обновлений</s:String>
+    <s:String x:Key="check_for_updates">Проверять наличие _обновлений</s:String>
     <s:String x:Key="show_exit_menu_item">Отображать опцию в_ыхода в контекстном меню</s:String>
-    <s:String x:Key="slide_taskbar_buttons">Эффект с_кользания при перемещении кнопок панели задач</s:String>
+    <s:String x:Key="show_end_task_button">Отображать опцию "З_авершить задачу" в контекстном меню</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Э_ффект скольжения при перемещении кнопок панели задач</s:String>
     <s:String x:Key="show_clock_seconds">Отображать _секунды на часах</s:String>
-    <s:String x:Key="open_custom_themes_folder">Открыть папку для собственных _тем оформления (themes)</s:String>
+    <s:String x:Key="open_custom_themes_folder">Открыть папку для собственных тем оформления</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Действие соче_таний клавиш Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Стандартное действие Windows</s:String>
+        <s:String>Переключение между задачами</s:String>
+        <s:String>Открыть ярлык быстрого запуска</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Горячие клавиши RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar перезапишет сочетания клавиш панели задач Windows. Они не будут восстановлены даже после закрытия RetroBar, пока вы не перезайдёте в систему.</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
@@ -130,9 +139,29 @@
     <s:String x:Key="minimize">_Свернуть</s:String>
     <s:String x:Key="maximize">_Развернуть</s:String>
     <s:String x:Key="close">_Закрыть</s:String>
+    <s:String x:Key="end_task">З_авершить задачу</s:String>
 
     <s:String x:Key="show_hidden">Отображать скрытые значки</s:String>
     <s:String x:Key="hide">Скрыть</s:String>
 
     <s:String x:Key="open_folder">&amp;Открыть папку</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Нажмите правой кнопкой мыши для настройки IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME отключён</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Хирагана</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Полноширинная катакана</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Полноширинные буквы и цифры</s:String>
+    <s:String x:Key="ime_input_katakana">Полуширинная катакана</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Полуширинные буквы и цифры</s:String>
+    <s:String x:Key="ime_input_direct">Прямой ввод</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Добавить слово</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Словарь дополнений</s:String>
+    <s:String x:Key="ime_open_properties">Настройки</s:String>
+    <s:String x:Key="ime_input_key">Ввод каны</s:String>
+    <s:String x:Key="ime_input_key_roma">Выкл</s:String>
+    <s:String x:Key="ime_input_key_kana">Вкл</s:String>
+    <s:String x:Key="ime_conversion">Режим преобразования</s:String>
+    <s:String x:Key="ime_conversion_general">Стандартный</s:String>
+    <s:String x:Key="ime_conversion_none">Без преобразования</s:String>
 </ResourceDictionary>
