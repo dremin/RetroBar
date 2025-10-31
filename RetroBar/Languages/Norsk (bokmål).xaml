@@ -89,16 +89,16 @@
     <s:String x:Key="hotkey_warning_text">RetroBar vil overstyre hurtigtastene i Windows-oppgavelinjen. Selv om RetroBar er lukket, vil de ikke bli gjenopprettet i Windows før du logger ut og logger inn igjen.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
-    <s:String x:Key="customize_notifications">Customize Notifications</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behavior for items in the list below.</s:String>
-    <s:String x:Key="customize_notifications_instruction">Select an item, then choose its notification behavior:</s:String>
-    <s:String x:Key="hide_when_inactive">Hide when inactive</s:String>
-    <s:String x:Key="always_show">Always show</s:String>
-    <s:String x:Key="always_hide">Always hide</s:String>
-    <s:String x:Key="remove">Remove</s:String>
-    <s:String x:Key="name_heading">Name</s:String>
-    <s:String x:Key="behavior_heading">Behavior</s:String>
-    <s:String x:Key="invert_heading">Invert</s:String>
+    <s:String x:Key="customize_notifications">Tilpass varslinger</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar viser ikoner for aktive og viktige varsler, og skjuler inaktive varsler. Du kan endre denne funksjonen for elementene i listen nedenfor.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Velg et element, og velg deretter hvordan du vil bli varslet:</s:String>
+    <s:String x:Key="hide_when_inactive">Skjul når inaktiv</s:String>
+    <s:String x:Key="always_show">Vis alltid</s:String>
+    <s:String x:Key="always_hide">Skjul alltid</s:String>
+    <s:String x:Key="remove">Fjern</s:String>
+    <s:String x:Key="name_heading">Navn</s:String>
+    <s:String x:Key="behavior_heading">Atferd</s:String>
+    <s:String x:Key="invert_heading">Omvendt</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
@@ -106,43 +106,43 @@
     <s:String x:Key="start_button_tip">Klikk her for å begynne</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
-    <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
-    <s:String x:Key="toolbars">_Toolbars</s:String>
-    <s:String x:Key="quick_launch">_Quick Launch</s:String>
-    <s:String x:Key="new_toolbar">_New Toolbar...</s:String>
-    <s:String x:Key="set_time">_Adjust Date/Time</s:String>
-    <s:String x:Key="cascade">Ca_scade Windows</s:String>
-    <s:String x:Key="horiz_tile">Tile Windows _Horizontally</s:String>
-    <s:String x:Key="vert_tile">Tile Windows V_ertically</s:String>
-    <s:String x:Key="toggle_desktop">_Show the Desktop</s:String>
-    <s:String x:Key="hide_desktop">_Show Open Windows</s:String>
-    <s:String x:Key="undo_cascade">_Undo Cascade</s:String>
-    <s:String x:Key="undo_tile">_Undo Tile</s:String>
-    <s:String x:Key="undo_minimize_all">_Undo Minimize All</s:String>
-    <s:String x:Key="show_taskman_2k">Tas_k Manager...</s:String>
-    <s:String x:Key="show_taskman">Tas_k Manager</s:String>
-    <s:String x:Key="tray_properties">P_roperties</s:String>
-    <s:String x:Key="update_available">_Update available...</s:String>
+    <s:String x:Key="retrobar_title">RetroBar Oppgavelinje</s:String>
+    <s:String x:Key="toolbars">_Verktøylinjer</s:String>
+    <s:String x:Key="quick_launch">_Hurtigstart</s:String>
+    <s:String x:Key="new_toolbar">_Ny verktøylinje...</s:String>
+    <s:String x:Key="set_time">_Juster dato/klokkeslett</s:String>
+    <s:String x:Key="cascade">Ka_skade vinduer</s:String>
+    <s:String x:Key="horiz_tile">Fliser vinduer _horisontalt</s:String>
+    <s:String x:Key="vert_tile">Fliser vinduer v_ertikalt</s:String>
+    <s:String x:Key="toggle_desktop">_Vis skrivebordet</s:String>
+    <s:String x:Key="hide_desktop">_Vis åpne vinduer</s:String>
+    <s:String x:Key="undo_cascade">_Angre kaskade</s:String>
+    <s:String x:Key="undo_tile">_Angre flis</s:String>
+    <s:String x:Key="undo_minimize_all">_Angre Minimer alle</s:String>
+    <s:String x:Key="show_taskman_2k">Oppgavebehandling...</s:String>
+    <s:String x:Key="show_taskman">Oppgavebehandling</s:String>
+    <s:String x:Key="tray_properties">Egenskaper</s:String>
+    <s:String x:Key="update_available">_Oppdatering tilgjengelig...</s:String>
     <s:String x:Key="exit_retrobar">_Avslutt RetroBar</s:String>
-    <s:String x:Key="customize_notifications_menu">_Customize Notifications...</s:String>
-    <s:String x:Key="lock_taskbar_menu">_Lock the Taskbar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Tilpass varslinger...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Lås oppgavelinjen</s:String>
 
-    <s:String x:Key="show_desktop_tip_95">Surface/Restore Desktop</s:String>
-    <s:String x:Key="show_desktop_tip">Show Desktop</s:String>
-    <s:String x:Key="show_desktop_95">_Desktop</s:String>
-    <s:String x:Key="show_desktop">_Show Desktop</s:String>
-    <s:String x:Key="peek_at_desktop">_Peek at desktop</s:String>
+    <s:String x:Key="show_desktop_tip_95">Overflate/Gjenopprett skrivebord</s:String>
+    <s:String x:Key="show_desktop_tip">Vis skrivebord</s:String>
+    <s:String x:Key="show_desktop_95">_Skrivebord</s:String>
+    <s:String x:Key="show_desktop">_Vis skrivebord</s:String>
+    <s:String x:Key="peek_at_desktop">_Titt på skrivebordet</s:String>
 
-    <s:String x:Key="restore">_Restore</s:String>
-    <s:String x:Key="move">_Move</s:String>
-    <s:String x:Key="size">_Size</s:String>
-    <s:String x:Key="minimize">Mi_nimize</s:String>
-    <s:String x:Key="maximize">Ma_ximize</s:String>
-    <s:String x:Key="close">_Close</s:String>
-    <s:String x:Key="end_task">_End task</s:String>
+    <s:String x:Key="restore">_Gjenopprett</s:String>
+    <s:String x:Key="move">_Flytt</s:String>
+    <s:String x:Key="size">_Størrelse</s:String>
+    <s:String x:Key="minimize">Mi_nimere</s:String>
+    <s:String x:Key="maximize">Ma_ksimere</s:String>
+    <s:String x:Key="close">_Lukk</s:String>
+    <s:String x:Key="end_task">_Avslutt oppgave</s:String>
 
-    <s:String x:Key="show_hidden">Show hidden icons</s:String>
-    <s:String x:Key="hide">Hide</s:String>
+    <s:String x:Key="show_hidden">Vis skjulte ikoner</s:String>
+    <s:String x:Key="hide">Skjul</s:String>
 
     <s:String x:Key="open_folder">&amp;Åpne mappe</s:String>
 
