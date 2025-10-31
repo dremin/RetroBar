@@ -1,0 +1,171 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar-egenskaper</s:String>
+    <s:String x:Key="taskbar_tab">Oppgavelinje</s:String>
+    <s:String x:Key="advanced_tab">Avansert</s:String>
+    <s:String x:Key="taskbar_appearance">Oppgavelinjens utseende</s:String>
+    <s:String x:Key="notification_area">Varslingsområde</s:String>
+    <s:String x:Key="autostart">Start automatisk ved _pålogging</s:String>
+    <s:String x:Key="language_text">Språk:</s:String>
+    <s:String x:Key="language_tip">Velg språk som skal brukes.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Installer temaer i mappen Temaer.</s:String>
+    <s:String x:Key="location_text">Plass_ering:</s:String>
+    <s:String x:Key="location_tip">Endre plasseringen av oppgavelinjen på skjermen.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Venstre</s:String>
+        <s:String>Øverst</s:String>
+        <s:String>Høyre</s:String>
+        <s:String>Nederst</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">Antall _rader:</s:String>
+    <s:String x:Key="rowcount_tip">Antall rader på oppgavelinjen når den er øverst eller nederst.</s:String>
+    <s:String x:Key="taskbar_width">Oppgavelinjen_s bredde:</s:String>
+    <s:String x:Key="allow_font_smoothing">_Tillat fontutjevning</s:String>
+    <s:String x:Key="collapse_tray_icons">Skjul _ikoner i varslingsområdet</s:String>
+    <s:String x:Key="customize">_Tilpass...</s:String>
+    <s:String x:Key="show_input_language">Vis inndataspråket</s:String>
+    <s:String x:Key="show_clock">Vis klokken</s:String>
+    <s:String x:Key="show_multi_mon">Vis på _flere skjermer</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Vis _«Start»-knappen på alle oppgavelinjer</s:String>
+    <s:String x:Key="show_quick_launch">Vis _hurtigstart</s:String>
+    <s:String x:Key="select_location">_Velg sted...</s:String>
+    <s:String x:Key="quick_launch_folder">Hurtigstart - Velg en mappe</s:String>
+    <s:String x:Key="show_badges">Vis _emblemer</s:String>
+    <s:String x:Key="show_window_previews">Vis _vinduforhåndsvisninger (miniatyrbilder)</s:String>
+    <s:String x:Key="use_software_rendering">_Bruk programvarerendering</s:String>
+    <s:String x:Key="add_show_desktop_button">Legg til «Vis _skrivebord»-knappen</s:String>
+    <s:String x:Key="enable_auto_hide">A_utomatisk skjule oppgavelinjen</s:String>
+    <s:String x:Key="lock_taskbar">_Lås oppgavelinjen</s:String>
+    <s:String x:Key="multiple_displays">Flere skjermer</s:String>
+    <s:String x:Key="show_tasks_on">V_is oppgaver på::</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Alle oppgavelinjer</s:String>
+        <s:String>Samme oppgavelinje som vinduet</s:String>
+        <s:String>Samme oppgavelinje som vindu og primær oppgavelinje</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Vend systemikoner:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Når det er nødvendig etter tema</s:String>
+        <s:String>Alltid</s:String>
+        <s:String>Aldri</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Midtklikk-handling:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Ikke gjør noe</s:String>
+        <s:String>Åpne en ny instans</s:String>
+        <s:String>Lukk oppgaven</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Klokkeklikk-handling:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Ikke gjør noe</s:String>
+        <s:String>Åpne Aero-kalenderen</s:String>
+        <s:String>Åpne Modern-kalenderen</s:String>
+        <s:String>Åpne varslingssenteret</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Skjul _oppgavelinjen når den er skjult med automatisk skjuling</s:String>
+    <s:String x:Key="version">Versjon {0}</s:String>
+    <s:String x:Key="visit_on_github">Besøk RetroBar på GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Oppgavelinjens skala</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Gjeldende innstilling: {0}%</s:String>
+    <s:String x:Key="debug_logging">Aktiver _feilsøkingslogging</s:String>
+    <s:String x:Key="check_for_updates">Sjekk etter o_ppdateringer</s:String>
+    <s:String x:Key="show_exit_menu_item">Vis alternativet «Avslutt» i høyreklikkmenyen</s:String>
+    <s:String x:Key="show_end_task_button">Vis alternativet «Avslutt oppgave» i høyreklikkmenyen</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Skyv oppgavelinjeikoner</s:String>
+    <s:String x:Key="show_clock_seconds">Vis sekunder på klokken</s:String>
+    <s:String x:Key="open_custom_themes_folder">Åpne mappen for tilpassede temaer</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _hurtigtaster-handling:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows standardinnstilling</s:String>
+        <s:String>Bytte oppgaver</s:String>
+        <s:String>Åpne hurtigstartelement</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Retrobar-hurtigtaster</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar vil overstyre hurtigtastene i Windows-oppgavelinjen. Selv om RetroBar er lukket, vil de ikke bli gjenopprettet i Windows før du logger ut og logger inn igjen.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Customize Notifications</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behavior for items in the list below.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Select an item, then choose its notification behavior:</s:String>
+    <s:String x:Key="hide_when_inactive">Hide when inactive</s:String>
+    <s:String x:Key="always_show">Always show</s:String>
+    <s:String x:Key="always_hide">Always hide</s:String>
+    <s:String x:Key="remove">Remove</s:String>
+    <s:String x:Key="name_heading">Name</s:String>
+    <s:String x:Key="behavior_heading">Behavior</s:String>
+    <s:String x:Key="invert_heading">Invert</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Klikk her for å begynne.</s:String>
+    <s:String x:Key="start_button_tip">Klikk her for å begynne</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
+    <s:String x:Key="toolbars">_Toolbars</s:String>
+    <s:String x:Key="quick_launch">_Quick Launch</s:String>
+    <s:String x:Key="new_toolbar">_New Toolbar...</s:String>
+    <s:String x:Key="set_time">_Adjust Date/Time</s:String>
+    <s:String x:Key="cascade">Ca_scade Windows</s:String>
+    <s:String x:Key="horiz_tile">Tile Windows _Horizontally</s:String>
+    <s:String x:Key="vert_tile">Tile Windows V_ertically</s:String>
+    <s:String x:Key="toggle_desktop">_Show the Desktop</s:String>
+    <s:String x:Key="hide_desktop">_Show Open Windows</s:String>
+    <s:String x:Key="undo_cascade">_Undo Cascade</s:String>
+    <s:String x:Key="undo_tile">_Undo Tile</s:String>
+    <s:String x:Key="undo_minimize_all">_Undo Minimize All</s:String>
+    <s:String x:Key="show_taskman_2k">Tas_k Manager...</s:String>
+    <s:String x:Key="show_taskman">Tas_k Manager</s:String>
+    <s:String x:Key="tray_properties">P_roperties</s:String>
+    <s:String x:Key="update_available">_Update available...</s:String>
+    <s:String x:Key="exit_retrobar">_Avslutt RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Customize Notifications...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Lock the Taskbar</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Surface/Restore Desktop</s:String>
+    <s:String x:Key="show_desktop_tip">Show Desktop</s:String>
+    <s:String x:Key="show_desktop_95">_Desktop</s:String>
+    <s:String x:Key="show_desktop">_Show Desktop</s:String>
+    <s:String x:Key="peek_at_desktop">_Peek at desktop</s:String>
+
+    <s:String x:Key="restore">_Restore</s:String>
+    <s:String x:Key="move">_Move</s:String>
+    <s:String x:Key="size">_Size</s:String>
+    <s:String x:Key="minimize">Mi_nimize</s:String>
+    <s:String x:Key="maximize">Ma_ximize</s:String>
+    <s:String x:Key="close">_Close</s:String>
+    <s:String x:Key="end_task">_End task</s:String>
+
+    <s:String x:Key="show_hidden">Show hidden icons</s:String>
+    <s:String x:Key="hide">Hide</s:String>
+
+    <s:String x:Key="open_folder">&amp;Åpne mappe</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Høyreklikk for IME-alternativer</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME deaktivert</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Full bredde Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Full bredde alfanumerisk</s:String>
+    <s:String x:Key="ime_input_katakana">Halv bredde Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Halv bredde alfanumerisk</s:String>
+    <s:String x:Key="ime_input_direct">Direkte inngang</s:String>
+    <s:String x:Key="ime_open_pad">IME-underlag</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Legg til ord</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Tilleggsordbok</s:String>
+    <s:String x:Key="ime_open_properties">Innstillinger</s:String>
+    <s:String x:Key="ime_input_key">Kana-inngang</s:String>
+    <s:String x:Key="ime_input_key_roma">Av</s:String>
+    <s:String x:Key="ime_input_key_kana">På</s:String>
+    <s:String x:Key="ime_conversion">Konverteringsmodus</s:String>
+    <s:String x:Key="ime_conversion_general">Generelt</s:String>
+    <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
