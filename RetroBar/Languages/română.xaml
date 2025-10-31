@@ -67,4 +67,23 @@
     <s:String x:Key="hide">Ascundere</s:String>
 
     <s:String x:Key="open_folder">&amp;Deschideți dosarul</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Click dreapta pentru opțiuni IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME dezactivat</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana (lățime întreagă)</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alfanumeric (lățime întreagă)</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana (lățime parțială)</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alfanumeric (lățime parțială)</s:String>
+    <s:String x:Key="ime_input_direct">Introducere directă</s:String>
+    <s:String x:Key="ime_open_pad">Tastatură IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Adaugă cuvânt</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Dicționar complementar</s:String>
+    <s:String x:Key="ime_open_properties">Setări</s:String>
+    <s:String x:Key="ime_input_key">Introducere Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">Oprit</s:String>
+    <s:String x:Key="ime_input_key_kana">Pornit</s:String>
+    <s:String x:Key="ime_conversion">Mod conversie</s:String>
+    <s:String x:Key="ime_conversion_general">General</s:String>
+    <s:String x:Key="ime_conversion_none">Fără conversie</s:String>
 </ResourceDictionary>
