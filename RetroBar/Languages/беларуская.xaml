@@ -1,0 +1,167 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Уласьцівасьці RetroBar</s:String>
+    <s:String x:Key="taskbar_tab">Панэль задач</s:String>
+    <s:String x:Key="advanced_tab">Дадаткова</s:String>
+    <s:String x:Key="taskbar_appearance">Афармленьне панэлі задач</s:String>
+    <s:String x:Key="notification_area">Вобласць паведамленьняў</s:String>
+    <s:String x:Key="autostart">Аўтаматычна запускаць пры ўваходзе ў сістэму</s:String>
+    <s:String x:Key="language_text">Мова:</s:String>
+    <s:String x:Key="language_tip">Абярыце мову інтерфейсу.</s:String>
+    <s:String x:Key="theme_text">Тэма:</s:String>
+    <s:String x:Key="theme_tip">Усталюйце тэмы афармленьня ў папку Themes.</s:String>
+    <s:String x:Key="location_text">_Размяшчэньне:</s:String>
+    <s:String x:Key="location_tip">Змяніць размяшчэньне панэлі задач на экране.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Злева</s:String>
+        <s:String>Зверху</s:String>
+        <s:String>Справа</s:String>
+        <s:String>Знізу</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">Колькасьць радкоў:</s:String>
+    <s:String x:Key="rowcount_tip">Колькасьць радкоў на панэлі задач (зверху або знізу).</s:String>
+    <s:String x:Key="taskbar_width">Шырыня панэлі задач:</s:String>
+    <s:String x:Key="allow_font_smoothing">Дазволіць згладжванне шрыфтоў</s:String>
+    <s:String x:Key="collapse_tray_icons">Згарнуць значкі вобласьці апавяшчэньняў</s:String>
+    <s:String x:Key="customize">_Наладзіць...</s:String>
+    <s:String x:Key="show_input_language">Паказваць раскладку клавіятуры</s:String>
+    <s:String x:Key="show_clock">Паказваць гадзіньнік</s:String>
+    <s:String x:Key="show_multi_mon">Паказваць на некалькіх дысплеях</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Паказваць кнопку _Пуск на ўсіх панэлях задач</s:String>
+    <s:String x:Key="show_quick_launch">Паказваць панель _хуткага запуску</s:String>
+    <s:String x:Key="select_location">Выберыце размяшчэньне...</s:String>
+    <s:String x:Key="quick_launch_folder">Хуткі запуск - Выберыце папку</s:String>
+    <s:String x:Key="show_badges">Паказваць значкі</s:String>
+    <s:String x:Key="show_window_previews">Паказваць папярэднія прагляды вокнаў (мініяцюры)</s:String>
+    <s:String x:Key="use_software_rendering">Выкарыстоўваць праграмны рэндэрынг</s:String>
+    <s:String x:Key="add_show_desktop_button">Дадаць кнопку Паказаць працоўны стол</s:String>
+    <s:String x:Key="enable_auto_hide">_Аўтаматычна хаваць панэль задач</s:String>
+    <s:String x:Key="lock_taskbar">_Замацаваць панэль задач</s:String>
+    <s:String x:Key="multiple_displays">Некалькі дысплеяў</s:String>
+    <s:String x:Key="show_tasks_on">Паказваць задачы на:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Усіх панэлях задач</s:String>
+        <s:String>Той жа панэлі што і вакно</s:String>
+        <s:String>Той жа панэлі што і вакно + асноўная панэль</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">Інвертаваць сістэмныя значкі:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Калі патрабуецца тэме</s:String>
+        <s:String>Заўсёды</s:String>
+        <s:String>Ніколі</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Дзеяньне па сярэдняй кнопцы мышы:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Нічого не рабіць</s:String>
+        <s:String>Адкрыць новы экзэмпляр</s:String>
+        <s:String>Закрыць задачу</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">Дзеяньне па кліку па гадзіньніку:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Нічого не рабіць</s:String>
+        <s:String>Адкрыць Aero-каляндар</s:String>
+        <s:String>Адкрыць Modern-каляндар</s:String>
+        <s:String>Адкрыць Цэнтр апавяшчэньняў</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Схаваць лінію панэлі задач пры аўтасхоўваньні</s:String>
+    <s:String x:Key="version">Версія {0}</s:String>
+    <s:String x:Key="visit_on_github">Наведаць RetroBar на GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Маштаб панэлі</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Бягучая налада: {0}%</s:String>
+    <s:String x:Key="debug_logging">Уключыць журнал адладкі</s:String>
+    <s:String x:Key="check_for_updates">Праверыць наяўнасць абнаўленьняў</s:String>
+    <s:String x:Key="show_exit_menu_item">Паказваць опцыю Выйсьці ў кантэкстным мяню</s:String>
+    <s:String x:Key="show_end_task_button">Паказваць опцыю Завяршыць задачу у кантэкстным меню</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Анімацыя кнопак панэлі</s:String>
+    <s:String x:Key="show_clock_seconds">Паказваць сякунды на гадзіньніку</s:String>
+    <s:String x:Key="open_custom_themes_folder">Адкрыць папку карыстальніцкіх тэм</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Дзеяньне Win+[0-9] гарачых клавіш:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Па змаўчаньні для Windows</s:String>
+        <s:String>Пераключэнне задач</s:String>
+        <s:String>Адкрыць Хуткі запуск</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Гарачыя клавіші RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar перавызначыць спалучэньні гарачых клавіш панэлі задач Windows. Яны не будуць адноўлены нават пасля зачыненьня RetroBar, пакуль вы не выйдзеце з сістэмы і не ўвойдзеце зноў.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Налады апавяшчэньняў</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar адлюстроўвае значкі для актыўных і тэрміновых апавяшчэньняў і хавае неактыўныя. Вы можаце змяніць гэтую паводзіну для элементаў у спісе ніжэй.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Выберыце элемент, а затым выберыце яго паводзіны:</s:String>
+    <s:String x:Key="hide_when_inactive">Схаваць, калі неактыўны</s:String>
+    <s:String x:Key="always_show">Заўсёды паказваць</s:String>
+    <s:String x:Key="always_hide">Заўсёды хаваць</s:String>
+    <s:String x:Key="remove">Выдаліць</s:String>
+    <s:String x:Key="name_heading">Назва</s:String>
+    <s:String x:Key="behavior_heading">Паводзіны</s:String>
+    <s:String x:Key="invert_heading">Інвертаваць</s:String>
+
+    <s:String x:Key="start_text">Пуск</s:String>
+    <s:String x:Key="start_text_xp">пуск</s:String>
+    <s:String x:Key="start_button_tip_98">Націсніце тут, каб пачаць.</s:String>
+    <s:String x:Key="start_button_tip">Націсніце тут, каб пачаць</s:String>
+    <s:String x:Key="start_button_tip_vista">Пуск</s:String>
+
+    <s:String x:Key="retrobar_title">Панэль задач RetroBar</s:String>
+    <s:String x:Key="toolbars">Панэль інструментаў</s:String>
+    <s:String x:Key="quick_launch">Хуткі запуск</s:String>
+    <s:String x:Key="new_toolbar">Новая панэль...</s:String>
+    <s:String x:Key="set_time">_Налады даты і часу</s:String>
+    <s:String x:Key="cascade">Вокны _каскадам</s:String>
+    <s:String x:Key="horiz_tile">Вокны з_верху ўніз</s:String>
+    <s:String x:Key="vert_tile">_Вокны злева направа</s:String>
+    <s:String x:Key="toggle_desktop">Паказаць _працоўны стол</s:String>
+    <s:String x:Key="hide_desktop">Паказаць усе вокны</s:String>
+    <s:String x:Key="undo_cascade">Адмяніць Вокны каскадам</s:String>
+    <s:String x:Key="undo_tile">Адмяніць плітку</s:String>
+    <s:String x:Key="undo_minimize_all">Адмяніць Згарнуць усё</s:String>
+    <s:String x:Key="show_taskman_2k">Д_ыспетчар задач...</s:String>
+    <s:String x:Key="show_taskman">Д_ыспетчар задач</s:String>
+    <s:String x:Key="tray_properties">Уласьцівасьці</s:String>
+    <s:String x:Key="update_available">Даступна абнаўленьне...</s:String>
+    <s:String x:Key="exit_retrobar">Выйсьці з RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">Наладзіць апавяшчэньня...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Замацаваць панэль задач</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Паказаць працоўны стол</s:String>
+    <s:String x:Key="show_desktop_tip">Паказаць працоўны стол</s:String>
+    <s:String x:Key="show_desktop_95">Працоўны стол</s:String>
+    <s:String x:Key="show_desktop">Паказаць працоўны стол</s:String>
+    <s:String x:Key="peek_at_desktop">Паказаць працоўны стол пры навядзеньні</s:String>
+
+    <s:String x:Key="restore">Аднавіць</s:String>
+    <s:String x:Key="move">Перамясціць</s:String>
+    <s:String x:Key="size">Памер</s:String>
+    <s:String x:Key="minimize">Згарнуць</s:String>
+    <s:String x:Key="maximize">Разгарнуць</s:String>
+    <s:String x:Key="close">Закрыць</s:String>
+    <s:String x:Key="end_task">Завяршыць задачу</s:String>
+
+    <s:String x:Key="show_hidden">Паказаць схаваныя значкі</s:String>
+    <s:String x:Key="hide">Схаваць</s:String>
+
+    <s:String x:Key="open_folder">&amp;Адкрыць папку</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Націсніце правай кнопкай мышы для наладкі IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME адключаны</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Хірагана</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Поўнашырынная катакана</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Поўнашырынныя літары і лічбы</s:String>
+    <s:String x:Key="ime_input_katakana">Паўшырынная катакана</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Паўшырынная літары і лічбы</s:String>
+    <s:String x:Key="ime_input_direct">Прамы ўвод</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Дадаць слова</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Слоўнік дапаўненьняў</s:String>
+    <s:String x:Key="ime_open_properties">Налады</s:String>
+    <s:String x:Key="ime_input_key">Увод каны</s:String>
+    <s:String x:Key="ime_input_key_roma">Выкл</s:String>
+    <s:String x:Key="ime_input_key_kana">Укл</s:String>
+    <s:String x:Key="ime_conversion">Рэжым пераўтварэньня</s:String>
+    <s:String x:Key="ime_conversion_general">Стандартны</s:String>
+    <s:String x:Key="ime_conversion_none">Без пераўтварэньня</s:String>
+</ResourceDictionary>
