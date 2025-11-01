@@ -6,7 +6,7 @@
     <s:String x:Key="taskbar_tab">Oppgavelinje</s:String>
     <s:String x:Key="advanced_tab">Avansert</s:String>
     <s:String x:Key="taskbar_appearance">Oppgavelinjens utseende</s:String>
-    <s:String x:Key="notification_area">Varslingsområde</s:String>
+    <s:String x:Key="notification_area">Systemstatusfelt</s:String>
     <s:String x:Key="autostart">Start automatisk ved _pålogging</s:String>
     <s:String x:Key="language_text">Språk:</s:String>
     <s:String x:Key="language_tip">Velg språk som skal brukes.</s:String>
@@ -24,20 +24,20 @@
     <s:String x:Key="rowcount_tip">Antall rader på oppgavelinjen når den er øverst eller nederst.</s:String>
     <s:String x:Key="taskbar_width">Oppgavelinjen_s bredde:</s:String>
     <s:String x:Key="allow_font_smoothing">_Tillat fontutjevning</s:String>
-    <s:String x:Key="collapse_tray_icons">Skjul _ikoner i varslingsområdet</s:String>
+    <s:String x:Key="collapse_tray_icons">Skjul _ikoner i systemstatusfeltet</s:String>
     <s:String x:Key="customize">_Tilpass...</s:String>
     <s:String x:Key="show_input_language">Vis inndataspråket</s:String>
     <s:String x:Key="show_clock">Vis klokken</s:String>
     <s:String x:Key="show_multi_mon">Vis på _flere skjermer</s:String>
     <s:String x:Key="show_start_button_multi_mon">Vis _«Start»-knappen på alle oppgavelinjer</s:String>
-    <s:String x:Key="show_quick_launch">Vis _hurtigstart</s:String>
+    <s:String x:Key="show_quick_launch">Vis _Hurtigstart</s:String>
     <s:String x:Key="select_location">_Velg sted...</s:String>
     <s:String x:Key="quick_launch_folder">Hurtigstart - Velg en mappe</s:String>
     <s:String x:Key="show_badges">Vis _emblemer</s:String>
     <s:String x:Key="show_window_previews">Vis _vinduforhåndsvisninger (miniatyrbilder)</s:String>
     <s:String x:Key="use_software_rendering">_Bruk programvarerendering</s:String>
     <s:String x:Key="add_show_desktop_button">Legg til «Vis _skrivebord»-knappen</s:String>
-    <s:String x:Key="enable_auto_hide">A_utomatisk skjule oppgavelinjen</s:String>
+    <s:String x:Key="enable_auto_hide">S_kjul oppgavelinjen automatisk</s:String>
     <s:String x:Key="lock_taskbar">_Lås oppgavelinjen</s:String>
     <s:String x:Key="multiple_displays">Flere skjermer</s:String>
     <s:String x:Key="show_tasks_on">V_is oppgaver på::</s:String>
@@ -90,20 +90,20 @@
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tilpass varslinger</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar viser ikoner for aktive og viktige varsler, og skjuler inaktive varsler. Du kan endre denne funksjonen for elementene i listen nedenfor.</s:String>
-    <s:String x:Key="customize_notifications_instruction">Velg et element, og velg deretter hvordan du vil bli varslet:</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar viser ikoner for aktive og viktige varsler, og skjuler de som er inaktive. Du kan endre denne virkemåten for elementer i listen nedenfor.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Velg et element, og velg hva som skal skje ved varsling:</s:String>
     <s:String x:Key="hide_when_inactive">Skjul når inaktiv</s:String>
     <s:String x:Key="always_show">Vis alltid</s:String>
     <s:String x:Key="always_hide">Skjul alltid</s:String>
     <s:String x:Key="remove">Fjern</s:String>
     <s:String x:Key="name_heading">Navn</s:String>
-    <s:String x:Key="behavior_heading">Atferd</s:String>
+    <s:String x:Key="behavior_heading">Virkemåte</s:String>
     <s:String x:Key="invert_heading">Omvendt</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
-    <s:String x:Key="start_button_tip_98">Klikk her for å begynne.</s:String>
-    <s:String x:Key="start_button_tip">Klikk her for å begynne</s:String>
+    <s:String x:Key="start_button_tip_98">Klikk her når du vil begynne.</s:String>
+    <s:String x:Key="start_button_tip">Klikk her når du vil begynne</s:String>
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">RetroBar Oppgavelinje</s:String>
