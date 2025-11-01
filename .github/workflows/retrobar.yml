@@ -34,7 +34,7 @@ jobs:
       run: cp DistLicense.txt RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\License.txt
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}
         path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
@@ -76,7 +76,7 @@ jobs:
       run: ISCC.exe "${{ env.installer }}"
 
     - name: Upload installer
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
