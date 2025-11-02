@@ -104,7 +104,7 @@
     <s:String x:Key="start_text_xp">start</s:String>
     <s:String x:Key="start_button_tip_98">Click aici pentru a începe.</s:String>
     <s:String x:Key="start_button_tip">Click aici pentru a începe</s:String>
-    <s:String x:Key="start_button_tip_vista">start</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">Bara de activități RetroBar</s:String>
     <s:String x:Key="toolbars">_Bara de instrumente</s:String>
