@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">Proprietăți RetroBar</s:String>
     <s:String x:Key="taskbar_tab">Bară de activităţi</s:String>
+    <s:String x:Key="advanced_tab">Avansat</s:String>
     <s:String x:Key="taskbar_appearance">Aspect bară de activităţi</s:String>
     <s:String x:Key="notification_area">Zona de notificări</s:String>
     <s:String x:Key="autostart">Pornire automată la _conectare</s:String>
@@ -19,15 +20,73 @@
         <s:String>Dreapta</s:String>
         <s:String>Jos</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Număr de _rânduri:</s:String>
+    <s:String x:Key="rowcount_tip">Numărul de rânduri din bara de activități când este în partea de sus sau de jos.</s:String>
+    <s:String x:Key="taskbar_width">Lățime_a barei de activități:</s:String>
     <s:String x:Key="allow_font_smoothing">Activați _netezirea fontului</s:String>
     <s:String x:Key="collapse_tray_icons">_Ascundeți pictogramele din bara de notificări</s:String>
     <s:String x:Key="customize">_Personalizați...</s:String>
+    <s:String x:Key="show_input_language">Afișați limba de _introducere</s:String>
     <s:String x:Key="show_clock">Afișați _ceasul</s:String>
     <s:String x:Key="show_multi_mon">Afisați pe _ecrane multiple</s:String>
-    <s:String x:Key="show_quick_launch">Afișați _Meniul de Lansare Rapidă</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Afișați butonul _Start pe toate bările de activități</s:String>
+    <s:String x:Key="show_quick_launch">Afișați _meniul de Lansare Rapidă</s:String>
     <s:String x:Key="select_location">_Selectați o locație...</s:String>
     <s:String x:Key="quick_launch_folder">Meniul de Lansare Rapidă - Selectează un dosar</s:String>
-    <s:String x:Key="use_software_rendering">_Folosiți software rendering</s:String>
+    <s:String x:Key="show_badges">Afișați _emblemele</s:String>
+    <s:String x:Key="show_window_previews">Afișare _previzualizări ferestre (miniaturi)</s:String>
+    <s:String x:Key="use_software_rendering">_Folosiți randarea software-ului</s:String>
+    <s:String x:Key="add_show_desktop_button">Adăugați butonul "arătați suprafața de lucru"</s:String>
+    <s:String x:Key="enable_auto_hide">A_scundeți automat bara de activități</s:String>
+    <s:String x:Key="lock_taskbar">_Blocați bara de activități</s:String>
+    <s:String x:Key="multiple_displays">Ecrane multiple</s:String>
+    <s:String x:Key="show_tasks_on">A_rătați activitățile pe:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Toate bările de activități</s:String>
+        <s:String>Aceeași bară de activități ca fereastra</s:String>
+        <s:String>Aceeași bară de activități ca fereastra și bara de activități principală</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Inversați culoarea pictogramelor:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Doar când este nevoie</s:String>
+        <s:String>Mereu</s:String>
+        <s:String>Niciodată</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Acțiune cu clicul mijlociu:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Nu fă nimic</s:String>
+        <s:String>Deschideți o nouă instanță</s:String>
+        <s:String>Închideți activitatea</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Acțiune la clicul ceasului:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Nu fă nimic</s:String>
+        <s:String>Deschideți calendarul Aero</s:String>
+        <s:String>Deschideți calendarul Modern</s:String>
+        <s:String>Deschideți Centrul de Notificații</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Ascundeți _linia barei de activități atunci când se ascunde automat</s:String>
+    <s:String x:Key="version">Versiunea {0}</s:String>
+    <s:String x:Key="visit_on_github">Vizitați RetroBar pe GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Scara barei de activități</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Setare actuală: {0}%</s:String>
+    <s:String x:Key="debug_logging">Activați _jurnalul de depanare</s:String>
+    <s:String x:Key="check_for_updates">Verificați dacă există actualizări</s:String>
+    <s:String x:Key="show_exit_menu_item">Arătați opțiunea "Închidere" când faceți clic dreapta</s:String>
+    <s:String x:Key="show_end_task_button">Arătați opțiunea "Terminare activitate" când faceți clic dreapta</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Permiteți efectul de glisare pe butoanele din bara de activitate</s:String>
+    <s:String x:Key="show_clock_seconds">A_fișați secundele din ceas</s:String>
+    <s:String x:Key="open_custom_themes_folder">Descideți sertarul cu teme personalizate</s:String>
+    <s:String x:Key="win_num_hotkeys_action">_Acțiune taste rapide Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Implicit Windows</s:String>
+        <s:String>Schimbați activitățile</s:String>
+        <s:String>Deschidere element de lansare rapidă</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Taste rapide RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar va suprascrie tastele rapide din bara de activități Windows. Chiar dacă RetroBar este închis, acestea nu vor fi restaurate în Windows până când nu vă deconectați și vă reconectați.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizați Notificările</s:String>
@@ -35,8 +94,11 @@
     <s:String x:Key="customize_notifications_instruction">Selectați o opțiune, apoi alegeți comportamentul notificării:</s:String>
     <s:String x:Key="hide_when_inactive">Ascunde în caz de inactivitate</s:String>
     <s:String x:Key="always_show">Mereu arată</s:String>
+    <s:String x:Key="always_hide">Mereu ascunde</s:String>
+    <s:String x:Key="remove">Elimină</s:String>
     <s:String x:Key="name_heading">Nume</s:String>
     <s:String x:Key="behavior_heading">Comportament</s:String>
+    <s:String x:Key="invert_heading">Inversează</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
@@ -45,16 +107,31 @@
     <s:String x:Key="start_button_tip_vista">Start</s:String>
 
     <s:String x:Key="retrobar_title">Bara de activități RetroBar</s:String>
-    <s:String x:Key="toolbars">_Bare de instrumente</s:String>
+    <s:String x:Key="toolbars">_Bara de instrumente</s:String>
     <s:String x:Key="quick_launch">_Lansare rapidă</s:String>
     <s:String x:Key="new_toolbar">_Bară de instrumente nouă...</s:String>
     <s:String x:Key="set_time">_Reglați data/ora</s:String>
-    <s:String x:Key="show_taskman_2k">Ma_nager de activități...</s:String>
-    <s:String x:Key="show_taskman">Ma_nager de activități</s:String>
+    <s:String x:Key="cascade">Aranjați ferestrele în ca_scadă</s:String>
+    <s:String x:Key="horiz_tile">Aranjați ferestrele în _orizontală</s:String>
+    <s:String x:Key="vert_tile">Aranjați ferestrele în v_erticală</s:String>
+    <s:String x:Key="toggle_desktop">_Arătați suprafața de lucru</s:String>
+    <s:String x:Key="hide_desktop">_Arătați ferestrele deschise</s:String>
+    <s:String x:Key="undo_cascade">_Anulați aranjamentul în cascadă</s:String>
+    <s:String x:Key="undo_tile">_Anulați alăturarea ferestrelor</s:String>
+    <s:String x:Key="undo_minimize_all">_Anulați minimizarea tuturor ferestrelor</s:String>
+    <s:String x:Key="show_taskman_2k">Ge_stionator de activități...</s:String>
+    <s:String x:Key="show_taskman">Ge_stionator de activități</s:String>
     <s:String x:Key="tray_properties">Propr_ietăți</s:String>
     <s:String x:Key="update_available">_Actualizare disponibilă...</s:String>
     <s:String x:Key="exit_retrobar">Închideți _RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Personalizați notificările...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Blocați bara de activități</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Restabiliți suprafața de lucru</s:String>
+    <s:String x:Key="show_desktop_tip">Arătați suprafața de lucru</s:String>
+    <s:String x:Key="show_desktop_95">_Suprafață de lucru</s:String>
+    <s:String x:Key="show_desktop">_Arătați suprafața de lucru</s:String>
+    <s:String x:Key="peek_at_desktop">_Aruncați o privire la trecerea cursorului</s:String>
 
     <s:String x:Key="restore">_Restabilire</s:String>
     <s:String x:Key="move">_Mutare</s:String>
@@ -62,9 +139,30 @@
     <s:String x:Key="minimize">Mi_nimizare</s:String>
     <s:String x:Key="maximize">Ma_ximizare</s:String>
     <s:String x:Key="close">_Închidere</s:String>
+    <s:String x:Key="end_task">_Terminare activitate</s:String>
 
     <s:String x:Key="show_hidden">Arată pictogramele ascunse</s:String>
     <s:String x:Key="hide">Ascundere</s:String>
 
     <s:String x:Key="open_folder">&amp;Deschideți dosarul</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Click dreapta pentru opțiuni IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME dezactivat</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana (lățime întreagă)</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alfanumeric (lățime întreagă)</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana (lățime parțială)</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alfanumeric (lățime parțială)</s:String>
+    <s:String x:Key="ime_input_direct">Introducere directă</s:String>
+    <s:String x:Key="ime_open_pad">Asistent IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Adaugă cuvânt</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Dicționar complementar</s:String>
+    <s:String x:Key="ime_open_properties">Setări</s:String>
+    <s:String x:Key="ime_input_key">Introducere Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">Oprit</s:String>
+    <s:String x:Key="ime_input_key_kana">Pornit</s:String>
+    <s:String x:Key="ime_conversion">Mod conversie</s:String>
+    <s:String x:Key="ime_conversion_general">General</s:String>
+    <s:String x:Key="ime_conversion_none">Fără conversie</s:String>
+
 </ResourceDictionary>
