@@ -65,7 +65,7 @@
         <s:String>Deschideți calendarul Modern</s:String>
         <s:String>Deschideți Centrul de Notificații</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">Ascundeți _linia barei de activități atunci când este ascunsă în mod automat</s:String>
+    <s:String x:Key="auto_hide_transparent">Ascundeți _linia barei de activități atunci când se ascunde automat</s:String>
     <s:String x:Key="version">Versiunea {0}</s:String>
     <s:String x:Key="visit_on_github">Vizitați RetroBar pe GitHub</s:String>
     <s:String x:Key="taskbar_scale">Scara barei de activități</s:String>
@@ -100,11 +100,11 @@
     <s:String x:Key="behavior_heading">Comportament</s:String>
     <s:String x:Key="invert_heading">Inversează</s:String>
 
-    <s:String x:Key="start_text">Pornire</s:String>
-    <s:String x:Key="start_text_xp">Pornire</s:String>
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
     <s:String x:Key="start_button_tip_98">Click aici pentru a începe.</s:String>
     <s:String x:Key="start_button_tip">Click aici pentru a începe</s:String>
-    <s:String x:Key="start_button_tip_vista">Pornire</s:String>
+    <s:String x:Key="start_button_tip_vista">start</s:String>
 
     <s:String x:Key="retrobar_title">Bara de activități RetroBar</s:String>
     <s:String x:Key="toolbars">_Bara de instrumente</s:String>
@@ -154,7 +154,7 @@
     <s:String x:Key="ime_input_katakana">Katakana (lățime parțială)</s:String>
     <s:String x:Key="ime_input_alphanumeric">Alfanumeric (lățime parțială)</s:String>
     <s:String x:Key="ime_input_direct">Introducere directă</s:String>
-    <s:String x:Key="ime_open_pad">Tastatură IME</s:String>
+    <s:String x:Key="ime_open_pad">Asistent IME</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Adaugă cuvânt</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Dicționar complementar</s:String>
     <s:String x:Key="ime_open_properties">Setări</s:String>
