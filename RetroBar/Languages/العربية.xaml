@@ -4,62 +4,168 @@
 
     <s:String x:Key="retrobar_properties">خصائص RetroBar</s:String>
     <s:String x:Key="taskbar_tab">شريط المهام</s:String>
-    <s:String x:Key="advanced_tab">خيارا ت متقدمة</s:String>
-    <s:String x:Key="taskbar_appearance">ظهور شريط المهام</s:String>
-    <s:String x:Key="notification_area">ناحية الإعلام</s:String>
-    <s:String x:Key="autostart">_بدأ تلقائيًا عند تسجيل الدخول</s:String>
-    <s:String x:Key="language_text">_لسان:</s:String>
-    <s:String x:Key="language_tip">_اختيار لسانك.</s:String>
-    <s:String x:Key="theme_text">_تصميم:</s:String>
-    <s:String x:Key="theme_tip">ثبّت التصاميم في المجلد "Themes".</s:String>
-    <s:String x:Key="location_text">_موقع:</s:String>
-    <s:String x:Key="location_tip">تغيير حجم شريط المهام.</s:String>
+    <s:String x:Key="advanced_tab">خيارات متقدمة</s:String>
+    <s:String x:Key="taskbar_appearance">مظهر شريط المهام</s:String>
+    <s:String x:Key="notification_area">منطقة الإعلام</s:String>
+    <s:String x:Key="autostart">بدء التشغيل تلقائيًا عند تسجيل ال_دخول</s:String>
+    <s:String x:Key="language_text">ال_لغة:</s:String>
+    <s:String x:Key="language_tip">اختر اللغة التي تريد استخدامها.</s:String>
+    <s:String x:Key="theme_text">ال_سمة:</s:String>
+    <s:String x:Key="theme_tip">قم بتثبيت السمات داخل مجلد السمات.</s:String>
+    <s:String x:Key="location_text">الم_وضع:</s:String>
+    <s:String x:Key="location_tip">غيّر موضع شريط المهام على الشاشة.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
-        <s:String>شمال</s:String>
+        <s:String>يسار</s:String>
         <s:String>أعلى</s:String>
         <s:String>يمين</s:String>
         <s:String>أسفل</s:String>
     </x:Array>
-    <s:String x:Key="allow_font_smoothing">_السماح بتجانس الخط</s:String>
-    <s:String x:Key="collapse_tray_icons">تقليص رموز منطقة الرسالة</s:String>
-    <s:String x:Key="customize">ت_خصيص...</s:String>
-    <s:String x:Key="show_clock">عرض ساعة النظام</s:String>
-    <s:String x:Key="show_multi_mon">عرض على شاشات متعددة</s:String>
-    <s:String x:Key="show_quick_launch">عرض البداية السريعة</s:String>
-    <s:String x:Key="select_location">_اختيار الموقع...</s:String>
-    <s:String x:Key="quick_launch_folder">بداية سريعة - اختيار المجلد</s:String>
-    <s:String x:Key="use_software_rendering">_استخدام عرض البرامج</s:String>
+    <s:String x:Key="rowcount_text">عدد ال_صفوف:</s:String>
+    <s:String x:Key="rowcount_tip">عدد صفوف شريط المهام عند وجوده في الأعلى أو الأسفل.</s:String>
+    <s:String x:Key="taskbar_width">ع_رض شريط المهام:</s:String>
+    <s:String x:Key="allow_font_smoothing">السماح بتنعيم ال_خطوط</s:String>
+    <s:String x:Key="collapse_tray_icons">طيّ أيقونات _منطقة الإعلام</s:String>
+    <s:String x:Key="customize">_تخصيص...</s:String>
+    <s:String x:Key="show_input_language">إظهار لغة الإد_خال</s:String>
+    <s:String x:Key="show_clock">إظهار ال_ساعة</s:String>
+    <s:String x:Key="show_multi_mon">إظهار على _شاشات متعددة</s:String>
+    <s:String x:Key="show_start_button_multi_mon">إظهار زر _ابدأ على جميع أشرطة المهام</s:String>
+    <s:String x:Key="show_quick_launch">إظهار شريط التشغيل ال_سريع</s:String>
+    <s:String x:Key="select_location">_تحديد الموضع...</s:String>
+    <s:String x:Key="quick_launch_folder">التشغيل السريع - اختر مجلدًا</s:String>
+    <s:String x:Key="show_badges">إظهار ال_شارات</s:String>
+    <s:String x:Key="show_window_previews">إظهار معاينات ال_نوافذ (المصغّرات)</s:String>
+    <s:String x:Key="use_software_rendering">استخدام المعالجة ال_برمجية</s:String>
+    <s:String x:Key="add_show_desktop_button">إضافة زر إظهار ال_سطح</s:String>
+    <s:String x:Key="enable_auto_hide">إخفاء شريط المهام تلقائيًا</s:String>
+    <s:String x:Key="lock_taskbar">_قفل شريط المهام</s:String>
+    <s:String x:Key="multiple_displays">شاشات متعددة</s:String>
+    <s:String x:Key="show_tasks_on">ع_رض المهام على:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>كل أشرطة المهام</s:String>
+        <s:String>نفس شريط المهام الذي توجد عليه النافذة</s:String>
+        <s:String>نفس شريط المهام الذي توجد عليه النافذة وشريط المهام الرئيسي</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_عكس أيقونات النظام:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>عند الحاجة حسب السمة</s:String>
+        <s:String>دائمًا</s:String>
+        <s:String>أبدًا</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_إجراء زر الفأرة الأوسط:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>عدم تنفيذ أي إجراء</s:String>
+        <s:String>فتح مثيل جديد</s:String>
+        <s:String>إغلاق المهمة</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_إجراء النقر على الساعة:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>عدم تنفيذ أي إجراء</s:String>
+        <s:String>فتح تقويم Aero</s:String>
+        <s:String>فتح التقويم الحديث</s:String>
+        <s:String>فتح مركز الإشعارات</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">إخفاء خط شريط الم_هام عند استخدام الإخفاء التلقائي</s:String>
+    <s:String x:Key="version">الإصدار {0}</s:String>
+    <s:String x:Key="visit_on_github">زيارة RetroBar على GitHub</s:String>
+    <s:String x:Key="taskbar_scale">مقياس شريط المهام</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">الإعداد الحالي: ‎{0}%‎</s:String>
+    <s:String x:Key="debug_logging">تمكين تسجيل ال_تصحيح</s:String>
+    <s:String x:Key="check_for_updates">التحقق من الت_حديثات</s:String>
+    <s:String x:Key="show_exit_menu_item">إظهار خيار ال_خروج في قائمة النقر بزر الماوس الأيمن</s:String>
+    <s:String x:Key="show_end_task_button">إظهار خيار إنهاء ال_مهمة في قائمة النقر بزر الماوس الأيمن</s:String>
+    <s:String x:Key="slide_taskbar_buttons">تحريك أزرار شريط الم_هام</s:String>
+    <s:String x:Key="show_clock_seconds">إظهار ال_ثواني في الساعة</s:String>
+    <s:String x:Key="open_custom_themes_folder">فتح مجلد السمات المخصصة</s:String>
+    <s:String x:Key="win_num_hotkeys_action">إجراء اختصارات Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>الإعداد الافتراضي لويندوز</s:String>
+        <s:String>تبديل المهام</s:String>
+        <s:String>فتح عنصر من التشغيل السريع</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">اختصارات RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">سيقوم RetroBar باستبدال اختصارات شريط مهام ويندوز. حتى إذا أغلقت RetroBar، فلن تعود الاختصارات الأصلية حتى تقوم بتسجيل الخروج والعودة.</s:String>
     <s:String x:Key="ok_dialog">موافق</s:String>
 
+    <s:String x:Key="customize_notifications">تخصيص الإشعارات</s:String>
+    <s:String x:Key="customize_notifications_info">يعرض RetroBar أيقونات للإشعارات النشطة والعاجلة ويخفي غير النشطة. يمكنك تغيير هذا السلوك للعناصر في القائمة أدناه.</s:String>
+    <s:String x:Key="customize_notifications_instruction">اختر عنصرًا، ثم حدد سلوك الإشعار الخاص به:</s:String>
+    <s:String x:Key="hide_when_inactive">إخفاء عند عدم النشاط</s:String>
+    <s:String x:Key="always_show">عرض دائمًا</s:String>
+    <s:String x:Key="always_hide">إخفاء دائمًا</s:String>
+    <s:String x:Key="remove">إزالة</s:String>
+    <s:String x:Key="name_heading">الاسم</s:String>
+    <s:String x:Key="behavior_heading">السلوك</s:String>
+    <s:String x:Key="invert_heading">العكس</s:String>
+
     <s:String x:Key="start_text">ابدأ</s:String>
-    <s:String x:Key="start_text_xp"> ابدأ</s:String>
-    <s:String x:Key="start_button_tip_98">انقر هنا لتبدأ.</s:String>
-    <s:String x:Key="start_button_tip">انقر هنا لتبدأ</s:String>
+    <s:String x:Key="start_text_xp">ابدأ</s:String>
+    <s:String x:Key="start_button_tip_98">انقر هنا للبدء.</s:String>
+    <s:String x:Key="start_button_tip">انقر هنا للبدء</s:String>
     <s:String x:Key="start_button_tip_vista">ابدأ</s:String>
 
-    <s:String x:Key="retrobar_title">شريط المهام RetroBar</s:String>
+    <s:String x:Key="retrobar_title">شريط مهام RetroBar</s:String>
     <s:String x:Key="toolbars">_أشرطة الأدوات</s:String>
-    <s:String x:Key="quick_launch">_بداية سريعة</s:String>
-    <s:String x:Key="new_toolbar">_شريط أدوات حديث...</s:String>
-    <s:String x:Key="set_time">_اضبط الساعة والتاريخ</s:String>
-    <s:String x:Key="show_taskman_2k">مدير المه_ام...</s:String>
-    <s:String x:Key="show_taskman">إدارة المه_ام</s:String>
-    <s:String x:Key="tray_properties">خ_صائص</s:String>
-    <s:String x:Key="update_available">_تحديث متوفر...</s:String>
+    <s:String x:Key="quick_launch">_التشغيل السريع</s:String>
+    <s:String x:Key="new_toolbar">_شريط أدوات جديد...</s:String>
+    <s:String x:Key="set_time">_ضبط التاريخ/الوقت</s:String>
+    <s:String x:Key="cascade">ترتيب النوافذ ت_سلسلي</s:String>
+    <s:String x:Key="horiz_tile">ترتيب النوافذ أ_فقيًا</s:String>
+    <s:String x:Key="vert_tile">ترتيب النوافذ ر_أسيًا</s:String>
+    <s:String x:Key="toggle_desktop">_إظهار سطح المكتب</s:String>
+    <s:String x:Key="hide_desktop">_إظهار النوافذ المفتوحة</s:String>
+    <s:String x:Key="undo_cascade">_إلغاء الترتيب التسلسلي</s:String>
+    <s:String x:Key="undo_tile">_إلغاء الترتيب الشبكي</s:String>
+    <s:String x:Key="undo_minimize_all">_إلغاء تصغير الكل</s:String>
+    <s:String x:Key="show_taskman_2k">مدير ال_مهام...</s:String>
+    <s:String x:Key="show_taskman">مدير ال_مهام</s:String>
+    <s:String x:Key="tray_properties">_خصائص</s:String>
+    <s:String x:Key="update_available">_تحديث متاح...</s:String>
     <s:String x:Key="exit_retrobar">_خروج من RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_تخصيص الإشعارات...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_قفل شريط المهام</s:String>
 
-    <s:String x:Key="restore">ا_ستعادة</s:String>
+    <s:String x:Key="show_desktop_tip_95">إظهار/استعادة سطح المكتب</s:String>
+    <s:String x:Key="show_desktop_tip">إظهار سطح المكتب</s:String>
+    <s:String x:Key="show_desktop_95">_سطح المكتب</s:String>
+    <s:String x:Key="show_desktop">_إظهار سطح المكتب</s:String>
+    <s:String x:Key="peek_at_desktop">_لمحة عن سطح المكتب</s:String>
+
+    <s:String x:Key="restore">_استعادة</s:String>
     <s:String x:Key="move">_نقل</s:String>
-    <s:String x:Key="size">_الحجم</s:String>
-    <s:String x:Key="minimize">ت_صغير</s:String>
-    <s:String x:Key="maximize">ت_كبير</s:String>
-    <s:String x:Key="close">إ_غلاق</s:String>
+    <s:String x:Key="size">_حجم</s:String>
+    <s:String x:Key="minimize">_تصغير</s:String>
+    <s:String x:Key="maximize">_تكبير</s:String>
+    <s:String x:Key="close">_إغلاق</s:String>
+    <s:String x:Key="end_task">_إنهاء المهمة</s:String>
 
-    <s:String x:Key="show_hidden">إظهار الرموز المخفية</s:String>
+    <s:String x:Key="show_hidden">إظهار الأيقونات المخفية</s:String>
     <s:String x:Key="hide">إخفاء</s:String>
 
-    <s:String x:Key="open_folder">&amp;فتح مجلد</s:String>
+    <s:String x:Key="open_folder">&amp;فتح المجلد</s:String>
 
+    <s:String x:Key="ime_input_tip_enabled">انقر بزر الماوس الأيمن لخيارات IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME معطل</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">هيراغانا</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">كاتاكانا بعرض كامل</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">أحرف وأرقام بعرض كامل</s:String>
+    <s:String x:Key="ime_input_katakana">كاتاكانا بعرض نصف</s:String>
+    <s:String x:Key="ime_input_alphanumeric">أحرف وأرقام بعرض نصف</s:String>
+    <s:String x:Key="ime_input_direct">الإدخال المباشر</s:String>
+    <s:String x:Key="ime_open_pad">لوحة IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">إضافة كلمة</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">قاموس إضافي</s:String>
+    <s:String x:Key="ime_open_properties">الإعدادات</s:String>
+    <s:String x:Key="ime_input_key">إدخال Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">إيقاف</s:String>
+    <s:String x:Key="ime_input_key_kana">تشغيل</s:String>
+    <s:String x:Key="ime_conversion">وضع التحويل</s:String>
+    <s:String x:Key="ime_conversion_general">عام</s:String>
+    <s:String x:Key="ime_conversion_none">بدون تحويل</s:String>
+
+    <!-- العناصر التالية هي إعدادات ويجب أن تبقى بالإنجليزية دائمًا -->
     <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>
