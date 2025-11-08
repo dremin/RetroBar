@@ -106,8 +106,8 @@
     <s:String x:Key="start_button_tip">Ikklikkja hawn biex tibda</s:String>
     <s:String x:Key="start_button_tip_vista">Ibda</s:String>
 
-    <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
-    <s:String x:Key="toolbars">_Toolbars</s:String>
+    <s:String x:Key="retrobar_title">Barra tal-kompiti RetroBar</s:String>
+    <s:String x:Key="toolbars">_Barri tal-għodda</s:String>
     <s:String x:Key="quick_launch">_Avviż Rapidu</s:String>
     <s:String x:Key="new_toolbar">_Bar tal-għodda ġdida...</s:String>
     <s:String x:Key="set_time">_Aġġusta d-data u l-ħin</s:String>
@@ -127,7 +127,7 @@
     <s:String x:Key="customize_notifications_menu">_Personalizza n-notifiki...</s:String>
     <s:String x:Key="lock_taskbar_menu">_Iblokka l-bar tal-kompiti</s:String>
 
-    <s:String x:Key="show_desktop_tip_95">Irrestawra l-desktop</s:String>
+    <s:String x:Key="show_desktop_tip_95">Wiċċ / Irrestawra l-Desktop</s:String>
     <s:String x:Key="show_desktop_tip">Uri d-desktop</s:String>
     <s:String x:Key="show_desktop_95">_Desktop</s:String>
     <s:String x:Key="show_desktop">_Uri d-desktop</s:String>
@@ -168,4 +168,5 @@
     <!-- Items below are settings, and should always be in English -->
     <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+
 </ResourceDictionary>
