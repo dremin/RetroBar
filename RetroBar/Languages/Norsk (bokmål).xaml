@@ -74,7 +74,7 @@
     <s:String x:Key="taskbar_scale_current">Gjeldende innstilling: {0}%</s:String>
     <s:String x:Key="debug_logging">Aktiver _feilsøkingslogging</s:String>
     <s:String x:Key="check_for_updates">Sjekk etter o_ppdateringer</s:String>
-    <s:String x:Key="show_exit_menu_item">Vis alternativet «Avslutt» i høyreklikkmenyen</s:String>
+    <s:String x:Key="show_exit_menu_item">Vis alternativet «Lukk» i høyreklikkmenyen</s:String>
     <s:String x:Key="show_end_task_button">Vis alternativet «Avslutt oppgave» i høyreklikkmenyen</s:String>
     <s:String x:Key="slide_taskbar_buttons">Skyv oppgavelinjeikoner</s:String>
     <s:String x:Key="show_clock_seconds">Vis sekunder på klokken</s:String>
