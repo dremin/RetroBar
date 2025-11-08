@@ -1,0 +1,171 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar Propjetajiet</s:String>
+    <s:String x:Key="taskbar_tab">Bar tal-kompiti</s:String>
+    <s:String x:Key="advanced_tab">Avvanzat</s:String>
+    <s:String x:Key="taskbar_appearance">Dehra tal-bar tal-kompiti</s:String>
+    <s:String x:Key="notification_area">Żona ta' notifiki</s:String>
+    <s:String x:Key="autostart">Ibda awtomatikament meta tidħol fis-sistema</s:String>
+    <s:String x:Key="language_text">Lin_gwa:</s:String>
+    <s:String x:Key="language_tip">Agħżel il-lingwa li trid tuża.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Installa t-temi fil-folder "Themes".</s:String>
+    <s:String x:Key="location_text">Post:</s:String>
+    <s:String x:Key="location_tip">Biddel il-pożizzjoni tal-bar tal-kompiti fuq l-iskrin.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Xellug</s:String>
+        <s:String>Fuq</s:String>
+        <s:String>Lemin</s:String>
+        <s:String>Taħt</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">In-numru ta' ringieli:</s:String>
+    <s:String x:Key="rowcount_tip">In-numru ta' ringieli fuq il-bar tal-kompiti meta tkun fuq nett jew taħt nett.</s:String>
+    <s:String x:Key="taskbar_width">Wisa' tal-bar tal-kompiti:</s:String>
+    <s:String x:Key="allow_font_smoothing">_Ħalli l-lisjar tal-font</s:String>
+    <s:String x:Key="collapse_tray_icons">Ikkollassa _l-ikoni fl-area tan-notifiki</s:String>
+    <s:String x:Key="customize">_Personalizza...</s:String>
+    <s:String x:Key="show_input_language">Uri l-lingwa _tal-input</s:String>
+    <s:String x:Key="show_clock">Uri l-arloġġ</s:String>
+    <s:String x:Key="show_multi_mon">Uri fuq _diversi wirjiets</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Uri l-buttuna _"Ibda" fuq il-barijiet tax-xogħol kollhas</s:String>
+    <s:String x:Key="show_quick_launch">Uri l-Avviż Rapidu</s:String>
+    <s:String x:Key="select_location">_Agħżel il-post...</s:String>
+    <s:String x:Key="quick_launch_folder">Avviż Rapidu - Agħżel folder</s:String>
+    <s:String x:Key="show_badges">Uri _l-badges</s:String>
+    <s:String x:Key="show_window_previews">Uri _anteprima tal-vetrini (miniaturi)</s:String>
+    <s:String x:Key="use_software_rendering">_Uża rendering tas-softwer</s:String>
+    <s:String x:Key="add_show_desktop_button">Żid il-buttuna "Uri d-Desktop"</s:String>
+    <s:String x:Key="enable_auto_hide">Aħbi awtomatikament il-bar tal-kompiti</s:String>
+    <s:String x:Key="lock_taskbar">_Iblokka l-bar tal-kompiti</s:String>
+    <s:String x:Key="multiple_displays">Wiri multipli</s:String>
+    <s:String x:Key="show_tasks_on">Uri l-kompiti fuq:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Il-barijiet tax-xogħol kollha</s:String>
+        <s:String>L-istess taskbar bħall-tieqa</s:String>
+        <s:String>L-istess taskbar bħall-tieqa u t-taskbar primarja</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Inverti l-ikoni tas-sistema:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Meta jkun meħtieġ mit-tema</s:String>
+        <s:String>Dejjem</s:String>
+        <s:String>Qatt</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Azzjoni ta' klikk tan-nofs:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Ma tagħmilx xejn</s:String>
+        <s:String>Ftaħ istanza ġdida</s:String>
+        <s:String>Għalaq il-kompitu</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Clock click action:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Ma tagħmilx xejn</s:String>
+        <s:String>Ftaħ il-kalendarju Aero</s:String>
+        <s:String>Ftaħ il-kalendarju Modern</s:String>
+        <s:String>Ftaħ iċ-Ċentru tan-Notifiki</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Aħbi l-linja tal-bar tal-kompiti meta tkun moħbija b'moħbija awtomatika</s:String>
+    <s:String x:Key="version">Verżjoni {0}</s:String>
+    <s:String x:Key="visit_on_github">Żur RetroBar fuq GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Is-skala tal-bar tal-kompitu</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Ambjent kurrenti: {0}%</s:String>
+    <s:String x:Key="debug_logging">Iattiva l-logging tad-debugging</s:String>
+    <s:String x:Key="check_for_updates">Iċċekkja għal aġġornamenti</s:String>
+    <s:String x:Key="show_exit_menu_item">Uri l-għażla "Għalaq" fil-menu tal-ikklikkjar bil-lemin</s:String>
+    <s:String x:Key="show_end_task_button">Uri l-għażla "Temm il-kompitu" fil-menu tal-ikklikkjar bil-lemin</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Iċċaqlaq il-buttuni tal-bar tal-kompiti</s:String>
+    <s:String x:Key="show_clock_seconds">U_ri s-sekondi fil-arloġġ</s:String>
+    <s:String x:Key="open_custom_themes_folder">Ftaħ il-folder tat-temi personalizzati</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Azzjoni tal-hotkeys Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Default ta' Windows</s:String>
+        <s:String>Biddel il-kompiti</s:String>
+        <s:String>Ftaħ l-oġġett tal-Avviż Rapidu</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar Hotkeys</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar se jissostitwixxi l-hotkeys tal-bar tal-kompiti ta' Windows. Anki jekk RetroBar ikun magħluq, dawn ma jerġgħux jiġu restawrati f'Windows sakemm ma toħroġx u terġa' tidħol.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Personalizza n-notifiki</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar juri ikoni għan-notifiki attivi u urġenti, u jaħbi dawk inattivi. Tista' tbiddel dan l-imġiba għall-oġġetti fil-lista hawn taħt.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Agħżel oġġett, imbagħad agħżel il-mod kif għandha titwettaq in-notifika tiegħu:</s:String>
+    <s:String x:Key="hide_when_inactive">Aħbi meta tkun inattiva</s:String>
+    <s:String x:Key="always_show">Uri dejjem</s:String>
+    <s:String x:Key="always_hide">Aħbi dejjem</s:String>
+    <s:String x:Key="remove">Neħħi</s:String>
+    <s:String x:Key="name_heading">Isem</s:String>
+    <s:String x:Key="behavior_heading">Imġiba</s:String>
+    <s:String x:Key="invert_heading">Inverti</s:String>
+
+    <s:String x:Key="start_text">Ibda</s:String>
+    <s:String x:Key="start_text_xp">Ibda</s:String>
+    <s:String x:Key="start_button_tip_98">Ikklikkja hawn biex tibda.</s:String>
+    <s:String x:Key="start_button_tip">Ikklikkja hawn biex tibda</s:String>
+    <s:String x:Key="start_button_tip_vista">Ibda</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar Taskbar</s:String>
+    <s:String x:Key="toolbars">_Toolbars</s:String>
+    <s:String x:Key="quick_launch">_Avviż Rapidu</s:String>
+    <s:String x:Key="new_toolbar">_Bar tal-għodda ġdida...</s:String>
+    <s:String x:Key="set_time">_Aġġusta d-data u l-ħin</s:String>
+    <s:String x:Key="cascade">Twieqi tal-kaskata</s:String>
+    <s:String x:Key="horiz_tile">Poġġi t-twieqi tal-pjasti orizzontalment</s:String>
+    <s:String x:Key="vert_tile">Poġġi t-twieqi tal-pjasti vertikalment</s:String>
+    <s:String x:Key="toggle_desktop">_Uri d-desktop</s:String>
+    <s:String x:Key="hide_desktop">_Uri t-twieqi miftuħa</s:String>
+    <s:String x:Key="undo_cascade">_Irtorna l-kaskata</s:String>
+    <s:String x:Key="undo_tile">_Irtorna l-kaxxa</s:String>
+    <s:String x:Key="undo_minimize_all">_Irtorna minn minimizza kollox</s:String>
+    <s:String x:Key="show_taskman_2k">Manager tal-kompiti...</s:String>
+    <s:String x:Key="show_taskman">Manager tal-kompiti</s:String>
+    <s:String x:Key="tray_properties">Proprjetajiet</s:String>
+    <s:String x:Key="update_available">_Aġġornament disponibbli...</s:String>
+    <s:String x:Key="exit_retrobar">_Ħruġ mir-RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Personalizza n-notifiki...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Iblokka l-bar tal-kompiti</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Irrestawra l-desktop</s:String>
+    <s:String x:Key="show_desktop_tip">Uri d-desktop</s:String>
+    <s:String x:Key="show_desktop_95">_Desktop</s:String>
+    <s:String x:Key="show_desktop">_Uri d-desktop</s:String>
+    <s:String x:Key="peek_at_desktop">_Ħarsa lejn id-desktop</s:String>
+
+    <s:String x:Key="restore">_Irrestawra</s:String>
+    <s:String x:Key="move">_Imxi</s:String>
+    <s:String x:Key="size">_Daqs</s:String>
+    <s:String x:Key="minimize">Mi_nimizza</s:String>
+    <s:String x:Key="maximize">Ma_ssimizza</s:String>
+    <s:String x:Key="close">_Għalaq</s:String>
+    <s:String x:Key="end_task">_Temm il-kompitu</s:String>
+
+    <s:String x:Key="show_hidden">Uri l-ikoni moħbija</s:String>
+    <s:String x:Key="hide">Aħbi</s:String>
+
+    <s:String x:Key="open_folder">&amp;Ftaħ il-folder</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Ikklikkja bil-lemin biex tara l-għażliet tal-IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME diżattivat</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana b'wisa' sħiħ</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alfanumeriku b'wisa' sħiħa</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana ta' nofs wisa'</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alfanumeriku ta' nofs wisa'</s:String>
+    <s:String x:Key="ime_input_direct">Dħul dirett</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Żid kelma</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Dizzjunarju addizzjonali</s:String>
+    <s:String x:Key="ime_open_properties">Issettjarijiet</s:String>
+    <s:String x:Key="ime_input_key">Kana Input</s:String>
+    <s:String x:Key="ime_input_key_roma">Mitfi</s:String>
+    <s:String x:Key="ime_input_key_kana">Mixgħul</s:String>
+    <s:String x:Key="ime_conversion">Modalità ta' konverżjoni</s:String>
+    <s:String x:Key="ime_conversion_general">Ġenerali</s:String>
+    <s:String x:Key="ime_conversion_none">L-ebda konverżjoni</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
