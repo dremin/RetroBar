@@ -75,9 +75,18 @@
     <s:String x:Key="debug_logging">Włącz debugowanie</s:String>
     <s:String x:Key="check_for_updates">Sprawdź aktualizacje</s:String>
     <s:String x:Key="show_exit_menu_item">Pokaż opcję "Wyjdź z RetroBar" w menu podręcznym (prawy przycisk myszy)</s:String>
+    <s:String x:Key="show_end_task_button">Pokaż opcję "Zakończ zadanie" w menu podręcznym (prawy przycisk myszy)</s:String>  
     <s:String x:Key="slide_taskbar_buttons">Stosuj efekt ślizgania przy przesuwaniu przycisków paska zadań</s:String>
     <s:String x:Key="show_clock_seconds">Pokaż sekundy na zegarze</s:String>
     <s:String x:Key="open_custom_themes_folder">Otwórz folder motywów własnych ("themes")</s:String>	
+    <s:String x:Key="win_num_hotkeys_action">Akcje klawiszy skrótów Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Domyślne dla systemu Windows</s:String>
+        <s:String>Przełączanie zadań</s:String>
+        <s:String>Otwieranie skrótów z Szybkiego uruchamiania</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Klawisze skrótów RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar zamieni istniejące klawisze skrótów paska zadań systemu Windows. Nawet po zamknięciu RetroBar klawisze skrótów systemu Windows nie będą przywrócone aż do wylogowania się i ponownego zalogowania się do systemu Windows.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Dostosuj powiadomienia</s:String>
@@ -135,4 +144,24 @@
     <s:String x:Key="hide">Ukryj</s:String>
 
     <s:String x:Key="open_folder">&amp;Otwórz folder</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Kliknięcie prawym przyciskiem myszy otwiera opcje IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME jest nieaktywne</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana o pełnej szerokosci</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alphanumeryczne o pełnej szerokości</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana o połowie szerokości</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alfanumeryczne o połowie szerokosci</s:String>
+    <s:String x:Key="ime_input_direct">Wprowadzanie bezpośrednie</s:String>
+    <s:String x:Key="ime_open_pad">Konsola edytora IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Dodaj słowo</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Słownik dodatkowy</s:String>
+    <s:String x:Key="ime_open_properties">Ustawienia</s:String>
+    <s:String x:Key="ime_input_key">Wprowadzanie znaków Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">Włączone</s:String>
+    <s:String x:Key="ime_input_key_kana">Wyłączone</s:String>
+    <s:String x:Key="ime_conversion">Tryb konwersji</s:String>
+    <s:String x:Key="ime_conversion_general">Ogólna</s:String>
+    <s:String x:Key="ime_conversion_none">Bez konwersji</s:String>
+
 </ResourceDictionary>
