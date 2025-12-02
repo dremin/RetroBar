@@ -1,0 +1,171 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar eignir</s:String>
+    <s:String x:Key="taskbar_tab">Verktaksstikla</s:String>
+    <s:String x:Key="advanced_tab">Ítarlegt</s:String>
+    <s:String x:Key="taskbar_appearance">Útlitsaðgerðir verkstikunnar</s:String>
+    <s:String x:Key="notification_area">Tilkynningarsvæði</s:String>
+    <s:String x:Key="autostart">Ræsa sjálfkrafa við _innskráningu</s:String>
+    <s:String x:Key="language_text">Mál:</s:String>
+    <s:String x:Key="language_tip">Veldu tungumálið sem á að nota.</s:String>
+    <s:String x:Key="theme_text">_Þema:</s:String>
+    <s:String x:Key="theme_tip">Settu þemu í möppuna "Themes".</s:String>
+    <s:String x:Key="location_text">Staðse_tning:</s:String>
+    <s:String x:Key="location_tip">Breyta staðsetningu verkstikunnar á skjánum.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Vinstri</s:String>
+        <s:String>Efri</s:String>
+        <s:String>Neðri</s:String>
+        <s:String>Hægri</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">Fjöldi raða:</s:String>
+    <s:String x:Key="rowcount_tip">Fjöldi raða á verkstikunni þegar hún er efst eða neðst.</s:String>
+    <s:String x:Key="taskbar_width">Breid_d verkstikunnar:</s:String>
+    <s:String x:Key="allow_font_smoothing">_Leyfa letursléttun</s:String>
+    <s:String x:Key="collapse_tray_icons">Fela _táknin í tilkynningarsvæðinu</s:String>
+    <s:String x:Key="customize">_Aðlaga...</s:String>
+    <s:String x:Key="show_input_language">Sýna inntaksmálið</s:String>
+    <s:String x:Key="show_clock">Sýna klukkun_a</s:String>
+    <s:String x:Key="show_multi_mon">Sýna á _mörgum skjám</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Sýna _"Byrja"-hnapp á öllum verkstikum</s:String>
+    <s:String x:Key="show_quick_launch">Sýna _"Hraðræsingu"</s:String>
+    <s:String x:Key="select_location">_Veldu staðsetningun...</s:String>
+    <s:String x:Key="quick_launch_folder">Hraðræsla - Veldu möppu</s:String>
+    <s:String x:Key="show_badges">Sýna _merki</s:String>
+    <s:String x:Key="show_window_previews">Sýna _gluggasýnishluta (smámyndir)</s:String>
+    <s:String x:Key="use_software_rendering">_Notaðu hugbúnaðarútgáfu</s:String>
+    <s:String x:Key="add_show_desktop_button">Bættu við _hnappinum "Sýna skjáborð"</s:String>
+    <s:String x:Key="enable_auto_hide">F_ela verkstikuna sjálfkrafa</s:String>
+    <s:String x:Key="lock_taskbar">_Læsa verkstikunni</s:String>
+    <s:String x:Key="multiple_displays">Fleiri skjáir</s:String>
+    <s:String x:Key="show_tasks_on">S_ýna verkefni á:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Allir verkstiklar</s:String>
+        <s:String>Sama verkstikla og glugginn</s:String>
+        <s:String>Sama verkfærastikann og gluggann og aðalverkfærastikann</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Snúa kerfistáknum við:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Þegar þema krefst þess</s:String>
+        <s:String>Alltaf</s:String>
+        <s:String>Aldrei</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Aðgerð við miðklikk:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Gerðu ekkert</s:String>
+        <s:String>Opna nýja instans</s:String>
+        <s:String>Loka verkefninu</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Smelltu á klukku til að hefja aðgerð:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Gerðu ekkert</s:String>
+        <s:String>Opna "Aero" dagatal</s:String>
+        <s:String>Opna "Modern" dagatal</s:String>
+        <s:String>Opna tilkynningamiðstöðina</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Fela _verkstikuna þegar hún er falin með sjálfvirkri fellingu</s:String>
+    <s:String x:Key="version">Útgáfa {0}</s:String>
+    <s:String x:Key="visit_on_github">Heimsæktu RetroBar á GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Stærðarhlutfall verkstiklu</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Núverandi stilling: {0}%</s:String>
+    <s:String x:Key="debug_logging">Kveikja á _villuskráningu</s:String>
+    <s:String x:Key="check_for_updates">Athugaðu uppfærslur</s:String>
+    <s:String x:Key="show_exit_menu_item">Sýna "Útskrift" valkost í hægri-smelliseðli</s:String>
+    <s:String x:Key="show_end_task_button">Sýna "Ljúka verki" valkost í hægri-smelliseðli</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Færðu _hnappana á verkstikunni</s:String>
+    <s:String x:Key="show_clock_seconds">S_ýna sekúndur í klukkunni</s:String>
+    <s:String x:Key="open_custom_themes_folder">Opna möppu sérsniðinna þema</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _heitlyklaaðgerð:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows sjálfgefið</s:String>
+        <s:String>Skipta verkefnum</s:String>
+        <s:String>Opna hraðræsihlut</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar heitlyklaaðgerð</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar mun yfirskrifa hnappasláttartakkana í verkefnislistanum í Windows. Jafnvel þótt RetroBar sé lokað verða takkarnir ekki endurheimtir í Windows fyrr en þú skráir þig út og skráir þig aftur inn.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Aðlaga tilkynningar</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar sýnir táknin fyrir virk og brýn tilkynningar og felur óvirk. Þú getur breytt þessu háttarlagi fyrir atriði í listanum hér að neðan.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Veldu atriði, síðan veldu tilkynningahegðun þess:</s:String>
+    <s:String x:Key="hide_when_inactive">Fela þegar óvirkur</s:String>
+    <s:String x:Key="always_show">Sýna alltaf</s:String>
+    <s:String x:Key="always_hide">Fela alltaf</s:String>
+    <s:String x:Key="remove">Fjarlægja</s:String>
+    <s:String x:Key="name_heading">Nafn</s:String>
+    <s:String x:Key="behavior_heading">Hegðun</s:String>
+    <s:String x:Key="invert_heading">Vend</s:String>
+
+    <s:String x:Key="start_text">Byrjaðu</s:String>
+    <s:String x:Key="start_text_xp">Byrjaðu</s:String>
+    <s:String x:Key="start_button_tip_98">Smelltu hér til að hefja.</s:String>
+    <s:String x:Key="start_button_tip">Smelltu hér til að hefja</s:String>
+    <s:String x:Key="start_button_tip_vista">Byrjaðu</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar verkstikla</s:String>
+    <s:String x:Key="toolbars">_Tólarstikur</s:String>
+    <s:String x:Key="quick_launch">_Hraðræsla</s:String>
+    <s:String x:Key="new_toolbar">_Ný verkfærastiku...</s:String>
+    <s:String x:Key="set_time">_Stilla dagsetningu/tíma</s:String>
+    <s:String x:Key="cascade">Ka_skadi gluggar</s:String>
+    <s:String x:Key="horiz_tile">Raða gluggum _lárétt</s:String>
+    <s:String x:Key="vert_tile">Raða gluggum _lóðrétt</s:String>
+    <s:String x:Key="toggle_desktop">_Sýna skjáborðiðp</s:String>
+    <s:String x:Key="hide_desktop">_Sýna opna glugga</s:String>
+    <s:String x:Key="undo_cascade">_Hafna kaskötun</s:String>
+    <s:String x:Key="undo_tile">_Hafna flís</s:String>
+    <s:String x:Key="undo_minimize_all">_Hafna minnkun allra glugga</s:String>
+    <s:String x:Key="show_taskman_2k">Verkefnastjóri...</s:String>
+    <s:String x:Key="show_taskman">Verkefnastjóri</s:String>
+    <s:String x:Key="tray_properties">E_iginleikar</s:String>
+    <s:String x:Key="update_available">_Uppfærsla tiltæk...</s:String>
+    <s:String x:Key="exit_retrobar">_Hætta í RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Aðlaga tilkynningar...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Læsa verkstikunni</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Endurheimta skjáborðið</s:String>
+    <s:String x:Key="show_desktop_tip">Sýna skjáborðið</s:String>
+    <s:String x:Key="show_desktop_95">_Skjáborðið</s:String>
+    <s:String x:Key="show_desktop">_Sýna skjáborðið</s:String>
+    <s:String x:Key="peek_at_desktop">_Kíkja á skjáborðið</s:String>
+
+    <s:String x:Key="restore">_Endurheimta</s:String>
+    <s:String x:Key="move">_Hreyfa</s:String>
+    <s:String x:Key="size">_Stærð</s:String>
+    <s:String x:Key="minimize">Minnka</s:String>
+    <s:String x:Key="maximize">Hámarka</s:String>
+    <s:String x:Key="close">_Útskrift</s:String>
+    <s:String x:Key="end_task">_Ljúka verki</s:String>
+
+    <s:String x:Key="show_hidden">Sýna falin tákn</s:String>
+    <s:String x:Key="hide">Fela</s:String>
+
+    <s:String x:Key="open_folder">&amp;Opna möppu</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Hægri-smelltu til að fá IME-valkosti</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME óvirkjað</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Fullbreið Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Fullbreið stafsetningartökkaborð</s:String>
+    <s:String x:Key="ime_input_katakana">Hálfbreið Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Hálfbreið stafsetningartökkaborð</s:String>
+    <s:String x:Key="ime_input_direct">Bein inntak</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Bæta við orði</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Viðbótarorðabók</s:String>
+    <s:String x:Key="ime_open_properties">Stillingar</s:String>
+    <s:String x:Key="ime_input_key">Kana inntak</s:String>
+    <s:String x:Key="ime_input_key_roma">Af</s:String>
+    <s:String x:Key="ime_input_key_kana">Á</s:String>
+    <s:String x:Key="ime_conversion">Umbreytingarmáti</s:String>
+    <s:String x:Key="ime_conversion_general">Almennt</s:String>
+    <s:String x:Key="ime_conversion_none">Engin umbreyting</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
