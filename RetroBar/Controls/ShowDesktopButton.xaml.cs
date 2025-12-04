@@ -156,13 +156,9 @@ namespace RetroBar.Controls
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (isLoaded)
+            if (isLoaded && TasksService != null)
             {
-                if (TasksService != null)
-                {
-                    TasksService.WindowActivated -= HandleWindowActivated;
-                }
-
+                TasksService.WindowActivated -= HandleWindowActivated;
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
                 dragHandler?.Dispose();
                 isLoaded = false;
