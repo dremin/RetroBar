@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
@@ -32,6 +31,7 @@ namespace RetroBar.Controls
         private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
         private ApplicationWindow.WindowState PressedWindowState = ApplicationWindow.WindowState.Inactive;
 
+        private DelayedActivationHandler dragHandler;
         private bool _isLoaded;
 
         public TaskButton()
@@ -89,9 +89,10 @@ namespace RetroBar.Controls
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
-            // drag support - delayed activation using system setting
-            dragTimer = new DispatcherTimer { Interval = SystemParameters.MouseHoverTime };
-            dragTimer.Tick += dragTimer_Tick;
+            dragHandler = new DelayedActivationHandler(() =>
+            {
+                Window?.BringToFront();
+            });
 
             if (Window != null)
             {
@@ -139,6 +140,7 @@ namespace RetroBar.Controls
             }
 
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            dragHandler?.Dispose();
 
             if (Window != null)
             {
@@ -196,7 +198,7 @@ namespace RetroBar.Controls
                 if (Window.ProcId.HasValue && Window.ProcId.Value != 0)
                 {
                     // Don't kill RetroBar itself - just close the window gracefully
-                    int currentProcId = System.Diagnostics.Process.GetCurrentProcess().Id;
+                    int currentProcId = Process.GetCurrentProcess().Id;
                     if (Window.ProcId.Value == currentProcId)
                     {
                         Window?.Close();
@@ -286,39 +288,15 @@ namespace RetroBar.Controls
             }
         }
 
-        #region Drag
-        private bool inDrag;
-        private DispatcherTimer dragTimer;
-
-        private void dragTimer_Tick(object sender, EventArgs e)
-        {
-            if (inDrag)
-            {
-                Window?.BringToFront();
-            }
-
-            dragTimer.Stop();
-        }
-
         private void AppButton_OnDragEnter(object sender, DragEventArgs e)
         {
-            // Ignore drag operations from a reorder
-            if (!inDrag && !e.Data.GetDataPresent("GongSolutions.Wpf.DragDrop"))
-            {
-                inDrag = true;
-                dragTimer.Start();
-            }
+            dragHandler?.OnDragEnter(e);
         }
 
         private void AppButton_OnDragLeave(object sender, DragEventArgs e)
         {
-            if (inDrag)
-            {
-                dragTimer.Stop();
-                inDrag = false;
-            }
+            dragHandler?.OnDragLeave();
         }
-        #endregion
 
         private void ContextMenu_OpenedOrClosed(object sender, RoutedEventArgs e)
         {

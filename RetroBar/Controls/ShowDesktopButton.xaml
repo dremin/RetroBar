@@ -9,7 +9,9 @@
                   Style="{DynamicResource ShowDesktopButton}"
                   Click="ShowDesktop_OnClick"
                   MouseEnter="ShowDesktop_OnMouseEnter"
-                  MouseLeave="ShowDesktop_OnMouseLeave">
+                  MouseLeave="ShowDesktop_OnMouseLeave"
+                  DragEnter="ShowDesktop_DragEnter"
+                  DragLeave="ShowDesktop_DragLeave">
         <Image Name="ShowDesktopIcon"
                Style="{DynamicResource ShowDesktopIcon}" />
         <ToggleButton.ContextMenu>

@@ -19,6 +19,7 @@ namespace RetroBar.Controls
         private FloatingStartButton? floatingStartButton;
         private bool allowOpenStart;
         private bool visibilityChanged;
+        private DelayedActivationHandler? dragHandler;
         private readonly DispatcherTimer pendingOpenTimer;
 
         public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(StartButton));
@@ -98,40 +99,15 @@ namespace RetroBar.Controls
             }
         }
 
-        #region Drag
-        private bool inDrag;
-        private DispatcherTimer? dragTimer;
-
-        private void dragTimer_Tick(object? sender, EventArgs e)
-        {
-            if (inDrag && Start.IsChecked == false)
-            {
-                OpenStartMenu();
-            }
-
-            dragTimer?.Stop();
-        }
-
         private void Start_DragEnter(object sender, DragEventArgs e)
         {
-            // Ignore drag operations from a reorder
-            if (!inDrag && !e.Data.GetDataPresent("GongSolutions.Wpf.DragDrop"))
-            {
-                inDrag = true;
-                dragTimer?.Start();
-            }
+            dragHandler?.OnDragEnter(e);
         }
 
         private void Start_DragLeave(object sender, DragEventArgs e)
         {
-            if (inDrag)
-            {
-                dragTimer?.Stop();
-                inDrag = false;
-            }
+            dragHandler?.OnDragLeave();
         }
-
-        #endregion
 
         private void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -153,9 +129,13 @@ namespace RetroBar.Controls
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
-            // drag support - delayed activation using system setting
-            dragTimer = new DispatcherTimer { Interval = SystemParameters.MouseHoverTime };
-            dragTimer.Tick += dragTimer_Tick;
+            dragHandler = new DelayedActivationHandler(() =>
+            {
+                if (Start.IsChecked == false)
+                {
+                    OpenStartMenu();
+                }
+            });
 
             openFloatingStart();
 
@@ -178,6 +158,7 @@ namespace RetroBar.Controls
             }
 
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+            dragHandler?.Dispose();
 
             hideFloatingStart();
         }
