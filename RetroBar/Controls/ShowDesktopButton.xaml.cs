@@ -18,8 +18,9 @@ namespace RetroBar.Controls
         private IntPtr taskbarHandle = Process.GetCurrentProcess().MainWindowHandle;
         private bool isWindows81OrBetter = EnvironmentHelper.IsWindows81OrBetter;
         private bool isLoaded;
+        private DelayedActivationHandler dragHandler;
 
-        public static DependencyProperty TasksServiceProperty = DependencyProperty.Register(nameof(TasksService), typeof(TasksService), typeof(ShowDesktopButton));
+        public static DependencyProperty TasksServiceProperty = DependencyProperty.Register(nameof(TasksService), typeof(TasksService), typeof(ShowDesktopButton), new PropertyMetadata(TasksChangedCallback));
 
         public TasksService TasksService
         {
@@ -30,6 +31,14 @@ namespace RetroBar.Controls
         public ShowDesktopButton()
         {
             InitializeComponent();
+        }
+
+        private static void TasksChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is ShowDesktopButton button && e.OldValue == null && e.NewValue != null)
+            {
+                button.SetupButton();
+            }
         }
 
         private void SetIconSize()
@@ -118,15 +127,31 @@ namespace RetroBar.Controls
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void SetupButton()
         {
             if (!isLoaded && TasksService != null)
             {
                 SetIconSize();
                 TasksService.WindowActivated += HandleWindowActivated;
+
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+                dragHandler = new DelayedActivationHandler(() =>
+                {
+                    if (ShowDesktop.IsChecked == false)
+                    {
+                        ToggleDesktop();
+                        ShowDesktop.IsChecked = true;
+                    }
+                });
+
                 isLoaded = true;
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetupButton();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -135,8 +160,19 @@ namespace RetroBar.Controls
             {
                 TasksService.WindowActivated -= HandleWindowActivated;
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
+                dragHandler?.Dispose();
                 isLoaded = false;
             }
+        }
+
+        private void ShowDesktop_DragEnter(object sender, DragEventArgs e)
+        {
+            dragHandler?.OnDragEnter(e);
+        }
+
+        private void ShowDesktop_DragLeave(object sender, DragEventArgs e)
+        {
+            dragHandler?.OnDragLeave();
         }
     }
 }
