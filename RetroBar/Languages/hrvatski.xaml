@@ -7,13 +7,13 @@
     <s:String x:Key="advanced_tab">Napredne postavke</s:String>
     <s:String x:Key="taskbar_appearance">Izgled programske trake</s:String>
     <s:String x:Key="notification_area">Područje obavjesti</s:String>
-    <s:String x:Key="autostart">Automatski pokrenuti na_početku</s:String>
+    <s:String x:Key="autostart">Automatski pokrenuti pr_i pokretanju</s:String>
     <s:String x:Key="language_text">Jez_ik:</s:String>
     <s:String x:Key="language_tip">Odaberi jezik za korištenje.</s:String>
     <s:String x:Key="theme_text">_Teme:</s:String>
     <s:String x:Key="theme_tip">Instaliraj teme u datoteki za teme.</s:String>
-    <s:String x:Key="location_text">_Mjesto:</s:String>
-    <s:String x:Key="location_tip">Promjenite mjesto programske trake.</s:String>
+    <s:String x:Key="location_text">_Položaj:</s:String>
+    <s:String x:Key="location_tip">Promijenite položaj programske trake.</s:String>
     <x:Array x:Key="location_values" Type="s:String">
         <s:String>Ljevo</s:String>
         <s:String>Vrh</s:String>
@@ -22,11 +22,12 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Broj _redova:</s:String>
     <s:String x:Key="rowcount_tip">Broj redova na programskoj traci kad je na vrhu ili dnu.</s:String>
+    <s:String x:Key="taskbar_width">Širina_ programske trake:</s:String>
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone</s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
     <s:String x:Key="show_input_language">Prikaži raspored _tipkovnice</s:String>
-    <s:String x:Key="show_clock">Prikaži  _sat</s:String>
+    <s:String x:Key="show_clock">Prikaži _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
 	<s:String x:Key="show_start_button_multi_mon">Prikaži _Start gumb na sve zaslone</s:String>
     <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
@@ -39,7 +40,7 @@
     <s:String x:Key="enable_auto_hide">Automatski sakrij programsku traku</s:String>
     <s:String x:Key="lock_taskbar">_Zaključaj programsku traku</s:String>
     <s:String x:Key="multiple_displays">Više zaslona</s:String>
-    <s:String x:Key="show_tasks_on">P_rikaži zadatke na:</s:String>
+    <s:String x:Key="show_tasks_on">P_rikaži programe na:</s:String>
     <x:Array x:Key="show_tasks_on_values" Type="s:String">
         <s:String>Sve programske trake</s:String>
         <s:String>Ista programska traka kao prozor</s:String>
@@ -55,7 +56,7 @@
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>Ništa</s:String>
         <s:String>Otvaranje nove instance</s:String>
-        <s:String>Zatvori zadatak</s:String>
+        <s:String>Zatvori program</s:String>
     </x:Array>
     <s:String x:Key="clock_click_action">_Akcija pritiska na sat:</s:String>
     <x:Array x:Key="clock_click_action_values" Type="s:String">
@@ -64,8 +65,9 @@
         <s:String>Otvori moderni kalendar</s:String>
         <s:String>Otvori centar za obavijesti</s:String>
     </x:Array>
+	<s:String x:Key="auto_hide_transparent">Sakrij_ crtu programske trake dok je skrivena</s:String>
     <s:String x:Key="version">Verzija {0}</s:String>
-    <s:String x:Key="visit_on_github">Posjete na GitHubu</s:String>
+    <s:String x:Key="visit_on_github">Posjete RetroBar na GitHubu</s:String>
     <s:String x:Key="taskbar_scale">Omjer programske trake</s:String>
     <s:String x:Key="taskbar_scale_1x">100%</s:String>
     <s:String x:Key="taskbar_scale_2x">200%</s:String>
@@ -73,10 +75,22 @@
     <s:String x:Key="debug_logging">Omogući _bilježenje</s:String>
     <s:String x:Key="check_for_updates">Provjeravaj za a_žuriranja</s:String>
 	<s:String x:Key="show_exit_menu_item">Prikaži I_zlaznu opciju u kontekstnom izborniku</s:String>
+	<s:String x:Key="show_end_task_button">Prikaži o_pciju Ugasi program u konteksnom izborniku</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Kliz_anje gumbova programske trake</s:String>
+    <s:String x:Key="show_clock_seconds">P_rikaži sekunde na satu</s:String>
+    <s:String x:Key="open_custom_themes_folder">Otvori mapu za prilagođene teme</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Akcije Win+[0-9] _prečaca:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Zadane od Windowsa</s:String>
+        <s:String>Promijeni programe</s:String>
+        <s:String>Otvori stavku Brzog pokretača</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar prečaci</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar će nadjačati prečace Windows programske trake. Iako je RetroBar ugašen i neće se vratiti na Windowsove dok se ne odjavite i ponovno prijavite.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
-    <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone aktivnih i hitnih obavijesti, a sakriva neaktivne. Takvo ponašanje možete promjeniti za stavke na popisu.</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone aktivnih i hitnih obavijesti, a sakriva neaktivne. Takvo ponašanje možete promijeniti za stavke na popisu.</s:String>
     <s:String x:Key="customize_notifications_instruction">Odaberi savku, onda odaberite njezino obavjesno ponašanje:</s:String>
     <s:String x:Key="hide_when_inactive">Sakriji kad je neaktivno</s:String>
     <s:String x:Key="always_show">Uvjek prikaži</s:String>
@@ -125,9 +139,29 @@
     <s:String x:Key="minimize">Mi_nimiziraj</s:String>
     <s:String x:Key="maximize">Ma_ksimiziraj</s:String>
     <s:String x:Key="close">_Zatvori</s:String>
+	<s:String x:Key="end_task">_Ugasi program</s:String>
 
     <s:String x:Key="show_hidden">Prikaži sakrivene ikone</s:String>
     <s:String x:Key="hide">Sakriji</s:String>
 
     <s:String x:Key="open_folder">&amp;Orvori Datoteku</s:String>
+	
+	<s:String x:Key="ime_input_tip_enabled">Pritisnite desni gumb miša za IME opcije</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME onemogućen</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Puna Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Puno Alfanumeričko</s:String>
+    <s:String x:Key="ime_input_katakana">Polovna Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Polovno Alfanumeričko</s:String>
+    <s:String x:Key="ime_input_direct">Izravni unos</s:String>
+    <s:String x:Key="ime_open_pad">IME ploča</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Dodaj riječ</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Dodaj na riječnik</s:String>
+    <s:String x:Key="ime_open_properties">Postavke</s:String>
+    <s:String x:Key="ime_input_key">Kana unos</s:String>
+    <s:String x:Key="ime_input_key_roma">Isključen</s:String>
+    <s:String x:Key="ime_input_key_kana">Uključen</s:String>
+    <s:String x:Key="ime_conversion">Način prijetvorbe</s:String>
+    <s:String x:Key="ime_conversion_general">Generalno</s:String>
+    <s:String x:Key="ime_conversion_none">Bez prijetvorbe</s:String>
 </ResourceDictionary>
