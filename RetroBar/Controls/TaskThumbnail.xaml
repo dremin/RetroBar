@@ -12,39 +12,71 @@
         <converters:ToolTipHorizontalOffsetConverter x:Key="toolTipHorizontalOffsetConverter" />
         <s:Double x:Key="ConstantScale">1.0</s:Double>
     </UserControl.Resources>
-    <UserControl.ToolTip>
-        <ToolTip>
-            <ToolTip.Style>
-                <Style TargetType="ToolTip"
-                           BasedOn="{StaticResource {x:Type ToolTip}}">
-                    <Setter Property="Placement"
-                            Value="Top" />
-                    <Setter Property="VerticalOffset"
-                            Value="-10" />
-                    <Setter Property="HorizontalOffset">
-                        <Setter.Value>
-                            <MultiBinding Converter="{StaticResource toolTipHorizontalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
-                                <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualWidth"/>
-                                <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
-                                <Binding Source="{StaticResource ConstantScale}"/>
-                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
-                            </MultiBinding>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="1">
-                            <DataTrigger.Setters>
-                                <Setter Property="Placement"
-                                        Value="Bottom" />
-                                <Setter Property="VerticalOffset"
-                                        Value="10" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ToolTip.Style>
-            <TextBlock Text="{Binding Title}" />
-        </ToolTip>
-    </UserControl.ToolTip>
+    <Grid Name="PreviewContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Title bar at the top -->
+        <Border Grid.Row="0"
+                Name="TitleBar"
+                BorderBrush="{DynamicResource ToolTipForeground}"
+                BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Window title with ellipsis -->
+                <TextBlock Grid.Column="0"
+                           Text="{Binding Title}"
+                           VerticalAlignment="Center"
+                           Margin="6,0,0,0"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="11" />
+
+                <!-- Close button -->
+                <Button Grid.Column="1"
+                        Name="CloseButton"
+                        Click="CloseButton_Click"
+                        Width="20"
+                        Height="20"
+                        Margin="2"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        ToolTip="Close">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                BorderThickness="0"
+                                                CornerRadius="2">
+                                            <TextBlock Text="&#x2715;"
+                                                       FontSize="10"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource BalloonCloseButtonHoverBackground}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Thumbnail preview area (rendered by code-behind in this space) -->
+        <Grid Grid.Row="1" />
+    </Grid>
 </UserControl>

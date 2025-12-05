@@ -5,7 +5,8 @@
              xmlns:controls="clr-namespace:RetroBar.Controls"
              xmlns:utilities="clr-namespace:RetroBar.Utilities"
              Loaded="TaskButton_OnLoaded"
-             Unloaded="TaskButton_OnUnloaded">
+             Unloaded="TaskButton_OnUnloaded"
+             ClipToBounds="False">
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
         <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
@@ -13,6 +14,8 @@
         <converters:ToolTipVerticalOffsetConverter x:Key="toolTipVerticalOffsetConverter" />
         <converters:ToolTipPlacementConverter x:Key="toolTipPlacementConverter" />
         <converters:TaskLabelConverter x:Key="taskLabelConverter" />
+        <converters:InverseScaleConverter x:Key="inverseScaleConverter" />
+        <converters:TaskButtonStyleConverter x:Key="TaskButtonStyleConverter" />
 
         <Style x:Key="CompressedTaskIcon" TargetType="Image">
             <Setter Property="Width" Value="16" />
@@ -27,14 +30,146 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Button Name="AppButton"
-            Click="AppButton_OnClick"
-            MouseUp="AppButton_OnMouseUp"
-            PreviewMouseDown="AppButton_OnPreviewMouseDown"
-            ContextMenuOpening="AppButton_OnContextMenuOpening"
-            DragEnter="AppButton_OnDragEnter"
-            DragLeave="AppButton_OnDragLeave"
-            ToolTipService.ShowDuration="60000">
+    <Grid ClipToBounds="False">
+        <Popup Name="GroupPopup"
+               PlacementTarget="{Binding ElementName=AppButton}"
+               StaysOpen="False"
+               AllowsTransparency="True"
+               MouseEnter="HoverPreviewPopup_MouseEnter"
+               MouseLeave="HoverPreviewPopup_MouseLeave"
+               Opened="GroupPopup_Opened">
+            <Popup.Placement>
+                <MultiBinding Converter="{StaticResource toolTipPlacementConverter}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
+                </MultiBinding>
+            </Popup.Placement>
+            <Popup.HorizontalOffset>
+                <MultiBinding Converter="{StaticResource toolTipHorizontalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding ElementName="AppButton" Path="ActualWidth"/>
+                    <Binding ElementName="GroupPopupContent" Path="ActualWidth"/>
+                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
+                </MultiBinding>
+            </Popup.HorizontalOffset>
+            <Popup.VerticalOffset>
+                <MultiBinding Converter="{StaticResource toolTipVerticalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding ElementName="AppButton" Path="ActualHeight"/>
+                    <Binding ElementName="GroupPopupContent" Path="ActualHeight"/>
+                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
+                </MultiBinding>
+            </Popup.VerticalOffset>
+            <Grid Name="GroupPopupContent"
+                  MouseEnter="HoverPreviewContent_MouseEnter"
+                  MouseLeave="HoverPreviewContent_MouseLeave"
+                  LostMouseCapture="GroupPopupChild_LostMouseCapture">
+                <Grid.LayoutTransform>
+                    <ScaleTransform>
+                        <ScaleTransform.ScaleX>
+                            <MultiBinding Converter="{StaticResource inverseScaleConverter}">
+                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+                            </MultiBinding>
+                        </ScaleTransform.ScaleX>
+                        <ScaleTransform.ScaleY>
+                            <MultiBinding Converter="{StaticResource inverseScaleConverter}">
+                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
+                            </MultiBinding>
+                        </ScaleTransform.ScaleY>
+                    </ScaleTransform>
+                </Grid.LayoutTransform>
+                <Grid>
+                    <ContentControl>
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl" BasedOn="{StaticResource TaskButtonThumbnail}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsGroup}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                        <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
+                                               Title="{Binding Path=Title}" />
+                    </ContentControl>
+                    <ContentControl>
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl" BasedOn="{StaticResource TaskButtonThumbnail}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsGroup}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                        <ItemsControl ItemsSource="{Binding Path=Windows}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Background="Transparent" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Click="GroupPopupButton_Click"
+                                            Tag="{Binding}"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Padding="0"
+                                            Margin="0,0,5,0"
+                                            Cursor="Hand">
+                                        <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
+                                                               Title="{Binding Path=Title}"/>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ContentControl>
+                </Grid>
+            </Grid>
+        </Popup>
+
+        <!-- Group indicator button - positioned absolutely behind, 3px wider to peek out on right -->
+        <!-- Placed at root level to avoid layout constraints -->
+        <Button Name="GroupIndicatorButton"
+                Height="{Binding ElementName=AppButton, Path=ActualHeight}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Panel.ZIndex="0"
+                IsHitTestVisible="False"
+                Visibility="{Binding Path=IsGroup, Converter={StaticResource boolToVisibilityConverter}}">
+            <Button.Style>
+                <MultiBinding Converter="{StaticResource TaskButtonStyleConverter}">
+                    <Binding RelativeSource="{RelativeSource Self}" />
+                    <Binding Path="State" />
+                </MultiBinding>
+            </Button.Style>
+            <!-- Empty content - just show the button background/border -->
+        </Button>
+
+        <Grid Name="ButtonContainer"
+              ClipToBounds="False">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsGroup}" Value="True">
+                            <Setter Property="Margin" Value="0,0,3,0" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Button Name="AppButton"
+                Panel.ZIndex="1"
+                SizeChanged="AppButton_SizeChanged"
+                Click="AppButton_OnClick"
+                MouseUp="AppButton_OnMouseUp"
+                PreviewMouseDown="AppButton_OnPreviewMouseDown"
+                ContextMenuOpening="AppButton_OnContextMenuOpening"
+                DragEnter="AppButton_OnDragEnter"
+                DragLeave="AppButton_OnDragLeave"
+                MouseEnter="AppButton_MouseEnter"
+                MouseLeave="AppButton_MouseLeave"
+                ToolTipService.ShowDuration="60000">
         <Grid>
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -126,7 +261,7 @@
             </ContextMenu>
         </Button.ContextMenu>
         <Button.ToolTip>
-            <ToolTip>
+            <ToolTip Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowTaskThumbnails, Converter={StaticResource boolToInvertedVisibilityConverter}}">
                 <ToolTip.Style>
                     <Style TargetType="ToolTip"
                            BasedOn="{StaticResource {x:Type ToolTip}}">
@@ -164,9 +299,33 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ToolTip">
-                                                <ContentControl Style="{DynamicResource TaskButtonThumbnail}">
-                                                    <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
-                                                                            Title="{Binding Path=Title}"/>
+                                                <ContentControl Style="{StaticResource TaskButtonThumbnail}">
+                                                    <Grid>
+                                                        <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
+                                                                               Title="{Binding Path=Title}">
+                                                            <controls:TaskThumbnail.Style>
+                                                                <Style TargetType="controls:TaskThumbnail">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=IsGroup}" Value="True">
+                                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </controls:TaskThumbnail.Style>
+                                                        </controls:TaskThumbnail>
+                                                        <controls:TaskGroupThumbnails>
+                                                            <controls:TaskGroupThumbnails.Style>
+                                                                <Style TargetType="controls:TaskGroupThumbnails">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=IsGroup}" Value="True">
+                                                                            <Setter Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </controls:TaskGroupThumbnails.Style>
+                                                        </controls:TaskGroupThumbnails>
+                                                    </Grid>
                                                 </ContentControl>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -179,5 +338,7 @@
                 <TextBlock Text="{Binding Path=Title}" />
             </ToolTip>
         </Button.ToolTip>
-    </Button>
+            </Button>
+        </Grid>
+    </Grid>
 </UserControl>

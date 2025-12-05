@@ -265,6 +265,10 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CompressTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource compress_taskbar_buttons}" />
                             </CheckBox>
+                            <CheckBox x:Name="cbGroupTaskbarButtons"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=GroupTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource group_taskbar_buttons}" />
+                            </CheckBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource notification_area}">

@@ -26,16 +26,19 @@
                       x:Name="TasksScrollViewer"
                       Focusable="False"
                       PreviewMouseWheel="TasksScrollViewer_PreviewMouseWheel"
-                      VerticalScrollBarVisibility="Disabled">
+                      VerticalScrollBarVisibility="Disabled"
+                      ClipToBounds="False">
             <ItemsControl x:Name="TasksList"
                           Focusable="False"
                           HorizontalAlignment="Stretch"
                           dd:DragDrop.IsDragSource="True"
                           dd:DragDrop.IsDropTarget="True"
-                          dd:DragDrop.DragDropContext="TaskList">
+                          dd:DragDrop.DragDropContext="TaskList"
+                          ClipToBounds="False">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Style="{DynamicResource TaskListWrapPanel}">
+                        <WrapPanel Style="{DynamicResource TaskListWrapPanel}"
+                                   ClipToBounds="False">
                             <WrapPanel.Orientation>
                                 <Binding Converter="{StaticResource orientationConverter}"
                                          Path="Orientation"

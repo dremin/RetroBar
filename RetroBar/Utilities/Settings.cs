@@ -382,6 +382,13 @@ namespace RetroBar.Utilities
             get => _compressTaskbarButtons;
             set => Set(ref _compressTaskbarButtons, value);
         }
+
+        private bool _groupTaskbarButtons = false;
+        public bool GroupTaskbarButtons
+        {
+            get => _groupTaskbarButtons;
+            set => Set(ref _groupTaskbarButtons, value);
+        }
         #endregion
 
         #region Old Properties
