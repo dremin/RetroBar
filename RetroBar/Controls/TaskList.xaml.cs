@@ -117,6 +117,10 @@ namespace RetroBar.Controls
                     taskbarItems?.Refresh();
                 }
             }
+            else if (e.PropertyName == nameof(Settings.CompressTaskbarButtons))
+            {
+                SetTaskButtonWidth();
+            }
         }
         private void TaskList_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
         {
@@ -234,8 +238,8 @@ namespace RetroBar.Controls
             int taskCount = TasksList.Items.Count;
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
             double maxWidth = TasksList.ActualWidth / Math.Ceiling((double)taskCount / rows);
-            double defaultWidth = DefaultButtonWidth + margin;
-            double minWidth = MinButtonWidth + margin;
+            double defaultWidth = Settings.Instance.CompressTaskbarButtons ? 44 : DefaultButtonWidth + margin;
+            double minWidth = Settings.Instance.CompressTaskbarButtons ? 44 : MinButtonWidth + margin;
 
             if (maxWidth > defaultWidth)
             {

@@ -375,6 +375,13 @@ namespace RetroBar.Utilities
             get => _winNumHotkeysAction;
             set => SetEnum(ref _winNumHotkeysAction, value);
         }
+
+        private bool _compressTaskbarButtons = false;
+        public bool CompressTaskbarButtons
+        {
+            get => _compressTaskbarButtons;
+            set => Set(ref _compressTaskbarButtons, value);
+        }
         #endregion
 
         #region Old Properties

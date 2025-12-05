@@ -77,6 +77,7 @@
     <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
     <s:String x:Key="show_end_task_button">Show End _task option in right-click menu</s:String>
     <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Compress taskbar buttons (icons only)</s:String>
     <s:String x:Key="show_clock_seconds">S_how seconds in the clock</s:String>
     <s:String x:Key="open_custom_themes_folder">Open custom themes folder</s:String>
     <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _hotkeys action:</s:String>

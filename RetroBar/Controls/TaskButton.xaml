@@ -8,10 +8,24 @@
              Unloaded="TaskButton_OnUnloaded">
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
         <converters:ToolTipHorizontalOffsetConverter x:Key="toolTipHorizontalOffsetConverter" />
         <converters:ToolTipVerticalOffsetConverter x:Key="toolTipVerticalOffsetConverter" />
         <converters:ToolTipPlacementConverter x:Key="toolTipPlacementConverter" />
         <converters:TaskLabelConverter x:Key="taskLabelConverter" />
+
+        <Style x:Key="CompressedTaskIcon" TargetType="Image">
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Height" Value="16" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons}" Value="True">
+                    <Setter Property="Margin" Value="0" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons}" Value="False">
+                    <Setter Property="Margin" Value="0,0,3,0" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Button Name="AppButton"
             Click="AppButton_OnClick"
@@ -22,19 +36,29 @@
             DragLeave="AppButton_OnDragLeave"
             ToolTipService.ShowDuration="60000">
         <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons}" Value="True">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Grid.Column="0"
-                   Style="{DynamicResource TaskIcon}" />
+                   Style="{StaticResource CompressedTaskIcon}" />
             <Image Source="{Binding Path=OverlayIcon, Mode=OneWay}"
                    Grid.Column="0"
                    Style="{DynamicResource TaskOverlayIcon}"
                    Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowTaskBadges, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
             <TextBlock Grid.Column="1"
-                       Style="{DynamicResource TaskLabel}">
+                       Style="{DynamicResource TaskLabel}"
+                       Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource taskLabelConverter}">
                         <Binding Path="Title" />
