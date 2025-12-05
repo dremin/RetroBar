@@ -45,7 +45,7 @@
                  Path="AllowFontSmoothing"
                  Converter="{StaticResource textRenderingModeConverter}" />
     </TextOptions.TextRenderingMode>
-    <ContentControl Style="{DynamicResource Taskbar}" x:Name="TaskbarContentControl">
+    <ContentControl Style="{DynamicResource Taskbar}" x:Name="TaskbarContentControl" ClipToBounds="False">
         <ContentControl.LayoutTransform>
             <ScaleTransform x:Name="TaskbarScaleTransform"
                             ScaleX="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
@@ -53,7 +53,7 @@
                             CenterX="0"
                             CenterY="0" />
         </ContentControl.LayoutTransform>
-        <DockPanel>
+        <DockPanel ClipToBounds="False">
             <Button Visibility="Collapsed" x:Name="FocusDummyButton" />
             <controls:StartButton x:Name="StartButton"
                                   Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">

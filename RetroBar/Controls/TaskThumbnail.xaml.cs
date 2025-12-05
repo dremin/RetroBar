@@ -5,6 +5,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Interop;
+using ManagedShell.WindowsTasks;
 
 namespace RetroBar.Controls
 {
@@ -15,6 +16,7 @@ namespace RetroBar.Controls
     {
         const double MAX_WIDTH = 180;
         const double MAX_HEIGHT = 120;
+        const double TITLE_BAR_HEIGHT = 24;
 
         public double DpiScale = 1.0;
 
@@ -85,13 +87,22 @@ namespace RetroBar.Controls
                     if (this == null)
                         return new NativeMethods.Rect(0, 0, 0, 0);
 
-                    var generalTransform = TransformToAncestor((System.Windows.Media.Visual)Parent);
-                    var leftTopPoint = generalTransform.Transform(new Point(0, 0));
+                    // Transform to the root visual (Window) for proper absolute positioning
+                    PresentationSource source = PresentationSource.FromVisual(this);
+                    if (source == null)
+                        return new NativeMethods.Rect(0, 0, 0, 0);
+
+                    var rootVisual = source.RootVisual;
+                    if (rootVisual == null)
+                        return new NativeMethods.Rect(0, 0, 0, 0);
+
+                    var generalTransform = TransformToAncestor(rootVisual);
+                    var leftTopPoint = generalTransform.Transform(new Point(0, TITLE_BAR_HEIGHT));
                     return new NativeMethods.Rect(
                           (int)(leftTopPoint.X * DpiScale),
                           (int)(leftTopPoint.Y * DpiScale),
                           (int)(leftTopPoint.X * DpiScale) + (int)(MAX_WIDTH * DpiScale),
-                          (int)(leftTopPoint.Y * DpiScale) + (int)(MAX_HEIGHT * DpiScale)
+                          (int)(leftTopPoint.Y * DpiScale) + (int)((MAX_HEIGHT - TITLE_BAR_HEIGHT) * DpiScale)
                          );
                 }
                 catch
@@ -130,18 +141,20 @@ namespace RetroBar.Controls
 
                 if (this != null)
                 {
-                    if (size.x <= (MAX_WIDTH * DpiScale) && size.y <= (MAX_HEIGHT * DpiScale))
+                    double previewHeight = MAX_HEIGHT - TITLE_BAR_HEIGHT;
+
+                    if (size.x <= (MAX_WIDTH * DpiScale) && size.y <= (previewHeight * DpiScale))
                     {
                         // small, do not scale
                         Width = size.x / DpiScale;
-                        Height = size.y / DpiScale;
+                        Height = (size.y / DpiScale) + TITLE_BAR_HEIGHT;
                         props.rcDestination.Right = props.rcDestination.Left + size.x;
                         props.rcDestination.Bottom = props.rcDestination.Top + size.y;
                     }
                     else
                     {
                         // large, scale preserving aspect ratio
-                        double controlAspectRatio = MAX_WIDTH / MAX_HEIGHT;
+                        double controlAspectRatio = MAX_WIDTH / previewHeight;
 
                         if (aspectRatio > controlAspectRatio)
                         {
@@ -149,13 +162,13 @@ namespace RetroBar.Controls
                             int height = (int)(MAX_WIDTH / aspectRatio);
 
                             Width = MAX_WIDTH;
-                            Height = height;
+                            Height = height + TITLE_BAR_HEIGHT;
                             props.rcDestination.Bottom = props.rcDestination.Top + (int)(height * DpiScale);
                         }
                         else if (aspectRatio < controlAspectRatio)
                         {
                             // tall
-                            int width = (int)(MAX_HEIGHT * aspectRatio);
+                            int width = (int)(previewHeight * aspectRatio);
 
                             Width = width;
                             Height = MAX_HEIGHT;
@@ -192,8 +205,13 @@ namespace RetroBar.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DpiScale = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
+            PresentationSource source = PresentationSource.FromVisual(this);
+            if (source?.CompositionTarget != null)
+            {
+                DpiScale = source.CompositionTarget.TransformToDevice.M11;
+            }
 
+            // Try immediate registration first
             if (NativeMethods.DwmIsCompositionEnabled() && SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
             {
                 Refresh();
@@ -201,8 +219,26 @@ namespace RetroBar.Controls
                 _renderingHandler = (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
                 CompositionTarget.Rendering += _renderingHandler;
             }
+            else
+            {
+                // If immediate registration failed, retry after a delay
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() =>
+                {
+                    if (_thumbHandle == IntPtr.Zero && NativeMethods.DwmIsCompositionEnabled() && SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
+                    {
+                        Refresh();
+                        _renderingHandler = (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
+                        CompositionTarget.Rendering += _renderingHandler;
+                    }
+                }));
+            }
 
-            _toolTipTimer.Start();
+            // Show tooltip immediately in popups, no delay needed
+            if (ToolTip is ToolTip tip)
+            {
+                tip.PlacementTarget = this;
+                tip.IsOpen = true;
+            }
         }
 
         private void ToolTipTimer_Tick(object sender, EventArgs e)
@@ -211,6 +247,15 @@ namespace RetroBar.Controls
             {
                 tip.PlacementTarget = this;
                 tip.IsOpen = true;
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close the window associated with this thumbnail
+            if (DataContext is ApplicationWindow window)
+            {
+                window?.Close();
             }
         }
     }

@@ -3,9 +3,14 @@ using ManagedShell.WindowsTasks;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace RetroBar.Controls
 {
@@ -21,6 +26,8 @@ namespace RetroBar.Controls
         private double TaskButtonLeftMargin;
         private double TaskButtonRightMargin;
         private ICollectionView taskbarItems;
+        private ObservableCollection<TaskGroup> groupedTasks = new ObservableCollection<TaskGroup>();
+        private Dictionary<string, TaskGroup> groupLookup = new Dictionary<string, TaskGroup>();
 
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register(nameof(ButtonWidth), typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
 
@@ -87,13 +94,63 @@ namespace RetroBar.Controls
                     taskbarItems.Filter = Tasks_Filter;
                 }
 
-                TasksList.ItemsSource = taskbarItems;
+                UpdateTasksDisplay();
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
                 Host.hotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
 
                 isLoaded = true;
             }
+        }
+
+        private void UpdateTasksDisplay()
+        {
+            if (Settings.Instance.GroupTaskbarButtons)
+            {
+                // Use grouped display
+                RebuildGroupedTasks();
+                TasksList.ItemsSource = groupedTasks;
+            }
+            else
+            {
+                // Use ungrouped display
+                TasksList.ItemsSource = taskbarItems;
+            }
+        }
+
+        private void RebuildGroupedTasks()
+        {
+            groupedTasks.Clear();
+            groupLookup.Clear();
+
+            if (taskbarItems == null) return;
+
+            foreach (var item in taskbarItems)
+            {
+                if (item is ApplicationWindow window && Tasks_Filter(window))
+                {
+                    string groupKey = GetGroupKey(window);
+
+                    if (!groupLookup.ContainsKey(groupKey))
+                    {
+                        var group = new TaskGroup(groupKey);
+                        groupLookup[groupKey] = group;
+                        groupedTasks.Add(group);
+                    }
+
+                    groupLookup[groupKey].AddWindow(window);
+                }
+            }
+        }
+
+        private string GetGroupKey(ApplicationWindow window)
+        {
+            // Group by AppUserModelID if available, otherwise by executable path
+            if (!string.IsNullOrEmpty(window.AppUserModelID))
+            {
+                return window.AppUserModelID;
+            }
+            return window.WinFileName ?? window.Title;
         }
 
         private static void TasksChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -116,6 +173,15 @@ namespace RetroBar.Controls
                 {
                     taskbarItems?.Refresh();
                 }
+            }
+            else if (e.PropertyName == nameof(Settings.CompressTaskbarButtons))
+            {
+                SetTaskButtonWidth();
+            }
+            else if (e.PropertyName == nameof(Settings.GroupTaskbarButtons))
+            {
+                UpdateTasksDisplay();
+                SetTaskButtonWidth();
             }
         }
         private void TaskList_TaskbarHotkeyPressed(object sender, HotkeyManager.TaskbarHotkeyEventArgs e)
@@ -208,6 +274,10 @@ namespace RetroBar.Controls
 
         private void GroupedWindows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            if (Settings.Instance.GroupTaskbarButtons)
+            {
+                RebuildGroupedTasks();
+            }
             SetTaskButtonWidth();
         }
 
@@ -234,8 +304,8 @@ namespace RetroBar.Controls
             int taskCount = TasksList.Items.Count;
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
             double maxWidth = TasksList.ActualWidth / Math.Ceiling((double)taskCount / rows);
-            double defaultWidth = DefaultButtonWidth + margin;
-            double minWidth = MinButtonWidth + margin;
+            double defaultWidth = Settings.Instance.CompressTaskbarButtons ? 44 : DefaultButtonWidth + margin;
+            double minWidth = Settings.Instance.CompressTaskbarButtons ? 44 : MinButtonWidth + margin;
 
             if (maxWidth > defaultWidth)
             {
