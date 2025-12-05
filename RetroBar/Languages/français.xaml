@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Afficher l'option "_Forcer l'arrêt" dans le menu contextuel sous le clic droit</s:String>
     <s:String x:Key="slide_taskbar_buttons">Utiliser l'effet de _glissement au déplacement des boutons</s:String>
     <s:String x:Key="show_clock_seconds">Afficher des _secondes dans l'horloge</s:String>
+    <s:String x:Key="show_clock_date">Afficher la _date dans l'horloge</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Compresser les boutons de la barre des tâches (icônes uniquement)</s:String>
+    <s:String x:Key="group_taskbar_buttons">Regrouper les _boutons similaires de la barre des tâches</s:String>
     <s:String x:Key="open_custom_themes_folder">Ouvrir le dossier des thèmes personnalisés ("Themes")</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 

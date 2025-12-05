@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Arătați opțiunea "Terminare activitate" când faceți clic dreapta</s:String>
     <s:String x:Key="slide_taskbar_buttons">Permiteți efectul de glisare pe butoanele din bara de activitate</s:String>
     <s:String x:Key="show_clock_seconds">A_fișați secundele din ceas</s:String>
+    <s:String x:Key="show_clock_date">Afișează _data în ceas</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Comprimă butoanele barei de activități (doar pictograme)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Grupează butoane similare ale barei de activități</s:String>
     <s:String x:Key="open_custom_themes_folder">Descideți sertarul cu teme personalizate</s:String>
     <s:String x:Key="win_num_hotkeys_action">_Acțiune taste rapide Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

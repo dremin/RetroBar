@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Отображать опцию "З_авершить задачу" в контекстном меню</s:String>
     <s:String x:Key="slide_taskbar_buttons">Э_ффект скольжения при перемещении кнопок панели задач</s:String>
     <s:String x:Key="show_clock_seconds">Отображать _секунды на часах</s:String>
+    <s:String x:Key="show_clock_date">Показать _дату в часах</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Сжать кнопки панели задач (только значки)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Группировать похожие кнопки панели задач</s:String>
     <s:String x:Key="open_custom_themes_folder">Открыть папку для собственных тем оформления</s:String>
     <s:String x:Key="win_num_hotkeys_action">Действие соче_таний клавиш Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

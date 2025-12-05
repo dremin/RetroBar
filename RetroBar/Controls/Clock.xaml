@@ -6,6 +6,30 @@
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded"
              Template="{DynamicResource ClockTemplateKey}">
+    <UserControl.Resources>
+        <!-- Custom template for two-row clock with date -->
+        <ControlTemplate x:Key="ClockWithDateTemplate" TargetType="{x:Type UserControl}">
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="10,0,10,0">
+                <TextBlock Text="{Binding Path=Now, StringFormat=t, Mode=OneWay}"
+                           Foreground="{DynamicResource ClockForeground}"
+                           FontFamily="{DynamicResource GlobalFontFamily}"
+                           HorizontalAlignment="Center"
+                           FontSize="9"
+                           Margin="0,-0.5,0,-0.5"
+                           Name="ClockText" />
+                <TextBlock Text="{Binding Path=Now, StringFormat=d, Mode=OneWay}"
+                           Foreground="{DynamicResource ClockForeground}"
+                           FontFamily="{DynamicResource GlobalFontFamily}"
+                           HorizontalAlignment="Center"
+                           FontSize="9"
+                           Margin="0,-0.5,0,-0.5"
+                           Name="ClockDate" />
+            </StackPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
     <UserControl.ToolTip>
         <TextBlock Text="{Binding Path=Now, StringFormat=D, Mode=OneWay}"
                    Name="ClockTip" />

@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Sağ tıklama _menüsünde görevi sonlandır seçeneğini göster</s:String>
     <s:String x:Key="slide_taskbar_buttons">Görev çubuğu d_üğmelerini kaydır</s:String>
     <s:String x:Key="show_clock_seconds">Saatte saniy_eleri göster</s:String>
+    <s:String x:Key="show_clock_date">Saatte _tarihi göster</s:String>
+    <s:String x:Key="compress_taskbar_buttons">Görev çubuğu düğmelerini _sıkıştır (yalnızca simgeler)</s:String>
+    <s:String x:Key="group_taskbar_buttons">Benzer görev çubuğu düğmelerini _grupla</s:String>
     <s:String x:Key="open_custom_themes_folder">Özel tema klasörünü aç</s:String>
     <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _kısayol tuşları eylemi:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">إظهار خيار إنهاء ال_مهمة في قائمة النقر بزر الماوس الأيمن</s:String>
     <s:String x:Key="slide_taskbar_buttons">تحريك أزرار شريط الم_هام</s:String>
     <s:String x:Key="show_clock_seconds">إظهار ال_ثواني في الساعة</s:String>
+    <s:String x:Key="show_clock_date">إظهار ال_تاريخ في الساعة</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_ضغط أزرار شريط المهام (الأيقونات فقط)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_تجميع أزرار شريط المهام المتشابهة</s:String>
     <s:String x:Key="open_custom_themes_folder">فتح مجلد السمات المخصصة</s:String>
     <s:String x:Key="win_num_hotkeys_action">إجراء اختصارات Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

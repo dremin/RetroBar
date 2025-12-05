@@ -77,6 +77,9 @@
     <s:String x:Key="show_exit_menu_item">Mostra l'opció de sortida en el menú conte_xtual</s:String>
     <s:String x:Key="slide_taskbar_buttons">Des_lissa els botons de la barra de tasques</s:String>
     <s:String x:Key="show_clock_seconds">M_ostra els segons al rellotge</s:String>
+    <s:String x:Key="show_clock_date">Mostra la _data al rellotge</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Comprimir botons de la barra de tasques (només icones)</s:String>
+    <s:String x:Key="group_taskbar_buttons">A_grupar botons similars de la barra de tasques</s:String>
     <s:String x:Key="open_custom_themes_folder">Obre la carpeta dels temes personalitzats</s:String>
     <s:String x:Key="win_num_hotkeys_action">Tecles d'accé_s ràpid Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

@@ -55,9 +55,25 @@ namespace RetroBar.Controls
                 Visibility = Visibility.Collapsed;
             }
 
+            UpdateClockTemplate();
+
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
             SystemEvents.TimeChanged += TimeChanged;
             SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
+        }
+
+        private void UpdateClockTemplate()
+        {
+            if (Settings.Instance.ShowClockDate)
+            {
+                // Use our custom two-row template with date
+                Template = FindResource("ClockWithDateTemplate") as ControlTemplate;
+            }
+            else
+            {
+                // Use the theme's default template
+                Template = TryFindResource("ClockTemplateKey") as ControlTemplate;
+            }
         }
 
         private void StartClock()
@@ -92,6 +108,11 @@ namespace RetroBar.Controls
             else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
             {
                 UpdateUserCulture();
+            }
+            else if (e.PropertyName == nameof(Settings.ShowClockDate))
+            {
+                UpdateClockTemplate();
+                UpdateUserCulture(); // Re-apply culture to new template
             }
         }
 

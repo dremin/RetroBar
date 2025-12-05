@@ -369,6 +369,13 @@ namespace RetroBar.Utilities
             set => Set(ref _showClockSeconds, value);
         }
 
+        private bool _showClockDate = false;
+        public bool ShowClockDate
+        {
+            get => _showClockDate;
+            set => Set(ref _showClockDate, value);
+        }
+
         private WinNumHotkeysOption _winNumHotkeysAction = WinNumHotkeysOption.WindowsDefault;
         public WinNumHotkeysOption WinNumHotkeysAction
         {

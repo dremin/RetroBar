@@ -77,6 +77,9 @@
     <s:String x:Key="show_exit_menu_item">右クリックのメニューに終了オプションを表示する(_X)</s:String>
     <s:String x:Key="slide_taskbar_buttons">タスクバーボタンをスライド表示する(_E)</s:String>
     <s:String x:Key="show_clock_seconds">時計に秒を表示する(_H)</s:String>
+    <s:String x:Key="show_clock_date">時計に_日付を表示</s:String>
+    <s:String x:Key="compress_taskbar_buttons">タスクバーボタンを_圧縮（アイコンのみ）</s:String>
+    <s:String x:Key="group_taskbar_buttons">類似のタスクバーボタンを_グループ化</s:String>
     <s:String x:Key="open_custom_themes_folder">カスタムテーマフォルダーを開く</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 

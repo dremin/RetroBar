@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Паказваць опцыю Завяршыць задачу у кантэкстным меню</s:String>
     <s:String x:Key="slide_taskbar_buttons">Анімацыя кнопак панэлі</s:String>
     <s:String x:Key="show_clock_seconds">Паказваць сякунды на гадзіньніку</s:String>
+    <s:String x:Key="show_clock_date">Паказаць _дату ў гадзіннiку</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Сціснуць кнопкі панэлі задач (толькі значкі)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Згрупаваць падобныя кнопкі панэлі задач</s:String>
     <s:String x:Key="open_custom_themes_folder">Адкрыць папку карыстальніцкіх тэм</s:String>
     <s:String x:Key="win_num_hotkeys_action">Дзеяньне Win+[0-9] гарачых клавіш:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

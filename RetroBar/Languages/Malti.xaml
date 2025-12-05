@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Uri l-għażla "Temm il-kompitu" fil-menu tal-ikklikkjar bil-lemin</s:String>
     <s:String x:Key="slide_taskbar_buttons">Iċċaqlaq il-buttuni tal-bar tal-kompiti</s:String>
     <s:String x:Key="show_clock_seconds">U_ri s-sekondi fil-arloġġ</s:String>
+    <s:String x:Key="show_clock_date">Uri d-_data fl-arloġġ</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Ikkomprimi buttuni tal-taskbar (ikoni biss)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Iggruppa buttuni simili tal-taskbar</s:String>
     <s:String x:Key="open_custom_themes_folder">Ftaħ il-folder tat-temi personalizzati</s:String>
     <s:String x:Key="win_num_hotkeys_action">Azzjoni tal-hotkeys Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

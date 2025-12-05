@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Vis alternativet «Avslutt oppgave» i høyreklikkmenyen</s:String>
     <s:String x:Key="slide_taskbar_buttons">Skyv oppgavelinjeikoner</s:String>
     <s:String x:Key="show_clock_seconds">Vis sekunder på klokken</s:String>
+    <s:String x:Key="show_clock_date">Vis _dato i klokken</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Komprimer oppgavelinjeknapper (kun ikoner)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Grupper lignende oppgavelinjeknapper</s:String>
     <s:String x:Key="open_custom_themes_folder">Åpne mappen for tilpassede temaer</s:String>
     <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _hurtigtaster-handling:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">_Task beenden im Rechtsklickmenü anzeigen</s:String>
     <s:String x:Key="slide_taskbar_buttons">Schaltfläch_en der Taskleiste schieben</s:String>
     <s:String x:Key="show_clock_seconds">Sekunden in der U_hr anzeigen</s:String>
+    <s:String x:Key="show_clock_date">_Datum in der Uhr anzeigen</s:String>
+    <s:String x:Key="compress_taskbar_buttons">Taskleisten-Schaltflächen _komprimieren (nur Symbole)</s:String>
+    <s:String x:Key="group_taskbar_buttons">Ähnliche Taskleisten-Schaltflächen _gruppieren</s:String>
     <s:String x:Key="open_custom_themes_folder">Ordner mit benutzerdefinierten Themen öffnen</s:String>
     <s:String x:Key="win_num_hotkeys_action">Win+[0-9] Tasten_kürzel-Aktion:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

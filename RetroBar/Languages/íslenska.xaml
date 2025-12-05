@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Sýna "Ljúka verki" valkost í hægri-smelliseðli</s:String>
     <s:String x:Key="slide_taskbar_buttons">Færðu _hnappana á verkstikunni</s:String>
     <s:String x:Key="show_clock_seconds">S_ýna sekúndur í klukkunni</s:String>
+    <s:String x:Key="show_clock_date">Sýna _dagsetningu í klukku</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Þjappa verkefnastikutökkum (aðeins tákn)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Flokka svipaða verkefnastikutakka</s:String>
     <s:String x:Key="open_custom_themes_folder">Opna möppu sérsniðinna þema</s:String>
     <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _heitlyklaaðgerð:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

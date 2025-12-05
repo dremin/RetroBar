@@ -77,6 +77,9 @@
     <s:String x:Key="show_exit_menu_item">Hiển thị tùy chọn _Thoát trong menu chuột phải</s:String>
     <s:String x:Key="slide_taskbar_buttons">_Di chuyển các nút thanh tác vụ</s:String>
     <s:String x:Key="show_clock_seconds">Hiển thị _giây trong đồng hồ</s:String>
+    <s:String x:Key="show_clock_date">Hiển thị _ngày trong đồng hồ</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Nén các nút thanh tác vụ (chỉ biểu tượng)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Nhóm các nút thanh tác vụ tương tự</s:String>
     <s:String x:Key="open_custom_themes_folder">Mở thư mục chủ đề tùy chỉnh</s:String>
     <s:String x:Key="win_num_hotkeys_action">Phím tắt Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

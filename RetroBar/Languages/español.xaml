@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Mostrar opción "_Finalizar tarea" en el menú contextual</s:String>
     <s:String x:Key="slide_taskbar_buttons">Deslizar _botones de la barra de tareas</s:String>
     <s:String x:Key="show_clock_seconds">Mostrar _segundos en el reloj</s:String>
+    <s:String x:Key="show_clock_date">Mostrar _fecha en el reloj</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Comprimir botones de la barra de tareas (solo iconos)</s:String>
+    <s:String x:Key="group_taskbar_buttons">A_grupar botones similares de la barra de tareas</s:String>
     <s:String x:Key="open_custom_themes_folder">Abrir carpeta de temas personalizados</s:String>
     <s:String x:Key="win_num_hotkeys_action">Acción de teclas de acceso _rápido Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

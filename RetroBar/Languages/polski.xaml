@@ -78,6 +78,9 @@
     <s:String x:Key="show_end_task_button">Pokaż opcję "Zakończ zadanie" w menu podręcznym (prawy przycisk myszy)</s:String>  
     <s:String x:Key="slide_taskbar_buttons">Stosuj efekt ślizgania przy przesuwaniu przycisków paska zadań</s:String>
     <s:String x:Key="show_clock_seconds">Pokaż sekundy na zegarze</s:String>
+    <s:String x:Key="show_clock_date">Pokaż _datę w zegarze</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Kompresuj przyciski paska zadań (tylko ikony)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Grupuj podobne przyciski paska zadań</s:String>
     <s:String x:Key="open_custom_themes_folder">Otwórz folder motywów własnych ("themes")</s:String>	
     <s:String x:Key="win_num_hotkeys_action">Akcje klawiszy skrótów Win+[0-9]:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

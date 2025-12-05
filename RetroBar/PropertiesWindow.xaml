@@ -324,6 +324,10 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockSeconds, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_clock_seconds}" />
                             </CheckBox>
+                            <CheckBox x:Name="cbShowClockDate"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockDate, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_clock_date}" />
+                            </CheckBox>
                             <CheckBox x:Name="cbShowInputLanguage"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowInputLanguage, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_input_language}" />

@@ -77,6 +77,9 @@
     <s:String x:Key="show_exit_menu_item">Показати опцію Вийти в меню</s:String>
     <s:String x:Key="slide_taskbar_buttons">Анімація кнопок панелі</s:String>
     <s:String x:Key="show_clock_seconds">Показувати секунди на годиннику</s:String>
+    <s:String x:Key="show_clock_date">Показати _дату в годиннику</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_Стиснути кнопки панелі завдань (лише значки)</s:String>
+    <s:String x:Key="group_taskbar_buttons">_Згрупувати подібні кнопки панелі завдань</s:String>
     <s:String x:Key="open_custom_themes_folder">Відкрити папку зі сторонніми темами</s:String>
     <s:String x:Key="win_num_hotkeys_action">Дія Win+[0-9] гарячих клавіш:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">

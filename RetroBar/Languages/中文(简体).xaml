@@ -77,6 +77,9 @@
     <s:String x:Key="show_exit_menu_item">在右键打开的菜单中显示退出RetroBar的选项(_X)</s:String>
     <s:String x:Key="slide_taskbar_buttons">任务被拖动时的平滑效果(_E)</s:String>
     <s:String x:Key="show_clock_seconds">时钟显示秒数(_H)</s:String>
+    <s:String x:Key="show_clock_date">在时钟中显示_日期</s:String>
+    <s:String x:Key="compress_taskbar_buttons">_压缩任务栏按钮（仅图标）</s:String>
+    <s:String x:Key="group_taskbar_buttons">_分组相似的任务栏按钮</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 
     <s:String x:Key="customize_notifications">自定义通知</s:String>
