@@ -143,6 +143,66 @@ namespace RetroBar.Controls
             }
         }
 
+        private void UpdateGroupedTasksIncremental(NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (e.NewItems != null)
+                    {
+                        foreach (var item in e.NewItems)
+                        {
+                            if (item is ApplicationWindow window && Tasks_Filter(window))
+                            {
+                                string groupKey = GetGroupKey(window);
+
+                                if (!groupLookup.ContainsKey(groupKey))
+                                {
+                                    var group = new TaskGroup(groupKey);
+                                    groupLookup[groupKey] = group;
+                                    groupedTasks.Add(group);
+                                }
+
+                                groupLookup[groupKey].AddWindow(window);
+                            }
+                        }
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    if (e.OldItems != null)
+                    {
+                        foreach (var item in e.OldItems)
+                        {
+                            if (item is ApplicationWindow window)
+                            {
+                                string groupKey = GetGroupKey(window);
+
+                                if (groupLookup.ContainsKey(groupKey))
+                                {
+                                    var group = groupLookup[groupKey];
+                                    group.RemoveWindow(window);
+
+                                    // Remove the group if it's now empty
+                                    if (group.Windows.Count == 0)
+                                    {
+                                        groupedTasks.Remove(group);
+                                        groupLookup.Remove(groupKey);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Replace:
+                case NotifyCollectionChangedAction.Reset:
+                    // Fall back to rebuild for complex changes
+                    RebuildGroupedTasks();
+                    break;
+            }
+        }
+
         private string GetGroupKey(ApplicationWindow window)
         {
             // Group by AppUserModelID if available, otherwise by executable path
@@ -276,7 +336,7 @@ namespace RetroBar.Controls
         {
             if (Settings.Instance.GroupTaskbarButtons)
             {
-                RebuildGroupedTasks();
+                UpdateGroupedTasksIncremental(e);
             }
             SetTaskButtonWidth();
         }
