@@ -2,7 +2,7 @@
 
 A fork of [RetroBar](https://github.com/dremin/RetroBar) with additional features and quality-of-life improvements.
 
-![RetroBar Preview](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png)
+![RetroBar Preview](retrobar-preview.png)
 
 ## About This Fork
 
