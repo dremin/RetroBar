@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:utilities="clr-namespace:RetroBar.Utilities;assembly=RetroBar">
 
     <system:Double x:Key="TaskbarHeight">30</system:Double>
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
@@ -616,6 +617,14 @@
                                     Property="Margin"
                                     Value="7,4,5,2" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons}"
+                                     Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="2" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -675,6 +684,14 @@
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBottomBackgroundActiveHover}" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons}"
+                                     Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="2" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -732,6 +749,14 @@
                                     Property="Margin"
                                     Value="7,4,5,2" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CompressTaskbarButtons}"
+                                     Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="Content"
+                                        Property="Margin"
+                                        Value="2" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

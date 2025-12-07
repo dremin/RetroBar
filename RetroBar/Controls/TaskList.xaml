@@ -11,6 +11,18 @@
         <ResourceDictionary>
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
             <converters:EdgeOrientationConverter x:Key="orientationConverter" />
+
+            <!-- Template for pinned-only items -->
+            <DataTemplate x:Key="PinnedOnlyTemplate">
+                <local:ToolbarButton DataContext="{Binding Path=PinnedItem}"
+                                     PreviewMouseLeftButtonUp="PinnedToolbarButton_OnClick" />
+            </DataTemplate>
+
+            <!-- Template for running items -->
+            <DataTemplate x:Key="RunningItemTemplate">
+                <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"
+                                  Host="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}" />
+            </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -48,10 +60,22 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <ItemContainerTemplate>
-                        <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"
-                                          Host="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"></local:TaskButton>
-                    </ItemContainerTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}">
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <!-- Default: use TaskButton template for running items -->
+                                    <Setter Property="ContentTemplate" Value="{StaticResource RunningItemTemplate}" />
+                                    <Style.Triggers>
+                                        <!-- For pinned-only items, use ToolbarButton template -->
+                                        <DataTrigger Binding="{Binding Path=IsPinnedOnly}" Value="True">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource PinnedOnlyTemplate}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
+                    </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>

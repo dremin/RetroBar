@@ -42,8 +42,18 @@
 
   <ItemGroup>
     <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />
-    <PackageReference Include="ManagedShell" Version="0.0.330" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell\ManagedShell.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.AppBar\ManagedShell.AppBar.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.Common\ManagedShell.Common.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.Interop\ManagedShell.Interop.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.ShellFolders\ManagedShell.ShellFolders.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.UWPInterop\ManagedShell.UWPInterop.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.WindowsTasks\ManagedShell.WindowsTasks.csproj" />
+    <ProjectReference Include="..\ManagedShell-master\src\ManagedShell.WindowsTray\ManagedShell.WindowsTray.csproj" />
   </ItemGroup>
 
   <ItemGroup>

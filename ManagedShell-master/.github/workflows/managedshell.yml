@@ -1,0 +1,46 @@
+name: ManagedShell
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore: [ '.github/**' ]
+  pull_request:
+    branches: [ master ]
+    paths-ignore: [ '.github/**' ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        buildconfig: [ Release ]
+
+    runs-on: windows-2022
+
+    env:
+      project: src\ManagedShell\ManagedShell.csproj
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Install nbgv
+      uses: dotnet/nbgv@v0.4.2
+
+    - name: Build
+      run: dotnet build $env:project -c $env:config --disable-parallel
+      env:
+        config: ${{ matrix.buildconfig }}
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v5
+      with:
+        name: ManagedShell nupkg
+        path: '**\*.nupkg'
+
+    - name: Publish to NuGet
+      if: matrix.buildconfig == 'Release' && github.event_name == 'push'
+      run: dotnet nuget push **\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate

@@ -390,11 +390,39 @@ namespace RetroBar.Utilities
             set => Set(ref _compressTaskbarButtons, value);
         }
 
+        private double _compressTaskbarButtonWidth = 28.0;
+        public double CompressTaskbarButtonWidth
+        {
+            get => _compressTaskbarButtonWidth;
+            set => Set(ref _compressTaskbarButtonWidth, value);
+        }
+
         private bool _groupTaskbarButtons = false;
         public bool GroupTaskbarButtons
         {
             get => _groupTaskbarButtons;
             set => Set(ref _groupTaskbarButtons, value);
+        }
+
+        private ClockTimeFormat _clockTimeFormat = ClockTimeFormat.Hour12;
+        public ClockTimeFormat ClockTimeFormat
+        {
+            get => _clockTimeFormat;
+            set => SetEnum(ref _clockTimeFormat, value);
+        }
+
+        private ClockDateFormat _clockDateFormat = ClockDateFormat.MonthDayYear;
+        public ClockDateFormat ClockDateFormat
+        {
+            get => _clockDateFormat;
+            set => SetEnum(ref _clockDateFormat, value);
+        }
+
+        private bool _combinePinsAndPrograms = false;
+        public bool CombinePinsAndPrograms
+        {
+            get => _combinePinsAndPrograms;
+            set => Set(ref _combinePinsAndPrograms, value);
         }
         #endregion
 
@@ -483,6 +511,18 @@ namespace RetroBar.Utilities
         AlwaysHide,
         AlwaysShow,
         Remove
+    }
+
+    public enum ClockTimeFormat
+    {
+        Hour12,
+        Hour24
+    }
+
+    public enum ClockDateFormat
+    {
+        MonthDayYear,
+        DayMonthYear
     }
     #endregion
 

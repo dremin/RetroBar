@@ -29,6 +29,7 @@ namespace RetroBar.Controls
 
         private ApplicationWindow Window;
         private TaskGroup Group;
+        private TaskbarItem TaskbarItem;
         private TaskButtonStyleConverter StyleConverter = new TaskButtonStyleConverter();
         private ApplicationWindow.WindowState PressedWindowState = ApplicationWindow.WindowState.Inactive;
 
@@ -38,6 +39,9 @@ namespace RetroBar.Controls
         private System.Windows.Threading.DispatcherTimer _hoverTimer;
         private System.Windows.Threading.DispatcherTimer _closeTimer;
         private System.Windows.Window _parentWindow;
+
+        // Track which TaskButton currently has its popup open for fast switching
+        private static TaskButton _currentlyOpenTaskButton = null;
 
         public TaskButton()
         {
@@ -49,7 +53,7 @@ namespace RetroBar.Controls
             _hoverTimer.Tick += HoverTimer_Tick;
 
             _closeTimer = new System.Windows.Threading.DispatcherTimer();
-            _closeTimer.Interval = TimeSpan.FromMilliseconds(100);
+            _closeTimer.Interval = TimeSpan.FromSeconds(1); // Auto-close after 1 second
             _closeTimer.Tick += CloseTimer_Tick;
         }
 
@@ -67,6 +71,10 @@ namespace RetroBar.Controls
         private void ScrollIntoView()
         {
             if (Window != null && Window.State == ApplicationWindow.WindowState.Active)
+            {
+                BringIntoView();
+            }
+            else if (TaskbarItem != null && TaskbarItem.State == ApplicationWindow.WindowState.Active)
             {
                 BringIntoView();
             }
@@ -99,6 +107,7 @@ namespace RetroBar.Controls
         {
             Window = DataContext as ApplicationWindow;
             Group = DataContext as TaskGroup;
+            TaskbarItem = DataContext as TaskbarItem;
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
@@ -218,6 +227,12 @@ namespace RetroBar.Controls
             if (GroupPopup.IsOpen)
             {
                 GroupPopup.IsOpen = false;
+
+                // Clear the currently open reference if it's this button
+                if (_currentlyOpenTaskButton == this)
+                {
+                    _currentlyOpenTaskButton = null;
+                }
             }
         }
 
@@ -250,6 +265,12 @@ namespace RetroBar.Controls
 
             // Click is outside, close the popup
             GroupPopup.IsOpen = false;
+
+            // Clear the currently open reference if it's this button
+            if (_currentlyOpenTaskButton == this)
+            {
+                _currentlyOpenTaskButton = null;
+            }
         }
 
         private bool IsDescendantOf(DependencyObject child, DependencyObject parent)
@@ -271,12 +292,18 @@ namespace RetroBar.Controls
 
         private void AppButton_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
-            ApplicationWindow contextWindow = Window;
+            ApplicationWindow contextWindow = Window ?? TaskbarItem?.RunningWindow;
 
             // For groups, use the first window for context menu
             if (contextWindow == null && Group != null && Group.Windows.Count > 0)
             {
                 contextWindow = Group.Windows[0];
+            }
+
+            // For TaskbarItem groups, use the first window
+            if (contextWindow == null && TaskbarItem != null && TaskbarItem.IsGroup && TaskbarItem.Windows.Count > 0)
+            {
+                contextWindow = TaskbarItem.Windows[0];
             }
 
             if (contextWindow == null)
@@ -310,9 +337,14 @@ namespace RetroBar.Controls
             {
                 Group.Windows[0]?.Close();
             }
+            else if (TaskbarItem != null && TaskbarItem.IsGroup && TaskbarItem.Windows.Count > 0)
+            {
+                TaskbarItem.Windows[0]?.Close();
+            }
             else
             {
                 Window?.Close();
+                TaskbarItem?.RunningWindow?.Close();
             }
         }
 
@@ -322,7 +354,7 @@ namespace RetroBar.Controls
             {
                 ForceEndTask();
             }
-            else if (Window != null)
+            else if (Window != null || TaskbarItem?.RunningWindow != null)
             {
                 ForceEndTask();
             }
@@ -330,7 +362,7 @@ namespace RetroBar.Controls
 
         private void ForceEndTask()
         {
-            ApplicationWindow targetWindow = Window ?? (Group != null && Group.Windows.Count > 0 ? Group.Windows[0] : null);
+            ApplicationWindow targetWindow = Window ?? TaskbarItem?.RunningWindow ?? (Group != null && Group.Windows.Count > 0 ? Group.Windows[0] : null);
 
             if (targetWindow == null) return;
 
@@ -418,7 +450,40 @@ namespace RetroBar.Controls
 
         private void AppButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Group != null && Group.IsGroup)
+            // Handle TaskbarItem (combined pins and programs mode)
+            if (TaskbarItem != null)
+            {
+                if (TaskbarItem.IsGroup)
+                {
+                    // Multiple windows - show popup
+                    GroupPopup.IsOpen = true;
+                }
+                else if (TaskbarItem.IsRunning)
+                {
+                    // Has a running window
+                    var window = TaskbarItem.RunningWindow;
+                    if (window != null)
+                    {
+                        if (PressedWindowState == ApplicationWindow.WindowState.Active && window.CanMinimize)
+                        {
+                            window.Minimize();
+                        }
+                        else
+                        {
+                            window.BringToFront();
+                        }
+                    }
+                }
+                else if (TaskbarItem.IsPinned)
+                {
+                    // Pinned only (not running) - launch the application
+                    if (TaskbarItem.PinnedItem != null)
+                    {
+                        ShellHelper.StartProcess(TaskbarItem.PinnedItem.Path);
+                    }
+                }
+            }
+            else if (Group != null && Group.IsGroup)
             {
                 // For groups with multiple windows, show popup
                 GroupPopup.IsOpen = true;
@@ -457,6 +522,10 @@ namespace RetroBar.Controls
                 {
                     PressedWindowState = Group.State;
                 }
+                else if (TaskbarItem != null)
+                {
+                    PressedWindowState = TaskbarItem.State;
+                }
                 else if (Window != null)
                 {
                     PressedWindowState = Window.State;
@@ -468,7 +537,7 @@ namespace RetroBar.Controls
         {
             if (e.ChangedButton == MouseButton.Middle)
             {
-                ApplicationWindow targetWindow = Window ?? (Group != null && Group.Windows.Count > 0 ? Group.Windows[0] : null);
+                ApplicationWindow targetWindow = Window ?? TaskbarItem?.RunningWindow ?? (Group != null && Group.Windows.Count > 0 ? Group.Windows[0] : null);
 
                 if (targetWindow == null || Settings.Instance.TaskMiddleClickAction == TaskMiddleClickOption.DoNothing)
                 {
@@ -491,6 +560,13 @@ namespace RetroBar.Controls
             if (sender is Button button && button.Tag is ApplicationWindow window)
             {
                 GroupPopup.IsOpen = false;
+
+                // Clear the currently open reference if it's this button
+                if (_currentlyOpenTaskButton == this)
+                {
+                    _currentlyOpenTaskButton = null;
+                }
+
                 window?.BringToFront();
             }
         }
@@ -500,7 +576,28 @@ namespace RetroBar.Controls
             _closeTimer.Stop();
             if (Settings.Instance.ShowTaskThumbnails)
             {
-                _hoverTimer.Start();
+                // If another preview is already open, switch to this one immediately (no delay)
+                if (_currentlyOpenTaskButton != null && _currentlyOpenTaskButton != this)
+                {
+                    // Close the currently open popup
+                    _currentlyOpenTaskButton.GroupPopup.IsOpen = false;
+                    _currentlyOpenTaskButton = null;
+
+                    // Open this popup immediately without waiting for hover timer
+                    if (_parentWindow != null && !_parentWindow.IsActive)
+                    {
+                        _parentWindow.Activate();
+                    }
+
+                    GroupPopup.IsOpen = true;
+                    _currentlyOpenTaskButton = this;
+                    _isMouseOverPopup = false;
+                }
+                else
+                {
+                    // Normal behavior - wait for hover timer
+                    _hoverTimer.Start();
+                }
             }
         }
 
@@ -522,6 +619,12 @@ namespace RetroBar.Controls
 
             if (Settings.Instance.ShowTaskThumbnails)
             {
+                // Close any currently open popup (shouldn't happen with new logic, but just in case)
+                if (_currentlyOpenTaskButton != null && _currentlyOpenTaskButton != this)
+                {
+                    _currentlyOpenTaskButton.GroupPopup.IsOpen = false;
+                }
+
                 // Focus the window so we can detect clicks outside
                 if (_parentWindow != null && !_parentWindow.IsActive)
                 {
@@ -529,6 +632,7 @@ namespace RetroBar.Controls
                 }
 
                 GroupPopup.IsOpen = true;
+                _currentlyOpenTaskButton = this;
                 _isMouseOverPopup = false;
             }
         }
@@ -567,6 +671,12 @@ namespace RetroBar.Controls
 
             _isMouseOverPopup = false;
             GroupPopup.IsOpen = false;
+
+            // Clear the currently open reference if it's this button
+            if (_currentlyOpenTaskButton == this)
+            {
+                _currentlyOpenTaskButton = null;
+            }
         }
 
         private void GroupPopup_Opened(object sender, EventArgs e)

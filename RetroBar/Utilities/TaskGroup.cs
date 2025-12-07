@@ -53,6 +53,10 @@ namespace RetroBar.Utilities
         public ManagedShell.Interop.NativeMethods.TBPFLAG ProgressState =>
             _windows.Count > 0 ? _windows[0].ProgressState : ManagedShell.Interop.NativeMethods.TBPFLAG.TBPF_NOPROGRESS;
 
+        public ManagedShell.WindowsTasks.ThumbnailButton[] ThumbnailButtons => _windows.Count > 0 ? _windows[0].ThumbnailButtons : null;
+
+        public IntPtr ThumbnailButtonImageList => _windows.Count > 0 ? _windows[0].ThumbnailButtonImageList : IntPtr.Zero;
+
         public ApplicationWindow.WindowState State
         {
             get
@@ -135,6 +139,14 @@ namespace RetroBar.Utilities
             else if (e.PropertyName == nameof(ApplicationWindow.ProgressState))
             {
                 OnPropertyChanged(nameof(ProgressState));
+            }
+            else if (e.PropertyName == nameof(ApplicationWindow.ThumbnailButtons))
+            {
+                OnPropertyChanged(nameof(ThumbnailButtons));
+            }
+            else if (e.PropertyName == nameof(ApplicationWindow.ThumbnailButtonImageList))
+            {
+                OnPropertyChanged(nameof(ThumbnailButtonImageList));
             }
         }
 

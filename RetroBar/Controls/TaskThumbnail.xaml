@@ -4,18 +4,22 @@
              xmlns:converters="clr-namespace:RetroBar.Converters"
              xmlns:utilities="clr-namespace:RetroBar.Utilities"
              xmlns:s="clr-namespace:System;assembly=mscorlib"
-             Height="120"
+             Height="150"
              Width="180"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
     <UserControl.Resources>
         <converters:ToolTipHorizontalOffsetConverter x:Key="toolTipHorizontalOffsetConverter" />
+        <converters:IconHandleToImageSourceConverter x:Key="iconHandleToImageSourceConverter" />
+        <converters:ImageListIconConverter x:Key="imageListIconConverter" />
+        <converters:GreaterThanZeroConverter x:Key="greaterThanZeroConverter" />
         <s:Double x:Key="ConstantScale">1.0</s:Double>
     </UserControl.Resources>
-    <Grid Name="PreviewContainer">
+    <Grid Name="PreviewContainer" Background="{DynamicResource ToolTipBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Title bar at the top -->
@@ -77,6 +81,96 @@
         </Border>
 
         <!-- Thumbnail preview area (rendered by code-behind in this space) -->
-        <Grid Grid.Row="1" />
+        <Grid Grid.Row="1"
+              Name="PreviewArea"
+              Background="Transparent"
+              Cursor="Hand"
+              MouseLeftButtonDown="PreviewArea_MouseLeftButtonDown" />
+
+        <!-- Thumbnail toolbar buttons at the bottom -->
+        <Border Grid.Row="2"
+                Name="ThumbnailButtonsContainer"
+                Height="30"
+                BorderBrush="{DynamicResource ToolTipForeground}"
+                BorderThickness="0,1,0,0"
+                Visibility="Collapsed">
+            <ItemsControl Name="ThumbnailButtonsList"
+                          ItemsSource="{Binding ThumbnailButtons}"
+                          HorizontalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Name="ThumbButton"
+                                Click="ThumbButton_Click"
+                                Tag="{Binding Id}"
+                                Width="24"
+                                Height="24"
+                                Margin="2"
+                                Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <!-- Use classic Win32 button styling with 3D borders -->
+                                                <Border Name="TopLeftBorder"
+                                                        BorderThickness="1,1,0,0"
+                                                        BorderBrush="{DynamicResource ButtonHighlight}">
+                                                    <Border Name="BottomRightBorder"
+                                                            BorderThickness="0,0,1,1"
+                                                            BorderBrush="{DynamicResource ButtonDarkShadow}">
+                                                        <!-- Inner borders for subtle shadow effect -->
+                                                        <Border Name="InnerTopLeftBorder"
+                                                                BorderThickness="1,1,0,0"
+                                                                BorderBrush="{DynamicResource ButtonInnerHighlight}">
+                                                            <Border Name="InnerBottomRightBorder"
+                                                                    BorderThickness="0,0,1,1"
+                                                                    BorderBrush="{DynamicResource ButtonShadow}">
+                                                                <Border Background="{DynamicResource ButtonFace}">
+                                                                    <!-- Display fallback icon based on bitmap index -->
+                                                                    <Image HorizontalAlignment="Center"
+                                                                           VerticalAlignment="Center"
+                                                                           Width="16"
+                                                                           Height="16">
+                                                                        <Image.Source>
+                                                                            <MultiBinding Converter="{StaticResource imageListIconConverter}">
+                                                                                <Binding Path="Bitmap" />
+                                                                                <Binding Path="DataContext.ThumbnailButtonImageList" RelativeSource="{RelativeSource AncestorType=UserControl}" />
+                                                                            </MultiBinding>
+                                                                        </Image.Source>
+                                                                    </Image>
+                                                                </Border>
+                                                            </Border>
+                                                        </Border>
+                                                    </Border>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <!-- Pressed state (inverted borders for pushed-in effect) -->
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter TargetName="TopLeftBorder" Property="BorderBrush" Value="{DynamicResource ButtonDarkShadow}" />
+                                                        <Setter TargetName="BottomRightBorder" Property="BorderBrush" Value="{DynamicResource ButtonHighlight}" />
+                                                        <Setter TargetName="InnerTopLeftBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                                                        <Setter TargetName="InnerBottomRightBorder" Property="BorderBrush" Value="{DynamicResource ButtonInnerHighlight}" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Flags}" Value="8">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
     </Grid>
 </UserControl>

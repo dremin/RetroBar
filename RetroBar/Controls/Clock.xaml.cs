@@ -45,7 +45,15 @@ namespace RetroBar.Controls
 
         private void Initialize()
         {
-            UpdateUserCulture();
+            UpdateClockTemplate();
+
+            // Delay UpdateUserCulture slightly to ensure visual tree is fully loaded
+            // This is ONLY needed at initialization - later updates work immediately
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                UpdateUserCulture();
+            }), DispatcherPriority.Loaded);
+
             if (Settings.Instance.ShowClock)
             {
                 StartClock();
@@ -54,8 +62,6 @@ namespace RetroBar.Controls
             {
                 Visibility = Visibility.Collapsed;
             }
-
-            UpdateClockTemplate();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
             SystemEvents.TimeChanged += TimeChanged;
@@ -105,14 +111,20 @@ namespace RetroBar.Controls
                     StopClock();
                 }
             }
-            else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
+            else if (e.PropertyName == nameof(Settings.ShowClockSeconds) ||
+                     e.PropertyName == nameof(Settings.ClockTimeFormat) ||
+                     e.PropertyName == nameof(Settings.ClockDateFormat))
             {
                 UpdateUserCulture();
             }
             else if (e.PropertyName == nameof(Settings.ShowClockDate))
             {
                 UpdateClockTemplate();
-                UpdateUserCulture(); // Re-apply culture to new template
+                // Delay culture update to ensure new template is fully applied
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    UpdateUserCulture();
+                }), DispatcherPriority.Loaded);
             }
         }
 
@@ -134,6 +146,10 @@ namespace RetroBar.Controls
 
                 if (binding != null)
                 {
+                    // Clear the old binding completely
+                    BindingOperations.ClearBinding(main, TextBlock.TextProperty);
+
+                    // Create a completely new binding with the new culture
                     BindingOperations.SetBinding(main, TextBlock.TextProperty,
                         new Binding(binding.Path.Path)
                             { StringFormat = binding.StringFormat, ConverterCulture = ci });
@@ -151,41 +167,44 @@ namespace RetroBar.Controls
 
         private void UpdateUserCulture()
         {
-            CultureInfo userCulture;
+            // Get system culture for month/day names and AM/PM indicators, but we'll override patterns
+            CultureInfo userCulture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
 
-            try
+            // OVERRIDE time pattern - Settings are the ONLY source of truth for format
+            if (Settings.Instance.ClockTimeFormat == ClockTimeFormat.Hour12)
             {
-                string localeName = GetUserDefaultLocaleNameWrapper();
-
-                if (!string.IsNullOrEmpty(localeName))
-                {
-                    userCulture = new CultureInfo(localeName);
-                }
-                else
-                {
-                    // Fallback: use LCID if locale name isn't available.
-                    int lcid = GetUserDefaultLCID();
-                    userCulture = new CultureInfo(lcid);
-                }
+                // 12-hour format
+                userCulture.DateTimeFormat.ShortTimePattern = Settings.Instance.ShowClockSeconds ? "h:mm:ss tt" : "h:mm tt";
+                userCulture.DateTimeFormat.LongTimePattern = Settings.Instance.ShowClockSeconds ? "h:mm:ss tt" : "h:mm tt";
             }
-            catch (Exception e)
+            else
             {
-                ShellLogger.Error($"Clock: Unable to get the user culture: {e.Message}, defaulting to current culture");
-                userCulture = CultureInfo.CurrentCulture;
+                // 24-hour format
+                userCulture.DateTimeFormat.ShortTimePattern = Settings.Instance.ShowClockSeconds ? "HH:mm:ss" : "HH:mm";
+                userCulture.DateTimeFormat.LongTimePattern = Settings.Instance.ShowClockSeconds ? "HH:mm:ss" : "HH:mm";
             }
 
-            if (userCulture.IsReadOnly)
+            // OVERRIDE date pattern - Settings are the ONLY source of truth for format
+            if (Settings.Instance.ClockDateFormat == ClockDateFormat.DayMonthYear)
             {
-                userCulture = (CultureInfo)userCulture.Clone();
+                userCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+                userCulture.DateTimeFormat.LongDatePattern = "dddd, dd MMMM yyyy";
+            }
+            else
+            {
+                userCulture.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
+                userCulture.DateTimeFormat.LongDatePattern = "dddd, MMMM dd, yyyy";
             }
 
-            if (Settings.Instance.ShowClockSeconds)
-            {
-                userCulture.DateTimeFormat.ShortTimePattern = userCulture.DateTimeFormat.LongTimePattern;
-            }
-
+            // Apply culture to bindings recursively
             SetConverterCultureRecursively(this, userCulture);
-            SetConverterCultureRecursively(ClockTip, userCulture);
+            if (ClockTip != null)
+            {
+                SetConverterCultureRecursively(ClockTip, userCulture);
+            }
+
+            // Force a refresh of the current time to apply the new culture immediately
+            SetTime();
         }
 
         private void UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)

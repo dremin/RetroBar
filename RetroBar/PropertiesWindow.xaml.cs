@@ -423,6 +423,22 @@ namespace RetroBar
             }
         }
 
+        private void CboTimeFormat_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboTimeFormat.SelectedItem == null)
+            {
+                cboTimeFormat.SelectedValue = cboTimeFormat.Items[(int)Settings.Instance.ClockTimeFormat];
+            }
+        }
+
+        private void CboDateFormat_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboDateFormat.SelectedItem == null)
+            {
+                cboDateFormat.SelectedValue = cboDateFormat.Items[(int)Settings.Instance.ClockDateFormat];
+            }
+        }
+
         private void CboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboRowCount.SelectedItem == null)

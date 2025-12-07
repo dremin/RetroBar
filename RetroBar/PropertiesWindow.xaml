@@ -252,6 +252,11 @@
                                         Content="{DynamicResource select_location}"
                                         Click="SetQuickLaunchLocation_OnClick" />
                             </DockPanel>
+                            <CheckBox x:Name="cbCombinePinsAndPrograms"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CombinePinsAndPrograms, UpdateSourceTrigger=PropertyChanged}"
+                                      Margin="20,0,0,0">
+                                <Label Content="{DynamicResource combine_pins_and_programs}" />
+                            </CheckBox>
                             <CheckBox x:Name="cbShowWindowPreviews"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_window_previews}" />
@@ -265,6 +270,19 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CompressTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource compress_taskbar_buttons}" />
                             </CheckBox>
+                            <DockPanel Margin="20,0,0,5"
+                                       IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=CompressTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
+                                <Label DockPanel.Dock="Left" Content="Small" />
+                                <Label DockPanel.Dock="Right" Content="Large" />
+                                <Slider x:Name="sldCompressButtonWidth"
+                                        Orientation="Horizontal"
+                                        IsSnapToTickEnabled="True"
+                                        Value="{Binding Source={x:Static Settings:Settings.Instance}, Path=CompressTaskbarButtonWidth, UpdateSourceTrigger=PropertyChanged}"
+                                        Minimum="24"
+                                        Maximum="64"
+                                        TickFrequency="1"
+                                        TickPlacement="BottomRight" />
+                            </DockPanel>
                             <CheckBox x:Name="cbGroupTaskbarButtons"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=GroupTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource group_taskbar_buttons}" />
@@ -320,6 +338,18 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_clock}" />
                             </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboTimeFormat}">
+                                    <AccessText Text="Time format:" />
+                                </Label>
+                                <ComboBox x:Name="cboTimeFormat"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockTimeFormat, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboTimeFormat_SelectionChanged">
+                                    <ComboBoxItem Content="12-hour" />
+                                    <ComboBoxItem Content="24-hour" />
+                                </ComboBox>
+                            </DockPanel>
                             <CheckBox x:Name="cbShowClockSeconds"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockSeconds, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_clock_seconds}" />
@@ -328,6 +358,18 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockDate, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_clock_date}" />
                             </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboDateFormat}">
+                                    <AccessText Text="Date format:" />
+                                </Label>
+                                <ComboBox x:Name="cboDateFormat"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockDateFormat, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboDateFormat_SelectionChanged">
+                                    <ComboBoxItem Content="MM/DD/YYYY" />
+                                    <ComboBoxItem Content="DD/MM/YYYY" />
+                                </ComboBox>
+                            </DockPanel>
                             <CheckBox x:Name="cbShowInputLanguage"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowInputLanguage, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_input_language}" />

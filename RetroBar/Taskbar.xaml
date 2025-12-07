@@ -21,6 +21,7 @@
             <converters:EdgeOrientationConverter x:Key="edgeOrientationConverter" />
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
             <MenuItem x:Shared="false" x:Key="ToolbarsItem" Header="{DynamicResource toolbars}">
                 <MenuItem Header="{DynamicResource quick_launch}" IsCheckable="true" IsChecked="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}" />
                 <Separator />

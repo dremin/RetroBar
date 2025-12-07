@@ -81,10 +81,7 @@ namespace RetroBar
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
-            if (Settings.Instance.ShowQuickLaunch)
-            {
-                QuickLaunchToolbar.Visibility = Visibility.Visible;
-            }
+            UpdateQuickLaunchVisibility();
 
             if (Settings.Instance.ShowDesktopButton)
             {
@@ -160,14 +157,11 @@ namespace RetroBar
             }
             else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
             {
-                if (Settings.Instance.ShowQuickLaunch)
-                {
-                    QuickLaunchToolbar.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    QuickLaunchToolbar.Visibility = Visibility.Collapsed;
-                }
+                UpdateQuickLaunchVisibility();
+            }
+            else if (e.PropertyName == nameof(Settings.CombinePinsAndPrograms))
+            {
+                UpdateQuickLaunchVisibility();
             }
             else if (e.PropertyName == nameof(Settings.Edge))
             {
@@ -518,6 +512,19 @@ namespace RetroBar
             }
 
             StartButton.Visibility = Visibility.Visible;
+        }
+
+        private void UpdateQuickLaunchVisibility()
+        {
+            // Show Quick Launch only when enabled AND not in combined mode
+            if (Settings.Instance.ShowQuickLaunch && !Settings.Instance.CombinePinsAndPrograms)
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
+            }
         }
 
         private bool HasFullScreenApp()
