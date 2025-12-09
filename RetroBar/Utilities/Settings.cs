@@ -185,6 +185,13 @@ namespace RetroBar.Utilities
             set => Set(ref _notifyIconBehaviors, value);
         }
 
+        private List<string> _notifyIconOrder = new List<string>();
+        public List<string> NotifyIconOrder
+        {
+            get => _notifyIconOrder;
+            set => Set(ref _notifyIconOrder, value);
+        }
+
         private bool _allowFontSmoothing = false;
         public bool AllowFontSmoothing
         {
