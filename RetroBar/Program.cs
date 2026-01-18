@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace RetroBar
 {
@@ -20,6 +21,8 @@ namespace RetroBar
             {
                 return 1;
             }
+
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
 
             App app = new App();
             app.InitializeComponent();

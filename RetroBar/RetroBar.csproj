@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>netcoreapp3.1;net480;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net10.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>RetroBar.Program</StartupObject>
@@ -10,7 +10,6 @@
     <AssemblyVersion>1.0.0.8</AssemblyVersion>
     <FileVersion>1.0.0.8</FileVersion>
     <ApplicationIcon>Resources\retrobar.ico</ApplicationIcon>
-    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <Platforms>AnyCPU;x86;ARM64</Platforms>
     <LangVersion>12</LangVersion>
   </PropertyGroup>
@@ -42,8 +41,7 @@
 
   <ItemGroup>
     <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />
-    <PackageReference Include="ManagedShell" Version="0.0.330" />
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.2" />
+    <PackageReference Include="ManagedShell" Version="0.0.337" />
   </ItemGroup>
 
   <ItemGroup>
