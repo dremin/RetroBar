@@ -11,7 +11,7 @@ namespace RetroBar.Converters
         {
             if (values[0] is double scale && values[1] is bool smoothing)
             {
-                bool disableDisplayFormatting = scale > 1 && smoothing;
+                bool disableDisplayFormatting = scale > 1;
                 return disableDisplayFormatting ? TextFormattingMode.Ideal : TextFormattingMode.Display;
             }
 
