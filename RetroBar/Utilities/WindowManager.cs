@@ -165,13 +165,15 @@ namespace RetroBar.Utilities
         {
             resetScreenCache();
 
-            if (_screenState.Count == Screen.AllScreens.Length)
+            var newScreens = AppBarScreen.FromAllScreens();
+
+            if (_screenState.Count == newScreens.Count)
             {
                 bool same = true;
-                for (int i = 0; i < Screen.AllScreens.Length; i++)
+                for (int i = 0; i < newScreens.Count; i++)
                 {
-                    Screen current = Screen.AllScreens[i];
-                    if (!(_screenState[i].Bounds == current.Bounds && _screenState[i].DeviceName == current.DeviceName && _screenState[i].Primary == current.Primary))
+                    AppBarScreen current = newScreens[i];
+                    if (!(_screenState[i].Bounds == current.Bounds && _screenState[i].DeviceName == current.DeviceName && _screenState[i].Primary == current.Primary && _screenState[i].HMonitor == current.HMonitor))
                     {
                         same = false;
                         break;
