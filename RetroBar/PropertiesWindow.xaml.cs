@@ -356,7 +356,8 @@ namespace RetroBar
                 }
                 else
                 {
-                    rKey?.SetValue("RetroBar", ExePath.GetExecutablePath());
+                    // Registry Run values are command lines; quote the executable path to handle spaces in usernames/paths.
+                    rKey?.SetValue("RetroBar", $"\"{ExePath.GetExecutablePath()}\"");
                 }
             }
             catch (Exception exception)
