@@ -56,6 +56,7 @@
     <SolidColorBrush x:Key="TaskbarTopInnerBorder1" Color="#d6ffffff" />
     <SolidColorBrush x:Key="TaskbarTopInnerBorder2" Color="#7dffffff" />
     <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#c7ffffff" />
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 
     <SolidColorBrush x:Key="TrayToggleBorder" Color="#99000000" />
     <SolidColorBrush x:Key="TrayToggleInnerBorder" Color="#e6ffffff" />
