@@ -1061,7 +1061,6 @@
                                     Width="3">
                                 <Border BorderThickness="1,1,0,0"
                                         BorderBrush="{DynamicResource ButtonHighlight}">
-
                                 </Border>
                             </Border>
                         </Border>
