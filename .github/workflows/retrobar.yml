@@ -22,7 +22,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install nbgv
-      uses: dotnet/nbgv@v0.4.2
+      uses: dotnet/nbgv@v0.5.1
 
     - name: Publish app
       run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework -p:DebugType=None -p:DebugSymbols=false
