@@ -6,6 +6,8 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Collections;
 
 namespace RetroBar.Controls
 {
@@ -21,6 +23,7 @@ namespace RetroBar.Controls
         private double TaskButtonLeftMargin;
         private double TaskButtonRightMargin;
         private ICollectionView taskbarItems;
+        private ProgramNameTaskbarSorter programNameTaskbarSorter;
 
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register(nameof(ButtonWidth), typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
 
@@ -49,6 +52,8 @@ namespace RetroBar.Controls
         public TaskList()
         {
             InitializeComponent();
+            programNameTaskbarSorter = new ProgramNameTaskbarSorter();
+            programNameTaskbarSorter.setSortingList(Settings.Instance.TaskbarSortingFilter);
         }
 
         private void SetStyles()
@@ -85,6 +90,14 @@ namespace RetroBar.Controls
                 {
                     taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
                     taskbarItems.Filter = Tasks_Filter;
+
+                    if (taskbarItems is ListCollectionView lcv)
+                    {
+                        /*lcv.CustomSort = (IComparer)(Settings.Instance.SortTaskbarByProgramName
+                        ? programNameTaskbarSorter
+                        : null);*/
+                        lcv.CustomSort = programNameTaskbarSorter;
+                    }
                 }
 
                 TasksList.ItemsSource = taskbarItems;

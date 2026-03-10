@@ -1,17 +1,17 @@
-﻿using System;
-using ManagedShell;
-using RetroBar.Utilities;
-using System.Windows;
+﻿using ManagedShell;
+using ManagedShell.Common.Enums;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
-using Application = System.Windows.Application;
+using RetroBar.Utilities;
+using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
-using ManagedShell.Common.Enums;
-using System.Diagnostics;
-using System.Reflection;
-using ManagedShell.Common.Logging;
-using System.Linq;
+using Application = System.Windows.Application;
 
 namespace RetroBar
 {
@@ -88,6 +88,10 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.Theme) || e.PropertyName == nameof(Settings.TaskbarScale))
             {
                 setTaskIconSize();
+            }
+            else if (e.PropertyName == nameof(Settings.SortTaskbarByProgramName))
+            {
+                RestartApp();
             }
         }
 
