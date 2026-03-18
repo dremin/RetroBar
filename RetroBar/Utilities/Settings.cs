@@ -348,6 +348,13 @@ namespace RetroBar.Utilities
             set => Set(ref _showStartButtonMultiMon, value);
         }
 
+        private bool _showQuickLaunchMultiMon = true;
+        public bool ShowQuickLaunchMultiMon
+        {
+            get => _showQuickLaunchMultiMon;
+            set => Set(ref _showQuickLaunchMultiMon, value);
+        }
+
         private bool _autoHideTransparent = false;
         public bool AutoHideTransparent
         {
