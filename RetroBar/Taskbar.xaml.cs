@@ -79,6 +79,7 @@ namespace RetroBar
             }
 
             UpdateStartButton();
+            UpdateQuickLaunch();
 
             AutoHideElement = TaskbarContentControl;
 
@@ -144,14 +145,7 @@ namespace RetroBar
             }
             else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
             {
-                if (Settings.Instance.ShowQuickLaunch)
-                {
-                    QuickLaunchToolbar.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    QuickLaunchToolbar.Visibility = Visibility.Collapsed;
-                }
+                UpdateQuickLaunch();
             }
             else if (e.PropertyName == nameof(Settings.Edge))
             {
@@ -222,6 +216,10 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.ShowStartButtonMultiMon))
             {
                 UpdateStartButton();
+            }
+            else if (e.PropertyName == nameof(Settings.ShowQuickLaunchMultiMon))
+            {
+                UpdateQuickLaunch();
             }
             else if (e.PropertyName == nameof(Settings.AutoHideTransparent))
             {
@@ -506,6 +504,22 @@ namespace RetroBar
             }
 
             StartButton.Visibility = Visibility.Visible;
+        }
+
+        private void UpdateQuickLaunch()
+        {
+            if (Screen.Primary)
+            {
+                QuickLaunchToolbar.Visibility = Settings.Instance.ShowQuickLaunch ? Visibility.Visible : Visibility.Collapsed;
+                return;
+            }
+            if (!Screen.Primary && !Settings.Instance.ShowQuickLaunchMultiMon)
+            {
+                QuickLaunchToolbar.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            QuickLaunchToolbar.Visibility = Visibility.Visible;
         }
 
         private bool HasFullScreenApp()

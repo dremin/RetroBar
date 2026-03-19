@@ -25,6 +25,7 @@
             <converters:DoubleToPercentConverter x:Key="doubleToPercentConverter" />
             <converters:EnumConverter x:Key="enumConverter" />
             <converters:EdgeOrientationVisibilityConverter x:Key="edgeOrientationVisibilityConverter" />
+            <converters:BoolAndConverter x:Key="boolAndConverter" />
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
@@ -343,23 +344,37 @@
                             Margin="10">
                     <StackPanel Orientation="Vertical"
                                 Margin="0,0,0,10">
-                        <CheckBox x:Name="cbAutoStart"
-                                  Checked="CbAutoStart_OnChecked"
-                                  Unchecked="CbAutoStart_OnChecked">
-                            <Label Content="{DynamicResource autostart}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbUseSoftwareRendering"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource use_software_rendering}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbDebugLogging"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource debug_logging}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbCheckForUpdates"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CheckForUpdates, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource check_for_updates}" />
-                        </CheckBox>
+                        <Grid IsSharedSizeScope="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="FirstCheckBox" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="cbAutoStart"
+                                    Grid.Row="0" Grid.Column="0"
+                                    Checked="CbAutoStart_OnChecked"
+                                    Unchecked="CbAutoStart_OnChecked">
+                                <Label Content="{DynamicResource autostart}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbUseSoftwareRendering"
+                                    Grid.Row="0" Grid.Column="1"
+                                    IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource use_software_rendering}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbCheckForUpdates"
+                                    Grid.Row="1" Grid.Column="0"
+                                    IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CheckForUpdates, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource check_for_updates}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbDebugLogging"
+                                    Grid.Row="1" Grid.Column="1"
+                                    IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource debug_logging}" />
+                            </CheckBox>
+                        </Grid>
                         <CheckBox x:Name="cbAutoHideTransparent"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHideTransparent, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource auto_hide_transparent}" />
@@ -432,6 +447,24 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowStartButtonMultiMon, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_start_button_multi_mon}" />
                             </CheckBox>
+                            <DockPanel>
+                                <CheckBox x:Name="cbShowQuickLaunchMultiMon"
+                                        IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
+                                        IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunchMultiMon, UpdateSourceTrigger=PropertyChanged}">
+                                    <Label Content="{DynamicResource show_quick_launch_multi_mon}" />
+                                </CheckBox>
+                                <Button HorizontalAlignment="Right"
+                                    Content="{DynamicResource customize}"
+                                    Click="CustomizeQuickLaunch_OnClick"
+                                >
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource boolAndConverter}">
+                                            <Binding Source="{x:Static Settings:Settings.Instance}" Path="ShowMultiMon" UpdateSourceTrigger="PropertyChanged"/>
+                                            <Binding Source="{x:Static Settings:Settings.Instance}" Path="ShowQuickLaunchMultiMon" UpdateSourceTrigger="PropertyChanged"/>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                </Button>
+                            </DockPanel>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
                                        Target="{Binding ElementName=cboMultiMonMode}">
