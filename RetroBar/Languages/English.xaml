@@ -102,6 +102,9 @@
     <s:String x:Key="behavior_heading">Behavior</s:String>
     <s:String x:Key="invert_heading">Invert</s:String>
 
+    <s:String x:Key="customize_quick_launch">Customize Quick Launch</s:String>
+    <s:String x:Key="customize_quick_launch_instruction">Select which icons to show on each taskbar per display.</s:String>
+
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
     <s:String x:Key="start_button_tip_98">Click here to begin.</s:String>

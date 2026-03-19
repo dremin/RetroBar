@@ -10,6 +10,7 @@ using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.ShellFolders;
 using ManagedShell.ShellFolders.Enums;
+using RetroBar.Extensions;
 using RetroBar.Utilities;
 
 namespace RetroBar.Controls
@@ -84,6 +85,10 @@ namespace RetroBar.Controls
             {
                 Refresh();
             }
+            else if (e.PropertyName == nameof(Settings.QuickLaunchIconSettings))
+            {
+                Refresh();
+            }
         }
 
         private void Refresh()
@@ -116,7 +121,14 @@ namespace RetroBar.Controls
                 ToolbarItems.ItemsSource = Folder.Files;
                 ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
                 cvs.CustomSort = new ToolbarSorter(this);
+                cvs.Filter = ShouldShowIcon;
             }
+        }
+
+        private bool ShouldShowIcon(object item)
+        {
+            ShellFile file = item as ShellFile;
+            return file.IsEnabledOnDisplay(Host.Screen.DeviceName);
         }
 
         public void SaveItemOrder()
