@@ -192,6 +192,13 @@ namespace RetroBar.Utilities
             set => Set(ref _allowFontSmoothing, value);
         }
 
+        private bool _allowFontSmoothingMenu = true;
+        public bool AllowFontSmoothingMenu
+        {
+            get => _allowFontSmoothingMenu;
+            set => Set(ref _allowFontSmoothingMenu, value);
+        }
+
         private bool _useSoftwareRendering = false;
         public bool UseSoftwareRendering
         {

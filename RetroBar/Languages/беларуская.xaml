@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">Колькасьць радкоў на панэлі задач (зверху або знізу).</s:String>
     <s:String x:Key="taskbar_width">Шырыня панэлі задач:</s:String>
     <s:String x:Key="allow_font_smoothing">Дазволіць згладжванне шрыфтоў</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Дазволіць згладжванне шрыфтоў у _меню</s:String>
     <s:String x:Key="collapse_tray_icons">Згарнуць значкі вобласьці апавяшчэньняў</s:String>
     <s:String x:Key="customize">_Наладзіць...</s:String>
     <s:String x:Key="show_input_language">Паказваць раскладку клавіятуры</s:String>

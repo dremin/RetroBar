@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">In-numru ta' ringieli fuq il-bar tal-kompiti meta tkun fuq nett jew taħt nett.</s:String>
     <s:String x:Key="taskbar_width">Wisa' tal-bar tal-kompiti:</s:String>
     <s:String x:Key="allow_font_smoothing">_Ħalli l-lisjar tal-font</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Ħalli l-lisjar tal-font fil-_menù</s:String>
     <s:String x:Key="collapse_tray_icons">Ikkollassa _l-ikoni fl-area tan-notifiki</s:String>
     <s:String x:Key="customize">_Personalizza...</s:String>
     <s:String x:Key="show_input_language">Uri l-lingwa _tal-input</s:String>

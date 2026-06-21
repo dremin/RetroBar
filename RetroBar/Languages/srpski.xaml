@@ -25,6 +25,7 @@
     <s:String x:Key="rowcount_tip">Broj redova na traci zadataka kada je na vrhu ili dnu.</s:String>
     <s:String x:Key="taskbar_width">Širina tra_ke zadataka:</s:String>
     <s:String x:Key="allow_font_smoothing">Dozvoli izglađivanje _fontova</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Dozvoli izglađivanje fontova u _menijima</s:String>
     <s:String x:Key="collapse_tray_icons">Skupi _ikonice u sistemskoj paleti</s:String>
     <s:String x:Key="customize">Prilago_di...</s:String>
     <s:String x:Key="show_input_language">Prikaži _jezik unosa</s:String>

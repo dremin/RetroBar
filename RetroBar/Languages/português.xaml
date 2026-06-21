@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">O número de linhas na barra de tarefas quando estiver na parte superior ou inferior.</s:String>
     <s:String x:Key="taskbar_width">Lar_gura da barra de tarefas:</s:String>
     <s:String x:Key="allow_font_smoothing">Permitir s_uavização de fonte</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Permitir _suavização de fonte nos menus</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar ícones _inativos</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
     <s:String x:Key="show_input_language">Mostrar o i_dioma de entrada</s:String>
