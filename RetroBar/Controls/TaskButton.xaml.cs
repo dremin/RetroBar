@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
@@ -83,6 +84,15 @@ namespace RetroBar.Controls
             storyboard.Begin();
         }
 
+        private void UpdateTextScaling()
+        {
+            // Only scale within the actual taskbar; the properties window preview uses its own
+            // markup (not this control), so this never runs unscaled, but the guard keeps it
+            // consistent with the clock and input language indicator.
+            double scale = System.Windows.Window.GetWindow(this) is RetroBar.Taskbar ? Settings.Instance.TaskbarScale : 1.0;
+            TextScaler.ApplyScaling(this, scale);
+        }
+
         private void TaskButton_OnLoaded(object sender, RoutedEventArgs e)
         {
             Window = DataContext as ApplicationWindow;
@@ -104,6 +114,8 @@ namespace RetroBar.Controls
             {
                 Animate();
             }
+
+            UpdateTextScaling();
 
             _isLoaded = true;
         }
@@ -285,6 +297,12 @@ namespace RetroBar.Controls
             if (e.PropertyName == nameof(Settings.Theme))
             {
                 SetStyle();
+                // The base font size can change with the theme; re-apply once it has loaded.
+                Dispatcher.BeginInvoke(new Action(UpdateTextScaling), DispatcherPriority.Loaded);
+            }
+            else if (e.PropertyName == nameof(Settings.TaskbarScale))
+            {
+                UpdateTextScaling();
             }
         }
 
