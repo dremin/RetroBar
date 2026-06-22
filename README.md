@@ -9,8 +9,9 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 
 ## Requirements
 - Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
-- [.NET 6.0.2 or later desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime) (select the appropriate download button under "Run desktop apps")
-  - When using the RetroBar installer, this is automatically downloaded and installed if necessary.
+- Microsoft .NET Desktop Runtime - When using the RetroBar installer, this is automatically downloaded and installed if necessary. If you're using the portable version, you may download the appropriate runtime below:
+  - For Windows 10 and later: [.NET 10 desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)
+  - For earlier versions of Windows: [.NET 6.0.36 desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)
 
 ## Features
 - Replaces default Windows taskbar with classic layout
