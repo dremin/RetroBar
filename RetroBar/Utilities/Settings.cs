@@ -382,6 +382,20 @@ namespace RetroBar.Utilities
             get => _allowBlurBehind;
             set => Set(ref _allowBlurBehind, value);
         }
+
+        private bool _sortTaskbarByProgramName = false;
+        public bool SortTaskbarByProgramName
+        {
+            get => _sortTaskbarByProgramName;
+            set => Set(ref _sortTaskbarByProgramName, value);
+        }
+
+        private string _taskbarSortingFilter = "";
+        public string TaskbarSortingFilter
+        {
+            get => _taskbarSortingFilter;
+            set => Set(ref _taskbarSortingFilter, value);
+        }
         #endregion
 
         #region Old Properties

@@ -376,6 +376,18 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource show_end_task_button}" />
                         </CheckBox>
+                        <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=SortTaskbarByProgramName, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="Group taskbar buttons by program" />
+                        </CheckBox>
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Margin="0,0,0,5" Content="Grouping order filter (ie.: Brave.exe, Code.exe, ...):"/>
+                            <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance},
+                            Path=TaskbarSortingFilter,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            Width="400" Height="20"/>
+                        </StackPanel>
+
+
                         <DockPanel>
                             <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboWinNumHotkeysAction}">
