@@ -79,7 +79,16 @@
     <s:String x:Key="slide_taskbar_buttons">Utiliser l'effet de _glissement au déplacement des boutons</s:String>
     <s:String x:Key="show_clock_seconds">Afficher des _secondes dans l'horloge</s:String>
     <s:String x:Key="open_custom_themes_folder">Ouvrir le dossier des thèmes personnalisés ("Themes")</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Action des raccourcis Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Défaut Windows</s:String>
+        <s:String>Basculer entre les tâches</s:String>
+        <s:String>Ouvrir un élément du Lancement rapide</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Raccourcis clavier RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar va remplacer les raccourcis clavier de la barre des tâches Windows. Même si RetroBar est fermé, ils ne seront pas restaurés dans Windows jusqu'à ce que vous vous déconnectiez et reconnectiez.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Autoriser le flou derrière la barre des tâches transparente</s:String>
 
     <s:String x:Key="customize_notifications">Personnaliser les notifications</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar affiche des icônes pour les notifications actives et urgentes et cache des icônes inactives. Vous pouvez modifier le comportement des éléments de la liste ci-dessous.</s:String>
@@ -137,4 +146,27 @@
     <s:String x:Key="hide">Masquer</s:String>
 
     <s:String x:Key="open_folder">&amp;Ouvrir le dossier</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Clic droit pour les options IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME désactivé</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana pleine largeur</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alphanumérique pleine largeur</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana demi-largeur</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alphanumérique demi-largeur</s:String>
+    <s:String x:Key="ime_input_direct">Saisie directe</s:String>
+    <s:String x:Key="ime_open_pad">Pad IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Ajouter un mot</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Dictionnaire supplémentaire</s:String>
+    <s:String x:Key="ime_open_properties">Paramètres</s:String>
+    <s:String x:Key="ime_input_key">Saisie Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">Désactivé</s:String>
+    <s:String x:Key="ime_input_key_kana">Activé</s:String>
+    <s:String x:Key="ime_conversion">Mode de conversion</s:String>
+    <s:String x:Key="ime_conversion_general">Général</s:String>
+    <s:String x:Key="ime_conversion_none">Aucune conversion</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

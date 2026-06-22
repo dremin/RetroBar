@@ -88,6 +88,7 @@
     <s:String x:Key="hotkey_warning_title">RetroBar Hotkeys</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar will override Windows taskbar hotkeys. Even if RetroBar is closed, they will not be restored to Windows until you log out and back in.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Allow blur behind transparent taskbar</s:String>
 
     <s:String x:Key="customize_notifications">Customize Notifications</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar displays icons for active and urgent notifications, and hides inactive ones. You can change this behavior for items in the list below.</s:String>

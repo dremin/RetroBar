@@ -9,6 +9,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 
 ## Requirements
 - Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
+  - Fresh installs of Windows 7 may require additional Windows updates. See [#1319](https://github.com/dremin/RetroBar/issues/1319) for details.
 - Microsoft .NET Desktop Runtime - When using the RetroBar installer, this is automatically downloaded and installed if necessary. If you're using the portable version, you may download the appropriate runtime below:
   - For Windows 10 and later: [.NET 10 desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)
   - For earlier versions of Windows: [.NET 6.0.36 desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)

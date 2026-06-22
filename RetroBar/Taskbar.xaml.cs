@@ -1,18 +1,17 @@
-﻿using ManagedShell.AppBar;
+﻿using ManagedShell;
+using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
-using ManagedShell;
 using ManagedShell.WindowsTray;
+using RetroBar.Utilities;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using RetroBar.Utilities;
-using Application = System.Windows.Application;
-using System.Diagnostics;
 using System.Windows.Input;
-using ManagedShell.Common.Logging;
-using System.Windows.Threading;
+using Application = System.Windows.Application;
 
 namespace RetroBar
 {
@@ -21,21 +20,9 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
-        public bool IsLocked
-        {
-            get
-            {
-                return Settings.Instance.LockTaskbar;
-            }
-        }
+        public bool IsLocked => Settings.Instance.LockTaskbar;
 
-        public bool IsScaled
-        {
-            get
-            {
-                return DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
-            }
-        }
+        public bool IsScaled => DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
 
         private double _unlockedMargin;
         public double DesiredRowHeight { get; private set; }
@@ -50,10 +37,10 @@ namespace RetroBar
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
         private bool _mouseDragResize = false;
-        private DictionaryManager _dictionaryManager;
-        private ShellManager _shellManager;
-        private StartMenuMonitor _startMenuMonitor;
-        private Updater _updater;
+        private readonly DictionaryManager _dictionaryManager;
+        private readonly ShellManager _shellManager;
+        private readonly StartMenuMonitor _startMenuMonitor;
+        private readonly Updater _updater;
         private bool _fullScreenSuppressed;
         
         public WindowManager windowManager;
@@ -129,16 +116,13 @@ namespace RetroBar
 
         private void StartMenuMonitor_StartMenuVisibilityChanged(object sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
-            if (!HasFullScreenApp())
+            if (!HasFullScreenApp() || !e.Visible)
             {
                 return;
             }
 
-            if (e.Visible)
-            {
-                _fullScreenSuppressed = true;
-                base.OnFullScreenLeave();
-            }
+            _fullScreenSuppressed = true;
+            base.OnFullScreenLeave();
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -154,7 +138,7 @@ namespace RetroBar
                     return;
                 }
 
-                SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
+                SetBlur(AllowsBlur());
                 PeekDuringAutoHide();
                 RecalculateSize();
             }
@@ -243,6 +227,10 @@ namespace RetroBar
             {
                 PeekDuringAutoHide();
             }
+            else if (e.PropertyName == nameof(Settings.AllowBlurBehind))
+            {
+                SetBlur(AllowsBlur());
+            }
         }
 
         #region AppBarWindow overrides
@@ -251,7 +239,7 @@ namespace RetroBar
             base.OnSourceInitialized(sender, e);
 
             SetLayoutRounding();
-            SetBlur(Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
+            SetBlur(AllowsBlur());
             UpdateTrayPosition();
         }
         
@@ -534,6 +522,12 @@ namespace RetroBar
             }
 
             return hasFullScreenApp;
+        }
+
+        private bool AllowsBlur()
+        {
+            return Settings.Instance.AllowBlurBehind &&
+                   (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
         }
 
         #region Unlocked taskbar drag hook

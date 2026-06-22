@@ -375,6 +375,13 @@ namespace RetroBar.Utilities
             get => _winNumHotkeysAction;
             set => SetEnum(ref _winNumHotkeysAction, value);
         }
+
+        private bool _allowBlurBehind = true;
+        public bool AllowBlurBehind
+        {
+            get => _allowBlurBehind;
+            set => Set(ref _allowBlurBehind, value);
+        }
         #endregion
 
         #region Old Properties

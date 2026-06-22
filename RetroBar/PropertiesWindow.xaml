@@ -364,6 +364,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHideTransparent, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource auto_hide_transparent}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbAllowBlurBehind"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowBlurBehind, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource allow_blur_behind}" />
+                        </CheckBox>
                         <CheckBox x:Name="cbShowExitMenuItem"
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource show_exit_menu_item}" />

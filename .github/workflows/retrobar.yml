@@ -34,7 +34,7 @@ jobs:
       run: cp DistLicense.txt RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\License.txt
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v7
       with:
         name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}${{ matrix.publishprofile[1] == 'net6.0-windows' && ' Legacy' }}
         path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
@@ -54,19 +54,19 @@ jobs:
         fetch-depth: 0
 
     - name: Download build artifacts - ARM64
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: RetroBar ARM64
         path: RetroBar\bin\Release\net10.0-windows\publish-ARM64\
 
     - name: Download build artifacts - x64
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: RetroBar 64-bit
         path: RetroBar\bin\Release\net10.0-windows\publish-x64\
 
     - name: Download build artifacts - x86
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: RetroBar 32-bit
         path: RetroBar\bin\Release\net10.0-windows\publish-x86\
@@ -87,7 +87,7 @@ jobs:
       run: ISCC.exe "${{ env.installer }}"
 
     - name: Upload installer
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v7
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe

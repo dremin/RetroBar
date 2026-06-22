@@ -14,25 +14,25 @@
                          MappingMode="Absolute"
                          StartPoint="0,0"
                          EndPoint="0,26">
-        <GradientStop Color="#c7767676"
+        <GradientStop Color="#cc939393"
                       Offset="0.0" />
-        <GradientStop Color="#c7323232"
+        <GradientStop Color="#b5454545"
                       Offset="0.5" />
-        <GradientStop Color="#bc000000"
+        <GradientStop Color="#97000000"
                       Offset="0.5" />
-        <GradientStop Color="#c2000000"
+        <GradientStop Color="#a2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
-        <GradientStop Color="#c7767676"
+        <GradientStop Color="#cc939393"
                       Offset="0.0" />
-        <GradientStop Color="#c7323232"
+        <GradientStop Color="#b5454545"
                       Offset="0.25" />
-        <GradientStop Color="#bc000000"
+        <GradientStop Color="#97000000"
                       Offset="0.25" />
-        <GradientStop Color="#c2000000"
+        <GradientStop Color="#a2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="TaskbarWindowBackground" Color="Transparent" />
