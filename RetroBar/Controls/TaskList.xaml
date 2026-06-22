@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
             <converters:EdgeOrientationConverter x:Key="orientationConverter" />
+            <converters:TaskButtonWidthConverter x:Key="taskButtonWidthConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -46,8 +47,16 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <ItemContainerTemplate>
-                        <local:TaskButton Width="{Binding Path=ButtonWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"
-                                          Host="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}"></local:TaskButton>
+                        <local:TaskButton Host="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}">
+                            <local:TaskButton.Width>
+                                <MultiBinding Converter="{StaticResource taskButtonWidthConverter}">
+                                    <Binding Path="(ItemsControl.AlternationIndex)" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}" />
+                                    <Binding Path="ButtonWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TaskList}" />
+                                    <Binding Path="ExtraWidthCount" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TaskList}" />
+                                    <Binding Path="ButtonsPerRow" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TaskList}" />
+                                </MultiBinding>
+                            </local:TaskButton.Width>
+                        </local:TaskButton>
                     </ItemContainerTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
