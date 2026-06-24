@@ -1436,9 +1436,9 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="TextBlock"
-           x:Key="InputLanguage"
-           BasedOn="{StaticResource InputLanguage}">
+    <Style TargetType="Border"
+           x:Key="InputLanguageBox"
+           BasedOn="{StaticResource InputLanguageBox}">
         <Setter Property="Margin"
                 Value="0,6,0,0" />
         <Setter Property="HorizontalAlignment"
