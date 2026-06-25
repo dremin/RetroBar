@@ -21,6 +21,7 @@
         <s:String>下</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">允許字體平滑(_A)</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">允許選單中的字體平滑(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">隱藏非使用中時圖示(_N)</s:String>
     <s:String x:Key="customize">自訂(_E)...</s:String>
     <s:String x:Key="show_input_language">顯示語言列</s:String>

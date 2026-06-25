@@ -21,6 +21,7 @@
         <s:String>Bawah</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Benarkan kelicinan fon</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Benarkan _kelicinan fon dalam menu</s:String>
     <s:String x:Key="collapse_tray_icons">Jatuhkan kawasan ikon _pemberitahuan</s:String>
     <s:String x:Key="customize">Ubahsua_i...</s:String>
     <s:String x:Key="show_clock">Paparkan _jam</s:String>

@@ -18,6 +18,7 @@
         <s:String>Basso</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">Consenti anti-alia_sing caratteri</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Consenti anti-aliasing caratteri _nei menu</s:String>
     <s:String x:Key="collapse_tray_icons">Nascondi _icone nell'area di notifica</s:String>
     <s:String x:Key="customize">Personalizz_a...</s:String>
     <s:String x:Key="show_clock">M_ostra orologio</s:String>

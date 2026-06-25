@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">Liczba wierszy na pasku zadań, gdy jest on na górze lub na dole.</s:String>
     <s:String x:Key="taskbar_width">Szerokość paska zadań:</s:String>	
     <s:String x:Key="allow_font_smoothing">_Zezwól na wygładzanie czcionek</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Zezwól na wygładzanie czcionek w _menu</s:String>
     <s:String x:Key="collapse_tray_icons">Zwiń ikony w pasku powiadomień</s:String>
     <s:String x:Key="customize">_Dostosuj...</s:String>
     <s:String x:Key="show_input_language">Pokaż ję_zyk wprowadzania</s:String>

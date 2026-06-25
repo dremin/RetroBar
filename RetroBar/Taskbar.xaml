@@ -88,6 +88,9 @@
             <GroupBox Style="{DynamicResource Tray}">
                 <GroupBox.ContextMenu>
                     <ContextMenu>
+                        <TextOptions.TextRenderingMode>
+                            <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothingMenu" Converter="{StaticResource menuTextRenderingModeConverter}" />
+                        </TextOptions.TextRenderingMode>
                         <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
                         <Separator /-->
                         <StaticResourceExtension ResourceKey="SetTimeMenuItem" />
@@ -132,6 +135,9 @@
     </ContentControl>
     <appbar:AppBarWindow.ContextMenu>
         <ContextMenu Opened="ContextMenu_Opened">
+            <TextOptions.TextRenderingMode>
+                <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothingMenu" Converter="{StaticResource menuTextRenderingModeConverter}" />
+            </TextOptions.TextRenderingMode>
             <!-- TODO: Add when desk bands and additional taskbars are supported. -->
             <!--StaticResourceExtension ResourceKey="ToolbarsItem" />
             <Separator /-->

@@ -21,6 +21,7 @@
         <s:String>پایین</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_صاف‌سازی فونت</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">صاف‌سازی فونت در _منوها</s:String>
     <s:String x:Key="collapse_tray_icons">آیکون‌ها در منطقه اعلان‌ها جمع شوند</s:String>
     <s:String x:Key="customize">سفارشی‌سازی</s:String>
     <s:String x:Key="show_clock">نمایش ساعت</s:String>

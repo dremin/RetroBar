@@ -376,6 +376,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource show_end_task_button}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbAllowFontSmoothingMenu"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothingMenu, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource allow_font_smoothing_menu}" />
+                        </CheckBox>
                         <DockPanel>
                             <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboWinNumHotkeysAction}">
