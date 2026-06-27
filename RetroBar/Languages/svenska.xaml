@@ -21,6 +21,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">Tillåt t_ypsnittsutjämning</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Tillåt t_ypsnittsutjämning i menyer</s:String>
+    <s:String x:Key="crisp_start_button_icon">S_karp startknappsikon</s:String>
     <s:String x:Key="collapse_tray_icons">Kollaps meddela_ndefältet ikoner</s:String>
     <s:String x:Key="customize">Anpa_ssa...</s:String>
     <s:String x:Key="show_clock">Visa _klockan</s:String>

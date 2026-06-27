@@ -26,6 +26,7 @@
     <s:String x:Key="taskbar_width">Ширина тра_ке задатака:</s:String>
     <s:String x:Key="allow_font_smoothing">Дозволи изглађивање _фонтова</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Дозволи изглађивање фонтова у _менијима</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Оштра иконица дугмета Старт</s:String>
     <s:String x:Key="collapse_tray_icons">Скупи _иконице у системској палети</s:String>
     <s:String x:Key="customize">Прилаго_ди...</s:String>
     <s:String x:Key="show_input_language">Прикажи _језик уноса</s:String>

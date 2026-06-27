@@ -22,6 +22,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Позволи изглаждането на шрифтовете</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Позволи изглаждането на шрифтовете в _менютата</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Ясна икона на бутона Старт</s:String>
     <s:String x:Key="collapse_tray_icons">Събери и_коните в района на известията</s:String>
     <s:String x:Key="customize">Персонали_зирай...</s:String>
     <s:String x:Key="show_clock">Показвай _часовника</s:String>

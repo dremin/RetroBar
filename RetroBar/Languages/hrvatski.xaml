@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">Širina_ programske trake:</s:String>
     <s:String x:Key="allow_font_smoothing">_Dopusti izglađivanje fonta</s:String>
     <s:String x:Key="allow_font_smoothing_menu">_Dopusti izglađivanje fonta u izbornicima</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Oštra ikona gumba Start</s:String>
     <s:String x:Key="collapse_tray_icons">Sakriji neaktivne ikone</s:String>
     <s:String x:Key="customize">Prilagod_i...</s:String>
     <s:String x:Key="show_input_language">Prikaži raspored _tipkovnice</s:String>

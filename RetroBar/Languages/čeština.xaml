@@ -22,6 +22,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">Povolit vyhlazovaní _textu</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Povolit vyhlazování textu v _nabídkách</s:String>
+    <s:String x:Key="crisp_start_button_icon">Ostrá ikona tlačítka _Start</s:String>
     <s:String x:Key="collapse_tray_icons">Skrýt upozornění</s:String>
     <s:String x:Key="customize">_Přizspůsobit...</s:String>
     <s:String x:Key="show_clock">Zobrazit _hodiny</s:String>

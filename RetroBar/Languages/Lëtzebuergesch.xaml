@@ -22,6 +22,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Erlaabt Schrëftglättung</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Schrëftglättung _an de Menüen erlaben</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Kloer Start-Knäppchen-Ikon</s:String>
     <s:String x:Key="collapse_tray_icons">_Minimiséieren Notifikatiounsberäich Ikonen</s:String>
     <s:String x:Key="customize">_Personnaliséieren...</s:String>
     <s:String x:Key="show_input_language">Weist d'Input _Sprooch</s:String>

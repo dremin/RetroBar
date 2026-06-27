@@ -21,6 +21,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Leisti šriftų sulyginimą</s:String>
     <s:String x:Key="allow_font_smoothing_menu">_Leisti šriftų sulyginimą meniu</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Aiški Start mygtuko piktograma</s:String>
     <s:String x:Key="collapse_tray_icons">Sutra_ukti pranešimų srities piktogramas</s:String>
     <s:String x:Key="customize">_Tinkinti...</s:String>
     <s:String x:Key="show_clock">Rodyti lai_krodį</s:String>

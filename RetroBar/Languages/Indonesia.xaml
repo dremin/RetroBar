@@ -22,6 +22,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">Izink_an penghalusan font</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Izinkan penghalusan _font di menu</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Ikon tombol Mulai yang tajam</s:String>
     <s:String x:Key="collapse_tray_icons">Ciutkan ikon area _notifikasi</s:String>
     <s:String x:Key="customize">S_esuaikan...</s:String>
     <s:String x:Key="show_clock">Tunjukkan jam</s:String>
