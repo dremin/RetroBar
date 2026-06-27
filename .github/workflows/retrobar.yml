@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [x64, net10.0-windows], [x86, net10.0-windows], [ARM64, net10.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [x64-portable, net10.0-windows], [x86-portable, net10.0-windows], [ARM64-portable, net10.0-windows] ]
-    runs-on: windows-latest
+    runs-on: windows-2025
 
     steps:
     - name: Checkout
@@ -36,13 +36,13 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}${{ matrix.publishprofile[1] == 'net6.0-windows' && ' Legacy' || '' }}
+        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}${{ matrix.publishprofile[1] == 'net6.0-windows' && ' Win7-8' || '' }}
         path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
 
   installer:
     name: Installer
     needs: [ build ]
-    runs-on: windows-2022
+    runs-on: windows-2025
 
     env:
       installer: installer.iss
@@ -71,16 +71,16 @@ jobs:
         name: RetroBar 32-bit
         path: RetroBar\bin\Release\net10.0-windows\publish-x86\
 
-    - name: Download build artifacts - x64 Legacy
+    - name: Download build artifacts - x64 Win7-8
       uses: actions/download-artifact@v6
       with:
-        name: RetroBar 64-bit Legacy
+        name: RetroBar 64-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x64\
 
-    - name: Download build artifacts - x86 Legacy
+    - name: Download build artifacts - x86 Win7-8
       uses: actions/download-artifact@v6
       with:
-        name: RetroBar 32-bit Legacy
+        name: RetroBar 32-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
     - name: Compile Inno Setup installer
