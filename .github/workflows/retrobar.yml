@@ -72,13 +72,13 @@ jobs:
         path: RetroBar\bin\Release\net10.0-windows\publish-x86\
 
     - name: Download build artifacts - x64 Win7-8
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: RetroBar 64-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x64\
 
     - name: Download build artifacts - x86 Win7-8
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: RetroBar 32-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
