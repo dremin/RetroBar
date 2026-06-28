@@ -107,31 +107,31 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: RetroBar Portable ARM64
-        path: RetroBar\portable\
+        path: RetroBar\portable\ARM64
 
     - name: Download build artifacts - x64
       uses: actions/download-artifact@v8
       with:
         name: RetroBar Portable 64-bit
-        path: RetroBar\portable\
+        path: RetroBar\portable\64-bit
 
     - name: Download build artifacts - x86
       uses: actions/download-artifact@v8
       with:
         name: RetroBar Portable 32-bit
-        path: RetroBar\portable\
+        path: RetroBar\portable\32-bit
 
     - name: Download build artifacts - x64 Win7-8
       uses: actions/download-artifact@v8
       with:
         name: RetroBar Portable 64-bit Win7-8
-        path: RetroBar\portable\
+        path: RetroBar\portable\Win7-8\64-bit
 
     - name: Download build artifacts - x86 Win7-8
       uses: actions/download-artifact@v8
       with:
         name: RetroBar Portable 32-bit Win7-8
-        path: RetroBar\portable\
+        path: RetroBar\portable\Win7-8\32-bit
 
     - name: Upload ZIP
       uses: actions/upload-artifact@v7
