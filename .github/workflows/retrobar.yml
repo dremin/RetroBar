@@ -91,3 +91,50 @@ jobs:
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
+        
+  zip-portable:
+    name: ZIP Portable
+    needs: [ build ]
+    runs-on: windows-2025
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Download build artifacts - ARM64
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable ARM64
+        path: RetroBar\portable\
+
+    - name: Download build artifacts - x64
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 64-bit
+        path: RetroBar\portable\
+
+    - name: Download build artifacts - x86
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 32-bit
+        path: RetroBar\portable\
+
+    - name: Download build artifacts - x64 Win7-8
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 64-bit Win7-8
+        path: RetroBar\portable\
+
+    - name: Download build artifacts - x86 Win7-8
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 32-bit Win7-8
+        path: RetroBar\portable\
+
+    - name: Upload ZIP
+      uses: actions/upload-artifact@v7
+      with:
+        name: RetroBar Portable
+        path: RetroBar\portable\
