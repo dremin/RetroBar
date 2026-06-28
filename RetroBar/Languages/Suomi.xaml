@@ -30,6 +30,7 @@
         <s:Int32>5</s:Int32>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_Salli fontin pehmennys</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Salli fontin pehmennys _valikoissa</s:String>
     <s:String x:Key="collapse_tray_icons">Piilota _ilmoitusalueen kuvakkeet</s:String>
     <s:String x:Key="customize">_Mukauta...</s:String>
     <s:String x:Key="show_input_language">Näytä syötteen _kieli</s:String>

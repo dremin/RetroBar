@@ -1,6 +1,7 @@
 ﻿<Application x:Class="RetroBar.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:RetroBar.Converters"
              ShutdownMode="OnExplicitShutdown"
              Startup="App_OnStartup"
              Exit="App_OnExit"
@@ -12,6 +13,7 @@
                 <ResourceDictionary Source="Languages/English.xaml" />
                 <ResourceDictionary Source="Themes/System.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToTextRenderingModeConverter x:Key="menuTextRenderingModeConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">Numărul de rânduri din bara de activități când este în partea de sus sau de jos.</s:String>
     <s:String x:Key="taskbar_width">Lățime_a barei de activități:</s:String>
     <s:String x:Key="allow_font_smoothing">Activați _netezirea fontului</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Activați netezirea fontului în _meniuri</s:String>
     <s:String x:Key="collapse_tray_icons">_Ascundeți pictogramele din bara de notificări</s:String>
     <s:String x:Key="customize">_Personalizați...</s:String>
     <s:String x:Key="show_input_language">Afișați limba de _introducere</s:String>

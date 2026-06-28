@@ -192,6 +192,13 @@ namespace RetroBar.Utilities
             set => Set(ref _allowFontSmoothing, value);
         }
 
+        private bool _allowFontSmoothingMenu = true;
+        public bool AllowFontSmoothingMenu
+        {
+            get => _allowFontSmoothingMenu;
+            set => Set(ref _allowFontSmoothingMenu, value);
+        }
+
         private bool _useSoftwareRendering = false;
         public bool UseSoftwareRendering
         {
@@ -374,6 +381,13 @@ namespace RetroBar.Utilities
         {
             get => _winNumHotkeysAction;
             set => SetEnum(ref _winNumHotkeysAction, value);
+        }
+
+        private bool _allowBlurBehind = true;
+        public bool AllowBlurBehind
+        {
+            get => _allowBlurBehind;
+            set => Set(ref _allowBlurBehind, value);
         }
         #endregion
 

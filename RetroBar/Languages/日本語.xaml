@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">タスクバーが上または下に配置されている場合のタスクバーの行数。</s:String>
     <s:String x:Key="taskbar_width">タスクバーの幅(_W)：</s:String>
     <s:String x:Key="allow_font_smoothing">フォントをなめらかにする(_A)</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">メニューのフォントをなめらかにする(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">通知領域のアイコンを折りたたむ(_N)</s:String>
     <s:String x:Key="customize">カスタマイズ(_C)...</s:String>
     <s:String x:Key="show_input_language">表示入力言語(_L)</s:String>

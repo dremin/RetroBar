@@ -65,6 +65,11 @@
     <Style TargetType="ContextMenu"
            x:Key="{x:Type ContextMenu}"
            BasedOn="{StaticResource GlobalFonts}">
+        <!-- Menus are never scaled, so keep their text on the pixel grid (Display). Otherwise
+             they'd inherit the taskbar's Ideal formatting when font smoothing is on while scaled,
+             which would smooth menu text regardless of the menu's own smoothing setting. -->
+        <Setter Property="TextOptions.TextFormattingMode"
+                Value="Display" />
     </Style>
 
     <Style TargetType="ToolTip"
