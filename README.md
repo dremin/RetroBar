@@ -10,8 +10,9 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 ## Requirements
 - Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
   - Fresh installs of Windows 7 may require additional Windows updates. See [#1319](https://github.com/dremin/RetroBar/issues/1319) for details.
-- [.NET 6.0.2 or later desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime) (select the appropriate download button under "Run desktop apps")
-  - When using the RetroBar installer, this is automatically downloaded and installed if necessary.
+- Microsoft .NET Desktop Runtime - When using the RetroBar installer, this is automatically downloaded and installed if necessary. If you're using the portable version, you may download the appropriate runtime below:
+  - For Windows 10 and later: [.NET 10 desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)
+  - For earlier versions of Windows: [.NET 6.0.36 desktop runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)
 
 ## Features
 - Replaces default Windows taskbar with classic layout
@@ -55,6 +56,7 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 ## Supported languages
 - Arabic (العربية)
 - Basque (euskara)
+- Belarusian (беларуская)
 - Bulgarian (български)
 - Catalan (català)
 - Chinese (Simplified) (中文(简体))
@@ -70,6 +72,7 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - Greek (ελληνικά)
 - Hebrew (עברית)
 - Hungarian (magyar)
+- Icelandic (íslenska)
 - Indonesian (Indonesia)
 - Italian (italiano)
 - Japanese (日本語)
@@ -78,6 +81,8 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - Lithuanian (lietuvių)
 - Luxembourgish (Lëtzebuergesch)
 - Malay (Melayu)
+- Maltese (Malti)
+- Norsk (bokmål)
 - Persian (فارسی)
 - Polish (polski)
 - Portuguese (português)

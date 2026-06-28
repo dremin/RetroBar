@@ -12,8 +12,8 @@ jobs:
     name: Build
     strategy:
       matrix:
-        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [ARM64, net6.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [ARM64-portable, net6.0-windows] ]
-    runs-on: windows-latest
+        publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [x64, net10.0-windows], [x86, net10.0-windows], [ARM64, net10.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [x64-portable, net10.0-windows], [x86-portable, net10.0-windows], [ARM64-portable, net10.0-windows] ]
+    runs-on: windows-2025
 
     steps:
     - name: Checkout
@@ -25,7 +25,7 @@ jobs:
       uses: dotnet/nbgv@v0.5.2
 
     - name: Publish app
-      run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework -p:DebugType=None -p:DebugSymbols=false
+      run: dotnet publish -p:PublishProfile=$env:Profile -f $env:Framework -p:DebugType=None -p:DebugSymbols=false -p:PublishDir=bin\Release\$env:Framework\publish-$env:Profile
       env:
         Profile: ${{ matrix.publishprofile[0] }}
         Framework: ${{ matrix.publishprofile[1] }}
@@ -36,17 +36,16 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}
+        name: RetroBar ${{ matrix.publishprofile[0] == 'x86' && '32-bit' || matrix.publishprofile[0] == 'x64' && '64-bit' || matrix.publishprofile[0] == 'ARM64' && 'ARM64' || matrix.publishprofile[0] == 'x86-portable' && 'Portable 32-bit' || matrix.publishprofile[0] == 'x64-portable' && 'Portable 64-bit' || 'Portable ARM64' }}${{ matrix.publishprofile[1] == 'net6.0-windows' && ' Win7-8' || '' }}
         path: RetroBar\bin\Release\${{ matrix.publishprofile[1] }}\publish-${{ matrix.publishprofile[0] }}\
 
   installer:
     name: Installer
     needs: [ build ]
-    runs-on: windows-2022
+    runs-on: windows-2025
 
     env:
       installer: installer.iss
-      targetFramework: net6.0-windows
 
     steps:
     - name: Checkout
@@ -58,19 +57,31 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: RetroBar ARM64
-        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-ARM64\
+        path: RetroBar\bin\Release\net10.0-windows\publish-ARM64\
 
     - name: Download build artifacts - x64
       uses: actions/download-artifact@v8
       with:
         name: RetroBar 64-bit
-        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x64\
+        path: RetroBar\bin\Release\net10.0-windows\publish-x64\
 
     - name: Download build artifacts - x86
       uses: actions/download-artifact@v8
       with:
         name: RetroBar 32-bit
-        path: RetroBar\bin\Release\${{ env.targetFramework }}\publish-x86\
+        path: RetroBar\bin\Release\net10.0-windows\publish-x86\
+
+    - name: Download build artifacts - x64 Win7-8
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar 64-bit Win7-8
+        path: RetroBar\bin\Release\net6.0-windows\publish-x64\
+
+    - name: Download build artifacts - x86 Win7-8
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar 32-bit Win7-8
+        path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
     - name: Compile Inno Setup installer
       run: ISCC.exe "${{ env.installer }}"
@@ -80,3 +91,50 @@ jobs:
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
+        
+  zip-portable:
+    name: ZIP Portable
+    needs: [ build ]
+    runs-on: windows-2025
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Download build artifacts - ARM64
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable ARM64
+        path: RetroBar\portable\ARM64
+
+    - name: Download build artifacts - x64
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 64-bit
+        path: RetroBar\portable\64-bit
+
+    - name: Download build artifacts - x86
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 32-bit
+        path: RetroBar\portable\32-bit
+
+    - name: Download build artifacts - x64 Win7-8
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 64-bit Win7-8
+        path: RetroBar\portable\Win7-8\64-bit
+
+    - name: Download build artifacts - x86 Win7-8
+      uses: actions/download-artifact@v8
+      with:
+        name: RetroBar Portable 32-bit Win7-8
+        path: RetroBar\portable\Win7-8\32-bit
+
+    - name: Upload ZIP
+      uses: actions/upload-artifact@v7
+      with:
+        name: RetroBar Portable
+        path: RetroBar\portable\
