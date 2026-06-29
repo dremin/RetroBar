@@ -66,7 +66,7 @@ namespace RetroBar.Controls
         private void StartWatch()
         {
             SetLocaleIdentifier();
-
+            
             layoutWatch.Start();
 
             Visibility = Visibility.Visible;
@@ -86,7 +86,7 @@ namespace RetroBar.Controls
             var NewControl = new JapaneseIme();
             InputLanguageDockPanel.Children.Add(NewControl);
         }
-
+        
         private void JapaneseImeRemove()
         {
             var DelControl = InputLanguageDockPanel.Children
@@ -173,7 +173,7 @@ namespace RetroBar.Controls
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             StopWatch();
-
+            
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             _isLoaded = false;
