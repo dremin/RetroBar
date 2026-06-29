@@ -21,6 +21,7 @@
         <s:String>하단</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">폰트 스무딩 활성화(_S)</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">메뉴에서 폰트 스무딩 활성화(_A)</s:String>
     <s:String x:Key="collapse_tray_icons">사용하지 않은 아이콘 숨기기(_H)</s:String>
     <s:String x:Key="customize">사용자 지정(_C)...</s:String>
     <s:String x:Key="show_clock">시계 표시(_K)</s:String>

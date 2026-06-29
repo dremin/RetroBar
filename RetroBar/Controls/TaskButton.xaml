@@ -47,6 +47,9 @@
         <Button.ContextMenu>
             <ContextMenu Opened="ContextMenu_OpenedOrClosed"
                          Closed="ContextMenu_OpenedOrClosed">
+                <TextOptions.TextRenderingMode>
+                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothingMenu" Converter="{StaticResource menuTextRenderingModeConverter}" />
+                </TextOptions.TextRenderingMode>
                 <MenuItem Header="{DynamicResource restore}"
                           Click="RestoreMenuItem_OnClick"
                           Name="RestoreMenuItem">

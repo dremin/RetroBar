@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">The number of rows on the taskbar when on top or bottom.</s:String>
     <s:String x:Key="taskbar_width">Taskba_r width:</s:String>
     <s:String x:Key="allow_font_smoothing">_Allow font smoothing</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">_Allow font smoothing in menus</s:String>
     <s:String x:Key="collapse_tray_icons">Collapse _notification area icons</s:String>
     <s:String x:Key="customize">_Customize...</s:String>
     <s:String x:Key="show_input_language">Show the input _language</s:String>

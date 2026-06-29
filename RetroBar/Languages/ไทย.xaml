@@ -21,6 +21,7 @@
         <s:String>ล่าง</s:String>
     </x:Array>
     <s:String x:Key="allow_font_smoothing">_ใช้การปรับตัวอักษรให้คมชัด</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">_ใช้การปรับตัวอักษรให้คมชัดในเมนู</s:String>
     <s:String x:Key="collapse_tray_icons">ยุบไอคอนใน_พื้นที่แจ้งเตือน</s:String>
     <s:String x:Key="customize">_ปรับแต่ง...</s:String>
     <s:String x:Key="show_clock">แสดง_นาฬิกา</s:String>

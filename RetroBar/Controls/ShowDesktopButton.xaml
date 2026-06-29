@@ -16,6 +16,9 @@
                Style="{DynamicResource ShowDesktopIcon}" />
         <ToggleButton.ContextMenu>
             <ContextMenu Opened="ContextMenu_Opened">
+                <TextOptions.TextRenderingMode>
+                    <Binding Source="{x:Static Settings:Settings.Instance}" Path="AllowFontSmoothingMenu" Converter="{StaticResource menuTextRenderingModeConverter}" />
+                </TextOptions.TextRenderingMode>
                 <MenuItem Style="{DynamicResource ShowDesktopItem}"
                         Name="ShowDesktopItem"
                         Click="ShowDesktop_OnClick" />

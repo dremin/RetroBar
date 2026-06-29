@@ -24,6 +24,7 @@
     <s:String x:Key="rowcount_tip">Кількість рядків на панелі завдань (зверху або знизу).</s:String>
     <s:String x:Key="taskbar_width">Ширина панелі завдань:</s:String>
     <s:String x:Key="allow_font_smoothing">Дозволити згладжування шрифтів</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Дозволити згладжування шрифтів у _меню</s:String>
     <s:String x:Key="collapse_tray_icons">При_ховувати невикористовувані значки</s:String>
     <s:String x:Key="customize">_Налаштувати...</s:String>
     <s:String x:Key="show_input_language">Показати мову введення</s:String>
