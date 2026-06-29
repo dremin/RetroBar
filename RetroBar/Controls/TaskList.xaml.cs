@@ -30,6 +30,24 @@ namespace RetroBar.Controls
             set { SetValue(ButtonWidthProperty, value); }
         }
 
+        public static DependencyProperty ButtonsPerRowProperty = DependencyProperty.Register(nameof(ButtonsPerRow), typeof(int), typeof(TaskList), new PropertyMetadata(0));
+
+        public int ButtonsPerRow
+        {
+            get { return (int)GetValue(ButtonsPerRowProperty); }
+            set { SetValue(ButtonsPerRowProperty, value); }
+        }
+
+        // Number of columns in a full row that get one extra pixel, so the row fills the
+        // taskbar exactly instead of leaving the floored remainder empty.
+        public static DependencyProperty ExtraWidthCountProperty = DependencyProperty.Register(nameof(ExtraWidthCount), typeof(int), typeof(TaskList), new PropertyMetadata(0));
+
+        public int ExtraWidthCount
+        {
+            get { return (int)GetValue(ExtraWidthCountProperty); }
+            set { SetValue(ExtraWidthCountProperty, value); }
+        }
+
         public static DependencyProperty TasksProperty = DependencyProperty.Register(nameof(Tasks), typeof(Tasks), typeof(TaskList), new PropertyMetadata(TasksChangedCallback));
 
         public Tasks Tasks
@@ -223,6 +241,7 @@ namespace RetroBar.Controls
 
             if (Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right)
             {
+                ExtraWidthCount = 0;
                 ButtonWidth = ActualWidth;
                 SetScrollable(true); // while technically not always scrollable, we don't run into DPI-specific issues with it enabled while vertical
                 return;
@@ -232,24 +251,34 @@ namespace RetroBar.Controls
             int rows = Host.Rows;
 
             int taskCount = TasksList.Items.Count;
+            TasksList.AlternationCount = taskCount; // keep in sync for correct AlternationIndex
+
             double margin = TaskButtonLeftMargin + TaskButtonRightMargin;
-            double maxWidth = TasksList.ActualWidth / Math.Ceiling((double)taskCount / rows);
+            ButtonsPerRow = Math.Max(1, (int)Math.Ceiling((double)taskCount / rows));
+            double maxWidth = TasksList.ActualWidth / ButtonsPerRow;
             double defaultWidth = DefaultButtonWidth + margin;
             double minWidth = MinButtonWidth + margin;
 
             if (maxWidth > defaultWidth)
             {
+                // Room to spare: keep the default width and leave the trailing gap.
+                ExtraWidthCount = 0;
                 ButtonWidth = defaultWidth;
                 SetScrollable(false);
             }
             else if (maxWidth < minWidth)
             {
+                ExtraWidthCount = 0;
                 ButtonWidth = Math.Ceiling(defaultWidth / 2);
                 SetScrollable(true);
             }
             else
             {
-                ButtonWidth = Math.Floor(maxWidth);
+                // Buttons are shrunk to fit a full row: spread the pixels lost to flooring
+                // across the columns so the row fills the taskbar.
+                double baseWidth = Math.Floor(maxWidth);
+                ButtonWidth = baseWidth;
+                ExtraWidthCount = (int)Math.Floor(TasksList.ActualWidth) - (int)baseWidth * ButtonsPerRow;
                 SetScrollable(false);
             }
         }
