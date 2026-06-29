@@ -22,10 +22,13 @@
         </Thumb>
         <WrapPanel x:Name="InputLanguageDockPanel"
                    Style="{DynamicResource LanguageBar}">
-            <TextBlock x:Name="InputLanguageText"
-                   Style="{DynamicResource InputLanguage}"
-                   Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
-            </TextBlock>
+            <Border x:Name="InputLanguageBox"
+                    Style="{DynamicResource InputLanguageBox}">
+                <TextBlock x:Name="InputLanguageText"
+                       Style="{DynamicResource InputLanguage}"
+                       Text="{Binding Path=LocaleIdentifier, Converter={StaticResource cultureInfoToLocaleNameConverter}, ConverterParameter=TwoLetterIsoLanguageName, Mode=OneWay}">
+                </TextBlock>
+            </Border>
         </WrapPanel>
     </DockPanel>
 

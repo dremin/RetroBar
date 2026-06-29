@@ -58,6 +58,16 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
             SystemEvents.TimeChanged += TimeChanged;
             SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
+
+            UpdateTextScaling();
+        }
+
+        private void UpdateTextScaling()
+        {
+            // Only scale within the actual taskbar; the properties window preview hosts this
+            // same control without the taskbar's ScaleTransform, so it should stay unscaled.
+            double scale = Window.GetWindow(this) is RetroBar.Taskbar ? Settings.Instance.TaskbarScale : 1.0;
+            TextScaler.ApplyScaling(this, scale);
         }
 
         private void StartClock()
@@ -92,6 +102,16 @@ namespace RetroBar.Controls
             else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
             {
                 UpdateUserCulture();
+            }
+            else if (e.PropertyName == nameof(Settings.TaskbarScale))
+            {
+                UpdateTextScaling();
+            }
+            else if (e.PropertyName == nameof(Settings.Theme))
+            {
+                // The clock template (and its base font size) is swapped on theme change;
+                // re-apply once that has happened.
+                Dispatcher.BeginInvoke(new Action(UpdateTextScaling), DispatcherPriority.Loaded);
             }
         }
 

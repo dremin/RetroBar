@@ -3,6 +3,7 @@ using System.Linq;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
@@ -46,6 +47,46 @@ namespace RetroBar.Controls
             }
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
+
+            UpdateTextScaling();
+        }
+
+        // The unscaled box size from the InputLanguageBox style, captured once so the scaling
+        // doesn't hard-code it.
+        private double _baseBoxHeight = double.NaN;
+        private double _baseBoxMinWidth = double.NaN;
+
+        private void UpdateTextScaling()
+        {
+            // Only scale within the actual taskbar; the properties window preview hosts this
+            // same control without the taskbar's ScaleTransform, so it should stay unscaled.
+            double scale = Window.GetWindow(this) is RetroBar.Taskbar ? Settings.Instance.TaskbarScale : 1.0;
+
+            if (double.IsNaN(_baseBoxHeight))
+            {
+                _baseBoxHeight = InputLanguageBox.Height;
+                _baseBoxMinWidth = InputLanguageBox.MinWidth;
+            }
+
+            // Render the whole indicator at real, pixel-aligned sizes with a 1/scale
+            // counter-transform, so both the box and the text stay crisp (no fractional-pixel
+            // blur) and the text centers in real-pixel space rather than in the taskbar's
+            // fractional scaled space. The base font size comes from the current theme's
+            // GlobalFontSize.
+            if (scale > 1.0 && Application.Current.TryFindResource("GlobalFontSize") is double baseFontSize)
+            {
+                InputLanguageBox.LayoutTransform = new ScaleTransform(1.0 / scale, 1.0 / scale);
+                InputLanguageBox.Height = Math.Round(_baseBoxHeight * scale);
+                InputLanguageBox.MinWidth = Math.Round(_baseBoxMinWidth * scale);
+                InputLanguageText.FontSize = Math.Round(baseFontSize * scale);
+            }
+            else
+            {
+                InputLanguageBox.LayoutTransform = null;
+                InputLanguageBox.ClearValue(FrameworkElement.HeightProperty);
+                InputLanguageBox.ClearValue(FrameworkElement.MinWidthProperty);
+                InputLanguageText.ClearValue(TextBlock.FontSizeProperty);
+            }
         }
 
         private void SetLocaleIdentifier()
@@ -122,17 +163,17 @@ namespace RetroBar.Controls
 
                 if (InstalledLanguagesCount() == 1)
                 {
-                    InputLanguageText.Visibility = Visibility.Collapsed;
+                    InputLanguageBox.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    InputLanguageText.Visibility = Visibility.Visible;
+                    InputLanguageBox.Visibility = Visibility.Visible;
                 }
             }
             else
             {
                 JapaneseImeRemove();
-                InputLanguageText.Visibility = Visibility.Visible;
+                InputLanguageBox.Visibility = Visibility.Visible;
             }
         }
 
@@ -155,6 +196,15 @@ namespace RetroBar.Controls
                 {
                     StopWatch();
                 }
+            }
+            else if (e.PropertyName == nameof(Settings.TaskbarScale))
+            {
+                UpdateTextScaling();
+            }
+            else if (e.PropertyName == nameof(Settings.Theme))
+            {
+                // The base font size can change with the theme; re-apply once it has loaded.
+                Dispatcher.BeginInvoke(new Action(UpdateTextScaling), DispatcherPriority.Loaded);
             }
         }
 
