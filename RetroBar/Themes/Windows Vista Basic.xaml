@@ -51,7 +51,6 @@
     <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#B4B4B4" />
     <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#1C1E1F" />
     <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#1B1D1F" />
-    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 
     <LinearGradientBrush x:Key="TaskButtonThumbnailBackground"
                          StartPoint="0,0"
@@ -71,4 +70,6 @@
     <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderHover" Color="#73767C" />
     <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderPressed" Color="#73767C" />
     <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#111218" />
+
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 </ResourceDictionary>

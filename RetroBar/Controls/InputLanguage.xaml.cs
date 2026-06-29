@@ -13,21 +13,6 @@ using WinForms = System.Windows.Forms;
 
 namespace RetroBar.Controls
 {
-    public static class InputMethodSwitcher
-    {
-        public static void Toggle()
-        {
-            var list = WinForms.InputLanguage.InstalledInputLanguages.Cast<WinForms.InputLanguage>().ToList();
-            if (list.Count < 2)
-                return;
-
-            var current = WinForms.InputLanguage.CurrentInputLanguage;
-            int index = list.IndexOf(current);
-            int next = (index + 1) % list.Count;
-
-            WinForms.InputLanguage.CurrentInputLanguage = list[next];
-        }
-    }
     public partial class InputLanguage : UserControl
     {
         public static DependencyProperty LocaleIdentifierProperty = DependencyProperty.Register(nameof(LocaleIdentifier), typeof(CultureInfo), typeof(InputLanguage));
@@ -252,7 +237,7 @@ namespace RetroBar.Controls
 
         private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ShowLanguageMenu();//InputMethodSwitcher.Toggle();
+            ShowLanguageMenu();
         }
     };
 }
