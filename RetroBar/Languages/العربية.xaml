@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">ع_رض شريط المهام:</s:String>
     <s:String x:Key="allow_font_smoothing">السماح بتنعيم ال_خطوط</s:String>
     <s:String x:Key="allow_font_smoothing_menu">السماح بتنعيم الخطوط في ال_قوائم</s:String>
+    <s:String x:Key="crisp_start_button_icon">أيقونة زر ابدأ _واضحة</s:String>
     <s:String x:Key="collapse_tray_icons">طيّ أيقونات _منطقة الإعلام</s:String>
     <s:String x:Key="customize">_تخصيص...</s:String>
     <s:String x:Key="show_input_language">إظهار لغة الإد_خال</s:String>

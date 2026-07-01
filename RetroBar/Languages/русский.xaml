@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">_Ширина панели задач:</s:String>
     <s:String x:Key="allow_font_smoothing">Пр_именять сглаживание шрифтов</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Применять сглаживание шрифтов в _меню</s:String>
+    <s:String x:Key="crisp_start_button_icon">Чёткий _значок кнопки Пуск</s:String>
     <s:String x:Key="collapse_tray_icons">Скр_ывать неиспользуемые значки</s:String>
     <s:String x:Key="customize">_Настроить...</s:String>
     <s:String x:Key="show_input_language">Отображать раскладку _клавиатуры</s:String>

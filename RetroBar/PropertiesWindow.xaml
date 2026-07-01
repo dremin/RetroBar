@@ -380,6 +380,10 @@
                                   IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothingMenu, UpdateSourceTrigger=PropertyChanged}">
                             <Label Content="{DynamicResource allow_font_smoothing_menu}" />
                         </CheckBox>
+                        <CheckBox x:Name="cbCrispStartButtonIcon"
+                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CrispStartButtonIcon, UpdateSourceTrigger=PropertyChanged}">
+                            <Label Content="{DynamicResource crisp_start_button_icon}" />
+                        </CheckBox>
                         <DockPanel>
                             <Label VerticalAlignment="Center"
                                    Target="{Binding ElementName=cboWinNumHotkeysAction}">

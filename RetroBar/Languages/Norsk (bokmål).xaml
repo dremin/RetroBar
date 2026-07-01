@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">Oppgavelinjen_s bredde:</s:String>
     <s:String x:Key="allow_font_smoothing">_Tillat fontutjevning</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Ti_llat fontutjevning i menyer</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Skarpt startknappikon</s:String>
     <s:String x:Key="collapse_tray_icons">Skjul _ikoner i systemstatusfeltet</s:String>
     <s:String x:Key="customize">_Tilpass...</s:String>
     <s:String x:Key="show_input_language">Vis inndataspråket</s:String>

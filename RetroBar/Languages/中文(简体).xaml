@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">任务栏宽度(_W): </s:String>
     <s:String x:Key="allow_font_smoothing">允许字体平滑(_A)</s:String>
     <s:String x:Key="allow_font_smoothing_menu">允许菜单中的字体平滑(_A)</s:String>
+    <s:String x:Key="crisp_start_button_icon">清晰的开始按钮图标(_B)</s:String>
     <s:String x:Key="collapse_tray_icons">收起通知区域图标(_N)</s:String>
     <s:String x:Key="customize">自定义(_C)...</s:String>
     <s:String x:Key="show_input_language">显示输入语言(_L)</s:String>
