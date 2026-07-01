@@ -283,6 +283,7 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 
     <LinearGradientBrush x:Key="ShowDesktopButtonBorderHorizontal"
                          StartPoint="0,0"

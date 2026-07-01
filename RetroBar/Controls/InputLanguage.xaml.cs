@@ -3,11 +3,13 @@ using System.Linq;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using RetroBar.Converters;
 using RetroBar.Utilities;
+using WinForms = System.Windows.Forms;
 
 namespace RetroBar.Controls
 {
@@ -175,6 +177,67 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
 
             _isLoaded = false;
+        }
+
+        private void ShowLanguageMenu()
+        {
+            var menu = new ContextMenu();
+
+            foreach (WinForms.InputLanguage lang in WinForms.InputLanguage.InstalledInputLanguages)
+            {
+                string code = lang.Culture.TwoLetterISOLanguageName.ToUpperInvariant();
+
+                var panel = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(0, 0, 0, 0)
+                };
+
+                var badge = new Border
+                {
+                    Background = (Brush)Application.Current.Resources["InputLanguageBackground"],
+                    Padding = new Thickness(1, 1, 2, 3),
+                    Margin = new Thickness(0, 0, 6, 0),
+                    Child = new TextBlock
+                    {
+                        Text = code,
+                        FontSize = 10,
+                        FontWeight = FontWeights.UltraLight,
+                        Foreground = (Brush)Application.Current.Resources["InputLanguageSelectorForeground"]
+                    }
+                };
+
+                var text = new TextBlock
+                {
+                    Text = lang.Culture.DisplayName
+                };
+
+                panel.Children.Add(badge);
+                panel.Children.Add(text);
+
+                var item = new MenuItem
+                {
+                    Header = panel,
+                    Tag = lang,
+                    IsCheckable = true,
+                    IsChecked = lang.Equals(WinForms.InputLanguage.CurrentInputLanguage)
+                };
+
+                item.Click += (s, e) =>
+                {
+                    WinForms.InputLanguage.CurrentInputLanguage = (WinForms.InputLanguage)((MenuItem)s).Tag;
+                };
+
+                menu.Items.Add(item);
+            }
+
+            menu.PlacementTarget = this;
+            menu.IsOpen = true;
+        }
+
+        private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ShowLanguageMenu();
         }
     };
 }

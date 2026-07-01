@@ -70,4 +70,6 @@
     <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderHover" Color="#73767C" />
     <SolidColorBrush x:Key="TaskListScrollButtonInnerBorderPressed" Color="#73767C" />
     <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#111218" />
+
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 </ResourceDictionary>

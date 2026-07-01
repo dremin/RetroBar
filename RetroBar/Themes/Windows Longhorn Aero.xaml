@@ -341,6 +341,7 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 
     <SolidColorBrush x:Key="ToolTipBackground" Color="#f4f4f4" />
     <SolidColorBrush x:Key="ToolTipForeground" Color="#00025c" />
