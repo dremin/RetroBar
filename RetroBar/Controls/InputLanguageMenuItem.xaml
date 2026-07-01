@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="RetroBar.Controls.InputLanguageMenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding Code}"
+                   Style="{StaticResource InputLanguageMenuBadge}" />
+        <TextBlock Text="{Binding DisplayName}" />
+    </StackPanel>
+</UserControl>
