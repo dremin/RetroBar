@@ -8,6 +8,7 @@ using System.Windows;
 using ManagedShell.Common.Logging;
 using Microsoft.Win32;
 using ManagedShell.AppBar;
+using ManagedShell.ShellFolders;
 using System.Windows.Forms;
 using ManagedShell.WindowsTray;
 using System.Runtime.CompilerServices;
@@ -317,6 +318,14 @@ namespace RetroBar
             {
                 Settings.Instance.QuickLaunchPath = fbd.SelectedPath;
             }
+        }
+
+        private void CustomizeQuickLaunch_OnClick(object sender, RoutedEventArgs e)
+        {
+            QuickLaunchPropertiesWindow.Open(
+                new ShellFolder(Environment.ExpandEnvironmentVariables(Settings.Instance.QuickLaunchPath), IntPtr.Zero, true), 
+                AppBarScreen.FromAllScreens(), 
+                new Point(Left, Top));
         }
 
         private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)

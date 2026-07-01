@@ -185,6 +185,13 @@ namespace RetroBar.Utilities
             set => Set(ref _notifyIconBehaviors, value);
         }
 
+        private List<QuickLaunchIconSetting> _quickLaunchIconSettings = new List<QuickLaunchIconSetting>();
+        public List<QuickLaunchIconSetting> QuickLaunchIconSettings
+        {
+            get => _quickLaunchIconSettings;
+            set => Set(ref _quickLaunchIconSettings, value);
+        }
+
         private bool _allowFontSmoothing = false;
         public bool AllowFontSmoothing
         {
@@ -355,6 +362,13 @@ namespace RetroBar.Utilities
             set => Set(ref _showStartButtonMultiMon, value);
         }
 
+        private bool _showQuickLaunchMultiMon = true;
+        public bool ShowQuickLaunchMultiMon
+        {
+            get => _showQuickLaunchMultiMon;
+            set => Set(ref _showQuickLaunchMultiMon, value);
+        }
+
         private bool _autoHideTransparent = false;
         public bool AutoHideTransparent
         {
@@ -484,6 +498,12 @@ namespace RetroBar.Utilities
     {
         public string Identifier {  get; set; }
         public NotifyIconBehavior Behavior { get; set; }
+    }
+
+    public struct QuickLaunchIconSetting
+    {
+        public string Path { get; set; }
+        public List<string> DisabledOnDisplays { get; set; }
     }
     #endregion
 }
