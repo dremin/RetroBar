@@ -472,6 +472,7 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#000000" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="#bebebe" />
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 
     <BitmapImage x:Key="StartButtonImage"
                  UriSource="../Resources/startxpzunebutton.png" />

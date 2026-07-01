@@ -933,6 +933,25 @@
                 Value="Center" />
     </Style>
 
+    <Style TargetType="TextBlock"
+           x:Key="InputLanguageMenuBadge"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource InputLanguageSelectorForeground}" />
+        <Setter Property="Background" 
+                Value="{DynamicResource InputLanguageBackground}"/>
+        <Setter Property="MinWidth" 
+                Value="16"/>
+        <Setter Property="Height"
+                Value="16"/>
+        <Setter Property="FontSize"
+                Value="10"/>
+        <Setter Property="Margin"
+                Value="0,0,6,0" />
+        <Setter Property="Padding"
+                Value="1,1,0,0" />
+    </Style>
+
     <Style TargetType="Button"
            x:Key="ToolbarButton">
         <Setter Property="OverridesDefaultStyle"

@@ -187,37 +187,9 @@ namespace RetroBar.Controls
             {
                 string code = lang.Culture.TwoLetterISOLanguageName.ToUpperInvariant();
 
-                var panel = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    Margin = new Thickness(0, 0, 0, 0)
-                };
-
-                var badge = new Border
-                {
-                    Background = (Brush)Application.Current.Resources["InputLanguageBackground"],
-                    Padding = new Thickness(1, 1, 2, 3),
-                    Margin = new Thickness(0, 0, 6, 0),
-                    Child = new TextBlock
-                    {
-                        Text = code,
-                        FontSize = 10,
-                        FontWeight = FontWeights.UltraLight,
-                        Foreground = (Brush)Application.Current.Resources["InputLanguageSelectorForeground"]
-                    }
-                };
-
-                var text = new TextBlock
-                {
-                    Text = lang.Culture.DisplayName
-                };
-
-                panel.Children.Add(badge);
-                panel.Children.Add(text);
-
                 var item = new MenuItem
                 {
-                    Header = panel,
+                    Header = new InputLanguageMenuItem(code, lang.Culture.DisplayName),
                     Tag = lang,
                     IsCheckable = true,
                     IsChecked = lang.Equals(WinForms.InputLanguage.CurrentInputLanguage)
@@ -231,11 +203,11 @@ namespace RetroBar.Controls
                 menu.Items.Add(item);
             }
 
-            menu.PlacementTarget = this;
+            menu.PlacementTarget = InputLanguageButton;
             menu.IsOpen = true;
         }
 
-        private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void InputLanguageButton_Click(object sender, RoutedEventArgs e)
         {
             ShowLanguageMenu();
         }

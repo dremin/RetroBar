@@ -1441,11 +1441,7 @@
            x:Key="InputLanguage"
            BasedOn="{StaticResource InputLanguage}">
         <Setter Property="Margin"
-                Value="0,6,0,0" />
-        <Setter Property="HorizontalAlignment"
-                Value="Left" />
-        <Setter Property="VerticalAlignment"
-                Value="Top" />
+                Value="0,-2,0,0" />
     </Style>
 
     <Style TargetType="TextBlock"

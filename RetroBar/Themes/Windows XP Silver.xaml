@@ -792,4 +792,5 @@
     <SolidColorBrush x:Key="ClockForeground" Color="#000000" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#000000" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="#b2b4bf" />
+    <SolidColorBrush x:Key="InputLanguageSelectorForeground" Color="#000000" />
 </ResourceDictionary>
