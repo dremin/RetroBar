@@ -247,7 +247,6 @@ namespace RetroBar.Controls
             }
             // Create a list of all icons
             var icons = NotificationArea.UnpinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>()
-                .Where(icon => !icon.IsPinned && !icon.IsHidden && icon.GetBehavior() != NotifyIconBehavior.Remove)
                 .Union(NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>())
                 .ToList();
 
