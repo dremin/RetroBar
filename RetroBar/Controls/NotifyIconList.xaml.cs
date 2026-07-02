@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -274,7 +275,7 @@ namespace RetroBar.Controls
         {
             if (NotificationArea == null) return;
 
-            var visibleIcons = new System.Collections.Generic.List<ManagedShell.WindowsTray.NotifyIcon>();
+            var visibleIcons = new List<ManagedShell.WindowsTray.NotifyIcon>();
 
             if (NotifyIcons.ItemsSource != null)
             {
@@ -291,11 +292,11 @@ namespace RetroBar.Controls
                 }
             }
 
-            var oldOrder = Settings.Instance.NotifyIconOrder ?? new System.Collections.Generic.List<string>();
+            var oldOrder = Settings.Instance.NotifyIconOrder ?? new List<string>();
             var newOrder = visibleIcons.Select(i => i.GetInvertIdentifier()).ToList();
-            var orderSet = new System.Collections.Generic.HashSet<string>(newOrder);
+            var orderSet = new HashSet<string>(newOrder);
 
-            var result = new System.Collections.Generic.List<string>();
+            var result = new List<string>();
             int replaceIndex = 0;
             
             foreach (var id in oldOrder)
