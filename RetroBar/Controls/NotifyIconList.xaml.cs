@@ -170,8 +170,11 @@ namespace RetroBar.Controls
             SetNotificationAreaCollections();
 
             // Set up drag/drop handler
-            dropHandler = new NotifyIconDropHandler(this);
-            GongSolutions.Wpf.DragDrop.DragDrop.SetDropHandler(NotifyIcons, dropHandler);
+            if (dropHandler == null)
+            {
+                dropHandler = new NotifyIconDropHandler(this);
+                GongSolutions.Wpf.DragDrop.DragDrop.SetDropHandler(NotifyIcons, dropHandler);
+            }
         }
 
         private void NotifyIconList_OnUnloaded(object sender, RoutedEventArgs e)
