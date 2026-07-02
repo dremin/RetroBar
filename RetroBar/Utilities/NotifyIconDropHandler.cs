@@ -41,7 +41,7 @@ namespace RetroBar.Utilities
 
             // Save post-drop state
             _notifyIconList.SaveIconOrder();
-            _notifyIconList.RefreshCollections();
+            _notifyIconList.RefreshCollections(true);
             DropInFlight = null;
         }
     }

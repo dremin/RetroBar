@@ -73,12 +73,13 @@ namespace RetroBar.Controls
         {
             if (!_isLoaded && NotificationArea != null)
             {
-                RefreshCollections();
+                RefreshCollections(true);
 
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
 
                 NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
                 NotificationArea.PinnedIcons.CollectionChanged += PinnedIcons_CollectionChanged;
+                promotedIcons.CollectionChanged += PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -191,6 +192,7 @@ namespace RetroBar.Controls
             {
                 NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
                 NotificationArea.PinnedIcons.CollectionChanged -= PinnedIcons_CollectionChanged;
+                promotedIcons.CollectionChanged -= PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown -= NotificationArea_NotificationBalloonShown;
             }
 
@@ -200,21 +202,51 @@ namespace RetroBar.Controls
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetToggleVisibility();
-            RefreshCollections();
+            RefreshCollections(false);
         }
 
         private void PinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RefreshCollections();
+            RefreshCollections(true);
         }
 
-        public void RefreshCollections()
+        private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (ManagedShell.WindowsTray.NotifyIcon item in e.NewItems)
+                {
+                    pinnedNotifyIcons.Insert(0, item);
+                }
+            }
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (ManagedShell.WindowsTray.NotifyIcon item in e.OldItems)
+                {
+                    pinnedNotifyIcons.Remove(item);
+                }
+            }
+        }
+
+        public void RefreshCollections(bool updatePinned)
         {
             if (NotificationArea == null) return;
 
+            if (updatePinned)
+            {
+                // Refresh pinned icons collection
+                pinnedNotifyIcons.Clear();
+                foreach (var icon in promotedIcons)
+                {
+                    pinnedNotifyIcons.Add(icon);
+                }
+                foreach (var icon in NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>().OrderBy(i => Settings.Instance.NotifyIconOrder?.IndexOf(i.GetInvertIdentifier()) ?? -1))
+                {
+                    pinnedNotifyIcons.Add(icon);
+                }
+            }
             // Create a list of all icons
             var icons = NotificationArea.UnpinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>()
-                .Where(icon => !icon.IsPinned && !icon.IsHidden && icon.GetBehavior() != NotifyIconBehavior.Remove)
                 .Union(NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>())
                 .ToList();
 
@@ -226,17 +258,6 @@ namespace RetroBar.Controls
             foreach (var icon in sortedIcons)
             {
                 allNotifyIcons.Add(icon);
-            }
-
-            // Refresh pinned icons collection
-            pinnedNotifyIcons.Clear();
-            foreach (var icon in promotedIcons)
-            {
-                pinnedNotifyIcons.Add(icon);
-            }
-            foreach (var icon in NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>().OrderBy(i => Settings.Instance.NotifyIconOrder?.IndexOf(i.GetInvertIdentifier()) ?? -1))
-            {
-                pinnedNotifyIcons.Add(icon);
             }
         }
 
