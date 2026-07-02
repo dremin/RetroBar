@@ -73,7 +73,7 @@ namespace RetroBar.Controls
         {
             if (!_isLoaded && NotificationArea != null)
             {
-                RefreshCollections();
+                RefreshCollections(true);
 
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
 
@@ -202,12 +202,12 @@ namespace RetroBar.Controls
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetToggleVisibility();
-            RefreshCollections();
+            RefreshCollections(false);
         }
 
         private void PinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RefreshCollections();
+            RefreshCollections(true);
         }
 
         private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -228,10 +228,23 @@ namespace RetroBar.Controls
             }
         }
 
-        public void RefreshCollections()
+        public void RefreshCollections(bool updatePinned)
         {
             if (NotificationArea == null) return;
 
+            if (updatePinned)
+            {
+                // Refresh pinned icons collection
+                pinnedNotifyIcons.Clear();
+                foreach (var icon in promotedIcons)
+                {
+                    pinnedNotifyIcons.Add(icon);
+                }
+                foreach (var icon in NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>().OrderBy(i => Settings.Instance.NotifyIconOrder?.IndexOf(i.GetInvertIdentifier()) ?? -1))
+                {
+                    pinnedNotifyIcons.Add(icon);
+                }
+            }
             // Create a list of all icons
             var icons = NotificationArea.UnpinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>()
                 .Where(icon => !icon.IsPinned && !icon.IsHidden && icon.GetBehavior() != NotifyIconBehavior.Remove)
@@ -246,17 +259,6 @@ namespace RetroBar.Controls
             foreach (var icon in sortedIcons)
             {
                 allNotifyIcons.Add(icon);
-            }
-
-            // Refresh pinned icons collection
-            pinnedNotifyIcons.Clear();
-            foreach (var icon in promotedIcons)
-            {
-                pinnedNotifyIcons.Add(icon);
-            }
-            foreach (var icon in NotificationArea.PinnedIcons.Cast<ManagedShell.WindowsTray.NotifyIcon>().OrderBy(i => Settings.Instance.NotifyIconOrder?.IndexOf(i.GetInvertIdentifier()) ?? -1))
-            {
-                pinnedNotifyIcons.Add(icon);
             }
         }
 
