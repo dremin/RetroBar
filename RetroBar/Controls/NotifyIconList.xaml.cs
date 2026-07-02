@@ -79,6 +79,7 @@ namespace RetroBar.Controls
 
                 NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
                 NotificationArea.PinnedIcons.CollectionChanged += PinnedIcons_CollectionChanged;
+                promotedIcons.CollectionChanged += PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -191,6 +192,7 @@ namespace RetroBar.Controls
             {
                 NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
                 NotificationArea.PinnedIcons.CollectionChanged -= PinnedIcons_CollectionChanged;
+                promotedIcons.CollectionChanged -= PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown -= NotificationArea_NotificationBalloonShown;
             }
 
@@ -206,6 +208,24 @@ namespace RetroBar.Controls
         private void PinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             RefreshCollections();
+        }
+
+        private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (ManagedShell.WindowsTray.NotifyIcon item in e.NewItems)
+                {
+                    pinnedNotifyIcons.Insert(0, item);
+                }
+            }
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (ManagedShell.WindowsTray.NotifyIcon item in e.OldItems)
+                {
+                    pinnedNotifyIcons.Remove(item);
+                }
+            }
         }
 
         public void RefreshCollections()
