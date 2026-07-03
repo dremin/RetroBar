@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">Taskleistenb_reite:</s:String>
     <s:String x:Key="allow_font_smoothing">Schriftglättung zul_assen</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Schriftglättung _in Menüs zulassen</s:String>
+    <s:String x:Key="crisp_start_button_icon">Sc_harfes Symbol für die Startschaltfläche</s:String>
     <s:String x:Key="collapse_tray_icons">Infobereichsymbole ausble_nden</s:String>
     <s:String x:Key="customize">A_npassen...</s:String>
     <s:String x:Key="show_input_language">Eingabe_sprache anzeigen</s:String>

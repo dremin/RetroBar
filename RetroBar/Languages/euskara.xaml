@@ -22,6 +22,7 @@
     </x:Array>
     <s:String x:Key="allow_font_smoothing">Onartu _letra leuntzea</s:String>
     <s:String x:Key="allow_font_smoothing_menu">_Onartu letra leuntzea menuetan</s:String>
+    <s:String x:Key="crisp_start_button_icon">Hasiera _botoiaren ikono zorrotza</s:String>
     <s:String x:Key="collapse_tray_icons">Ezkutatu jakinarazpen _ikonoak</s:String>
     <s:String x:Key="customize">_Personalizatu...</s:String>
     <s:String x:Key="show_clock">Erakutsi _erlojua</s:String>

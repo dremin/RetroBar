@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:utilities="clr-namespace:RetroBar.Utilities">
 
     <system:Double x:Key="TaskbarHeight">28</system:Double>
     <system:Double x:Key="TaskbarRowHeight">25</system:Double>
@@ -808,6 +809,17 @@
                 Value="0,0,2,0" />
         <Setter Property="Source"
                 Value="{DynamicResource StartIconImage}" />
+        <Style.Triggers>
+            <!-- The start icons are small bitmaps shown at their native size, so on integer
+                 display scales (e.g. 200%) nearest-neighbor keeps the pixels sharp instead of
+                 letting the default filter blur them and muddy the colors. Opt-out via setting
+                 since it can look uneven on fractional scales. -->
+            <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=CrispStartButtonIcon}"
+                         Value="True">
+                <Setter Property="RenderOptions.BitmapScalingMode"
+                        Value="NearestNeighbor" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Image"

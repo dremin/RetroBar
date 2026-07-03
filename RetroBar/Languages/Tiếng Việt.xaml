@@ -25,6 +25,7 @@
     <s:String x:Key="taskbar_width">Độ dài thanh tác vụ:</s:String>
     <s:String x:Key="allow_font_smoothing">_Cho phép làm mượt phông chữ</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Cho phép làm mượt phông chữ trong _menu</s:String>
+    <s:String x:Key="crisp_start_button_icon">_Biểu tượng nút bắt đầu sắc nét</s:String>
     <s:String x:Key="collapse_tray_icons">_Thu gọn các biểu tượng ở phần thông báo</s:String>
     <s:String x:Key="customize">Tùy chỉnh...</s:String>
     <s:String x:Key="show_input_language">Hiển thị _ngôn ngữ nhập liệu</s:String>

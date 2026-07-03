@@ -206,6 +206,13 @@ namespace RetroBar.Utilities
             set => Set(ref _allowFontSmoothingMenu, value);
         }
 
+        private bool _crispStartButtonIcon = true;
+        public bool CrispStartButtonIcon
+        {
+            get => _crispStartButtonIcon;
+            set => Set(ref _crispStartButtonIcon, value);
+        }
+
         private bool _useSoftwareRendering = false;
         public bool UseSoftwareRendering
         {
