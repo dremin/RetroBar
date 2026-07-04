@@ -170,36 +170,49 @@ namespace RetroBar.Controls
 
             if (menuItems.TryGetValue("RestoreMenuItem", out var restoreMenuItem))
             {
+                restoreMenuItem.Click -= RestoreMenuItem_OnClick;
                 restoreMenuItem.Click += RestoreMenuItem_OnClick;
                 restoreMenuItem.StaysOpenOnClick = wss == NativeMethods.WindowShowStyle.ShowNormal;
             }
 
             if (menuItems.TryGetValue("MoveMenuItem", out var moveMenuItem))
             {
+                moveMenuItem.Click -= MoveMenuItem_OnClick;
                 moveMenuItem.Click += MoveMenuItem_OnClick;
                 moveMenuItem.StaysOpenOnClick = !(wss == NativeMethods.WindowShowStyle.ShowNormal);
             }
 
             if (menuItems.TryGetValue("SizeMenuItem", out var sizeMenuItem))
             {
+                sizeMenuItem.Click -= SizeMenuItem_OnClick;
                 sizeMenuItem.Click += SizeMenuItem_OnClick;
                 sizeMenuItem.StaysOpenOnClick = !(wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
             }
 
             if (menuItems.TryGetValue("MinimizeMenuItem", out var minimizeMenuItem))
             {
+                minimizeMenuItem.Click -= MinimizeMenuItem_OnClick;
                 minimizeMenuItem.Click += MinimizeMenuItem_OnClick;
                 minimizeMenuItem.StaysOpenOnClick = !(wss != NativeMethods.WindowShowStyle.ShowMinimized && (ws & (int)NativeMethods.WindowStyles.WS_MINIMIZEBOX) != 0);
             }
 
             if (menuItems.TryGetValue("MaximizeMenuItem", out var maximizeMenuItem))
             {
+                maximizeMenuItem.Click -= MaximizeMenuItem_OnClick;
                 maximizeMenuItem.Click += MaximizeMenuItem_OnClick;
                 maximizeMenuItem.StaysOpenOnClick = !(wss != NativeMethods.WindowShowStyle.ShowMaximized && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0);
             }
 
+            if (menuItems.TryGetValue("EndTaskMenuItem", out var endTaskMenuItem))
+            {
+                endTaskMenuItem.Click -= EndTaskMenuItem_OnClick;
+                endTaskMenuItem.Click += EndTaskMenuItem_OnClick;
+                endTaskMenuItem.Visibility = Settings.Instance.ShowEndTaskButton ? Visibility.Visible : Visibility.Collapsed;
+            }
+
             if (menuItems.TryGetValue("CloseMenuItem", out var closeMenuItem))
             {
+                closeMenuItem.Click -= CloseMenuItem_OnClick;
                 closeMenuItem.Click += CloseMenuItem_OnClick;
             }
         }

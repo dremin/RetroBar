@@ -519,6 +519,8 @@
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
+        <MenuItem x:Name="EndTaskMenuItem"
+                  Header="{DynamicResource end_task}" />
         <MenuItem x:Name="CloseMenuItem"
                   Header="{DynamicResource close}"
                   InputGestureText="Alt+F4">
