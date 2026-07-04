@@ -59,6 +59,7 @@ namespace RetroBar
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
 
+            EventManager.RegisterClassHandler(typeof(Window), FrameworkElement.LoadedEvent, new RoutedEventHandler(WindowLoaded));
             EventManager.RegisterClassHandler(typeof(ContextMenu), ContextMenu.OpenedEvent, new RoutedEventHandler(MenuOpened));
             EventManager.RegisterClassHandler(typeof(ContextMenu), UIElement.KeyDownEvent, new KeyEventHandler(MenuOnKeyDown));
             EventManager.RegisterClassHandler(typeof(MenuItem), MenuItem.ClickEvent, new RoutedEventHandler(MenuItemClicked));
@@ -68,9 +69,22 @@ namespace RetroBar
             _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater, _hotkeyManager);
         }
 
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is Window window)
+            {
+                TextOptions.SetTextRenderingMode(window, Settings.Instance.AllowFontSmoothing ? TextRenderingMode.Auto : TextRenderingMode.Aliased);
+            }
+        }
+
         private void MenuOpened(object sender, RoutedEventArgs e)
         {
             SoundHelper.PlaySystemSound("MenuPopup");
+
+            if (sender is DependencyObject d)
+            {
+                TextOptions.SetTextRenderingMode(d, Settings.Instance.AllowFontSmoothingMenu ? TextRenderingMode.Auto : TextRenderingMode.Aliased);
+            }
         }
 
         private void MenuItemClicked(object sender, RoutedEventArgs e)
@@ -118,6 +132,13 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.Theme) || e.PropertyName == nameof(Settings.TaskbarScale))
             {
                 setTaskIconSize();
+            }
+            else if (e.PropertyName == nameof(Settings.AllowFontSmoothing))
+            {
+                foreach (Window window in Application.Current.Windows)
+                {
+                    TextOptions.SetTextRenderingMode(window, Settings.Instance.AllowFontSmoothing ? TextRenderingMode.Auto : TextRenderingMode.Aliased);
+                }
             }
         }
 
