@@ -100,7 +100,7 @@ namespace RetroBar.Controls
         private bool UnpinnedNotifyIcons_Filter(object obj)
         {
             // This filter is used when we check if the toggle should hide
-            if (obj is ManagedShell.WindowsTray.NotifyIcon notifyIcon)
+            if (obj is Tray.NotifyIcon notifyIcon)
             {
                 return !notifyIcon.IsPinned && !notifyIcon.IsHidden && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
             }
@@ -192,7 +192,7 @@ namespace RetroBar.Controls
 
         private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true)
+            if (IsCollapsed())
             {
                 collectionView?.Refresh();
             }
@@ -228,7 +228,7 @@ namespace RetroBar.Controls
 
             var visibleIcons = collectionView.Cast<Tray.NotifyIcon>().ToList();
 
-            if (Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true)
+            if (IsCollapsed())
             {
                 // Do not save temporary promoted icons
                 visibleIcons = visibleIcons.Where(i => !promotedIcons.Contains(i)).ToList();
@@ -270,12 +270,16 @@ namespace RetroBar.Controls
             Settings.Instance.NotifyIconOrder = result;
         }
 
+        private bool IsCollapsed()
+        {
+            return Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true;
+        }
+
         private bool NotifyIconFilter(object icon)
         {
             if (icon is Tray.NotifyIcon notifyIcon)
             {
-                bool collapsed = Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked == false;
-                return (!collapsed || notifyIcon.IsPinned || promotedIcons.Contains(notifyIcon))
+                return (!IsCollapsed() || notifyIcon.IsPinned || promotedIcons.Contains(notifyIcon))
                     && !notifyIcon.IsHidden
                     && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
             }
