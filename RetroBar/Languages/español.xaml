@@ -89,6 +89,7 @@
     <s:String x:Key="hotkey_warning_title">Teclas de acceso rápido de RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar sustituirá las teclas de acceso rápido de la barra de tareas de Windows. Aunque cierre RetroBar, no se restaurarán en Windows hasta que cierre la sesión y vuelva a iniciarla.</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
+    <s:String x:Key="allow_blur_behind">Permitir desenfoque detrás de la barra de tareas transparente</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar muestra aquellos iconos de notificaciones activas y urgentes y oculta los de las inactivas. Puede modificar este comportamiento para los elementos que se muestran a continuación.</s:String>

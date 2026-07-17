@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">RetroBar-inställningar</s:String>
     <s:String x:Key="taskbar_tab">Aktivitetsfältet</s:String>
+    <s:String x:Key="advanced_tab">Avancerad</s:String>
     <s:String x:Key="taskbar_appearance">Aktivitetsfältet utseende</s:String>
     <s:String x:Key="notification_area">Meddelandefältet</s:String>
     <s:String x:Key="autostart">Starta automatiskt vid in_loggning</s:String>
@@ -19,25 +20,87 @@
         <s:String>Höger</s:String>
         <s:String>Nedan</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Antal rader:</s:String>
+    <s:String x:Key="rowcount_tip">Antalet rader på aktivitetsfältet när det är överst eller nederst.</s:String>
+    <s:String x:Key="taskbar_width">Aktivitetsfältets bredd:</s:String>
     <s:String x:Key="allow_font_smoothing">Tillåt t_ypsnittsutjämning</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Tillåt t_ypsnittsutjämning i menyer</s:String>
     <s:String x:Key="collapse_tray_icons">Kollaps meddela_ndefältet ikoner</s:String>
     <s:String x:Key="customize">Anpa_ssa...</s:String>
+    <s:String x:Key="show_input_language">Visa inmatningsspråket</s:String>
     <s:String x:Key="show_clock">Visa _klockan</s:String>
-    <s:String x:Key="show_multi_mon">Visa på _multipel skärmar</s:String>
+    <s:String x:Key="show_multi_mon">Visa på flera skärmar</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Visa Start-knappen på alla aktivitetsfält</s:String>
     <s:String x:Key="show_quick_launch">V_isa snabbstartfältet</s:String>
     <s:String x:Key="select_location">Väl_j plats...</s:String>
     <s:String x:Key="quick_launch_folder">Snabbstart - Välj en mapp</s:String>
+    <s:String x:Key="show_badges">Visa märken</s:String>
+    <s:String x:Key="show_window_previews">Visa fönsterförhandsvisningar (miniatyrbilder)</s:String>
     <s:String x:Key="use_software_rendering">Använd mj_ukvarurendering</s:String>
+    <s:String x:Key="add_show_desktop_button">Lägg till knappen Visa skrivbord</s:String>
+    <s:String x:Key="enable_auto_hide">Dölj aktivitetsfältet automatiskt</s:String>
+    <s:String x:Key="lock_taskbar">_Lås aktivitetsfältet</s:String>
+    <s:String x:Key="multiple_displays">Flera skärmar</s:String>
+    <s:String x:Key="show_tasks_on">Visa uppgifter på:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Alla aktivitetsfält</s:String>
+        <s:String>Samma aktivitetsfält som fönster</s:String>
+        <s:String>Samma aktivitetsfält som fönster och primärt aktivitetsfält</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Invertera systemikoner:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>När det behövs efter tema</s:String>
+        <s:String>Alltid</s:String>
+        <s:String>Aldrig</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Mittklick-åtgärd:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Gör ingenting</s:String>
+        <s:String>Öppna en ny instans</s:String>
+        <s:String>Stäng uppgiften</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Klockklick-funktion:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Gör ingenting</s:String>
+        <s:String>Öppna Aero-kalendern</s:String>
+        <s:String>Öppna Modern-kalendern</s:String>
+        <s:String>Öppna meddelandecentret</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Dölj aktivitetsfältet linje när det är dolt med automatisk döljning</s:String>
+    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="visit_on_github">Besök RetroBar på GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Aktivitetsfältets skala</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Aktuell inställning: {0}%</s:String>
+    <s:String x:Key="debug_logging">Aktivera felsökningsloggning</s:String>
+    <s:String x:Key="check_for_updates">Sök efter uppdateringar</s:String>
+    <s:String x:Key="show_exit_menu_item">Visa alternativet Stäng i högerklickmenyn</s:String>
+    <s:String x:Key="show_end_task_button">Visa alternativet Avsluta uppgift i högerklickmenyn</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Skjut upp tilläppsknapparna</s:String>
+    <s:String x:Key="show_clock_seconds">Visa sekunder på klockan</s:String>
+    <s:String x:Key="open_custom_themes_folder">Öppna mappen för anpassade teman</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] snabbkommandon:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows standardinställning</s:String>
+        <s:String>Byt uppgift</s:String>
+        <s:String>Öppna snabbstartobjekt</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar-snabbtangenter</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar åsidosätter Windows aktivitetsfältets snabbtangenter. Även om RetroBar stängs återställs de inte till Windows förrän du loggar ut och loggar in igen.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Tillåt oskärpa bakom transparent aktivitetsfält</s:String>
 
     <s:String x:Key="customize_notifications">Anpassa meddelanden</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar visar ikoner för aktiva och brådskande meddelanden, men inaktiva meddelanden döljs. Du kan ange hur meddelanden som rör objekten i listan nedan ska visas.</s:String>
     <s:String x:Key="customize_notifications_instruction">Markera ett objekt och ange hur meddelanden som rör objektet ska visas:</s:String>
     <s:String x:Key="hide_when_inactive">Dölj vid inaktivitet</s:String>
-    <s:String x:Key="always_show">Alltid synlig</s:String>
+    <s:String x:Key="always_show">Visa alltid</s:String>
+    <s:String x:Key="always_hide">Dölj alltid</s:String>
+    <s:String x:Key="remove">Ta bort</s:String>
     <s:String x:Key="name_heading">Namn</s:String>
     <s:String x:Key="behavior_heading">Beteende</s:String>
+    <s:String x:Key="invert_heading">Invertera</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
@@ -50,12 +113,27 @@
     <s:String x:Key="quick_launch">Sna_bbstart</s:String>
     <s:String x:Key="new_toolbar">_Nytt verktygsfält...</s:String>
     <s:String x:Key="set_time">Justera _datum/tid</s:String>
+    <s:String x:Key="cascade">Kaskadera fönstren</s:String>
+    <s:String x:Key="horiz_tile">Placera fönster horisontellt</s:String>
+    <s:String x:Key="vert_tile">Placera fönster vertikalt</s:String>
+    <s:String x:Key="toggle_desktop">_Visa skrivbordet</s:String>
+    <s:String x:Key="hide_desktop">_Visa öppna fönster</s:String>
+    <s:String x:Key="undo_cascade">_Ångra kaskad</s:String>
+    <s:String x:Key="undo_tile">_Ångra sida</s:String>
+    <s:String x:Key="undo_minimize_all">_Ångra Minimera alla</s:String>
     <s:String x:Key="show_taskman_2k">A_ktivitetshanteraren...</s:String>
     <s:String x:Key="show_taskman">A_ktivitetshanteraren</s:String>
     <s:String x:Key="tray_properties">Egenskape_r</s:String>
-    <s:String x:Key="update_available">_Uppdatering tillganglig...</s:String>
+    <s:String x:Key="update_available">_Uppdatering tillgänglig...</s:String>
     <s:String x:Key="exit_retrobar">A_vsluta RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">A_npassa meddelanden...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Lock the Taskbar</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Yta/Återställ skrivbord</s:String>
+    <s:String x:Key="show_desktop_tip">Visa skrivbordet</s:String>
+    <s:String x:Key="show_desktop_95">_Skrivbord</s:String>
+    <s:String x:Key="show_desktop">_Visa skrivbordet</s:String>
+    <s:String x:Key="peek_at_desktop">_Titta på skrivbordet</s:String>
 
     <s:String x:Key="restore">_Återställ</s:String>
     <s:String x:Key="move">_Flytta</s:String>
@@ -63,9 +141,29 @@
     <s:String x:Key="minimize">_Minimera</s:String>
     <s:String x:Key="maximize">Ma_ximera</s:String>
     <s:String x:Key="close">St_äng</s:String>
+    <s:String x:Key="end_task">_Avsluta uppgift</s:String>
 
     <s:String x:Key="show_hidden">Visa dolda ikoner</s:String>
     <s:String x:Key="hide">Dölj</s:String>
 
     <s:String x:Key="open_folder">&amp;Öppna mappen</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Högerklicka för IME-alternativ</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME inaktiverat</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Fullbredd Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Fullbredd alfanumerisk</s:String>
+    <s:String x:Key="ime_input_katakana">Halvbredd Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Halvbredd alfanumerisk</s:String>
+    <s:String x:Key="ime_input_direct">Direktinmatning</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Lägg till ord</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Tilläggsordbok</s:String>
+    <s:String x:Key="ime_open_properties">Inställningar</s:String>
+    <s:String x:Key="ime_input_key">Kana-inmatning</s:String>
+    <s:String x:Key="ime_input_key_roma">Av</s:String>
+    <s:String x:Key="ime_input_key_kana">På</s:String>
+    <s:String x:Key="ime_conversion">Konverteringsläge</s:String>
+    <s:String x:Key="ime_conversion_general">Allmänt</s:String>
+    <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
 </ResourceDictionary>

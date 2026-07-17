@@ -1,0 +1,172 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar गुण</s:String>
+    <s:String x:Key="taskbar_tab">टास्कबार</s:String>
+    <s:String x:Key="advanced_tab">विकसित</s:String>
+    <s:String x:Key="taskbar_appearance">टास्कबार की दिखावट</s:String>
+    <s:String x:Key="notification_area">सूचना क्षेत्र</s:String>
+    <s:String x:Key="autostart">लॉगऑन पर स्वचालित रूप से प्रारंभ करें</s:String>
+    <s:String x:Key="language_text">भाषा:</s:String>
+    <s:String x:Key="language_tip">उपयोग करने के लिए भाषा चुनें.</s:String>
+    <s:String x:Key="theme_text">_थीम:</s:String>
+    <s:String x:Key="theme_tip">थीम को Themes फ़ोल्डर में इंस्टॉल करें</s:String>
+    <s:String x:Key="location_text">जगह:</s:String>
+    <s:String x:Key="location_tip">स्क्रीन पर टास्कबार का स्थान बदलें</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>बाएं</s:String>
+        <s:String>शीर्ष</s:String>
+        <s:String>सही</s:String>
+        <s:String>तल</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">पंक्तियों की _संख्या:</s:String>
+    <s:String x:Key="rowcount_tip">टास्कबार जब ऊपर या नीचे हो तब पंक्तियों की संख्या</s:String>
+    <s:String x:Key="taskbar_width">टास्कबार की चौड़ाई:</s:String>
+    <s:String x:Key="allow_font_smoothing">_फ़ॉन्ट स्मूदिंग की अनुमति दें</s:String>
+    <s:String x:Key="collapse_tray_icons">अधिसूचना क्षेत्र के आइकन को संक्षिप्त करें</s:String>
+    <s:String x:Key="customize">_अनुकूलित करें...</s:String>
+    <s:String x:Key="show_input_language">इनपुट भाषा दिखाएँ</s:String>
+    <s:String x:Key="show_clock">घड़ी दिखाओ</s:String>
+    <s:String x:Key="show_multi_mon">एकाधिक डिस्प्ले पर दिखाएँ</s:String>
+    <s:String x:Key="show_start_button_multi_mon">सभी टास्कबार पर "स्टार्ट" बटन दिखाएँ</s:String>
+    <s:String x:Key="show_quick_launch">त्वरित लॉन्च दिखाएँ</s:String>
+    <s:String x:Key="select_location">_स्थान चुनें...</s:String>
+    <s:String x:Key="quick_launch_folder">त्वरित लॉन्च - एक फ़ोल्डर चुनें</s:String>
+    <s:String x:Key="show_badges">बैज दिखाएँ</s:String>
+    <s:String x:Key="show_window_previews">विंडो पूर्वावलोकन दिखाएँ (थंबनेल)</s:String>
+    <s:String x:Key="use_software_rendering">_सॉफ़्टवेयर रेंडरिंग का उपयोग करे</s:String>
+    <s:String x:Key="add_show_desktop_button">"डेस्कटॉप दिखाएँ" बटन जोड़ें</s:String>
+    <s:String x:Key="enable_auto_hide">टास्कबार को स्वचालित रूप से छिपाएँ</s:String>
+    <s:String x:Key="lock_taskbar">_टास्कबार लॉक करें</s:String>
+    <s:String x:Key="multiple_displays">एकाधिक डिस्प्ले</s:String>
+    <s:String x:Key="show_tasks_on">पर कार्य दिखाएँ:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>सभी टास्कबार</s:String>
+        <s:String>विंडो के समान टास्कबार</s:String>
+        <s:String>विंडो और प्राथमिक टास्कबार जैसा ही टास्कबार</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_सिस्टम आइकन उलटें:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>थीम द्वारा आवश्यक होने पर</s:String>
+        <s:String>हमेशा</s:String>
+        <s:String>कभी नहीं</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_मध्य-क्लिक क्रिया:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>कुछ मत करो</s:String>
+        <s:String>एक नया उदाहरण खोलें</s:String>
+        <s:String>कार्य बंद करें</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_घड़ी पर क्लिक क्रिया:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>कुछ मत करो</s:String>
+        <s:String>Aero कैलेंडर खोलें</s:String>
+        <s:String>Modern कैलेंडर खोलें</s:String>
+        <s:String>अधिसूचना केंद्र खोलें</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">ऑटो-हाइड के साथ छिपाने पर टास्कबार की लाइन छिपाएँ</s:String>
+    <s:String x:Key="version">संस्करण {0}</s:String>
+    <s:String x:Key="visit_on_github">GitHub पर RetroBar पर जाएँ</s:String>
+    <s:String x:Key="taskbar_scale">टास्कबार स्केल</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">वर्तमान सेटिंग: {0}%</s:String>
+    <s:String x:Key="debug_logging">डिबग लॉगिंग सक्षम करें</s:String>
+    <s:String x:Key="check_for_updates">अपडेट्स के लिए जाँच करें</s:String>
+    <s:String x:Key="show_exit_menu_item">राइट-क्लिक मेनू में "निकास" विकल्प दिखाएँ</s:String>
+    <s:String x:Key="show_end_task_button">राइट-क्लिक मेनू में "कार्य समाप्त करें" विकल्प दिखाएँ</s:String>
+    <s:String x:Key="slide_taskbar_buttons">टास्कबार बटन स्लाइड करें</s:String>
+    <s:String x:Key="show_clock_seconds">घड़ी में सेकंड दिखाएँ</s:String>
+    <s:String x:Key="open_custom_themes_folder">कस्टम थीम फ़ोल्डर खोलें</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _हॉटकी क्रिया:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows डिफ़ॉल्ट</s:String>
+        <s:String>कार्य बदलें</s:String>
+        <s:String>क्विक लॉन्च आइटम खोलें</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar हॉटकीज़</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar विंडोज़ टास्कबार की हॉटकीज़ को ओवरराइड कर देगा. भले ही RetroBar बंद हो, ये विंडोज़ में तब तक बहाल नहीं होंगी जब तक आप लॉग आउट करके वापस लॉग इन नहीं करते.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">पारदर्शी टास्कबार के पीछे धुंधलापन अनुमति दें</s:String>
+
+    <s:String x:Key="customize_notifications">सूचनाओं को अनुकूलित करें</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar सक्रिय और तात्कालिक सूचनाओं के आइकन दिखाता है, और निष्क्रिय सूचनाओं को छिपा देता है. आप नीचे दी गई सूची में आइटम्स के लिए इस व्यवहार को बदल सकते हैं.</s:String>
+    <s:String x:Key="customize_notifications_instruction">एक आइटम चुनें, फिर उसकी सूचना व्यवहार चुनें:</s:String>
+    <s:String x:Key="hide_when_inactive">निष्क्रिय होने पर छिपाएँ</s:String>
+    <s:String x:Key="always_show">हमेशा दिखाएँ</s:String>
+    <s:String x:Key="always_hide">हमेशा छिपाएँ</s:String>
+    <s:String x:Key="remove">हटाएँ</s:String>
+    <s:String x:Key="name_heading">नाम</s:String>
+    <s:String x:Key="behavior_heading">व्यवहार</s:String>
+    <s:String x:Key="invert_heading">उलट</s:String>
+
+    <s:String x:Key="start_text">स्टार्ट</s:String>
+    <s:String x:Key="start_text_xp">स्टार्ट</s:String>
+    <s:String x:Key="start_button_tip_98">शुरू करने के लिए यहां क्लिक करें.</s:String>
+    <s:String x:Key="start_button_tip">शुरू करने के लिए यहां क्लिक करें</s:String>
+    <s:String x:Key="start_button_tip_vista">स्टार्ट</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar टास्कबार</s:String>
+    <s:String x:Key="toolbars">_टूलबार</s:String>
+    <s:String x:Key="quick_launch">_त्वरित लॉन्च</s:String>
+    <s:String x:Key="new_toolbar">_नया टूलबार...</s:String>
+    <s:String x:Key="set_time">_दिनांक/समय समायोजित करें</s:String>
+    <s:String x:Key="cascade">कैस्केड विंडोज</s:String>
+    <s:String x:Key="horiz_tile">टाइल विंडोज़ क्षैतिज रूप से</s:String>
+    <s:String x:Key="vert_tile">टाइल विंडोज़ को लंबवत</s:String>
+    <s:String x:Key="toggle_desktop">_डेस्कटॉप दिखाएँ</s:String>
+    <s:String x:Key="hide_desktop">_खुली खिड़कियाँ दिखाएँ</s:String>
+    <s:String x:Key="undo_cascade">_क्रमबद्ध रद्दीकरण रद्द करें</s:String>
+    <s:String x:Key="undo_tile">_टाइल रद्द करें</s:String>
+    <s:String x:Key="undo_minimize_all">_सबको छोटा करें रद्द करें</s:String>
+    <s:String x:Key="show_taskman_2k">कार्य प्रबंधक...</s:String>
+    <s:String x:Key="show_taskman">कार्य प्रबंधक</s:String>
+    <s:String x:Key="tray_properties">गुणधर्म</s:String>
+    <s:String x:Key="update_available">_अपडेट उपलब्ध है...</s:String>
+    <s:String x:Key="exit_retrobar">_RetroBar से बाहर निकलें</s:String>
+    <s:String x:Key="customize_notifications_menu">_सूचनाओं को अनुकूलित करें...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_टास्कबार लॉक करें</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">सर्फेस/डेस्कटॉप पुनर्स्थापित करें</s:String>
+    <s:String x:Key="show_desktop_tip">डेस्कटॉप दिखाएँ</s:String>
+    <s:String x:Key="show_desktop_95">_डेस्कटॉप</s:String>
+    <s:String x:Key="show_desktop">_डेस्कटॉप दिखाएँ</s:String>
+    <s:String x:Key="peek_at_desktop">_डेस्कटॉप देखें</s:String>
+
+    <s:String x:Key="restore">_पुनर्स्थापित करें</s:String>
+    <s:String x:Key="move">_हटो</s:String>
+    <s:String x:Key="size">_आकार</s:String>
+    <s:String x:Key="minimize">न्यूनतम करें</s:String>
+    <s:String x:Key="maximize">अधिकतम करें</s:String>
+    <s:String x:Key="close">_बंद करें</s:String>
+    <s:String x:Key="end_task">_कार्य समाप्त करें</s:String>
+
+    <s:String x:Key="show_hidden">छिपे हुए आइकन दिखाएँ</s:String>
+    <s:String x:Key="hide">छिपाएँ</s:String>
+
+    <s:String x:Key="open_folder">&amp;फ़ोल्डर खोलें</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">IME विकल्पों के लिए राइट-क्लिक करें</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME अक्षम</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">हिरागाना</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">पूर्ण-चौड़ाई काटाकाना</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">पूर्ण-चौड़ाई अल्फान्यूमेरिक</s:String>
+    <s:String x:Key="ime_input_katakana">अर्ध-चौड़ा काटाकाना</s:String>
+    <s:String x:Key="ime_input_alphanumeric">अर्ध-चौड़ा अल्फान्यूमेरिक</s:String>
+    <s:String x:Key="ime_input_direct">प्रत्यक्ष इनपुट</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">शब्द जोड़ें</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">अतिरिक्त शब्दकोश</s:String>
+    <s:String x:Key="ime_open_properties">सेटिंग्स</s:String>
+    <s:String x:Key="ime_input_key">इनपुट की ओर</s:String>
+    <s:String x:Key="ime_input_key_roma">बंद</s:String>
+    <s:String x:Key="ime_input_key_kana">चालू</s:String>
+    <s:String x:Key="ime_conversion">परिवर्तन मोड</s:String>
+    <s:String x:Key="ime_conversion_general">सामान्य</s:String>
+    <s:String x:Key="ime_conversion_none">न कोई रूपांतरण</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>

@@ -4,6 +4,9 @@
 
     <s:String x:Key="retrobar_properties">Proprietà di RetroBar</s:String>
     <s:String x:Key="taskbar_tab">Barra delle applicazioni</s:String>
+    <s:String x:Key="advanced_tab">Avanzato</s:String>
+    <s:String x:Key="taskbar_appearance">Aspetto della barra delle applicazioni</s:String>
+    <s:String x:Key="notification_area">Area di notifica</s:String>
     <s:String x:Key="autostart">Avvia automaticamente all'a_ccesso</s:String>
     <s:String x:Key="language_text">Lin_gua:</s:String>
     <s:String x:Key="language_tip">Seleziona la lingua da usare.</s:String>
@@ -17,25 +20,87 @@
         <s:String>Destra</s:String>
         <s:String>Basso</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Numero di righe:</s:String>
+    <s:String x:Key="rowcount_tip">Il numero di righe sulla barra delle applicazioni quando è in alto o in basso.</s:String>
+    <s:String x:Key="taskbar_width">Larghezza della barra delle applicazioni:</s:String>
     <s:String x:Key="allow_font_smoothing">Consenti anti-alia_sing caratteri</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Consenti anti-aliasing caratteri _nei menu</s:String>
     <s:String x:Key="collapse_tray_icons">Nascondi _icone nell'area di notifica</s:String>
     <s:String x:Key="customize">Personalizz_a...</s:String>
+    <s:String x:Key="show_input_language">Mostra l'indicatore della lingua di immissione</s:String>
     <s:String x:Key="show_clock">M_ostra orologio</s:String>
     <s:String x:Key="show_multi_mon">Mostra su _più schermi</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Mostra il pulsante Start su tutte le barre delle applicazioni</s:String>
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>
     <s:String x:Key="select_location">Cam_bia cartella...</s:String>
     <s:String x:Key="quick_launch_folder">Avvio veloce - Selezione cartella</s:String>
-    <s:String x:Key="use_software_rendering">_Utilizza rendering software</s:String>
+    <s:String x:Key="show_badges">Mostra badge informativi</s:String>
+    <s:String x:Key="show_window_previews">Mostra anteprime delle finestre (miniature)</s:String>
+    <s:String x:Key="use_software_rendering">_Utilizza rendering di software</s:String>
+    <s:String x:Key="add_show_desktop_button">Aggiungi il pulsante Mostra scrivania</s:String>
+    <s:String x:Key="enable_auto_hide">Nascondi automaticamente la barra delle applicazioni</s:String>
+    <s:String x:Key="lock_taskbar">_Blocca la barra delle applicazioni</s:String>
+    <s:String x:Key="multiple_displays">Monitori multipli</s:String>
+    <s:String x:Key="show_tasks_on">Mostra attività su:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Tutte le barre delle applicazioni</s:String>
+        <s:String>Stessa barra delle applicazioni della finestra</s:String>
+        <s:String>Stessa barra delle applicazioni della finestra e barra delle applicazioni principale</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Inverti icone di sistema:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Quando necessario per tema</s:String>
+        <s:String>Sempre</s:String>
+        <s:String>Mai</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Azione con clic centrale:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Non fare nulla</s:String>
+        <s:String>Apri una nuova istanza</s:String>
+        <s:String>Chiudi l'attività</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Azione del clic dell'orologio:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Non fare nulla</s:String>
+        <s:String>Apri calendario Aero</s:String>
+        <s:String>Apri calendario Modern</s:String>
+        <s:String>Apri Centro Notifiche</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Nascondere la barra delle applicazioni all'occultamento automatico</s:String>
+    <s:String x:Key="version">Versione {0}</s:String>
+    <s:String x:Key="visit_on_github">Visita RetroBar su GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Scala della barra delle applicazioni</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Impostazione attuale: {0}%</s:String>
+    <s:String x:Key="debug_logging">Enable _debug logging</s:String>
+    <s:String x:Key="check_for_updates">Verifica la disponibilità di aggiornamenti</s:String>
+    <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
+    <s:String x:Key="show_end_task_button">Show End _task option in right-click menu</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Utilizzare l'effetto di scorrimento quando si spostano i pulsanti</s:String>
+    <s:String x:Key="show_clock_seconds">Mostra i secondi nell'orologio</s:String>
+    <s:String x:Key="open_custom_themes_folder">Apri la cartella dei temi personalizzati</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Azione dei tasti di scelta rapida Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Impostazioni predefinite di Windows</s:String>
+        <s:String>Cambia attività</s:String>
+        <s:String>Apri elemento Avvio veloce</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Tasti di scelta rapida RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar sovrascriverà i tasti di scelta rapida della barra delle applicazioni di Windows. Anche se RetroBar viene chiuso, essi non verranno ripristinati in Windows fino a quando non si effettua il logout e il login.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Consenti sfocatura dietro la barra delle applicazioni trasparente</s:String>
 
     <s:String x:Key="customize_notifications">Personalizza notifiche</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar mostra le icone per notifiche urgenti e attive, e nasconde quelle inattive. Puoi cambiare questo comportamento per gli elementi nella lista sotto.</s:String>
     <s:String x:Key="customize_notifications_instruction">Selezionare un elemento e sceglierne il comportamento di notifica:</s:String>
     <s:String x:Key="hide_when_inactive">Nascondi se inattivo</s:String>
     <s:String x:Key="always_show">Mostra sempre</s:String>
+    <s:String x:Key="always_hide">Nascondi sempre</s:String>
+    <s:String x:Key="remove">Ritirare</s:String>
     <s:String x:Key="name_heading">Nome</s:String>
     <s:String x:Key="behavior_heading">Comportamento</s:String>
+    <s:String x:Key="invert_heading">Invertire</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
@@ -48,12 +113,27 @@
     <s:String x:Key="quick_launch">A_vvio veloce</s:String>
     <s:String x:Key="new_toolbar">_Nuova barra degli strumenti...</s:String>
     <s:String x:Key="set_time">Mo_difica data/ora</s:String>
-    <s:String x:Key="show_taskman_2k">Tas_k Manager...</s:String>
-    <s:String x:Key="show_taskman">Tas_k Manager</s:String>
+    <s:String x:Key="cascade">Organizzare le finestre a _cascata</s:String>
+    <s:String x:Key="horiz_tile">Piastrellare le finestre in orizzontale</s:String>
+    <s:String x:Key="vert_tile">Piastrellare le finestre in verticale</s:String>
+    <s:String x:Key="toggle_desktop">Mostra il scrivania</s:String>
+    <s:String x:Key="hide_desktop">Mostra le finestre aperte</s:String>
+    <s:String x:Key="undo_cascade">Annulla la cascata</s:String>
+    <s:String x:Key="undo_tile">Annullare la piastrellatura</s:String>
+    <s:String x:Key="undo_minimize_all">Annullare l'azione di minimizzazione tutto</s:String>
+    <s:String x:Key="show_taskman_2k">Gestione attività...</s:String>
+    <s:String x:Key="show_taskman">Gestione attività</s:String>
     <s:String x:Key="tray_properties">_Proprietà</s:String>
     <s:String x:Key="update_available">A_ggiornamento disponibile...</s:String>
     <s:String x:Key="exit_retrobar">_Esci da RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">Pe_rsonalizza notifiche...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Bloccare la barra delle applicazioni</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Superficie/Ripristina scrivania</s:String>
+    <s:String x:Key="show_desktop_tip">Mostra scrivania</s:String>
+    <s:String x:Key="show_desktop_95">_Scrivania</s:String>
+    <s:String x:Key="show_desktop">_Mostra scrivania</s:String>
+    <s:String x:Key="peek_at_desktop">_Sbircia sul scrivania</s:String>
 
     <s:String x:Key="restore">_Ripristina</s:String>
     <s:String x:Key="move">_Sposta</s:String>
@@ -61,9 +141,29 @@
     <s:String x:Key="minimize">R_iduci a icona</s:String>
     <s:String x:Key="maximize">Ingra_ndisci</s:String>
     <s:String x:Key="close">_Chiudi</s:String>
+    <s:String x:Key="end_task">_Terminare l'attività</s:String>
 
     <s:String x:Key="show_hidden">Mostra icone nascoste</s:String>
     <s:String x:Key="hide">Nascondi</s:String>
 
     <s:String x:Key="open_folder">&amp;Apri cartella</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Clicca con il tasto destro per le opzioni IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME disattivato</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana a intera larghezza</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alfanumerico a intera larghezza</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana a mezza larghezza</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alfanumerico a mezza larghezza</s:String>
+    <s:String x:Key="ime_input_direct">Inserimento diretto</s:String>
+    <s:String x:Key="ime_open_pad">Assistente IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Aggiungi parola</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Dizionario complementare</s:String>
+    <s:String x:Key="ime_open_properties">Impostazioni</s:String>
+    <s:String x:Key="ime_input_key">Inserimento Kana</s:String>
+    <s:String x:Key="ime_input_key_roma">Disattivato</s:String>
+    <s:String x:Key="ime_input_key_kana">Attivato</s:String>
+    <s:String x:Key="ime_conversion">Modalità di conversione</s:String>
+    <s:String x:Key="ime_conversion_general">Generale</s:String>
+    <s:String x:Key="ime_conversion_none">Nessuna conversione</s:String>
 </ResourceDictionary>

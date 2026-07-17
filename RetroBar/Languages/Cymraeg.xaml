@@ -1,0 +1,172 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">Priodweddau RetroBar</s:String>
+    <s:String x:Key="taskbar_tab">Bar Tasgau</s:String>
+    <s:String x:Key="advanced_tab">Uwch</s:String>
+    <s:String x:Key="taskbar_appearance">Ymddangosiad y bar tasgau</s:String>
+    <s:String x:Key="notification_area">Ardal hysbysu</s:String>
+    <s:String x:Key="autostart">Cychwyn yn _awtomatig</s:String>
+    <s:String x:Key="language_text">Iaith:</s:String>
+    <s:String x:Key="language_tip">Dewiswch yr iaith I ddefnyddio.</s:String>
+    <s:String x:Key="theme_text">_Thema:</s:String>
+    <s:String x:Key="theme_tip">Gosod themau yn y ffolder themau.</s:String>
+    <s:String x:Key="location_text">Lleoliad:</s:String>
+    <s:String x:Key="location_tip">Newid lleoliad y bar tasgau ar y sgrîn.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Chwith</s:String>
+        <s:String>Top</s:String>
+        <s:String>Dde</s:String>
+        <s:String>Gwaelod</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">Nifer y _rhesi:</s:String>
+    <s:String x:Key="rowcount_tip">Nifer y rhesi ar y bar tasgau pan fydd ar y brig neu'r gwaelod.</s:String>
+    <s:String x:Key="taskbar_width">Taskba_r width:</s:String>
+    <s:String x:Key="allow_font_smoothing">_Caniatau llyfnhau ffont</s:String>
+    <s:String x:Key="collapse_tray_icons">Plygu _eiconau'r ardal hysbysu</s:String>
+    <s:String x:Key="customize">_Addasu...</s:String>
+    <s:String x:Key="show_input_language">Dangos yr iaith _fewnbwn</s:String>
+    <s:String x:Key="show_clock">Dangoswch y cloc</s:String>
+    <s:String x:Key="show_multi_mon">Dangos ar arddangosfeydd lluosog</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Dangos y botwm _Cychwyn ar bob bar tasgau</s:String>
+    <s:String x:Key="show_quick_launch">Dangos _Lansio Cyflym</s:String>
+    <s:String x:Key="select_location">_Dewiswch leoliad...</s:String>
+    <s:String x:Key="quick_launch_folder">Lansio Cyflym - Dewiswch ffolder</s:String>
+    <s:String x:Key="show_badges">Dangos _bathodynnau</s:String>
+    <s:String x:Key="show_window_previews">Dangos _rhagolygon ffenestri (man-luniau)</s:String>
+    <s:String x:Key="use_software_rendering">_Defnyddio rendro meddalwedd</s:String>
+    <s:String x:Key="add_show_desktop_button">Ychwanegu'r botwm _Dangos y Penbwrdd</s:String>
+    <s:String x:Key="enable_auto_hide">Cuddio'r bar tasgau'n awtomatig</s:String>
+    <s:String x:Key="lock_taskbar">_Cloi'r bar tasgau</s:String>
+    <s:String x:Key="multiple_displays">Arddangosfeydd lluosog</s:String>
+    <s:String x:Key="show_tasks_on">D_angos tasgau ar:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Pob bar tasgau</s:String>
+        <s:String>Yr un bar tasgau a'r ffenestr</s:String>
+        <s:String>Yr un bar tasgau a'r ffenestr a'r prif far tasgau</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Gwrthdroi eiconau system:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Pan fo angen yn ol y thema</s:String>
+        <s:String>Bob amser</s:String>
+        <s:String>Byth</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Gweithred clic canol:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Wneud dim</s:String>
+        <s:String>Agor enghraift newydd</s:String>
+        <s:String>Cau'r dasg</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Gweithred clicio cloc:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Wneud dim</s:String>
+        <s:String>Agor y calendr Aero</s:String>
+        <s:String>Agor y calendr Modern</s:String>
+        <s:String>Agor y Ganolfan Hysbysiadau</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Cuddio llinell y bar tasgau pan gaiff ei chuddio gydag awto-uchel</s:String>
+    <s:String x:Key="version">Fersiwn {0}</s:String>
+    <s:String x:Key="visit_on_github">Ewch i RetroBar ar GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Graddfa'r bar tasgau</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Gosodiad cyfredol: {0}%</s:String>
+    <s:String x:Key="debug_logging">Galluogi _logio dadfygio</s:String>
+    <s:String x:Key="check_for_updates">Chwilio am ddiweddariadau</s:String>
+    <s:String x:Key="show_exit_menu_item">Dangos yr opsiwn Ymadael yn y ddewislen clic dde</s:String>
+    <s:String x:Key="show_end_task_button">Dangos yr opsiwn Diwedd Tasg yn y ddewislen clic dde</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Botymau bar tasgau llithro</s:String>
+    <s:String x:Key="show_clock_seconds">D_angos eiliadau yn y cloc</s:String>
+    <s:String x:Key="open_custom_themes_folder">Agor ffolder themau personol</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Gweithred allweddi poeth Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Rhagosodyn Windows</s:String>
+        <s:String>Newid tasgau</s:String>
+        <s:String>Agor eitem Lansio Cyflym</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Allweddi boeth</s:String>
+    <s:String x:Key="hotkey_warning_text">Bydd RetroBar yn diystyru allweddi poeth bar tasgau Windows. Hyd yn oed os yw RetroBar ar gau, ni fyddant yn cael eu hadfer i Windows nes i chi allgofnodi ac yn ôl i mewn.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Caniatau aneglurder y tu ôl i'r bar tasgau tryloyw</s:String>
+
+    <s:String x:Key="customize_notifications">Addasu Hysbysiadau</s:String>
+    <s:String x:Key="customize_notifications_info">Mae RetroBar yn dangos eiconau ar gyfer hysbysiadau gweithredol a brys, ac yn cuddio rhai anweithredol. Gallwch newid yr ymddygiad hwn ar gyfer eitemau yn y rhestr isod.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Dewisch eitem, yna dewiswch ei ymddygiad hysbysu:</s:String>
+    <s:String x:Key="hide_when_inactive">Cuddio pan nad yw'n gweithio</s:String>
+    <s:String x:Key="always_show">Cuddio bob amser</s:String>
+    <s:String x:Key="always_hide">Dangos bob amser</s:String>
+    <s:String x:Key="remove">Dileu</s:String>
+    <s:String x:Key="name_heading">Enw</s:String>
+    <s:String x:Key="behavior_heading">Ymddygiad</s:String>
+    <s:String x:Key="invert_heading">Gwrthdroi</s:String>
+
+    <s:String x:Key="start_text">Dechrau</s:String>
+    <s:String x:Key="start_text_xp">Dechrau</s:String>
+    <s:String x:Key="start_button_tip_98">Clickiwch yma i ddechrau.</s:String>
+    <s:String x:Key="start_button_tip">Clickiwch yma i ddechrau</s:String>
+    <s:String x:Key="start_button_tip_vista">Dechrau</s:String>
+
+    <s:String x:Key="retrobar_title">Bar tasgiau RetroBar</s:String>
+    <s:String x:Key="toolbars">_Bariau Offer</s:String>
+    <s:String x:Key="quick_launch">_Lansio Cyflym</s:String>
+    <s:String x:Key="new_toolbar">_Bar offer newydd...</s:String>
+    <s:String x:Key="set_time">_Addasu Dyddiad/Amser</s:String>
+    <s:String x:Key="cascade">Ffenestri scade</s:String>
+    <s:String x:Key="horiz_tile">Ffenestri teils yn llorweddol</s:String>
+    <s:String x:Key="vert_tile">ffenestri teils yn fertigol</s:String>
+    <s:String x:Key="toggle_desktop">_Dangos y bwrdd gwaith</s:String>
+    <s:String x:Key="hide_desktop">_Dangos ffenestri agored</s:String>
+    <s:String x:Key="undo_cascade">_Dadwneud rhaeadru</s:String>
+    <s:String x:Key="undo_tile">_Dadwneud teitl</s:String>
+    <s:String x:Key="undo_minimize_all">_Dadwneud cyn lleied â phosibl</s:String>
+    <s:String x:Key="show_taskman_2k">Rheolwr Tasgau...</s:String>
+    <s:String x:Key="show_taskman">Rheolwr Tasgau</s:String>
+    <s:String x:Key="tray_properties">P_riodweddau</s:String>
+    <s:String x:Key="update_available">_Diweddariad ar gael...</s:String>
+    <s:String x:Key="exit_retrobar">_Gadael RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Addasu Hysbysiadau...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Cloi'r Bar Tasgau</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Arwyneb/Adfer Penbwrdd</s:String>
+    <s:String x:Key="show_desktop_tip">Dangos Penbwrdd</s:String>
+    <s:String x:Key="show_desktop_95">_Penbwrdd</s:String>
+    <s:String x:Key="show_desktop">_Penbwrdd</s:String>
+    <s:String x:Key="peek_at_desktop">_Cipolwg ar y bwrdd gwaith</s:String>
+
+    <s:String x:Key="restore">_Adfer</s:String>
+    <s:String x:Key="move">_Symud</s:String>
+    <s:String x:Key="size">_Maint</s:String>
+    <s:String x:Key="minimize">Ll_eihau</s:String>
+    <s:String x:Key="maximize">Uc_hafhau</s:String>
+    <s:String x:Key="close">_Cau</s:String>
+    <s:String x:Key="end_task">_Gorffen tasg</s:String>
+
+    <s:String x:Key="show_hidden">Dangos eiconau cudd</s:String>
+    <s:String x:Key="hide">Cuddio</s:String>
+
+    <s:String x:Key="open_folder">&amp;Agor ffolder</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">De-gliciwch am opsiynau IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME wedi'i analluogi</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katakana Lled Llawn</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alffaniwmerig Lled Llawn</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana Hanner Lled</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alffaniwmerig Hanner Lled</s:String>
+    <s:String x:Key="ime_input_direct">Mewnbwn Uniongyrchol</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Ychwanegu Gair</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Geirdiadur Ychwanegol</s:String>
+    <s:String x:Key="ime_open_properties">Gosodiadau</s:String>
+    <s:String x:Key="ime_input_key">Kana mewnbwn</s:String>
+    <s:String x:Key="ime_input_key_roma">Ffwrdd</s:String>
+    <s:String x:Key="ime_input_key_kana">Ymlaen</s:String>
+    <s:String x:Key="ime_conversion">Modd Trosi</s:String>
+    <s:String x:Key="ime_conversion_general">Cyffredinol</s:String>
+    <s:String x:Key="ime_conversion_none">Dim Trosi</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>

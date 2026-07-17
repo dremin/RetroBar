@@ -1,0 +1,172 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="retrobar_properties">RetroBar-egenskaber</s:String>
+    <s:String x:Key="taskbar_tab">Opgavebjælke</s:String>
+    <s:String x:Key="advanced_tab">Avanceret</s:String>
+    <s:String x:Key="taskbar_appearance">Opgavebjælkens udseende</s:String>
+    <s:String x:Key="notification_area">Meddelelsesområde</s:String>
+    <s:String x:Key="autostart">Start automatisk ved logon</s:String>
+    <s:String x:Key="language_text">Sprog:</s:String>
+    <s:String x:Key="language_tip">Vælg det sprog, du vil bruge.</s:String>
+    <s:String x:Key="theme_text">_Tema:</s:String>
+    <s:String x:Key="theme_tip">Installer temaer i mappen Temaer.</s:String>
+    <s:String x:Key="location_text">Placering:</s:String>
+    <s:String x:Key="location_tip">Ændre placeringen af proceslinjen på skærmen.</s:String>
+    <x:Array x:Key="location_values" Type="s:String">
+        <s:String>Venstre</s:String>
+        <s:String>Øverst</s:String>
+        <s:String>Højre</s:String>
+        <s:String>Nedrest</s:String>
+    </x:Array>
+    <s:String x:Key="rowcount_text">Antal rækker:</s:String>
+    <s:String x:Key="rowcount_tip">Antallet af rækker på proceslinjen, når den er øverst eller nederst.</s:String>
+    <s:String x:Key="taskbar_width">Opgavebjælkens bredde:</s:String>
+    <s:String x:Key="allow_font_smoothing">_Tillad fontudjævning</s:String>
+    <s:String x:Key="collapse_tray_icons">Skjul ikoner i meddelelsesområdet</s:String>
+    <s:String x:Key="customize">_Tilpas...</s:String>
+    <s:String x:Key="show_input_language">Vis indgangssproget</s:String>
+    <s:String x:Key="show_clock">Vis uret</s:String>
+    <s:String x:Key="show_multi_mon">Vis på flere skærme</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Vis Start-knappen på alle opgavebjælker</s:String>
+    <s:String x:Key="show_quick_launch">Vis hurtigstart</s:String>
+    <s:String x:Key="select_location">_Vælg placering...</s:String>
+    <s:String x:Key="quick_launch_folder">Hurtigstart - Vælg en mappe</s:String>
+    <s:String x:Key="show_badges">Vis _badges</s:String>
+    <s:String x:Key="show_window_previews">Vis vinduesforhåndsvisning (miniaturer)</s:String>
+    <s:String x:Key="use_software_rendering">_Brug softwaregengivelse</s:String>
+    <s:String x:Key="add_show_desktop_button">Tilføj knappen »Vis skrivebord«</s:String>
+    <s:String x:Key="enable_auto_hide">Skjul opgavebjælken automatisk</s:String>
+    <s:String x:Key="lock_taskbar">_Lås opgavebjælken</s:String>
+    <s:String x:Key="multiple_displays">Multiple displays</s:String>
+    <s:String x:Key="show_tasks_on">Vis opgaver på:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Alle opgavebjælker</s:String>
+        <s:String>Samme opgavebjælke som vindue</s:String>
+        <s:String>Samme opgavebjælke som vindue og primær opgavebjælke</s:String>
+    </x:Array>
+    <s:String x:Key="invert_system_icons">_Vend systemikoner:</s:String>
+    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+        <s:String>Når det er nødvendigt efter tema</s:String>
+        <s:String>Altid</s:String>
+        <s:String>Aldrig</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Midterste klik-handling:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Gør ingenting</s:String>
+        <s:String>Åbn en ny instans</s:String>
+        <s:String>Luk opgaven</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Urklik-handling:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Gør ingenting</s:String>
+        <s:String>Åbn Aero-kalender</s:String>
+        <s:String>Åbn Modern-kalender</s:String>
+        <s:String>Åbn meddelelsescenter</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Hide _taskbar line when hidden with auto-hide</s:String>
+    <s:String x:Key="version">Version {0}</s:String>
+    <s:String x:Key="visit_on_github">Besøg RetroBar på GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Opgavebjælke skala</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Nuværende indstilling: {0}%</s:String>
+    <s:String x:Key="debug_logging">Aktivér fejlfindingslogning</s:String>
+    <s:String x:Key="check_for_updates">Søg efter opdateringer</s:String>
+    <s:String x:Key="show_exit_menu_item">Vis »Luk«-indstilling i højreklikmenuen</s:String>
+    <s:String x:Key="show_end_task_button">Vis »Afslut opgave«-indstilling i højreklikmenuen</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Tryk på ikoner på opgavebjælken</s:String>
+    <s:String x:Key="show_clock_seconds">Vis sekunder på uret</s:String>
+    <s:String x:Key="open_custom_themes_folder">Åbn mappe med brugerdefinerede temaer</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] genvejstaster-handling:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows-standard</s:String>
+        <s:String>Skift opgaver</s:String>
+        <s:String>Åbn hurtigstart-element</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar-genvejstaster</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar tilsidesætter Windows-opgavebbjælkens genvejstaster. Selv hvis RetroBar lukkes, vil de ikke blive gendannet til Windows, før du logger ud og ind igen.</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Tillad sløring bag gennemsigtig opgavebbjælke</s:String>
+
+    <s:String x:Key="customize_notifications">Tilpas meddelelser</s:String>
+    <s:String x:Key="customize_notifications_info">RetroBar viser ikoner for aktive og vigtige meddelelser og skjuler inaktive meddelelser. Du kan ændre denne indstilling for elementer i listen nedenfor.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Vælg et element, og vælg derefter dets notifikationsadfærd:</s:String>
+    <s:String x:Key="hide_when_inactive">Skjul når inaktiv</s:String>
+    <s:String x:Key="always_show">Vis altid</s:String>
+    <s:String x:Key="always_hide">Skjul altid</s:String>
+    <s:String x:Key="remove">Fjern</s:String>
+    <s:String x:Key="name_heading">Navn</s:String>
+    <s:String x:Key="behavior_heading">Adfærd</s:String>
+    <s:String x:Key="invert_heading">Inverter</s:String>
+
+    <s:String x:Key="start_text">Start</s:String>
+    <s:String x:Key="start_text_xp">start</s:String>
+    <s:String x:Key="start_button_tip_98">Klik her for at begynde.</s:String>
+    <s:String x:Key="start_button_tip">Klik her for at begynde</s:String>
+    <s:String x:Key="start_button_tip_vista">Start</s:String>
+
+    <s:String x:Key="retrobar_title">RetroBar-opgavebjælke</s:String>
+    <s:String x:Key="toolbars">_Værktøjsbjælker</s:String>
+    <s:String x:Key="quick_launch">_Hurtig start</s:String>
+    <s:String x:Key="new_toolbar">_Ny værktøjsbjælke...</s:String>
+    <s:String x:Key="set_time">_Juster dato/tid</s:String>
+    <s:String x:Key="cascade">Kaskade vinduer</s:String>
+    <s:String x:Key="horiz_tile">Fliser vinduer vandret</s:String>
+    <s:String x:Key="vert_tile">Fliser vinduer lodrety</s:String>
+    <s:String x:Key="toggle_desktop">_Vis skrivebordet</s:String>
+    <s:String x:Key="hide_desktop">_Vis åbne vinduer</s:String>
+    <s:String x:Key="undo_cascade">_Fortryd kaskade</s:String>
+    <s:String x:Key="undo_tile">_Fortryd flise</s:String>
+    <s:String x:Key="undo_minimize_all">_Fortryd Minimer alle</s:String>
+    <s:String x:Key="show_taskman_2k">Opgavehåndtering...</s:String>
+    <s:String x:Key="show_taskman">Opgavehåndteringr</s:String>
+    <s:String x:Key="tray_properties">Egenskaber</s:String>
+    <s:String x:Key="update_available">_Opdatering tilgængelig...</s:String>
+    <s:String x:Key="exit_retrobar">_Afslut RetroBar</s:String>
+    <s:String x:Key="customize_notifications_menu">_Tilpas meddelelser...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Lås opgavebjælken</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Overflade/Gendan skrivebord</s:String>
+    <s:String x:Key="show_desktop_tip">Vis skrivebord</s:String>
+    <s:String x:Key="show_desktop_95">_Skrivebord</s:String>
+    <s:String x:Key="show_desktop">_Vis skrivebord</s:String>
+    <s:String x:Key="peek_at_desktop">_Kig på skrivebordet</s:String>
+
+    <s:String x:Key="restore">_Gendan</s:String>
+    <s:String x:Key="move">_Flyt</s:String>
+    <s:String x:Key="size">_Størrelse</s:String>
+    <s:String x:Key="minimize">Minimér</s:String>
+    <s:String x:Key="maximize">Maksimér</s:String>
+    <s:String x:Key="close">_Luk</s:String>
+    <s:String x:Key="end_task">_Afslut opgave</s:String>
+
+    <s:String x:Key="show_hidden">Vis skjulte ikoner</s:String>
+    <s:String x:Key="hide">Skjul</s:String>
+
+    <s:String x:Key="open_folder">&amp;Åbn mappe</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Højreklik for IME-indstillinger</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME deaktiveret</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Katkana i fuld bredde</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Alfanumerisk i fuld bredde</s:String>
+    <s:String x:Key="ime_input_katakana">Katakana i halv bredde</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Alfanumerisk i halv bredde</s:String>
+    <s:String x:Key="ime_input_direct">Direkte indtastning</s:String>
+    <s:String x:Key="ime_open_pad">IME-assistent</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Tilføj ord</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Tilføjelsesordbog</s:String>
+    <s:String x:Key="ime_open_properties">Indstillinger</s:String>
+    <s:String x:Key="ime_input_key">Kana-indtastning</s:String>
+    <s:String x:Key="ime_input_key_roma">Af</s:String>
+    <s:String x:Key="ime_input_key_kana">På</s:String>
+    <s:String x:Key="ime_conversion">Konverteringsmodus</s:String>
+    <s:String x:Key="ime_conversion_general">Generelt</s:String>
+    <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
+</ResourceDictionary>
