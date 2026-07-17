@@ -237,6 +237,10 @@ namespace RetroBar.Controls
             // Update the dragged icon's position in the list
             visibleIcons.Remove(dropInfo.Data as Tray.NotifyIcon);
             int targetItemIndex = visibleIcons.IndexOf(dropInfo.TargetItem as Tray.NotifyIcon);
+            if (targetItemIndex < 0)
+            {
+                targetItemIndex = 0;
+            }
             visibleIcons.Insert(targetItemIndex + ((dropInfo.InsertPosition & RelativeInsertPosition.AfterTargetItem) != 0 ? 1 : 0), dropInfo.Data as Tray.NotifyIcon);
             
             // Never overwrite the list to prevent clearing out settings for non-visible icons
