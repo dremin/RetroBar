@@ -111,6 +111,11 @@ namespace RetroBar.Controls
                 return;
             }
 
+            if (NotifyIconBorder.DataContext != e.Balloon.NotifyIcon)
+            {
+                return;
+            }
+
             BalloonControl.Show(e.Balloon, NotifyIconBorder);
             e.Handled = true;
         }
