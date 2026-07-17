@@ -33,15 +33,11 @@ namespace RetroBar.Utilities
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
-            // Save before the drop in order to catch any items not yet saved
-            _notifyIconList.SaveIconOrder();
             DropInFlight = dropInfo;
-
             DragDrop.DefaultDropHandler.Drop(dropInfo);
 
             // Save post-drop state
-            _notifyIconList.SaveIconOrder();
-            _notifyIconList.RefreshCollections(true);
+            _notifyIconList.UpdateIconOrder(dropInfo);
             DropInFlight = null;
         }
     }

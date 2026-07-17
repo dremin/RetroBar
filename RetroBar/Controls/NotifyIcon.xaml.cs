@@ -111,6 +111,12 @@ namespace RetroBar.Controls
                 return;
             }
 
+            if (NotifyIconBorder.DataContext != e.Balloon.NotifyIcon)
+            {
+                // TODO: because this fixes things, does that mean there is a leak?
+                return;
+            }
+
             BalloonControl.Show(e.Balloon, NotifyIconBorder);
             e.Handled = true;
         }
