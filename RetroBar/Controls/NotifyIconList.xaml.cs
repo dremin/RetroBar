@@ -83,11 +83,6 @@ namespace RetroBar.Controls
                 if (Settings.Instance.CollapseNotifyIcons)
                 {
                     SetToggleVisibility();
-
-                    if (NotifyIconToggleButton.IsChecked == true)
-                    {
-                        NotifyIconToggleButton.IsChecked = false;
-                    }
                 }
 
                 _isLoaded = true;
