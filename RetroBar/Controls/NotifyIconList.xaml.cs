@@ -66,14 +66,17 @@ namespace RetroBar.Controls
             {
                 promotedIcons.CollectionChanged += PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
+                NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
                 collectionView = new ListCollectionView(NotificationArea.TrayIcons);
                 collectionView.CustomSort = new NotifyIconSorter();
                 collectionView.Filter = NotifyIconFilter;
-                collectionView.LiveFilteringProperties.Add("IsHidden");
-                collectionView.LiveFilteringProperties.Add("IsPinned");
+                var collectionViewShaping = collectionView as ICollectionViewLiveShaping;
+                collectionViewShaping.IsLiveFiltering = true;
+                collectionViewShaping.LiveFilteringProperties.Add("IsHidden");
+                collectionViewShaping.LiveFilteringProperties.Add("IsPinned");
                 NotifyIcons.ItemsSource = collectionView;
 
                 if (Settings.Instance.CollapseNotifyIcons)
@@ -178,11 +181,17 @@ namespace RetroBar.Controls
             {
                 promotedIcons.CollectionChanged -= PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown -= NotificationArea_NotificationBalloonShown;
+                NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }
 
             _isLoaded = false;
+        }
+
+        private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            SetToggleVisibility();
         }
 
         private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -222,6 +231,12 @@ namespace RetroBar.Controls
             if (NotificationArea == null || collectionView == null) return;
 
             var visibleIcons = collectionView.Cast<Tray.NotifyIcon>().ToList();
+
+            if (Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true)
+            {
+                // Do not save temporary promoted icons
+                visibleIcons = visibleIcons.Where(i => !promotedIcons.Contains(i)).ToList();
+            }
 
             // Update the dragged icon's position in the list
             visibleIcons.Remove(dropInfo.Data as Tray.NotifyIcon);
