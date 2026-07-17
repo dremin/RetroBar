@@ -39,6 +39,11 @@ namespace RetroBar.Controls
             InitializeComponent();
         }
 
+        private bool IsCollapsed()
+        {
+            return Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true;
+        }
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.CollapseNotifyIcons))
@@ -72,8 +77,8 @@ namespace RetroBar.Controls
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
                 collectionView = new ListCollectionView(NotificationArea.TrayIcons);
-                collectionView.CustomSort = new NotifyIconSorter();
-                collectionView.Filter = NotifyIconFilter;
+                collectionView.CustomSort = new NotifyIconComparer();
+                collectionView.Filter = NotifyIcons_Filter;
                 var collectionViewShaping = collectionView as ICollectionViewLiveShaping;
                 collectionViewShaping.IsLiveFiltering = true;
                 collectionViewShaping.LiveFilteringProperties.Add("IsHidden");
@@ -95,6 +100,17 @@ namespace RetroBar.Controls
             {
                 notifyIconList.SetNotificationAreaCollections();
             }
+        }
+
+        private bool NotifyIcons_Filter(object icon)
+        {
+            if (icon is Tray.NotifyIcon notifyIcon)
+            {
+                return (!IsCollapsed() || notifyIcon.IsPinned || promotedIcons.Contains(notifyIcon))
+                    && !notifyIcon.IsHidden
+                    && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
+            }
+            return false;
         }
 
         private bool UnpinnedNotifyIcons_Filter(object obj)
@@ -235,13 +251,20 @@ namespace RetroBar.Controls
             }
 
             // Update the dragged icon's position in the list
-            visibleIcons.Remove(dropInfo.Data as Tray.NotifyIcon);
-            int targetItemIndex = visibleIcons.IndexOf(dropInfo.TargetItem as Tray.NotifyIcon);
-            if (targetItemIndex < 0)
+            if (dropInfo.Data is Tray.NotifyIcon draggedIcon && dropInfo.TargetItem is Tray.NotifyIcon targetIcon)
             {
-                targetItemIndex = 0;
+                visibleIcons.Remove(draggedIcon);
+                int targetItemIndex = visibleIcons.IndexOf(targetIcon);
+                if (targetItemIndex < 0)
+                {
+                    targetItemIndex = 0;
+                }
+                visibleIcons.Insert(targetItemIndex + ((dropInfo.InsertPosition & RelativeInsertPosition.AfterTargetItem) != 0 ? 1 : 0), draggedIcon);
             }
-            visibleIcons.Insert(targetItemIndex + ((dropInfo.InsertPosition & RelativeInsertPosition.AfterTargetItem) != 0 ? 1 : 0), dropInfo.Data as Tray.NotifyIcon);
+            else
+            {
+                return;
+            }
             
             // Never overwrite the list to prevent clearing out settings for non-visible icons
             var oldOrder = Settings.Instance.NotifyIconOrder ?? new List<string>();
@@ -274,23 +297,7 @@ namespace RetroBar.Controls
             Settings.Instance.NotifyIconOrder = result;
         }
 
-        private bool IsCollapsed()
-        {
-            return Settings.Instance.CollapseNotifyIcons && NotifyIconToggleButton.IsChecked != true;
-        }
-
-        private bool NotifyIconFilter(object icon)
-        {
-            if (icon is Tray.NotifyIcon notifyIcon)
-            {
-                return (!IsCollapsed() || notifyIcon.IsPinned || promotedIcons.Contains(notifyIcon))
-                    && !notifyIcon.IsHidden
-                    && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
-            }
-            return false;
-        }
-
-        public class NotifyIconSorter : System.Collections.IComparer
+        public class NotifyIconComparer : System.Collections.IComparer
         {
             public int Compare(object x, object y)
             {
