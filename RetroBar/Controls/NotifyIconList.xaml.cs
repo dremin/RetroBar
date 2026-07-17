@@ -52,6 +52,7 @@ namespace RetroBar.Controls
                     NotifyIconToggleButton.IsChecked = false;
                     NotifyIconToggleButton.Visibility = Visibility.Collapsed;
                 }
+                collectionView?.Refresh();
             }
             else if (e.PropertyName == nameof(Settings.InvertIconsMode) || e.PropertyName == nameof(Settings.InvertNotifyIcons) || e.PropertyName == nameof(Settings.NotifyIconOrder))
             {
