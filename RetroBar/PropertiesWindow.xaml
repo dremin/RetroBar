@@ -18,7 +18,6 @@
         ContentRendered="PropertiesWindow_OnContentRendered">
     <Window.Resources>
         <ResourceDictionary>
-            <converters:BoolToTextRenderingModeConverter x:Key="textRenderingModeConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
             <converters:CountToIndexConverter x:Key="countToIndexConverter" />
@@ -108,11 +107,6 @@
                                                 Focusable="False"
                                                 ClipToBounds="True"
                                                 Style="{DynamicResource Taskbar}">
-                                    <TextOptions.TextRenderingMode>
-                                        <Binding Source="{x:Static Settings:Settings.Instance}"
-                                                 Path="AllowFontSmoothing"
-                                                 Converter="{StaticResource textRenderingModeConverter}" />
-                                    </TextOptions.TextRenderingMode>
                                     <DockPanel>
                                         <ToggleButton Style="{DynamicResource StartButton}"
                                                       Focusable="False"
@@ -271,11 +265,6 @@
                                                 Focusable="False"
                                                 ClipToBounds="True"
                                                 Style="{DynamicResource Taskbar}">
-                                    <TextOptions.TextRenderingMode>
-                                        <Binding Source="{x:Static Settings:Settings.Instance}"
-                                                 Path="AllowFontSmoothing"
-                                                 Converter="{StaticResource textRenderingModeConverter}" />
-                                    </TextOptions.TextRenderingMode>
                                     <DockPanel>
                                         <controls:ShowDesktopButton DockPanel.Dock="Right" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
                                         <GroupBox Style="{DynamicResource Tray}"

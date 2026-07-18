@@ -8,6 +8,8 @@
 
     <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
 
+    <SolidColorBrush x:Key="HighlightBackground" Color="#93A070" />
+
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">
