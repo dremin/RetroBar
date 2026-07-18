@@ -208,7 +208,7 @@ namespace RetroBar.Controls
 
                 if (multiLayout)
                 {
-                    displayName += $" — {lang.LayoutName}";
+                    displayName = string.Format((string)FindResource("input_switcher_item_format"), lang.Culture.DisplayName, lang.LayoutName);
                 }
 
                 var item = new MenuItem
