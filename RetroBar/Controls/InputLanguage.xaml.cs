@@ -23,6 +23,14 @@ namespace RetroBar.Controls
             set { SetValue(LocaleIdentifierProperty, value); }
         }
 
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(InputLanguage));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
+
         private readonly DispatcherTimer layoutWatch = new DispatcherTimer(DispatcherPriority.Background);
 
         private bool _isLoaded;
@@ -219,7 +227,13 @@ namespace RetroBar.Controls
                 menu.Items.Add(item);
             }
 
+            menu.Closed += (sender, e) =>
+            {
+                Host?.RemoveOpenMenu();
+            };
+
             menu.PlacementTarget = InputLanguageButton;
+            Host?.AddOpenMenu();
             menu.IsOpen = true;
         }
 
