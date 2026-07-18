@@ -42,6 +42,7 @@ namespace RetroBar
         private readonly StartMenuMonitor _startMenuMonitor;
         private readonly Updater _updater;
         private bool _fullScreenSuppressed;
+        private int _openMenus;
         
         public WindowManager windowManager;
         public HotkeyManager hotkeyManager;
@@ -300,7 +301,7 @@ namespace RetroBar
 
         protected override bool ShouldAllowAutoHide()
         {
-            return (!_startMenuOpen || !Screen.Primary) && base.ShouldAllowAutoHide();
+            return (!_startMenuOpen || !Screen.Primary) && _openMenus < 1 && base.ShouldAllowAutoHide();
         }
 
         protected override void OnAutoHideAnimationBegin(bool isHiding)
@@ -487,6 +488,28 @@ namespace RetroBar
                     Right = (int)((Left + Width) * DpiScale)
                 }
             });
+        }
+
+        public void AddOpenMenu()
+        {
+            bool currentAutoHide = AllowAutoHide;
+            _openMenus++;
+
+            if (AllowAutoHide != currentAutoHide)
+            {
+                OnPropertyChanged(nameof(AllowAutoHide));
+            }
+        }
+
+        public void RemoveOpenMenu()
+        {
+            bool currentAutoHide = AllowAutoHide;
+            _openMenus--;
+
+            if (AllowAutoHide != currentAutoHide)
+            {
+                OnPropertyChanged(nameof(AllowAutoHide));
+            }
         }
 
         private void UpdateTrayPosition()

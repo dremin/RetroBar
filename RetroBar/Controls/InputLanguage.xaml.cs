@@ -23,6 +23,14 @@ namespace RetroBar.Controls
             set { SetValue(LocaleIdentifierProperty, value); }
         }
 
+        public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(InputLanguage));
+
+        public Taskbar Host
+        {
+            get { return (Taskbar)GetValue(HostProperty); }
+            set { SetValue(HostProperty, value); }
+        }
+
         private readonly DispatcherTimer layoutWatch = new DispatcherTimer(DispatcherPriority.Background);
 
         private bool _isLoaded;
@@ -186,10 +194,26 @@ namespace RetroBar.Controls
             foreach (WinForms.InputLanguage lang in WinForms.InputLanguage.InstalledInputLanguages)
             {
                 string code = lang.Culture.TwoLetterISOLanguageName.ToUpperInvariant();
+                string displayName = lang.Culture.DisplayName;
+                bool multiLayout = false;
+
+                foreach (WinForms.InputLanguage nestedLang in WinForms.InputLanguage.InstalledInputLanguages)
+                {
+                    if (nestedLang.Culture.DisplayName == lang.Culture.DisplayName && nestedLang.LayoutName != lang.LayoutName)
+                    {
+                        multiLayout = true;
+                        break;
+                    }
+                }
+
+                if (multiLayout)
+                {
+                    displayName = string.Format((string)FindResource("input_switcher_item_format"), lang.Culture.DisplayName, lang.LayoutName);
+                }
 
                 var item = new MenuItem
                 {
-                    Header = new InputLanguageMenuItem(code, lang.Culture.DisplayName),
+                    Header = new InputLanguageMenuItem(code, displayName),
                     Tag = lang,
                     IsCheckable = true,
                     IsChecked = lang.Equals(WinForms.InputLanguage.CurrentInputLanguage)
@@ -203,7 +227,13 @@ namespace RetroBar.Controls
                 menu.Items.Add(item);
             }
 
+            menu.Closed += (sender, e) =>
+            {
+                Host?.RemoveOpenMenu();
+            };
+
             menu.PlacementTarget = InputLanguageButton;
+            Host?.AddOpenMenu();
             menu.IsOpen = true;
         }
 

@@ -120,7 +120,8 @@
                 </StackPanel>
             </GroupBox>
             <controls:InputLanguage VerticalAlignment="Stretch"
-                                     HorizontalAlignment="Stretch">
+                                    HorizontalAlignment="Stretch"
+                                    Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
                 <DockPanel.Dock>
                     <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="trailing"
