@@ -186,10 +186,26 @@ namespace RetroBar.Controls
             foreach (WinForms.InputLanguage lang in WinForms.InputLanguage.InstalledInputLanguages)
             {
                 string code = lang.Culture.TwoLetterISOLanguageName.ToUpperInvariant();
+                string displayName = lang.Culture.DisplayName;
+                bool multiLayout = false;
+
+                foreach (WinForms.InputLanguage nestedLang in WinForms.InputLanguage.InstalledInputLanguages)
+                {
+                    if (nestedLang.Culture.DisplayName == lang.Culture.DisplayName && nestedLang.LayoutName != lang.LayoutName)
+                    {
+                        multiLayout = true;
+                        break;
+                    }
+                }
+
+                if (multiLayout)
+                {
+                    displayName += $" — {lang.LayoutName}";
+                }
 
                 var item = new MenuItem
                 {
-                    Header = new InputLanguageMenuItem(code, lang.Culture.DisplayName),
+                    Header = new InputLanguageMenuItem(code, displayName),
                     Tag = lang,
                     IsCheckable = true,
                     IsChecked = lang.Equals(WinForms.InputLanguage.CurrentInputLanguage)
