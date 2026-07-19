@@ -11,13 +11,11 @@ namespace RetroBar.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            bool vertical = Settings.Instance.Edge == AppBarEdge.Left || Settings.Instance.Edge == AppBarEdge.Right;
-
             // parameter is a string "leading" or "trailing"
 
-            if (parameter is string position)
+            if (parameter is string position && value is Orientation orientation)
             {
-                if (vertical)
+                if (orientation == Orientation.Vertical)
                 {
                     if (position == "leading")
                     {

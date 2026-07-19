@@ -39,15 +39,25 @@
                 <Setter Property="IsEditable"
                         Value="False" />
                 <Setter Property="Margin"
-                        Value="0,5" />
-                <Setter Property="Padding"
-                        Value="4" />
+                        Value="5,5,0,5" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Center" />
+                <Setter Property="MinHeight"
+                        Value="21" />
                 <Setter Property="Width"
-                        Value="200" />
+                        Value="193" />
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Padding"
+                        Value="0" />
             </Style>
             <Style TargetType="{x:Type CheckBox}">
                 <Style.Resources>
                     <Style TargetType="{x:Type Path}" BasedOn="{StaticResource DefaultDirection}" />
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Padding"
+                        Value="1,2,0,0" />
+                    </Style>
                 </Style.Resources>
                 <Setter Property="Margin"
                         Value="0,5,5,5" />
@@ -57,10 +67,6 @@
             <Style TargetType="{x:Type GroupBox}">
                 <Setter Property="Padding"
                         Value="5,5,5,0" />
-            </Style>
-            <Style TargetType="{x:Type Label}">
-                <Setter Property="Padding"
-                        Value="0,2,0,0" />
             </Style>
             <Style TargetType="{x:Type Button}">
                 <Setter Property="MinHeight"
@@ -74,7 +80,7 @@
             </Style>
             <Style TargetType="{x:Type Slider}">
                 <Setter Property="Margin"
-                        Value="4,2" />
+                        Value="4,0,4,2" />
             </Style>
             <Style x:Key="PreviewBorder"
                    TargetType="{x:Type Border}">
@@ -99,7 +105,30 @@
         <TabControl Grid.Row="0">
             <TabItem Header="{DynamicResource taskbar_tab}">
                 <StackPanel Orientation="Vertical"
-                            Margin="10">
+                            Margin="10"
+                            x:Name="FirstTabContent">
+                    <GroupBox x:Name="gbRetroBar">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox x:Name="cbAutoStart"
+                                      Checked="CbAutoStart_OnChecked"
+                                      Unchecked="CbAutoStart_OnChecked">
+                                <Label Content="{DynamicResource autostart}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbCheckForUpdates"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CheckForUpdates, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource check_for_updates}" />
+                            </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboLanguageSelect}">
+                                    <AccessText Text="{DynamicResource language_text}"
+                                                ToolTip="{DynamicResource language_tip}" />
+                                </Label>
+                                <ComboBox x:Name="cboLanguageSelect"
+                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
                     <GroupBox Header="{DynamicResource taskbar_appearance}">
                         <StackPanel Orientation="Vertical">
                             <Border Style="{StaticResource PreviewBorder}">
@@ -177,15 +206,6 @@
                             </Border>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cboLanguageSelect}">
-                                    <AccessText Text="{DynamicResource language_text}"
-                                                ToolTip="{DynamicResource language_tip}" />
-                                </Label>
-                                <ComboBox x:Name="cboLanguageSelect"
-                                          SelectedValue="{Binding Source={x:Static Settings:Settings.Instance}, Path=Language, UpdateSourceTrigger=PropertyChanged}" />
-                            </DockPanel>
-                            <DockPanel>
-                                <Label VerticalAlignment="Center"
                                        Target="{Binding ElementName=cboThemeSelect}">
                                     <AccessText Text="{DynamicResource theme_text}"
                                                 ToolTip="{DynamicResource theme_tip}" />
@@ -227,8 +247,8 @@
                                         TickFrequency="1"
                                         TickPlacement="BottomRight"
                                         HorizontalAlignment="Right"
-                                        Margin="0,3,0,4"
-                                        Width="200" />
+                                        Margin="0,4,0,3"
+                                        Width="193" />
                             </DockPanel>
                             <CheckBox IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothing, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing}" />
@@ -243,15 +263,6 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskBadges, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_badges}" />
                             </CheckBox>
-                            <DockPanel>
-                                <CheckBox x:Name="cbShowQuickLaunch"
-                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
-                                    <Label Content="{DynamicResource show_quick_launch}" />
-                                </CheckBox>
-                                <Button HorizontalAlignment="Right"
-                                        Content="{DynamicResource select_location}"
-                                        Click="SetQuickLaunchLocation_OnClick" />
-                            </DockPanel>
                             <CheckBox x:Name="cbShowWindowPreviews"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_window_previews}" />
@@ -261,191 +272,14 @@
                                       Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='horizontal'}">
                                 <Label Content="{DynamicResource slide_taskbar_buttons}" />
                             </CheckBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="{DynamicResource notification_area}">
-                        <StackPanel Orientation="Vertical">
-                            <Border Style="{StaticResource PreviewBorder}">
-                                <ContentControl x:Name="NotificationAreaPreviewControl"
-                                                IsHitTestVisible="False"
-                                                Focusable="False"
-                                                ClipToBounds="True"
-                                                Style="{DynamicResource Taskbar}">
-                                    <TextOptions.TextRenderingMode>
-                                        <Binding Source="{x:Static Settings:Settings.Instance}"
-                                                 Path="AllowFontSmoothing"
-                                                 Converter="{StaticResource textRenderingModeConverter}" />
-                                    </TextOptions.TextRenderingMode>
-                                    <DockPanel>
-                                        <controls:ShowDesktopButton DockPanel.Dock="Right" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
-                                        <GroupBox Style="{DynamicResource Tray}"
-                                                  DockPanel.Dock="Right">
-                                            <StackPanel Orientation="Horizontal">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <ToggleButton x:Name="NotifyIconToggleButton"
-                                                                  Focusable="False"
-                                                                  Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}"
-                                                                  Style="{DynamicResource TrayToggleButton}"/>
-                                                    <ItemsControl Focusable="False"
-                                                                  HorizontalAlignment="Center"
-                                                                  VerticalAlignment="Center">
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel Orientation="Horizontal"></WrapPanel>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <Border>
-                                                            <Image Source="Resources\retrobar.ico"
-                                                                   Style="{DynamicResource NotifyIcon}" />
-                                                        </Border>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                                <controls:Clock VerticalAlignment="Center" />
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <controls:InputLanguage VerticalAlignment="Stretch" DockPanel.Dock="Right" />
-                                        <StackPanel></StackPanel>
-                                    </DockPanel>
-                                </ContentControl>
-                            </Border>
-                            <CheckBox x:Name="cbShowClock"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_clock}" />
-                            </CheckBox>
-                            <CheckBox x:Name="cbShowClockSeconds"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockSeconds, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_clock_seconds}" />
-                            </CheckBox>
-                            <CheckBox x:Name="cbShowInputLanguage"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowInputLanguage, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_input_language}" />
-                            </CheckBox>
-                            <CheckBox x:Name="cbShowDesktopButton"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource add_show_desktop_button}" />
-                            </CheckBox>
                             <DockPanel>
-                                <CheckBox x:Name="cbCollapseTrayIcons"
-                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}">
-                                    <Label Content="{DynamicResource collapse_tray_icons}" />
+                                <CheckBox x:Name="cbShowQuickLaunch"
+                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
+                                    <Label Content="{DynamicResource show_quick_launch}" />
                                 </CheckBox>
                                 <Button HorizontalAlignment="Right"
-                                        Content="{DynamicResource customize}"
-                                        IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}"
-                                        Click="CustomizeNotifications_OnClick" />
-                            </DockPanel>
-                        </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="{DynamicResource advanced_tab}">
-                <StackPanel Orientation="Vertical"
-                            Margin="10">
-                    <StackPanel Orientation="Vertical"
-                                Margin="0,0,0,10">
-                        <CheckBox x:Name="cbAutoStart"
-                                  Checked="CbAutoStart_OnChecked"
-                                  Unchecked="CbAutoStart_OnChecked">
-                            <Label Content="{DynamicResource autostart}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbUseSoftwareRendering"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource use_software_rendering}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbDebugLogging"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource debug_logging}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbCheckForUpdates"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CheckForUpdates, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource check_for_updates}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbAutoHideTransparent"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHideTransparent, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource auto_hide_transparent}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbAllowBlurBehind"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowBlurBehind, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource allow_blur_behind}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbShowExitMenuItem"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource show_exit_menu_item}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbShowEndTaskButton"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource show_end_task_button}" />
-                        </CheckBox>
-                        <CheckBox x:Name="cbAllowFontSmoothingMenu"
-                                  IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothingMenu, UpdateSourceTrigger=PropertyChanged}">
-                            <Label Content="{DynamicResource allow_font_smoothing_menu}" />
-                        </CheckBox>
-                        <DockPanel>
-                            <Label VerticalAlignment="Center"
-                                   Target="{Binding ElementName=cboWinNumHotkeysAction}">
-                                <AccessText Text="{DynamicResource win_num_hotkeys_action}" />
-                            </Label>
-                            <ComboBox x:Name="cboWinNumHotkeysAction"
-                                      ItemsSource="{DynamicResource win_num_hotkeys_action_values}"
-                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=WinNumHotkeysAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                      SelectionChanged="CboWinNumHotkeysAction_SelectionChanged" />
-                        </DockPanel>
-                        <DockPanel>
-                            <Label VerticalAlignment="Center"
-                                   Target="{Binding ElementName=cboMiddleMouseAction}">
-                                <AccessText Text="{DynamicResource middle_mouse_task_action}" />
-                            </Label>
-                            <ComboBox x:Name="cboMiddleMouseAction"
-                                      ItemsSource="{DynamicResource middle_mouse_task_action_values}"
-                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskMiddleClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                      SelectionChanged="CboMiddleMouseAction_SelectionChanged" />
-                        </DockPanel>
-                        <DockPanel>
-                            <Label VerticalAlignment="Center"
-                                   Target="{Binding ElementName=cboClockAction}">
-                                <AccessText Text="{DynamicResource clock_click_action}" />
-                            </Label>
-                            <ComboBox x:Name="cboClockAction"
-                                      ItemsSource="{DynamicResource clock_click_action_values}"
-                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                      SelectionChanged="CboClockAction_SelectionChanged" />
-                        </DockPanel>
-                        <DockPanel>
-                            <Label VerticalAlignment="Center"
-                                   Target="{Binding ElementName=cboInvertIconsMode}">
-                                <AccessText Text="{DynamicResource invert_system_icons}" />
-                            </Label>
-                            <ComboBox x:Name="cboInvertIconsMode"
-                                      ItemsSource="{DynamicResource invert_system_icons_values}"
-                                      SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                      SelectionChanged="CboInvertIconsMode_SelectionChanged" />
-                        </DockPanel>
-                        <Button HorizontalAlignment="Right"
-                                Content="{DynamicResource customize}"
-                                Click="CustomizeNotifications_OnClick" />
-                    </StackPanel>
-                    <GroupBox Header="{DynamicResource multiple_displays}"
-                              Margin="0,0,0,10">
-                        <StackPanel Orientation="Vertical">
-                            <CheckBox x:Name="cbShowMultiMon"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_multi_mon}" />
-                            </CheckBox>
-                            <CheckBox x:Name="cbShowStartButtonMultiMon"
-                                      IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowStartButtonMultiMon, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_start_button_multi_mon}" />
-                            </CheckBox>
-                            <DockPanel>
-                                <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cboMultiMonMode}">
-                                    <AccessText Text="{DynamicResource show_tasks_on}" />
-                                </Label>
-                                <ComboBox x:Name="cboMultiMonMode"
-                                          IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
-                                          ItemsSource="{DynamicResource show_tasks_on_values}"
-                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
-                                          SelectionChanged="CboMultiMonMode_SelectionChanged" />
+                                        Content="{DynamicResource select_location}"
+                                        Click="SetQuickLaunchLocation_OnClick" />
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
@@ -474,15 +308,197 @@
                             </TextBlock>
                         </StackPanel>
                     </GroupBox>
-                    <TextBlock Margin="0,10,0,0"
-                               TextAlignment="Right">
-                        <Hyperlink Click="OpenCustomThemesFolder_OnClick">
-                            <Hyperlink.Inlines>
-                                <Run Text="{DynamicResource open_custom_themes_folder}" />
-                            </Hyperlink.Inlines>
-                        </Hyperlink>
-                    </TextBlock>
-                    <DockPanel Margin="0,10,0,0">
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{DynamicResource notification_area}">
+                <StackPanel Orientation="Vertical"
+                            Margin="10"
+                            Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
+                    <Border Style="{StaticResource PreviewBorder}">
+                        <ContentControl x:Name="NotificationAreaPreviewControl"
+                                        IsHitTestVisible="False"
+                                        Focusable="False"
+                                        ClipToBounds="True"
+                                        Style="{DynamicResource Taskbar}">
+                            <TextOptions.TextRenderingMode>
+                                <Binding Source="{x:Static Settings:Settings.Instance}"
+                                         Path="AllowFontSmoothing"
+                                         Converter="{StaticResource textRenderingModeConverter}" />
+                            </TextOptions.TextRenderingMode>
+                            <DockPanel>
+                                <controls:ShowDesktopButton DockPanel.Dock="Right" Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
+                                <GroupBox Style="{DynamicResource Tray}"
+                                          DockPanel.Dock="Right">
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal">
+                                            <ToggleButton x:Name="NotifyIconToggleButton"
+                                                          Focusable="False"
+                                                          Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}"
+                                                          Style="{DynamicResource TrayToggleButton}"/>
+                                            <ItemsControl Focusable="False"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <Border>
+                                                    <Image Source="Resources\retrobar.ico"
+                                                           Style="{DynamicResource NotifyIcon}" />
+                                                </Border>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <controls:Clock VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </GroupBox>
+                                <controls:InputLanguage VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch"
+                                                        DockPanel.Dock="Right" />
+                                <StackPanel></StackPanel>
+                            </DockPanel>
+                        </ContentControl>
+                    </Border>
+                    <GroupBox Header="{DynamicResource general_heading}">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox x:Name="cbShowInputLanguage"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowInputLanguage, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_input_language}" />
+                            </CheckBox>
+                            <DockPanel>
+                                <CheckBox x:Name="cbCollapseTrayIcons"
+                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=CollapseNotifyIcons, UpdateSourceTrigger=PropertyChanged}">
+                                    <Label Content="{DynamicResource collapse_tray_icons}" />
+                                </CheckBox>
+                                <Button HorizontalAlignment="Right"
+                                        Content="{DynamicResource customize}"
+                                        Click="CustomizeNotifications_OnClick" />
+                            </DockPanel>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboInvertIconsMode}">
+                                    <AccessText Text="{DynamicResource invert_system_icons}" />
+                                </Label>
+                                <ComboBox x:Name="cboInvertIconsMode"
+                                          ItemsSource="{DynamicResource invert_system_icons_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboInvertIconsMode_SelectionChanged" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource clock_heading}">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox x:Name="cbShowClock"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_clock}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowClockSeconds"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockSeconds, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_clock_seconds}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowDesktopButton"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowDesktopButton, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource add_show_desktop_button}" />
+                            </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboClockAction}">
+                                    <AccessText Text="{DynamicResource clock_click_action}" />
+                                </Label>
+                                <ComboBox x:Name="cboClockAction"
+                                          ItemsSource="{DynamicResource clock_click_action_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboClockAction_SelectionChanged" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{DynamicResource advanced_tab}">
+                <DockPanel Margin="10"
+                           Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
+                    <GroupBox Header="{DynamicResource general_heading}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox x:Name="cbUseSoftwareRendering"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource use_software_rendering}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbDebugLogging"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=DebugLogging, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource debug_logging}" />
+                            </CheckBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource behavior_heading}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox x:Name="cbAllowBlurBehind"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowBlurBehind, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource allow_blur_behind}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbAllowFontSmoothingMenu"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothingMenu, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource allow_font_smoothing_menu}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbAutoHideTransparent"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AutoHideTransparent, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource auto_hide_transparent}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowExitMenuItem"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowExitMenuItem, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_exit_menu_item}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowEndTaskButton"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_end_task_button}" />
+                            </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboWinNumHotkeysAction}">
+                                    <AccessText Text="{DynamicResource win_num_hotkeys_action}" />
+                                </Label>
+                                <ComboBox x:Name="cboWinNumHotkeysAction"
+                                          ItemsSource="{DynamicResource win_num_hotkeys_action_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=WinNumHotkeysAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboWinNumHotkeysAction_SelectionChanged" />
+                            </DockPanel>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboMiddleMouseAction}">
+                                    <AccessText Text="{DynamicResource middle_mouse_task_action}" />
+                                </Label>
+                                <ComboBox x:Name="cboMiddleMouseAction"
+                                          ItemsSource="{DynamicResource middle_mouse_task_action_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskMiddleClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboMiddleMouseAction_SelectionChanged" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{DynamicResource multiple_displays}" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox x:Name="cbShowMultiMon"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_multi_mon}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbShowStartButtonMultiMon"
+                                      IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowStartButtonMultiMon, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource show_start_button_multi_mon}" />
+                            </CheckBox>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboMultiMonMode}">
+                                    <AccessText Text="{DynamicResource show_tasks_on}" />
+                                </Label>
+                                <ComboBox x:Name="cboMultiMonMode"
+                                          IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{DynamicResource show_tasks_on_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=MultiMonMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboMultiMonMode_SelectionChanged" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <DockPanel Margin="0,10,0,0"
+                               DockPanel.Dock="Bottom">
                         <TextBlock x:Name="txtVersion"
                                    DockPanel.Dock="Left"
                                    Margin="0,0,10,0" />
@@ -496,7 +512,17 @@
                                 </Hyperlink>
                         </TextBlock>
                     </DockPanel>
-                </StackPanel>
+                    <TextBlock Margin="0,10,0,0"
+                               TextAlignment="Right"
+                               DockPanel.Dock="Bottom">
+                        <Hyperlink Click="OpenCustomThemesFolder_OnClick">
+                            <Hyperlink.Inlines>
+                                <Run Text="{DynamicResource open_custom_themes_folder}" />
+                            </Hyperlink.Inlines>
+                        </Hyperlink>
+                    </TextBlock>
+                    <StackPanel></StackPanel>
+                </DockPanel>
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal"
