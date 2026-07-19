@@ -85,7 +85,7 @@ namespace RetroBar
             LoadRows();
             LoadThemes();
             LoadWidth();
-            LoadVersion();
+            LoadAppInfo();
             LoadClockActions();
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -104,7 +104,7 @@ namespace RetroBar
             }
             else if (e.PropertyName == nameof(Settings.Language))
             {
-                LoadVersion();
+                LoadAppInfo();
                 LoadClockActions();
             }
         }
@@ -192,6 +192,17 @@ namespace RetroBar
             }
         }
 
+        private void LoadAppInfo()
+        {
+            gbRetroBar.Header = System.Windows.Forms.Application.ProductName;
+            txtVersion.Text = string.Format((string)FindResource("version"), System.Windows.Forms.Application.ProductVersion);
+        }
+
+        private void LoadWidth()
+        {
+            sldTaskbarWidth.Maximum = Settings.Instance.TaskbarWidthLimit;
+        }
+
         private void LoadThemes()
         {
             foreach (var theme in _dictionaryManager.GetThemes())
@@ -263,16 +274,6 @@ namespace RetroBar
                     cboThemeSelect.Items.Add(newTheme);
                 }
             });
-        }
-
-        private void LoadVersion()
-        {
-            txtVersion.Text = string.Format((string)FindResource("version"), System.Windows.Forms.Application.ProductVersion);
-        }
-
-        private void LoadWidth()
-        {
-            sldTaskbarWidth.Maximum = Settings.Instance.TaskbarWidthLimit;
         }
 
         private void UpdateWindowPosition()
