@@ -45,7 +45,7 @@
 
   <ItemGroup>
     <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />
-    <PackageReference Include="ManagedShell" Version="0.0.346" />
+    <PackageReference Include="ManagedShell" Version="0.0.353" />
   </ItemGroup>
 
   <ItemGroup>
