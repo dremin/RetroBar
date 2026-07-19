@@ -105,7 +105,8 @@
         <TabControl Grid.Row="0">
             <TabItem Header="{DynamicResource taskbar_tab}">
                 <StackPanel Orientation="Vertical"
-                            Margin="10">
+                            Margin="10"
+                            x:Name="FirstTabContent">
                     <GroupBox x:Name="gbRetroBar">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbAutoStart"
@@ -311,7 +312,8 @@
             </TabItem>
             <TabItem Header="{DynamicResource notification_area}">
                 <StackPanel Orientation="Vertical"
-                            Margin="10">
+                            Margin="10"
+                            Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
                     <Border Style="{StaticResource PreviewBorder}">
                         <ContentControl x:Name="NotificationAreaPreviewControl"
                                         IsHitTestVisible="False"
@@ -413,9 +415,9 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="{DynamicResource advanced_tab}">
-                <StackPanel Orientation="Vertical"
-                            Margin="10">
-                    <GroupBox Header="{DynamicResource general_heading}">
+                <DockPanel Margin="10"
+                           Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
+                    <GroupBox Header="{DynamicResource general_heading}" DockPanel.Dock="Top">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbUseSoftwareRendering"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=UseSoftwareRendering, UpdateSourceTrigger=PropertyChanged}">
@@ -427,7 +429,7 @@
                             </CheckBox>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource behavior_heading}">
+                    <GroupBox Header="{DynamicResource behavior_heading}" DockPanel.Dock="Top">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbAllowBlurBehind"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowBlurBehind, UpdateSourceTrigger=PropertyChanged}">
@@ -471,8 +473,7 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="{DynamicResource multiple_displays}"
-                              Margin="0,0,0,10">
+                    <GroupBox Header="{DynamicResource multiple_displays}" DockPanel.Dock="Top">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbShowMultiMon"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
@@ -496,15 +497,8 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-                    <TextBlock Margin="0,10,0,0"
-                               TextAlignment="Right">
-                        <Hyperlink Click="OpenCustomThemesFolder_OnClick">
-                            <Hyperlink.Inlines>
-                                <Run Text="{DynamicResource open_custom_themes_folder}" />
-                            </Hyperlink.Inlines>
-                        </Hyperlink>
-                    </TextBlock>
-                    <DockPanel Margin="0,10,0,0">
+                    <DockPanel Margin="0,10,0,0"
+                               DockPanel.Dock="Bottom">
                         <TextBlock x:Name="txtVersion"
                                    DockPanel.Dock="Left"
                                    Margin="0,0,10,0" />
@@ -518,7 +512,17 @@
                                 </Hyperlink>
                         </TextBlock>
                     </DockPanel>
-                </StackPanel>
+                    <TextBlock Margin="0,10,0,0"
+                               TextAlignment="Right"
+                               DockPanel.Dock="Bottom">
+                        <Hyperlink Click="OpenCustomThemesFolder_OnClick">
+                            <Hyperlink.Inlines>
+                                <Run Text="{DynamicResource open_custom_themes_folder}" />
+                            </Hyperlink.Inlines>
+                        </Hyperlink>
+                    </TextBlock>
+                    <StackPanel></StackPanel>
+                </DockPanel>
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal"
