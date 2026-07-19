@@ -16,6 +16,7 @@
     <Button Name="AppButton"
             Click="AppButton_OnClick"
             MouseUp="AppButton_OnMouseUp"
+            MouseWheel="AppButton_OnMouseWheel"
             PreviewMouseDown="AppButton_OnPreviewMouseDown"
             ContextMenuOpening="AppButton_OnContextMenuOpening"
             DragEnter="AppButton_OnDragEnter"

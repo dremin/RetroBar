@@ -471,6 +471,16 @@
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskMiddleClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="CboMiddleMouseAction_SelectionChanged" />
                             </DockPanel>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboTaskWheelAction}">
+                                    <AccessText Text="{DynamicResource task_wheel_action}" />
+                                </Label>
+                                <ComboBox x:Name="cboTaskWheelAction"
+                                          ItemsSource="{DynamicResource task_wheel_action_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=TaskWheelAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboTaskWheelAction_SelectionChanged" />
+                            </DockPanel>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource multiple_displays}" DockPanel.Dock="Top">
