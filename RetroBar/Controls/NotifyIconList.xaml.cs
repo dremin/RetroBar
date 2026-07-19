@@ -77,7 +77,7 @@ namespace RetroBar.Controls
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
                 collectionView = new ListCollectionView(NotificationArea.TrayIcons);
-                collectionView.CustomSort = new NotifyIconComparer();
+                collectionView.CustomSort = new NotifyIconComparer(this);
                 collectionView.Filter = NotifyIcons_Filter;
                 var collectionViewShaping = collectionView as ICollectionViewLiveShaping;
                 collectionViewShaping.IsLiveFiltering = true;
@@ -299,10 +299,30 @@ namespace RetroBar.Controls
 
         public class NotifyIconComparer : System.Collections.IComparer
         {
+            private NotifyIconList _host;
+
+            public NotifyIconComparer(NotifyIconList host)
+            {
+                _host = host;
+            }
+
             public int Compare(object x, object y)
             {
                 if (x is Tray.NotifyIcon xIcon && y is Tray.NotifyIcon yIcon && Settings.Instance.NotifyIconOrder is List<string> setting)
                 {
+                    if (_host.IsCollapsed())
+                    {
+                        bool xPromoted = _host.promotedIcons.Contains(xIcon);
+                        bool yPromoted = _host.promotedIcons.Contains(yIcon);
+                        if (xPromoted && !yPromoted)
+                        {
+                            return -1;
+                        }
+                        if (!xPromoted && yPromoted)
+                        {
+                            return 1;
+                        }
+                    }
                     return setting.IndexOf(xIcon.GetInvertIdentifier()).CompareTo(setting.IndexOf(yIcon.GetInvertIdentifier()));
                 }
                 return 0;
