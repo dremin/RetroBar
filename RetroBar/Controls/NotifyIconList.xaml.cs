@@ -253,6 +253,10 @@ namespace RetroBar.Controls
             // Update the dragged icon's position in the list
             if (dropInfo.Data is Tray.NotifyIcon draggedIcon && dropInfo.TargetItem is Tray.NotifyIcon targetIcon)
             {
+                if (draggedIcon == targetIcon)
+                {
+                    return;
+                }
                 visibleIcons.Remove(draggedIcon);
                 int targetItemIndex = visibleIcons.IndexOf(targetIcon);
                 if (targetItemIndex < 0)
