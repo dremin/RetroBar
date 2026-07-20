@@ -50,7 +50,7 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
   - Basic
   - Classic
 
-Looking for more themes? [Check out the great community-made RetroBar themes on DeviantArt](https://www.deviantart.com/tag/retrobar)!
+Looking for more themes? [Check out the great community-made RetroBar themes on DeviantArt](https://www.deviantart.com/tag/retrobar), and the theme-repository channel on [our Discord](https://discord.gg/8bGuPmerxC)!
 
 ## Supported languages
 - Arabic (العربية)
@@ -62,6 +62,7 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - Chinese (Traditional) (中文(繁體))
 - Croatian (hrvatski)
 - Czech (čeština)
+- Danish (dansk)
 - Dutch (Nederlands)
 - English
 - English (United Kingdom)
@@ -70,6 +71,7 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - German (Deutsch)
 - Greek (ελληνικά)
 - Hebrew (עברית)
+- Hindi (हिन्दी)
 - Hungarian (magyar)
 - Icelandic (íslenska)
 - Indonesian (Indonesia)
@@ -79,6 +81,7 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - Latvian (latviešu)
 - Lithuanian (lietuvių)
 - Luxembourgish (Lëtzebuergesch)
+- Macedonian (Македонски)
 - Malay (Melayu)
 - Maltese (Malti)
 - Norsk (bokmål)
@@ -96,6 +99,7 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - Turkish (Türkçe)
 - Ukrainian (українська)
 - Vietnamese (Tiếng Việt)
+- Welsh (Cymraeg)
 
 ## Custom languages and themes
 RetroBar supports custom languages and themes. You may install community-made theme files that you have downloaded in RetroBar Properties > Advanced.
