@@ -30,7 +30,7 @@
                       dd:DragDrop.DragDropContext="NotifyIconList">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel>
+                    <WrapPanel Background="Transparent">
                         <WrapPanel.Orientation>
                             <MultiBinding Converter="{StaticResource iconsOrientation}">
                                 <Binding Path="Orientation"
