@@ -251,15 +251,14 @@ namespace RetroBar.Controls
             }
 
             // Update the dragged icon's position in the list
-            if (dropInfo.Data is Tray.NotifyIcon draggedIcon && dropInfo.TargetItem is Tray.NotifyIcon targetIcon)
+            if (dropInfo.Data is Tray.NotifyIcon draggedIcon)
             {
-                visibleIcons.Remove(draggedIcon);
-                int targetItemIndex = visibleIcons.IndexOf(targetIcon);
-                if (targetItemIndex < 0)
+                int insertIndex = dropInfo.InsertIndex;
+                if (insertIndex > 0 && visibleIcons.IndexOf(draggedIcon) < insertIndex && visibleIcons.Remove(draggedIcon))
                 {
-                    targetItemIndex = 0;
+                    insertIndex--;
                 }
-                visibleIcons.Insert(targetItemIndex + ((dropInfo.InsertPosition & RelativeInsertPosition.AfterTargetItem) != 0 ? 1 : 0), draggedIcon);
+                visibleIcons.Insert(insertIndex, draggedIcon);
             }
             else
             {
