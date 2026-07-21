@@ -40,7 +40,7 @@ namespace RetroBar.Controls
             source.AddHook(WndProc);
 
             // Makes click-through by adding transparent style, hide from taskbar
-            NativeMethods.SetWindowLongPtr(helper.Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE, (IntPtr)(((int)NativeMethods.GetWindowLongPtr(helper.Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT));
+            NativeMethods.SetWindowLong(helper.Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE, (NativeMethods.GetWindowLong(helper.Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
 
             WindowHelper.ExcludeWindowFromPeek(helper.Handle);
 
