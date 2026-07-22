@@ -252,6 +252,24 @@ namespace RetroBar.Controls
             }
         }
 
+        private void AppButton_OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (Settings.Instance.TaskWheelAction == TaskWheelActionOption.DoNothing || (Keyboard.Modifiers & ModifierKeys.Shift) != 0)
+            {
+                return;
+            }
+
+            if (e.Delta > 0)
+            {
+                Window?.BringToFront();
+            }
+            else
+            {
+                Window?.Minimize();
+            }
+            e.Handled = true;
+        }
+
         private void AppButton_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)

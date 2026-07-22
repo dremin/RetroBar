@@ -1,4 +1,4 @@
-﻿using ManagedShell.AppBar;
+using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.WindowsTray;
 using System;
@@ -318,6 +318,13 @@ namespace RetroBar.Utilities
             set => SetEnum(ref _taskMiddleClickAction, value);
         }
 
+        private TaskWheelActionOption _taskWheelAction = TaskWheelActionOption.DoNothing;
+        public TaskWheelActionOption TaskWheelAction
+        {
+            get => _taskWheelAction;
+            set => SetEnum(ref _taskWheelAction, value);
+        }
+
         private ClockClickOption _clockClickAction = EnvironmentHelper.IsWindows10OrBetter ? ClockClickOption.OpenNotificationCenter : ClockClickOption.DoNothing;
         public ClockClickOption ClockClickAction
         {
@@ -460,6 +467,11 @@ namespace RetroBar.Utilities
         DoNothing,
         OpenNewInstance,
         CloseTask
+    }
+    public enum TaskWheelActionOption
+    {
+        DoNothing,
+        ShowHideWindow
     }
 
     public enum ClockClickOption

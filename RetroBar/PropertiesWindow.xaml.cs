@@ -426,6 +426,14 @@ namespace RetroBar
             }
         }
 
+        private void CboTaskWheelAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboTaskWheelAction.SelectedItem == null)
+            {
+                cboTaskWheelAction.SelectedValue = cboTaskWheelAction.Items[(int)Settings.Instance.TaskWheelAction];
+            }
+        }
+
         private void CboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboRowCount.SelectedItem == null)

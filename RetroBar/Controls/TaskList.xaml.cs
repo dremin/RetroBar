@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace RetroBar.Controls
 {
@@ -301,7 +302,7 @@ namespace RetroBar.Controls
 
         private void TasksScrollViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            if (!isScrollable)
+            if (!isScrollable && Settings.Instance.TaskWheelAction == TaskWheelActionOption.DoNothing)
             {
                 e.Handled = true;
             }
