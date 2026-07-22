@@ -1,4 +1,4 @@
-﻿![alt text](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png "RetroBar")
+﻿![RetroBar screenshot](https://raw.githubusercontent.com/dremin/retrobar/master/retrobar-preview.png)
 
 # RetroBar
 [![Current release](https://img.shields.io/github/v/release/dremin/RetroBar)](https://github.com/dremin/RetroBar/releases/latest) ![Build status](https://github.com/dremin/RetroBar/workflows/RetroBar/badge.svg)  [![Discord](https://img.shields.io/badge/discord-white?logo=discord)](https://discord.gg/8bGuPmerxC)
@@ -26,7 +26,8 @@ RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShe
 - Resizable taskbar with support for multiple rows
 - Option to display the taskbar, notification area, and clock on multiple monitors
 - Ability to show Vista-style window thumbnails
-- Customizable XP-style collapsible notification area
+- Customizable XP-style collapsible notification area with drag reordering
+- Input language and keyboard layout switcher
 - Custom theme support
 
 ## Included themes
