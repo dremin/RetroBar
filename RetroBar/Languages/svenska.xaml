@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar-snabbtangenter</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar åsidosätter Windows aktivitetsfältets snabbtangenter. Även om RetroBar stängs återställs de inte till Windows förrän du loggar ut och loggar in igen.</s:String>
-    <s:String x:Key="allow_blur_behind">Tillåt oskärpa bakom transparent aktivitetsfält</s:String>
+    <s:String x:Key="allow_blur_behind">Tillåt _oskärpa bakom transparent aktivitetsfält</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Anpassa meddelanden</s:String>

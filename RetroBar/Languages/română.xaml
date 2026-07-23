@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Taste rapide RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar va suprascrie tastele rapide din bara de activități Windows. Chiar dacă RetroBar este închis, acestea nu vor fi restaurate în Windows până când nu vă deconectați și vă reconectați.</s:String>
-    <s:String x:Key="allow_blur_behind">Permite estomparea în spatele barei de activități transparente</s:String>
+    <s:String x:Key="allow_blur_behind">Permite _estomparea în spatele barei de activități transparente</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizați Notificările</s:String>

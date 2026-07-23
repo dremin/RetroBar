@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar Tastenkürzel</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar wird die Tastenkürzel der Windows-Taskleiste überschreiben. Selbst wenn RetroBar geschlossen wird, werden diese nicht wiederhergestellt, bevor Sie sich nicht von Windows abgemeldet und wieder angemeldet haben.</s:String>
-    <s:String x:Key="allow_blur_behind">Unschärfe hinter transparenter Taskleiste zulassen</s:String>
+    <s:String x:Key="allow_blur_behind">_Unschärfe hinter transparenter Taskleiste zulassen</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>

@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Raccourcis clavier RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar va remplacer les raccourcis clavier de la barre des tâches Windows. Même si RetroBar est fermé, ils ne seront pas restaurés dans Windows jusqu'à ce que vous vous déconnectiez et reconnectiez.</s:String>
-    <s:String x:Key="allow_blur_behind">Autoriser le flou derrière la barre des tâches transparente</s:String>
+    <s:String x:Key="allow_blur_behind">Autoriser le _flou derrière la barre des tâches transparente</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personnaliser les notifications</s:String>

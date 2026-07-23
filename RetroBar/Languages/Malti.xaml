@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar Hotkeys</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar se jissostitwixxi l-hotkeys tal-bar tal-kompiti ta' Windows. Anki jekk RetroBar ikun magħluq, dawn ma jerġgħux jiġu restawrati f'Windows sakemm ma toħroġx u terġa' tidħol.</s:String>
-    <s:String x:Key="allow_blur_behind">Ħalli sfumat wara l-bar tal-kompiti trasparenti</s:String>
+    <s:String x:Key="allow_blur_behind">Ħalli _sfumat wara l-bar tal-kompiti trasparenti</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizza n-notifiki</s:String>

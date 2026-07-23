@@ -66,7 +66,7 @@
         <s:String>Otvara moderni kalendar</s:String>
         <s:String>Otvara centar za obaveštenja</s:String>
     </x:Array>
-    <s:String x:Key="auto_hide_transparent">Sakrij _liniju trake zadataka kada je automatski sakrivena</s:String>
+    <s:String x:Key="auto_hide_transparent">_Sakrij liniju trake zadataka kada je automatski sakrivena</s:String>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Poseti RetroBar na GitHub-u</s:String>
     <s:String x:Key="taskbar_scale">Razmera trake zadataka</s:String>
@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar prečice</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar će pregaziti Windows prečice za traku zadataka. Čak iako je RetroBar zatvoren, prečice neće biti vraćene dok se ne prijavite ponovo na Windows.</s:String>
-    <s:String x:Key="allow_blur_behind">Dozvoli zamućenje iza providne trake zadataka</s:String>
+    <s:String x:Key="allow_blur_behind">_Dozvoli zamućenje iza providne trake zadataka</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obaveštenja</s:String>

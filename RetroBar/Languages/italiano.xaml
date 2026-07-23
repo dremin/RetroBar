@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Tasti di scelta rapida RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar sovrascriverà i tasti di scelta rapida della barra delle applicazioni di Windows. Anche se RetroBar viene chiuso, essi non verranno ripristinati in Windows fino a quando non si effettua il logout e il login.</s:String>
-    <s:String x:Key="allow_blur_behind">Consenti sfocatura dietro la barra delle applicazioni trasparente</s:String>
+    <s:String x:Key="allow_blur_behind">Consenti _sfocatura dietro la barra delle applicazioni trasparente</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Personalizza notifiche</s:String>

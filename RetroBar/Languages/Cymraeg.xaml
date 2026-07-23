@@ -87,7 +87,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Allweddi boeth</s:String>
     <s:String x:Key="hotkey_warning_text">Bydd RetroBar yn diystyru allweddi poeth bar tasgau Windows. Hyd yn oed os yw RetroBar ar gau, ni fyddant yn cael eu hadfer i Windows nes i chi allgofnodi ac yn ôl i mewn.</s:String>
-    <s:String x:Key="allow_blur_behind">Caniatau aneglurder y tu ôl i'r bar tasgau tryloyw</s:String>
+    <s:String x:Key="allow_blur_behind">Caniatau _aneglurder y tu ôl i'r bar tasgau tryloyw</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Addasu Hysbysiadau</s:String>

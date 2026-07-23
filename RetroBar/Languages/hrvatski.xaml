@@ -88,7 +88,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar prečaci</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar će nadjačati prečace Windows programske trake. Iako je RetroBar ugašen i neće se vratiti na Windowsove dok se ne odjavite i ponovno prijavite.</s:String>
-    <s:String x:Key="allow_blur_behind">Omogućite zamućenje iza prozirne sustavske trake</s:String>
+    <s:String x:Key="allow_blur_behind">Omogućite _zamućenje iza prozirne sustavske trake</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
