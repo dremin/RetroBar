@@ -22,13 +22,6 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Rivien lukumäärä:</s:String>
     <s:String x:Key="rowcount_tip">Rivien määrä tehtäväpalkissa, kun se on ylhäällä tai alhaalla.</s:String>
-    <x:Array x:Key="rowcount_options" Type="s:Int32">
-        <s:Int32>1</s:Int32>
-        <s:Int32>2</s:Int32>
-        <s:Int32>3</s:Int32>
-        <s:Int32>4</s:Int32>
-        <s:Int32>5</s:Int32>
-    </x:Array>
     <s:String x:Key="allow_font_smoothing">_Salli fontin pehmennys</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Salli fontin pehmennys _valikoissa</s:String>
     <s:String x:Key="collapse_tray_icons">Piilota _ilmoitusalueen kuvakkeet</s:String>
@@ -129,8 +122,4 @@
     <s:String x:Key="hide">Piilota</s:String>
 
     <s:String x:Key="open_folder">&amp;Avaa kansio</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

@@ -87,8 +87,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Allweddi boeth</s:String>
     <s:String x:Key="hotkey_warning_text">Bydd RetroBar yn diystyru allweddi poeth bar tasgau Windows. Hyd yn oed os yw RetroBar ar gau, ni fyddant yn cael eu hadfer i Windows nes i chi allgofnodi ac yn ôl i mewn.</s:String>
-    <s:String x:Key="ok_dialog">OK</s:String>
     <s:String x:Key="allow_blur_behind">Caniatau aneglurder y tu ôl i'r bar tasgau tryloyw</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Addasu Hysbysiadau</s:String>
     <s:String x:Key="customize_notifications_info">Mae RetroBar yn dangos eiconau ar gyfer hysbysiadau gweithredol a brys, ac yn cuddio rhai anweithredol. Gallwch newid yr ymddygiad hwn ar gyfer eitemau yn y rhestr isod.</s:String>
@@ -165,8 +165,4 @@
     <s:String x:Key="ime_conversion">Modd Trosi</s:String>
     <s:String x:Key="ime_conversion_general">Cyffredinol</s:String>
     <s:String x:Key="ime_conversion_none">Dim Trosi</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

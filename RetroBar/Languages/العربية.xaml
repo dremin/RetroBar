@@ -166,7 +166,6 @@
     <s:String x:Key="ime_conversion_general">عام</s:String>
     <s:String x:Key="ime_conversion_none">بدون تحويل</s:String>
 
-    <!-- العناصر التالية هي إعدادات ويجب أن تبقى بالإنجليزية دائمًا -->
     <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>

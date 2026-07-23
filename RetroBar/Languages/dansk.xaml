@@ -87,8 +87,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar-genvejstaster</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar tilsidesætter Windows-opgavebbjælkens genvejstaster. Selv hvis RetroBar lukkes, vil de ikke blive gendannet til Windows, før du logger ud og ind igen.</s:String>
-    <s:String x:Key="ok_dialog">OK</s:String>
     <s:String x:Key="allow_blur_behind">Tillad sløring bag gennemsigtig opgavebbjælke</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tilpas meddelelser</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar viser ikoner for aktive og vigtige meddelelser og skjuler inaktive meddelelser. Du kan ændre denne indstilling for elementer i listen nedenfor.</s:String>
@@ -165,8 +165,4 @@
     <s:String x:Key="ime_conversion">Konverteringsmodus</s:String>
     <s:String x:Key="ime_conversion_general">Generelt</s:String>
     <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

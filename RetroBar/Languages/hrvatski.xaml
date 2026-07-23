@@ -30,7 +30,7 @@
     <s:String x:Key="show_input_language">Prikaži raspored _tipkovnice</s:String>
     <s:String x:Key="show_clock">Prikaži _sat</s:String>
     <s:String x:Key="show_multi_mon">Prikaži _na više zaslona</s:String>
-	<s:String x:Key="show_start_button_multi_mon">Prikaži _Start gumb na sve zaslone</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Prikaži _Start gumb na sve zaslone</s:String>
     <s:String x:Key="show_quick_launch">Prika_ži brzo pokretanje</s:String>
     <s:String x:Key="select_location">_Odaberi lokaciju...</s:String>
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
@@ -66,7 +66,7 @@
         <s:String>Otvori moderni kalendar</s:String>
         <s:String>Otvori centar za obavijesti</s:String>
     </x:Array>
-	<s:String x:Key="auto_hide_transparent">Sakrij_ crtu programske trake dok je skrivena</s:String>
+    <s:String x:Key="auto_hide_transparent">Sakrij_ crtu programske trake dok je skrivena</s:String>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Posjete RetroBar na GitHubu</s:String>
     <s:String x:Key="taskbar_scale">Omjer programske trake</s:String>
@@ -75,8 +75,8 @@
     <s:String x:Key="taskbar_scale_current">Trenutačne postavke: {0}%</s:String>
     <s:String x:Key="debug_logging">Omogući _bilježenje</s:String>
     <s:String x:Key="check_for_updates">Provjeravaj za a_žuriranja</s:String>
-	<s:String x:Key="show_exit_menu_item">Prikaži I_zlaznu opciju u kontekstnom izborniku</s:String>
-	<s:String x:Key="show_end_task_button">Prikaži o_pciju Ugasi program u konteksnom izborniku</s:String>
+    <s:String x:Key="show_exit_menu_item">Prikaži I_zlaznu opciju u kontekstnom izborniku</s:String>
+    <s:String x:Key="show_end_task_button">Prikaži o_pciju Ugasi program u konteksnom izborniku</s:String>
     <s:String x:Key="slide_taskbar_buttons">Kliz_anje gumbova programske trake</s:String>
     <s:String x:Key="show_clock_seconds">P_rikaži sekunde na satu</s:String>
     <s:String x:Key="open_custom_themes_folder">Otvori mapu za prilagođene teme</s:String>
@@ -88,8 +88,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar prečaci</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar će nadjačati prečace Windows programske trake. Iako je RetroBar ugašen i neće se vratiti na Windowsove dok se ne odjavite i ponovno prijavite.</s:String>
-    <s:String x:Key="ok_dialog">OK</s:String>
     <s:String x:Key="allow_blur_behind">Omogućite zamućenje iza prozirne sustavske trake</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Prilagodi obavjesti</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar prikazuje ikone aktivnih i hitnih obavijesti, a sakriva neaktivne. Takvo ponašanje možete promijeniti za stavke na popisu.</s:String>
@@ -141,14 +141,14 @@
     <s:String x:Key="minimize">Mi_nimiziraj</s:String>
     <s:String x:Key="maximize">Ma_ksimiziraj</s:String>
     <s:String x:Key="close">_Zatvori</s:String>
-	<s:String x:Key="end_task">_Ugasi program</s:String>
+    <s:String x:Key="end_task">_Ugasi program</s:String>
 
     <s:String x:Key="show_hidden">Prikaži sakrivene ikone</s:String>
     <s:String x:Key="hide">Sakriji</s:String>
 
     <s:String x:Key="open_folder">&amp;Otvori Datoteku</s:String>
-	
-	<s:String x:Key="ime_input_tip_enabled">Pritisnite desni gumb miša za IME opcije</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Pritisnite desni gumb miša za IME opcije</s:String>
     <s:String x:Key="ime_input_tip_disabled">IME onemogućen</s:String>
     <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
     <s:String x:Key="ime_input_full_shape_katakana">Puna Katakana</s:String>

@@ -87,8 +87,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar हॉटकीज़</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar विंडोज़ टास्कबार की हॉटकीज़ को ओवरराइड कर देगा. भले ही RetroBar बंद हो, ये विंडोज़ में तब तक बहाल नहीं होंगी जब तक आप लॉग आउट करके वापस लॉग इन नहीं करते.</s:String>
-    <s:String x:Key="ok_dialog">OK</s:String>
     <s:String x:Key="allow_blur_behind">पारदर्शी टास्कबार के पीछे धुंधलापन अनुमति दें</s:String>
+    <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">सूचनाओं को अनुकूलित करें</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar सक्रिय और तात्कालिक सूचनाओं के आइकन दिखाता है, और निष्क्रिय सूचनाओं को छिपा देता है. आप नीचे दी गई सूची में आइटम्स के लिए इस व्यवहार को बदल सकते हैं.</s:String>
@@ -165,8 +165,4 @@
     <s:String x:Key="ime_conversion">परिवर्तन मोड</s:String>
     <s:String x:Key="ime_conversion_general">सामान्य</s:String>
     <s:String x:Key="ime_conversion_none">न कोई रूपांतरण</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
