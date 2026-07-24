@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Authors: https://github.com/bzzrak, Radoš Milićev (https://github.com/rammba) -->
     <s:String x:Key="retrobar_properties">Поставке RetroBar-а</s:String>
     <s:String x:Key="taskbar_tab">Трака задатака</s:String>
     <s:String x:Key="advanced_tab">Напредно</s:String>
@@ -89,8 +88,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar пречице</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar ће прегазити Windows пречице за траку задатака. Чак иако је RetroBar затворен, пречице неће бити враћене док се не пријавите поново на Windows.</s:String>
+    <s:String x:Key="allow_blur_behind">Дозволи _замућење иза провидне траке задатака</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
-    <s:String x:Key="allow_blur_behind">Дозволи замућење иза провидне траке задатака</s:String>
 
     <s:String x:Key="customize_notifications">Прилагоди обавештења</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar приказује иконице за активна и хитна обавештења, а неактивна сакрива. Можете да промените ово понашање за ставке на списку испод.</s:String>
@@ -167,8 +166,4 @@
     <s:String x:Key="ime_conversion">Режим конверзије</s:String>
     <s:String x:Key="ime_conversion_general">Опште</s:String>
     <s:String x:Key="ime_conversion_none">Без конверзије</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

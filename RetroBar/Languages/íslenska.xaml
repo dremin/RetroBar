@@ -88,8 +88,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar heitlyklaaðgerð</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar mun yfirskrifa hnappasláttartakkana í verkefnislistanum í Windows. Jafnvel þótt RetroBar sé lokað verða takkarnir ekki endurheimtir í Windows fyrr en þú skráir þig út og skráir þig aftur inn.</s:String>
+    <s:String x:Key="allow_blur_behind">Leyfa _óskýrleika á bak við gegnsæja verkstiku</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
-    <s:String x:Key="allow_blur_behind">Leyfa óskýrleika á bak við gegnsæja verkstiku</s:String>
 
     <s:String x:Key="customize_notifications">Aðlaga tilkynningar</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar sýnir táknin fyrir virk og brýn tilkynningar og felur óvirk. Þú getur breytt þessu háttarlagi fyrir atriði í listanum hér að neðan.</s:String>
@@ -166,9 +166,4 @@
     <s:String x:Key="ime_conversion">Umbreytingarmáti</s:String>
     <s:String x:Key="ime_conversion_general">Almennt</s:String>
     <s:String x:Key="ime_conversion_none">Engin umbreyting</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
-
 </ResourceDictionary>

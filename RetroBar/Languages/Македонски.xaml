@@ -87,8 +87,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Топли копчиња RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar ќе ги препише кратенките на лентата со задачи во Windows. Дури и ако RetroBar е затворен, тие нема да бидат вратени во Windows сè додека не се одјавите и повторно најавите.</s:String>
+    <s:String x:Key="allow_blur_behind">Дозволете _замаглување зад транспарентната лента со задачи</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
-    <s:String x:Key="allow_blur_behind">Дозволете замаглување зад транспарентната лента со задачи</s:String>
 
     <s:String x:Key="customize_notifications">Прилагоди известувања</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar прикажува икони за активни и итни известувања, а ги крие неактивните. Можете да го промените ова однесување за елементите во списокот подолу.</s:String>
@@ -165,8 +165,4 @@
     <s:String x:Key="ime_conversion">Режим на конверзија</s:String>
     <s:String x:Key="ime_conversion_general">Општо</s:String>
     <s:String x:Key="ime_conversion_none">Без конверзија</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

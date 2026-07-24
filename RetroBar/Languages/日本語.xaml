@@ -76,9 +76,19 @@
     <s:String x:Key="debug_logging">デバッグログを有効にする(デバッグ)(_D)</s:String>
     <s:String x:Key="check_for_updates">アップデートを確認する(_U)</s:String>
     <s:String x:Key="show_exit_menu_item">右クリックのメニューに終了オプションを表示する(_X)</s:String>
+    <s:String x:Key="show_end_task_button">右クリック メニューに「タスクの終了」オプションを表示する(_E)</s:String>
     <s:String x:Key="slide_taskbar_buttons">タスクバーボタンをスライド表示する(_E)</s:String>
     <s:String x:Key="show_clock_seconds">時計に秒を表示する(_H)</s:String>
     <s:String x:Key="open_custom_themes_folder">カスタムテーマフォルダーを開く</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] ショートカットキーの動作(_H):</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows のデフォルト</s:String>
+        <s:String>タスクを切り替える</s:String>
+        <s:String>クイック起動アイテムを開く</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar ショートカットキー</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar は Windows タスクバーのショートカットキーを上書きします。RetroBar を閉じても、サインアウトして再サインインするまで Windows に復元されません。</s:String>
+    <s:String x:Key="allow_blur_behind">透明なタスクバーの背景のぼかしを許可する(_B)</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">通知領域のカスタマイズ</s:String>
@@ -137,25 +147,24 @@
 
     <s:String x:Key="open_folder">&amp;フォルダーを開く</s:String>
 
-    <s:String x:Key="ime_input_tip_enabled">右クリックで IME オプション</s:String>
-    <s:String x:Key="ime_input_tip_disabled">IME が無効です</s:String>
-    <s:String x:Key="ime_input_full_shape_hiragana">ひらがな</s:String>
-    <s:String x:Key="ime_input_full_shape_katakana">全角カタカナ</s:String>
-    <s:String x:Key="ime_input_full_shape_alphanumeric">全角英数</s:String>
-    <s:String x:Key="ime_input_katakana">半角カタカナ</s:String>
-    <s:String x:Key="ime_input_alphanumeric">半角英数</s:String>
-    <s:String x:Key="ime_input_direct">直接入力</s:String>
-    <s:String x:Key="ime_open_pad">IMEパッド</s:String>
-    <s:String x:Key="ime_open_add_word_dictionary">単語の登録</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">ユーザー辞書ツール</s:String>
-    <s:String x:Key="ime_open_properties">プロパティ</s:String>
-    <s:String x:Key="ime_input_key">ローマ字入力 / カナ入力</s:String>
-    <s:String x:Key="ime_input_key_roma">ローマ字入力</s:String>
-    <s:String x:Key="ime_input_key_kana">かな入力</s:String>
-    <s:String x:Key="ime_conversion">変換モード</s:String>
-    <s:String x:Key="ime_conversion_general">一般</s:String>
-    <s:String x:Key="ime_conversion_none">無変換</s:String>
+    <s:String x:Key="ime_input_tip_enabled">右クリックで IME のオプションを表示します。</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME は無効です</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">ひらがな(_H)</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">全角カタカナ(_K)</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">全角英数(_W)</s:String>
+    <s:String x:Key="ime_input_katakana">半角カタカナ(_N)</s:String>
+    <s:String x:Key="ime_input_alphanumeric">半角英数(_F)</s:String>
+    <s:String x:Key="ime_input_direct">直接入力(_D)</s:String>
+    <s:String x:Key="ime_open_pad">IME パッド(_P)</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">単語の登録(_O)</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">ユーザー辞書ツール(_T)</s:String>
+    <s:String x:Key="ime_open_properties">プロパティ(_R)</s:String>
+    <s:String x:Key="ime_input_key">ローマ字入力 / かな入力(_M)</s:String>
+    <s:String x:Key="ime_input_key_roma">ローマ字入力(_R)</s:String>
+    <s:String x:Key="ime_input_key_kana">かな入力(_T)</s:String>
+    <s:String x:Key="ime_conversion">変換モード(_C)</s:String>
+    <s:String x:Key="ime_conversion_general">一般(_G)</s:String>
+    <s:String x:Key="ime_conversion_none">無変換(_O)</s:String>
 
-    <!-- Items below are settings, and should always be in English -->
     <FontFamily x:Key="start_text_xp_font_family">MS UI Gothic</FontFamily>
 </ResourceDictionary>

@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Opciones avanzadas</s:String>
     <s:String x:Key="taskbar_appearance">Apariencia de barra de tareas</s:String>
     <s:String x:Key="notification_area">Área de notificación</s:String>
+    <s:String x:Key="general_heading">General</s:String>
+    <s:String x:Key="clock_heading">Reloj</s:String>
     <s:String x:Key="autostart">_Iniciar automáticamente al iniciar sesión</s:String>
     <s:String x:Key="language_text">Idi_oma:</s:String>
     <s:String x:Key="language_tip">Seleccione el idioma a usar.</s:String>
@@ -24,7 +26,7 @@
     <s:String x:Key="rowcount_tip">El número de filas en la barra de tareas cuando está en la parte superior o inferior.</s:String>
     <s:String x:Key="taskbar_width">_Ancho de la barra de tareas:</s:String>
     <s:String x:Key="allow_font_smoothing">Permitir suavizado de _fuentes</s:String>
-    <s:String x:Key="allow_font_smoothing_menu">Permitir suavizado de fuentes en los _menús</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Permitir suavizado de fuentes en _menús</s:String>
     <s:String x:Key="collapse_tray_icons">Ocultar _iconos de notificación</s:String>
     <s:String x:Key="customize">_Personalizar...</s:String>
     <s:String x:Key="show_input_language">Mostrar el idioma de _entrada</s:String>
@@ -75,8 +77,8 @@
     <s:String x:Key="taskbar_scale_current">Configuración actual: {0}%</s:String>
     <s:String x:Key="debug_logging">Habilitar registro de _depuración</s:String>
     <s:String x:Key="check_for_updates">Comprobar _actualizaciones</s:String>
-    <s:String x:Key="show_exit_menu_item">Mostrar opción de _salida en el menú contextual</s:String>
-    <s:String x:Key="show_end_task_button">Mostrar opción "_Finalizar tarea" en el menú contextual</s:String>
+    <s:String x:Key="show_exit_menu_item">Mostrar elemento "_Salir de RetroBar" en el menú contextual</s:String>
+    <s:String x:Key="show_end_task_button">Mostrar elemento "_Finalizar tarea" en el menú contextual</s:String>
     <s:String x:Key="slide_taskbar_buttons">Deslizar _botones de la barra de tareas</s:String>
     <s:String x:Key="show_clock_seconds">Mostrar _segundos en el reloj</s:String>
     <s:String x:Key="open_custom_themes_folder">Abrir carpeta de temas personalizados</s:String>
@@ -88,8 +90,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Teclas de acceso rápido de RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar sustituirá las teclas de acceso rápido de la barra de tareas de Windows. Aunque cierre RetroBar, no se restaurarán en Windows hasta que cierre la sesión y vuelva a iniciarla.</s:String>
+    <s:String x:Key="allow_blur_behind">Permitir desenfocar el fondo _transparente de la barra de tareas</s:String>
     <s:String x:Key="ok_dialog">Aceptar</s:String>
-    <s:String x:Key="allow_blur_behind">Permitir desenfoque detrás de la barra de tareas transparente</s:String>
 
     <s:String x:Key="customize_notifications">Personalizar notificaciones</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar muestra aquellos iconos de notificaciones activas y urgentes y oculta los de las inactivas. Puede modificar este comportamiento para los elementos que se muestran a continuación.</s:String>
@@ -147,4 +149,24 @@
     <s:String x:Key="hide">Ocultar</s:String>
 
     <s:String x:Key="open_folder">&amp;Abrir carpeta</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Haz clic con el botón derecho para abrir las opciones de IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME desactivado</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">_Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Letra _katakana de ancho completo</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Carácter alfanumérico de ancho comple_to</s:String>
+    <s:String x:Key="ime_input_katakana">Let_ra katakana de ancho medio</s:String>
+    <s:String x:Key="ime_input_alphanumeric">_Carácter alfanumérico de ancho medio</s:String>
+    <s:String x:Key="ime_input_direct">_Entrada directa</s:String>
+    <s:String x:Key="ime_open_pad">_Teclado IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">_Agregar palabra</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">_Diccionario de complemento</s:String>
+    <s:String x:Key="ime_open_properties">_Configuración</s:String>
+    <s:String x:Key="ime_input_key">_Entrada de kana</s:String>
+    <s:String x:Key="ime_input_key_roma">_Desactivado</s:String>
+    <s:String x:Key="ime_input_key_kana">Acti_vado</s:String>
+    <s:String x:Key="ime_conversion">_Modo de conversión</s:String>
+    <s:String x:Key="ime_conversion_general">_General</s:String>
+    <s:String x:Key="ime_conversion_none">_Sin conversión</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} - {1}</s:String>
 </ResourceDictionary>

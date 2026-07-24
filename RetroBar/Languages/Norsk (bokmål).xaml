@@ -88,8 +88,8 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Retrobar-hurtigtaster</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar vil overstyre hurtigtastene i Windows-oppgavelinjen. Selv om RetroBar er lukket, vil de ikke bli gjenopprettet i Windows før du logger ut og logger inn igjen.</s:String>
+    <s:String x:Key="allow_blur_behind">Tillat _uskarphet bak gjennomsiktig oppgavelinje</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
-    <s:String x:Key="allow_blur_behind">Tillat uskarphet bak gjennomsiktig oppgavelinje</s:String>
 
     <s:String x:Key="customize_notifications">Tilpass varslinger</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar viser ikoner for aktive og viktige varsler, og skjuler de som er inaktive. Du kan endre denne virkemåten for elementer i listen nedenfor.</s:String>
@@ -166,8 +166,4 @@
     <s:String x:Key="ime_conversion">Konverteringsmodus</s:String>
     <s:String x:Key="ime_conversion_general">Generelt</s:String>
     <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>
