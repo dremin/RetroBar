@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Opciones avanzadas</s:String>
     <s:String x:Key="taskbar_appearance">Apariencia de barra de tareas</s:String>
     <s:String x:Key="notification_area">Área de notificación</s:String>
+    <s:String x:Key="general_heading">General</s:String>
+    <s:String x:Key="clock_heading">Reloj</s:String>
     <s:String x:Key="autostart">_Iniciar automáticamente al iniciar sesión</s:String>
     <s:String x:Key="language_text">Idi_oma:</s:String>
     <s:String x:Key="language_tip">Seleccione el idioma a usar.</s:String>
@@ -147,4 +149,24 @@
     <s:String x:Key="hide">Ocultar</s:String>
 
     <s:String x:Key="open_folder">&amp;Abrir carpeta</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Haz clic con el botón derecho para abrir las opciones de IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME desactivado</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">_Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Letra _katakana de ancho completo</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Carácter alfanumérico de ancho comple_to</s:String>
+    <s:String x:Key="ime_input_katakana">Let_ra katakana de ancho medio</s:String>
+    <s:String x:Key="ime_input_alphanumeric">_Carácter alfanumérico de ancho medio</s:String>
+    <s:String x:Key="ime_input_direct">_Entrada directa</s:String>
+    <s:String x:Key="ime_open_pad">_Teclado IME</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">_Agregar palabra</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">_Diccionario de complemento</s:String>
+    <s:String x:Key="ime_open_properties">_Configuración</s:String>
+    <s:String x:Key="ime_input_key">_Entrada de kana</s:String>
+    <s:String x:Key="ime_input_key_roma">_Desactivado</s:String>
+    <s:String x:Key="ime_input_key_kana">Acti_vado</s:String>
+    <s:String x:Key="ime_conversion">_Modo de conversión</s:String>
+    <s:String x:Key="ime_conversion_general">_General</s:String>
+    <s:String x:Key="ime_conversion_none">_Sin conversión</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} - {1}</s:String>
 </ResourceDictionary>
