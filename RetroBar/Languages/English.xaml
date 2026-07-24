@@ -150,24 +150,24 @@
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
 
-    <s:String x:Key="ime_input_tip_enabled">Right-click for IME options</s:String>
+    <s:String x:Key="ime_input_tip_enabled">Right-click to open IME options.</s:String>
     <s:String x:Key="ime_input_tip_disabled">IME disabled</s:String>
-    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
-    <s:String x:Key="ime_input_full_shape_katakana">Full-width Katakana</s:String>
-    <s:String x:Key="ime_input_full_shape_alphanumeric">Full-width Alphanumeric</s:String>
-    <s:String x:Key="ime_input_katakana">Half-width Katakana</s:String>
-    <s:String x:Key="ime_input_alphanumeric">Half-width Alphanumeric</s:String>
-    <s:String x:Key="ime_input_direct">Direct Input</s:String>
-    <s:String x:Key="ime_open_pad">IME Pad</s:String>
-    <s:String x:Key="ime_open_add_word_dictionary">Add Word</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Add-on dictionary</s:String>
-    <s:String x:Key="ime_open_properties">Settings</s:String>
-    <s:String x:Key="ime_input_key">Kana Input</s:String>
-    <s:String x:Key="ime_input_key_roma">Off</s:String>
-    <s:String x:Key="ime_input_key_kana">On</s:String>
-    <s:String x:Key="ime_conversion">Conversion Mode</s:String>
-    <s:String x:Key="ime_conversion_general">General</s:String>
-    <s:String x:Key="ime_conversion_none">No Conversion</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">_Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Full-width _Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Full-_width Alphanumeric</s:String>
+    <s:String x:Key="ime_input_katakana">Half-width Kataka_na</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Hal_f-width Alphanumeric</s:String>
+    <s:String x:Key="ime_input_direct">_Direct Input</s:String>
+    <s:String x:Key="ime_open_pad">IME _Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Add W_ord</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">User Dictionary _Tool</s:String>
+    <s:String x:Key="ime_open_properties">P_roperties</s:String>
+    <s:String x:Key="ime_input_key">Input _Method</s:String>
+    <s:String x:Key="ime_input_key_roma">_Romaji Input</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana Inpu_t</s:String>
+    <s:String x:Key="ime_conversion">_Conversion mode</s:String>
+    <s:String x:Key="ime_conversion_general">_General</s:String>
+    <s:String x:Key="ime_conversion_none">N_o Conversion</s:String>
     <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
     <!-- Items below are settings, and should always be in English -->
