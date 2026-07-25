@@ -48,7 +48,15 @@ namespace RetroBar.Controls
 
         private IntPtr _thumbHandle;
 
-        public static DependencyProperty SourceWindowHandleProperty = DependencyProperty.Register(nameof(SourceWindowHandle), typeof(IntPtr), typeof(TaskThumbnail), new PropertyMetadata(new IntPtr()));
+        public static DependencyProperty SourceWindowHandleProperty = DependencyProperty.Register(nameof(SourceWindowHandle), typeof(IntPtr), typeof(TaskThumbnail), new PropertyMetadata(new IntPtr(), OnSourceWindowHandleChanged));
+
+        private static void OnSourceWindowHandleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TaskThumbnail thumbnail)
+            {
+                thumbnail.RegisterThumbnail();
+            }
+        }
 
         public IntPtr SourceWindowHandle
         {
@@ -85,7 +93,11 @@ namespace RetroBar.Controls
                     if (this == null)
                         return new NativeMethods.Rect(0, 0, 0, 0);
 
-                    var generalTransform = TransformToAncestor((System.Windows.Media.Visual)Parent);
+                    var source = PresentationSource.FromVisual(this);
+                    if (source == null || source.RootVisual == null)
+                        return new NativeMethods.Rect(0, 0, 0, 0);
+
+                    var generalTransform = TransformToAncestor(source.RootVisual);
                     var leftTopPoint = generalTransform.Transform(new Point(0, 0));
                     return new NativeMethods.Rect(
                           (int)(leftTopPoint.X * DpiScale),
@@ -190,17 +202,35 @@ namespace RetroBar.Controls
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void RegisterThumbnail()
         {
-            DpiScale = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
+            if (_thumbHandle != IntPtr.Zero)
+            {
+                NativeMethods.DwmUnregisterThumbnail(_thumbHandle);
+                _thumbHandle = IntPtr.Zero;
+            }
 
             if (NativeMethods.DwmIsCompositionEnabled() && SourceWindowHandle != IntPtr.Zero && Handle != IntPtr.Zero && NativeMethods.DwmRegisterThumbnail(Handle, SourceWindowHandle, out _thumbHandle) == 0)
             {
                 Refresh();
                 // once loaded, we need to refresh the thumbnail...
-                _renderingHandler = (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
-                CompositionTarget.Rendering += _renderingHandler;
+                if (_renderingHandler == null)
+                {
+                    _renderingHandler = (s, a) => Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(Refresh));
+                    CompositionTarget.Rendering += _renderingHandler;
+                }
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var source = PresentationSource.FromVisual(this);
+            if (source?.CompositionTarget != null)
+            {
+                DpiScale = source.CompositionTarget.TransformToDevice.M11;
+            }
+
+            RegisterThumbnail();
 
             _toolTipTimer.Start();
         }
