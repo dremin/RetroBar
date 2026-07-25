@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding Path=Icon, Mode=OneWay}"
+            <Image Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DisplayIcon, Mode=OneWay}"
                    Grid.Column="0"
                    Style="{DynamicResource TaskIcon}" />
             <Image Source="{Binding Path=OverlayIcon, Mode=OneWay}"

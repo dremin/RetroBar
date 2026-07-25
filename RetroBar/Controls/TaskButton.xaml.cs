@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
@@ -39,8 +40,18 @@ namespace RetroBar.Controls
         private bool _isLoaded;
         private INotifyCollectionChanged _subscribedCollection;
         private List<ApplicationWindow> _subscribedWindows = new List<ApplicationWindow>();
+        private bool _isGroupMenuOpen;
+        private bool _allowOpenGroupMenu;
 
-        public static readonly DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(IEnumerable), typeof(TaskButton));
+        public static readonly DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(IEnumerable), typeof(TaskButton), new PropertyMetadata(null, OnTasksChanged));
+
+        private static void OnTasksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TaskButton tb)
+            {
+                tb.UpdateDisplayIcon();
+            }
+        }
 
         public IEnumerable Tasks
         {
@@ -52,6 +63,7 @@ namespace RetroBar.Controls
         {
             InitializeComponent();
             SetStyle();
+            DataContextChanged += (s, e) => UpdateDisplayIcon();
         }
 
         private void SetStyle()
@@ -85,7 +97,7 @@ namespace RetroBar.Controls
                 fxStyle = this.FindResource("TaskButtonFlashing") as Style;
             }
 
-            if (AppButton.ContextMenu?.IsOpen == true)
+            if (AppButton.ContextMenu?.IsOpen == true || _isGroupMenuOpen)
             {
                 fxStyle = this.FindResource("TaskButtonActive") as Style;
             }
@@ -141,6 +153,7 @@ namespace RetroBar.Controls
 
         private void TaskButton_OnLoaded(object sender, RoutedEventArgs e)
         {
+            _isLoaded = true;
             if (DataContext is CollectionViewGroup group)
             {
                 Window = group.Items.Count > 0 ? group.Items[0] as ApplicationWindow : null;
@@ -178,6 +191,7 @@ namespace RetroBar.Controls
                 }
             }
 
+            UpdateDisplayIcon();
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
             dragHandler = new DelayedActivationHandler(() =>
@@ -245,6 +259,7 @@ namespace RetroBar.Controls
                 AppButton.DataContext = Window;
             }
 
+            UpdateDisplayIcon();
             SetStyle();
         }
 
@@ -268,9 +283,41 @@ namespace RetroBar.Controls
         {
             if (e.PropertyName == "State")
             {
-                ScrollIntoView();
-                SetStyle();
+                Dispatcher.InvokeAsync(() =>
+                {
+                    ScrollIntoView();
+                    SetStyle();
+                });
             }
+            else if (e.PropertyName == "Icon")
+            {
+                Dispatcher.InvokeAsync(() =>
+                {
+                    UpdateDisplayIcon();
+                });
+            }
+        }
+
+        private void UpdateDisplayIcon()
+        {
+            if (Window == null)
+            {
+                DisplayIcon = null;
+                return;
+            }
+
+            if (Tasks != null)
+            {
+                var windows = Tasks.OfType<ApplicationWindow>().ToList();
+                if (windows.Count > 1 && !string.IsNullOrEmpty(Window.WinFileName))
+                {
+                    bool useLargeIcons = Settings.Instance.TaskbarScale > 1;
+                    DisplayIcon = ManagedShell.Common.Helpers.IconImageConverter.GetImageFromAssociatedIcon(Window.WinFileName, useLargeIcons ? ManagedShell.Common.Enums.IconSize.Large : ManagedShell.Common.Enums.IconSize.Small);
+                    return;
+                }
+            }
+
+            DisplayIcon = Window.Icon;
         }
 
         private void TaskButton_OnUnloaded(object sender, RoutedEventArgs e)
@@ -451,66 +498,86 @@ namespace RetroBar.Controls
             Window?.Maximize();
         }
 
+
+
+        private void OpenGroupMenu(List<ApplicationWindow> windows)
+        {
+            ContextMenu groupMenu = new ContextMenu();
+            
+            foreach (var window in windows)
+            {
+                MenuItem menuItem = new MenuItem();
+                menuItem.Header = window.Title;
+                
+                if (window.Icon != null)
+                {
+                    Image icon = new Image();
+                    icon.Source = window.Icon;
+                    icon.Width = 16;
+                    icon.Height = 16;
+                    menuItem.Icon = icon;
+                }
+
+                // We need a local copy of the window reference for the closure
+                var localWindow = window;
+                menuItem.Click += (s, ev) => 
+                {
+                    if (localWindow.State == ApplicationWindow.WindowState.Active && localWindow.CanMinimize)
+                    {
+                        localWindow.Minimize();
+                    }
+                    else
+                    {
+                        localWindow.BringToFront();
+                    }
+                };
+                groupMenu.Items.Add(menuItem);
+            }
+
+            groupMenu.PlacementTarget = AppButton;
+            
+            if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Top)
+                groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            else if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Left)
+                groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
+            else if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Right)
+                groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Left;
+            else
+                groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Top;
+
+            // Bind TextRenderingMode to match other menus if possible
+            Binding textRenderingBinding = new Binding("AllowFontSmoothingMenu");
+            textRenderingBinding.Source = Settings.Instance;
+            textRenderingBinding.Converter = FindResource("menuTextRenderingModeConverter") as IValueConverter;
+            if (textRenderingBinding.Converter != null)
+            {
+                groupMenu.SetBinding(System.Windows.Media.TextOptions.TextRenderingModeProperty, textRenderingBinding);
+            }
+
+            groupMenu.Closed += (s, ev) => 
+            {
+                _isGroupMenuOpen = false;
+                SetStyle();
+            };
+
+            _isGroupMenuOpen = true;
+            groupMenu.IsOpen = true;
+            SetStyle();
+        }
+
         private void AppButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (!_allowOpenGroupMenu)
+            {
+                return;
+            }
+
             if (Tasks != null)
             {
                 var windows = Tasks.OfType<ApplicationWindow>().ToList();
                 if (windows.Count > 1)
                 {
-                    ContextMenu groupMenu = new ContextMenu();
-                    
-                    foreach (var window in windows)
-                    {
-                        MenuItem menuItem = new MenuItem();
-                        menuItem.Header = window.Title;
-                        
-                        if (window.Icon != null)
-                        {
-                            Image icon = new Image();
-                            icon.Source = window.Icon;
-                            icon.Width = 16;
-                            icon.Height = 16;
-                            menuItem.Icon = icon;
-                        }
-
-                        // We need a local copy of the window reference for the closure
-                        var localWindow = window;
-                        menuItem.Click += (s, ev) => 
-                        {
-                            if (localWindow.State == ApplicationWindow.WindowState.Active && localWindow.CanMinimize)
-                            {
-                                localWindow.Minimize();
-                            }
-                            else
-                            {
-                                localWindow.BringToFront();
-                            }
-                        };
-                        groupMenu.Items.Add(menuItem);
-                    }
-
-                    groupMenu.PlacementTarget = AppButton;
-                    
-                    if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Top)
-                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-                    else if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Left)
-                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
-                    else if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Right)
-                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Left;
-                    else
-                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Top;
-
-                    // Bind TextRenderingMode to match other menus if possible
-                    Binding textRenderingBinding = new Binding("AllowFontSmoothingMenu");
-                    textRenderingBinding.Source = Settings.Instance;
-                    textRenderingBinding.Converter = FindResource("menuTextRenderingModeConverter") as IValueConverter;
-                    if (textRenderingBinding.Converter != null)
-                    {
-                        groupMenu.SetBinding(System.Windows.Media.TextOptions.TextRenderingModeProperty, textRenderingBinding);
-                    }
-
-                    groupMenu.IsOpen = true;
+                    OpenGroupMenu(windows);
                     return;
                 }
             }
@@ -541,7 +608,8 @@ namespace RetroBar.Controls
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                PressedWindowState = Window.State;
+                PressedWindowState = Window?.State ?? ApplicationWindow.WindowState.Inactive;
+                _allowOpenGroupMenu = !_isGroupMenuOpen;
             }
         }
 
@@ -586,6 +654,14 @@ namespace RetroBar.Controls
         private void ContextMenu_OpenedOrClosed(object sender, RoutedEventArgs e)
         {
             SetStyle();
+        }
+
+        public static readonly DependencyProperty DisplayIconProperty = DependencyProperty.Register("DisplayIcon", typeof(ImageSource), typeof(TaskButton));
+
+        public ImageSource DisplayIcon
+        {
+            get => (ImageSource)GetValue(DisplayIconProperty);
+            set => SetValue(DisplayIconProperty, value);
         }
     }
 }
