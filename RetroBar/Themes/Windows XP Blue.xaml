@@ -7,6 +7,7 @@
     <system:Double x:Key="TaskbarUnlockedSize">4</system:Double>
     <Thickness x:Key="TaskButtonMargin" />
     <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
+    <SolidColorBrush x:Key="TaskGroupCountForeground" Color="#FFCC6D" />
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"

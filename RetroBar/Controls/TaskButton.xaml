@@ -47,6 +47,7 @@
                 <TextBlock Grid.Column="0"
                            Text="{Binding Path=Tasks.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:TaskButton}}"
                            FontWeight="Bold"
+                           Foreground="{DynamicResource TaskGroupCountForeground}"
                            Margin="0,0,4,1"
                            Visibility="{Binding Path=Tasks.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:TaskButton}, Converter={StaticResource taskGroupVisibilityConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
                 <TextBlock Grid.Column="1"
