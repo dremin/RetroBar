@@ -4,6 +4,7 @@
              xmlns:converters="clr-namespace:RetroBar.Converters"
              xmlns:controls="clr-namespace:RetroBar.Controls"
              xmlns:utilities="clr-namespace:RetroBar.Utilities"
+             xmlns:managedShellTasks="clr-namespace:ManagedShell.WindowsTasks;assembly=ManagedShell.WindowsTasks"
              Loaded="TaskButton_OnLoaded"
              Unloaded="TaskButton_OnUnloaded">
     <UserControl.Resources>
@@ -12,8 +13,12 @@
         <converters:ToolTipVerticalOffsetConverter x:Key="toolTipVerticalOffsetConverter" />
         <converters:ToolTipPlacementConverter x:Key="toolTipPlacementConverter" />
         <converters:TaskLabelConverter x:Key="taskLabelConverter" />
+        <converters:TaskGroupVisibilityConverter x:Key="taskGroupVisibilityConverter" />
+        <converters:TaskToolTipConverter x:Key="taskToolTipConverter" />
+        <converters:TaskThumbnailItemsConverter x:Key="taskThumbnailItemsConverter" />
     </UserControl.Resources>
     <Button Name="AppButton"
+            Tag="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:TaskButton}}"
             Click="AppButton_OnClick"
             MouseUp="AppButton_OnMouseUp"
             PreviewMouseDown="AppButton_OnPreviewMouseDown"
@@ -25,6 +30,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Image Source="{Binding Path=Icon, Mode=OneWay}"
                    Grid.Column="0"
@@ -33,16 +39,39 @@
                    Grid.Column="0"
                    Style="{DynamicResource TaskOverlayIcon}"
                    Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowTaskBadges, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToVisibilityConverter}}" />
-            <TextBlock Grid.Column="1"
-                       Style="{DynamicResource TaskLabel}">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource taskLabelConverter}">
-                        <Binding Path="Title" />
-                        <Binding Path="ProgressValue" />
-                        <Binding Path="ProgressState" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+            <Grid Grid.Column="1" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Text="{Binding Path=Tasks.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:TaskButton}}"
+                           FontWeight="Bold"
+                           Margin="0,0,4,0"
+                           Visibility="{Binding Path=Tasks.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:TaskButton}, Converter={StaticResource taskGroupVisibilityConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+                <TextBlock Grid.Column="1"
+                           Style="{DynamicResource TaskLabel}"
+                           TextTrimming="CharacterEllipsis">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource taskLabelConverter}">
+                            <Binding Path="Title" />
+                            <Binding Path="WinFileDescription" />
+                            <Binding Path="WinFileName" />
+                            <Binding Path="ProgressValue" />
+                            <Binding Path="ProgressState" />
+                            <Binding Path="Tasks.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType=controls:TaskButton}" FallbackValue="0" TargetNullValue="0" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Grid>
+            <TextBlock Grid.Column="2"
+                       FontFamily="Marlett"
+                       FontSize="14"
+                       Text="&#x39;"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Margin="2,2,-5,0"
+                       Visibility="{Binding Path=Tasks.Count, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:TaskButton}, Converter={StaticResource taskGroupVisibilityConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
         </Grid>
         <Button.ContextMenu>
             <ContextMenu Opened="ContextMenu_OpenedOrClosed"
@@ -50,6 +79,15 @@
                 <TextOptions.TextRenderingMode>
                     <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothingMenu" Converter="{StaticResource menuTextRenderingModeConverter}" />
                 </TextOptions.TextRenderingMode>
+                <MenuItem Header="{DynamicResource minimize_group}"
+                          Click="MinimizeGroupMenuItem_OnClick"
+                          Name="MinimizeGroupMenuItem"
+                          Visibility="Collapsed" />
+                <Separator x:Name="GroupSeparator" Visibility="Collapsed" />
+                <MenuItem Header="{DynamicResource close_group}"
+                          Click="CloseGroupMenuItem_OnClick"
+                          Name="CloseGroupMenuItem"
+                          Visibility="Collapsed" />
                 <MenuItem Header="{DynamicResource restore}"
                           Click="RestoreMenuItem_OnClick"
                           Name="RestoreMenuItem">
@@ -86,7 +124,7 @@
                                    VerticalAlignment="Center" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <Separator />
+                <Separator x:Name="SingleSeparator" />
                 <MenuItem Header="{DynamicResource end_task}"
                           Click="EndTaskMenuItem_OnClick"
                           Name="EndTaskMenuItem"
@@ -113,16 +151,6 @@
                             <DataTrigger Binding="{Binding Source={x:Static utilities:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}"
                                                              Value="True">
                                 <DataTrigger.Setters>
-                                    <Setter Property="HorizontalOffset">
-                                        <Setter.Value>
-                                            <MultiBinding Converter="{StaticResource toolTipHorizontalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
-                                                <Binding RelativeSource="{RelativeSource Self}" Path="PlacementTarget.ActualWidth"/>
-                                                <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
-                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="TaskbarScale"/>
-                                                <Binding Source="{x:Static utilities:Settings.Instance}" Path="Edge"/>
-                                            </MultiBinding>
-                                        </Setter.Value>
-                                    </Setter>
                                     <Setter Property="VerticalOffset">
                                         <Setter.Value>
                                             <MultiBinding Converter="{StaticResource toolTipVerticalOffsetConverter}" UpdateSourceTrigger="PropertyChanged">
@@ -144,8 +172,24 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ToolTip">
                                                 <ContentControl Style="{DynamicResource TaskButtonThumbnail}">
-                                                    <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}"
-                                                                            Title="{Binding Path=Title}"/>
+                                                    <ItemsControl>
+                                                        <ItemsControl.ItemsSource>
+                                                            <MultiBinding Converter="{StaticResource taskThumbnailItemsConverter}">
+                                                                <Binding Path="PlacementTarget.DataContext" RelativeSource="{RelativeSource FindAncestor, AncestorType=ToolTip}" />
+                                                                <Binding Path="PlacementTarget.Tag.Tasks" RelativeSource="{RelativeSource FindAncestor, AncestorType=ToolTip}" />
+                                                            </MultiBinding>
+                                                        </ItemsControl.ItemsSource>
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate DataType="{x:Type managedShellTasks:ApplicationWindow}">
+                                                                <controls:TaskThumbnail SourceWindowHandle="{Binding Path=Handle}" Title="{Binding Path=Title}" Margin="2,0" />
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
                                                 </ContentControl>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -155,7 +199,16 @@
                         </Style.Triggers>
                     </Style>
                 </ToolTip.Style>
-                <TextBlock Text="{Binding Path=Title}" />
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource taskToolTipConverter}">
+                            <Binding Path="Title" />
+                            <Binding Path="WinFileDescription" />
+                            <Binding Path="WinFileName" />
+                            <Binding Path="PlacementTarget.Tag.Tasks" RelativeSource="{RelativeSource FindAncestor, AncestorType=ToolTip}" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </ToolTip>
         </Button.ToolTip>
     </Button>

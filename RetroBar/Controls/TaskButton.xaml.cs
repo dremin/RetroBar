@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -33,6 +37,16 @@ namespace RetroBar.Controls
 
         private DelayedActivationHandler dragHandler;
         private bool _isLoaded;
+        private INotifyCollectionChanged _subscribedCollection;
+        private List<ApplicationWindow> _subscribedWindows = new List<ApplicationWindow>();
+
+        public static readonly DependencyProperty TasksProperty = DependencyProperty.Register("Tasks", typeof(IEnumerable), typeof(TaskButton));
+
+        public IEnumerable Tasks
+        {
+            get => (IEnumerable)GetValue(TasksProperty);
+            set => SetValue(TasksProperty, value);
+        }
 
         public TaskButton()
         {
@@ -42,13 +56,41 @@ namespace RetroBar.Controls
 
         private void SetStyle()
         {
-            MultiBinding multiBinding = new MultiBinding();
-            multiBinding.Converter = StyleConverter;
+            ApplicationWindow.WindowState state = ApplicationWindow.WindowState.Inactive;
+            
+            if (Tasks != null)
+            {
+                var windows = Tasks.OfType<ApplicationWindow>().ToList();
+                if (windows.Any(w => w.State == ApplicationWindow.WindowState.Active))
+                {
+                    state = ApplicationWindow.WindowState.Active;
+                }
+                else if (windows.Any(w => w.State == ApplicationWindow.WindowState.Flashing))
+                {
+                    state = ApplicationWindow.WindowState.Flashing;
+                }
+            }
+            else if (Window != null)
+            {
+                state = Window.State;
+            }
 
-            multiBinding.Bindings.Add(new Binding { RelativeSource = RelativeSource.Self });
-            multiBinding.Bindings.Add(new Binding("State"));
+            var fxStyle = this.FindResource("TaskButton") as Style;
+            if (state == ApplicationWindow.WindowState.Active)
+            {
+                fxStyle = this.FindResource("TaskButtonActive") as Style;
+            }
+            else if (state == ApplicationWindow.WindowState.Flashing)
+            {
+                fxStyle = this.FindResource("TaskButtonFlashing") as Style;
+            }
 
-            AppButton.SetBinding(StyleProperty, multiBinding);
+            if (AppButton.ContextMenu?.IsOpen == true)
+            {
+                fxStyle = this.FindResource("TaskButtonActive") as Style;
+            }
+
+            AppButton.Style = fxStyle;
         }
 
         private void ScrollIntoView()
@@ -58,7 +100,21 @@ namespace RetroBar.Controls
                 return;
             }
 
-            if (Window.State == ApplicationWindow.WindowState.Active)
+            ApplicationWindow.WindowState state = ApplicationWindow.WindowState.Inactive;
+            if (Tasks != null)
+            {
+                var windows = Tasks.OfType<ApplicationWindow>().ToList();
+                if (windows.Any(w => w.State == ApplicationWindow.WindowState.Active))
+                {
+                    state = ApplicationWindow.WindowState.Active;
+                }
+            }
+            else
+            {
+                state = Window.State;
+            }
+
+            if (state == ApplicationWindow.WindowState.Active)
             {
                 BringIntoView();
             }
@@ -85,7 +141,42 @@ namespace RetroBar.Controls
 
         private void TaskButton_OnLoaded(object sender, RoutedEventArgs e)
         {
-            Window = DataContext as ApplicationWindow;
+            if (DataContext is CollectionViewGroup group)
+            {
+                Window = group.Items.Count > 0 ? group.Items[0] as ApplicationWindow : null;
+                AppButton.DataContext = Window;
+                
+                if (group.Items is INotifyCollectionChanged collectionChanged)
+                {
+                    _subscribedCollection = collectionChanged;
+                    _subscribedCollection.CollectionChanged -= GroupItems_CollectionChanged;
+                    _subscribedCollection.CollectionChanged += GroupItems_CollectionChanged;
+                }
+                foreach (ApplicationWindow w in group.Items)
+                {
+                    if (!_subscribedWindows.Contains(w))
+                    {
+                        w.PropertyChanged -= Window_PropertyChanged;
+                        w.PropertyChanged += Window_PropertyChanged;
+                        w.GetButtonRect -= Window_GetButtonRect;
+                        w.GetButtonRect += Window_GetButtonRect;
+                        _subscribedWindows.Add(w);
+                    }
+                }
+            }
+            else
+            {
+                Window = DataContext as ApplicationWindow;
+                AppButton.DataContext = Window;
+                if (Window != null && !_subscribedWindows.Contains(Window))
+                {
+                    Window.PropertyChanged -= Window_PropertyChanged;
+                    Window.PropertyChanged += Window_PropertyChanged;
+                    Window.GetButtonRect -= Window_GetButtonRect;
+                    Window.GetButtonRect += Window_GetButtonRect;
+                    _subscribedWindows.Add(Window);
+                }
+            }
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
@@ -94,18 +185,67 @@ namespace RetroBar.Controls
                 Window?.BringToFront();
             });
 
-            if (Window != null)
-            {
-                Window.GetButtonRect += Window_GetButtonRect;
-                Window.PropertyChanged += Window_PropertyChanged;
-            }
-
             if (Settings.Instance.SlideTaskbarButtons && Host?.Host?.Orientation == Orientation.Horizontal)
             {
                 Animate();
             }
 
+            if (AppButton.ToolTip is ToolTip toolTip)
+            {
+                toolTip.CustomPopupPlacementCallback = new System.Windows.Controls.Primitives.CustomPopupPlacementCallback(ToolTipCustomPlacement);
+            }
+
             _isLoaded = true;
+            SetStyle();
+        }
+
+        private System.Windows.Controls.Primitives.CustomPopupPlacement[] ToolTipCustomPlacement(Size popupSize, Size targetSize, Point offset)
+        {
+            double x = (targetSize.Width - popupSize.Width) / 2.0;
+            double y = -popupSize.Height - 5;
+            System.Windows.Controls.Primitives.PopupPrimaryAxis axis = System.Windows.Controls.Primitives.PopupPrimaryAxis.Horizontal;
+            
+            if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Top)
+            {
+                y = targetSize.Height + 5;
+            }
+
+            return new System.Windows.Controls.Primitives.CustomPopupPlacement[] {
+                new System.Windows.Controls.Primitives.CustomPopupPlacement(new Point(x, y), axis)
+            };
+        }
+
+        private void GroupItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (ApplicationWindow w in e.OldItems)
+                {
+                    w.PropertyChanged -= Window_PropertyChanged;
+                    w.GetButtonRect -= Window_GetButtonRect;
+                    _subscribedWindows.Remove(w);
+                }
+            }
+            if (e.NewItems != null)
+            {
+                foreach (ApplicationWindow w in e.NewItems)
+                {
+                    if (!_subscribedWindows.Contains(w))
+                    {
+                        w.PropertyChanged += Window_PropertyChanged;
+                        w.GetButtonRect += Window_GetButtonRect;
+                        _subscribedWindows.Add(w);
+                    }
+                }
+            }
+            // Update the main Window binding to point to the remaining active window
+            if (DataContext is CollectionViewGroup group)
+            {
+                Window = group.Items.Count > 0 ? group.Items[0] as ApplicationWindow : null;
+                AppButton.DataContext = Window;
+            }
+
+            SetStyle();
         }
 
         private void Window_GetButtonRect(ref NativeMethods.ShortRect rect)
@@ -129,6 +269,7 @@ namespace RetroBar.Controls
             if (e.PropertyName == "State")
             {
                 ScrollIntoView();
+                SetStyle();
             }
         }
 
@@ -142,17 +283,61 @@ namespace RetroBar.Controls
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             dragHandler?.Dispose();
 
-            if (Window != null)
+            if (_subscribedCollection != null)
             {
-                Window.GetButtonRect -= Window_GetButtonRect;
-                Window.PropertyChanged -= Window_PropertyChanged;
+                _subscribedCollection.CollectionChanged -= GroupItems_CollectionChanged;
+                _subscribedCollection = null;
             }
+
+            foreach (ApplicationWindow w in _subscribedWindows)
+            {
+                w.GetButtonRect -= Window_GetButtonRect;
+                w.PropertyChanged -= Window_PropertyChanged;
+            }
+            _subscribedWindows.Clear();
 
             _isLoaded = false;
         }
 
         private void AppButton_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
+            var windows = Tasks?.OfType<ApplicationWindow>().ToList();
+            bool isGroup = windows != null && windows.Count > 1;
+
+            if (isGroup)
+            {
+                RestoreMenuItem.Visibility = Visibility.Collapsed;
+                MoveMenuItem.Visibility = Visibility.Collapsed;
+                SizeMenuItem.Visibility = Visibility.Collapsed;
+                MinimizeMenuItem.Visibility = Visibility.Collapsed;
+                MaximizeMenuItem.Visibility = Visibility.Collapsed;
+                EndTaskMenuItem.Visibility = Visibility.Collapsed;
+                CloseMenuItem.Visibility = Visibility.Collapsed;
+                SingleSeparator.Visibility = Visibility.Collapsed;
+
+                MinimizeGroupMenuItem.Visibility = Visibility.Visible;
+                GroupSeparator.Visibility = Visibility.Visible;
+                CloseGroupMenuItem.Visibility = Visibility.Visible;
+
+                MinimizeGroupMenuItem.IsEnabled = windows.Any(w => w.CanMinimize && w.ShowStyle != NativeMethods.WindowShowStyle.ShowMinimized);
+                CloseGroupMenuItem.IsEnabled = true;
+                CloseGroupMenuItem.FontWeight = FontWeights.Normal;
+                return;
+            }
+
+            MinimizeGroupMenuItem.Visibility = Visibility.Collapsed;
+            GroupSeparator.Visibility = Visibility.Collapsed;
+            CloseGroupMenuItem.Visibility = Visibility.Collapsed;
+
+            RestoreMenuItem.Visibility = Visibility.Visible;
+            MoveMenuItem.Visibility = Visibility.Visible;
+            SizeMenuItem.Visibility = Visibility.Visible;
+            MinimizeMenuItem.Visibility = Visibility.Visible;
+            MaximizeMenuItem.Visibility = Visibility.Visible;
+            EndTaskMenuItem.Visibility = Visibility.Visible;
+            CloseMenuItem.Visibility = Visibility.Visible;
+            SingleSeparator.Visibility = Visibility.Visible;
+
             if (Window == null)
             {
                 return;
@@ -176,6 +361,32 @@ namespace RetroBar.Controls
             }
             MoveMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal;
             SizeMenuItem.IsEnabled = wss == NativeMethods.WindowShowStyle.ShowNormal && (ws & (int)NativeMethods.WindowStyles.WS_MAXIMIZEBOX) != 0;
+        }
+
+        private void MinimizeGroupMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Tasks != null)
+            {
+                foreach (ApplicationWindow win in Tasks.OfType<ApplicationWindow>())
+                {
+                    if (win.CanMinimize)
+                    {
+                        win.Minimize();
+                    }
+                }
+            }
+        }
+
+        private void CloseGroupMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Tasks != null)
+            {
+                var windows = Tasks.OfType<ApplicationWindow>().ToList();
+                foreach (ApplicationWindow win in windows)
+                {
+                    win.Close();
+                }
+            }
         }
 
         private void CloseMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -242,13 +453,87 @@ namespace RetroBar.Controls
 
         private void AppButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (PressedWindowState == ApplicationWindow.WindowState.Active && Window?.CanMinimize == true)
+            if (Tasks != null)
             {
-                Window?.Minimize();
+                var windows = Tasks.OfType<ApplicationWindow>().ToList();
+                if (windows.Count > 1)
+                {
+                    ContextMenu groupMenu = new ContextMenu();
+                    
+                    foreach (var window in windows)
+                    {
+                        MenuItem menuItem = new MenuItem();
+                        menuItem.Header = window.Title;
+                        
+                        if (window.Icon != null)
+                        {
+                            Image icon = new Image();
+                            icon.Source = window.Icon;
+                            icon.Width = 16;
+                            icon.Height = 16;
+                            menuItem.Icon = icon;
+                        }
+
+                        // We need a local copy of the window reference for the closure
+                        var localWindow = window;
+                        menuItem.Click += (s, ev) => 
+                        {
+                            if (localWindow.State == ApplicationWindow.WindowState.Active && localWindow.CanMinimize)
+                            {
+                                localWindow.Minimize();
+                            }
+                            else
+                            {
+                                localWindow.BringToFront();
+                            }
+                        };
+                        groupMenu.Items.Add(menuItem);
+                    }
+
+                    groupMenu.PlacementTarget = AppButton;
+                    
+                    if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Top)
+                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+                    else if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Left)
+                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
+                    else if (Settings.Instance.Edge == ManagedShell.AppBar.AppBarEdge.Right)
+                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Left;
+                    else
+                        groupMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Top;
+
+                    // Bind TextRenderingMode to match other menus if possible
+                    Binding textRenderingBinding = new Binding("AllowFontSmoothingMenu");
+                    textRenderingBinding.Source = Settings.Instance;
+                    textRenderingBinding.Converter = FindResource("menuTextRenderingModeConverter") as IValueConverter;
+                    if (textRenderingBinding.Converter != null)
+                    {
+                        groupMenu.SetBinding(System.Windows.Media.TextOptions.TextRenderingModeProperty, textRenderingBinding);
+                    }
+
+                    groupMenu.IsOpen = true;
+                    return;
+                }
+            }
+
+            // Fallback for single windows or ungrouped task buttons
+            ApplicationWindow targetWindow = Window;
+
+            if (Tasks != null)
+            {
+                var windows = Tasks.OfType<ApplicationWindow>().ToList();
+                if (windows.Count == 1)
+                {
+                    targetWindow = windows[0];
+                }
+            }
+
+            if (PressedWindowState == ApplicationWindow.WindowState.Active && targetWindow?.CanMinimize == true)
+            {
+                targetWindow?.Minimize();
             }
             else
             {
-                Window?.BringToFront();
+                targetWindow?.BringToFront();
             }
         }
 
@@ -300,7 +585,7 @@ namespace RetroBar.Controls
 
         private void ContextMenu_OpenedOrClosed(object sender, RoutedEventArgs e)
         {
-            BindingOperations.GetMultiBindingExpression(AppButton, StyleProperty).UpdateTarget();
+            SetStyle();
         }
     }
 }

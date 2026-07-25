@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
+             xmlns:managedShellTasks="clr-namespace:ManagedShell.WindowsTasks;assembly=ManagedShell.WindowsTasks"
              xmlns:dd="urn:gong-wpf-dragdrop"
              Loaded="TaskList_OnLoaded"
              Unloaded="TaskList_OnUnloaded"
@@ -18,9 +19,9 @@
         <Thumb Style="{DynamicResource ToolbarThumb}">
             <DockPanel.Dock>
                 <Binding Converter="{StaticResource dockOrientationConverter}"
-                             ConverterParameter="leading"
-                             Path="Orientation"
-                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                         ConverterParameter="leading"
+                         Path="Orientation"
+                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
             </DockPanel.Dock>
         </Thumb>
         <ScrollViewer Style="{DynamicResource TaskListScrollViewer}"
@@ -33,6 +34,7 @@
                           HorizontalAlignment="Stretch"
                           dd:DragDrop.IsDragSource="True"
                           dd:DragDrop.IsDropTarget="True"
+                          dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource AncestorType=local:TaskList}, Path=DropHandler}"
                           dd:DragDrop.DragDropContext="TaskList">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -45,8 +47,20 @@
                         </WrapPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <ItemContainerTemplate>
+                <ItemsControl.Resources>
+                    <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                        <local:TaskButton Host="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}" Tasks="{Binding Items}">
+                            <local:TaskButton.Width>
+                                <MultiBinding Converter="{StaticResource taskButtonWidthConverter}">
+                                    <Binding Path="(ItemsControl.AlternationIndex)" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}" />
+                                    <Binding Path="ButtonWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TaskList}" />
+                                    <Binding Path="ExtraWidthCount" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TaskList}" />
+                                    <Binding Path="ButtonsPerRow" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TaskList}" />
+                                </MultiBinding>
+                            </local:TaskButton.Width>
+                        </local:TaskButton>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type managedShellTasks:ApplicationWindow}">
                         <local:TaskButton Host="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:TaskList}}">
                             <local:TaskButton.Width>
                                 <MultiBinding Converter="{StaticResource taskButtonWidthConverter}">
@@ -57,8 +71,8 @@
                                 </MultiBinding>
                             </local:TaskButton.Width>
                         </local:TaskButton>
-                    </ItemContainerTemplate>
-                </ItemsControl.ItemTemplate>
+                    </DataTemplate>
+                </ItemsControl.Resources>
             </ItemsControl>
         </ScrollViewer>
     </DockPanel>
