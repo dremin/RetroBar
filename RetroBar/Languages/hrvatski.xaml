@@ -37,7 +37,7 @@
     <s:String x:Key="select_location">_Odaberi lokaciju...</s:String>
     <s:String x:Key="quick_launch_folder">Odaberi datoteku za brzo pokretanje</s:String>
     <s:String x:Key="show_badges">Prikaži zna_čke</s:String>
-    <s:String x:Key="show_window_previews">Prikaži prikaz prozora(_Umanjena sličica)</s:String>
+    <s:String x:Key="show_window_previews">Prikaži prikaz prozora(Umanjena _sličica)</s:String>
     <s:String x:Key="use_software_rendering">_Koristi softversko renderanje</s:String>
     <s:String x:Key="add_show_desktop_button">Dodaj _gumb za radnu površinu</s:String>
     <s:String x:Key="enable_auto_hide">A_utomatski sakrij programsku traku</s:String>
