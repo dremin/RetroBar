@@ -311,8 +311,8 @@ namespace RetroBar.Controls
                 var windows = Tasks.OfType<ApplicationWindow>().ToList();
                 if (windows.Count > 1 && !string.IsNullOrEmpty(Window.WinFileName))
                 {
-                    bool useLargeIcons = Settings.Instance.TaskbarScale > 1;
-                    DisplayIcon = ManagedShell.Common.Helpers.IconImageConverter.GetImageFromAssociatedIcon(Window.WinFileName, useLargeIcons ? ManagedShell.Common.Enums.IconSize.Large : ManagedShell.Common.Enums.IconSize.Small);
+                    bool useLargeIcons = Settings.Instance.TaskbarScale > 1 || (Application.Current.FindResource("UseLargeIcons") as bool? ?? false);
+                    DisplayIcon = IconImageConverter.GetImageFromAssociatedIcon(Window.WinFileName, useLargeIcons ? ManagedShell.Common.Enums.IconSize.Large : ManagedShell.Common.Enums.IconSize.Small);
                     return;
                 }
             }
@@ -635,6 +635,13 @@ namespace RetroBar.Controls
             if (e.PropertyName == nameof(Settings.Theme))
             {
                 SetStyle();
+            }
+            else if (e.PropertyName == nameof(Settings.TaskbarScale))
+            {
+                Dispatcher.InvokeAsync(() =>
+                {
+                    UpdateDisplayIcon();
+                });
             }
         }
 
