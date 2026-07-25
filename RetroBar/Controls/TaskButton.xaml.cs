@@ -381,7 +381,7 @@ namespace RetroBar.Controls
             SizeMenuItem.Visibility = Visibility.Visible;
             MinimizeMenuItem.Visibility = Visibility.Visible;
             MaximizeMenuItem.Visibility = Visibility.Visible;
-            EndTaskMenuItem.Visibility = Visibility.Visible;
+            EndTaskMenuItem.Visibility = Settings.Instance.ShowEndTaskButton ? Visibility.Visible : Visibility.Collapsed;
             CloseMenuItem.Visibility = Visibility.Visible;
             SingleSeparator.Visibility = Visibility.Visible;
 
