@@ -509,14 +509,11 @@ namespace RetroBar.Controls
                 MenuItem menuItem = new MenuItem();
                 menuItem.Header = window.Title;
                 
-                if (window.Icon != null)
-                {
-                    Image icon = new Image();
-                    icon.Source = window.Icon;
-                    icon.Width = 16;
-                    icon.Height = 16;
-                    menuItem.Icon = icon;
-                }
+                Image icon = new Image();
+                icon.SetBinding(Image.SourceProperty, new Binding(nameof(window.Icon)) { Source = window });
+                icon.Width = 16;
+                icon.Height = 16;
+                menuItem.Icon = icon;
 
                 // We need a local copy of the window reference for the closure
                 var localWindow = window;
