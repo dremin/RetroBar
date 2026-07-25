@@ -62,17 +62,18 @@ namespace RetroBar.Utilities
                 int targetIndex = tasksCollection.Count; // Default to end
                 if (targetItem is CollectionViewGroup targetGroup)
                 {
-                    // Find the first or last window of the target group based on InsertPosition
-                    var targetWindows = targetGroup.Items.OfType<ApplicationWindow>().ToList();
-                    if (targetWindows.Any())
+                    int insertIndex = dropInfo.InsertIndex;
+                    var groups = dropInfo.TargetCollection?.Cast<object>().ToList();
+                    
+                    if (groups != null && insertIndex < groups.Count)
                     {
-                        if (dropInfo.InsertPosition == RelativeInsertPosition.BeforeTargetItem)
+                        if (groups[insertIndex] is CollectionViewGroup groupAtInsertIndex)
                         {
-                            targetIndex = tasksCollection.IndexOf(targetWindows.First());
-                        }
-                        else
-                        {
-                            targetIndex = tasksCollection.IndexOf(targetWindows.Last()) + 1;
+                            var targetWindows = groupAtInsertIndex.Items.OfType<ApplicationWindow>().ToList();
+                            if (targetWindows.Any())
+                            {
+                                targetIndex = tasksCollection.IndexOf(targetWindows.First());
+                            }
                         }
                     }
                 }
