@@ -166,7 +166,6 @@ namespace RetroBar.Controls
                     if (groupDesc is System.Windows.Data.PropertyGroupDescription propDesc && propDesc.PropertyName == "Category")
                     {
                         categoryGroupDesc = propDesc;
-                        break;
                     }
                 }
                 if (categoryGroupDesc != null)
@@ -176,6 +175,8 @@ namespace RetroBar.Controls
 
                 TasksList.ItemsSource = taskbarItems;
             }
+            
+            SetTaskButtonWidth();
         }
 
         private static void TasksChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)

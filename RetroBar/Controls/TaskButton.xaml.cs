@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using ManagedShell.Common.Enums;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTasks;
@@ -299,6 +300,37 @@ namespace RetroBar.Controls
             }
         }
 
+        public static ImageSource GetImageFromAssociatedIcon(string filename)
+        {
+            bool useLargeIcons = Settings.Instance.TaskbarScale > 1 || (Application.Current.FindResource("UseLargeIcons") as bool? ?? false);
+            IntPtr hIcon = IntPtr.Zero;
+
+            if (useLargeIcons)
+            {
+                IconSize[] largeSizes = [IconSize.Jumbo, IconSize.ExtraLarge, IconSize.Large, IconSize.Medium];
+                foreach (IconSize size in largeSizes)
+                {
+                    hIcon = IconHelper.GetIconByFilename(filename, size);
+                    if (hIcon != IntPtr.Zero)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (hIcon == IntPtr.Zero)
+            {
+                hIcon = IconHelper.GetIconByFilename(filename, IconSize.Small);
+            }
+
+            if (hIcon != IntPtr.Zero)
+            {
+                return IconImageConverter.GetImageFromHIcon(hIcon);
+            }
+
+            return null;
+        }
+
         private void UpdateDisplayIcon()
         {
             if (Window == null)
@@ -310,11 +342,14 @@ namespace RetroBar.Controls
             if (Tasks != null)
             {
                 var windows = Tasks.OfType<ApplicationWindow>().ToList();
-                if (windows.Count > 1 && !string.IsNullOrEmpty(Window.WinFileName))
+                if (windows.Count > 1 && !string.IsNullOrEmpty(Window.WinFileName) && !Window.IsUWP)
                 {
-                    bool useLargeIcons = Settings.Instance.TaskbarScale > 1 || (Application.Current.FindResource("UseLargeIcons") as bool? ?? false);
-                    DisplayIcon = IconImageConverter.GetImageFromAssociatedIcon(Window.WinFileName, useLargeIcons ? ManagedShell.Common.Enums.IconSize.Large : ManagedShell.Common.Enums.IconSize.Small);
-                    return;
+                    var icon = GetImageFromAssociatedIcon(Window.WinFileName);
+                    if (icon != null)
+                    {
+                        DisplayIcon = icon;
+                        return;
+                    }
                 }
             }
 
