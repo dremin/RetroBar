@@ -4,11 +4,11 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Özellikleri</s:String>
     <s:String x:Key="taskbar_tab">Görev Çubuğu</s:String>
-    <s:String x:Key="advanced_tab">Gelişmiş Seçenekler</s:String>
+    <s:String x:Key="advanced_tab">Gelişmiş</s:String>
     <s:String x:Key="taskbar_appearance">Görev çubuğu görünümü</s:String>
     <s:String x:Key="notification_area">Bildirim alanı</s:String>
     <s:String x:Key="general_heading">Genel</s:String>
-    <s:String x:Key="clock_heading">Clock</s:String>
+    <s:String x:Key="clock_heading">Saat</s:String>
     <s:String x:Key="autostart">_Oturum açarken otomatik olarak başlat</s:String>
     <s:String x:Key="language_text">_Dil:</s:String>
     <s:String x:Key="language_tip">Kullanılacak dili seçin.</s:String>
@@ -90,7 +90,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar Kısayol Tuşları</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar, Windows Görev Çubuğu kısayol tuşlarını geçersiz kılacaktır. RetroBar kapatılsa bile, oturumunuzu kapatıp tekrar açana kadar Windows'a geri yüklenmeyecektir.</s:String>
-    <s:String x:Key="allow_blur_behind">Şeffaf görev çubuğunun arkasındaki öğelerin bulanıklaştırılmasına izin verr</s:String>
+    <s:String x:Key="allow_blur_behind">Şeffaf görev çubuğunun arkasındaki öğelerin bulanıklaştırılmasına izin ver</s:String>
     <s:String x:Key="ok_dialog">Tamam</s:String>
 
     <s:String x:Key="customize_notifications">Bildirimleri Özelleştir</s:String>
