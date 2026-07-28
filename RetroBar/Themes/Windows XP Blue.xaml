@@ -1025,7 +1025,7 @@
                                         Value="1,0,1,0" />
                                 <Setter TargetName="Content"
                                         Property="Margin"
-                                        Value="8,6,8,5" />
+                                        Value="9,7,7,4" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                         <Trigger Property="IsMouseOver"
