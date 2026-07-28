@@ -106,8 +106,8 @@
 
     <s:String x:Key="start_text">Başlat</s:String>
     <s:String x:Key="start_text_xp">Başlat</s:String>
-    <s:String x:Key="start_button_tip_98">Başlamak için burayı tıklatın.</s:String>
-    <s:String x:Key="start_button_tip">Başlamak için burayı tıklatın.</s:String>
+    <s:String x:Key="start_button_tip_98">Başlamak için buraya tıklayın.</s:String>
+    <s:String x:Key="start_button_tip">Başlamak için buraya tıklayın.</s:String>
     <s:String x:Key="start_button_tip_vista">Başlat</s:String>
 
     <s:String x:Key="retrobar_title">Retrobar Görev Çubuğu</s:String>
@@ -152,22 +152,22 @@
 
     <s:String x:Key="ime_input_tip_enabled">IME seçeneklerini açmak için sağ tıklayın</s:String>
     <s:String x:Key="ime_input_tip_disabled">IME devre dışı</s:String>
-    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
-    <s:String x:Key="ime_input_full_shape_katakana">Tam genişlikli Katakana</s:String>
-    <s:String x:Key="ime_input_full_shape_alphanumeric">Tam genişlikli Alfasayısal</s:String>
-    <s:String x:Key="ime_input_katakana">Yarı genişlikli Katakana</s:String>
-    <s:String x:Key="ime_input_alphanumeric">Yarı genişlikli Alfasayısal</s:String>
-    <s:String x:Key="ime_input_direct">Doğrudan Giriş</s:String>
-    <s:String x:Key="ime_open_pad">IME Klavye Takımı</s:String>
-    <s:String x:Key="ime_open_add_word_dictionary">Sözcük ekle</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Kullanıcı Eklenti Sözlüğü</s:String>
-    <s:String x:Key="ime_open_properties">Özellikler</s:String>
-    <s:String x:Key="ime_input_key">Kana Girişi</s:String>
-    <s:String x:Key="ime_input_key_roma">Kapalı</s:String>
-    <s:String x:Key="ime_input_key_kana">Açık</s:String>
-    <s:String x:Key="ime_conversion">Dönüştürme Modu</s:String>
-    <s:String x:Key="ime_conversion_general">Genel</s:String>
-    <s:String x:Key="ime_conversion_none">Dönüştürme yok</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">_Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Tam Genişlikli _Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Tam _Genişlikli Alfasayısal</s:String>
+    <s:String x:Key="ime_input_katakana">Yarı Genişlikli Kataka_na</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Yar_ı Genişlikli Alfasayısal</s:String>
+    <s:String x:Key="ime_input_direct">_Doğrudan Giriş</s:String>
+    <s:String x:Key="ime_open_pad">IME _Klavye Takımı</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">S_özcük ekle</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Kullanıcı Sözlüğü _Aracı</s:String>
+    <s:String x:Key="ime_open_properties">Ö_zellikler</s:String>
+    <s:String x:Key="ime_input_key">Giriş _Şekli/s:String>
+    <s:String x:Key="ime_input_key_roma">_Romaji Girişi</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana G_irişi</s:String>
+    <s:String x:Key="ime_conversion">_Dönüştürme Modu</s:String>
+    <s:String x:Key="ime_conversion_general">_Genel</s:String>
+    <s:String x:Key="ime_conversion_none">D_önüştürme yok</s:String>
     <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
     <!-- Items below are settings, and should always be in English -->
