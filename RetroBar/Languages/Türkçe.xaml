@@ -162,7 +162,7 @@
     <s:String x:Key="ime_open_add_word_dictionary">S_özcük ekle</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Kullanıcı Sözlüğü _Aracı</s:String>
     <s:String x:Key="ime_open_properties">Ö_zellikler</s:String>
-    <s:String x:Key="ime_input_key">Giriş _Şekli/s:String>
+    <s:String x:Key="ime_input_key">Giriş _Şekli</s:String>
     <s:String x:Key="ime_input_key_roma">_Romaji Girişi</s:String>
     <s:String x:Key="ime_input_key_kana">Kana G_irişi</s:String>
     <s:String x:Key="ime_conversion">_Dönüştürme Modu</s:String>
