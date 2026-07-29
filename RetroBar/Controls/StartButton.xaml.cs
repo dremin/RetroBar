@@ -280,6 +280,13 @@ namespace RetroBar.Controls
             floatingStartButton.SetPosition(getButtonRect());
         }
 
+        public void UpdateFloatingStartTopmost(bool topmost)
+        {
+            if (floatingStartButton == null) return;
+
+            floatingStartButton.Topmost = topmost;
+        }
+
         #endregion
     }
 }

@@ -328,6 +328,18 @@ namespace RetroBar
                 OnPropertyChanged(nameof(Opacity));
             }
         }
+
+        protected override void OnFullScreenEnter(FullScreenApp app)
+        {
+            base.OnFullScreenEnter(app);
+            StartButton?.UpdateFloatingStartTopmost(false);
+        }
+
+        protected override void OnFullScreenLeave()
+        {
+            base.OnFullScreenLeave();
+            StartButton?.UpdateFloatingStartTopmost(true);
+        }
         #endregion
 
         #region Taskbar events
