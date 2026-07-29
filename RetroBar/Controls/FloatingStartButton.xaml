@@ -18,6 +18,8 @@
                   PreviewMouseLeftButtonDown="Start_OnPreviewMouseLeftButtonDown"
                   MouseRightButtonUp="Start_OnMouseRightButtonUp"
                   Style="{DynamicResource StartButton}"
+                  RenderOptions.BitmapScalingMode="HighQuality"
+                  RenderOptions.EdgeMode="Unspecified"
                   Margin="0"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">

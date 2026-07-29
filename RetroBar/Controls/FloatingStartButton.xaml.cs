@@ -139,6 +139,28 @@ namespace RetroBar.Controls
 
             int swp = (int)NativeMethods.SetWindowPosFlags.SWP_NOZORDER | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE;
             NativeMethods.SetWindowPos(handle, IntPtr.Zero, rect.Left, rect.Top, rect.Width, rect.Height, swp);
+
+            // Clip the window to the monitor bounds to prevent bleeding into adjacent screens
+            if (MainButton.Host?.Screen != null)
+            {
+                var bounds = MainButton.Host.Screen.Bounds;
+                int clipLeft = Math.Max(0, bounds.Left - rect.Left);
+                int clipTop = Math.Max(0, bounds.Top - rect.Top);
+                int clipRight = Math.Min(rect.Width, bounds.Right - rect.Left);
+                int clipBottom = Math.Min(rect.Height, bounds.Bottom - rect.Top);
+
+                if (clipLeft < clipRight && clipTop < clipBottom)
+                {
+                    IntPtr hRgn = CreateRectRgn(clipLeft, clipTop, clipRight, clipBottom);
+                    SetWindowRgn(handle, hRgn, true);
+                }
+            }
         }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
     }
 }
