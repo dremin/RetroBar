@@ -73,7 +73,7 @@ namespace RetroBar.Controls
             pendingOpenTimer.Stop();
         }
 
-        private void Start_OnClick(object sender, RoutedEventArgs e)
+        internal void Start_OnClick(object sender, RoutedEventArgs e)
         {
             if (allowOpenStart)
             {
@@ -99,22 +99,22 @@ namespace RetroBar.Controls
             }
         }
 
-        private void Start_DragEnter(object sender, DragEventArgs e)
+        internal void Start_DragEnter(object sender, DragEventArgs e)
         {
             dragHandler?.OnDragEnter(e);
         }
 
-        private void Start_DragLeave(object sender, DragEventArgs e)
+        internal void Start_DragLeave(object sender, DragEventArgs e)
         {
             dragHandler?.OnDragLeave();
         }
 
-        private void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        internal void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             allowOpenStart = Start.IsChecked == false;
         }
 
-        private void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        internal void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (EnvironmentHelper.IsWindows10OrBetter)
             {
@@ -230,6 +230,11 @@ namespace RetroBar.Controls
             {
                 showFloatingStart();
             }
+
+            // Hide the original so only the floating orb is visible.
+            // The VisualBrush still renders correctly because it captures
+            // Start (the ToggleButton) independently of parent opacity.
+            Opacity = 0;
         }
 
         private void showFloatingStart()
@@ -251,6 +256,7 @@ namespace RetroBar.Controls
         {
             floatingStartButton?.Close();
             floatingStartButton = null;
+            Opacity = 1;
         }
 
         private NativeMethods.Rect getButtonRect()
