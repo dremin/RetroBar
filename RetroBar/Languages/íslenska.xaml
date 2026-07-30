@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Ítarlegt</s:String>
     <s:String x:Key="taskbar_appearance">Útlitsaðgerðir verkstikunnar</s:String>
     <s:String x:Key="notification_area">Tilkynningarsvæði</s:String>
+    <s:String x:Key="general_heading">Almennt</s:String>
+    <s:String x:Key="clock_heading">Klukka</s:String>
     <s:String x:Key="autostart">Ræsa sjálfkrafa við _innskráningu</s:String>
     <s:String x:Key="language_text">Mál:</s:String>
     <s:String x:Key="language_tip">Veldu tungumálið sem á að nota.</s:String>
@@ -158,12 +160,14 @@
     <s:String x:Key="ime_input_direct">Bein inntak</s:String>
     <s:String x:Key="ime_open_pad">IME Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Bæta við orði</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Viðbótarorðabók</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Notendiorðabókarverkfæri</s:String>
     <s:String x:Key="ime_open_properties">Stillingar</s:String>
-    <s:String x:Key="ime_input_key">Kana inntak</s:String>
-    <s:String x:Key="ime_input_key_roma">Af</s:String>
-    <s:String x:Key="ime_input_key_kana">Á</s:String>
+    <s:String x:Key="ime_input_key">Inntaksaðferð</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji-inntak</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-inntak</s:String>
     <s:String x:Key="ime_conversion">Umbreytingarmáti</s:String>
     <s:String x:Key="ime_conversion_general">Almennt</s:String>
     <s:String x:Key="ime_conversion_none">Engin umbreyting</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>
