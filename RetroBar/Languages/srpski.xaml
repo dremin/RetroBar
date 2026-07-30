@@ -168,5 +168,4 @@
     <s:String x:Key="ime_conversion">Režim konverzije</s:String>
     <s:String x:Key="ime_conversion_general">Opšte</s:String>
     <s:String x:Key="ime_conversion_none">Bez konverzije</s:String>
-
 </ResourceDictionary>

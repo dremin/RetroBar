@@ -169,8 +169,4 @@
     <s:String x:Key="ime_conversion_general">_Genel</s:String>
     <s:String x:Key="ime_conversion_none">D_önüştürme yok</s:String>
     <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
-
-    <!-- Items below are settings, and should always be in English -->
-    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
-    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

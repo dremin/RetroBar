@@ -169,5 +169,4 @@
     <s:String x:Key="ime_conversion_general">Општо</s:String>
     <s:String x:Key="ime_conversion_none">Без конверзија</s:String>
     <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
-
 </ResourceDictionary>

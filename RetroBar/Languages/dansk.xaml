@@ -26,8 +26,8 @@
     <s:String x:Key="rowcount_tip">Antallet af rækker på proceslinjen, når den er øverst eller nederst.</s:String>
     <s:String x:Key="taskbar_width">Opgavebjælkens bredde:</s:String>
     <s:String x:Key="allow_font_smoothing">_Tillad fontudjævning</s:String>
-    <s:String x:Key="collapse_tray_icons">Skjul ikoner i meddelelsesområdet</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Tillad skriftudjævning i menuerne</s:String>
+    <s:String x:Key="collapse_tray_icons">Skjul ikoner i meddelelsesområdet</s:String>
     <s:String x:Key="customize">_Tilpas...</s:String>
     <s:String x:Key="show_input_language">Vis indgangssproget</s:String>
     <s:String x:Key="show_clock">Vis uret</s:String>
@@ -169,5 +169,4 @@
     <s:String x:Key="ime_conversion_general">Generelt</s:String>
     <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
     <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
-
 </ResourceDictionary>

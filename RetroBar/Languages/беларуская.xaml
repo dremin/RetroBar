@@ -161,13 +161,12 @@
     <s:String x:Key="ime_open_pad">IME Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Дадаць слова</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Слоўнік карыстальніка</s:String>
-    <s:String x:Key="ime_input_key">Метад уводу</s:String>
     <s:String x:Key="ime_open_properties">Налады</s:String>
+    <s:String x:Key="ime_input_key">Метад уводу</s:String>
     <s:String x:Key="ime_input_key_roma">Увод рамадзі</s:String>
     <s:String x:Key="ime_input_key_kana">Увод каны</s:String>
     <s:String x:Key="ime_conversion">Рэжым пераўтварэньня</s:String>
     <s:String x:Key="ime_conversion_general">Стандартны</s:String>
     <s:String x:Key="ime_conversion_none">Без пераўтварэньня</s:String>
     <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
-
 </ResourceDictionary>
