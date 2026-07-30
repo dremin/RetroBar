@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Avancerad</s:String>
     <s:String x:Key="taskbar_appearance">Aktivitetsfältet utseende</s:String>
     <s:String x:Key="notification_area">Meddelandefältet</s:String>
+    <s:String x:Key="general_heading">Allmänt</s:String>
+    <s:String x:Key="clock_heading">Klocka</s:String>
     <s:String x:Key="autostart">Starta automatiskt vid in_loggning</s:String>
     <s:String x:Key="language_text">S_pråk:</s:String>
     <s:String x:Key="language_tip">Välj det språk som ska användas.</s:String>
@@ -158,12 +160,14 @@
     <s:String x:Key="ime_input_direct">Direktinmatning</s:String>
     <s:String x:Key="ime_open_pad">IME Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Lägg till ord</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Tilläggsordbok</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Verktyg för användarordlista</s:String>
     <s:String x:Key="ime_open_properties">Inställningar</s:String>
-    <s:String x:Key="ime_input_key">Kana-inmatning</s:String>
-    <s:String x:Key="ime_input_key_roma">Av</s:String>
-    <s:String x:Key="ime_input_key_kana">På</s:String>
+    <s:String x:Key="ime_input_key">Inmatningsmetod</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji-inmatning</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-inmatning</s:String>
     <s:String x:Key="ime_conversion">Konverteringsläge</s:String>
     <s:String x:Key="ime_conversion_general">Allmänt</s:String>
     <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>
