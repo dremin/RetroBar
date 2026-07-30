@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Avansert</s:String>
     <s:String x:Key="taskbar_appearance">Oppgavelinjens utseende</s:String>
     <s:String x:Key="notification_area">Systemstatusfelt</s:String>
+    <s:String x:Key="general_heading">Generelt</s:String>
+    <s:String x:Key="clock_heading">Klokke</s:String>
     <s:String x:Key="autostart">Start automatisk ved _pålogging</s:String>
     <s:String x:Key="language_text">Språk:</s:String>
     <s:String x:Key="language_tip">Velg språk som skal brukes.</s:String>
@@ -158,12 +160,14 @@
     <s:String x:Key="ime_input_direct">Direkte inngang</s:String>
     <s:String x:Key="ime_open_pad">IME-underlag</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Legg til ord</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Tilleggsordbok</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Verktøy for brukerordbok</s:String>
     <s:String x:Key="ime_open_properties">Innstillinger</s:String>
-    <s:String x:Key="ime_input_key">Kana-inngang</s:String>
-    <s:String x:Key="ime_input_key_roma">Av</s:String>
-    <s:String x:Key="ime_input_key_kana">På</s:String>
+    <s:String x:Key="ime_input_key">Inndatametode</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji-inndata</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-inndata</s:String>
     <s:String x:Key="ime_conversion">Konverteringsmodus</s:String>
     <s:String x:Key="ime_conversion_general">Generelt</s:String>
     <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>
