@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Avanceret</s:String>
     <s:String x:Key="taskbar_appearance">Opgavebjælkens udseende</s:String>
     <s:String x:Key="notification_area">Meddelelsesområde</s:String>
+    <s:String x:Key="general_heading">Generelt</s:String>
+    <s:String x:Key="clock_heading">Ur</s:String>
     <s:String x:Key="autostart">Start automatisk ved logon</s:String>
     <s:String x:Key="language_text">Sprog:</s:String>
     <s:String x:Key="language_tip">Vælg det sprog, du vil bruge.</s:String>
@@ -25,6 +27,7 @@
     <s:String x:Key="taskbar_width">Opgavebjælkens bredde:</s:String>
     <s:String x:Key="allow_font_smoothing">_Tillad fontudjævning</s:String>
     <s:String x:Key="collapse_tray_icons">Skjul ikoner i meddelelsesområdet</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Tillad skriftudjævning i menuerne</s:String>
     <s:String x:Key="customize">_Tilpas...</s:String>
     <s:String x:Key="show_input_language">Vis indgangssproget</s:String>
     <s:String x:Key="show_clock">Vis uret</s:String>
@@ -157,12 +160,14 @@
     <s:String x:Key="ime_input_direct">Direkte indtastning</s:String>
     <s:String x:Key="ime_open_pad">IME-assistent</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Tilføj ord</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Tilføjelsesordbog</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Værktøj til brugerordbog</s:String>
     <s:String x:Key="ime_open_properties">Indstillinger</s:String>
-    <s:String x:Key="ime_input_key">Kana-indtastning</s:String>
-    <s:String x:Key="ime_input_key_roma">Af</s:String>
-    <s:String x:Key="ime_input_key_kana">På</s:String>
+    <s:String x:Key="ime_input_key">Indtastningsmetode</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji-indtastning</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-indtastning</s:String>
     <s:String x:Key="ime_conversion">Konverteringsmodus</s:String>
     <s:String x:Key="ime_conversion_general">Generelt</s:String>
     <s:String x:Key="ime_conversion_none">Ingen konvertering</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>
