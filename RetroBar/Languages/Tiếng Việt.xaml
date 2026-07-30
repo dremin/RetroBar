@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Nâng cao</s:String>
     <s:String x:Key="taskbar_appearance">Giao diện thanh tác vụ</s:String>
     <s:String x:Key="notification_area">Khu vực thông báo</s:String>
+    <s:String x:Key="general_heading">Chung</s:String>
+    <s:String x:Key="clock_heading">Đồng hồ</s:String>
     <s:String x:Key="autostart">Tự động khởi động khi đăng nhập</s:String>
     <s:String x:Key="language_text">Ngôn ngữ:</s:String>
     <s:String x:Key="language_tip">Chọn ngôn ngữ để sử dụng.</s:String>
@@ -76,6 +78,7 @@
     <s:String x:Key="debug_logging">Kích hoạt ghi nhật ký gỡ lỗi</s:String>
     <s:String x:Key="check_for_updates">Kiểm tra cập nhật</s:String>
     <s:String x:Key="show_exit_menu_item">Hiển thị tùy chọn _Thoát trong menu chuột phải</s:String>
+    <s:String x:Key="show_end_task_button">Hiển thị tùy chọn Kết thúc tác vụ trong menu chuột phải</s:String>
     <s:String x:Key="slide_taskbar_buttons">_Di chuyển các nút thanh tác vụ</s:String>
     <s:String x:Key="show_clock_seconds">Hiển thị _giây trong đồng hồ</s:String>
     <s:String x:Key="open_custom_themes_folder">Mở thư mục chủ đề tùy chỉnh</s:String>
@@ -87,6 +90,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Phím tắt RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar sẽ ghi đè các phím tắt của thanh tác vụ Windows. Ngay cả khi RetroBar đóng, chúng sẽ không được khôi phục lại cho Windows cho đến khi bạn đăng xuất và đăng nhập lại.</s:String>
+    <s:String x:Key="allow_blur_behind">Cho phép làm mờ nền thanh tác vụ trong suốt</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Tùy chỉnh thông báo</s:String>
@@ -139,6 +143,7 @@
     <s:String x:Key="minimize">Thu nhỏ</s:String>
     <s:String x:Key="maximize">Phóng to</s:String>
     <s:String x:Key="close">_Đóng</s:String>
+    <s:String x:Key="end_task">Kết thúc tác vụ</s:String>
 
     <s:String x:Key="show_hidden">Hiển thị biểu tượng đã ẩn</s:String>
     <s:String x:Key="hide">Ẩn</s:String>
@@ -157,12 +162,13 @@
     <s:String x:Key="ime_open_add_word_dictionary">Thêm từ</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Từ điển bổ sung</s:String>
     <s:String x:Key="ime_open_properties">Cài đặt</s:String>
-    <s:String x:Key="ime_input_key">Nhập Kana</s:String>
-    <s:String x:Key="ime_input_key_roma">Tắt</s:String>
-    <s:String x:Key="ime_input_key_kana">Bật</s:String>
+    <s:String x:Key="ime_input_key">Phương pháp nhập liệu</s:String>
+    <s:String x:Key="ime_input_key_roma">Nhập liệu bằng Romaji</s:String>
+    <s:String x:Key="ime_input_key_kana">Nhập liệu bằng Kana</s:String>
     <s:String x:Key="ime_conversion">Chế độ chuyển đổi</s:String>
     <s:String x:Key="ime_conversion_general">Chung</s:String>
     <s:String x:Key="ime_conversion_none">Không chuyển đổi</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
     <FontFamily x:Key="start_text_xp_font_family">Tahoma</FontFamily>
 </ResourceDictionary>
