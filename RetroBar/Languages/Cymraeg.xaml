@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Uwch</s:String>
     <s:String x:Key="taskbar_appearance">Ymddangosiad y bar tasgau</s:String>
     <s:String x:Key="notification_area">Ardal hysbysu</s:String>
+    <s:String x:Key="general_heading">Cyffredinol</s:String>
+    <s:String x:Key="clock_heading">Cloc</s:String>
     <s:String x:Key="autostart">Cychwyn yn _awtomatig</s:String>
     <s:String x:Key="language_text">Iaith:</s:String>
     <s:String x:Key="language_tip">Dewiswch yr iaith I ddefnyddio.</s:String>
@@ -24,6 +26,7 @@
     <s:String x:Key="rowcount_tip">Nifer y rhesi ar y bar tasgau pan fydd ar y brig neu'r gwaelod.</s:String>
     <s:String x:Key="taskbar_width">Taskba_r width:</s:String>
     <s:String x:Key="allow_font_smoothing">_Caniatau llyfnhau ffont</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Caniatáu llyfnhau ffontiau mewn bwydlenni</s:String>
     <s:String x:Key="collapse_tray_icons">Plygu _eiconau'r ardal hysbysu</s:String>
     <s:String x:Key="customize">_Addasu...</s:String>
     <s:String x:Key="show_input_language">Dangos yr iaith _fewnbwn</s:String>
@@ -157,12 +160,14 @@
     <s:String x:Key="ime_input_direct">Mewnbwn Uniongyrchol</s:String>
     <s:String x:Key="ime_open_pad">IME Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Ychwanegu Gair</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Geirdiadur Ychwanegol</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Offeryn Geirfa Defnyddiwr</s:String>
     <s:String x:Key="ime_open_properties">Gosodiadau</s:String>
-    <s:String x:Key="ime_input_key">Kana mewnbwn</s:String>
-    <s:String x:Key="ime_input_key_roma">Ffwrdd</s:String>
-    <s:String x:Key="ime_input_key_kana">Ymlaen</s:String>
+    <s:String x:Key="ime_input_key">Dull mewnbwn</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji mewnbwn</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana mewnbwn</s:String>
     <s:String x:Key="ime_conversion">Modd Trosi</s:String>
     <s:String x:Key="ime_conversion_general">Cyffredinol</s:String>
     <s:String x:Key="ime_conversion_none">Dim Trosi</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>
