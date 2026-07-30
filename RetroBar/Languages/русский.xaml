@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Дополнительно</s:String>
     <s:String x:Key="taskbar_appearance">Оформление панели задач</s:String>
     <s:String x:Key="notification_area">Область уведомлений</s:String>
+    <s:String x:Key="general_heading">Общее</s:String>
+    <s:String x:Key="clock_heading">Час</s:String>
     <s:String x:Key="autostart">Запускать при в_ходе в систему</s:String>
     <s:String x:Key="language_text">_Язык:</s:String>
     <s:String x:Key="language_tip">Выберите язык, который хотите использовать.</s:String>
@@ -88,6 +90,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Горячие клавиши RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar перезапишет сочетания клавиш панели задач Windows. Они не будут восстановлены даже после закрытия RetroBar, пока вы не перезайдёте в систему.</s:String>
+    <s:String x:Key="allow_blur_behind">Размывать фон за прозрачной панелью задач</s:String>
     <s:String x:Key="ok_dialog">ОК</s:String>
 
     <s:String x:Key="customize_notifications">Настройка уведомлений</s:String>
@@ -157,12 +160,14 @@
     <s:String x:Key="ime_input_direct">Прямой ввод</s:String>
     <s:String x:Key="ime_open_pad">IME Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Добавить слово</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Словарь дополнений</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Пользовательский словарь</s:String>
     <s:String x:Key="ime_open_properties">Настройки</s:String>
-    <s:String x:Key="ime_input_key">Ввод каны</s:String>
-    <s:String x:Key="ime_input_key_roma">Выкл</s:String>
-    <s:String x:Key="ime_input_key_kana">Вкл</s:String>
+    <s:String x:Key="ime_input_key">Метод ввода</s:String>
+    <s:String x:Key="ime_input_key_roma">Ввод ромадзи</s:String>
+    <s:String x:Key="ime_input_key_kana">Ввод кана</s:String>
     <s:String x:Key="ime_conversion">Режим преобразования</s:String>
     <s:String x:Key="ime_conversion_general">Стандартный</s:String>
     <s:String x:Key="ime_conversion_none">Без преобразования</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>
