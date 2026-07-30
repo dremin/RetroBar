@@ -162,9 +162,9 @@
     <s:String x:Key="ime_open_add_word_dictionary">Adaugă cuvânt</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Dicționar complementar</s:String>
     <s:String x:Key="ime_open_properties">Setări</s:String>
-    <s:String x:Key="ime_input_key">Introducere Kana</s:String>
-    <s:String x:Key="ime_input_key_roma">Oprit</s:String>
-    <s:String x:Key="ime_input_key_kana">Pornit</s:String>
+    <s:String x:Key="ime_input_key">Metodă de introducere</s:String>
+    <s:String x:Key="ime_input_key_roma">Introducere în Romaji</s:String>
+    <s:String x:Key="ime_input_key_kana">Introducere în Kana</s:String>
     <s:String x:Key="ime_conversion">Mod conversie</s:String>
     <s:String x:Key="ime_conversion_general">General</s:String>
     <s:String x:Key="ime_conversion_none">Fără conversie</s:String>
