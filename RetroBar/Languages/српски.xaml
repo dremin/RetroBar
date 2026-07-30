@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Напредно</s:String>
     <s:String x:Key="taskbar_appearance">Изглед траке задатака</s:String>
     <s:String x:Key="notification_area">Системска палета</s:String>
+    <s:String x:Key="general_heading">Опште</s:String>
+    <s:String x:Key="clock_heading">Сат</s:String>
     <s:String x:Key="autostart">Покрени _аутоматски при пријављивању</s:String>
     <s:String x:Key="language_text">_Језик:</s:String>
     <s:String x:Key="language_tip">Изаберите језик апликације.</s:String>
@@ -158,12 +160,13 @@
     <s:String x:Key="ime_input_direct">Директан унос</s:String>
     <s:String x:Key="ime_open_pad">IME Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Додај реч</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Додатни речник</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Алат за кориснички речник</s:String>
     <s:String x:Key="ime_open_properties">Подешавања</s:String>
-    <s:String x:Key="ime_input_key">Кана унос</s:String>
-    <s:String x:Key="ime_input_key_roma">Искључено</s:String>
-    <s:String x:Key="ime_input_key_kana">Укључено</s:String>
+    <s:String x:Key="ime_input_key">Метод уноса</s:String>
+    <s:String x:Key="ime_input_key_roma">Ромаџи унос</s:String>
+    <s:String x:Key="ime_input_key_kana">Кана унос</s:String>
     <s:String x:Key="ime_conversion">Режим конверзије</s:String>
     <s:String x:Key="ime_conversion_general">Опште</s:String>
     <s:String x:Key="ime_conversion_none">Без конверзије</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 </ResourceDictionary>
