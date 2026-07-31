@@ -291,6 +291,16 @@ namespace RetroBar.Controls
             if (floatingStartButton == null) return;
 
             floatingStartButton.Topmost = topmost;
+
+            if (!topmost)
+            {
+                // Setting Topmost=false itself does not guarantee that we will go below a full-screen window.
+                NativeMethods.SetWindowPos(
+                floatingStartButton.Handle,
+                Host.Handle,
+                0, 0, 0, 0,
+                (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
+            }
         }
 
         #endregion

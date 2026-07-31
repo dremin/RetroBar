@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Avvanzat</s:String>
     <s:String x:Key="taskbar_appearance">Dehra tal-bar tal-kompiti</s:String>
     <s:String x:Key="notification_area">Żona ta' notifiki</s:String>
+    <s:String x:Key="general_heading">Ġenerali</s:String>
+    <s:String x:Key="clock_heading">Arloġġ</s:String>
     <s:String x:Key="autostart">Ibda awtomatikament meta tidħol fis-sistema</s:String>
     <s:String x:Key="language_text">Lin_gwa:</s:String>
     <s:String x:Key="language_tip">Agħżel il-lingwa li trid tuża.</s:String>
@@ -160,10 +162,11 @@
     <s:String x:Key="ime_open_add_word_dictionary">Żid kelma</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Dizzjunarju addizzjonali</s:String>
     <s:String x:Key="ime_open_properties">Issettjarijiet</s:String>
-    <s:String x:Key="ime_input_key">Kana Input</s:String>
-    <s:String x:Key="ime_input_key_roma">Mitfi</s:String>
-    <s:String x:Key="ime_input_key_kana">Mixgħul</s:String>
+    <s:String x:Key="ime_input_key">Metodu tal-input</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana</s:String>
     <s:String x:Key="ime_conversion">Modalità ta' konverżjoni</s:String>
     <s:String x:Key="ime_conversion_general">Ġenerali</s:String>
     <s:String x:Key="ime_conversion_none">L-ebda konverżjoni</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 </ResourceDictionary>

@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Avansat</s:String>
     <s:String x:Key="taskbar_appearance">Aspect bară de activităţi</s:String>
     <s:String x:Key="notification_area">Zona de notificări</s:String>
+    <s:String x:Key="general_heading">Setări generale</s:String>
+    <s:String x:Key="clock_heading">Ceas</s:String>
     <s:String x:Key="autostart">Pornire automată la _conectare</s:String>
     <s:String x:Key="language_text">_Limbă:</s:String>
     <s:String x:Key="language_tip">Selectați limba.</s:String>
@@ -160,10 +162,11 @@
     <s:String x:Key="ime_open_add_word_dictionary">Adaugă cuvânt</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Dicționar complementar</s:String>
     <s:String x:Key="ime_open_properties">Setări</s:String>
-    <s:String x:Key="ime_input_key">Introducere Kana</s:String>
-    <s:String x:Key="ime_input_key_roma">Oprit</s:String>
-    <s:String x:Key="ime_input_key_kana">Pornit</s:String>
+    <s:String x:Key="ime_input_key">Metodă de introducere</s:String>
+    <s:String x:Key="ime_input_key_roma">Introducere în Romaji</s:String>
+    <s:String x:Key="ime_input_key_kana">Introducere în Kana</s:String>
     <s:String x:Key="ime_conversion">Mod conversie</s:String>
     <s:String x:Key="ime_conversion_general">General</s:String>
     <s:String x:Key="ime_conversion_none">Fără conversie</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 </ResourceDictionary>

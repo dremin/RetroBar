@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Erweitert</s:String>
     <s:String x:Key="taskbar_appearance">Taskleistendarstellung</s:String>
     <s:String x:Key="notification_area">Infobereich</s:String>
+    <s:String x:Key="general_heading">Allgemein</s:String>
+    <s:String x:Key="clock_heading">Uhr</s:String>
     <s:String x:Key="autostart">Automatisch mit _Windows starten</s:String>
     <s:String x:Key="language_text">S_prache:</s:String>
     <s:String x:Key="language_tip">Wählen Sie die Sprache aus:</s:String>
@@ -88,7 +90,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">RetroBar Tastenkürzel</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar wird die Tastenkürzel der Windows-Taskleiste überschreiben. Selbst wenn RetroBar geschlossen wird, werden diese nicht wiederhergestellt, bevor Sie sich nicht von Windows abgemeldet und wieder angemeldet haben.</s:String>
-    <s:String x:Key="allow_blur_behind">_Unschärfe hinter transparenter Taskleiste zulassen</s:String>
+    <s:String x:Key="allow_blur_behind">_Unschärfe hinter der transparenten Taskleiste zulassen</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
@@ -158,11 +160,11 @@
     <s:String x:Key="ime_input_direct">Direkte Eingabe</s:String>
     <s:String x:Key="ime_open_pad">IME-Pad</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">Wort hinzufügen</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">Add-on Wörterbuch</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Benutzerwörterbuch-Tool</s:String>
     <s:String x:Key="ime_open_properties">Einstellungen</s:String>
-    <s:String x:Key="ime_input_key">Kana-Eingabe</s:String>
-    <s:String x:Key="ime_input_key_roma">Aus</s:String>
-    <s:String x:Key="ime_input_key_kana">An</s:String>
+    <s:String x:Key="ime_input_key">Eingabemethode</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji-Eingabe</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-Eingabe</s:String>
     <s:String x:Key="ime_conversion">Konvertierungsmodus</s:String>
     <s:String x:Key="ime_conversion_general">Allgemein</s:String>
     <s:String x:Key="ime_conversion_none">Kein Konvertierung</s:String>

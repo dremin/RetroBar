@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Avanzato</s:String>
     <s:String x:Key="taskbar_appearance">Aspetto della barra delle applicazioni</s:String>
     <s:String x:Key="notification_area">Area di notifica</s:String>
+    <s:String x:Key="general_heading">Generale</s:String>
+    <s:String x:Key="clock_heading">Orologio</s:String>
     <s:String x:Key="autostart">Avvia automaticamente all'a_ccesso</s:String>
     <s:String x:Key="language_text">Lin_gua:</s:String>
     <s:String x:Key="language_tip">Seleziona la lingua da usare.</s:String>
@@ -160,10 +162,11 @@
     <s:String x:Key="ime_open_add_word_dictionary">Aggiungi parola</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Dizionario complementare</s:String>
     <s:String x:Key="ime_open_properties">Impostazioni</s:String>
-    <s:String x:Key="ime_input_key">Inserimento Kana</s:String>
-    <s:String x:Key="ime_input_key_roma">Disattivato</s:String>
-    <s:String x:Key="ime_input_key_kana">Attivato</s:String>
+    <s:String x:Key="ime_input_key">Metodo di immissione</s:String>
+    <s:String x:Key="ime_input_key_roma">Inserimento in Romaji</s:String>
+    <s:String x:Key="ime_input_key_kana">Inserimento in Kana</s:String>
     <s:String x:Key="ime_conversion">Modalità di conversione</s:String>
     <s:String x:Key="ime_conversion_general">Generale</s:String>
     <s:String x:Key="ime_conversion_none">Nessuna conversione</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 </ResourceDictionary>

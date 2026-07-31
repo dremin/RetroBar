@@ -7,7 +7,7 @@
     <s:String x:Key="advanced_tab">Napredne postavke</s:String>
     <s:String x:Key="taskbar_appearance">Izgled programske trake</s:String>
     <s:String x:Key="notification_area">Područje obavijesti</s:String>
-	<s:String x:Key="general_heading">Općenito</s:String>
+    <s:String x:Key="general_heading">Općenito</s:String>
     <s:String x:Key="clock_heading">Sat</s:String>
     <s:String x:Key="autostart">Auto_matski pokrenuti pri pokretanju</s:String>
     <s:String x:Key="language_text">Jez_ik:</s:String>
@@ -149,7 +149,7 @@
     <s:String x:Key="hide">Sakriji</s:String>
 
     <s:String x:Key="open_folder">&amp;Otvori Datoteku</s:String>
-	
+
     <s:String x:Key="ime_input_tip_enabled">Pritisnite desni gumb miša za IME opcije</s:String>
     <s:String x:Key="ime_input_tip_disabled">IME onemogućen</s:String>
     <s:String x:Key="ime_input_full_shape_hiragana">_Hiragana</s:String>

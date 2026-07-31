@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Zaawansowane</s:String>
     <s:String x:Key="taskbar_appearance">Wygląd paska zadań</s:String>
     <s:String x:Key="notification_area">Obszar powiadomień</s:String>
+    <s:String x:Key="general_heading">Ogólne</s:String>
+    <s:String x:Key="clock_heading">Zegar</s:String>
     <s:String x:Key="autostart">Uruchamiaj podczas startu systemu</s:String>
     <s:String x:Key="language_text">_Język:</s:String>
     <s:String x:Key="language_tip">Wybierz język.</s:String>
@@ -88,6 +90,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">Klawisze skrótów RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">RetroBar zamieni istniejące klawisze skrótów paska zadań systemu Windows. Nawet po zamknięciu RetroBar klawisze skrótów systemu Windows nie będą przywrócone aż do wylogowania się i ponownego zalogowania się do systemu Windows.</s:String>
+    <s:String x:Key="allow_blur_behind">Pozwolić na rozmycie za przeźroczystym paskiem zadań?</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
 
     <s:String x:Key="customize_notifications">Dostosuj powiadomienia</s:String>
@@ -140,6 +143,7 @@
     <s:String x:Key="minimize">_Minimalizuj</s:String>
     <s:String x:Key="maximize">Mak_symalizuj</s:String>
     <s:String x:Key="close">Zam_knij</s:String>
+    <s:String x:Key="end_task">Zakończyć polecenie</s:String>
 
     <s:String x:Key="show_hidden">Pokaż ukryte ikony</s:String>
     <s:String x:Key="hide">Ukryj</s:String>
@@ -158,10 +162,11 @@
     <s:String x:Key="ime_open_add_word_dictionary">Dodaj słowo</s:String>
     <s:String x:Key="ime_open_dictionary_tool">Słownik dodatkowy</s:String>
     <s:String x:Key="ime_open_properties">Ustawienia</s:String>
-    <s:String x:Key="ime_input_key">Wprowadzanie znaków Kana</s:String>
-    <s:String x:Key="ime_input_key_roma">Włączone</s:String>
-    <s:String x:Key="ime_input_key_kana">Wyłączone</s:String>
+    <s:String x:Key="ime_input_key">Metoda wprowadzania</s:String>
+    <s:String x:Key="ime_input_key_roma">Wprowadzanie znaków Romaji</s:String>
+    <s:String x:Key="ime_input_key_kana">Wprowadzanie znaków Kana</s:String>
     <s:String x:Key="ime_conversion">Tryb konwersji</s:String>
     <s:String x:Key="ime_conversion_general">Ogólna</s:String>
     <s:String x:Key="ime_conversion_none">Bez konwersji</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 </ResourceDictionary>
