@@ -250,8 +250,6 @@ namespace RetroBar.Controls
             }
 
             // Hide the original so only the floating orb is visible.
-            // The VisualBrush still renders correctly because it captures
-            // Start (the ToggleButton) independently of parent opacity.
             Opacity = 0;
         }
 
