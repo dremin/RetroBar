@@ -13,8 +13,9 @@ namespace RetroBar.Controls
     public partial class FloatingStartButton : Window
     {
         private WindowInteropHelper helper;
-        private IntPtr handle;
         private NativeMethods.Rect startupRect;
+
+        public IntPtr Handle;
 
         public FloatingStartButton(StartButton mainButton, NativeMethods.Rect rect)
         {
@@ -33,16 +34,16 @@ namespace RetroBar.Controls
         {
             // set up helper and get handle
             helper = new WindowInteropHelper(this);
-            handle = helper.Handle;
+            Handle = helper.Handle;
 
             // set up window procedure
-            HwndSource source = HwndSource.FromHwnd(handle);
+            HwndSource source = HwndSource.FromHwnd(Handle);
             source.AddHook(WndProc);
 
             // Makes click-through by adding transparent style, hide from taskbar
-            NativeMethods.SetWindowLong(helper.Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE, (NativeMethods.GetWindowLong(helper.Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
+            NativeMethods.SetWindowLong(Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE, (NativeMethods.GetWindowLong(Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TRANSPARENT);
 
-            WindowHelper.ExcludeWindowFromPeek(helper.Handle);
+            WindowHelper.ExcludeWindowFromPeek(Handle);
 
             SetPosition(startupRect);
         }
@@ -80,7 +81,7 @@ namespace RetroBar.Controls
         internal void SetPosition(NativeMethods.Rect rect)
         {
             NativeMethods.Rect currentRect;
-            NativeMethods.GetWindowRect(handle, out currentRect);
+            NativeMethods.GetWindowRect(Handle, out currentRect);
 
             if (rect.Left == currentRect.Left && rect.Top == currentRect.Top && rect.Right == currentRect.Right && rect.Bottom == currentRect.Bottom)
             {
@@ -88,7 +89,7 @@ namespace RetroBar.Controls
             }
 
             int swp = (int)NativeMethods.SetWindowPosFlags.SWP_NOZORDER | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE;
-            NativeMethods.SetWindowPos(handle, IntPtr.Zero, rect.Left, rect.Top, rect.Width, rect.Height, swp);
+            NativeMethods.SetWindowPos(Handle, IntPtr.Zero, rect.Left, rect.Top, rect.Width, rect.Height, swp);
         }
     }
 }
