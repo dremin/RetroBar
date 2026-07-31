@@ -38,10 +38,6 @@ namespace RetroBar.Controls
             InitializeComponent();
             startupRect = rect;
 
-            // Bind IsChecked directly to the source ToggleButton object, 
-            // since we cannot bind to it in XAML because 'Start' is an internal field.
-            BindingOperations.SetBinding(Start, ToggleButton.IsCheckedProperty, new Binding(nameof(ToggleButton.IsChecked)) { Source = mainButton.Start, Mode = BindingMode.TwoWay });
-
             if (mainButton.Host != null)
             {
                 mainButton.Host.PropertyChanged += Host_PropertyChanged;
@@ -63,9 +59,7 @@ namespace RetroBar.Controls
             HwndSource source = HwndSource.FromHwnd(Handle);
             source.AddHook(WndProc);
 
-            // Hide from taskbar
-            NativeMethods.SetWindowLong(Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE, (NativeMethods.GetWindowLong(Handle, NativeMethods.WindowLongFlags.GWL_EXSTYLE) & ~(int)NativeMethods.ExtendedWindowStyles.WS_EX_APPWINDOW) | (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW);
-
+            WindowHelper.HideWindowFromTasks(Handle);
             WindowHelper.ExcludeWindowFromPeek(Handle);
 
             SetPosition(startupRect);
@@ -99,31 +93,6 @@ namespace RetroBar.Controls
 
             handled = false;
             return IntPtr.Zero;
-        }
-
-        private void Start_OnClick(object sender, RoutedEventArgs e)
-        {
-            MainButton.Start_OnClick(sender, e);
-        }
-
-        private void Start_DragEnter(object sender, DragEventArgs e)
-        {
-            MainButton.Start_DragEnter(sender, e);
-        }
-
-        private void Start_DragLeave(object sender, DragEventArgs e)
-        {
-            MainButton.Start_DragLeave(sender, e);
-        }
-
-        private void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MainButton.Start_OnPreviewMouseLeftButtonDown(sender, e);
-        }
-
-        private void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MainButton.Start_OnMouseRightButtonUp(sender, e);
         }
 
         internal void SetPosition(NativeMethods.Rect rect)

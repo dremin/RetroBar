@@ -31,6 +31,22 @@ namespace RetroBar.Controls
             set { SetValue(HostProperty, value); }
         }
 
+        public static DependencyProperty IsFloatingProperty = DependencyProperty.Register(nameof(IsFloating), typeof(bool), typeof(StartButton), new PropertyMetadata(false, OnIsFloatingChanged));
+
+        private static void OnIsFloatingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is StartButton startButton && (bool)e.NewValue)
+            {
+                startButton.Start.Margin = new Thickness(0);
+            }
+        }
+
+        public bool IsFloating
+        {
+            get { return (bool)GetValue(IsFloatingProperty); }
+            set { SetValue(IsFloatingProperty, value); }
+        }
+
         public StartMenuMonitor StartMenuMonitor
         {
             get { return (StartMenuMonitor)GetValue(StartMenuMonitorProperty); }
@@ -73,7 +89,7 @@ namespace RetroBar.Controls
             pendingOpenTimer.Stop();
         }
 
-        internal void Start_OnClick(object sender, RoutedEventArgs e)
+        private void Start_OnClick(object sender, RoutedEventArgs e)
         {
             if (allowOpenStart)
             {
@@ -99,22 +115,22 @@ namespace RetroBar.Controls
             }
         }
 
-        internal void Start_DragEnter(object sender, DragEventArgs e)
+        private void Start_DragEnter(object sender, DragEventArgs e)
         {
             dragHandler?.OnDragEnter(e);
         }
 
-        internal void Start_DragLeave(object sender, DragEventArgs e)
+        private void Start_DragLeave(object sender, DragEventArgs e)
         {
             dragHandler?.OnDragLeave();
         }
 
-        internal void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Start_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             allowOpenStart = Start.IsChecked == false;
         }
 
-        internal void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void Start_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (EnvironmentHelper.IsWindows10OrBetter)
             {
@@ -217,6 +233,8 @@ namespace RetroBar.Controls
 
         private void openFloatingStart()
         {
+            if (IsFloating) return;
+
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
             if (!useFloatingStartButton || Visibility != Visibility.Visible) return;
@@ -247,6 +265,7 @@ namespace RetroBar.Controls
 
         private void hideFloatingStart()
         {
+            if (IsFloating) return;
             if (floatingStartButton == null) return;
 
             floatingStartButton.Visibility = Visibility.Hidden;
