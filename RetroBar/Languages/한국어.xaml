@@ -168,6 +168,7 @@
     <s:String x:Key="ime_conversion">변환 모드</s:String>
     <s:String x:Key="ime_conversion_general">일반</s:String>
     <s:String x:Key="ime_conversion_none">변환 없음</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
     <FontFamily x:Key="start_text_xp_font_family">굴림 Bold</FontFamily>
 </ResourceDictionary>
