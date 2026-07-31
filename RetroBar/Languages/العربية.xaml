@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">خيارات متقدمة</s:String>
     <s:String x:Key="taskbar_appearance">مظهر شريط المهام</s:String>
     <s:String x:Key="notification_area">منطقة الإعلام</s:String>
+    <s:String x:Key="general_heading">عام</s:String>
+    <s:String x:Key="clock_heading">الساعة</s:String>
     <s:String x:Key="autostart">بدء التشغيل تلقائيًا عند تسجيل ال_دخول</s:String>
     <s:String x:Key="language_text">ال_لغة:</s:String>
     <s:String x:Key="language_tip">اختر اللغة التي تريد استخدامها.</s:String>
@@ -89,6 +91,7 @@
     <s:String x:Key="hotkey_warning_title">اختصارات RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">سيقوم RetroBar باستبدال اختصارات شريط مهام ويندوز. حتى إذا أغلقت RetroBar، فلن تعود الاختصارات الأصلية حتى تقوم بتسجيل الخروج والعودة.</s:String>
     <s:String x:Key="ok_dialog">موافق</s:String>
+	<s:String x:Key="allow_blur_behind">تمكين تمويه الخلفية خلف شريط المهام الشفاف</s:String>
 
     <s:String x:Key="customize_notifications">تخصيص الإشعارات</s:String>
     <s:String x:Key="customize_notifications_info">يعرض RetroBar أيقونات للإشعارات النشطة والعاجلة ويخفي غير النشطة. يمكنك تغيير هذا السلوك للعناصر في القائمة أدناه.</s:String>
@@ -165,7 +168,9 @@
     <s:String x:Key="ime_conversion">وضع التحويل</s:String>
     <s:String x:Key="ime_conversion_general">عام</s:String>
     <s:String x:Key="ime_conversion_none">بدون تحويل</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
+    <!-- العناصر التالية هي إعدادات ويجب أن تبقى بالإنجليزية دائمًا -->
     <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>
