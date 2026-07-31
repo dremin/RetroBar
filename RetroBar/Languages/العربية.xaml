@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">خيارات متقدمة</s:String>
     <s:String x:Key="taskbar_appearance">مظهر شريط المهام</s:String>
     <s:String x:Key="notification_area">منطقة الإعلام</s:String>
+    <s:String x:Key="general_heading">عام</s:String>
+    <s:String x:Key="clock_heading">الساعة</s:String>
     <s:String x:Key="autostart">بدء التشغيل تلقائيًا عند تسجيل ال_دخول</s:String>
     <s:String x:Key="language_text">ال_لغة:</s:String>
     <s:String x:Key="language_tip">اختر اللغة التي تريد استخدامها.</s:String>
@@ -23,7 +25,7 @@
     <s:String x:Key="rowcount_text">عدد ال_صفوف:</s:String>
     <s:String x:Key="rowcount_tip">عدد صفوف شريط المهام عند وجوده في الأعلى أو الأسفل.</s:String>
     <s:String x:Key="taskbar_width">ع_رض شريط المهام:</s:String>
-    <s:String x:Key="allow_font_smoothing">السماح بتنعيم ال_خطوط</s:String>
+    <s:String x:Key="allow_font_smoothing">السماح بتنعيم الخ_طوط</s:String>
     <s:String x:Key="allow_font_smoothing_menu">السماح بتنعيم الخطوط في ال_قوائم</s:String>
     <s:String x:Key="collapse_tray_icons">طيّ أيقونات _منطقة الإعلام</s:String>
     <s:String x:Key="customize">_تخصيص...</s:String>
@@ -76,7 +78,7 @@
     <s:String x:Key="debug_logging">تمكين تسجيل ال_تصحيح</s:String>
     <s:String x:Key="check_for_updates">التحقق من الت_حديثات</s:String>
     <s:String x:Key="show_exit_menu_item">إظهار خيار ال_خروج في قائمة النقر بزر الماوس الأيمن</s:String>
-    <s:String x:Key="show_end_task_button">إظهار خيار إنهاء ال_مهمة في قائمة النقر بزر الماوس الأيمن</s:String>
+    <s:String x:Key="show_end_task_button">إظهار خيار إنهاء الم_همة في قائمة النقر بزر الماوس الأيمن</s:String>
     <s:String x:Key="slide_taskbar_buttons">تحريك أزرار شريط الم_هام</s:String>
     <s:String x:Key="show_clock_seconds">إظهار ال_ثواني في الساعة</s:String>
     <s:String x:Key="open_custom_themes_folder">فتح مجلد السمات المخصصة</s:String>
@@ -88,6 +90,7 @@
     </x:Array>
     <s:String x:Key="hotkey_warning_title">اختصارات RetroBar</s:String>
     <s:String x:Key="hotkey_warning_text">سيقوم RetroBar باستبدال اختصارات شريط مهام ويندوز. حتى إذا أغلقت RetroBar، فلن تعود الاختصارات الأصلية حتى تقوم بتسجيل الخروج والعودة.</s:String>
+	<s:String x:Key="allow_blur_behind">تمكين تمويه الخلفية خلف شريط المهام الشفاف</s:String>
     <s:String x:Key="ok_dialog">موافق</s:String>
 
     <s:String x:Key="customize_notifications">تخصيص الإشعارات</s:String>
@@ -157,15 +160,17 @@
     <s:String x:Key="ime_input_direct">الإدخال المباشر</s:String>
     <s:String x:Key="ime_open_pad">لوحة IME</s:String>
     <s:String x:Key="ime_open_add_word_dictionary">إضافة كلمة</s:String>
-    <s:String x:Key="ime_open_dictionary_tool">قاموس إضافي</s:String>
-    <s:String x:Key="ime_open_properties">الإعدادات</s:String>
-    <s:String x:Key="ime_input_key">إدخال Kana</s:String>
-    <s:String x:Key="ime_input_key_roma">إيقاف</s:String>
-    <s:String x:Key="ime_input_key_kana">تشغيل</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">أداة _قاموس المستخدم</s:String>
+    <s:String x:Key="ime_open_properties">الخ_صائص</s:String>
+    <s:String x:Key="ime_input_key">طريقة الإد_خال</s:String>
+    <s:String x:Key="ime_input_key_roma">إدخال روما_جي</s:String>
+    <s:String x:Key="ime_input_key_kana">إدخال _كانا</s:String>
     <s:String x:Key="ime_conversion">وضع التحويل</s:String>
     <s:String x:Key="ime_conversion_general">عام</s:String>
     <s:String x:Key="ime_conversion_none">بدون تحويل</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
+    <!-- العناصر التالية هي إعدادات ويجب أن تبقى بالإنجليزية دائمًا -->
     <FlowDirection x:Key="flow_direction">RightToLeft</FlowDirection>
     <FontFamily x:Key="start_text_xp_font_family">Microsoft Sans Serif</FontFamily>
 </ResourceDictionary>
