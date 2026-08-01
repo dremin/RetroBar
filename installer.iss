@@ -20,6 +20,13 @@
 #define ReleasePath10 ReleasePathBase + TargetFramework10
 #define Excludes "Languages,Themes,Resources,System.Diagnostics.EventLog.Messages.dll"
 
+#define InstallerExternalAssetsDir AddBackslash(GetEnv('TEMP')) + "RetroBarInstallerExternalAssets"
+#define CroatianISL AddBackslash(InstallerExternalAssetsDir) + "Croatian.isl"
+#if !FileExists(CroatianISL)
+  #expr Exec('mkdir', InstallerExternalAssetsDir)
+  #expr Exec('curl', "-s -o Croatian.isl https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/Unofficial/Croatian.isl", InstallerExternalAssetsDir)
+#endif
+
 #define Major
 #define Minor
 #define Revision
@@ -59,7 +66,9 @@ Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortugue
 Name: "bulgarian"; MessagesFile: "compiler:Languages\Bulgarian.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
 Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
-Name: "croatian"; MessagesFile: ".\Inno Unofficial\Croatian.isl"
+#if FileExists(CroatianISL)
+Name: "croatian"; MessagesFile: "{#CroatianISL}"
+#endif
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
 Name: "dutch"; MessagesFile: "compiler:Languages\Dutch.isl"
@@ -84,7 +93,9 @@ Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [LangOptions]
+#if FileExists(CroatianISL)
 croatian.LanguageName=hrvatski
+#endif
 spanish.LanguageName=español
 polish.LanguageName=polski
 russian.LanguageName=русский
@@ -123,10 +134,12 @@ spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible
 spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuario de RetroBar?
 spanish.InstallingDotNetRuntime=Instalando {#DotNetInstallerTitle}...
 
+#if FileExists(CroatianISL)
 croatian.DependenciesMessage=Instalacijski program će također preuzeti i instalirati potrebne ovisnosti:
 croatian.UpdateAvailableMessage=Nova verzija Retrobara je dostupna!%n%nTrenutna verzija: %s%nNova verzija: %s%n%nŽelite li posjetiti stranicu za preuzimanje da preuzmete najnoviju verziju?
 croatian.ConfirmDeleteSettingsMessage=Želite li izbrisati korisničke postavke Retrobara?
 croatian.InstallingDotNetRuntime=Instaliranje {#DotNetInstallerTitle}...
+#endif
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 polish.DependenciesMessage=Instalator pobierze i zainstaluje także następujące składniki dodatkowe:
