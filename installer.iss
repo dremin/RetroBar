@@ -59,6 +59,7 @@ Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortugue
 Name: "bulgarian"; MessagesFile: "compiler:Languages\Bulgarian.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
 Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
+Name: "croatian"; MessagesFile: ".\Inno Unofficial\Croatian.isl"
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
 Name: "dutch"; MessagesFile: "compiler:Languages\Dutch.isl"
@@ -83,6 +84,7 @@ Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [LangOptions]
+croatian.LanguageName=hrvatski
 spanish.LanguageName=español
 polish.LanguageName=polski
 russian.LanguageName=русский
@@ -120,6 +122,11 @@ spanish.DependenciesMessage=La instalación también descargará e instalará la
 spanish.UpdateAvailableMessage=¡Una nueva versión de RetroBar está disponible!%n%nVersión actual: %s%nNueva versión: %s%n%n¿Desea visitar la página de descarga para obtener la última versión?
 spanish.ConfirmDeleteSettingsMessage=¿Desea eliminar su configuración de usuario de RetroBar?
 spanish.InstallingDotNetRuntime=Instalando {#DotNetInstallerTitle}...
+
+croatian.DependenciesMessage=Instalacijski program će također preuzeti i instalirati potrebne ovisnosti:
+croatian.UpdateAvailableMessage=Nova verzija Retrobara je dostupna!%n%nTrenutna verzija: %s%nNova verzija: %s%n%nŽelite li posjetiti stranicu za preuzimanje da preuzmete najnoviju verziju?
+croatian.ConfirmDeleteSettingsMessage=Želite li izbrisati korisničke postavke Retrobara?
+croatian.InstallingDotNetRuntime=Instaliranje {#DotNetInstallerTitle}...
 
 german.DependenciesMessage=Das Setup wird auch die erforderlichen Zusätze (Abhängigkeiten) herunterladen und installieren:
 polish.DependenciesMessage=Instalator pobierze i zainstaluje także następujące składniki dodatkowe:

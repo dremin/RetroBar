@@ -83,6 +83,9 @@ jobs:
         name: RetroBar 32-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
+    - name: Adding unoffical translations
+      run: New-Item -ItemType Directory -Force -Path ".\Inno Unofficial" | Out-Null; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/Unofficial/Croatian.isl" -OutFile ".\Inno Unofficial\Croatian.isl"
+
     - name: Compile Inno Setup installer
       run: ISCC.exe "${{ env.installer }}"
 
