@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">高级</s:String>
     <s:String x:Key="taskbar_appearance">任务栏外观</s:String>
     <s:String x:Key="notification_area">通知区域</s:String>
+    <s:String x:Key="general_heading">常规</s:String>
+    <s:String x:Key="clock_heading">时钟</s:String>
     <s:String x:Key="autostart">开机时自动启动(_L)</s:String>
     <s:String x:Key="language_text">语言(_G): </s:String>
     <s:String x:Key="language_tip">选择要使用的语言。</s:String>
@@ -75,9 +77,20 @@
     <s:String x:Key="taskbar_scale_current">当前设置: {0}%</s:String>
     <s:String x:Key="debug_logging">启用调试日志记录(_D)</s:String>
     <s:String x:Key="check_for_updates">检查更新(_U)</s:String>
-    <s:String x:Key="show_exit_menu_item">在右键打开的菜单中显示退出RetroBar的选项(_X)</s:String>
-    <s:String x:Key="slide_taskbar_buttons">任务被拖动时的平滑效果(_E)</s:String>
-    <s:String x:Key="show_clock_seconds">时钟显示秒数(_H)</s:String>
+    <s:String x:Key="show_exit_menu_item">在右键菜单中显示“退出”选项(_X)</s:String>
+    <s:String x:Key="show_end_task_button">在右键菜单中显示“结束任务”选项(_T)</s:String>
+    <s:String x:Key="slide_taskbar_buttons">滑动任务栏按钮(_E)</s:String>
+    <s:String x:Key="show_clock_seconds">显示时钟中的秒数(_H)</s:String>
+    <s:String x:Key="open_custom_themes_folder">打开自定义主题文件夹</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] 热键操作(_H)：</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows 默认</s:String>
+        <s:String>切换任务</s:String>
+        <s:String>打开快速启动项</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar 热键</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar 会覆盖 Windows 任务栏热键。即使 RetroBar 关闭，这些热键也不会恢复到 Windows 系统，直到您注销并重新登录。</s:String>
+    <s:String x:Key="allow_blur_behind">允许在透明任务栏后方添加模糊效果(_B)</s:String>
     <s:String x:Key="ok_dialog">确定</s:String>
 
     <s:String x:Key="customize_notifications">自定义通知</s:String>
@@ -135,6 +148,26 @@
     <s:String x:Key="hide">隐藏</s:String>
 
     <s:String x:Key="open_folder">&amp;打开文件夹</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">右键单击打开输入法编辑器选项</s:String>
+    <s:String x:Key="ime_input_tip_disabled">输入法编辑器已禁用</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">平假名(_H)</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">全宽片假名(_K)</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">全角字母数字(_W)</s:String>
+    <s:String x:Key="ime_input_katakana">半宽片假名(_N)</s:String>
+    <s:String x:Key="ime_input_alphanumeric">半角字母数字(_F)</s:String>
+    <s:String x:Key="ime_input_direct">直接输入(_D)</s:String>
+    <s:String x:Key="ime_open_pad">输入法编辑器辅助面板(_P)</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">添加单词(_O)</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">用户词典工具(_T)</s:String>
+    <s:String x:Key="ime_open_properties">属性(_R)</s:String>
+    <s:String x:Key="ime_input_key">输入法(_M)</s:String>
+    <s:String x:Key="ime_input_key_roma">罗马音输入(_R)</s:String>
+    <s:String x:Key="ime_input_key_kana">假名输入(_T)</s:String>
+    <s:String x:Key="ime_conversion">转换模式(_C)</s:String>
+    <s:String x:Key="ime_conversion_general">常规(_G)</s:String>
+    <s:String x:Key="ime_conversion_none">不转换(_O)</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
 
     <FontFamily x:Key="start_text_xp_font_family">SimSun</FontFamily>
 </ResourceDictionary>
