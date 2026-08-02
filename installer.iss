@@ -24,7 +24,7 @@
 #define CroatianISL AddBackslash(InstallerExternalAssetsDir) + "Croatian.isl"
 #if !FileExists(CroatianISL)
   #expr Exec('mkdir', InstallerExternalAssetsDir)
-  #expr Exec('curl', "-s -o Croatian.isl https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/Unofficial/Croatian.isl", InstallerExternalAssetsDir)
+  #expr Exec('curl', "-s -o Croatian.isl https://raw.githubusercontent.com/jrsoftware/issrc/eb79898d3bea0f46e55e19077067475db14b2224/Files/Languages/Unofficial/Croatian.isl", InstallerExternalAssetsDir)
 #endif
 
 #define Major
