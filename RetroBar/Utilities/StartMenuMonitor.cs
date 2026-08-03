@@ -1,12 +1,13 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Threading;
-using ManagedShell.AppBar;
+﻿using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Common.SupportingClasses;
 using ManagedShell.UWPInterop;
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows;
+using System.Windows.Threading;
 using static ManagedShell.Interop.NativeMethods;
 
 namespace RetroBar.Utilities
@@ -132,7 +133,14 @@ namespace RetroBar.Utilities
 
         private IntPtr hMonitorModernStartMenu()
         {
-            return hMonitorByClass("Windows.UI.Core.CoreWindow", "Start");
+            IntPtr hwndForeground = GetForegroundWindow();
+            StringBuilder cName = new StringBuilder(256);
+            GetClassName(hwndForeground, cName, cName.Capacity);
+            if (cName.ToString() == "Windows.UI.Core.CoreWindow")
+            {
+                return MonitorFromWindow(hwndForeground, MONITOR_DEFAULTTONEAREST);
+            }
+            return IntPtr.Zero;
         }
 
         private IntPtr hMonitorClassicStartMenu()
