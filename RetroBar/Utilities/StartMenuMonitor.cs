@@ -44,16 +44,20 @@ namespace RetroBar.Utilities
         private void poller_Tick(object sender, EventArgs e)
         {
             bool newIsVisible = false;
+            IntPtr startHmonitor = IntPtr.Zero;
+
             if (EnvironmentHelper.IsWindows8OrBetter && isModernStartMenuOpen())
             {
                 // Windows 8+
                 newIsVisible = true;
+                startHmonitor = hMonitorModernStartMenu();
             }
 
             if (!newIsVisible && isClassicStartMenuOpen())
             {
                 // Windows 7, StartIsBack, Start8+
                 newIsVisible = true;
+                startHmonitor = hMonitorClassicStartMenu();
             }
 
             if (!newIsVisible && isOpenShellMenuOpen())
@@ -61,12 +65,13 @@ namespace RetroBar.Utilities
                 // Open Shell Menu
                 newIsVisible = true;
                 relocateStartMenuByClass("OpenShell.CMenuContainer");
+                startHmonitor = hMonitorOpenShellMenu();
             }
 
-            setVisibility(newIsVisible);
+            setVisibility(newIsVisible, startHmonitor);
         }
 
-        private void setVisibility(bool isVisible)
+        private void setVisibility(bool isVisible, IntPtr startHmonitor)
         {
             if (isVisible == _isVisible)
             {
@@ -78,7 +83,8 @@ namespace RetroBar.Utilities
             StartMenuMonitorEventArgs args = new StartMenuMonitorEventArgs
             {
                 Visible = _isVisible,
-                TaskbarHwndActivated = _taskbarHwndActivated
+                TaskbarHwndActivated = _taskbarHwndActivated,
+                StartHmonitor = startHmonitor
             };
 
             StartMenuVisibilityChanged?.Invoke(this, args);
@@ -122,6 +128,33 @@ namespace RetroBar.Utilities
             }
 
             return IsWindowVisible(hStartMenu);
+        }
+
+        private IntPtr hMonitorModernStartMenu()
+        {
+            return hMonitorByClass("Windows.UI.Core.CoreWindow", "Start");
+        }
+
+        private IntPtr hMonitorClassicStartMenu()
+        {
+            return hMonitorByClass("DV2ControlHost");
+        }
+
+        private IntPtr hMonitorOpenShellMenu()
+        {
+            return hMonitorByClass("OpenShell.CMenuContainer");
+        }
+
+        private IntPtr hMonitorByClass(string className, string title = "")
+        {
+            IntPtr hStartMenu = title.Length > 0 ? FindWindow(className, title) : FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+
+            if (hStartMenu == IntPtr.Zero)
+            {
+                return IntPtr.Zero;
+            }
+
+            return MonitorFromWindow(hStartMenu, MONITOR_DEFAULTTONEAREST);
         }
 
         private void relocateStartMenuByClass(string className)
@@ -440,6 +473,7 @@ namespace RetroBar.Utilities
         public class StartMenuMonitorEventArgs : LauncherVisibilityEventArgs
         {
             public IntPtr TaskbarHwndActivated;
+            public IntPtr StartHmonitor;
         }
     }
 }
