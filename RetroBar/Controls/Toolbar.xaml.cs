@@ -201,13 +201,21 @@ namespace RetroBar.Controls
             {
                 return;
             }
-            
+
+            Mouse.Capture(null);
             ShellFile file = icon.DataContext as ShellFile;
 
-            if (InvokeContextMenu(file, true))
+            if (file == null || string.IsNullOrWhiteSpace(file.Path))
             {
-                e.Handled = true;
+                return;
             }
+
+            e.Handled = true;
+
+            Dispatcher.BeginInvoke((Action)(() =>
+            {
+                InvokeContextMenu(file, true);
+            }));
         }
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -275,7 +283,7 @@ namespace RetroBar.Controls
             {
                 return false;
             }
-            
+
             var _ = new ShellItemContextMenu(new ShellItem[] { file }, Folder, IntPtr.Zero, HandleFileAction, isInteractive, false, new ShellMenuCommandBuilder(), GetFileCommandBuilder(file));
             return true;
         }

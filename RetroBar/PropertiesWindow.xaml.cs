@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using ManagedShell.WindowsTray;
 using System.Runtime.CompilerServices;
 using System.IO;
+using System.Threading;
 
 namespace RetroBar
 {
@@ -306,18 +307,8 @@ namespace RetroBar
 
         private void SetQuickLaunchLocation_OnClick(object sender, RoutedEventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = (string)FindResource("quick_launch_folder");
-#if NETCOREAPP3_0_OR_GREATER
-            fbd.UseDescriptionForTitle = true;
-#endif
-            fbd.ShowNewFolderButton = false;
-            fbd.SelectedPath = Settings.Instance.QuickLaunchPath;
-
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Settings.Instance.QuickLaunchPath = fbd.SelectedPath;
-            }
+            FBDThread fbdThread = new FBDThread();
+            fbdThread.Show();
         }
 
         private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)
@@ -472,6 +463,40 @@ namespace RetroBar
             string path = _dictionaryManager.GetThemeInstallDir();
             Directory.CreateDirectory(path);
             ShellHelper.StartProcess(path);
+        }
+    }
+
+    public partial class FBDThread
+    {
+        private Thread t;
+
+        public FBDThread()
+        {
+            t = new Thread(new ParameterizedThreadStart(ShowFBD));
+            t.SetApartmentState(ApartmentState.STA);
+        }
+
+        public void Show()
+        {
+            t.Start(this);
+        }
+
+        private void ShowFBD(object o)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = (string)System.Windows.Application.Current.Resources["quick_launch_folder"];
+#if NETCOREAPP3_0_OR_GREATER
+                fbd.UseDescriptionForTitle = true;
+#endif
+                fbd.ShowNewFolderButton = false;
+                fbd.SelectedPath = Settings.Instance.QuickLaunchPath;
+
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    Settings.Instance.QuickLaunchPath = fbd.SelectedPath;
+                }
+            }
         }
     }
 }
