@@ -80,7 +80,7 @@ namespace RetroBar.Controls
 
                 Refresh();
             }
-            else if (e.PropertyName == nameof(Settings.TaskbarScale))
+            else if (e.PropertyName == nameof(Settings.TaskbarScale) || e.PropertyName == nameof(Settings.RowCount))
             {
                 Refresh();
             }
@@ -93,8 +93,7 @@ namespace RetroBar.Controls
                 return;
             }
 
-            ListCollectionView cvs = (ListCollectionView)CollectionViewSource.GetDefaultView(Folder.Files);
-            cvs.Refresh();
+            SetItemsSource();
         }
 
         private void SetupFolder(string path)
