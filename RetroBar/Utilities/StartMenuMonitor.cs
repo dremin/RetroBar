@@ -138,6 +138,7 @@ namespace RetroBar.Utilities
             GetClassName(hwndForeground, cName, cName.Capacity);
             if (cName.ToString() == "Windows.UI.Core.CoreWindow")
             {
+                // When the modern Start menu opens, it gains focus, so this is probably it
                 return MonitorFromWindow(hwndForeground, MONITOR_DEFAULTTONEAREST);
             }
             return IntPtr.Zero;
@@ -153,9 +154,9 @@ namespace RetroBar.Utilities
             return hMonitorByClass("OpenShell.CMenuContainer");
         }
 
-        private IntPtr hMonitorByClass(string className, string title = "")
+        private IntPtr hMonitorByClass(string className)
         {
-            IntPtr hStartMenu = title.Length > 0 ? FindWindow(className, title) : FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+            IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
 
             if (hStartMenu == IntPtr.Zero)
             {
