@@ -1,13 +1,13 @@
 ﻿using ManagedShell;
 using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
-using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
 using ManagedShell.WindowsTray;
 using RetroBar.Utilities;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,7 +36,10 @@ namespace RetroBar
         private bool _startMenuOpen;
         private Point? _mouseDragStart = null;
         private bool _isDragging;
-        private bool _mouseDragResize = false;
+        private bool _mouseDragResize;
+        private AppBarEdge _dragStartEdge;
+        private int _dragStartRowCount;
+        private int _dragStartTaskbarWidth;
         private readonly DictionaryManager _dictionaryManager;
         private readonly ShellManager _shellManager;
         private readonly StartMenuMonitor _startMenuMonitor;
@@ -84,6 +87,7 @@ namespace RetroBar
             AutoHideElement = TaskbarContentControl;
 
             PropertyChanged += Taskbar_PropertyChanged;
+            PreviewKeyDown += Taskbar_PreviewKeyDown;
 
             _startMenuMonitor.StartMenuVisibilityChanged += StartMenuMonitor_StartMenuVisibilityChanged;
             _shellManager.TasksService.WindowActivated += TasksService_WindowActivated;
@@ -158,6 +162,7 @@ namespace RetroBar
             {
                 PeekDuringAutoHide();
                 AppBarEdge = Settings.Instance.Edge;
+                UpdateLayout();
                 UpdatePosition();
             }
             else if (e.PropertyName == nameof(Settings.Language))
@@ -260,6 +265,77 @@ namespace RetroBar
             else if (msg == (int)NativeMethods.WM.SETTINGCHANGE && wParam == (IntPtr)NativeMethods.SPI.SETWORKAREA && Settings.Instance.ShowMultiMon)
             {
                 windowManager.NotifyWorkAreaChange();
+            }
+            else if (msg == (int)NativeMethods.WM.SYSCHAR && wParam.ToInt32() == ' ')
+            {
+                handled = true;
+                ShowSystemMenu(hwnd);
+            }
+            else if (msg == (int)NativeMethods.WM.SYSCOMMAND)
+            {
+                int sc = wParam.ToInt32() & 0xFFF0;
+                if ((sc == NativeMethods.SC_MOVE || sc == NativeMethods.SC_SIZE) && IsLocked)
+                {
+                    handled = true;
+                    return IntPtr.Zero;
+                }
+                else if (sc == NativeMethods.SC_CLOSE)
+                {
+                    handled = true;
+                    IntPtr progmanHwnd = NativeMethods.FindWindow("Progman", "Program Manager");
+                    if (progmanHwnd != IntPtr.Zero)
+                    {
+                        NativeMethods.PostMessage(progmanHwnd, (uint)NativeMethods.WM.CLOSE, IntPtr.Zero, IntPtr.Zero);
+                    }
+                    return IntPtr.Zero;
+                }
+            }
+            else if (msg == (int)NativeMethods.WM.ENTERSIZEMOVE)
+            {
+                BeginDragOrResize();
+            }
+            else if (msg == (int)NativeMethods.WM.EXITSIZEMOVE)
+            {
+                if (NativeMethods.GetAsyncKeyState((int)System.Windows.Forms.Keys.Escape) != 0)
+                {
+                    CancelDragOrResize();
+                }
+                else
+                {
+                    windowManager?.NotifyDragEnd();
+                }
+            }
+            else if (msg == (int)NativeMethods.WM.MOVING)
+            {
+                handled = true;
+                if (NativeMethods.GetCursorPos(out NativeMethods.POINT pt))
+                {
+                    var newEdge = DragCoordsToScreenEdge(pt.x, pt.y);
+                    if (newEdge != AppBarEdge)
+                    {
+                        Settings.Instance.Edge = newEdge;
+                    }
+                }
+
+                var desiredRect = GetDesiredRect();
+                Marshal.StructureToPtr(desiredRect, lParam, true);
+                return (IntPtr)1;
+            }
+            else if (msg == (int)NativeMethods.WM.SIZING)
+            {
+                handled = true;
+                if (!IsLocked)
+                {
+                    if (NativeMethods.GetCursorPos(out NativeMethods.POINT pt))
+                    {
+                        int currentCoord = (Orientation == Orientation.Horizontal) ? pt.y : pt.x;
+                        ProcessResize(currentCoord);
+                    }
+                }
+
+                var desiredRect = GetDesiredRect();
+                Marshal.StructureToPtr(desiredRect, lParam, true);
+                return (IntPtr)1;
             }
 
             return IntPtr.Zero;
@@ -573,40 +649,146 @@ namespace RetroBar
         }
 
         #region Unlocked taskbar drag
+        private void BeginDragOrResize()
+        {
+            _dragStartEdge = AppBarEdge;
+            _dragStartRowCount = Settings.Instance.RowCount;
+            _dragStartTaskbarWidth = Settings.Instance.TaskbarWidth;
+            windowManager?.NotifyDragBegin();
+        }
+
+        private void EndDragOrResize()
+        {
+            bool wasActive = _isDragging || _mouseDragResize;
+            _isDragging = false;
+            _mouseDragResize = false;
+            _mouseDragStart = null;
+            Cursor = Cursors.Arrow;
+            ReleaseMouseCapture();
+
+            if (wasActive)
+            {
+                windowManager?.NotifyDragEnd();
+            }
+        }
+
+        private void CancelDragOrResize()
+        {
+            bool wasActive = _isDragging || _mouseDragResize;
+            _isDragging = false;
+            _mouseDragResize = false;
+            _mouseDragStart = null;
+            Cursor = Cursors.Arrow;
+            ReleaseMouseCapture();
+
+            if (Settings.Instance.Edge != _dragStartEdge)
+            {
+                Settings.Instance.Edge = _dragStartEdge;
+            }
+            if (Settings.Instance.RowCount != _dragStartRowCount)
+            {
+                Settings.Instance.RowCount = _dragStartRowCount;
+            }
+            if (Settings.Instance.TaskbarWidth != _dragStartTaskbarWidth)
+            {
+                Settings.Instance.TaskbarWidth = _dragStartTaskbarWidth;
+            }
+
+            if (wasActive)
+            {
+                windowManager?.NotifyDragEnd();
+            }
+        }
+
+        private void Taskbar_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape && (_isDragging || _mouseDragResize))
+            {
+                e.Handled = true;
+                CancelDragOrResize();
+            }
+        }
+
+        protected override void OnLostMouseCapture(MouseEventArgs e)
+        {
+            base.OnLostMouseCapture(e);
+            if (_isDragging || _mouseDragResize)
+            {
+                CancelDragOrResize();
+            }
+        }
+
         private void Taskbar_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsLocked) return;
 
-            var screenPos = PointToScreen(e.GetPosition(this));
+            BeginDragOrResize();
 
             // if mouse is in resize‐zone, begin resize drag
             if (IsMouseInResizeArea())
             {
                 _mouseDragResize = true;
-                Mouse.Capture(this);
+                CaptureMouse();
                 return;
             }
 
             // otherwise begin reposition drag
             _mouseDragStart = PointToScreen(e.GetPosition(this));
             _isDragging = true;
-            Mouse.Capture(this);
+            CaptureMouse();
         }
 
         private void Taskbar_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (_mouseDragResize)
+            if (_mouseDragResize || _isDragging)
             {
-                _mouseDragResize = false;
-                Mouse.Capture(null);
-                return;
+                EndDragOrResize();
             }
+        }
 
-            if (!_isDragging) return;
+        private void ProcessResize(int coordinate)
+        {
+            double scaledRowHeight = DesiredRowHeight * DpiScale;
+            if (scaledRowHeight <= 0) return;
 
-            _isDragging = false;
-            _mouseDragStart = null;
-            Mouse.Capture(null);
+            if (Orientation == Orientation.Horizontal)
+            {
+                double distance = AppBarEdge == AppBarEdge.Bottom
+                    ? Screen.Bounds.Bottom - coordinate
+                    : coordinate - Screen.Bounds.Top;
+
+                double baseHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) * DpiScale;
+                if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
+                {
+                    baseHeight += _unlockedMargin;
+                }
+
+                int targetRows = 1 + (int)Math.Max(0, Math.Round((distance - baseHeight) / scaledRowHeight));
+                targetRows = Math.Clamp(targetRows, 1, Settings.Instance.RowLimit);
+                if (targetRows != Settings.Instance.RowCount)
+                {
+                    Settings.Instance.RowCount = targetRows;
+                }
+            }
+            else
+            {
+                double distance = AppBarEdge == AppBarEdge.Right
+                    ? Screen.Bounds.Right - coordinate
+                    : coordinate - Screen.Bounds.Left;
+
+                double baseWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) * DpiScale;
+                if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
+                {
+                    baseWidth += _unlockedMargin;
+                }
+
+                int targetWidth = 1 + (int)Math.Max(0, Math.Round((distance - baseWidth) / scaledRowHeight));
+                targetWidth = Math.Clamp(targetWidth, 1, Settings.Instance.TaskbarWidthLimit);
+                if (targetWidth != Settings.Instance.TaskbarWidth)
+                {
+                    Settings.Instance.TaskbarWidth = targetWidth;
+                }
+            }
         }
 
         private void Taskbar_OnMouseMove(object sender, MouseEventArgs e)
@@ -623,56 +805,9 @@ namespace RetroBar
 
             if (_mouseDragResize)
             {
-                // Use WPF's Mouse position instead of WinForms
                 Point cursorPosition = PointToScreen(Mouse.GetPosition(this));
-                int mouseX = (int)cursorPosition.X;
-                int mouseY = (int)cursorPosition.Y;
-
-                // Process resize operation directly instead of using BeginInvoke
-                // This avoids dispatcher overhead and potential lag when Explorer is not running
-                double scaledRowHeight = DesiredRowHeight * DpiScale;
-
-                if (Orientation == Orientation.Horizontal)
-                {
-                    // Use Screen reference instead of PrimaryScreen to handle multi-monitor setups correctly
-                    double taskbarEdge = (AppBarEdge == AppBarEdge.Top
-                        ? Screen.Bounds.Top + (DesiredHeight * DpiScale)
-                        : Screen.Bounds.Bottom - (DesiredHeight * DpiScale)
-                    );
-
-                    if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance
-                         || AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance)
-                         && Settings.Instance.RowCount > 1)
-                    {
-                        Settings.Instance.RowCount--;
-                    }
-                    else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight
-                              || AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight)
-                              && Settings.Instance.RowCount < Settings.Instance.RowLimit)
-                    {
-                        Settings.Instance.RowCount++;
-                    }
-                }
-                else
-                {
-                    double taskbarEdge = (AppBarEdge == AppBarEdge.Left
-                        ? Screen.Bounds.Left + (DesiredWidth * DpiScale)
-                        : Screen.Bounds.Right - (DesiredWidth * DpiScale)
-                    );
-
-                    if ((AppBarEdge == AppBarEdge.Left && mouseX > taskbarEdge + scaledRowHeight
-                         || AppBarEdge == AppBarEdge.Right && mouseX < taskbarEdge - scaledRowHeight)
-                         && Settings.Instance.TaskbarWidth < Settings.Instance.TaskbarWidthLimit)
-                    {
-                        Settings.Instance.TaskbarWidth++;
-                    }
-                    else if ((AppBarEdge == AppBarEdge.Left && mouseX < taskbarEdge - SystemParameters.MinimumHorizontalDragDistance
-                              || AppBarEdge == AppBarEdge.Right && mouseX > taskbarEdge + SystemParameters.MinimumHorizontalDragDistance)
-                              && Settings.Instance.TaskbarWidth > 1)
-                    {
-                        Settings.Instance.TaskbarWidth--;
-                    }
-                }
+                int currentCoord = Orientation == Orientation.Horizontal ? (int)cursorPosition.Y : (int)cursorPosition.X;
+                ProcessResize(currentCoord);
                 return;
             }
 
@@ -762,34 +897,88 @@ namespace RetroBar
         {
             if (IsLocked) return false;
 
-            // Calculate resize region size once
-            int resizeRegionSize = (int)((_unlockedMargin > 0 ? _unlockedMargin : SystemParameters.MinimumVerticalDragDistance * Settings.Instance.TaskbarScale) * DpiScale);
+            double resizeGrip = _unlockedMargin > 0 ? _unlockedMargin : (SystemParameters.MinimumVerticalDragDistance * Settings.Instance.TaskbarScale);
+            Point localPos = Mouse.GetPosition(this);
 
-            // Get cursor position using WPF's Mouse class instead of System.Windows.Forms.Cursor
-            Point cursorPos = PointToScreen(Mouse.GetPosition(this));
-            int mouseX = (int)cursorPos.X;
-            int mouseY = (int)cursorPos.Y;
-
-            // Create boundary rectangles based on edge position
-            int scaledTop = (int)(Top * DpiScale);
-            int scaledLeft = (int)(Left * DpiScale);
-            int scaledBottom = (int)((Top + Height) * DpiScale);
-            int scaledRight = (int)((Left + Width) * DpiScale);
-
-            // Check if mouse is in resize area based on current edge
             switch (AppBarEdge)
             {
                 case AppBarEdge.Bottom:
-                    return mouseY <= scaledTop + resizeRegionSize;
+                    return localPos.Y >= 0 && localPos.Y <= resizeGrip;
                 case AppBarEdge.Top:
-                    return mouseY >= scaledBottom - resizeRegionSize;
+                    return localPos.Y >= ActualHeight - resizeGrip && localPos.Y <= ActualHeight;
                 case AppBarEdge.Left:
-                    return mouseX >= scaledRight - resizeRegionSize;
+                    return localPos.X >= ActualWidth - resizeGrip && localPos.X <= ActualWidth;
                 case AppBarEdge.Right:
-                    return mouseX <= scaledLeft + resizeRegionSize;
+                    return localPos.X >= 0 && localPos.X <= resizeGrip;
                 default:
                     return false;
             }
+        }
+        #endregion
+
+        #region System Menu
+        private void ShowSystemMenu(IntPtr hwnd)
+        {
+            int oldStyle = NativeMethods.GetWindowLong(hwnd, NativeMethods.WindowLongFlags.GWL_STYLE);
+            NativeMethods.SetWindowLong(hwnd, NativeMethods.WindowLongFlags.GWL_STYLE, oldStyle | (int)NativeMethods.WindowStyles.WS_SYSMENU);
+
+            IntPtr hMenu = NativeMethods.GetSystemMenu(hwnd, false);
+            if (hMenu != IntPtr.Zero)
+            {
+                NativeMethods.EnableMenuItem(hMenu, (uint)NativeMethods.SC_RESTORE, NativeMethods.MF_BYCOMMAND | NativeMethods.MF_GRAYED);
+                NativeMethods.EnableMenuItem(hMenu, (uint)NativeMethods.SC_MINIMIZE, NativeMethods.MF_BYCOMMAND | NativeMethods.MF_GRAYED);
+                NativeMethods.EnableMenuItem(hMenu, (uint)NativeMethods.SC_MAXIMIZE, NativeMethods.MF_BYCOMMAND | NativeMethods.MF_GRAYED);
+                NativeMethods.EnableMenuItem(hMenu, (uint)NativeMethods.SC_CLOSE, NativeMethods.MF_BYCOMMAND | NativeMethods.MF_ENABLED);
+
+                uint sizeMoveFlag = IsLocked ? NativeMethods.MF_GRAYED : NativeMethods.MF_ENABLED;
+                NativeMethods.EnableMenuItem(hMenu, (uint)NativeMethods.SC_MOVE, NativeMethods.MF_BYCOMMAND | sizeMoveFlag);
+                NativeMethods.EnableMenuItem(hMenu, (uint)NativeMethods.SC_SIZE, NativeMethods.MF_BYCOMMAND | sizeMoveFlag);
+
+                Point anchorPt;
+                try
+                {
+                    anchorPt = (StartButton != null && StartButton.IsVisible)
+                        ? StartButton.PointToScreen(new Point(0, 0))
+                        : PointToScreen(new Point(0, 0));
+                }
+                catch
+                {
+                    anchorPt = new Point(Left * DpiScale, Top * DpiScale);
+                }
+
+                int x = (int)anchorPt.X;
+                int y = (int)anchorPt.Y;
+                NativeMethods.TPM alignFlags = NativeMethods.TPM.LEFTALIGN;
+
+                switch (AppBarEdge)
+                {
+                    case AppBarEdge.Bottom:
+                        alignFlags = NativeMethods.TPM.LEFTALIGN | NativeMethods.TPM.BOTTOMALIGN;
+                        break;
+                    case AppBarEdge.Top:
+                        alignFlags = NativeMethods.TPM.LEFTALIGN | NativeMethods.TPM.TOPALIGN;
+                        y += (int)((StartButton?.ActualHeight ?? ActualHeight) * DpiScale);
+                        break;
+                    case AppBarEdge.Left:
+                        alignFlags = NativeMethods.TPM.LEFTALIGN | NativeMethods.TPM.TOPALIGN;
+                        x += (int)((StartButton?.ActualWidth ?? ActualWidth) * DpiScale);
+                        break;
+                    case AppBarEdge.Right:
+                        alignFlags = NativeMethods.TPM.RIGHTALIGN | NativeMethods.TPM.TOPALIGN;
+                        break;
+                }
+
+                uint cmd = NativeMethods.TrackPopupMenuEx(hMenu, NativeMethods.TPM.RETURNCMD | NativeMethods.TPM.LEFTBUTTON | NativeMethods.TPM.RIGHTBUTTON | NativeMethods.TPM.VERTICAL | alignFlags, x, y, hwnd, IntPtr.Zero);
+                if (cmd > 0)
+                {
+                    IntPtr lParam = (cmd == (int)NativeMethods.SC_MOVE || cmd == (int)NativeMethods.SC_SIZE)
+                        ? (IntPtr)NativeMethods.MakeLParam(x, y)
+                        : IntPtr.Zero;
+                    NativeMethods.SendMessage(hwnd, (int)NativeMethods.WM.SYSCOMMAND, (IntPtr)cmd, lParam);
+                }
+            }
+
+            NativeMethods.SetWindowLong(hwnd, NativeMethods.WindowLongFlags.GWL_STYLE, oldStyle);
         }
         #endregion
     }
