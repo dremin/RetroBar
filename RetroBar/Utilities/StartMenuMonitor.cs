@@ -1,12 +1,13 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Threading;
-using ManagedShell.AppBar;
+﻿using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Common.SupportingClasses;
 using ManagedShell.UWPInterop;
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows;
+using System.Windows.Threading;
 using static ManagedShell.Interop.NativeMethods;
 
 namespace RetroBar.Utilities
@@ -44,16 +45,20 @@ namespace RetroBar.Utilities
         private void poller_Tick(object sender, EventArgs e)
         {
             bool newIsVisible = false;
+            IntPtr startHmonitor = IntPtr.Zero;
+
             if (EnvironmentHelper.IsWindows8OrBetter && isModernStartMenuOpen())
             {
                 // Windows 8+
                 newIsVisible = true;
+                startHmonitor = hMonitorModernStartMenu();
             }
 
             if (!newIsVisible && isClassicStartMenuOpen())
             {
                 // Windows 7, StartIsBack, Start8+
                 newIsVisible = true;
+                startHmonitor = hMonitorClassicStartMenu();
             }
 
             if (!newIsVisible && isOpenShellMenuOpen())
@@ -61,12 +66,13 @@ namespace RetroBar.Utilities
                 // Open Shell Menu
                 newIsVisible = true;
                 relocateStartMenuByClass("OpenShell.CMenuContainer");
+                startHmonitor = hMonitorOpenShellMenu();
             }
 
-            setVisibility(newIsVisible);
+            setVisibility(newIsVisible, startHmonitor);
         }
 
-        private void setVisibility(bool isVisible)
+        private void setVisibility(bool isVisible, IntPtr startHmonitor)
         {
             if (isVisible == _isVisible)
             {
@@ -78,7 +84,8 @@ namespace RetroBar.Utilities
             StartMenuMonitorEventArgs args = new StartMenuMonitorEventArgs
             {
                 Visible = _isVisible,
-                TaskbarHwndActivated = _taskbarHwndActivated
+                TaskbarHwndActivated = _taskbarHwndActivated,
+                StartHmonitor = startHmonitor
             };
 
             StartMenuVisibilityChanged?.Invoke(this, args);
@@ -122,6 +129,41 @@ namespace RetroBar.Utilities
             }
 
             return IsWindowVisible(hStartMenu);
+        }
+
+        private IntPtr hMonitorModernStartMenu()
+        {
+            IntPtr hwndForeground = GetForegroundWindow();
+            StringBuilder cName = new StringBuilder(256);
+            GetClassName(hwndForeground, cName, cName.Capacity);
+            if (cName.ToString() == "Windows.UI.Core.CoreWindow")
+            {
+                // When the modern Start menu opens, it gains focus, so this is probably it
+                return MonitorFromWindow(hwndForeground, MONITOR_DEFAULTTONEAREST);
+            }
+            return IntPtr.Zero;
+        }
+
+        private IntPtr hMonitorClassicStartMenu()
+        {
+            return hMonitorByClass("DV2ControlHost");
+        }
+
+        private IntPtr hMonitorOpenShellMenu()
+        {
+            return hMonitorByClass("OpenShell.CMenuContainer");
+        }
+
+        private IntPtr hMonitorByClass(string className)
+        {
+            IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+
+            if (hStartMenu == IntPtr.Zero)
+            {
+                return IntPtr.Zero;
+            }
+
+            return MonitorFromWindow(hStartMenu, MONITOR_DEFAULTTONEAREST);
         }
 
         private void relocateStartMenuByClass(string className)
@@ -440,6 +482,7 @@ namespace RetroBar.Utilities
         public class StartMenuMonitorEventArgs : LauncherVisibilityEventArgs
         {
             public IntPtr TaskbarHwndActivated;
+            public IntPtr StartHmonitor;
         }
     }
 }
