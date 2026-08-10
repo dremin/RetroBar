@@ -128,6 +128,7 @@
     <s:String x:Key="tray_properties">P_roperties</s:String>
     <s:String x:Key="update_available">_Update available...</s:String>
     <s:String x:Key="exit_retrobar">_Exit RetroBar</s:String>
+    <s:String x:Key="restart_retrobar">Rest_art RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Customize Notifications...</s:String>
     <s:String x:Key="lock_taskbar_menu">_Lock the Taskbar</s:String>
 

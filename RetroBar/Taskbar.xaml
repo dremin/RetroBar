@@ -151,6 +151,10 @@
                       Visibility="Collapsed" />
             <StaticResourceExtension ResourceKey="LockTaskbarMenuItem" />
             <StaticResourceExtension ResourceKey="PropertiesMenuItem" />
+            <MenuItem x:Name="RestartMenuItem"
+                      Header="{DynamicResource restart_retrobar}"
+                      Click="RestartMenuItem_Click"
+                      Visibility="Collapsed" />
             <StaticResourceExtension ResourceKey="ExitMenuItem" />
         </ContextMenu>
     </appbar:AppBarWindow.ContextMenu>
