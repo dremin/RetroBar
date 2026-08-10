@@ -1,6 +1,5 @@
 ﻿using GongSolutions.Wpf.DragDrop;
 using ManagedShell.WindowsTray;
-using Tray = ManagedShell.WindowsTray;
 using RetroBar.Extensions;
 using RetroBar.Utilities;
 using System;
@@ -13,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
+using Tray = ManagedShell.WindowsTray;
 
 namespace RetroBar.Controls
 {
@@ -70,7 +70,6 @@ namespace RetroBar.Controls
         {
             if (!_isLoaded && NotificationArea != null)
             {
-                promotedIcons.CollectionChanged += PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
                 NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
@@ -106,7 +105,7 @@ namespace RetroBar.Controls
         {
             if (icon is Tray.NotifyIcon notifyIcon)
             {
-                return (!IsCollapsed() || notifyIcon.IsPinned || promotedIcons.Contains(notifyIcon))
+                return (!IsCollapsed() || notifyIcon.IsPinned)
                     && !notifyIcon.IsHidden
                     && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
             }
@@ -153,6 +152,7 @@ namespace RetroBar.Controls
                 return;
             }
 
+            notifyIcon.IsPinned = true;
             promotedIcons.Add(notifyIcon);
 
             DispatcherTimer unpromoteTimer = new DispatcherTimer
@@ -163,6 +163,11 @@ namespace RetroBar.Controls
             {
                 if (promotedIcons.Contains(notifyIcon))
                 {
+                    if (!(Settings.Instance.NotifyIconBehaviors.Find(setting => setting.Identifier == notifyIcon.Identifier) is NotifyIconBehaviorSetting iconSetting && iconSetting.Behavior == NotifyIconBehavior.AlwaysShow))
+                    {
+                        // Don't unpin if settings were changed to always show
+                        notifyIcon.IsPinned = false;
+                    }
                     promotedIcons.Remove(notifyIcon);
                 }
                 unpromoteTimer.Stop();
@@ -191,7 +196,6 @@ namespace RetroBar.Controls
 
             if (NotificationArea != null)
             {
-                promotedIcons.CollectionChanged -= PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown -= NotificationArea_NotificationBalloonShown;
                 NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
@@ -204,14 +208,6 @@ namespace RetroBar.Controls
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetToggleVisibility();
-        }
-
-        private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsCollapsed())
-            {
-                collectionView?.Refresh();
-            }
         }
 
         private void NotifyIconToggleButton_OnClick(object sender, RoutedEventArgs e)
