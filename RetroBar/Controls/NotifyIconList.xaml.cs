@@ -254,6 +254,10 @@ namespace RetroBar.Controls
                 {
                     insertIndex--;
                 }
+                else
+                {
+                    visibleIcons.Remove(draggedIcon);
+                }
                 visibleIcons.Insert(insertIndex, draggedIcon);
             }
             else
@@ -263,19 +267,16 @@ namespace RetroBar.Controls
             
             // Never overwrite the list to prevent clearing out settings for non-visible icons
             var oldOrder = Settings.Instance.NotifyIconOrder ?? new List<string>();
-            var newOrder = visibleIcons.Select(i => i.GetInvertIdentifier()).ToList();
-            var orderSet = new HashSet<string>(newOrder);
-
             var result = new List<string>();
             int replaceIndex = 0;
             
             foreach (var id in oldOrder)
             {
-                if (orderSet.Contains(id))
+                if (visibleIcons.Find(i => i.IsEqualByIdentifier(id)) != null)
                 {
-                    if (replaceIndex < newOrder.Count)
+                    if (replaceIndex < visibleIcons.Count)
                     {
-                        result.Add(newOrder[replaceIndex++]);
+                        result.Add(visibleIcons[replaceIndex++].Identifier);
                     }
                 }
                 else
@@ -284,9 +285,9 @@ namespace RetroBar.Controls
                 }
             }
 
-            while (replaceIndex < newOrder.Count)
+            while (replaceIndex < visibleIcons.Count)
             {
-                result.Add(newOrder[replaceIndex++]);
+                result.Add(visibleIcons[replaceIndex++].Identifier);
             }
 
             Settings.Instance.NotifyIconOrder = result;
@@ -318,7 +319,9 @@ namespace RetroBar.Controls
                             return 1;
                         }
                     }
-                    return setting.IndexOf(xIcon.GetInvertIdentifier()).CompareTo(setting.IndexOf(yIcon.GetInvertIdentifier()));
+                    int xIndex = setting.FindIndex(s => xIcon.IsEqualByIdentifier(s));
+                    int yIndex = setting.FindIndex(s => yIcon.IsEqualByIdentifier(s));
+                    return xIndex.CompareTo(yIndex);
                 }
                 return 0;
             }
