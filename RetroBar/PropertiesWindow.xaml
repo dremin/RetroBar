@@ -377,10 +377,10 @@
                             <DockPanel>
                                 <Label VerticalAlignment="Center"
                                        Target="{Binding ElementName=cboInvertIconsMode}">
-                                    <AccessText Text="{DynamicResource invert_system_icons}" />
+                                    <AccessText Text="{DynamicResource invert_grayscale_colors}" />
                                 </Label>
                                 <ComboBox x:Name="cboInvertIconsMode"
-                                          ItemsSource="{DynamicResource invert_system_icons_values}"
+                                          ItemsSource="{DynamicResource invert_grayscale_colors_values}"
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=InvertIconsMode, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="CboInvertIconsMode_SelectionChanged" />
                             </DockPanel>

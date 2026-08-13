@@ -41,8 +41,7 @@
         <s:String>Leihoaren ataza barra berdinean</s:String>
         <s:String>Lehenetsitako ataza barran eta leihoaren ataza barra berdinean</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Alderantzizkatu sistema ikonoak:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Gaiak behar duenean</s:String>
         <s:String>Beti</s:String>
         <s:String>Inoiz ez</s:String>

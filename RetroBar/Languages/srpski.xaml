@@ -49,8 +49,7 @@
         <s:String>Traci zadataka na kojoj je prozor</s:String>
         <s:String>Traci zadataka na kojoj je prozor i na glavnoj</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Invertuj sistemske ikonice</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Kada tema to zahteva</s:String>
         <s:String>Uvek</s:String>
         <s:String>Nikada</s:String>

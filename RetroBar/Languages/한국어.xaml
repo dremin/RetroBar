@@ -49,8 +49,7 @@
         <s:String>창이 있는 작업 표시줄</s:String>
         <s:String>창이 있는 작업 표시줄 및 기본 작업 표시줄</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">시스템 아이콘 반전</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>테마에서 필요할 때만</s:String>
         <s:String>항상</s:String>
         <s:String>사용 안 함</s:String>

@@ -49,8 +49,7 @@
         <s:String>Ten sam pasek zadań co okno</s:String>
         <s:String>Ten sam pasek zadań co okno i główny pasek zadań</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Odwróć kolory ikon systemowych:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Gdy potrzebuje tego motyw</s:String>
         <s:String>Zawsze</s:String>
         <s:String>Nigdy</s:String>

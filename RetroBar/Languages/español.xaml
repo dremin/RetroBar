@@ -49,8 +49,7 @@
         <s:String>La misma barra de tareas que la ventana</s:String>
         <s:String>La misma barra de tareas que la ventana y la barra de tareas principal</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Invertir iconos del sistema:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Cuando el tema lo requiera</s:String>
         <s:String>Siempre</s:String>
         <s:String>Nunca</s:String>

@@ -49,8 +49,7 @@
         <s:String>Samme opgavebjælke som vindue</s:String>
         <s:String>Samme opgavebjælke som vindue og primær opgavebjælke</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Vend systemikoner:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Når det er nødvendigt efter tema</s:String>
         <s:String>Altid</s:String>
         <s:String>Aldrig</s:String>

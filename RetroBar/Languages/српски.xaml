@@ -49,8 +49,7 @@
         <s:String>Траци задатака на којој је прозор</s:String>
         <s:String>Траци задатака на којој је прозор и на главној</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Инвертуј системске иконице</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Када тема то захтева</s:String>
         <s:String>Увек</s:String>
         <s:String>Никада</s:String>

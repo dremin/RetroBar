@@ -49,8 +49,7 @@
         <s:String>Ista programska traka kao prozor</s:String>
         <s:String>Ista programska traka kao prozor i primarna programska traka</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Invertiraj ikone sustava:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Po potrebi teme</s:String>
         <s:String>Uvijek</s:String>
         <s:String>Nikad</s:String>

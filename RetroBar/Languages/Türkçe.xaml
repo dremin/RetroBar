@@ -49,8 +49,7 @@
         <s:String>Pencerenin açıldığı görev çubuğu</s:String>
         <s:String>Ana görev çubuğu ve pencerenin açıldığı görev çubuğu</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Sistem simgelerinin rengini tersine çevir:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Tema için gerekli olduğunda</s:String>
         <s:String>Her zaman</s:String>
         <s:String>Asla</s:String>

@@ -49,8 +49,7 @@
         <s:String>Ugyanaz a tálca, mint az ablaké</s:String>
         <s:String>Ugyanaz a tálca, mint az ablaké és az elsődleges tálca</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">Rendszerikonok színének megfordítása:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Téma szerint, ha szükséges</s:String>
         <s:String>Mindig</s:String>
         <s:String>Soha</s:String>
