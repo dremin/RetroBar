@@ -47,8 +47,7 @@
         <s:String>La mateixa barra de tasques que la finestra</s:String>
         <s:String>La mateixa barra de tasques que la finestra i la barra de tasques principal</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Inverteix les icones del sistema:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Quan el tema ho requereixi</s:String>
         <s:String>Sempre</s:String>
         <s:String>Mai</s:String>

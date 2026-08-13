@@ -71,7 +71,6 @@ Looking for more themes? [Check out the great community-made RetroBar themes on 
 - German (Deutsch)
 - Greek (ελληνικά)
 - Hebrew (עברית)
-- Hindi (हिन्दी)
 - Hungarian (magyar)
 - Icelandic (íslenska)
 - Indonesian (Indonesia)

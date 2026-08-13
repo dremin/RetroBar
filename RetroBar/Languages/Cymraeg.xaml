@@ -49,8 +49,7 @@
         <s:String>Yr un bar tasgau a'r ffenestr</s:String>
         <s:String>Yr un bar tasgau a'r ffenestr a'r prif far tasgau</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Gwrthdroi eiconau system:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Pan fo angen yn ol y thema</s:String>
         <s:String>Bob amser</s:String>
         <s:String>Byth</s:String>

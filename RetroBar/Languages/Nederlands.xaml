@@ -46,8 +46,7 @@
         <s:String>Dezelfde taakbalk als venster</s:String>
         <s:String>Dezelfde taakbalk als venster en primaire taakbalk</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Systeemiconen omkeren:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Indien nodig per thema</s:String>
         <s:String>Altijd</s:String>
         <s:String>Nooit</s:String>

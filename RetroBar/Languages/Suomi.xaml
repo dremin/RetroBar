@@ -48,8 +48,7 @@
         <s:String>Saman ikkunan tehtäväpalkilla</s:String>
         <s:String>Pää- ja ikkunan tehtäväpalkilla</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Käännä järjestelmäkuvakkeet:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Kun teema tarvitsee</s:String>
         <s:String>Aina</s:String>
         <s:String>Ei koskaan</s:String>

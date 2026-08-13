@@ -49,8 +49,7 @@
         <s:String>Samma aktivitetsfält som fönster</s:String>
         <s:String>Samma aktivitetsfält som fönster och primärt aktivitetsfält</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Invertera systemikoner:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>När det behövs efter tema</s:String>
         <s:String>Alltid</s:String>
         <s:String>Aldrig</s:String>

@@ -42,8 +42,7 @@
         <s:String>Selwecht Taskbar wéi Fënster</s:String>
         <s:String>Selwecht Taskbar wéi Fënster a primär Taskbar</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Invert System Ikonen:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Wann néideg vum Thema</s:String>
         <s:String>Ëmmer</s:String>
         <s:String>Ni</s:String>

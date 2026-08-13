@@ -49,8 +49,7 @@
         <s:String>Той жа панэлі што і вакно</s:String>
         <s:String>Той жа панэлі што і вакно + асноўная панэль</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">Інвертаваць сістэмныя значкі:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Калі патрабуецца тэме</s:String>
         <s:String>Заўсёды</s:String>
         <s:String>Ніколі</s:String>

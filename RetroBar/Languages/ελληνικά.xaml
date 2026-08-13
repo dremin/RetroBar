@@ -49,8 +49,7 @@
         <s:String>Ίδια γραμμή εργασιών με το παράθυρο</s:String>
         <s:String>Ίδια γραμμή εργασιών με το παράθυρο και την κύρια γραμμή εργασιών</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Αντιστροφή εικονιδίων συστήματος:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Όταν απαιτείται ανά θέμα</s:String>
         <s:String>Πάντα</s:String>
         <s:String>Ποτέ</s:String>

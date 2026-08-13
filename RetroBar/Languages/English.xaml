@@ -49,8 +49,8 @@
         <s:String>Same taskbar as window</s:String>
         <s:String>Same taskbar as window and primary taskbar</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Invert system icons:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <s:String x:Key="invert_grayscale_colors">_Invert grayscale colors:</s:String>
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>When needed by theme</s:String>
         <s:String>Always</s:String>
         <s:String>Never</s:String>

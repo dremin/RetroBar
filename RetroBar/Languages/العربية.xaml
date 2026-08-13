@@ -49,8 +49,7 @@
         <s:String>نفس شريط المهام الذي توجد عليه النافذة</s:String>
         <s:String>نفس شريط المهام الذي توجد عليه النافذة وشريط المهام الرئيسي</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_عكس أيقونات النظام:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>عند الحاجة حسب السمة</s:String>
         <s:String>دائمًا</s:String>
         <s:String>أبدًا</s:String>

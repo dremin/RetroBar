@@ -42,8 +42,7 @@
         <s:String>視窗所在螢幕</s:String>
         <s:String>主螢幕及視窗所在螢幕</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">反轉工作列圖示顏色(_I):</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>按主題需要</s:String>
         <s:String>始終啟用</s:String>
         <s:String>從不</s:String>
