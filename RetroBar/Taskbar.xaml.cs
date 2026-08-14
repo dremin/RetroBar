@@ -296,13 +296,13 @@ namespace RetroBar
             }
             else if (msg == (int)NativeMethods.WM.EXITSIZEMOVE)
             {
-                if (NativeMethods.GetAsyncKeyState((int)System.Windows.Forms.Keys.Escape) != 0)
+                if (NativeMethods.GetAsyncKeyState((int)System.Windows.Forms.Keys.Escape) < 0)
                 {
                     CancelDragOrResize();
                 }
                 else
                 {
-                    windowManager?.NotifyDragEnd();
+                    EndDragOrResize();
                 }
             }
             else if (msg == (int)NativeMethods.WM.MOVING)
@@ -318,7 +318,7 @@ namespace RetroBar
                 }
 
                 var desiredRect = GetDesiredRect();
-                Marshal.StructureToPtr(desiredRect, lParam, true);
+                Marshal.StructureToPtr(desiredRect, lParam, false);
                 return (IntPtr)1;
             }
             else if (msg == (int)NativeMethods.WM.SIZING)
@@ -334,7 +334,7 @@ namespace RetroBar
                 }
 
                 var desiredRect = GetDesiredRect();
-                Marshal.StructureToPtr(desiredRect, lParam, true);
+                Marshal.StructureToPtr(desiredRect, lParam, false);
                 return (IntPtr)1;
             }
 
@@ -659,22 +659,17 @@ namespace RetroBar
 
         private void EndDragOrResize()
         {
-            bool wasActive = _isDragging || _mouseDragResize;
             _isDragging = false;
             _mouseDragResize = false;
             _mouseDragStart = null;
             Cursor = Cursors.Arrow;
             ReleaseMouseCapture();
 
-            if (wasActive)
-            {
-                windowManager?.NotifyDragEnd();
-            }
+            windowManager?.NotifyDragEnd();
         }
 
         private void CancelDragOrResize()
         {
-            bool wasActive = _isDragging || _mouseDragResize;
             _isDragging = false;
             _mouseDragResize = false;
             _mouseDragStart = null;
@@ -694,10 +689,7 @@ namespace RetroBar
                 Settings.Instance.TaskbarWidth = _dragStartTaskbarWidth;
             }
 
-            if (wasActive)
-            {
-                windowManager?.NotifyDragEnd();
-            }
+            windowManager?.NotifyDragEnd();
         }
 
         private void Taskbar_PreviewKeyDown(object sender, KeyEventArgs e)
