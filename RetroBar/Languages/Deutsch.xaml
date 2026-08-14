@@ -49,8 +49,7 @@
         <s:String>Gleiche Taskleiste wie Fenster</s:String>
         <s:String>Gleiche Taskleiste wie Fenster und primäre Taskleiste</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">Systemsymbole _umkehren:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Je nach Thema</s:String>
         <s:String>Immer</s:String>
         <s:String>Niemals</s:String>

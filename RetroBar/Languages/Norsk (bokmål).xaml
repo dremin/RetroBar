@@ -49,8 +49,7 @@
         <s:String>Samme oppgavelinje som vinduet</s:String>
         <s:String>Samme oppgavelinje som vindu og primær oppgavelinje</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Vend systemikoner:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Når det er nødvendig etter tema</s:String>
         <s:String>Alltid</s:String>
         <s:String>Aldri</s:String>

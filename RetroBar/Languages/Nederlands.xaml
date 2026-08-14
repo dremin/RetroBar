@@ -4,6 +4,7 @@
 
     <s:String x:Key="retrobar_properties">RetroBar Instellingen</s:String>
     <s:String x:Key="taskbar_tab">Taakbalk</s:String>
+    <s:String x:Key="advanced_tab">Geavanceerd</s:String>
     <s:String x:Key="taskbar_appearance">Taakbalkweergave</s:String>
     <s:String x:Key="notification_area">Systeemvak</s:String>
     <s:String x:Key="autostart">_Automatisch starten bij aanmelden</s:String>
@@ -19,25 +20,85 @@
         <s:String>Rechts</s:String>
         <s:String>Onder</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Aantal _rijen:</s:String>
+    <s:String x:Key="rowcount_tip">Het aantal rijen op de taakbalk wanneer deze bovenaan of onderaan staat.</s:String>
+    <s:String x:Key="taskbar_width">Taakbalk breedte:</s:String>
     <s:String x:Key="allow_font_smoothing">_Lettertype vloeiend maken</s:String>
-    <s:String x:Key="allow_font_smoothing_menu">_Lettertype vloeiend maken in menu's</s:String>
     <s:String x:Key="collapse_tray_icons">_Niet-actieve pictogrammen opruimen</s:String>
     <s:String x:Key="customize">Aanpassen...</s:String>
+    <s:String x:Key="show_input_language">De invoertaal weergeven</s:String>
     <s:String x:Key="show_clock">_Klok weergeven</s:String>
     <s:String x:Key="show_multi_mon">Laat op _meerdere beeldschermen zien</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Start-knop op meerdere beeldschermen weergeven</s:String>
     <s:String x:Key="show_quick_launch">Werkbalk _Snel starten weergeven</s:String>
     <s:String x:Key="select_location">_Selecteer locatie...</s:String>
     <s:String x:Key="quick_launch_folder">Snel starten - Kies een map</s:String>
+    <s:String x:Key="show_badges">Badges weergeven</s:String>
+    <s:String x:Key="show_window_previews">Voorbeelden van etalages (miniaturen) weergeven</s:String>
     <s:String x:Key="use_software_rendering">_Gebruik software rendering</s:String>
+    <s:String x:Key="add_show_desktop_button">De knop “Bureaublad weergeven” weergeven</s:String>
+    <s:String x:Key="enable_auto_hide">De taakbalk automatisch verbergen</s:String>
+    <s:String x:Key="lock_taskbar">_Vergrendel de taakbalk</s:String>
+    <s:String x:Key="multiple_displays">Meerdere beeldschermen</s:String>
+    <s:String x:Key="show_tasks_on">Taken weergeven op:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Alle taakbalken</s:String>
+        <s:String>Dezelfde taakbalk als venster</s:String>
+        <s:String>Dezelfde taakbalk als venster en primaire taakbalk</s:String>
+    </x:Array>
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
+        <s:String>Indien nodig per thema</s:String>
+        <s:String>Altijd</s:String>
+        <s:String>Nooit</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Actie met middelste muisknop:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Niets doen</s:String>
+        <s:String>Open een nieuwe instantie</s:String>
+        <s:String>Sluit de taak</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Klikgeluid van de klok:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Niets doen</s:String>
+        <s:String>Open Aero-kalender</s:String>
+        <s:String>Open Modern-kalender</s:String>
+        <s:String>Open meldingencentrum</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Hide _taskbar line when hidden with auto-hide</s:String>
+    <s:String x:Key="version">Versie {0}</s:String>
+    <s:String x:Key="visit_on_github">Bezoek RetroBar op GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Taakbalk schaal</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Huidige instelling: {0}%</s:String>
+    <s:String x:Key="debug_logging">Debuglogging inschakelen</s:String>
+    <s:String x:Key="check_for_updates">Controleer op updates</s:String>
+    <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
+    <s:String x:Key="show_end_task_button">Show End _task option in right-click menu</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
+    <s:String x:Key="show_clock_seconds">Seconden weergeven op de klok</s:String>
+    <s:String x:Key="open_custom_themes_folder">Open map met aangepaste thema's</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _sneltoetsen actie:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Standaardinstelling van Windows</s:String>
+        <s:String>Taken wisselen</s:String>
+        <s:String>Snelstartitem openen</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar sneltoetsen</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar overschrijft de sneltoetsen van de Windows-taakbalk. Zelfs als RetroBar is gesloten, worden ze pas weer in Windows hersteld als u zich afmeldt en opnieuw aanmeldt.</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+    <s:String x:Key="allow_blur_behind">Wazigheid achter transparante taakbalk toestaan</s:String>
 
-    <s:String x:Key="customize_notifications">Customize Notifications</s:String>
+    <s:String x:Key="customize_notifications">Meldingen aanpassen</s:String>
     <s:String x:Key="customize_notifications_info">Retrobar geeft standaard alleen pictogrammen voor actuele en urgente meldingen weer, en verbergt alle andere pictogrammen. U kunt dit gedrag voor de onderstaande items wijzigen.</s:String>
-    <s:String x:Key="customize_notifications_instruction">Selecteer een item en kies het gewenste gedrag:</s:String>
+    <s:String x:Key="customize_notifications_instruction">Selecteer een item en kies vervolgens het meldingsgedrag ervan:</s:String>
     <s:String x:Key="hide_when_inactive">Verberg indien niet actief</s:String>
     <s:String x:Key="always_show">Altijd weergeven</s:String>
+    <s:String x:Key="always_hide">Altijd verbergen</s:String>
+    <s:String x:Key="remove">Verwijderen</s:String>
     <s:String x:Key="name_heading">Naam</s:String>
-    <s:String x:Key="behavior_heading">Gedrag</s:String>
+    <s:String x:Key="behavior_heading">Gedraag</s:String>
+    <s:String x:Key="invert_heading">Omkeren</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">start</s:String>
@@ -50,12 +111,27 @@
     <s:String x:Key="quick_launch">_Snel starten</s:String>
     <s:String x:Key="new_toolbar">_Nieuwe werkbalk...</s:String>
     <s:String x:Key="set_time">Dat_um/tijd aanpassen</s:String>
+    <s:String x:Key="cascade">Ca_scade-vensters</s:String>
+    <s:String x:Key="horiz_tile">Vensters horizontaal naast elkaar plaatsen</s:String>
+    <s:String x:Key="vert_tile">Vensters verticaal naast elkaar plaatsen</s:String>
+    <s:String x:Key="toggle_desktop">_Bureaublad weergeven</s:String>
+    <s:String x:Key="hide_desktop">_Open vensters weergeven</s:String>
+    <s:String x:Key="undo_cascade">_Annuleer cascade</s:String>
+    <s:String x:Key="undo_tile">_Annuleer tegel</s:String>
+    <s:String x:Key="undo_minimize_all">_Annuler alles minimaliseren</s:String>
     <s:String x:Key="show_taskman_2k">T_aakbeheer...</s:String>
     <s:String x:Key="show_taskman">Taakbeheer</s:String>
     <s:String x:Key="tray_properties">Ei_genschappen</s:String>
     <s:String x:Key="update_available">_Updates beschikbaar...</s:String>
     <s:String x:Key="exit_retrobar">RetroBar _afsluiten</s:String>
     <s:String x:Key="customize_notifications_menu">Meld_ingen aanpassen...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Vergrendel de taakbalk</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Oppervlak/Bureaublad herstellen</s:String>
+    <s:String x:Key="show_desktop_tip">Bureaublad weergeven</s:String>
+    <s:String x:Key="show_desktop_95">_Bureaublad</s:String>
+    <s:String x:Key="show_desktop">_Bureaublad weergeven</s:String>
+    <s:String x:Key="peek_at_desktop">_Kijkje op het bureaublad</s:String>
 
     <s:String x:Key="restore">_Vorig formaat</s:String>
     <s:String x:Key="move">Ve_rplaatsen</s:String>
@@ -63,9 +139,34 @@
     <s:String x:Key="minimize">Mi_nimaliseren</s:String>
     <s:String x:Key="maximize">_Maximaliseren</s:String>
     <s:String x:Key="close">_Sluiten</s:String>
+    <s:String x:Key="end_task">_Taak beëindigen</s:String>
 
     <s:String x:Key="show_hidden">Verborgen pictogrammen weergeven</s:String>
     <s:String x:Key="hide">Verbergen</s:String>
 
     <s:String x:Key="open_folder">&amp;Map openen</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Klik met de rechtermuisknop voor IME-opties</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME uitgeschakeld</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Volledige breedte Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Volledige breedte alfanumeriek</s:String>
+    <s:String x:Key="ime_input_katakana">Halve breedte Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Halve breedte alfanumeriek</s:String>
+    <s:String x:Key="ime_input_direct">Directe invoer</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Woord toevoegen</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Aanvullend woordenboek</s:String>
+    <s:String x:Key="ime_open_properties">Instellingen</s:String>
+    <s:String x:Key="ime_input_key">Kana-invoer</s:String>
+    <s:String x:Key="ime_input_key_roma">Uit</s:String>
+    <s:String x:Key="ime_input_key_kana">Aan</s:String>
+    <s:String x:Key="ime_conversion">Conversiemodus</s:String>
+    <s:String x:Key="ime_conversion_general">Algemeen</s:String>
+    <s:String x:Key="ime_conversion_none">Geen conversie</s:String>
+
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

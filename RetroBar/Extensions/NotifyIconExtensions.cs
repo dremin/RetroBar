@@ -14,11 +14,6 @@ namespace RetroBar.Extensions
 
         public static NotifyIconBehavior GetBehavior(this NotifyIcon icon)
         {
-            if (icon.IsPinned)
-            {
-                return NotifyIconBehavior.AlwaysShow;
-            }
-
             if (Settings.Instance.NotifyIconBehaviors.Find(setting => setting.Identifier == icon.Identifier) is NotifyIconBehaviorSetting iconSetting)
             {
                 return iconSetting.Behavior;

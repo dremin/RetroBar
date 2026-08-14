@@ -49,8 +49,7 @@
         <s:String>ウィンドウと同じ画面のタスクバー</s:String>
         <s:String>ウィンドウと同じ画面とプライマリタスクバー</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">システムアイコンの色を反転させる(_I)：</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>テーマによって必要な場合</s:String>
         <s:String>常に反転</s:String>
         <s:String>反転しない</s:String>

@@ -41,8 +41,7 @@
         <s:String>แถบงานเดียวกับหน้าต่าง</s:String>
         <s:String>แถบงานเดียวกับหน้าต่างและแถบงานหลัก</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_กลับสีไอคอนระบบ:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>เมื่อชุดรูปแบบต้องการ</s:String>
         <s:String>เสมอ</s:String>
         <s:String>ไม่ต้อง</s:String>

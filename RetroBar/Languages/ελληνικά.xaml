@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Για προχωρημένους</s:String>
     <s:String x:Key="taskbar_appearance">Εμφάνιση γραμμής εργασιών</s:String>
     <s:String x:Key="notification_area">Περιοχή ειδοποιήσεων</s:String>
+    <s:String x:Key="general_heading">Γενικά</s:String>
+    <s:String x:Key="clock_heading">Ρολόι</s:String>
     <s:String x:Key="autostart">Αυτόματη αναπαραγωγή κατά την _εκκίνηση</s:String>
     <s:String x:Key="language_text">Γλώ_σσα:</s:String>
     <s:String x:Key="language_tip">Επιλέξτε την γλώσσα που θα χρησιμοποιήσετε.</s:String>
@@ -20,26 +22,86 @@
         <s:String>Δεξιά</s:String>
         <s:String>Κάτω</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Αριθμός σειρών:</s:String>
+    <s:String x:Key="rowcount_tip">Ο αριθμός των σειρών στη γραμμή εργασιών όταν βρίσκεται στην κορυφή ή στο κάτω μέρος.</s:String>
+    <s:String x:Key="taskbar_width">Πλάτος γραμμής εργασιών:</s:String>
     <s:String x:Key="allow_font_smoothing">_Επιτροπή εξομάλυσης της γραμματοσειράς</s:String>
-    <s:String x:Key="allow_font_smoothing_menu">Εξομάλυνση γραμματοσειράς στα _μενού</s:String>
+    <s:String x:Key="allow_font_smoothing_menu">Επιτιτρέψτε την εξομάλυνση της γραμματοσειράς στα μενού</s:String>
     <s:String x:Key="collapse_tray_icons">Απόκρ_υψη εικονιδίων περιοχής ειδοποιήσεων</s:String>
     <s:String x:Key="customize">Πρ_οσαρμογή...</s:String>
+    <s:String x:Key="show_input_language">Εμφάνιση της γλώσσας εισαγωγής</s:String>
     <s:String x:Key="show_clock">Εμφάνιση του ρο_λογιού</s:String>
     <s:String x:Key="show_multi_mon">Εμφάνιση σε _πολλαπλές οθόνες</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Εμφάνιση του κουμπιού «Έναρξη» σε όλες τις γραμμές εργασιών</s:String>
     <s:String x:Key="show_quick_launch">Εμφάνιση _Γρήγορης Εκκίνησης</s:String>
     <s:String x:Key="select_location">_Επιλογή τοποθεσίας...</s:String>
     <s:String x:Key="quick_launch_folder">Γρήγορη Εκκίνηση - Επιλέξτε έναν φάκελο</s:String>
+    <s:String x:Key="show_badges">Εμφάνιση εμβλημάτων</s:String>
+    <s:String x:Key="show_window_previews">Εμφάνιση προεπισκοπήσεων παραθύρου (μικρογραφίες)</s:String>
     <s:String x:Key="use_software_rendering">_Χρήση απόδοσης λογισμικού</s:String>
+    <s:String x:Key="add_show_desktop_button">Προσθέστε το κουμπί «Εμφάνιση επιφάνειας εργασίας»</s:String>
+    <s:String x:Key="enable_auto_hide">Αυτόματη απόκρυψη της γραμμής εργασιών</s:String>
+    <s:String x:Key="lock_taskbar">_Κλείδωμα της γραμμής εργασιών</s:String>
+    <s:String x:Key="multiple_displays">Πολλαπλές οθόνες</s:String>
+    <s:String x:Key="show_tasks_on">Εμφάνιση εργασιών σε:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Όλες οι γραμμές εργασιών</s:String>
+        <s:String>Ίδια γραμμή εργασιών με το παράθυρο</s:String>
+        <s:String>Ίδια γραμμή εργασιών με το παράθυρο και την κύρια γραμμή εργασιών</s:String>
+    </x:Array>
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
+        <s:String>Όταν απαιτείται ανά θέμα</s:String>
+        <s:String>Πάντα</s:String>
+        <s:String>Ποτέ</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">_Ενέργεια με το μεσαίο κλικ:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Μην κάνετε τίποτα</s:String>
+        <s:String>Άνοιγμα νέας παρουσίας</s:String>
+        <s:String>Κλείστε την εργασία</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">_Δράση κλικ ρολογιού:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Μην κάνετε τίποτα</s:String>
+        <s:String>Ανοίξτε το ημερολόγιο «Aero»</s:String>
+        <s:String>Ανοίξτε το ημερολόγιο «Modern»</s:String>
+        <s:String>Άνοιγμα Κέντρου ειδοποιήσεων</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Απόκρυψη γραμμής γραμμής εργασιών όταν είναι κρυμμένη με αυτόματη απόκρυψη</s:String>
     <s:String x:Key="version">Έκδοση {0}</s:String>
-    <s:String x:Key="ok_dialog">ΟΚ</s:String>
+    <s:String x:Key="visit_on_github">Επισκεφθείτε το RetroBar στο GitHub</s:String>
+    <s:String x:Key="taskbar_scale">Κλίμακα γραμμής εργασιών</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Τρέχουσα ρύθμιση: {0}%</s:String>
+    <s:String x:Key="debug_logging">Ενεργοποίηση καταγραφής σφαλμάτων</s:String>
+    <s:String x:Key="check_for_updates">Έλεγχος για ενημερώσεις</s:String>
+    <s:String x:Key="show_exit_menu_item">Εμφάνιση της επιλογής «Κλείσιμο» στο μενού του δεξιού κλικ</s:String>
+    <s:String x:Key="show_end_task_button">Εμφάνιση της επιλογής «Τερματισμός εργασίας» στο μενού του δεξιού κλικ</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Χρήση του εφέ ολίσθησης κατά τη μετακίνηση των κουμπιών</s:String>
+    <s:String x:Key="show_clock_seconds">Εμφάνιση δευτερολέπτων στο ρολόι</s:String>
+    <s:String x:Key="open_custom_themes_folder">Άνοιγμα φακέλου προσαρμοσμένων θεμάτων</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Λειτουργία πλήκτρων συντόμευσης Win+[0-9]:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Προεπιλογή των Windows</s:String>
+        <s:String>Αλλαγή εργασιών</s:String>
+        <s:String>Άνοιγμα στοιχείου γρήγορης εκκίνησης</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">Πλήκτρα πρόσβασης RetroBar</s:String>
+    <s:String x:Key="hotkey_warning_text">Το RetroBar θα αντικαταστήσει τα πλήκτρα συντόμευσης της γραμμής εργασιών των Windows. Ακόμα και αν το RetroBar είναι κλειστό, τα πλήκτρα συντόμευσης δεν θα επανέλθουν στα Windows μέχρι να αποσυνδεθείτε και να συνδεθείτε ξανά.</s:String>
+    <s:String x:Key="allow_blur_behind">Επιτρέψτε θόλωση πίσω από τη διαφανή γραμμή εργασιών</s:String>
+    <s:String x:Key="ok_dialog">Εντάξει</s:String>
 
     <s:String x:Key="customize_notifications">Προσαρμογή ειδοποιήσεων</s:String>
     <s:String x:Key="customize_notifications_info">Το RetroBar εμφανίζει εικονίδια για ενεργές και επείγουσες ειδοποιήσεις και αποκρύπτει τις ανενεργές. Μπορείτε να αλλάξετε αυτήν τη συμπεριφορά για τα στοιχεία στην παρακάτω λίστα.</s:String>
     <s:String x:Key="customize_notifications_instruction">Επιλέξτε ένα αντικείμενο, τότε επιλέξτε την συμπεριφορά των ειδοποιήσεων:</s:String>
     <s:String x:Key="hide_when_inactive">Απόκρυψη όταν είναι ανενεργό</s:String>
     <s:String x:Key="always_show">Εμφάνιση πάντα</s:String>
+    <s:String x:Key="always_hide">Πάντα απόκρυψη</s:String>
+    <s:String x:Key="remove">Κατάργηση</s:String>
     <s:String x:Key="name_heading">Όνομα</s:String>
     <s:String x:Key="behavior_heading">Συμπεριφορά</s:String>
+    <s:String x:Key="invert_heading">Αντιστροφή</s:String>
 
     <s:String x:Key="start_text">Έναρξη</s:String>
     <s:String x:Key="start_text_xp">έναρξη</s:String>
@@ -52,12 +114,27 @@
     <s:String x:Key="quick_launch">_Γρήγορη εκκίνηση</s:String>
     <s:String x:Key="new_toolbar">_Νέα Γραμμή Εργαλείων...</s:String>
     <s:String x:Key="set_time">_Προσαρμογή Ημέρας/Ώρας</s:String>
+    <s:String x:Key="cascade">Παράθυρα σε σειρά</s:String>
+    <s:String x:Key="horiz_tile">Οριζόντια διάταξη παραθύρων</s:String>
+    <s:String x:Key="vert_tile">Κατακόρυφη διάταξη παραθύρων</s:String>
+    <s:String x:Key="toggle_desktop">_Εμφάνιση της επιφάνειας εργασίας</s:String>
+    <s:String x:Key="hide_desktop">_Εμφάνιση ανοιχτών παραθύρων</s:String>
+    <s:String x:Key="undo_cascade">_Ακύρωση αλυσιδωτής ενέργειας</s:String>
+    <s:String x:Key="undo_tile">_Πλακίδιο «Αναίρεση»</s:String>
+    <s:String x:Key="undo_minimize_all">_Αναίρεση ελαχιστοποίηση όλων</s:String>
     <s:String x:Key="show_taskman_2k">Δια_χείρηση Εργασιών...</s:String>
     <s:String x:Key="show_taskman">Δια_χείρηση εργασιών</s:String>
     <s:String x:Key="tray_properties">_Ιδιότητες</s:String>
     <s:String x:Key="update_available">_διαθέσιμη ενημέρωση...</s:String>
     <s:String x:Key="exit_retrobar">_Έξοδος από το RetroBar</s:String>
     <s:String x:Key="customize_notifications_menu">_Προσαρμογή ειδοποιήσεων...</s:String>
+    <s:String x:Key="lock_taskbar_menu">_Κλείδωμα της γραμμής εργασιών</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Επιφάνεια/Επαναφορά επιφάνειας εργασίας</s:String>
+    <s:String x:Key="show_desktop_tip">Εμφάνιση επιφάνειας εργασίας</s:String>
+    <s:String x:Key="show_desktop_95">_Επιτραπέζιος υπολογιστής</s:String>
+    <s:String x:Key="show_desktop">_Εμφάνιση επιφάνειας εργασίας</s:String>
+    <s:String x:Key="peek_at_desktop">_Μια ματιά στην επιφάνεια εργασίας</s:String>
 
     <s:String x:Key="restore">Επανα_φορά</s:String>
     <s:String x:Key="move">_Μετακίνηση</s:String>
@@ -65,9 +142,31 @@
     <s:String x:Key="minimize">Ε_λαχιστοποίηση</s:String>
     <s:String x:Key="maximize">Με_γιστοποιήση</s:String>
     <s:String x:Key="close">_Κλείσιμο</s:String>
+    <s:String x:Key="end_task">_Τερματισμός εργασίας</s:String>
 
     <s:String x:Key="show_hidden">Εμφάνιση κρυφών εικονιδίων</s:String>
     <s:String x:Key="hide">Απόκρυψη</s:String>
 
     <s:String x:Key="open_folder">&amp;Άνοιγμα Φακέλου</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Κάντε δεξί κλικ για τις επιλογές του IME</s:String>
+    <s:String x:Key="ime_input_tip_disabled">Το IME είναι απενεργοποιημένο</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Χιραγκάνα</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Κατακάνα πλήρους πλάτους</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Αλφαριθμητικά πλήρους πλάτους</s:String>
+    <s:String x:Key="ime_input_katakana">Κατακάνα μισού πλάτους</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Αλφαριθμητικά μισού πλάτους</s:String>
+    <s:String x:Key="ime_input_direct">Άμεση εισαγωγή</s:String>
+    <s:String x:Key="ime_open_pad">IME Pad</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Προσθήκη λέξης</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Εργαλείο λεξικού του Χρήστη</s:String>
+    <s:String x:Key="ime_open_properties">Ρυθμίσεις</s:String>
+    <s:String x:Key="ime_input_key">Μέθοδος εισαγωγής</s:String>
+    <s:String x:Key="ime_input_key_roma">Εισαγωγή Ρομάτζι</s:String>
+    <s:String x:Key="ime_input_key_kana">Εισαγωγή Κάνα</s:String>
+    <s:String x:Key="ime_conversion">Λειτουργία μετατροπής</s:String>
+    <s:String x:Key="ime_conversion_general">Γενικά</s:String>
+    <s:String x:Key="ime_conversion_none">Χωρίς μετατροπή</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>

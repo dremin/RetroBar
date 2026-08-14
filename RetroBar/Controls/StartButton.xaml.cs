@@ -181,7 +181,9 @@ namespace RetroBar.Controls
 
         private void AppVisibilityHelper_StartMenuVisibilityChanged(object? sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
-            if (e.Visible && e.TaskbarHwndActivated != IntPtr.Zero && Host != null && e.TaskbarHwndActivated != Host.Handle)
+            if (e.Visible && Host != null &&
+                ((e.TaskbarHwndActivated != IntPtr.Zero && e.TaskbarHwndActivated != Host.Handle) ||
+                (e.StartHmonitor != IntPtr.Zero && e.StartHmonitor != Host.Screen.HMonitor)))
             {
                 // Only set as visible when activated from our taskbar
                 return;

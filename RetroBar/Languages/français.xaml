@@ -49,8 +49,7 @@
         <s:String>La même barre des tâches que la fenêtre</s:String>
         <s:String>La même barre des tâches que la fenêtre et la barre des tâches primaire</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">Icônes de systeme inversées en _couleur:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Si nécessaire par le thème</s:String>
         <s:String>Toujours</s:String>
         <s:String>Jamais</s:String>

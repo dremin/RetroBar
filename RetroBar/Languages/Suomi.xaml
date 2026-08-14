@@ -7,6 +7,8 @@
     <s:String x:Key="advanced_tab">Lisäasetukset</s:String>
     <s:String x:Key="taskbar_appearance">Tehtäväpalkin ulkoasu</s:String>
     <s:String x:Key="notification_area">Ilmoitusalue</s:String>
+    <s:String x:Key="general_heading">Yleistä</s:String>
+    <s:String x:Key="clock_heading">Kello</s:String>
     <s:String x:Key="autostart">Käynnistä automaattisesti _sisäänkirjautuessa</s:String>
     <s:String x:Key="language_text">_Kieli:</s:String>
     <s:String x:Key="language_tip">Valitse käytettävä kieli.</s:String>
@@ -22,19 +24,20 @@
     </x:Array>
     <s:String x:Key="rowcount_text">Rivien lukumäärä:</s:String>
     <s:String x:Key="rowcount_tip">Rivien määrä tehtäväpalkissa, kun se on ylhäällä tai alhaalla.</s:String>
+    <s:String x:Key="taskbar_width">Tehtäväpalkin leveys:</s:String>
     <s:String x:Key="allow_font_smoothing">_Salli fontin pehmennys</s:String>
-    <s:String x:Key="allow_font_smoothing_menu">Salli fontin pehmennys _valikoissa</s:String>
     <s:String x:Key="collapse_tray_icons">Piilota _ilmoitusalueen kuvakkeet</s:String>
     <s:String x:Key="customize">_Mukauta...</s:String>
     <s:String x:Key="show_input_language">Näytä syötteen _kieli</s:String>
     <s:String x:Key="show_clock">Näytä kell_o</s:String>
     <s:String x:Key="show_multi_mon">Näytä _useilla näytöillä</s:String>
+    <s:String x:Key="show_start_button_multi_mon">Näytä Käynnistä-painike kaikissa tehtäväpalkissa</s:String>
     <s:String x:Key="show_quick_launch">Näytä _Pika-käynnistys</s:String>
     <s:String x:Key="select_location">_Valitse sijainti...</s:String>
     <s:String x:Key="quick_launch_folder">Pika-käynnistys - Valitse kansio</s:String>
     <s:String x:Key="show_badges">Näytä _merkit</s:String>
     <s:String x:Key="show_window_previews">Näytä _ikkunoiden esikatselut (pienoiskuvat)</s:String>
-    <s:String x:Key="use_software_rendering">_Käytä ohjelmisto renderöintiä</s:String>
+    <s:String x:Key="use_software_rendering">_Käytä ohjelmistorenderöintiä</s:String>
     <s:String x:Key="add_show_desktop_button">Lisää Näytä _työpöytä -painike</s:String>
     <s:String x:Key="enable_auto_hide">P_iilota automaattisesti</s:String>
     <s:String x:Key="lock_taskbar">_Lukitse tehtäväpalkki</s:String>
@@ -45,8 +48,7 @@
         <s:String>Saman ikkunan tehtäväpalkilla</s:String>
         <s:String>Pää- ja ikkunan tehtäväpalkilla</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Käännä järjestelmäkuvakkeet:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Kun teema tarvitsee</s:String>
         <s:String>Aina</s:String>
         <s:String>Ei koskaan</s:String>
@@ -57,6 +59,14 @@
         <s:String>Avaa uusi ikkuna</s:String>
         <s:String>Sulje tehtävä</s:String>
     </x:Array>
+    <s:String x:Key="clock_click_action">_Kellon napsahdus:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Älä tee mitään</s:String>
+        <s:String>Avaa Aero-kalenteri</s:String>
+        <s:String>Avaa Modern-kalenteri</s:String>
+        <s:String>Avaa ilmoituskeskus</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">Piilota tehtäväpalkin viiva, kun se on piilotettu automaattisen piilotuksen avulla</s:String>
     <s:String x:Key="version">Versio {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBarin GitHub</s:String>
     <s:String x:Key="taskbar_scale">Tehtäväpalkin skaalaus</s:String>
@@ -65,7 +75,22 @@
     <s:String x:Key="taskbar_scale_current">Nykyinen asetus: {0}%</s:String>
     <s:String x:Key="debug_logging">Ota käyttöön virheenkorjausloki</s:String>
     <s:String x:Key="check_for_updates">Tarkista päivitykset automaattisesti</s:String>
+    <s:String x:Key="show_exit_menu_item">Näytä Sulje-vaihtoehto hiiren kakkospainikkeella avautuvassa valikossa</s:String>
+    <s:String x:Key="show_end_task_button">Näytä Lopetettu tehtävä-vaihtoehto hiiren kakkospainikkeella avautuvassa valikossa</s:String>
+    <s:String x:Key="slide_taskbar_buttons">Siirrä tehtäväpalkin painikkeita</s:String>
+    <s:String x:Key="show_clock_seconds">Näytä kellon sekunnit</s:String>
+    <s:String x:Key="open_custom_themes_folder">Avaa mukautetut teemat-kansio</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] pikanäppäinten toiminta:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windowsin oletusasetus</s:String>
+        <s:String>Vaihda tehtävää</s:String>
+        <s:String>Avaa pikakäynnistyskohde</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar-pikanäppäimet</s:String>
+    <s:String x:Key="hotkey_warning_text">RetroBar ohittaa Windowsin tehtäväpalkin pikanäppäimet. Vaikka RetroBar suljetaan, ne eivät palaudu Windowsissa, ennen kuin kirjaudut ulos ja takaisin sisään.</s:String>
+    <s:String x:Key="allow_blur_behind">Salli läpinäkyvän tehtäväpalkin takana oleva hämärtyminen</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
 
     <s:String x:Key="customize_notifications">Mukauta ilmoitukset</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar näyttää aktiivisten ja kiireellisten ilmoitusten kuvakkeet ja piilottaa passiiviset. Voit muuttaa tätä asetusta alla olevien kohteiden kohdalla.</s:String>
@@ -117,9 +142,34 @@
     <s:String x:Key="minimize">Pienennä</s:String>
     <s:String x:Key="maximize">Suurenna</s:String>
     <s:String x:Key="close">Sulje</s:String>
+    <s:String x:Key="end_task">_Lopeta tehtävä</s:String>
 
     <s:String x:Key="show_hidden">Näytä piilotetut kuvakkeet</s:String>
     <s:String x:Key="hide">Piilota</s:String>
 
     <s:String x:Key="open_folder">&amp;Avaa kansio</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Napsauta hiiren kakkospainikkeella IME-asetuksia varten</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME pois käytöstä</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Koko leveyden katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Koko leveyden aakkosnumeerinen</s:String>
+    <s:String x:Key="ime_input_katakana">Puolen leveyden katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Puolen leveyden aakkosnumeerinen</s:String>
+    <s:String x:Key="ime_input_direct">Suora syöttö</s:String>
+    <s:String x:Key="ime_open_pad">IME avustaja</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Lisää sana</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Käyttäjän sanakirjatyökalu</s:String>
+    <s:String x:Key="ime_open_properties">Asetukset</s:String>
+    <s:String x:Key="ime_input_key">Syöttötapa</s:String>
+    <s:String x:Key="ime_input_key_roma">Romaji-syöttö</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-syöttö</s:String>
+    <s:String x:Key="ime_conversion">Muunnostila</s:String>
+    <s:String x:Key="ime_conversion_general">Yleistä</s:String>
+    <s:String x:Key="ime_conversion_none">Ei muuntamista</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
+    <!-- Items below are settings, and should always be in English -->
+    <FlowDirection x:Key="flow_direction">LeftToRight</FlowDirection>
+    <FontFamily x:Key="start_text_xp_font_family">Franklin Gothic</FontFamily>
 </ResourceDictionary>

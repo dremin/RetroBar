@@ -49,8 +49,7 @@
         <s:String>Aceeași bară de activități ca fereastra</s:String>
         <s:String>Aceeași bară de activități ca fereastra și bara de activități principală</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Inversați culoarea pictogramelor:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Doar când este nevoie</s:String>
         <s:String>Mereu</s:String>
         <s:String>Niciodată</s:String>

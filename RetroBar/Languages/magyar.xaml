@@ -5,6 +5,10 @@
     <s:String x:Key="retrobar_properties">RetroBar tulajdonságok</s:String>
     <s:String x:Key="taskbar_tab">Tálca</s:String>
     <s:String x:Key="advanced_tab">Speciális</s:String>
+    <s:String x:Key="taskbar_appearance">A tálca megjelenése</s:String>
+    <s:String x:Key="notification_area">Értesítési terület</s:String>
+    <s:String x:Key="general_heading">Általános</s:String>
+    <s:String x:Key="clock_heading">Óra</s:String>
     <s:String x:Key="autostart">Automatikus indítás _bejelentkezéskor</s:String>
     <s:String x:Key="language_text">_Nyelv:</s:String>
     <s:String x:Key="language_tip">Válaszd ki a használni kívánt nyelvet.</s:String>
@@ -18,16 +22,86 @@
         <s:String>Jobb oldalt</s:String>
         <s:String>Lent</s:String>
     </x:Array>
+    <s:String x:Key="rowcount_text">Sorok száma:</s:String>
+    <s:String x:Key="rowcount_tip">A tálcán lévő sorok száma, ha a tálca felül vagy alul van.</s:String>
+    <s:String x:Key="taskbar_width">Tálca szélessége:</s:String>
     <s:String x:Key="allow_font_smoothing">_Betűsimítás engedélyezése</s:String>
     <s:String x:Key="allow_font_smoothing_menu">Betűsimítás _engedélyezése a menükben</s:String>
     <s:String x:Key="collapse_tray_icons">Az _értesítési terület ikonjainak összecsukása</s:String>
+    <s:String x:Key="customize">_Testreszabás...</s:String>
+    <s:String x:Key="show_input_language">A bevitel nyelvének megjelenítése</s:String>
     <s:String x:Key="show_clock">Mutasd az _órát</s:String>
     <s:String x:Key="show_multi_mon">Megjelenítés _több kijelzőn</s:String>
+    <s:String x:Key="show_start_button_multi_mon">A „Start” gomb megjelenítése az összes tálcán</s:String>
     <s:String x:Key="show_quick_launch">Mutasd a _Gyorsindítást</s:String>
     <s:String x:Key="select_location">Hely ki_választása...</s:String>
     <s:String x:Key="quick_launch_folder">Gyorsindítás – Válasszon ki egy mappát</s:String>
+    <s:String x:Key="show_badges">Jelvények megjelenítése</s:String>
+    <s:String x:Key="show_window_previews">Ablak-előnézetek (miniatűrök) megjelenítése</s:String>
     <s:String x:Key="use_software_rendering">Használjon _szoftveres megjelenítést</s:String>
+    <s:String x:Key="add_show_desktop_button">Adja hozzá az „Asztal megjelenítése” gombotn</s:String>
+    <s:String x:Key="enable_auto_hide">A tálca automatikus elrejtése</s:String>
+    <s:String x:Key="lock_taskbar">A tálca rögzítése</s:String>
+    <s:String x:Key="multiple_displays">Több kijelző</s:String>
+    <s:String x:Key="show_tasks_on">Feladatok megjelenítése:</s:String>
+    <x:Array x:Key="show_tasks_on_values" Type="s:String">
+        <s:String>Minden tálca</s:String>
+        <s:String>Ugyanaz a tálca, mint az ablaké</s:String>
+        <s:String>Ugyanaz a tálca, mint az ablaké és az elsődleges tálca</s:String>
+    </x:Array>
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
+        <s:String>Téma szerint, ha szükséges</s:String>
+        <s:String>Mindig</s:String>
+        <s:String>Soha</s:String>
+    </x:Array>
+    <s:String x:Key="middle_mouse_task_action">Középső gombbal végrehajtott művelet:</s:String>
+    <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
+        <s:String>Semmit sem tesz</s:String>
+        <s:String>Új példányt nyit</s:String>
+        <s:String>Bezárja a feladatot</s:String>
+    </x:Array>
+    <s:String x:Key="clock_click_action">Óra kattintási művelet:</s:String>
+    <x:Array x:Key="clock_click_action_values" Type="s:String">
+        <s:String>Semmit sem tesz</s:String>
+        <s:String>Megnyitja az Aero naptárat</s:String>
+        <s:String>Megnyitja a Modern naptárat</s:String>
+        <s:String>Megnyitja az Értesítési központot</s:String>
+    </x:Array>
+    <s:String x:Key="auto_hide_transparent">A tálca sorának elrejtése, ha az automatikus elrejtés funkcióval el van rejtve</s:String>
+    <s:String x:Key="version">Verzió {0}</s:String>
+    <s:String x:Key="visit_on_github">Látogass el a RetroBar oldalára a GitHubon</s:String>
+    <s:String x:Key="taskbar_scale">A tálca mérete</s:String>
+    <s:String x:Key="taskbar_scale_1x">100%</s:String>
+    <s:String x:Key="taskbar_scale_2x">200%</s:String>
+    <s:String x:Key="taskbar_scale_current">Jelenlegi beállítás: {0}%</s:String>
+    <s:String x:Key="debug_logging">Hibaelhárítási naplózás engedélyezése</s:String>
+    <s:String x:Key="check_for_updates">Ellenőrizze, hogy vannak-e frissítések</s:String>
+    <s:String x:Key="show_exit_menu_item">A jobb egérgombbal megnyíló menüben jelenítse meg a „Bezárás” lehetőséget</s:String>
+    <s:String x:Key="show_end_task_button">A „Feladat befejezése” opció megjelenítése a jobb egérgombbal elérhető menüben</s:String>
+    <s:String x:Key="slide_taskbar_buttons">A tálca gombjainak csúsztatása</s:String>
+    <s:String x:Key="show_clock_seconds">Az óra mutassa a másodperceket</s:String>
+    <s:String x:Key="open_custom_themes_folder">Egyéni témák mappa megnyitása</s:String>
+    <s:String x:Key="win_num_hotkeys_action">Win+[0–9] gyorsbillentyűk művelete:</s:String>
+    <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
+        <s:String>Windows alapértelmezett</s:String>
+        <s:String>Feladatok közötti váltás</s:String>
+        <s:String>Gyorsindító elem megnyitása</s:String>
+    </x:Array>
+    <s:String x:Key="hotkey_warning_title">RetroBar gyorsbillentyűk</s:String>
+    <s:String x:Key="hotkey_warning_text">A RetroBar felülírja a Windows tálcájának gyorsbillentyűit. Még akkor is, ha a RetroBar bezárva van, ezek a beállítások csak akkor állnak vissza a Windows-ba, ha kijelentkezel, majd újra bejelentkezel.</s:String>
+    <s:String x:Key="allow_blur_behind">Az átlátszó tálca mögötti elmosódás engedélyezése</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="customize_notifications">Értesítések testreszabása</s:String>
+    <s:String x:Key="customize_notifications_info">A RetroBar az aktív és sürgős értesítésekhez ikonokat jelenít meg, az inaktívakat pedig elrejti. Az alábbi listában szereplő elemek esetében módosíthatod ezt a viselkedést.</s:String>
+    <s:String x:Key="customize_notifications_instruction">Válasszon ki egy elemet, majd állítsa be az értesítési beállításait:</s:String>
+    <s:String x:Key="hide_when_inactive">Inaktív állapotban elrejtés</s:String>
+    <s:String x:Key="always_show">Mindig megjelenítés</s:String>
+    <s:String x:Key="always_hide">Mindig elrejtés</s:String>
+    <s:String x:Key="remove">Eltávolítás</s:String>
+    <s:String x:Key="name_heading">Név</s:String>
+    <s:String x:Key="behavior_heading">Viselkedés</s:String>
+    <s:String x:Key="invert_heading">Invertálás</s:String>
 
     <s:String x:Key="start_text">Start</s:String>
     <s:String x:Key="start_text_xp">Start</s:String>
@@ -40,11 +114,27 @@
     <s:String x:Key="quick_launch">_Gyorsindítás</s:String>
     <s:String x:Key="new_toolbar">_Új eszköztár...</s:String>
     <s:String x:Key="set_time">_Dátum/Idő beállítása</s:String>
+    <s:String x:Key="cascade">Kaszkád ablakok</s:String>
+    <s:String x:Key="horiz_tile">Ablakok vízszintes elrendezése</s:String>
+    <s:String x:Key="vert_tile">Ablakok függőleges elrendezése</s:String>
+    <s:String x:Key="toggle_desktop">Asztal megjelenítése</s:String>
+    <s:String x:Key="hide_desktop">Nyitott ablakok megjelenítése</s:String>
+    <s:String x:Key="undo_cascade">Visszavonás lépésenként</s:String>
+    <s:String x:Key="undo_tile">Csempe visszavonása</s:String>
+    <s:String x:Key="undo_minimize_all">Visszavonás – Összecsukás</s:String>
     <s:String x:Key="show_taskman_2k">F_eladatkezelő...</s:String>
     <s:String x:Key="show_taskman">F_eladatkezelő</s:String>
     <s:String x:Key="tray_properties">_Tulajdonságok</s:String>
     <s:String x:Key="update_available">_Frissítés elérhető...</s:String>
     <s:String x:Key="exit_retrobar">_Kilépés a RetroBarból</s:String>
+    <s:String x:Key="customize_notifications_menu">Értesítések testreszabása...</s:String>
+    <s:String x:Key="lock_taskbar_menu">A tálca rögzítése</s:String>
+
+    <s:String x:Key="show_desktop_tip_95">Asztal felülete/visszaállítása</s:String>
+    <s:String x:Key="show_desktop_tip">Asztal megjelenítése</s:String>
+    <s:String x:Key="show_desktop_95">Asztali számítógép</s:String>
+    <s:String x:Key="show_desktop">Asztal megjelenítése</s:String>
+    <s:String x:Key="peek_at_desktop">Asztal megtekintése</s:String>
 
     <s:String x:Key="restore">_Visszaállítás</s:String>
     <s:String x:Key="move">_Áthelyezés</s:String>
@@ -52,9 +142,31 @@
     <s:String x:Key="minimize">Mi_nimalizálás</s:String>
     <s:String x:Key="maximize">Ma_ximalizálás</s:String>
     <s:String x:Key="close">_Bezárás</s:String>
+    <s:String x:Key="end_task">_Feladat befejezése</s:String>
 
     <s:String x:Key="show_hidden">Rejtett ikonok mutatása</s:String>
     <s:String x:Key="hide">Elrejtés</s:String>
 
     <s:String x:Key="open_folder">&amp;Mappa megnyitása</s:String>
+
+    <s:String x:Key="ime_input_tip_enabled">Kattintson a jobb gombbal az IME beállításokhoz</s:String>
+    <s:String x:Key="ime_input_tip_disabled">IME letiltva</s:String>
+    <s:String x:Key="ime_input_full_shape_hiragana">Hiragana</s:String>
+    <s:String x:Key="ime_input_full_shape_katakana">Teljes szélességű Katakana</s:String>
+    <s:String x:Key="ime_input_full_shape_alphanumeric">Teljes szélességű alfanumerikus</s:String>
+    <s:String x:Key="ime_input_katakana">Félszélességű Katakana</s:String>
+    <s:String x:Key="ime_input_alphanumeric">Félszélességű alfanumerikus</s:String>
+    <s:String x:Key="ime_input_direct">Közvetlen bevitel</s:String>
+    <s:String x:Key="ime_open_pad">IME billentyűzet</s:String>
+    <s:String x:Key="ime_open_add_word_dictionary">Szó hozzáadása</s:String>
+    <s:String x:Key="ime_open_dictionary_tool">Felhasználói szótár eszköz</s:String>
+    <s:String x:Key="ime_open_properties">Beállítások</s:String>
+    <s:String x:Key="ime_input_key">Beviteli módszer</s:String>
+    <s:String x:Key="ime_input_key_roma">Romadzsi-beírás</s:String>
+    <s:String x:Key="ime_input_key_kana">Kana-beírás</s:String>
+    <s:String x:Key="ime_conversion">Átalakítási mód</s:String>
+    <s:String x:Key="ime_conversion_general">Általános</s:String>
+    <s:String x:Key="ime_conversion_none">Nincs konverzió</s:String>
+    <s:String x:Key="input_switcher_item_format">{0} — {1}</s:String>
+
 </ResourceDictionary>

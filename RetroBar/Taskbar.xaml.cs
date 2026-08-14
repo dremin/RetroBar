@@ -381,6 +381,15 @@ namespace RetroBar
             {
                 UpdateAvailableMenuItem.Visibility = Visibility.Visible;
             }
+
+            if (NativeMethods.GetAsyncKeyState((int)System.Windows.Forms.Keys.ShiftKey) < 0 && Settings.Instance.ShowExitMenuItem)
+            {
+                RestartMenuItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                RestartMenuItem.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void SetTimeMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -417,14 +426,12 @@ namespace RetroBar
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (NativeMethods.GetAsyncKeyState((int)System.Windows.Forms.Keys.ShiftKey) < 0)
-            {
-                ((App)Application.Current).RestartApp();
-            }
-            else
-            {
-                ((App)Application.Current).ExitGracefully();
-            }
+            ((App)Application.Current).ExitGracefully();
+        }
+
+        private void RestartMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).RestartApp();
         }
         #endregion
 

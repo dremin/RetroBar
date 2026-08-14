@@ -47,8 +47,7 @@
         <s:String>Mesma barra de tarefas que a janela</s:String>
         <s:String>Mesma barra de tarefas que a janela e barra de tarefas principal</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Inverter ícones do sistema:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Quando necessário pelo tema</s:String>
         <s:String>Sempre</s:String>
         <s:String>Nunca</s:String>

@@ -49,8 +49,7 @@
         <s:String>Иста плоча со задачи како прозорец</s:String>
         <s:String>Иста плоча со задачи како прозорец и главна плоча со задачи</s:String>
     </x:Array>
-    <s:String x:Key="invert_system_icons">_Превртете ги иконите на системот:</s:String>
-    <x:Array x:Key="invert_system_icons_values" Type="s:String">
+    <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Кога е потребно од темата</s:String>
         <s:String>Секогаш</s:String>
         <s:String>Никогаш</s:String>

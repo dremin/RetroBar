@@ -1,6 +1,5 @@
 ﻿using GongSolutions.Wpf.DragDrop;
 using ManagedShell.WindowsTray;
-using Tray = ManagedShell.WindowsTray;
 using RetroBar.Extensions;
 using RetroBar.Utilities;
 using System;
@@ -13,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
+using Tray = ManagedShell.WindowsTray;
 
 namespace RetroBar.Controls
 {
@@ -70,7 +70,6 @@ namespace RetroBar.Controls
         {
             if (!_isLoaded && NotificationArea != null)
             {
-                promotedIcons.CollectionChanged += PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown += NotificationArea_NotificationBalloonShown;
                 NotificationArea.UnpinnedIcons.CollectionChanged += UnpinnedIcons_CollectionChanged;
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
@@ -106,7 +105,7 @@ namespace RetroBar.Controls
         {
             if (icon is Tray.NotifyIcon notifyIcon)
             {
-                return (!IsCollapsed() || notifyIcon.IsPinned || promotedIcons.Contains(notifyIcon))
+                return (!IsCollapsed() || notifyIcon.IsPinned)
                     && !notifyIcon.IsHidden
                     && notifyIcon.GetBehavior() != NotifyIconBehavior.Remove;
             }
@@ -153,6 +152,7 @@ namespace RetroBar.Controls
                 return;
             }
 
+            notifyIcon.IsPinned = true;
             promotedIcons.Add(notifyIcon);
 
             DispatcherTimer unpromoteTimer = new DispatcherTimer
@@ -163,6 +163,11 @@ namespace RetroBar.Controls
             {
                 if (promotedIcons.Contains(notifyIcon))
                 {
+                    if (!(Settings.Instance.NotifyIconBehaviors.Find(setting => setting.Identifier == notifyIcon.Identifier) is NotifyIconBehaviorSetting iconSetting && iconSetting.Behavior == NotifyIconBehavior.AlwaysShow))
+                    {
+                        // Don't unpin if settings were changed to always show
+                        notifyIcon.IsPinned = false;
+                    }
                     promotedIcons.Remove(notifyIcon);
                 }
                 unpromoteTimer.Stop();
@@ -191,7 +196,6 @@ namespace RetroBar.Controls
 
             if (NotificationArea != null)
             {
-                promotedIcons.CollectionChanged -= PromotedIcons_CollectionChanged;
                 NotificationArea.NotificationBalloonShown -= NotificationArea_NotificationBalloonShown;
                 NotificationArea.UnpinnedIcons.CollectionChanged -= UnpinnedIcons_CollectionChanged;
                 NotificationArea.UnpinnedIcons.Filter = UnpinnedNotifyIcons_Filter;
@@ -204,14 +208,6 @@ namespace RetroBar.Controls
         private void UnpinnedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SetToggleVisibility();
-        }
-
-        private void PromotedIcons_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsCollapsed())
-            {
-                collectionView?.Refresh();
-            }
         }
 
         private void NotifyIconToggleButton_OnClick(object sender, RoutedEventArgs e)
@@ -258,6 +254,10 @@ namespace RetroBar.Controls
                 {
                     insertIndex--;
                 }
+                else
+                {
+                    visibleIcons.Remove(draggedIcon);
+                }
                 visibleIcons.Insert(insertIndex, draggedIcon);
             }
             else
@@ -267,19 +267,16 @@ namespace RetroBar.Controls
             
             // Never overwrite the list to prevent clearing out settings for non-visible icons
             var oldOrder = Settings.Instance.NotifyIconOrder ?? new List<string>();
-            var newOrder = visibleIcons.Select(i => i.GetInvertIdentifier()).ToList();
-            var orderSet = new HashSet<string>(newOrder);
-
             var result = new List<string>();
             int replaceIndex = 0;
             
             foreach (var id in oldOrder)
             {
-                if (orderSet.Contains(id))
+                if (visibleIcons.Find(i => i.IsEqualByIdentifier(id)) != null)
                 {
-                    if (replaceIndex < newOrder.Count)
+                    if (replaceIndex < visibleIcons.Count)
                     {
-                        result.Add(newOrder[replaceIndex++]);
+                        result.Add(visibleIcons[replaceIndex++].Identifier);
                     }
                 }
                 else
@@ -288,9 +285,9 @@ namespace RetroBar.Controls
                 }
             }
 
-            while (replaceIndex < newOrder.Count)
+            while (replaceIndex < visibleIcons.Count)
             {
-                result.Add(newOrder[replaceIndex++]);
+                result.Add(visibleIcons[replaceIndex++].Identifier);
             }
 
             Settings.Instance.NotifyIconOrder = result;
@@ -322,7 +319,9 @@ namespace RetroBar.Controls
                             return 1;
                         }
                     }
-                    return setting.IndexOf(xIcon.GetInvertIdentifier()).CompareTo(setting.IndexOf(yIcon.GetInvertIdentifier()));
+                    int xIndex = setting.FindIndex(s => xIcon.IsEqualByIdentifier(s));
+                    int yIndex = setting.FindIndex(s => yIcon.IsEqualByIdentifier(s));
+                    return xIndex.CompareTo(yIndex);
                 }
                 return 0;
             }
