@@ -5,9 +5,6 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Input;
 using System.Windows.Interop;
 
 namespace RetroBar.Controls
@@ -120,16 +117,10 @@ namespace RetroBar.Controls
 
                 if (clipLeft < clipRight && clipTop < clipBottom)
                 {
-                    IntPtr hRgn = CreateRectRgn(clipLeft, clipTop, clipRight, clipBottom);
-                    SetWindowRgn(Handle, hRgn, true);
+                    IntPtr hRgn = NativeMethods.CreateRectRgn(clipLeft, clipTop, clipRight, clipBottom);
+                    NativeMethods.SetWindowRgn(Handle, hRgn, true);
                 }
             }
         }
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
-
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
     }
 }
