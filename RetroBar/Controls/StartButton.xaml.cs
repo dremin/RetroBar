@@ -320,6 +320,15 @@ namespace RetroBar.Controls
                 0, 0, 0, 0,
                 (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
             }
+            else
+            {
+                // Ensure the floating start button is truly topmost when restoring.
+                NativeMethods.SetWindowPos(
+                floatingStartButton.Handle,
+                (IntPtr)NativeMethods.WindowZOrder.HWND_TOPMOST,
+                0, 0, 0, 0,
+                (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
+            }
         }
 
         #endregion
