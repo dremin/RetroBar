@@ -109,7 +109,7 @@ namespace RetroBar
             {
                 if (_fullScreenHelper.FullScreenApps[i].hWnd == e.Window.Handle)
                 {
-                    base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
+                    OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
                     return;
                 }
             }
@@ -123,7 +123,7 @@ namespace RetroBar
             }
 
             _fullScreenSuppressed = true;
-            base.OnFullScreenLeave();
+            OnFullScreenLeave();
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
