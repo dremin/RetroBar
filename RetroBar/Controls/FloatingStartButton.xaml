@@ -1,6 +1,8 @@
 ﻿<Window x:Class="RetroBar.Controls.FloatingStartButton"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:RetroBar.Controls"
+        xmlns:utilities="clr-namespace:RetroBar.Utilities"
         Title=""
         Style="{DynamicResource FloatingStartButtonWindow}"
         SourceInitialized="Window_SourceInitialized"
@@ -9,10 +11,15 @@
         WindowStyle="None"
         AllowsTransparency="True"
         FlowDirection="{DynamicResource flow_direction}">
-    <Rectangle Name="ViewRect">
-        <Rectangle.RenderTransform>
-            <TranslateTransform X="{Binding Path=Host.AutoHideElement.RenderTransform.(TranslateTransform.X)}"
-                                Y="{Binding Path=Host.AutoHideElement.RenderTransform.(TranslateTransform.Y)}" />
-        </Rectangle.RenderTransform>
-    </Rectangle>
+    <controls:StartButton x:Name="Start"
+                          Host="{Binding Host}"
+                          StartMenuMonitor="{Binding StartMenuMonitor}"
+                          IsFloating="True">
+        <controls:StartButton.LayoutTransform>
+            <ScaleTransform ScaleX="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
+                            ScaleY="{Binding Source={x:Static utilities:Settings.Instance}, Path=TaskbarScale}"
+                            CenterX="0"
+                            CenterY="0" />
+        </controls:StartButton.LayoutTransform>
+    </controls:StartButton>
 </Window>
