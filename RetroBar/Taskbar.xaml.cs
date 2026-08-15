@@ -61,6 +61,7 @@ namespace RetroBar
             this.hotkeyManager = hotkeyManager;
 
             InitializeComponent();
+            SetLayoutRounding();
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
@@ -532,6 +533,10 @@ namespace RetroBar
 
             if (!performResize)
             {
+                if (heightChanged || widthChanged)
+                {
+                    UpdatePosition();
+                }
                 return;
             }
 
@@ -752,7 +757,7 @@ namespace RetroBar
                 double baseHeight = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarHeight") as double? ?? 0)) * DpiScale;
                 if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
                 {
-                    baseHeight += _unlockedMargin;
+                    baseHeight += _unlockedMargin * DpiScale;
                 }
 
                 int targetRows = 1 + (int)Math.Max(0, Math.Round((distance - baseHeight) / scaledRowHeight));
@@ -771,7 +776,7 @@ namespace RetroBar
                 double baseWidth = (Settings.Instance.TaskbarScale * (Application.Current.FindResource("TaskbarWidth") as double? ?? 0)) * DpiScale;
                 if (AppBarMode == AppBarMode.AutoHide || !Settings.Instance.LockTaskbar)
                 {
-                    baseWidth += _unlockedMargin;
+                    baseWidth += _unlockedMargin * DpiScale;
                 }
 
                 int targetWidth = 1 + (int)Math.Max(0, Math.Round((distance - baseWidth) / scaledRowHeight));
@@ -797,92 +802,42 @@ namespace RetroBar
 
             if (_mouseDragResize)
             {
-                Point cursorPosition = PointToScreen(Mouse.GetPosition(this));
-                int currentCoord = Orientation == Orientation.Horizontal ? (int)cursorPosition.Y : (int)cursorPosition.X;
-                ProcessResize(currentCoord);
+                if (NativeMethods.GetCursorPos(out NativeMethods.POINT pt))
+                {
+                    int currentCoord = Orientation == Orientation.Horizontal ? pt.y : pt.x;
+                    ProcessResize(currentCoord);
+                }
                 return;
             }
 
             // reposition‐while‐dragging
-            if (!_isDragging || _mouseDragStart == null)
+            if (!_isDragging)
                 return;
 
-            // only start moving edge after system drag threshold
-            var screenPos = PointToScreen(e.GetPosition(this));
-            if (Math.Abs(screenPos.X - _mouseDragStart.Value.X) <= SystemParameters.MinimumHorizontalDragDistance &&
-                Math.Abs(screenPos.Y - _mouseDragStart.Value.Y) <= SystemParameters.MinimumVerticalDragDistance)
-                return;
-
-            var newEdge = DragCoordsToScreenEdge((int)screenPos.X, (int)screenPos.Y);
-
-            if (newEdge != AppBarEdge)
-                Settings.Instance.Edge = newEdge;
+            if (NativeMethods.GetCursorPos(out NativeMethods.POINT cursorPt))
+            {
+                var newEdge = DragCoordsToScreenEdge(cursorPt.x, cursorPt.y);
+                if (newEdge != AppBarEdge)
+                {
+                    Settings.Instance.Edge = newEdge;
+                }
+            }
         }
 
         private AppBarEdge DragCoordsToScreenEdge(int x, int y)
         {
-            // The areas of the screen which determine the dragged-to edge are divided in an X.
-            // To determine the edge, split the screen into quadrants, and then split the quadrants diagonally, alternating.
-            double relativeX = ((double)x - Screen.Bounds.Left) / Screen.Bounds.Width;
-            double relativeY = ((double)y - Screen.Bounds.Top) / Screen.Bounds.Height;
+            double relX = (double)x - Screen.Bounds.Left;
+            double relY = (double)y - Screen.Bounds.Top;
+            double width = Screen.Bounds.Width;
+            double height = Screen.Bounds.Height;
 
-            // We will use the relative coordinates to form quadrants
-            // Determine the edge based on the quadrant
+            AppBarEdge vertEdge = relX < width / 2 ? AppBarEdge.Left : AppBarEdge.Right;
+            double errorX = relX < width / 2 ? relX : width - relX;
 
-            if (relativeX < 0.5 && relativeY < 0.5)
-            {
-                // top-left quadrant
-                if (relativeX >= relativeY)
-                {
-                    return AppBarEdge.Top;
-                }
-                else
-                {
-                    return AppBarEdge.Left;
-                }
-            }
-            else if (relativeX >= 0.5 && relativeY < 0.5)
-            {
-                // top-right quadrant
-                // adjust relativeX to the same base as relativeY
-                relativeX -= 0.5;
+            AppBarEdge horzEdge = relY < height / 2 ? AppBarEdge.Top : AppBarEdge.Bottom;
+            double errorY = relY < height / 2 ? relY : height - relY;
 
-                if (relativeX + relativeY < 0.5)
-                {
-                    return AppBarEdge.Top;
-                }
-                else
-                {
-                    return AppBarEdge.Right;
-                }
-            }
-            else if (relativeX < 0.5 && relativeY >= 0.5)
-            {
-                // bottom-left quadrant
-                // adjust relativeY to the same base as relativeX
-                relativeY -= 0.5;
-
-                if (relativeX + relativeY < 0.5)
-                {
-                    return AppBarEdge.Left;
-                }
-                else
-                {
-                    return AppBarEdge.Bottom;
-                }
-            }
-            else
-            {
-                // bottom-right quadrant
-                if (relativeX >= relativeY)
-                {
-                    return AppBarEdge.Right;
-                }
-                else
-                {
-                    return AppBarEdge.Bottom;
-                }
-            }
+            return (errorY * width > errorX * height) ? vertEdge : horzEdge;
         }
 
         private bool IsMouseInResizeArea()
@@ -966,7 +921,7 @@ namespace RetroBar
                     IntPtr lParam = (cmd == (int)NativeMethods.SC_MOVE || cmd == (int)NativeMethods.SC_SIZE)
                         ? (IntPtr)NativeMethods.MakeLParam(x, y)
                         : IntPtr.Zero;
-                    NativeMethods.SendMessage(hwnd, (int)NativeMethods.WM.SYSCOMMAND, (IntPtr)cmd, lParam);
+                    NativeMethods.PostMessage(hwnd, (uint)NativeMethods.WM.SYSCOMMAND, (IntPtr)cmd, lParam);
                 }
             }
 
