@@ -31,6 +31,22 @@ namespace RetroBar.Controls
             set { SetValue(HostProperty, value); }
         }
 
+        public static DependencyProperty IsFloatingProperty = DependencyProperty.Register(nameof(IsFloating), typeof(bool), typeof(StartButton), new PropertyMetadata(false, OnIsFloatingChanged));
+
+        private static void OnIsFloatingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is StartButton startButton && (bool)e.NewValue)
+            {
+                startButton.Start.Margin = new Thickness(0);
+            }
+        }
+
+        public bool IsFloating
+        {
+            get { return (bool)GetValue(IsFloatingProperty); }
+            set { SetValue(IsFloatingProperty, value); }
+        }
+
         public StartMenuMonitor StartMenuMonitor
         {
             get { return (StartMenuMonitor)GetValue(StartMenuMonitorProperty); }
@@ -219,6 +235,8 @@ namespace RetroBar.Controls
 
         private void openFloatingStart()
         {
+            if (IsFloating) return;
+
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
             if (!useFloatingStartButton || Visibility != Visibility.Visible) return;
@@ -232,6 +250,9 @@ namespace RetroBar.Controls
             {
                 showFloatingStart();
             }
+
+            // Hide the original so only the floating orb is visible.
+            Opacity = 0;
         }
 
         private void showFloatingStart()
@@ -244,6 +265,7 @@ namespace RetroBar.Controls
 
         private void hideFloatingStart()
         {
+            if (IsFloating) return;
             if (floatingStartButton == null) return;
 
             floatingStartButton.Visibility = Visibility.Hidden;
@@ -253,6 +275,7 @@ namespace RetroBar.Controls
         {
             floatingStartButton?.Close();
             floatingStartButton = null;
+            Opacity = 1;
         }
 
         private NativeMethods.Rect getButtonRect()
@@ -294,6 +317,15 @@ namespace RetroBar.Controls
                 NativeMethods.SetWindowPos(
                 floatingStartButton.Handle,
                 Host.Handle,
+                0, 0, 0, 0,
+                (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
+            }
+            else
+            {
+                // Ensure the floating start button is truly topmost when restoring.
+                NativeMethods.SetWindowPos(
+                floatingStartButton.Handle,
+                (IntPtr)NativeMethods.WindowZOrder.HWND_TOPMOST,
                 0, 0, 0, 0,
                 (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
             }
