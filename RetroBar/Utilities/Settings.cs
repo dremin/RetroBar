@@ -262,6 +262,13 @@ namespace RetroBar.Utilities
             set => Set(ref _showTaskThumbnails, value);
         }
 
+        private bool _groupTaskbarButtons = true;
+        public bool GroupTaskbarButtons
+        {
+            get => _groupTaskbarButtons;
+            set => Set(ref _groupTaskbarButtons, value);
+        }
+
         private MultiMonOption _multiMonMode = MultiMonOption.AllTaskbars;
         public MultiMonOption MultiMonMode
         {
