@@ -275,11 +275,12 @@
                       Offset="0.4" />
     </LinearGradientBrush>
 
+    <SolidColorBrush x:Key="HighlightForeground" Color="#ffffff" />
+
     <SolidColorBrush x:Key="ItemButtonForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonActiveForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonPressedForeground" Color="#ffffff" />
-    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="ClockForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageForeground" Color="#ffffff" />
     <SolidColorBrush x:Key="InputLanguageBackground" Color="Transparent" />

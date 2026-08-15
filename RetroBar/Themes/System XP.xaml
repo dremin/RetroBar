@@ -26,7 +26,20 @@
     </Style>
 
     <Style TargetType="MenuItem"
-           x:Key="TaskManMenuItem">
+           x:Key="{x:Type MenuItem}"
+           BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Style.Triggers>
+            <Trigger Property="Role"
+                     Value="SubmenuItem">
+                <Setter Property="Padding"
+                        Value="4,1,1,3" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="MenuItem"
+           x:Key="TaskManMenuItem"
+           BasedOn="{StaticResource {x:Type MenuItem}}">
         <Setter Property="Header"
                 Value="{DynamicResource show_taskman}" />
     </Style>
