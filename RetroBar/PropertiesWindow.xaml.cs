@@ -473,5 +473,10 @@ namespace RetroBar
             Directory.CreateDirectory(path);
             ShellHelper.StartProcess(path);
         }
+
+        private void ClockFormatHelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShellHelper.ExecuteProcess("https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings#table");
+        }
     }
 }

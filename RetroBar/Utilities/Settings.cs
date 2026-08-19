@@ -107,6 +107,91 @@ namespace RetroBar.Utilities
             set => Set(ref _showClock, value);
         }
 
+        private bool _overrideClockFormat = false;
+        public bool OverrideClockFormat
+        {
+            get
+            {
+                return _overrideClockFormat;
+            }
+            set
+            {
+                if (_overrideClockFormat != value)
+                {
+                    _overrideClockFormat = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _clockFormat = "h:mm:ss tt | ddd MMM d, yyyy";
+        public string ClockFormat
+        {
+            get
+            {
+                return _clockFormat;
+            }
+            set
+            {
+                if (_clockFormat != value)
+                {
+                    _clockFormat = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _overrideAMPMDesignators = false;
+        public bool OverrideAMPMDesignators
+        {
+            get
+            {
+                return _overrideAMPMDesignators;
+            }
+            set
+            {
+                if (_overrideAMPMDesignators != value)
+                {
+                    _overrideAMPMDesignators = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _amDesignator = "a.m.";
+        public string AMDesignator
+        {
+            get
+            {
+                return _amDesignator;
+            }
+            set
+            {
+                if (_amDesignator != value)
+                {
+                    _amDesignator = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _pmDesignator = "p.m.";
+        public string PMDesignator
+        {
+            get
+            {
+                return _pmDesignator;
+            }
+            set
+            {
+                if (_pmDesignator != value)
+                {
+                    _pmDesignator = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private bool _showDesktopButton = false;
         public bool ShowDesktopButton
         {

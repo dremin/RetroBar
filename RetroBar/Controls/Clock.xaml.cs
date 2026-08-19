@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
+using ManagedShell.UWPInterop;
+using Microsoft.Win32;
+using RetroBar.Utilities;
+using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -8,11 +13,6 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using ManagedShell.Common.Helpers;
-using ManagedShell.Common.Logging;
-using ManagedShell.UWPInterop;
-using Microsoft.Win32;
-using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -78,20 +78,26 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.ShowClock))
+            switch (e.PropertyName)
             {
-                if (Settings.Instance.ShowClock)
-                {
-                    StartClock();
-                }
-                else
-                {
-                    StopClock();
-                }
-            }
-            else if (e.PropertyName == nameof(Settings.ShowClockSeconds))
-            {
-                UpdateUserCulture();
+                case nameof(Settings.ShowClock):
+                    if (Settings.Instance.ShowClock)
+                    {
+                        StartClock();
+                    }
+                    else
+                    {
+                        StopClock();
+                    }
+                    break;
+                case nameof(Settings.ShowClockSeconds):
+                case nameof(Settings.OverrideClockFormat):
+                case nameof(Settings.ClockFormat):
+                case nameof(Settings.OverrideAMPMDesignators):
+                case nameof(Settings.AMDesignator):
+                case nameof(Settings.PMDesignator):
+                    UpdateUserCulture();
+                    break;
             }
         }
 
@@ -161,6 +167,24 @@ namespace RetroBar.Controls
             if (Settings.Instance.ShowClockSeconds)
             {
                 userCulture.DateTimeFormat.ShortTimePattern = userCulture.DateTimeFormat.LongTimePattern;
+            }
+
+            // Override culture info if desired, inserting newlines where appropriate
+            if (Settings.Instance.OverrideClockFormat && Settings.Instance.ClockFormat != "")
+            {
+                userCulture.DateTimeFormat.ShortTimePattern = Settings.Instance.ClockFormat.Replace("\\n", "\n");
+            }
+
+            if (Settings.Instance.OverrideAMPMDesignators)
+            {
+                if (Settings.Instance.AMDesignator != "")
+                {
+                    userCulture.DateTimeFormat.AMDesignator = Settings.Instance.AMDesignator;
+                }
+                if (Settings.Instance.PMDesignator != "")
+                {
+                    userCulture.DateTimeFormat.PMDesignator = Settings.Instance.PMDesignator;
+                }
             }
 
             SetConverterCultureRecursively(this, userCulture);
@@ -257,6 +281,12 @@ namespace RetroBar.Controls
             SystemEvents.UserPreferenceChanged -= UserPreferenceChanged;
 
             _isLoaded = false;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            UpdateUserCulture();
         }
     }
 }
