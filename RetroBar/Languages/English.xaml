@@ -96,7 +96,7 @@
     <s:String x:Key="clock_format_help">View available formatting options</s:String>
     <s:String x:Key="clock_format_warning">Note: Custom clock formatting may not work as expected if your selected theme specifies its own format.</s:String>
     <s:String x:Key="override_clock_format">Custom clock _format:</s:String>
-    <s:String x:Key="override_ampm_designators">Custom _designators:</s:String>
+    <s:String x:Key="override_ampm_designators">Custom d_esignators:</s:String>
     <s:String x:Key="am_designator">AM:</s:String>
     <s:String x:Key="pm_designator">PM:</s:String>
 
