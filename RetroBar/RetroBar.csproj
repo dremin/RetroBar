@@ -36,6 +36,7 @@
   <ItemGroup>
 	<None Remove="Resources\desktop95-sm.png" />
 	<None Remove="Resources\desktop95-lg.png" />
+	<None Remove="Resources\help.png" />
     <None Remove="Resources\retrobar.ico" />
     <None Remove="Resources\shader_invert.ps" />
     <None Remove="Resources\start9x.png" />
@@ -51,6 +52,7 @@
   <ItemGroup>
 	<Resource Include="Resources\desktop95-sm.png" />
 	<Resource Include="Resources\desktop95-lg.png" />
+	<Resource Include="Resources\help.png" />
     <Resource Include="Resources\shader_invert.ps" />
     <Resource Include="Resources\retrobar.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

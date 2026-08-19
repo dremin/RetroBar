@@ -82,6 +82,12 @@
                 <Setter Property="Margin"
                         Value="4,0,4,2" />
             </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Padding"
+                        Value="2" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+            </Style>
             <Style x:Key="PreviewBorder"
                    TargetType="{x:Type Border}">
                 <Setter Property="Background"
@@ -94,6 +100,29 @@
                         Value="0,0,0,5" />
                 <Setter Property="Width"
                         Value="335" />
+            </Style>
+            <Style x:Key="IconButton"
+                   TargetType="{x:Type Button}">
+                <Setter Property="Padding"
+                        Value="3" />
+                <Setter Property="MinHeight"
+                        Value="0" />
+                <Setter Property="MinWidth"
+                        Value="0" />
+                <Style.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver"
+                                       Value="False" />
+                            <Condition Property="IsPressed"
+                                       Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                    </MultiTrigger>
+                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -410,6 +439,50 @@
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockClickAction, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="CboClockAction_SelectionChanged" />
                             </DockPanel>
+                            <DockPanel>
+                                <CheckBox x:Name="cbOverrideClockFormat"
+                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideClockFormat, UpdateSourceTrigger=PropertyChanged}">
+                                    <Label Content="{DynamicResource override_clock_format}" />
+                                </CheckBox>
+                                <Button Click="ClockFormatHelpButton_Click"
+                                        Style="{DynamicResource IconButton}"
+                                        ToolTip="{DynamicResource clock_format_help}">
+                                    <Image Source="{DynamicResource HelpIconImage}"
+                                           Height="16"
+                                           Width="16" />
+                                </Button>
+                                <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance}, Path=ClockFormat, UpdateSourceTrigger=PropertyChanged}"
+                                         IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideClockFormat, UpdateSourceTrigger=PropertyChanged}" />
+                            </DockPanel>
+                            <DockPanel>
+                                <CheckBox x:Name="cbOverrideAMPMDesignators"
+                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}">
+                                    <Label Content="{DynamicResource override_ampm_designators}" />
+                                </CheckBox>
+                                <UniformGrid Columns="2">
+                                    <DockPanel>
+                                        <Label Content="{DynamicResource am_designator}"
+                                               VerticalAlignment="Center"
+                                               Margin="3,0"
+                                               IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance}, Path=AMDesignator, UpdateSourceTrigger=PropertyChanged}"
+                                                 IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Label Content="{DynamicResource pm_designator}"
+                                               VerticalAlignment="Center"
+                                               Margin="3,0"
+                                               IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBox Text="{Binding Source={x:Static Settings:Settings.Instance}, Path=PMDesignator, UpdateSourceTrigger=PropertyChanged}"
+                                                 IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideAMPMDesignators, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DockPanel>
+                                </UniformGrid>
+                            </DockPanel>
+                            <TextBlock Text="{DynamicResource clock_format_warning}"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       Width="300"
+                                       Margin="0,3" />
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>

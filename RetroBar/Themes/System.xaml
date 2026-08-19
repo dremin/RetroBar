@@ -37,6 +37,9 @@
     <BitmapImage x:Key="ShowDesktopIconImageLarge"
                  UriSource="../Resources/desktop95-lg.png" />
 
+    <BitmapImage x:Key="HelpIconImage"
+                 UriSource="../Resources/help.png" />
+
     <Style x:Key="DefaultDirection">
         <Setter Property="Control.FlowDirection"
                         Value="LeftToRight" />
