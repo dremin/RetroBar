@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ManagedShell.Common.Helpers;
+using ManagedShell.Common.Logging;
+using ManagedShell.UWPInterop;
+using Microsoft.Win32;
+using RetroBar.Utilities;
+using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -8,11 +13,6 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using ManagedShell.Common.Helpers;
-using ManagedShell.Common.Logging;
-using ManagedShell.UWPInterop;
-using Microsoft.Win32;
-using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -281,6 +281,12 @@ namespace RetroBar.Controls
             SystemEvents.UserPreferenceChanged -= UserPreferenceChanged;
 
             _isLoaded = false;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            UpdateUserCulture();
         }
     }
 }
