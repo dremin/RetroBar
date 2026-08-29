@@ -8,7 +8,10 @@
 
     <Thickness x:Key="TaskButtonMargin" Right="1" />
     <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
-    
+
+    <SolidColorBrush x:Key="HighlightBackground" Color="#BBB7C7" />
+    <SolidColorBrush x:Key="HighlightForeground" Color="#000000" />
+
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
                          EndPoint="0,1">

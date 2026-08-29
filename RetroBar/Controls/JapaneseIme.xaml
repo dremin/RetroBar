@@ -13,9 +13,6 @@
                    Style="{DynamicResource JapaneseIme}" />
         <Button.ContextMenu>
             <ContextMenu>
-                <TextOptions.TextRenderingMode>
-                    <Binding Source="{x:Static utilities:Settings.Instance}" Path="AllowFontSmoothingMenu" Converter="{StaticResource menuTextRenderingModeConverter}" />
-                </TextOptions.TextRenderingMode>
                 <MenuItem x:Name="JapaneseIme_full_shape_hiragana"
                       Click="JapaneseIme_full_shape_hiragana_OnClick"
                       Header="{DynamicResource ime_input_full_shape_hiragana}" />

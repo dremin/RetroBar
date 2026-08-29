@@ -13,7 +13,6 @@
                 <ResourceDictionary Source="Languages/English.xaml" />
                 <ResourceDictionary Source="Themes/System.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:BoolToTextRenderingModeConverter x:Key="menuTextRenderingModeConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
