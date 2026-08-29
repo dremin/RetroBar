@@ -19,13 +19,9 @@ namespace RetroBar.Converters
             {
                 return PlacementMode.Left;
             }
-            else if (Settings.Instance.Edge == AppBarEdge.Top)
-            {
-                return PlacementMode.Bottom;
-            }
             else
             {
-                return PlacementMode.Top;
+                return PlacementMode.Custom;
             }
         }
 

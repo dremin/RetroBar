@@ -267,6 +267,10 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowTaskThumbnails, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_window_previews}" />
                             </CheckBox>
+                            <CheckBox x:Name="cbGroupTaskbarButtons"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=GroupTaskbarButtons, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource group_taskbar_buttons}" />
+                            </CheckBox>
                             <CheckBox x:Name="cbSlideTaskbarButtons"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=SlideTaskbarButtons, UpdateSourceTrigger=PropertyChanged}"
                                       Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='horizontal'}">

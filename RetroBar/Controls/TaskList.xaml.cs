@@ -3,7 +3,9 @@ using ManagedShell.WindowsTasks;
 using ManagedShell.Common.Helpers;
 using RetroBar.Utilities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -21,6 +23,7 @@ namespace RetroBar.Controls
         private double TaskButtonLeftMargin;
         private double TaskButtonRightMargin;
         private ICollectionView taskbarItems;
+        internal System.Collections.IList UnderlyingTasks => taskbarItems?.SourceCollection as System.Collections.IList;
 
         public static DependencyProperty ButtonWidthProperty = DependencyProperty.Register(nameof(ButtonWidth), typeof(double), typeof(TaskList), new PropertyMetadata(new double()));
 
@@ -64,9 +67,12 @@ namespace RetroBar.Controls
             set { SetValue(HostProperty, value); }
         }
 
+        public TaskDropHandler DropHandler { get; set; }
+
         public TaskList()
         {
             InitializeComponent();
+            DropHandler = new TaskDropHandler(this);
         }
 
         private void SetStyles()
@@ -96,21 +102,78 @@ namespace RetroBar.Controls
 
         private void SetTasksCollection()
         {
-            if (!isLoaded && Tasks != null && Host != null)
+            if (!isLoaded && Tasks?.GroupedWindows != null)
             {
                 taskbarItems = Tasks.CreateGroupedWindowsCollection();
                 if (taskbarItems != null)
                 {
                     taskbarItems.CollectionChanged += GroupedWindows_CollectionChanged;
                     taskbarItems.Filter = Tasks_Filter;
-                }
 
-                TasksList.ItemsSource = taskbarItems;
+                    UpdateTasksListItemsSource();
+                }
 
                 Settings.Instance.PropertyChanged += Settings_PropertyChanged;
                 Host.hotkeyManager.TaskbarHotkeyPressed += TaskList_TaskbarHotkeyPressed;
 
                 isLoaded = true;
+            }
+        }
+
+        private void UpdateTasksListItemsSource()
+        {
+            if (taskbarItems == null) return;
+            
+            if (Settings.Instance.GroupTaskbarButtons)
+            {
+                if (taskbarItems is System.ComponentModel.ICollectionViewLiveShaping taskbarItemsView)
+                {
+                    taskbarItemsView.IsLiveGrouping = true;
+                    if (!taskbarItemsView.LiveGroupingProperties.Contains("Category"))
+                    {
+                        taskbarItemsView.LiveGroupingProperties.Add("Category");
+                    }
+                }
+                
+                bool hasCategoryGroup = false;
+                foreach (var groupDesc in taskbarItems.GroupDescriptions)
+                {
+                    if (groupDesc is System.Windows.Data.PropertyGroupDescription propDesc && propDesc.PropertyName == "Category")
+                    {
+                        hasCategoryGroup = true;
+                        break;
+                    }
+                }
+                if (!hasCategoryGroup)
+                {
+                    taskbarItems.GroupDescriptions.Add(new System.Windows.Data.PropertyGroupDescription("Category"));
+                }
+                
+                TasksList.ItemsSource = taskbarItems.Groups;
+            }
+            else
+            {
+                if (taskbarItems is System.ComponentModel.ICollectionViewLiveShaping taskbarItemsView)
+                {
+                    taskbarItemsView.IsLiveGrouping = false;
+                    taskbarItemsView.LiveGroupingProperties.Remove("Category");
+                }
+                
+                System.Windows.Data.PropertyGroupDescription categoryGroupDesc = null;
+                foreach (var groupDesc in taskbarItems.GroupDescriptions)
+                {
+                    if (groupDesc is System.Windows.Data.PropertyGroupDescription propDesc && propDesc.PropertyName == "Category")
+                    {
+                        categoryGroupDesc = propDesc;
+                        break;
+                    }
+                }
+                if (categoryGroupDesc != null)
+                {
+                    taskbarItems.GroupDescriptions.Remove(categoryGroupDesc);
+                }
+
+                TasksList.ItemsSource = taskbarItems;
             }
         }
 
@@ -124,7 +187,11 @@ namespace RetroBar.Controls
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.MultiMonMode))
+            if (e.PropertyName == nameof(Settings.GroupTaskbarButtons))
+            {
+                UpdateTasksListItemsSource();
+            }
+            else if (e.PropertyName == nameof(Settings.MultiMonMode))
             {
                 taskbarItems?.Refresh();
             }
