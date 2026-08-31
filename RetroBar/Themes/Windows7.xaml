@@ -294,14 +294,14 @@
     </RadialGradientBrush>
 
     <!-- Active: dark glass "open window" button with lit base -->
-    <SolidColorBrush x:Key="TaskButtonOuterBorderActive" Color="#6E1D3B5C" />
-    <SolidColorBrush x:Key="TaskButtonInnerBorderActive" Color="#4A0E1E30" />
+    <SolidColorBrush x:Key="TaskButtonOuterBorderActive" Color="#FF4A7FDA" />
+    <SolidColorBrush x:Key="TaskButtonInnerBorderActive" Color="#E02A5AE0" />
     <LinearGradientBrush x:Key="TaskButtonInnerTopRightBorderActive"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#66FFFFFF"
+        <GradientStop Color="#CCFFFFFF"
                       Offset="0.0" />
-        <GradientStop Color="#17FFFFFF"
+        <GradientStop Color="#3EFFFFFF"
                       Offset="0.35" />
         <GradientStop Color="#00FFFFFF"
                       Offset="0.55" />
@@ -311,40 +311,48 @@
                          EndPoint="0,1">
         <GradientStop Color="#00FFFFFF"
                       Offset="0.6" />
-        <GradientStop Color="#2EFFFFFF"
+        <GradientStop Color="#66FFFFFF"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskButtonBackgroundActive"
                          StartPoint="0,0"
                          EndPoint="0,1">
-        <GradientStop Color="#46121C2A"
+        <GradientStop Color="#66121C2A"
                       Offset="0.0" />
-        <GradientStop Color="#C20D1826"
+        <GradientStop Color="#E80D1826"
                       Offset="0.45" />
-        <GradientStop Color="#D20C1522"
+        <GradientStop Color="#F00C1522"
                       Offset="0.52" />
-        <GradientStop Color="#A6182F44"
+        <GradientStop Color="#E8234A6E"
                       Offset="1.0" />
     </LinearGradientBrush>
     <RadialGradientBrush x:Key="TaskButtonBottomBackgroundActive"
                          GradientOrigin="0.5,1.0"
                          Center="0.5,1.0"
                          RadiusX="0.75"
-                         RadiusY="0.6">
-        <GradientStop Color="#54BFE3FF"
+                         RadiusY="0.35">
+        <GradientStop Color="#E8FAFEFF"
                       Offset="0.0" />
+        <GradientStop Color="#A0D9F2FF"
+                      Offset="0.3" />
+        <GradientStop Color="#50BFE9FF"
+                      Offset="0.65" />
         <GradientStop Color="#00BFE3FF"
-                      Offset="0.7" />
+                      Offset="1.0" />
     </RadialGradientBrush>
     <RadialGradientBrush x:Key="TaskButtonBottomBackgroundActiveHover"
                          GradientOrigin="0.5,1.0"
                          Center="0.5,1.0"
                          RadiusX="0.8"
-                         RadiusY="0.65">
-        <GradientStop Color="#7FCFF3FF"
+                         RadiusY="0.36">
+        <GradientStop Color="#F0FDFFFF"
                       Offset="0.0" />
+        <GradientStop Color="#A8E3F7FF"
+                      Offset="0.3" />
+        <GradientStop Color="#50CFF3FF"
+                      Offset="0.65" />
         <GradientStop Color="#00CFF3FF"
-                      Offset="0.7" />
+                      Offset="1.0" />
     </RadialGradientBrush>
     <LinearGradientBrush x:Key="TaskButtonBackgroundActiveHover"
                          StartPoint="0,0"
@@ -355,7 +363,35 @@
                       Offset="0.45" />
         <GradientStop Color="#F01F4062"
                       Offset="0.52" />
-        <GradientStop Color="#C2204064"
+        <GradientStop Color="#D8296490"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBottomHighlightActive"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#00FFFFFF"
+                      Offset="0.0" />
+        <GradientStop Color="#D0F5FCFF"
+                      Offset="0.15" />
+        <GradientStop Color="#FFFFFFFF"
+                      Offset="0.5" />
+        <GradientStop Color="#D0F5FCFF"
+                      Offset="0.85" />
+        <GradientStop Color="#00FFFFFF"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskButtonBottomHighlightActiveHover"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#00FFFFFF"
+                      Offset="0.0" />
+        <GradientStop Color="#E8FBFFFF"
+                      Offset="0.15" />
+        <GradientStop Color="#FFFFFFFF"
+                      Offset="0.5" />
+        <GradientStop Color="#E8FBFFFF"
+                      Offset="0.85" />
+        <GradientStop Color="#00FFFFFF"
                       Offset="1.0" />
     </LinearGradientBrush>
 
@@ -765,6 +801,8 @@
                 Value="{DynamicResource ButtonForeground}" />
         <Setter Property="Margin"
                 Value="{DynamicResource TaskButtonMargin}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -883,31 +921,41 @@
                     <Border Background="Transparent"
                             Padding="0,0,0,1"
                             Name="ButtonBorder">
-                        <Border BorderThickness="1,1,1,0"
-                                BorderBrush="{DynamicResource TaskButtonOuterBorderActive}"
-                                Background="{DynamicResource TaskButtonBottomBackgroundActive}"
-                                CornerRadius="3,3,0,0"
-                                x:Name="ButtonOuterBorder">
+                        <Grid>
                             <Border BorderThickness="1,1,1,0"
-                                    BorderBrush="{DynamicResource TaskButtonInnerBorderActive}"
-                                    Background="{DynamicResource TaskButtonBackgroundActive}"
+                                    BorderBrush="{DynamicResource TaskButtonOuterBorderActive}"
+                                    Background="{DynamicResource TaskButtonBottomBackgroundActive}"
                                     CornerRadius="3,3,0,0"
-                                    x:Name="ButtonInnerBorder">
-                                <Border BorderThickness="0,1,1,0"
-                                        BorderBrush="{DynamicResource TaskButtonInnerTopRightBorderActive}"
-                                        CornerRadius="0,3,0,0"
-                                        x:Name="ButtonInnerTopRightBorder">
-                                    <Border BorderThickness="1,0,0,0"
-                                            BorderBrush="{DynamicResource TaskButtonInnerBottomLeftBorderActive}"
-                                            CornerRadius="3,3,0,0"
-                                            x:Name="ButtonInnerBottomLeftBorder">
-                                        <ContentPresenter Margin="6,0,6,1"
-                                                          VerticalAlignment="Center"
-                                                          x:Name="Content" />
+                                    x:Name="ButtonOuterBorder">
+                                <Border BorderThickness="1,1,1,0"
+                                        BorderBrush="{DynamicResource TaskButtonInnerBorderActive}"
+                                        Background="{DynamicResource TaskButtonBackgroundActive}"
+                                        CornerRadius="3,3,0,0"
+                                        x:Name="ButtonInnerBorder">
+                                    <Border BorderThickness="0,1,1,0"
+                                            BorderBrush="{DynamicResource TaskButtonInnerTopRightBorderActive}"
+                                            CornerRadius="0,3,0,0"
+                                            x:Name="ButtonInnerTopRightBorder">
+                                        <Border BorderThickness="1,0,0,0"
+                                                BorderBrush="{DynamicResource TaskButtonInnerBottomLeftBorderActive}"
+                                                CornerRadius="3,3,0,0"
+                                                x:Name="ButtonInnerBottomLeftBorder">
+                                            <ContentPresenter Margin="6,0,6,1"
+                                                              VerticalAlignment="Center"
+                                                              x:Name="Content" />
+                                        </Border>
                                     </Border>
                                 </Border>
                             </Border>
-                        </Border>
+                            <!-- Specular highlight strip: the crisp bright line Win7
+                                 shows right at the bottom edge of an active/open
+                                 taskbar button, on top of the soft radial glow -->
+                            <Rectangle Height="2"
+                                       VerticalAlignment="Bottom"
+                                       Margin="1,0,1,0"
+                                       Fill="{DynamicResource TaskButtonBottomHighlightActive}"
+                                       x:Name="BottomHighlight" />
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
@@ -926,6 +974,9 @@
                             <Setter TargetName="ButtonOuterBorder"
                                     Property="Background"
                                     Value="{DynamicResource TaskButtonBottomBackgroundActiveHover}" />
+                            <Setter TargetName="BottomHighlight"
+                                    Property="Fill"
+                                    Value="{DynamicResource TaskButtonBottomHighlightActiveHover}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
@@ -937,6 +988,9 @@
                             <Setter TargetName="ButtonOuterBorder"
                                     Property="Background"
                                     Value="Transparent" />
+                            <Setter TargetName="BottomHighlight"
+                                    Property="Opacity"
+                                    Value="0.35" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1388,6 +1442,12 @@
                 Value="Center" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
+        <Setter Property="RenderOptions.BitmapScalingMode"
+                Value="HighQuality" />
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
         <Style.Triggers>
             <!-- With the label collapsed (combined mode) the icon fills the
                  button alone; a 4px left margin keeps it centered in the
@@ -1415,6 +1475,12 @@
                 Value="Right" />
         <Setter Property="VerticalAlignment"
                 Value="Bottom" />
+        <Setter Property="RenderOptions.BitmapScalingMode"
+                Value="HighQuality" />
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
     </Style>
 
     <Style TargetType="TextBlock"
@@ -2049,6 +2115,7 @@
         <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
         <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
         <Setter Property="Height" Value="40" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
