@@ -66,6 +66,27 @@ namespace RetroBar.Utilities
             }
         }
 
+        public bool IsDraggingOrResizing { get; private set; }
+
+        public void NotifyDragBegin()
+        {
+            IsDraggingOrResizing = true;
+            foreach (var taskbar in _taskbars)
+            {
+                taskbar.DeferWorkArea = true;
+            }
+        }
+
+        public void NotifyDragEnd()
+        {
+            IsDraggingOrResizing = false;
+            foreach (var taskbar in _taskbars)
+            {
+                taskbar.DeferWorkArea = false;
+                taskbar.UpdatePosition();
+            }
+        }
+
         public void NotifyWorkAreaChange()
         {
             ShellLogger.Debug($"WindowManager: Work area change notification received");
