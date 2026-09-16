@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace RetroBar.Controls
@@ -65,9 +66,37 @@ namespace RetroBar.Controls
             set { SetValue(HostProperty, value); }
         }
 
+        // Set by Taskbar once both controls exist, so this control's gripper (which sits
+        // between Quick Launch and the task buttons) can resize Quick Launch on drag.
+        public Toolbar QuickLaunchToolbar { get; set; }
+
         public TaskList()
         {
             InitializeComponent();
+        }
+
+        private void QuickLaunchGripper_OnDragStarted(object sender, DragStartedEventArgs e)
+        {
+            QuickLaunchToolbar?.BeginQuickLaunchResize();
+        }
+
+        private void QuickLaunchGripper_OnDragDelta(object sender, DragDeltaEventArgs e)
+        {
+            bool vertical = Host != null && Host.Orientation == Orientation.Vertical;
+
+            // Unlike Quick Launch's own (decorative) gripper, this one belongs to the task
+            // list band, on the other side of the boundary. Dragging it further into the
+            // task list's own space shrinks the task list and grows Quick Launch, same as
+            // dragging any Windows rebar band's leading-edge gripper grows the band before
+            // it - so, no negation here.
+            double delta = vertical ? e.VerticalChange : e.HorizontalChange;
+
+            QuickLaunchToolbar?.UpdateQuickLaunchResize(delta);
+        }
+
+        private void QuickLaunchGripper_OnDragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            QuickLaunchToolbar?.CommitQuickLaunchResize();
         }
 
         private void SetStyles()

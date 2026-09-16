@@ -1,8 +1,10 @@
-﻿<UserControl x:Class="RetroBar.Controls.Toolbar"
+<UserControl x:Class="RetroBar.Controls.Toolbar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
+             xmlns:utilities="clr-namespace:RetroBar.Utilities"
+             xmlns:shellFolders="clr-namespace:ManagedShell.ShellFolders;assembly=ManagedShell.ShellFolders"
              xmlns:dd="urn:gong-wpf-dragdrop"
              IsVisibleChanged="UserControl_IsVisibleChanged"
              Loaded="UserControl_Loaded"
@@ -10,11 +12,19 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
-            <converters:IconListOrientation x:Key="iconsOrientation" />
+            <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <Thumb Style="{DynamicResource ToolbarThumb}">
+        <!-- Purely decorative, like the real XP one: Quick Launch's own gripper sits
+             before nothing (the Start button isn't resizable), so it never drags.
+             The Quick Launch area is actually resized from the task list's gripper,
+             on the other side of it - see TaskList.xaml.
+             Real XP only shows band grippers while the taskbar is unlocked; while
+             locked, the overflow chevron takes over that same role instead. -->
+        <Thumb Style="{DynamicResource ToolbarThumb}"
+               IsHitTestVisible="False"
+               Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}">
             <DockPanel.Dock>
                 <Binding Converter="{StaticResource dockOrientationConverter}"
                          ConverterParameter="leading"
@@ -22,6 +32,85 @@
                          RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
             </DockPanel.Dock>
         </Thumb>
+        <ToggleButton x:Name="OverflowToggle"
+                      Style="{DynamicResource ToolbarOverflowButton}"
+                      Visibility="Collapsed"
+                      Focusable="False"
+                      SizeChanged="OverflowToggle_OnSizeChanged"
+                      ContextMenuService.IsEnabled="False"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource AncestorType=local:Toolbar}, Path=DropHandler}"
+                      dd:DragDrop.DragDropContext="Toolbar">
+            <DockPanel.Dock>
+                <Binding Converter="{StaticResource dockOrientationConverter}"
+                         ConverterParameter="trailing"
+                         Path="Orientation"
+                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+            </DockPanel.Dock>
+            <!-- A real, unstyled ContextMenu - not a hand-drawn Popup/Border - so this flyout is
+                 always whatever RetroBar's own native right-click menu is, on this theme, on this
+                 system, automatically, with nothing here to keep in sync by hand. No Style is set
+                 on the ContextMenu or its MenuItem containers on purpose: the moment either gets a
+                 named style here, this stops being "the real menu" and becomes another copy of it
+                 that could drift.
+                 This has to live here, as OverflowToggle's own ContextMenu property, rather than
+                 as a plain sibling in the DockPanel the way the old Popup did: unlike Popup, a
+                 ContextMenu isn't built to sit inertly in a layout row until opened - placed there
+                 directly it fought the DockPanel's own layout pass in a loop and crashed the whole
+                 taskbar on load. ContextMenuService.IsEnabled="False" above stops a stray
+                 right-click on the chevron from also trying to open it through the normal
+                 right-click path, since this is already fully wired through IsOpen below.
+                 IsOpen and PlacementTarget are set from code-behind (Toolbar.xaml.cs), not
+                 bound here by ElementName: a ContextMenu's content sits outside the normal
+                 name-lookup tree until it's already open, so an ElementName binding written
+                 here would need it open to resolve the very thing that opens it - it just
+                 silently never fires, and the chevron does nothing. -->
+            <ToggleButton.ContextMenu>
+                <ContextMenu x:Name="OverflowMenu"
+                             Placement="Bottom"
+                             StaysOpen="False">
+                    <!-- Icon goes through MenuItem's own real icon column (via this implicit
+                         DataTemplate, the same mechanism WPF uses to render any bound Header
+                         object) instead of being drawn inline next to the text - that's what
+                         actually lines every row's text up at a shared left edge the way a
+                         real Windows menu with icons does, matching e.g. the taskbar button's
+                         own Restore/Move/Size/.../Close menu. Small icon only, on purpose: a
+                         menu's icon gutter is conventionally small regardless of the "large
+                         icons" taskbar setting - that setting is about the toolbar's own row,
+                         not menus. -->
+                    <ContextMenu.Resources>
+                        <!-- 16x16: MenuItem's native icon gutter leaves some dead space around
+                             an icon this size, but sizing up to fill it (tried: 20x20) clips
+                             against the gutter's own fixed bound instead - worse than the gap.
+                             16 is the real small-icon size everywhere else in RetroBar anyway
+                             (see TaskIcon in System.xaml), so it stays put. -->
+                        <DataTemplate DataType="{x:Type shellFolders:ShellFile}">
+                            <Image Source="{Binding SmallIcon}"
+                                   Width="16"
+                                   Height="16" />
+                        </DataTemplate>
+                    </ContextMenu.Resources>
+                    <ContextMenu.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Icon"
+                                    Value="{Binding}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding DisplayName}" />
+                            <EventSetter Event="PreviewMouseLeftButtonUp"
+                                         Handler="OverflowMenuItem_OnPreviewMouseLeftButtonUp" />
+                            <EventSetter Event="PreviewMouseRightButtonUp"
+                                         Handler="OverflowMenuItem_OnPreviewMouseRightButtonUp" />
+                        </Style>
+                    </ContextMenu.ItemContainerStyle>
+                    <ContextMenu.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}"
+                                       Style="{DynamicResource ToolbarOverflowItemLabel}" />
+                        </DataTemplate>
+                    </ContextMenu.ItemTemplate>
+                </ContextMenu>
+            </ToggleButton.ContextMenu>
+        </ToggleButton>
         <ItemsControl x:Name="ToolbarItems"
                       Focusable="False"
                       Style="{DynamicResource ToolbarItems}"
@@ -31,16 +120,10 @@
                       dd:DragDrop.DragDropContext="Toolbar">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Background="Transparent">
-                        <WrapPanel.Orientation>
-                            <MultiBinding Converter="{StaticResource iconsOrientation}">
-                                <Binding Path="Orientation"
-                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
-                                <Binding Path="Rows"
-                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
-                            </MultiBinding>
-                        </WrapPanel.Orientation>
-                    </WrapPanel>
+                    <local:OverflowPanel Background="Transparent"
+                                         Loaded="OverflowPanel_OnLoaded"
+                                         Orientation="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                         Rows="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

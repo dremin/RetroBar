@@ -36,6 +36,10 @@
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
+    <s:String x:Key="reset_quick_launch_width">_Reset width</s:String>
+    <s:String x:Key="reset_quick_launch_width_tip">Clears a manually-dragged Quick Launch width and goes back to the current theme's default size</s:String>
+    <s:String x:Key="enable_quick_launch_overflow">_Overflow Quick Launch icons into a chevron</s:String>
+    <s:String x:Key="enable_quick_launch_overflow_tip">When off, Quick Launch can still be resized, but icons that don't fit are simply hidden instead of going into an overflow menu</s:String>
     <s:String x:Key="show_badges">Show _badges</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>
@@ -162,6 +166,7 @@
     <s:String x:Key="hide">Hide</s:String>
 
     <s:String x:Key="open_folder">&amp;Open Folder</s:String>
+    <s:String x:Key="show_on_quick_launch">&amp;Show on Quick Launch</s:String>
 
     <s:String x:Key="ime_input_tip_enabled">Right-click to open IME options.</s:String>
     <s:String x:Key="ime_input_tip_disabled">IME disabled</s:String>

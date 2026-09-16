@@ -129,7 +129,8 @@
                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
                 </DockPanel.Dock>
             </controls:InputLanguage>
-            <controls:TaskList VerticalAlignment="Stretch"
+            <controls:TaskList x:Name="TaskListControl"
+                               VerticalAlignment="Stretch"
                                Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                Tasks="{Binding Tasks}"></controls:TaskList>
         </DockPanel>

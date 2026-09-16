@@ -5,6 +5,9 @@
     <system:Double x:Key="TaskbarHeight">30</system:Double>
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarWidth">80</system:Double>
+
+    <!-- Windows Vista shipped Quick Launch with only 2 icons pinned by default. -->
+    <system:Int32 x:Key="QuickLaunchDefaultVisibleItems">2</system:Int32>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
@@ -2231,5 +2234,104 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!--
+        Quick Launch overflow ("chevron") button. Verified against the real Windows Vista
+        Aero.msstyles file (confirmed genuine via its Vista-only "QueryBuilder" class marker,
+        not a later port): a flat white double-chevron glyph at every state - Vista's real
+        chevron gets its visual feedback entirely from the glass background lighting up, not
+        from the glyph changing color, so ButtonPressedForeground (already white here) is used
+        unchanged rather than swapped on hover/press like the XP-family themes do. The hover/
+        press backgrounds below are this same file's own Quick Launch icon glass resources
+        (ToolbarButtonBackgroundHover, TaskButtonBackgroundActive) - not new colors invented for
+        this - since the real file's chevron uses the same cyan-glass hover glow its neighboring
+        toolbar buttons already use.
+    -->
+    <SolidColorBrush x:Key="ToolbarOverflowChevronForeground" Color="#ffffff" />
+    <!--
+        This file has no merged dictionaries of its own (unlike the XP-family themes, which all
+        inherit from Windows XP Blue.xaml), so it can't reach Blue's shared QuickLaunchOverflowChevron
+        geometry through DynamicResource - that lookup would just come back empty and draw nothing.
+        Defining the same geometry again here, locally, is what actually makes the arrow appear.
+    -->
+    <Geometry x:Key="QuickLaunchOverflowChevron">M 0,0 L 2,0 L 2,1 L 0,1 Z M 4,0 L 6,0 L 6,1 L 4,1 Z M 1,1 L 3,1 L 3,2 L 1,2 Z M 5,1 L 7,1 L 7,2 L 5,2 Z M 2,2 L 4,2 L 4,3 L 2,3 Z M 6,2 L 8,2 L 8,3 L 6,3 Z M 1,3 L 3,3 L 3,4 L 1,4 Z M 5,3 L 7,3 L 7,4 L 5,4 Z M 0,4 L 2,4 L 2,5 L 0,5 Z M 4,4 L 6,4 L 6,5 L 4,5 Z</Geometry>
+    <Style TargetType="ToggleButton"
+           x:Key="ToolbarOverflowButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Width"
+                Value="14" />
+        <Setter Property="Margin"
+                Value="0,3,2,4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            CornerRadius="2"
+                            x:Name="ButtonBackground">
+                        <Path x:Name="OverflowArrow"
+                              Fill="{DynamicResource ToolbarOverflowChevronForeground}"
+                              Data="{DynamicResource QuickLaunchOverflowChevron}"
+                              Stretch="Uniform"
+                              Width="8"
+                              Height="5"
+                              Margin="0,4,0,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Top"
+                              RenderOptions.EdgeMode="Aliased" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource ToolbarButtonBackgroundHover}" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundActive}" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                     Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundActive}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     Value="Vertical">
+                            <Setter TargetName="OverflowArrow"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.5,0.5" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="90"></RotateTransform>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Width"
+                        Value="Auto" />
+                <Setter Property="Height"
+                        Value="14" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

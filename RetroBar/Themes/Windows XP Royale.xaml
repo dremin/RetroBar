@@ -861,4 +861,92 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--
+        Quick Launch overflow ("chevron") button. Verified against the real, community-ported
+        Royale visual style file (decoded its taskbar Rebar CHEVRON part directly, not guessed
+        from a screenshot): a flat white double-chevron glyph, transparent until hovered/pressed
+        - same shape as Windows XP Blue's chevron (this file's own base dictionary), just always
+        white here rather than switching from blue. Royale Noir and Zune both inherit this
+        unchanged, since the real files show the same flat white glyph for those too.
+    -->
+    <SolidColorBrush x:Key="ToolbarOverflowChevronForeground" Color="#ffffff" />
+    <Style TargetType="ToggleButton"
+           x:Key="ToolbarOverflowButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Width"
+                Value="14" />
+        <Setter Property="Margin"
+                Value="0,3,2,4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            CornerRadius="2"
+                            x:Name="ButtonBackground">
+                        <Path x:Name="OverflowArrow"
+                              Fill="{DynamicResource ToolbarOverflowChevronForeground}"
+                              Data="{DynamicResource QuickLaunchOverflowChevron}"
+                              Stretch="Uniform"
+                              Width="8"
+                              Height="5"
+                              Margin="0,4,0,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Top"
+                              RenderOptions.EdgeMode="Aliased" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                     Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     Value="Vertical">
+                            <Setter TargetName="OverflowArrow"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.5,0.5" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="90"></RotateTransform>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Width"
+                        Value="Auto" />
+                <Setter Property="Height"
+                        Value="14" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

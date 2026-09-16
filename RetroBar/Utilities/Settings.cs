@@ -340,6 +340,29 @@ namespace RetroBar.Utilities
             set => Set(ref _quickLaunchOrder, value);
         }
 
+        // User-set size (in DIPs, along whichever axis matches the taskbar's orientation) for
+        // the Quick Launch icon area, set by dragging its gripper. Shared across every taskbar/
+        // monitor. Null means auto-size (fill whatever space is naturally available), which was
+        // the only behavior before this setting existed.
+        private double? _quickLaunchWidth = null;
+        public double? QuickLaunchWidth
+        {
+            get => _quickLaunchWidth;
+            set => Set(ref _quickLaunchWidth, value);
+        }
+
+        // When true (the default), Quick Launch icons that don't fit go behind the overflow
+        // chevron, and the gripper can push into the task list to make more room (see
+        // Toolbar.xaml.cs). Turning this off keeps the gripper - Quick Launch is still
+        // resizable - but hides the chevron/popup, so icons that don't fit are just not
+        // shown, matching RetroBar's plain behavior from before this feature existed.
+        private bool _enableQuickLaunchOverflow = true;
+        public bool EnableQuickLaunchOverflow
+        {
+            get => _enableQuickLaunchOverflow;
+            set => Set(ref _enableQuickLaunchOverflow, value);
+        }
+
         private bool _showTaskThumbnails = false;
         public bool ShowTaskThumbnails
         {

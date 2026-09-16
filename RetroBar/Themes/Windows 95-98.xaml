@@ -2,7 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
-    
+
+    <!-- Windows 98/98SE shipped Quick Launch with 4 icons pinned by default. -->
+    <system:Int32 x:Key="QuickLaunchDefaultVisibleItems">4</system:Int32>
+
     <SolidColorBrush x:Key="ButtonHighlight" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonInnerHighlight" Color="#ffffff" />
     <SolidColorBrush x:Key="ButtonLight" Color="#dfdfdf" />
