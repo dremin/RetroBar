@@ -151,7 +151,7 @@ namespace RetroBar
             {
                 if (_fullScreenHelper.FullScreenApps[i].hWnd == e.Window.Handle)
                 {
-                    base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
+                    OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
                     return;
                 }
             }
@@ -165,7 +165,7 @@ namespace RetroBar
             }
 
             _fullScreenSuppressed = true;
-            base.OnFullScreenLeave();
+            OnFullScreenLeave();
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -187,11 +187,11 @@ namespace RetroBar
 
                 if (IsVistaAeroThemeActive())
                 {
-                    _maximizedWindowTimer.Start();
+                    _maximizedWindowTimer?.Start();
                 }
                 else
                 {
-                    _maximizedWindowTimer.Stop();
+                    _maximizedWindowTimer?.Stop();
                     IsFullscreenWindowMaximized = false;
                 }
             }
@@ -374,15 +374,15 @@ namespace RetroBar
 
         protected override void CustomClosing()
         {
-            if (_maximizedWindowTimer != null)
-            {
-                _maximizedWindowTimer.Stop();
-                _maximizedWindowTimer.Tick -= MaximizedWindowTimer_Tick;
-                _maximizedWindowTimer = null;
-            }
-
             if (AllowClose)
             {
+                if (_maximizedWindowTimer != null)
+                {
+                    _maximizedWindowTimer.Stop();
+                    _maximizedWindowTimer.Tick -= MaximizedWindowTimer_Tick;
+                    _maximizedWindowTimer = null;
+                }
+
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
 
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
@@ -398,6 +398,7 @@ namespace RetroBar
                 // DPI change is per-monitor, update ourselves
                 UpdatePosition();
                 SetLayoutRounding();
+                StartButton?.UpdateFloatingStartCoordinates();
                 return;
             }
 
@@ -422,6 +423,8 @@ namespace RetroBar
         {
             base.OnAutoHideAnimationBegin(isHiding);
 
+            StartButton?.UpdateFloatingStartCoordinates();
+
             // Prevent focus indicators and tooltips while hidden
             ResetControlFocus();
 
@@ -435,6 +438,8 @@ namespace RetroBar
         protected override void OnAutoHideAnimationComplete(bool isHiding)
         {
             base.OnAutoHideAnimationComplete(isHiding);
+
+            StartButton?.UpdateFloatingStartCoordinates();
 
             if (isHiding && Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
             {
