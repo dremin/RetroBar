@@ -21,6 +21,8 @@ namespace RetroBar.Controls
         private bool visibilityChanged;
         private DelayedActivationHandler? dragHandler;
         private readonly DispatcherTimer pendingOpenTimer;
+        private bool? useFloatingThemeCached;
+        private bool openingFloatingStart;
 
         public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(StartButton));
         public static DependencyProperty StartMenuMonitorProperty = DependencyProperty.Register(nameof(StartMenuMonitor), typeof(StartMenuMonitor), typeof(StartButton));
@@ -70,12 +72,41 @@ namespace RetroBar.Controls
         {
             if (e.PropertyName == nameof(Settings.Theme))
             {
-                bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
+                useFloatingThemeCached = null;
 
-                if (!useFloatingStartButton && floatingStartButton != null)
+                // Run after the theme dictionary has been swapped, whatever order the Settings
+                // handlers fire in, and after any taskbar reopen has been processed.
+                Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(syncFloatingStartWithTheme));
+            }
+        }
+
+        private bool useFloatingTheme()
+        {
+            useFloatingThemeCached ??= Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
+            return useFloatingThemeCached.Value;
+        }
+
+        private void syncFloatingStartWithTheme()
+        {
+            // A closed or replaced taskbar must not spawn an orb of its own.
+            if (!IsLoaded || IsFloating) return;
+
+            useFloatingThemeCached = null;
+
+            if (useFloatingTheme())
+            {
+                if (floatingStartButton == null)
                 {
-                    closeFloatingStart();
+                    openFloatingStart();
                 }
+                else
+                {
+                    showFloatingStart();
+                }
+            }
+            else if (floatingStartButton != null)
+            {
+                closeFloatingStart();
             }
         }
 
@@ -243,8 +274,18 @@ namespace RetroBar.Controls
 
             if (floatingStartButton == null)
             {
-                floatingStartButton = new FloatingStartButton(this, getButtonRect());
-                floatingStartButton.Show();
+                if (openingFloatingStart) return;
+                openingFloatingStart = true;
+
+                try
+                {
+                    floatingStartButton = new FloatingStartButton(this, getButtonRect());
+                    floatingStartButton.Show();
+                }
+                finally
+                {
+                    openingFloatingStart = false;
+                }
             }
             else
             {
@@ -306,7 +347,18 @@ namespace RetroBar.Controls
         public void UpdateFloatingStartCoordinates()
         {
             // Can't get our coordinates if we aren't visible.
-            if (!IsVisible || floatingStartButton == null) return;
+            if (!IsVisible) return;
+
+            if (floatingStartButton == null)
+            {
+                // Self-heal: the theme wants an orb but none exists (for example after a live theme switch).
+                if (!IsFloating && IsLoaded && (Host == null || Host.Opacity == 1) && useFloatingTheme())
+                {
+                    openFloatingStart();
+                }
+
+                return;
+            }
 
             floatingStartButton.SetPosition(getButtonRect());
         }
