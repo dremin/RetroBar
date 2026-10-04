@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
 namespace RetroBar.Controls
@@ -14,6 +15,13 @@ namespace RetroBar.Controls
     /// </summary>
     public partial class FloatingStartButton : Window, INotifyPropertyChanged
     {
+        // Declared locally so this file does not depend on which ManagedShell version provides them.
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+
         private WindowInteropHelper helper;
         private NativeMethods.Rect startupRect;
         private (int Left, int Top, int Right, int Bottom)? appliedClip;
@@ -147,12 +155,12 @@ namespace RetroBar.Controls
 
             if (desiredClip is { } c)
             {
-                IntPtr hRgn = NativeMethods.CreateRectRgn(c.Item1, c.Item2, c.Item3, c.Item4);
-                NativeMethods.SetWindowRgn(Handle, hRgn, true);
+                IntPtr hRgn = CreateRectRgn(c.Item1, c.Item2, c.Item3, c.Item4);
+                SetWindowRgn(Handle, hRgn, true);
             }
             else
             {
-                NativeMethods.SetWindowRgn(Handle, IntPtr.Zero, true);
+                SetWindowRgn(Handle, IntPtr.Zero, true);
             }
         }
     }
