@@ -296,6 +296,31 @@ namespace RetroBar.Controls
                     {
                         snapshot.Stop();
                         var now = getButtonRect();
+                        try
+                        {
+                            var inner = shown.Content as StartButton;
+                            var btn = inner?.Start;
+                            var border = btn?.Template?.FindName("StartButtonBorder", btn) as Border;
+                            string brushInfo = "none";
+                            if (border?.Background is ImageBrush ib)
+                            {
+                                var bi = ib.ImageSource as System.Windows.Media.Imaging.BitmapImage;
+                                brushInfo = "ImageBrush uri=" + bi?.UriSource + " px=" + bi?.PixelWidth + "x" + bi?.PixelHeight +
+                                            " downloading=" + bi?.IsDownloading + " viewbox=" + ib.Viewbox;
+                            }
+                            else if (border?.Background != null)
+                            {
+                                brushInfo = border.Background.GetType().Name;
+                            }
+                            OrbLog.Write("orb inner: startButton=" + (inner != null) + " visible=" + inner?.IsVisible + " btnSize=" + btn?.ActualWidth + "x" + btn?.ActualHeight +
+                                         " btnOpacity=" + btn?.Opacity + " btnVis=" + btn?.Visibility + " borderSize=" + border?.ActualWidth + "x" + border?.ActualHeight +
+                                         " borderOpacity=" + border?.Opacity + " bg=" + brushInfo + " windowBg=" + shown.Background);
+                        }
+                        catch (Exception ex)
+                        {
+                            OrbLog.Write("orb inner describe failed: " + ex.Message);
+                        }
+
                         OrbLog.Write("orb 2s later: " + OrbLog.Describe(shown.Handle) + " wpfVisible=" + shown.IsVisible + " topmost=" + shown.Topmost +
                                      " actual=" + shown.ActualWidth + "x" + shown.ActualHeight + " buttonRectNow=(" + now.Left + "," + now.Top + "," + now.Right + "," + now.Bottom + ")" +
                                      " hostOpacity=" + (Host != null ? Host.Opacity : -1));
