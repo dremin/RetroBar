@@ -46,6 +46,10 @@ namespace RetroBar.Controls
             InitializeComponent();
             startupRect = rect;
 
+            // DIAGNOSTIC: solid magenta behind the orb. If a magenta box shows, the window is composited and the
+            // problem is the orb image; if nothing shows, the window itself is not being displayed.
+            Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 255));
+
             if (mainButton.Host != null)
             {
                 mainButton.Host.PropertyChanged += Host_PropertyChanged;
