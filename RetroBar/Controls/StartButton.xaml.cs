@@ -92,6 +92,7 @@ namespace RetroBar.Controls
             if (!IsLoaded || IsFloating) return;
 
             useFloatingThemeCached = null;
+            OrbLog.Write("syncFloatingStartWithTheme: theme=" + Settings.Instance.Theme + " useFloating=" + useFloatingTheme() + " existing=" + (floatingStartButton != null));
 
             if (useFloatingTheme())
             {
@@ -172,6 +173,8 @@ namespace RetroBar.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            OrbLog.Write("StartButton Loaded: floating=" + IsFloating + " host=" + (Host != null) + " theme=" + Settings.Instance.Theme + " vis=" + Visibility + " isVisible=" + IsVisible);
+
             StartMenuMonitor.StartMenuVisibilityChanged += AppVisibilityHelper_StartMenuVisibilityChanged;
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
@@ -270,6 +273,8 @@ namespace RetroBar.Controls
 
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
+            OrbLog.Write("openFloatingStart: useFloating=" + useFloatingStartButton + " vis=" + Visibility + " existing=" + (floatingStartButton != null));
+
             if (!useFloatingStartButton || Visibility != Visibility.Visible) return;
 
             if (floatingStartButton == null)
@@ -279,8 +284,28 @@ namespace RetroBar.Controls
 
                 try
                 {
-                    floatingStartButton = new FloatingStartButton(this, getButtonRect());
+                    var startRect = getButtonRect();
+                    OrbLog.Write("creating orb window, startRect=(" + startRect.Left + "," + startRect.Top + "," + startRect.Right + "," + startRect.Bottom + ") size=" + startRect.Width + "x" + startRect.Height);
+                    floatingStartButton = new FloatingStartButton(this, startRect);
                     floatingStartButton.Show();
+                    OrbLog.Write("orb shown: " + OrbLog.Describe(floatingStartButton.Handle) + " wpfVisible=" + floatingStartButton.IsVisible);
+
+                    var shown = floatingStartButton;
+                    var snapshot = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
+                    snapshot.Tick += (s, args) =>
+                    {
+                        snapshot.Stop();
+                        var now = getButtonRect();
+                        OrbLog.Write("orb 2s later: " + OrbLog.Describe(shown.Handle) + " wpfVisible=" + shown.IsVisible + " topmost=" + shown.Topmost +
+                                     " actual=" + shown.ActualWidth + "x" + shown.ActualHeight + " buttonRectNow=(" + now.Left + "," + now.Top + "," + now.Right + "," + now.Bottom + ")" +
+                                     " hostOpacity=" + (Host != null ? Host.Opacity : -1));
+                    };
+                    snapshot.Start();
+                }
+                catch (Exception ex)
+                {
+                    OrbLog.Write("orb creation FAILED: " + ex);
+                    throw;
                 }
                 finally
                 {
@@ -354,6 +379,7 @@ namespace RetroBar.Controls
                 // Self-heal: the theme wants an orb but none exists (for example after a live theme switch).
                 if (!IsFloating && IsLoaded && (Host == null || Host.Opacity == 1) && useFloatingTheme())
                 {
+                    OrbLog.Write("self-heal: creating missing orb");
                     openFloatingStart();
                 }
 
