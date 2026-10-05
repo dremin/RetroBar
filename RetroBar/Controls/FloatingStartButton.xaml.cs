@@ -1,4 +1,4 @@
-using ManagedShell.AppBar;
+﻿using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using System;
@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
-using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
@@ -26,7 +25,6 @@ namespace RetroBar.Controls
         private WindowInteropHelper helper;
         private NativeMethods.Rect startupRect;
         private (int Left, int Top, int Right, int Bottom)? appliedClip;
-        private static int positionLogCount;
 
         private StartButton MainButton => (StartButton)DataContext;
 
@@ -45,10 +43,6 @@ namespace RetroBar.Controls
 
             InitializeComponent();
             startupRect = rect;
-
-            // DIAGNOSTIC: solid magenta behind the orb. If a magenta box shows, the window is composited and the
-            // problem is the orb image; if nothing shows, the window itself is not being displayed.
-            Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 255));
 
             if (mainButton.Host != null)
             {
@@ -70,8 +64,6 @@ namespace RetroBar.Controls
             // set up window procedure
             HwndSource source = HwndSource.FromHwnd(Handle);
             source.AddHook(WndProc);
-
-            OrbLog.Write("orb SourceInitialized: " + OrbLog.Describe(Handle) + " startupRect=(" + startupRect.Left + "," + startupRect.Top + "," + startupRect.Right + "," + startupRect.Bottom + ")");
 
             WindowHelper.HideWindowFromTasks(Handle);
             WindowHelper.ExcludeWindowFromPeek(Handle);
@@ -122,11 +114,6 @@ namespace RetroBar.Controls
 
                 // WPF can adjust the window size (e.g. DPI changes), so use the real bounds from here on.
                 NativeMethods.GetWindowRect(Handle, out currentRect);
-
-                if (positionLogCount++ < 40)
-                {
-                    OrbLog.Write("orb SetPosition requested=(" + rect.Left + "," + rect.Top + "," + rect.Right + "," + rect.Bottom + ") actual: " + OrbLog.Describe(Handle));
-                }
             }
 
             UpdateClipRegion(currentRect);
@@ -152,11 +139,6 @@ namespace RetroBar.Controls
             (int, int, int, int)? desiredClip = needsClip && clipLeft < clipRight && clipTop < clipBottom
                 ? (clipLeft, clipTop, clipRight, clipBottom)
                 : null;
-
-            if (needsClip)
-            {
-                OrbLog.Write("orb clip: bounds=(" + bounds.Left + "," + bounds.Top + "," + bounds.Right + "," + bounds.Bottom + ") window=(" + windowRect.Left + "," + windowRect.Top + "," + windowRect.Right + "," + windowRect.Bottom + ") clip=(" + clipLeft + "," + clipTop + "," + clipRight + "," + clipBottom + ")");
-            }
 
             if (needsClip && desiredClip == null)
             {
