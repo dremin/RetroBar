@@ -1096,8 +1096,6 @@
                                                     Viewbox="0,0,1,0.3333" />
                                     </Setter.Value>
                                 </Setter>
-                                <Setter Property="Margin" Value="0,-5,0,0" />
-                                <Setter Property="Height" Value="35" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -1262,8 +1260,6 @@
                                                     Viewbox="0,0,1,0.3333" />
                                     </Setter.Value>
                                 </Setter>
-                                <Setter Property="Margin" Value="0,0,0,-6" />
-                                <Setter Property="Height" Value="36" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
