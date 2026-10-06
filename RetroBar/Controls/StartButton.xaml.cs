@@ -107,6 +107,7 @@ namespace RetroBar.Controls
             if (!IsLoaded || IsFloating) return;
 
             useFloatingThemeCached = null;
+            updateRemoteFallbackScale();
 
             if (useFloatingTheme())
             {
@@ -207,7 +208,10 @@ namespace RetroBar.Controls
             if (Host != null)
             {
                 Host.PropertyChanged += Taskbar_PropertyChanged;
+                Host.SizeChanged += Host_SizeChanged;
             }
+
+            updateRemoteFallbackScale();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -217,6 +221,7 @@ namespace RetroBar.Controls
             if (Host != null)
             {
                 Host.PropertyChanged -= Taskbar_PropertyChanged;
+                Host.SizeChanged -= Host_SizeChanged;
             }
 
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
@@ -332,6 +337,36 @@ namespace RetroBar.Controls
             floatingStartButton?.Close();
             floatingStartButton = null;
             Opacity = 1;
+        }
+
+        private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            updateRemoteFallbackScale();
+        }
+
+        /// <summary>
+        /// Remote-session fallback only: the orb is drawn inside the taskbar there, and the theme's orb
+        /// is taller than the taskbar, so its top and bottom would be cut off. Shrink it to fit instead.
+        /// Does nothing on a normal PC, where the orb lives in its own floating window.
+        /// </summary>
+        private void updateRemoteFallbackScale()
+        {
+            if (IsFloating) return;
+
+            double scale = 1.0;
+
+            if (IsRemoteSession &&
+                (Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false) &&
+                Host != null &&
+                Host.Orientation == Orientation.Horizontal &&
+                Host.ActualHeight > 0 &&
+                !double.IsNaN(Start.Height) &&
+                Start.Height > 0)
+            {
+                scale = Math.Min(1.0, Host.ActualHeight / Start.Height);
+            }
+
+            Start.LayoutTransform = scale < 1.0 ? new ScaleTransform(scale, scale) : Transform.Identity;
         }
 
         private NativeMethods.Rect getButtonRect()
