@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -24,6 +24,9 @@ namespace RetroBar.Controls
         private readonly DispatcherTimer pendingOpenTimer;
         private bool? useFloatingThemeCached;
         private bool openingFloatingStart;
+        private bool floatingStartTopmost = true;
+        private DispatcherTimer? orbRaiseTimer;
+        private int orbRaiseTicks;
 
         [DllImport("user32.dll")]
         private static extern int GetSystemMetrics(int nIndex);
@@ -152,6 +155,7 @@ namespace RetroBar.Controls
             Host?.SetTrayHost();
             Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
+            scheduleFloatingStartRaise();
             if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon && Settings.Instance.ShowStartButtonMultiMon)
             {
                 StartMenuMonitor.ShowStartMenu(Host.Handle);
@@ -226,6 +230,7 @@ namespace RetroBar.Controls
 
             Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             dragHandler?.Dispose();
+            orbRaiseTimer?.Stop();
 
             hideFloatingStart();
         }
@@ -239,6 +244,11 @@ namespace RetroBar.Controls
                 // Only set as visible when activated from our taskbar
                 return;
             }
+            if (e.Visible)
+            {
+                scheduleFloatingStartRaise();
+            }
+
             SetStartMenuState(e.Visible);
         }
 
@@ -415,6 +425,8 @@ namespace RetroBar.Controls
 
         public void UpdateFloatingStartTopmost(bool topmost)
         {
+            floatingStartTopmost = topmost;
+
             if (floatingStartButton == null) return;
 
             floatingStartButton.Topmost = topmost;
@@ -437,6 +449,47 @@ namespace RetroBar.Controls
                 0, 0, 0, 0,
                 (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
             }
+        }
+
+        /// <summary>
+        /// Keeps the orb in front of a Start menu that is opening. Open-Shell's menu (and the Windows one) are also
+        /// topmost windows and, being shown later, would otherwise sit in front of the orb and cut off its rounded top.
+        /// Real Vista draws the orb over the menu's bottom-left corner.
+        /// </summary>
+        private void raiseFloatingStart()
+        {
+            if (floatingStartButton == null || !floatingStartTopmost) return;
+
+            NativeMethods.SetWindowPos(
+                floatingStartButton.Handle,
+                (IntPtr)NativeMethods.WindowZOrder.HWND_TOPMOST,
+                0, 0, 0, 0,
+                (int)NativeMethods.SetWindowPosFlags.SWP_NOSIZE | (int)NativeMethods.SetWindowPosFlags.SWP_NOMOVE | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE);
+        }
+
+        private void scheduleFloatingStartRaise()
+        {
+            if (IsFloating || floatingStartButton == null) return;
+
+            raiseFloatingStart();
+            orbRaiseTicks = 0;
+
+            if (orbRaiseTimer == null)
+            {
+                orbRaiseTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
+                orbRaiseTimer.Tick += (s, args) =>
+                {
+                    raiseFloatingStart();
+
+                    // the menu appears a moment after the click, so keep raising for about a second
+                    if (++orbRaiseTicks >= 12)
+                    {
+                        orbRaiseTimer?.Stop();
+                    }
+                };
+            }
+
+            orbRaiseTimer.Start();
         }
 
         #endregion
