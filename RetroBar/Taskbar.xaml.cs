@@ -19,9 +19,6 @@ using Application = System.Windows.Application;
 
 namespace RetroBar
 {
-    /// <summary>
-    /// Interaction logic for Taskbar.xaml
-    /// </summary>
     public partial class Taskbar : AppBarWindow
     {
         [DllImport("user32.dll")]
@@ -37,11 +34,7 @@ namespace RetroBar
             DependencyProperty.Register("IsFullscreenWindowMaximized", typeof(bool), typeof(Taskbar),
                 new PropertyMetadata(false));
 
-        /// <summary>
-        /// True when a window on this taskbar's screen is currently maximized (and isn't RetroBar itself).
-        /// Themes can bind/trigger on this (e.g. via RelativeSource FindAncestor AncestorType=Window)
-        /// to change their own appearance, the same way they already do for Orientation.
-        /// </summary>
+        
         public bool IsFullscreenWindowMaximized
         {
             get => (bool)GetValue(IsFullscreenWindowMaximizedProperty);
@@ -94,8 +87,7 @@ namespace RetroBar
 
             _maximizedWindowTimer.Tick += MaximizedWindowTimer_Tick;
 
-            // Only Windows Vista Aero models the glass-turns-opaque-on-maximize behavior,
-            // so don't bother polling the foreground window on any other theme.
+            
             if (IsVistaAeroThemeActive())
             {
                 _maximizedWindowTimer.Start();
@@ -133,7 +125,7 @@ namespace RetroBar
 
         private void TasksService_WindowActivated(object sender, ManagedShell.WindowsTasks.WindowEventArgs e)
         {
-            // If full-screen is suppressed, and a full-screen window is activated, it's time to un-suppress.
+            
 
             if (!_fullScreenSuppressed)
             {
@@ -176,7 +168,7 @@ namespace RetroBar
 
                 if (AllowsTransparency != newTransparency && Screen.Primary)
                 {
-                    // Transparency cannot be changed on an open window.
+                    
                     windowManager.ReopenTaskbars();
                     return;
                 }
@@ -218,7 +210,7 @@ namespace RetroBar
 
                 if (FlowDirection != newFlowDirection && Screen.Primary)
                 {
-                    // It is necessary to reopen the taskbars to refresh menu sizes.
+                    
                     windowManager.ReopenTaskbars();
                     return;
                 }
@@ -250,8 +242,7 @@ namespace RetroBar
                 }
                 else if (Screen.Primary)
                 {
-                    // Auto hide requires transparency
-                    // Transparency cannot be changed on an open window.
+                    
                     windowManager.ReopenTaskbars();
                 }
             }
@@ -295,10 +286,7 @@ namespace RetroBar
 
         private bool IsForegroundWindowMaximizedOnThisScreen()
         {
-            // Borderless/exclusive fullscreen apps (games, video players, F11 browsers)
-            // don't set WS_MAXIMIZE, so IsZoomed alone would miss them entirely.
-            // Reuse the same FullScreenHelper-backed check the auto-hide logic already
-            // uses, so a real fullscreen app on this screen counts the same as maximized.
+           
             if (HasFullScreenApp())
             {
                 return true;
@@ -798,7 +786,7 @@ namespace RetroBar
                         Dispatcher.BeginInvoke(() => {
                             int mouseX = e.HookStruct.pt.X;
                             int mouseY = e.HookStruct.pt.Y;
-                            // Calculate where the resize edge should be, in case the actual resize operation is lagging behind the mouse
+                            
                             double scaledRowHeight = DesiredRowHeight * DpiScale;
                             if (Orientation == Orientation.Horizontal)
                             {
@@ -807,15 +795,14 @@ namespace RetroBar
                                      AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
                                      Settings.Instance.RowCount > 1)
                                 {
-                                    // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
+                                 
                                     Settings.Instance.RowCount -= 1;
                                 }
                                 else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
                                           AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
                                           Settings.Instance.RowCount < Settings.Instance.RowLimit)
                                 {
-                                    // If mouse is outside the taskbar and at least one row height away, increment size
-                                    Settings.Instance.RowCount += 1;
+                                Settings.Instance.RowCount += 1;
                                 }
                             }
                             else
