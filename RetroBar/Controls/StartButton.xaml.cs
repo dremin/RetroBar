@@ -33,12 +33,7 @@ namespace RetroBar.Controls
 
         private const int SM_REMOTESESSION = 0x1000;
 
-        /// <summary>
-        /// Remote desktop sessions (RDP, cloud PCs) may not display a separate transparent top-level window,
-        /// so the orb is drawn inside the taskbar there instead of in its own floating window.
-        /// Set the environment variable RETROBAR_FORCE_FLOATING_ORB=1 to use the floating orb anyway.
-        /// </summary>
-        private static bool IsRemoteSession =>
+            private static bool IsRemoteSession =>
             GetSystemMetrics(SM_REMOTESESSION) != 0 &&
             Environment.GetEnvironmentVariable("RETROBAR_FORCE_FLOATING_ORB") != "1";
 
@@ -354,11 +349,7 @@ namespace RetroBar.Controls
             updateRemoteFallbackScale();
         }
 
-        /// <summary>
-        /// Remote-session fallback only: the orb is drawn inside the taskbar there, and the theme's orb
-        /// is taller than the taskbar, so its top and bottom would be cut off. Shrink it to fit instead.
-        /// Does nothing on a normal PC, where the orb lives in its own floating window.
-        /// </summary>
+        
         private void updateRemoteFallbackScale()
         {
             if (IsFloating) return;
@@ -451,11 +442,7 @@ namespace RetroBar.Controls
             }
         }
 
-        /// <summary>
-        /// Keeps the orb in front of a Start menu that is opening. Open-Shell's menu (and the Windows one) are also
-        /// topmost windows and, being shown later, would otherwise sit in front of the orb and cut off its rounded top.
-        /// Real Vista draws the orb over the menu's bottom-left corner.
-        /// </summary>
+        
         private void raiseFloatingStart()
         {
             if (floatingStartButton == null || !floatingStartTopmost) return;
