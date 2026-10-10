@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -12,7 +12,9 @@ using RetroBar.Utilities;
 
 namespace RetroBar.Controls
 {
-
+    /// <summary>
+    /// Interaction logic for StartButton.xaml
+    /// </summary>
     public partial class StartButton : UserControl
     {
         private FloatingStartButton? floatingStartButton;
@@ -23,7 +25,7 @@ namespace RetroBar.Controls
         private bool? useFloatingThemeCached;
         private bool openingFloatingStart;
         private bool floatingStartTopmost = true;
-        private double appliedFallbackScale = 1.0;
+        private Thickness? appliedFallbackMargin;
         private DispatcherTimer? orbRaiseTimer;
         private int orbRaiseTicks;
 
@@ -32,7 +34,11 @@ namespace RetroBar.Controls
 
         private const int SM_REMOTESESSION = 0x1000;
 
-
+        /// <summary>
+        /// Remote desktop sessions (RDP, cloud PCs) may not display a separate transparent top-level window,
+        /// so the orb is drawn inside the taskbar there instead of in its own floating window.
+        /// Set the environment variable RETROBAR_FORCE_FLOATING_ORB=1 to use the floating orb anyway.
+        /// </summary>
         private static bool? remoteSessionCached;
 
         private static bool IsRemoteSession =>
@@ -78,7 +84,7 @@ namespace RetroBar.Controls
             pendingOpenTimer.Interval = new TimeSpan(0, 0, 0, 1);
             pendingOpenTimer.Tick += (sender, args) =>
             {
-                
+                // if the start menu didn't open, flip the button back to unchecked
                 SetStartMenuState(false);
             };
         }
@@ -89,7 +95,8 @@ namespace RetroBar.Controls
             {
                 useFloatingThemeCached = null;
 
-               
+                // Run after the theme dictionary has been swapped, whatever order the Settings
+                // handlers fire in, and after any taskbar reopen has been processed.
                 Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(syncFloatingStartWithTheme));
             }
         }
@@ -102,11 +109,11 @@ namespace RetroBar.Controls
 
         private void syncFloatingStartWithTheme()
         {
-            
+            // A closed or replaced taskbar must not spawn an orb of its own.
             if (!IsLoaded || IsFloating) return;
 
             useFloatingThemeCached = null;
-            updateRemoteFallbackScale();
+            updateRemoteFallbackLayout();
 
             if (useFloatingTheme())
             {
@@ -211,7 +218,7 @@ namespace RetroBar.Controls
                 Host.SizeChanged += Host_SizeChanged;
             }
 
-            updateRemoteFallbackScale();
+            updateRemoteFallbackLayout();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -237,7 +244,7 @@ namespace RetroBar.Controls
                 ((e.TaskbarHwndActivated != IntPtr.Zero && e.TaskbarHwndActivated != Host.Handle) ||
                 (e.StartHmonitor != IntPtr.Zero && e.StartHmonitor != Host.Screen.HMonitor)))
             {
-                
+                // Only set as visible when activated from our taskbar
                 return;
             }
             if (e.Visible)
@@ -255,7 +262,7 @@ namespace RetroBar.Controls
 
         private void StartButton_LayoutUpdated(object? sender, EventArgs e)
         {
-            updateRemoteFallbackScale();
+            updateRemoteFallbackLayout();
 
             if (!visibilityChanged)
             {
@@ -320,7 +327,7 @@ namespace RetroBar.Controls
                 showFloatingStart();
             }
 
-            
+            // Hide the original so only the floating orb is visible.
             Opacity = 0;
         }
 
@@ -349,41 +356,54 @@ namespace RetroBar.Controls
 
         private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            updateRemoteFallbackScale();
+            updateRemoteFallbackLayout();
         }
 
-
-        private void updateRemoteFallbackScale()
+        /// <summary>
+        /// Remote-session fallback only: the orb is drawn inside the taskbar there (no separate window), so it can
+        /// never rise above the bar. Keep it at its real 1:1 size and nudge it toward the screen edge so its rounded
+        /// top is not cut off; the part that falls off the screen edge is hidden, as on real Vista.
+        /// Does nothing on a normal PC, where the orb lives in its own floating window.
+        /// </summary>
+        private void updateRemoteFallbackLayout()
         {
             if (IsFloating) return;
 
-            double scale = 1.0;
+            Thickness? desired = null;
 
             if (IsRemoteSession &&
                 (Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false) &&
                 Host != null &&
-                Host.Orientation == Orientation.Horizontal &&
-                Host.ActualHeight > 0 &&
-                !double.IsNaN(Start.Height) &&
-                Start.Height > 0)
+                Host.Orientation == Orientation.Horizontal)
             {
-                scale = Math.Min(1.0, Host.ActualHeight / Start.Height);
+                desired = Host.AppBarEdge == ManagedShell.AppBar.AppBarEdge.Top
+                    ? new Thickness(0, -14, 0, -2)
+                    : new Thickness(0, -2, 0, -14);
             }
 
-       
-            if (Math.Abs(scale - appliedFallbackScale) < 0.001) return;
+            // only touch the layout when the value really changes, so this is safe to call on every layout pass
+            if (desired == appliedFallbackMargin) return;
 
-            appliedFallbackScale = scale;
-            Start.LayoutTransform = scale < 1.0 ? new ScaleTransform(scale, scale) : Transform.Identity;
+            appliedFallbackMargin = desired;
+
+            if (desired is { } margin)
+            {
+                Start.Margin = margin;
+            }
+            else
+            {
+                Start.ClearValue(FrameworkElement.MarginProperty);
+            }
         }
 
         private NativeMethods.Rect getButtonRect()
         {
-      
+            // Get the pixel values of the start button's bounds
             Point buttonPosPixels = Start.PointToScreen(new Point(FlowDirection == FlowDirection.LeftToRight ? 0 : Start.ActualWidth, 0));
             Point buttonSizePixels = Start.PointToScreen(new Point(FlowDirection == FlowDirection.LeftToRight ? Start.ActualWidth : 0, Start.ActualHeight));
 
-
+            // If the start button is currently translated, we get the translated position
+            // and need to offset by that much to be positioned correctly.
             if (Host?.AutoHideElement?.RenderTransform is TranslateTransform tt)
             {
                 buttonPosPixels.X -= (tt.X * Host.DpiScale);
@@ -392,7 +412,8 @@ namespace RetroBar.Controls
                 buttonSizePixels.Y -= (tt.Y * Host.DpiScale);
             }
 
-
+            // Round outward instead of truncating, so fractional DPI positions never shave a pixel
+            // off the edges of the orb.
             return new NativeMethods.Rect(
                 (int)Math.Floor(buttonPosPixels.X),
                 (int)Math.Floor(buttonPosPixels.Y),
@@ -402,12 +423,12 @@ namespace RetroBar.Controls
 
         public void UpdateFloatingStartCoordinates()
         {
-
+            // Can't get our coordinates if we aren't visible.
             if (!IsVisible) return;
 
             if (floatingStartButton == null)
             {
-
+                // Self-heal: the theme wants an orb but none exists (for example after a live theme switch).
                 if (!IsFloating && IsLoaded && (Host == null || Host.Opacity == 1) && useFloatingTheme())
                 {
                     openFloatingStart();
@@ -429,7 +450,7 @@ namespace RetroBar.Controls
 
             if (!topmost)
             {
-               
+                // Setting Topmost=false itself does not guarantee that we will go below a full-screen window.
                 NativeMethods.SetWindowPos(
                 floatingStartButton.Handle,
                 Host.Handle,
@@ -438,7 +459,7 @@ namespace RetroBar.Controls
             }
             else
             {
-              
+                // Ensure the floating start button is truly topmost when restoring.
                 NativeMethods.SetWindowPos(
                 floatingStartButton.Handle,
                 (IntPtr)NativeMethods.WindowZOrder.HWND_TOPMOST,
@@ -447,7 +468,11 @@ namespace RetroBar.Controls
             }
         }
 
-
+        /// <summary>
+        /// Keeps the orb in front of a Start menu that is opening. Open-Shell's menu (and the Windows one) are also
+        /// topmost windows and, being shown later, would otherwise sit in front of the orb and cut off its rounded top.
+        /// Real Vista draws the orb over the menu's bottom-left corner.
+        /// </summary>
         private void raiseFloatingStart()
         {
             if (floatingStartButton == null || !floatingStartTopmost) return;
@@ -473,7 +498,7 @@ namespace RetroBar.Controls
                 {
                     raiseFloatingStart();
 
-                    
+                    // the menu appears a moment after the click, so keep raising for about a second
                     if (++orbRaiseTicks >= 12)
                     {
                         orbRaiseTimer?.Stop();
