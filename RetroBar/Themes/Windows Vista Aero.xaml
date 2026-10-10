@@ -506,6 +506,17 @@
                                         Value="-2,0,-2,0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
+                        <!-- Remote sessions have no blur-behind, so use the opaque glass gradient (same stops as the
+                             maximized look, which matches the real Vista taskbar). -->
+                        <DataTrigger Binding="{Binding Path=UseOpaqueGlass, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarBottomInnerBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TaskbarMaximizedBackground}" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+
                         <!-- Placed after Orientation so it takes precedence in both orientations -->
                         <DataTrigger Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="True">
