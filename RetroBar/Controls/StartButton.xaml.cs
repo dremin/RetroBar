@@ -407,7 +407,7 @@ namespace RetroBar.Controls
             if (Host?.AutoHideElement?.RenderTransform is TranslateTransform tt)
             {
                 buttonPosPixels.X -= (tt.X * Host.DpiScale);
-                buttonPosPixels.Y -= (tt.Y * Host.DpiScale);
+                buttonPosPixels.Y -= (tt.Y * Host.DpiScale) +2;
                 buttonSizePixels.X -= (tt.X * Host.DpiScale);
                 buttonSizePixels.Y -= (tt.Y * Host.DpiScale);
             }
