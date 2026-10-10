@@ -48,4 +48,103 @@
                  UriSource="../Resources/desktopMe2k-sm.png" />
     <BitmapImage x:Key="ShowDesktopIconImageLarge"
                  UriSource="../Resources/desktopMe2k-lg.png" />
+
+    <!-- Windows 2000 introduced balloon notifications but did not yet have a close
+         button - that was added in XP. Hide it here rather than in the shared control,
+         so every other theme keeps it. -->
+    <Style TargetType="Button"
+           x:Key="NotifyBalloonCloseButton"
+           BasedOn="{StaticResource NotifyBalloonCloseButton}">
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+    </Style>
+
+    <!-- Same near-rectangular shape fix as Windows XP Blue/Classic - Vista's heavily
+         rounded "glass bubble" didn't exist yet on 2000. Colors use this theme's own
+         ToolTipBackground (#FFFFE1) already defined above. -->
+    <Style TargetType="ContentControl"
+           x:Key="NotifyBalloon"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource ToolTipForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <DockPanel>
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource ToolTipForeground}"
+                                Background="{DynamicResource ToolTipBackground}"
+                                CornerRadius="1"
+                                DockPanel.Dock="Top"
+                                Name="Border">
+                            <ContentPresenter Margin="11,6,11,9" />
+                        </Border>
+                        <Path Stroke="{DynamicResource ToolTipForeground}"
+                              Fill="{DynamicResource ToolTipBackground}"
+                              HorizontalAlignment="Right"
+                              Width="14"
+                              Height="14"
+                              StrokeThickness="1"
+                              Margin="16,-1,16,0"
+                              Data="M 0,0 l 13,13 V 0"
+                              DockPanel.Dock="Bottom"
+                              RenderOptions.EdgeMode="Aliased"
+                              Visibility="Visible"
+                              Name="Arrow" />
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Left" />
+                                <Condition Binding="{Binding Path=FlowDirection, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="LeftToRight" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Arrow"
+                                        Property="Data"
+                                        Value="M 0,0 V 13 l 13,-13" />
+                                <Setter TargetName="Arrow"
+                                        Property="HorizontalAlignment"
+                                        Value="Left" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Right" />
+                                <Condition Binding="{Binding Path=FlowDirection, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="RightToLeft" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="Arrow"
+                                        Property="Data"
+                                        Value="M 0,0 V 13 l 13,-13" />
+                                <Setter TargetName="Arrow"
+                                        Property="HorizontalAlignment"
+                                        Value="Left" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="Top">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="Border"
+                                        Property="DockPanel.Dock"
+                                        Value="Bottom" />
+                                <Setter TargetName="Arrow"
+                                        Property="Data"
+                                        Value="M 0,13 l 13,-13 v 13" />
+                                <Setter TargetName="Arrow"
+                                        Property="DockPanel.Dock"
+                                        Value="Top" />
+                                <Setter TargetName="Arrow"
+                                        Property="Margin"
+                                        Value="16,0,16,-2" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

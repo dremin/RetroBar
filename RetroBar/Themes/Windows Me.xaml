@@ -1,29 +1,44 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Windows 2000.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
-    <Style TargetType="TextBlock"
-           x:Key="StartLabel"
-           BasedOn="{StaticResource StartLabel}">
-        <Setter Property="Margin"
-                Value="0,-1,1,0" />
-    </Style>
-
-    <Style TargetType="ToggleButton"
-           x:Key="StartButton"
-           BasedOn="{StaticResource StartButton}">
-        <Setter Property="FocusVisualStyle"
-                Value="{StaticResource ClassicFocusVisual}" />
-    </Style>
-
-    <Style TargetType="TextBlock"
-           x:Key="Clock"
-           BasedOn="{StaticResource Clock}">
-        <Setter Property="Margin"
-                Value="8,0" />
-    </Style>
-
     <FontFamily x:Key="GlobalFontFamily">Microsoft Sans Serif</FontFamily>
-</ResourceDictionary>
+
+<!-- Windows ME is sourcing and inheriting through Windows 2000, there would be a way to fix that -->
+    <Style TargetType="Button"
+           x:Key="NotifyBalloonCloseButton"
+           BasedOn="{StaticResource NotifyBalloonCloseButton}">
+        <Setter Property="Visibility"
+                Value="Visible" />
+    </Style>
+
+    <Style TargetType="ContentControl"
+           x:Key="NotifyBalloon"
+           BasedOn="{StaticResource GlobalFonts}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource ToolTipForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <DockPanel>
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource ToolTipForeground}"
+                                Background="{DynamicResource ToolTipBackground}"
+                                CornerRadius="8"
+                                DockPanel.Dock="Top"
+                                Name="Border">
+                            <ContentPresenter Margin="11,6,11,9" />
+                        </Border>
+                        <Path Stroke="{DynamicResource ToolTipForeground}"
+                              Fill="{DynamicResource ToolTipBackground}"
+                              HorizontalAlignment="Right"
+                              Width="21"
+                              Height="21"
+                              StrokeThickness="1"
+                              Margin="13,-1,13,0"
+                              Data="M 0,0 l 20,20 V 0"
+                              DockPanel.Dock="Bottom"
+                              RenderOptions.EdgeMode="Aliased"
+                              Visibility="Visible"
+                              Name="Arrow" />
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type
