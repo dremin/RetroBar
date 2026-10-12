@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Reflection;
 using ManagedShell.Common.Logging;
 using System.Linq;
+using System.Threading;
 
 namespace RetroBar
 {
@@ -109,14 +110,33 @@ namespace RetroBar
 
         private ShellManager SetupManagedShell()
         {
-            EnvironmentHelper.IsAppRunningAsShell = NativeMethods.GetShellWindow() == IntPtr.Zero;
+            EnvironmentHelper.IsAppRunningAsShell = !WaitForShellWindow(TimeSpan.FromSeconds(60));
 
             _logger = new ManagedShellLogger();
+
+            if (EnvironmentHelper.IsAppRunningAsShell)
+            {
+                ShellLogger.Warning($"Timeout waiting for shell window. Running as shell.");
+            }
 
             ShellConfig config = ShellManager.DefaultShellConfig;
             config.PinnedNotifyIcons = Settings.Instance.NotifyIconBehaviors.Where(setting => setting.Behavior == NotifyIconBehavior.AlwaysShow).Select(setting => setting.Identifier).ToArray();
 
             return new ShellManager(config);
+        }
+
+        private static bool WaitForShellWindow(TimeSpan timeout)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            while (NativeMethods.GetShellWindow() == IntPtr.Zero)
+            {
+                if (sw.Elapsed >= timeout)
+                {
+                    return false;
+                }
+                Thread.Sleep(200);
+            }
+            return true;
         }
 
         public void RestartApp()
