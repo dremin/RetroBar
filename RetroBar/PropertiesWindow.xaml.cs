@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using ManagedShell.Common.Helpers;
+using RetroBar.Controls;
 using RetroBar.Utilities;
 using System.Windows;
 using ManagedShell.Common.Logging;
@@ -318,6 +319,17 @@ namespace RetroBar
             {
                 Settings.Instance.QuickLaunchPath = fbd.SelectedPath;
             }
+        }
+
+        // Snaps Quick Launch back to the classic per-theme default look (about 3 icons for
+        // XP, 2 for the Aero themes, etc. - see Toolbar.GetEraDefaultQuickLaunchSize) instead
+        // of whatever pixel width got saved the last time the gripper was dragged, so you
+        // don't have to hand-drag it back to that spot yourself. If no taskbar happens to be
+        // loaded to measure from (shouldn't normally happen), this falls back to plain
+        // auto-size instead of doing nothing.
+        private void ResetQuickLaunchWidth_OnClick(object sender, RoutedEventArgs e)
+        {
+            Settings.Instance.QuickLaunchWidth = Toolbar.GetAnyEraDefaultQuickLaunchSize();
         }
 
         private void PropertiesWindow_OnClosing(object sender, CancelEventArgs e)

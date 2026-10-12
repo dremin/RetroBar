@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:local="clr-namespace:RetroBar.Controls"
              xmlns:converters="clr-namespace:RetroBar.Converters"
+             xmlns:utilities="clr-namespace:RetroBar.Utilities"
              xmlns:dd="urn:gong-wpf-dragdrop"
              Loaded="TaskList_OnLoaded"
              Unloaded="TaskList_OnUnloaded"
@@ -12,10 +13,20 @@
             <converters:DockOrientationConverter x:Key="dockOrientationConverter" />
             <converters:EdgeOrientationConverter x:Key="orientationConverter" />
             <converters:TaskButtonWidthConverter x:Key="taskButtonWidthConverter" />
+            <converters:BoolToInvertedVisibilityConverter x:Key="boolToInvertedVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <Thumb Style="{DynamicResource ToolbarThumb}">
+        <!-- This gripper sits between Quick Launch and the task buttons, so - matching
+             real Windows rebar bands - dragging it resizes Quick Launch (the band before
+             it), not the task list itself. Like every other band gripper, it's only shown
+             while the taskbar is unlocked; while locked, Quick Launch's overflow chevron
+             takes over this same spot instead (see Toolbar.xaml). -->
+        <Thumb Style="{DynamicResource ToolbarThumb}"
+               Visibility="{Binding Source={x:Static utilities:Settings.Instance}, Path=LockTaskbar, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedVisibilityConverter}}"
+               DragStarted="QuickLaunchGripper_OnDragStarted"
+               DragDelta="QuickLaunchGripper_OnDragDelta"
+               DragCompleted="QuickLaunchGripper_OnDragCompleted">
             <DockPanel.Dock>
                 <Binding Converter="{StaticResource dockOrientationConverter}"
                              ConverterParameter="leading"

@@ -1,9 +1,17 @@
-﻿<UserControl x:Class="RetroBar.Controls.ToolbarButton"
+<UserControl x:Class="RetroBar.Controls.ToolbarButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Button ToolTip="{Binding Path=DisplayName}"
-            Style="{DynamicResource ToolbarButton}">
-        <Image Style="{DynamicResource ToolbarIcon}"
-               Name="ToolbarIcon" />
+    <Button x:Name="InnerButton"
+            HorizontalAlignment="Stretch"
+            ToolTip="{Binding Path=DisplayName}">
+        <StackPanel Orientation="Horizontal">
+            <Image Style="{DynamicResource ToolbarIcon}"
+                   Name="ToolbarIcon" />
+            <TextBlock Name="ToolbarLabel"
+                       Text="{Binding Path=DisplayName}"
+                       Visibility="Collapsed"
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource ToolbarOverflowItemLabel}" />
+        </StackPanel>
     </Button>
 </UserControl>

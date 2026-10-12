@@ -61,6 +61,10 @@ namespace RetroBar
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
 
+            // The task list's gripper resizes Quick Launch (see TaskList.xaml.cs), so it
+            // needs a reference to the Quick Launch toolbar it's not otherwise related to.
+            TaskListControl.QuickLaunchToolbar = QuickLaunchToolbar;
+
             RecalculateSize(false);
 
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
