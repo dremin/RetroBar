@@ -23,6 +23,29 @@
         <GradientStop Color="#a2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
+
+    <!-- Vista's maximized/glass-off taskbar rendering matched the Vista Basic theme's
+         opaque gradient - reusing those exact stops rather than guessing new ones. -->
+    <LinearGradientBrush x:Key="TaskbarMaximizedBackground"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="0,26">
+        <GradientStop Color="#8B8C8C"
+                      Offset="0.0" />
+        <GradientStop Color="#828383"
+                      Offset="0.15" />
+        <GradientStop Color="#4D4F4F"
+                      Offset="0.45" />
+        <GradientStop Color="#464648"
+                      Offset="0.50" />
+        <GradientStop Color="#1B1D1F"
+                      Offset="0.50" />
+        <GradientStop Color="#181A1B"
+                      Offset="0.80" />
+        <GradientStop Color="#18191B"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
@@ -481,6 +504,15 @@
                                 <Setter TargetName="Content"
                                         Property="Margin"
                                         Value="-2,0,-2,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <!-- Placed after Orientation so it takes precedence in both orientations -->
+                        <DataTrigger Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarBottomInnerBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TaskbarMaximizedBackground}" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -1064,6 +1096,8 @@
                                                     Viewbox="0,0,1,0.3333" />
                                     </Setter.Value>
                                 </Setter>
+                                <Setter Property="Margin" Value="0,-5,0,0" />
+                                <Setter Property="Height" Value="35" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -1081,7 +1115,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0,1,0.3333" />
+                                                    Viewbox="0,0.01,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1123,7 +1157,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0.3333,1,0.3333" />
+                                                    Viewbox="0,0.3433,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1165,7 +1199,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0.6666,1,0.3333" />
+                                                    Viewbox="0,0.6766,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1207,7 +1241,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageBottomScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0.6666,1,0.3333" />
+                                                    Viewbox="0,0.6766,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1228,6 +1262,8 @@
                                                     Viewbox="0,0,1,0.3333" />
                                     </Setter.Value>
                                 </Setter>
+                                <Setter Property="Margin" Value="0,0,0,-6" />
+                                <Setter Property="Height" Value="36" />
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -1245,7 +1281,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0,1,0.3333" />
+                                                    Viewbox="0,0,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1287,7 +1323,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0.3333,1,0.3333" />
+                                                    Viewbox="0,0.3333,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1329,7 +1365,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0.6666,1,0.3333" />
+                                                    Viewbox="0,0.6666,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
@@ -1371,7 +1407,7 @@
                                     <Setter.Value>
                                         <ImageBrush ImageSource="{DynamicResource StartButtonImageTopScaled}"
                                                     ViewboxUnits="RelativeToBoundingBox"
-                                                    Viewbox="0,0.6666,1,0.3333" />
+                                                    Viewbox="0,0.6666,1,0.32" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>
