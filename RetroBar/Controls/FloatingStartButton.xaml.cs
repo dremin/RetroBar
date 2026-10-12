@@ -1,4 +1,5 @@
-﻿using ManagedShell.Common.Helpers;
+﻿using ManagedShell.AppBar;
+using ManagedShell.Common.Helpers;
 using ManagedShell.Interop;
 using System;
 using System.Windows;
@@ -90,6 +91,53 @@ namespace RetroBar.Controls
 
             int swp = (int)NativeMethods.SetWindowPosFlags.SWP_NOZORDER | (int)NativeMethods.SetWindowPosFlags.SWP_NOACTIVATE;
             NativeMethods.SetWindowPos(Handle, IntPtr.Zero, rect.Left, rect.Top, rect.Width, rect.Height, swp);
+
+            if (Owner is Taskbar host && host.Screen != null)
+            {
+                // Clip the window to the monitor bounds to prevent bleeding into adjacent screens
+                var bounds = host.Screen.Bounds;
+                int clipLeft = Math.Max(0, bounds.Left - rect.Left);
+                int clipTop = Math.Max(0, bounds.Top - rect.Top);
+                int clipRight = Math.Min(rect.Width, bounds.Right - rect.Left);
+                int clipBottom = Math.Min(rect.Height, bounds.Bottom - rect.Top);
+
+                // Clip the window so as to not cover the in-taskbar button
+                switch (host.AppBarEdge)
+                {
+                    case AppBarEdge.Bottom:
+                        clipBottom = Math.Min(clipBottom, host.WindowRect.Top - rect.Top);
+                        break;
+                    case AppBarEdge.Top:
+                        clipTop = Math.Max(clipTop, host.WindowRect.Bottom - rect.Top);
+                        break;
+                    case AppBarEdge.Left:
+                        clipLeft = Math.Max(clipLeft, host.WindowRect.Right - rect.Left);
+                        break;
+                    case AppBarEdge.Right:
+                        clipRight = Math.Min(clipRight, host.WindowRect.Left - rect.Left);
+                        break;
+                }
+
+                if (clipLeft < clipRight && clipTop < clipBottom)
+                {
+                    if (host.FlowDirection == FlowDirection.RightToLeft)
+                    {
+                        // RTL uses a top-right origin instead of top-left
+                        int left = rect.Width - clipRight;
+                        int right = rect.Width - clipLeft;
+                        clipLeft = left;
+                        clipRight = right;
+                    }
+
+                    IntPtr hRgn = NativeMethods.CreateRectRgn(clipLeft, clipTop, clipRight, clipBottom);
+                    if (hRgn != IntPtr.Zero && NativeMethods.SetWindowRgn(Handle, hRgn, true) == 0)
+                    {
+                        // If SetWindowRgn succeeds, the system owns the region.
+                        // If it fails, we still own it and should delete it.
+                        NativeMethods.DeleteObject(hRgn);
+                    }
+                }
+            }
         }
     }
 }
