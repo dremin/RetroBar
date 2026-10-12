@@ -2,9 +2,11 @@
 using ManagedShell.Common.Helpers;
 using ManagedShell.WindowsTray;
 using RetroBar.Utilities;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -130,14 +132,14 @@ namespace RetroBar.Controls
 
             _closeTimer = new DispatcherTimer
             {
-                Interval = System.TimeSpan.FromMilliseconds(timeout)
+                Interval = TimeSpan.FromMilliseconds(timeout)
             };
 
             _closeTimer.Tick += CloseTimer_Tick;
             _closeTimer.Start();
         }
 
-        private void CloseTimer_Tick(object sender, System.EventArgs e)
+        private void CloseTimer_Tick(object sender, EventArgs e)
         {
             closeBalloon();
             _balloonInfo.SetVisibility(BalloonVisibility.TimedOut);
@@ -155,6 +157,14 @@ namespace RetroBar.Controls
 
             closeBalloon();
             e.Handled = true;
+        }
+
+        private void BalloonPopup_Opened(object sender, EventArgs e)
+        {
+            IntPtr balloonHwnd = (PresentationSource.FromVisual(BalloonPopup.Child) as HwndSource).Handle;
+            IntPtr taskbarHwnd = (PresentationSource.FromVisual(this) as HwndSource).Handle;
+
+            ManagedShell.Interop.NativeMethods.SetWindowLongPtr(balloonHwnd, ManagedShell.Interop.NativeMethods.WindowLongFlags.GWLP_HWNDPARENT, taskbarHwnd);
         }
     }
 }
