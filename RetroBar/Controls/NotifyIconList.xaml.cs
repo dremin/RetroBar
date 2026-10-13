@@ -11,6 +11,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Tray = ManagedShell.WindowsTray;
 
@@ -25,6 +26,7 @@ namespace RetroBar.Controls
         private ObservableCollection<Tray.NotifyIcon> promotedIcons = new ObservableCollection<Tray.NotifyIcon>();
         private NotifyIconDropHandler dropHandler;
         private ListCollectionView collectionView;
+        private bool systemIconGapUpdatePending;
 
         public static DependencyProperty NotificationAreaProperty = DependencyProperty.Register(nameof(NotificationArea), typeof(NotificationArea), typeof(NotifyIconList), new PropertyMetadata(NotificationAreaChangedCallback));
 
@@ -83,6 +85,8 @@ namespace RetroBar.Controls
                 collectionViewShaping.LiveFilteringProperties.Add("IsHidden");
                 collectionViewShaping.LiveFilteringProperties.Add("IsPinned");
                 NotifyIcons.ItemsSource = collectionView;
+                ((INotifyCollectionChanged)collectionView).CollectionChanged += CollectionView_CollectionChanged;
+                NotifyIcons.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
 
                 if (Settings.Instance.CollapseNotifyIcons)
                 {
@@ -202,6 +206,12 @@ namespace RetroBar.Controls
                 Settings.Instance.PropertyChanged -= Settings_PropertyChanged;
             }
 
+            if (collectionView != null)
+            {
+                ((INotifyCollectionChanged)collectionView).CollectionChanged -= CollectionView_CollectionChanged;
+            }
+            NotifyIcons.ItemContainerGenerator.StatusChanged -= ItemContainerGenerator_StatusChanged;
+
             _isLoaded = false;
         }
 
@@ -231,6 +241,107 @@ namespace RetroBar.Controls
             else
             {
                 NotifyIconToggleButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void CollectionView_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            ScheduleSystemIconGapUpdate();
+        }
+
+        private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
+        {
+            if (NotifyIcons.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
+            {
+                ScheduleSystemIconGapUpdate();
+            }
+        }
+
+        private void ScheduleSystemIconGapUpdate()
+        {
+            if (systemIconGapUpdatePending)
+            {
+                return;
+            }
+
+            systemIconGapUpdatePending = true;
+
+            // Wait until the icon containers have been generated and laid out.
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(UpdateSystemIconGap));
+        }
+
+        private static bool IsSystemIcon(Tray.NotifyIcon icon)
+        {
+            string identifier = icon.Identifier;
+
+            if (string.IsNullOrEmpty(identifier))
+            {
+                return false;
+            }
+
+            // System icons (volume, network, power, etc.) are owned by explorer.exe
+            return identifier.IndexOf("explorer.exe", StringComparison.OrdinalIgnoreCase) >= 0
+                || identifier.IndexOf("23E3-4229-82C1-E41CB67D5B9C", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            int count = VisualTreeHelper.GetChildrenCount(parent);
+
+            for (int i = 0; i < count; i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is T match)
+                {
+                    return match;
+                }
+
+                T nested = FindVisualChild<T>(child);
+
+                if (nested != null)
+                {
+                    return nested;
+                }
+            }
+
+            return null;
+        }
+
+        private void UpdateSystemIconGap()
+        {
+            systemIconGapUpdatePending = false;
+
+            if (collectionView == null)
+            {
+                return;
+            }
+
+            // The theme decides how big the gap is. Themes that don't define it get no gap.
+            double gap = TryFindResource("NotifyIconSystemGap") is double themeGap ? themeGap : 0;
+
+            // The gap only applies to a horizontal row of icons.
+            WrapPanel panel = FindVisualChild<WrapPanel>(NotifyIcons);
+            bool horizontal = panel != null && panel.Orientation == System.Windows.Controls.Orientation.Horizontal;
+
+            List<Tray.NotifyIcon> icons = collectionView.Cast<Tray.NotifyIcon>().ToList();
+
+            // Find where the run of system icons at the end of the list starts.
+            int systemStart = icons.Count;
+            while (systemStart > 0 && IsSystemIcon(icons[systemStart - 1]))
+            {
+                systemStart--;
+            }
+
+            // Only add a gap when there are other icons before the system icons.
+            bool hasGap = gap > 0 && horizontal && systemStart > 0 && systemStart < icons.Count;
+
+            for (int i = 0; i < icons.Count; i++)
+            {
+                if (NotifyIcons.ItemContainerGenerator.ContainerFromItem(icons[i]) is FrameworkElement container)
+                {
+                    container.Margin = hasGap && i == systemStart ? new Thickness(gap, 0, 0, 0) : new Thickness(0);
+                }
             }
         }
 

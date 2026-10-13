@@ -1,4 +1,4 @@
-﻿using ManagedShell;
+using ManagedShell;
 using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
@@ -11,7 +11,11 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using System.Windows.Threading;
 using Application = System.Windows.Application;
+
 
 namespace RetroBar
 {
@@ -20,6 +24,30 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        private static extern bool IsZoomed(IntPtr hWnd);
+
+        private DispatcherTimer _maximizedWindowTimer;
+        private IntPtr _taskbarWindowHandle;
+
+        public static readonly DependencyProperty IsFullscreenWindowMaximizedProperty =
+            DependencyProperty.Register("IsFullscreenWindowMaximized", typeof(bool), typeof(Taskbar),
+                new PropertyMetadata(false));
+
+        /// <summary>
+        /// True when a window on this taskbar's screen is currently maximized (and isn't RetroBar itself).
+        /// Themes can bind/trigger on this (e.g. via RelativeSource FindAncestor AncestorType=Window)
+        /// to change their own appearance, the same way they already do for Orientation.
+        /// </summary>
+        public bool IsFullscreenWindowMaximized
+        {
+            get => (bool)GetValue(IsFullscreenWindowMaximizedProperty);
+            private set => SetValue(IsFullscreenWindowMaximizedProperty, value);
+        }
+
         public bool IsLocked => Settings.Instance.LockTaskbar;
 
         public bool IsScaled => DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
@@ -58,9 +86,23 @@ namespace RetroBar
             this.hotkeyManager = hotkeyManager;
 
             InitializeComponent();
+
+            _maximizedWindowTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(100)
+            };
+
+            _maximizedWindowTimer.Tick += MaximizedWindowTimer_Tick;
+
+            // Only Windows Vista Aero models the glass-turns-opaque-on-maximize behavior,
+            // so don't bother polling the foreground window on any other theme.
+            if (IsVistaAeroThemeActive())
+            {
+                _maximizedWindowTimer.Start();
+            }
+
             DataContext = _shellManager;
             StartButton.StartMenuMonitor = startMenuMonitor;
-
             RecalculateSize(false);
 
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
@@ -109,7 +151,7 @@ namespace RetroBar
             {
                 if (_fullScreenHelper.FullScreenApps[i].hWnd == e.Window.Handle)
                 {
-                    OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
+                    base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
                     return;
                 }
             }
@@ -123,7 +165,7 @@ namespace RetroBar
             }
 
             _fullScreenSuppressed = true;
-            OnFullScreenLeave();
+            base.OnFullScreenLeave();
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -142,6 +184,16 @@ namespace RetroBar
                 SetBlur(AllowsBlur());
                 PeekDuringAutoHide();
                 RecalculateSize();
+
+                if (IsVistaAeroThemeActive())
+                {
+                    _maximizedWindowTimer.Start();
+                }
+                else
+                {
+                    _maximizedWindowTimer.Stop();
+                    IsFullscreenWindowMaximized = false;
+                }
             }
             else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
             {
@@ -234,10 +286,65 @@ namespace RetroBar
             }
         }
 
+        private const string VistaAeroThemeName = "Windows Vista Aero";
+
+        private bool IsVistaAeroThemeActive()
+        {
+            return Settings.Instance.Theme == VistaAeroThemeName;
+        }
+
+        private bool IsForegroundWindowMaximizedOnThisScreen()
+        {
+            // Borderless/exclusive fullscreen apps (games, video players, F11 browsers)
+            // don't set WS_MAXIMIZE, so IsZoomed alone would miss them entirely.
+            // Reuse the same FullScreenHelper-backed check the auto-hide logic already
+            // uses, so a real fullscreen app on this screen counts the same as maximized.
+            if (HasFullScreenApp())
+            {
+                return true;
+            }
+
+            IntPtr foregroundWindow = GetForegroundWindow();
+
+            if (foregroundWindow == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            // Ignore RetroBar itself.
+            if (_taskbarWindowHandle != IntPtr.Zero && foregroundWindow == _taskbarWindowHandle)
+            {
+                return false;
+            }
+
+            try
+            {
+                System.Windows.Forms.Screen foregroundScreen = System.Windows.Forms.Screen.FromHandle(foregroundWindow);
+
+                if (foregroundScreen == null || foregroundScreen.DeviceName != Screen.DeviceName)
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return IsZoomed(foregroundWindow);
+        }
+
+        private void MaximizedWindowTimer_Tick(object sender, EventArgs e)
+        {
+            IsFullscreenWindowMaximized = IsForegroundWindowMaximizedOnThisScreen();
+        }
+
         #region AppBarWindow overrides
         protected override void OnSourceInitialized(object sender, EventArgs e)
         {
             base.OnSourceInitialized(sender, e);
+
+            _taskbarWindowHandle = new WindowInteropHelper(this).Handle;
 
             SetLayoutRounding();
             SetBlur(AllowsBlur());
@@ -267,6 +374,13 @@ namespace RetroBar
 
         protected override void CustomClosing()
         {
+            if (_maximizedWindowTimer != null)
+            {
+                _maximizedWindowTimer.Stop();
+                _maximizedWindowTimer.Tick -= MaximizedWindowTimer_Tick;
+                _maximizedWindowTimer = null;
+            }
+
             if (AllowClose)
             {
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
@@ -316,10 +430,6 @@ namespace RetroBar
                 Opacity = 1;
                 OnPropertyChanged(nameof(Opacity));
             }
-            if (!isHiding)
-            {
-                StartButton?.UpdateFloatingStartVisible(true);
-            }
         }
 
         protected override void OnAutoHideAnimationComplete(bool isHiding)
@@ -330,10 +440,6 @@ namespace RetroBar
             {
                 Opacity = 0.01;
                 OnPropertyChanged(nameof(Opacity));
-            }
-            if (isHiding)
-            {
-                StartButton?.UpdateFloatingStartVisible(false);
             }
         }
 
