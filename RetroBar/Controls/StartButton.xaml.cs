@@ -89,7 +89,7 @@ namespace RetroBar.Controls
             Host?.SetTrayHost();
             Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
-            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon && Settings.Instance.ShowStartButtonMultiMon)
+            if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon && (Settings.Instance.ShowStartButtonMultiMon || !Host.Screen.Primary))
             {
                 StartMenuMonitor.ShowStartMenu(Host.Handle);
             }

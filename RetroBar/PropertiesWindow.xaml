@@ -254,15 +254,17 @@
                                           SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
                                           SelectionChanged="CboEdgeSelect_SelectionChanged" />
                             </DockPanel>
-                            <DockPanel Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='horizontal'}">
+                            <DockPanel>
                                 <Label VerticalAlignment="Center"
-                                       Target="{Binding ElementName=cboRowCount}">
-                                    <AccessText Text="{DynamicResource rowcount_text}"
-                                                ToolTip="{DynamicResource rowcount_tip}" />
+                                       Target="{Binding ElementName=btnTaskbarLayout}">
+                                    <AccessText Text="{DynamicResource taskbar_layout_text}"
+                                                ToolTip="{DynamicResource taskbar_layout_tip}" />
                                 </Label>
-                                <ComboBox x:Name="cboRowCount"
-                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=RowCount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource countToIndexConverter}}"
-                                          SelectionChanged="CboRowCount_SelectionChanged" />
+                                <Button x:Name="btnTaskbarLayout"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,4"
+                                        Content="{DynamicResource customize}"
+                                        Click="TaskbarLayout_OnClick" />
                             </DockPanel>
                             <DockPanel Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='vertical'}">
                                 <Label VerticalAlignment="Center"
@@ -303,11 +305,10 @@
                                 <Label Content="{DynamicResource slide_taskbar_buttons}" />
                             </CheckBox>
                             <DockPanel>
-                                <CheckBox x:Name="cbShowQuickLaunch"
-                                          IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
-                                    <Label Content="{DynamicResource show_quick_launch}" />
-                                </CheckBox>
+                                <Label VerticalAlignment="Center"
+                                       Content="{DynamicResource quick_launch_location}" />
                                 <Button HorizontalAlignment="Right"
+                                        Margin="0,4"
                                         Content="{DynamicResource select_location}"
                                         Click="SetQuickLaunchLocation_OnClick" />
                             </DockPanel>
@@ -418,10 +419,6 @@
                     </GroupBox>
                     <GroupBox Header="{DynamicResource clock_heading}">
                         <StackPanel Orientation="Vertical">
-                            <CheckBox x:Name="cbShowClock"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClock, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_clock}" />
-                            </CheckBox>
                             <CheckBox x:Name="cbShowClockSeconds"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowClockSeconds, UpdateSourceTrigger=PropertyChanged}"
                                       IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=OverrideClockFormat, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolToInvertedBoolConverter}}">
@@ -567,10 +564,10 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_multi_mon}" />
                             </CheckBox>
-                            <CheckBox x:Name="cbShowStartButtonMultiMon"
+                            <CheckBox x:Name="cbConfigureTaskbarsSeparately"
                                       IsEnabled="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowMultiMon, UpdateSourceTrigger=PropertyChanged}"
-                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowStartButtonMultiMon, UpdateSourceTrigger=PropertyChanged}">
-                                <Label Content="{DynamicResource show_start_button_multi_mon}" />
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ConfigureTaskbarsSeparately, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource configure_taskbars_separately}" />
                             </CheckBox>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"

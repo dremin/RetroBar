@@ -12,7 +12,8 @@ namespace RetroBar.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             bool horizontal = Settings.Instance.Edge is AppBarEdge.Top or AppBarEdge.Bottom;
-            int rows = Settings.Instance.RowCount;
+            // Rows of the hosting window (can differ per monitor)
+            int rows = values.Length > 1 && values[1] is int windowRows ? windowRows : Settings.Instance.RowCount;
 
             if (horizontal && rows > 1)
             {

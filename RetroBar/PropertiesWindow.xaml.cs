@@ -82,7 +82,6 @@ namespace RetroBar
             LoadAutoStart();
             LoadLanguages();
             LoadOSSupport();
-            LoadRows();
             LoadThemes();
             LoadWidth();
             LoadAppInfo();
@@ -180,15 +179,6 @@ namespace RetroBar
             if (!EnvironmentHelper.IsWindows10OrBetter)
             {
                 cbAllowBlurBehind.Visibility = Visibility.Collapsed;
-                cbShowStartButtonMultiMon.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void LoadRows()
-        {
-            for (int i = 1; i <= Settings.Instance.RowLimit; i++)
-            {
-                cboRowCount.Items.Add(i.ToString());
             }
         }
 
@@ -434,12 +424,9 @@ namespace RetroBar
             }
         }
 
-        private void CboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void TaskbarLayout_OnClick(object sender, RoutedEventArgs e)
         {
-            if (cboRowCount.SelectedItem == null)
-            {
-                cboRowCount.SelectedValue = cboRowCount.Items[Settings.Instance.RowCount - 1];
-            }
+            TaskbarLayoutWindow.Open(this, _screen, new Point(Left, Top));
         }
 
         private void CboWinNumHotkeysAction_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

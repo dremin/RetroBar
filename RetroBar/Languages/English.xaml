@@ -36,6 +36,17 @@
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
+    <s:String x:Key="quick_launch_location">Quick Launch folder:</s:String>
+    <s:String x:Key="taskbar_layout_text">Rows and _items:</s:String>
+    <s:String x:Key="taskbar_layout_tip">Number of rows, and whether to show the Start button, Quick Launch, notification icons and clock.</s:String>
+    <s:String x:Key="taskbar_layout_title">Taskbar Layout</s:String>
+    <s:String x:Key="taskbar_layout_monitor">_Taskbar:</s:String>
+    <s:String x:Key="taskbar_layout_primary_suffix">(primary)</s:String>
+    <s:String x:Key="taskbar_layout_default">Default for other displays</s:String>
+    <s:String x:Key="taskbar_layout_items">Show</s:String>
+    <s:String x:Key="show_start_button">Show _Start button</s:String>
+    <s:String x:Key="show_notify_icons">Show _notification icons</s:String>
+    <s:String x:Key="configure_taskbars_separately">_Configure each taskbar separately</s:String>
     <s:String x:Key="show_badges">Show _badges</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>

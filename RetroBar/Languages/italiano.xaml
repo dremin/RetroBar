@@ -36,6 +36,17 @@
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>
     <s:String x:Key="select_location">Cam_bia cartella...</s:String>
     <s:String x:Key="quick_launch_folder">Avvio veloce - Selezione cartella</s:String>
+    <s:String x:Key="quick_launch_location">Cartella di Avvio veloce:</s:String>
+    <s:String x:Key="taskbar_layout_text">Righe ed _elementi:</s:String>
+    <s:String x:Key="taskbar_layout_tip">Numero di righe, e se mostrare il pulsante Start, Avvio veloce, le icone di notifica e l'orologio.</s:String>
+    <s:String x:Key="taskbar_layout_title">Disposizione della barra</s:String>
+    <s:String x:Key="taskbar_layout_monitor">_Barra:</s:String>
+    <s:String x:Key="taskbar_layout_primary_suffix">(principale)</s:String>
+    <s:String x:Key="taskbar_layout_default">Predefinito per gli altri schermi</s:String>
+    <s:String x:Key="taskbar_layout_items">Mostra</s:String>
+    <s:String x:Key="show_start_button">Mostra il pulsante _Start</s:String>
+    <s:String x:Key="show_notify_icons">Mostra le icone di _notifica</s:String>
+    <s:String x:Key="configure_taskbars_separately">_Configura ogni barra separatamente</s:String>
     <s:String x:Key="show_badges">Mostra badge di notifica</s:String>
     <s:String x:Key="show_window_previews">Mostra anteprime delle finestre (miniature)</s:String>
     <s:String x:Key="use_software_rendering">_Usa rendering software</s:String>

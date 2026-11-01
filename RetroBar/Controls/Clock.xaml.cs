@@ -29,6 +29,37 @@ namespace RetroBar.Controls
             set => SetValue(NowProperty, value);
         }
 
+        // Per-monitor override of Settings.ShowClock; null follows the global setting.
+        public static readonly DependencyProperty ShowOverrideProperty = DependencyProperty.Register(nameof(ShowOverride), typeof(bool?), typeof(Clock), new PropertyMetadata(null, OnShowOverrideChanged));
+
+        public bool? ShowOverride
+        {
+            get => (bool?)GetValue(ShowOverrideProperty);
+            set => SetValue(ShowOverrideProperty, value);
+        }
+
+        private bool ShouldShow => ShowOverride ?? Settings.Instance.ShowClock;
+
+        private static void OnShowOverrideChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is Clock clock && clock._isLoaded)
+            {
+                clock.UpdateVisibility();
+            }
+        }
+
+        private void UpdateVisibility()
+        {
+            if (ShouldShow)
+            {
+                StartClock();
+            }
+            else
+            {
+                StopClock();
+            }
+        }
+
         private readonly DispatcherTimer _clock = new DispatcherTimer(DispatcherPriority.Background);
         private bool _isLoaded;
 
@@ -46,7 +77,7 @@ namespace RetroBar.Controls
         private void Initialize()
         {
             UpdateUserCulture();
-            if (Settings.Instance.ShowClock)
+            if (ShouldShow)
             {
                 StartClock();
             }
@@ -81,14 +112,7 @@ namespace RetroBar.Controls
             switch (e.PropertyName)
             {
                 case nameof(Settings.ShowClock):
-                    if (Settings.Instance.ShowClock)
-                    {
-                        StartClock();
-                    }
-                    else
-                    {
-                        StopClock();
-                    }
+                    UpdateVisibility();
                     break;
                 case nameof(Settings.ShowClockSeconds):
                 case nameof(Settings.OverrideClockFormat):

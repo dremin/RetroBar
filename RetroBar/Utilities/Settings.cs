@@ -488,6 +488,126 @@ namespace RetroBar.Utilities
             get => _allowBlurBehind;
             set => Set(ref _allowBlurBehind, value);
         }
+
+        private bool _showStartButton = true;
+        public bool ShowStartButton
+        {
+            get => _showStartButton;
+            set => Set(ref _showStartButton, value);
+        }
+
+        private bool _showNotifyIcons = true;
+        public bool ShowNotifyIcons
+        {
+            get => _showNotifyIcons;
+            set => Set(ref _showNotifyIcons, value);
+        }
+
+        // When enabled (and ShowMultiMon is on), MonitorOverrides apply; otherwise every taskbar uses the global settings.
+        private bool _configureTaskbarsSeparately = true;
+        public bool ConfigureTaskbarsSeparately
+        {
+            get => _configureTaskbarsSeparately;
+            set => Set(ref _configureTaskbarsSeparately, value);
+        }
+
+        // Per-monitor overrides. Values left null fall back to the global settings above.
+        private List<MonitorOverride> _monitorOverrides = [];
+        public List<MonitorOverride> MonitorOverrides
+        {
+            get => _monitorOverrides;
+            set => Set(ref _monitorOverrides, value ?? []);
+        }
+        #endregion
+
+        #region Per-monitor resolution
+        public bool UseMonitorOverrides => ShowMultiMon && ConfigureTaskbarsSeparately;
+
+        private MonitorOverride FindOverride(string monitorId)
+        {
+            if (!UseMonitorOverrides || string.IsNullOrEmpty(monitorId))
+            {
+                return null;
+            }
+
+            return _monitorOverrides.Find(o => o?.Monitor != null && string.Equals(o.Monitor, monitorId, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private static string GetMonitorId(AppBarScreen screen)
+        {
+            return screen == null ? null : MonitorIdentifier.GetMonitorId(screen.DeviceName);
+        }
+
+        // Screen-based getters, used by the taskbars.
+        public int GetRowCount(AppBarScreen screen) => GetRowCount(GetMonitorId(screen));
+        public bool GetShowStartButton(AppBarScreen screen) => GetShowStartButton(GetMonitorId(screen), screen?.Primary ?? true);
+        public bool GetShowQuickLaunch(AppBarScreen screen) => GetShowQuickLaunch(GetMonitorId(screen));
+        public bool GetShowNotifyIcons(AppBarScreen screen) => GetShowNotifyIcons(GetMonitorId(screen));
+        public bool GetShowClock(AppBarScreen screen) => GetShowClock(GetMonitorId(screen));
+
+        // Monitor ID-based getters: the monitor's own setting if it has one, else the global (default) setting.
+        public int GetRowCount(string monitorId)
+        {
+            return FindOverride(monitorId)?.RowCount ?? RowCount;
+        }
+
+        public bool GetShowStartButton(string monitorId, bool primary)
+        {
+            return FindOverride(monitorId)?.ShowStartButton ?? (ShowStartButton && (primary || ShowStartButtonMultiMon));
+        }
+
+        public bool GetShowQuickLaunch(string monitorId)
+        {
+            return FindOverride(monitorId)?.ShowQuickLaunch ?? ShowQuickLaunch;
+        }
+
+        public bool GetShowNotifyIcons(string monitorId)
+        {
+            return FindOverride(monitorId)?.ShowNotifyIcons ?? ShowNotifyIcons;
+        }
+
+        public bool GetShowClock(string monitorId)
+        {
+            return FindOverride(monitorId)?.ShowClock ?? ShowClock;
+        }
+
+        public void SetRowCount(AppBarScreen screen, int value)
+        {
+            string monitorId = GetMonitorId(screen);
+
+            if (!UseMonitorOverrides || string.IsNullOrEmpty(monitorId))
+            {
+                RowCount = value;
+                return;
+            }
+
+            if (GetRowCount(monitorId) != value)
+            {
+                SetMonitorOverride(monitorId, o => o.RowCount = value);
+            }
+        }
+
+        // Changes the settings of one monitor, creating its entry if needed.
+        public void SetMonitorOverride(string monitorId, Action<MonitorOverride> change)
+        {
+            if (string.IsNullOrEmpty(monitorId))
+            {
+                return;
+            }
+
+            List<MonitorOverride> list = new List<MonitorOverride>(_monitorOverrides);
+            MonitorOverride target = list.Find(o => o?.Monitor != null && string.Equals(o.Monitor, monitorId, StringComparison.OrdinalIgnoreCase));
+
+            if (target == null)
+            {
+                target = new MonitorOverride { Monitor = monitorId };
+                list.Add(target);
+            }
+
+            change(target);
+            // Replace the list so that the change is notified and saved.
+            MonitorOverrides = list;
+        }
         #endregion
 
         #region Old Properties
@@ -580,6 +700,19 @@ namespace RetroBar.Utilities
         AlwaysHide,
         AlwaysShow,
         Remove
+    }
+    #endregion
+
+    #region Classes
+    public class MonitorOverride
+    {
+        // Monitor ID from MonitorIdentifier, e.g. DELA021-C440169S0YJL
+        public string Monitor { get; set; }
+        public int? RowCount { get; set; }
+        public bool? ShowQuickLaunch { get; set; }
+        public bool? ShowStartButton { get; set; }
+        public bool? ShowNotifyIcons { get; set; }
+        public bool? ShowClock { get; set; }
     }
     #endregion
 

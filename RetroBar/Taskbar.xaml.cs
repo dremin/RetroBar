@@ -29,8 +29,8 @@ namespace RetroBar
 
         public int Rows
         {
-            get => Settings.Instance.RowCount;
-            set => Settings.Instance.RowCount = value;
+            get => Settings.Instance.GetRowCount(Screen);
+            set => Settings.Instance.SetRowCount(Screen, value);
         }
 
         private bool _startMenuOpen;
@@ -69,17 +69,12 @@ namespace RetroBar
 
             Settings.Instance.PropertyChanged += Settings_PropertyChanged;
 
-            if (Settings.Instance.ShowQuickLaunch)
-            {
-                QuickLaunchToolbar.Visibility = Visibility.Visible;
-            }
-
             if (Settings.Instance.ShowDesktopButton)
             {
                 ShowDesktopButtonTray.Visibility = Visibility.Visible;
             }
 
-            UpdateStartButton();
+            ApplyMonitorSettings();
 
             AutoHideElement = TaskbarContentControl;
 
@@ -143,16 +138,21 @@ namespace RetroBar
                 PeekDuringAutoHide();
                 RecalculateSize();
             }
-            else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
+            else if (e.PropertyName == nameof(Settings.ShowQuickLaunch) ||
+                     e.PropertyName == nameof(Settings.ShowClock) ||
+                     e.PropertyName == nameof(Settings.ShowStartButton) ||
+                     e.PropertyName == nameof(Settings.ShowNotifyIcons))
             {
-                if (Settings.Instance.ShowQuickLaunch)
-                {
-                    QuickLaunchToolbar.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    QuickLaunchToolbar.Visibility = Visibility.Collapsed;
-                }
+                ApplyMonitorSettings();
+            }
+            else if (e.PropertyName == nameof(Settings.MonitorOverrides) ||
+                     e.PropertyName == nameof(Settings.ConfigureTaskbarsSeparately) ||
+                     e.PropertyName == nameof(Settings.ShowMultiMon))
+            {
+                ApplyMonitorSettings();
+                PeekDuringAutoHide();
+                RecalculateSize();
+                OnPropertyChanged(nameof(Rows));
             }
             else if (e.PropertyName == nameof(Settings.Edge))
             {
@@ -222,7 +222,7 @@ namespace RetroBar
             }
             else if (e.PropertyName == nameof(Settings.ShowStartButtonMultiMon))
             {
-                UpdateStartButton();
+                ApplyMonitorSettings();
             }
             else if (e.PropertyName == nameof(Settings.AutoHideTransparent))
             {
@@ -279,6 +279,9 @@ namespace RetroBar
 
         protected override void SetScreenProperties(ScreenSetupReason reason)
         {
+            // Display numbering may have changed
+            MonitorIdentifier.ClearCache();
+
             if (reason == ScreenSetupReason.DpiChange)
             {
                 // DPI change is per-monitor, update ourselves
@@ -547,15 +550,19 @@ namespace RetroBar
             }
         }
 
-        private void UpdateStartButton()
+        // Shows or hides the parts of the taskbar that can be set per monitor.
+        private void ApplyMonitorSettings()
         {
-            if (!Screen.Primary && !Settings.Instance.ShowStartButtonMultiMon)
-            {
-                StartButton.Visibility = Visibility.Collapsed;
-                return;
-            }
+            Settings settings = Settings.Instance;
 
-            StartButton.Visibility = Visibility.Visible;
+            StartButton.Visibility = settings.GetShowStartButton(Screen) ? Visibility.Visible : Visibility.Collapsed;
+            QuickLaunchToolbar.Visibility = settings.GetShowQuickLaunch(Screen) ? Visibility.Visible : Visibility.Collapsed;
+
+            bool showNotifyIcons = settings.GetShowNotifyIcons(Screen);
+            bool showClock = settings.GetShowClock(Screen);
+            TrayNotifyIcons.Visibility = showNotifyIcons ? Visibility.Visible : Visibility.Collapsed;
+            TrayClock.ShowOverride = showClock;
+            TrayGroupBox.Visibility = showNotifyIcons || showClock ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private bool HasFullScreenApp()
@@ -679,17 +686,17 @@ namespace RetroBar
                                 double taskbarEdge = AppBarEdge == AppBarEdge.Top ? Screen.Bounds.Top + (DesiredHeight * DpiScale) : Screen.Bounds.Bottom - (DesiredHeight * DpiScale);
                                 if ((AppBarEdge == AppBarEdge.Top && mouseY < taskbarEdge - SystemParameters.MinimumVerticalDragDistance ||
                                      AppBarEdge == AppBarEdge.Bottom && mouseY > taskbarEdge + SystemParameters.MinimumVerticalDragDistance) &&
-                                     Settings.Instance.RowCount > 1)
+                                     Rows > 1)
                                 {
                                     // If mouse is inside the taskbar and more than the minimum drag distance away, decrement size
-                                    Settings.Instance.RowCount -= 1;
+                                    Rows -= 1;
                                 }
                                 else if ((AppBarEdge == AppBarEdge.Top && mouseY >= taskbarEdge + scaledRowHeight ||
                                           AppBarEdge == AppBarEdge.Bottom && mouseY <= taskbarEdge - scaledRowHeight) &&
-                                          Settings.Instance.RowCount < Settings.Instance.RowLimit)
+                                          Rows < Settings.Instance.RowLimit)
                                 {
                                     // If mouse is outside the taskbar and at least one row height away, increment size
-                                    Settings.Instance.RowCount += 1;
+                                    Rows += 1;
                                 }
                             }
                             else
