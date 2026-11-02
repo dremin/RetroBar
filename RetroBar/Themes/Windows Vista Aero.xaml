@@ -6,7 +6,6 @@
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarWidth">80</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
-	<system:Boolean x:Key="AlternatesAppearanceWhenMaximized">True</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
     <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
@@ -22,25 +21,6 @@
         <GradientStop Color="#97000000"
                       Offset="0.5" />
         <GradientStop Color="#a2000000"
-                      Offset="1.0" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="TaskbarMaximizedBackground"
-                         MappingMode="Absolute"
-                         StartPoint="0,0"
-                         EndPoint="0,26">
-        <GradientStop Color="#8B8C8C"
-                      Offset="0.0" />
-        <GradientStop Color="#828383"
-                      Offset="0.15" />
-        <GradientStop Color="#4D4F4F"
-                      Offset="0.45" />
-        <GradientStop Color="#464648"
-                      Offset="0.50" />
-        <GradientStop Color="#1B1D1F"
-                      Offset="0.50" />
-        <GradientStop Color="#181A1B"
-                      Offset="0.80" />
-        <GradientStop Color="#18191B"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
@@ -503,14 +483,6 @@
                                         Value="-2,0,-2,0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                     Value="True">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="TaskbarBottomInnerBorder"
-                                        Property="Background"
-                                        Value="{DynamicResource TaskbarMaximizedBackground}" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>	
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
