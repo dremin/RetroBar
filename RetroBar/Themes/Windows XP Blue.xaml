@@ -351,6 +351,11 @@
     <SolidColorBrush x:Key="ToolbarThumbForeground" Color="#082ea0" />
     <SolidColorBrush x:Key="ToolbarThumbBackground" Color="#128de6" />
 
+    <!-- Real XP's overflow chevron isn't plain white at rest - it's this lighter blue,
+         matching the real taskbar (sampled directly from a real XP screenshot). It only
+         turns white on hover/pressed/open, same as other toolbar buttons. -->
+    <SolidColorBrush x:Key="ToolbarOverflowChevronForeground" Color="#7BB6E8" />
+
     <DropShadowEffect x:Key="StartLabelShadow"
                       Color="#454c10"
                       Direction="315"
@@ -1966,6 +1971,103 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Quick Launch overflow ("chevron") button, matching this theme's taskbar chrome. -->
+    <Style TargetType="ToggleButton"
+           x:Key="ToolbarOverflowButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Width"
+                Value="14" />
+        <Setter Property="Margin"
+                Value="0,3,2,4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            CornerRadius="2"
+                            x:Name="ButtonBackground">
+                        <Path x:Name="OverflowArrow"
+                              Fill="{DynamicResource ToolbarOverflowChevronForeground}"
+                              Data="{DynamicResource QuickLaunchOverflowChevron}"
+                              Stretch="Uniform"
+                              Width="8"
+                              Height="5"
+                              Margin="0,4,0,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Top"
+                              RenderOptions.EdgeMode="Aliased" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundHover}" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="Fill"
+                                    Value="{DynamicResource ButtonPressedForeground}" />
+                        </Trigger>
+                        <!-- Real XP doesn't flip or rotate the chevron when the flyout opens -
+                             the button just sinks in like any other pressed toolbar button.
+                             The arrow itself goes back to its default blue once open, though -
+                             it only turns white while actually hovered/pressed, not just
+                             because the menu is staying open. -->
+                        <DataTrigger Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                     Value="True">
+                            <Setter TargetName="ButtonBackground"
+                                    Property="Background"
+                                    Value="{DynamicResource TaskButtonBackgroundPressed}" />
+                        </DataTrigger>
+                        <!-- Vertical taskbars need the chevron rotated so it points the right
+                             way, regardless of whether the flyout is open or closed. -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                     Value="Vertical">
+                            <Setter TargetName="OverflowArrow"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.5,0.5" />
+                            <Setter TargetName="OverflowArrow"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="90"></RotateTransform>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Width"
+                        Value="Auto" />
+                <Setter Property="Height"
+                        Value="14" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--
+        No override here on purpose. Quick Launch's real overflow menu (and RetroBar's own
+        right-click taskbar menu) was never actually Luna-skinned by Windows - it always used
+        plain native menu chrome. This theme used to hand-paint Luna's palette here (#ECE9D8 /
+        #ACA899 / #316AC5), but that just duplicated colors System.xaml's shared fallback now
+        pulls directly from the live system menu colors - so removing it makes this theme match
+        real XP more accurately, not less, and keeps this flyout in step with whatever RetroBar
+        does with its own menus in the future instead of freezing it to one hardcoded look.
+    -->
+
     <Style TargetType="ToggleButton"
            x:Key="ShowDesktopButton">
         <Setter Property="Background"
@@ -2200,6 +2302,17 @@
 
     <Geometry x:Key="VArrow">M 4.5 6 L 9 1.5 L 8 0 L 4.5 3 L 1 0 L 0 1.5 Z</Geometry>
     <Geometry x:Key="HArrow">M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z</Geometry>
+
+    <!-- Quick Launch overflow chevron ("»"), traced from a real Windows XP Luna
+         screenshot of the taskbar toolbar overflow button. Unlike HArrow (a single
+         arrow reused elsewhere for menus/scrollers), the real XP glyph is two
+         chevrons side-by-side and noticeably flatter/wider than tall, so it gets
+         its own geometry rather than reusing HArrow. -->
+    <!-- Traced pixel-for-pixel from the real Luna theme's own chevron bitmap (the
+         official Rebar::Chevron artwork extracted straight from Luna.msstyles), not
+         hand-drawn - each unit square below is one source pixel, so this is the actual
+         official image reproduced as a scalable Geometry rather than an approximation. -->
+    <Geometry x:Key="QuickLaunchOverflowChevron">M 0,0 L 2,0 L 2,1 L 0,1 Z M 4,0 L 6,0 L 6,1 L 4,1 Z M 1,1 L 3,1 L 3,2 L 1,2 Z M 5,1 L 7,1 L 7,2 L 5,2 Z M 2,2 L 4,2 L 4,3 L 2,3 Z M 6,2 L 8,2 L 8,3 L 6,3 Z M 1,3 L 3,3 L 3,4 L 1,4 Z M 5,3 L 7,3 L 7,4 L 5,4 Z M 0,4 L 2,4 L 2,5 L 0,5 Z M 4,4 L 6,4 L 6,5 L 4,5 Z</Geometry>
 
     <Style TargetType="ToggleButton"
            x:Key="TrayToggleButton">

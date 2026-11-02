@@ -8,6 +8,17 @@
     <system:Double x:Key="TaskbarUnlockedSize">0</system:Double>
     <system:Double x:Key="TaskButtonWidth">160</system:Double>
     <system:Double x:Key="TaskButtonMinWidth">45</system:Double>
+
+    <!--
+        How many Quick Launch icons show by default (before the rest overflow into the
+        chevron) for a theme that doesn't override this. Real Quick Launch never actually
+        computed "show N icons" - its band width was just whatever pixel value got saved
+        the first time a profile touched it - but the default pinned set did differ by
+        era: 98/98SE shipped 4 pinned by default, 2000 and XP shipped 3, Vista shipped 2.
+        3 (matching 2000/XP) is the most broadly-applicable fallback; themes for other
+        eras override this to match (see Windows 95-98.xaml, Windows Vista Aero.xaml).
+    -->
+    <system:Int32 x:Key="QuickLaunchDefaultVisibleItems">3</system:Int32>
     <Thickness x:Key="TaskButtonMargin" Right="3" />
     <Thickness x:Key="TaskButtonVerticalMargin" />
 
@@ -1133,6 +1144,183 @@
                         Value="2,1,2,0" />
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <!--
+        Fallback ("1:1 mechanism, generic look") style for the Quick Launch overflow chevron.
+        Themes should override this with artwork matching their own toolbar chrome, the same
+        way they override TrayToggleButton for the notification-area chevron. This default
+        mirrors TrayToggleButton's flat double-chevron glyph rather than its rounded pill shape,
+        since the real Quick Launch overflow button sits flush with the toolbar.
+
+        Two fixes from the original version of this glyph: the raw Data below used to trace an
+        arrowhead with its point on the LEFT and its open/flared edge on the RIGHT - i.e. it
+        actually pointed backwards ("<<" instead of ">>"), which is wrong for a "there's more
+        this way" indicator and doesn't match the real chevron's direction in every other theme.
+        The coordinates here are the horizontally-mirrored (correct-facing) version. Button Width
+        is also 14 now instead of 13, matching the XP/Vista-family chevron button's own Width, so
+        this fallback doesn't render a hair smaller/narrower than the themed ones sitting next to
+        it in the theme list.
+
+        This version is also intentionally "static": earlier it mirrored itself again via
+        ScaleTransform whenever IsChecked (flyout open) in horizontal orientation, which A) fought
+        with the direction fix above (checked state would've flipped it right back to backwards),
+        and B) doesn't match how any other theme's chevron behaves - none of them redirect the
+        arrow on toggle, they only recolor/rebevel it. So checked state now falls back to the same
+        IsMouseOver/IsPressed bevel-invert below for its "pushed" feedback, consistent with every
+        other theme.
+    -->
+    <Style TargetType="ToggleButton"
+           x:Key="ToolbarOverflowButton">
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Background"
+                Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Width"
+                Value="14" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent"
+                            Name="ButtonBorder">
+                        <Border BorderThickness="0,0,1,1"
+                                BorderBrush="{TemplateBinding Background}"
+                                x:Name="ButtonRightBottomBorder">
+                            <Border BorderThickness="1,1,0,0"
+                                    BorderBrush="{TemplateBinding Background}"
+                                    Background="{TemplateBinding Background}"
+                                    x:Name="ButtonLeftTopBorder">
+                                <StackPanel Orientation="Horizontal"
+                                            Height="6"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Margin="0,4,0,0"
+                                            Name="ArrowPanel">
+                                    <Path Fill="{DynamicResource ButtonForeground}"
+                                          Data="M 4.5,2.5 L 2.5,5 L 0,5 L 2.5,2.5 L 0,0 L 2.5,0 Z"
+                                          RenderOptions.EdgeMode="Aliased" />
+                                    <Path Fill="{DynamicResource ButtonForeground}"
+                                          Data="M 4.5,2.5 L 2.5,5 L 0,5 L 2.5,2.5 L 0,0 L 2.5,0 Z"
+                                          RenderOptions.EdgeMode="Aliased" />
+                                </StackPanel>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="ArrowPanel"
+                                        Property="RenderTransformOrigin"
+                                        Value="0.5,0.5" />
+                                <Setter TargetName="ArrowPanel"
+                                        Property="RenderTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"></RotateTransform>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="ArrowPanel"
+                                        Property="RenderTransformOrigin"
+                                        Value="0.5,0.5" />
+                                <Setter TargetName="ArrowPanel"
+                                        Property="RenderTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="90"></RotateTransform>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="ButtonRightBottomBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonLeftTopBorder"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         Value="Vertical">
+                <Setter Property="Width"
+                        Value="Auto" />
+                <Setter Property="Height"
+                        Value="14" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--
+        The overflow flyout itself is now a real, unstyled ContextMenu (see Toolbar.xaml) - its
+        background, border, drop shadow and hover highlight all come straight from that control's
+        own default rendering, the same as RetroBar's own right-click taskbar menu. So there's no
+        Border/Brush chrome to define here anymore; the two styles below only shape the row's
+        *content* (the icon + label each overflow item shows as its MenuItem Header), not any of
+        the menu chrome around it. Neither one sets a Background, Foreground, or hover color -
+        that's the real MenuItem's job now, and leaving it alone here is what keeps this
+        automatically in sync if RetroBar's native menu look ever changes.
+    -->
+    <Style TargetType="Button"
+           x:Key="ToolbarOverflowItem">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBlock"
+           x:Key="ToolbarOverflowItemLabel"
+           BasedOn="{StaticResource GlobalFonts}">
+        <!-- No Margin here on purpose: the Header column already gets its own left/right
+             padding from the real MenuItem template now that the icon lives in the native
+             Icon column instead (see Toolbar.xaml) - adding more here would just double up
+             the spacing again, the same "fat" row bug fixed earlier. -->
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
     </Style>
 
     <Style TargetType="TextBlock"

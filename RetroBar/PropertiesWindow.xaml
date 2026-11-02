@@ -307,6 +307,12 @@
                                           IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowQuickLaunch, UpdateSourceTrigger=PropertyChanged}">
                                     <Label Content="{DynamicResource show_quick_launch}" />
                                 </CheckBox>
+                                <Button DockPanel.Dock="Right"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,0,10,0"
+                                        Content="{DynamicResource reset_quick_launch_width}"
+                                        ToolTip="{DynamicResource reset_quick_launch_width_tip}"
+                                        Click="ResetQuickLaunchWidth_OnClick" />
                                 <Button HorizontalAlignment="Right"
                                         Content="{DynamicResource select_location}"
                                         Click="SetQuickLaunchLocation_OnClick" />
@@ -493,7 +499,7 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="{DynamicResource advanced_tab}">
-                <DockPanel Margin="10"
+<DockPanel Margin="10"
                            Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
                     <GroupBox Header="{DynamicResource general_heading}" DockPanel.Dock="Top">
                         <StackPanel Orientation="Vertical">
@@ -528,6 +534,11 @@
                             <CheckBox x:Name="cbShowEndTaskButton"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=ShowEndTaskButton, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource show_end_task_button}" />
+                            </CheckBox>
+                            <CheckBox x:Name="cbEnableQuickLaunchOverflow"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=EnableQuickLaunchOverflow, UpdateSourceTrigger=PropertyChanged}"
+                                      ToolTip="{DynamicResource enable_quick_launch_overflow_tip}">
+                                <Label Content="{DynamicResource enable_quick_launch_overflow}" />
                             </CheckBox>
                             <DockPanel>
                                 <Label VerticalAlignment="Center"

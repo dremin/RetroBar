@@ -1,8 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="System XP.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <!-- Overrides the base fallback of 3 (System.xaml) - Vista shipped Quick Launch with
+         only 2 icons pinned by default. -->
+    <system:Int32 x:Key="QuickLaunchDefaultVisibleItems">2</system:Int32>
 
     <BitmapImage x:Key="StartIconImage"
                  UriSource="../Resources/startvistaclassic.png" />
