@@ -36,6 +36,14 @@
     <s:String x:Key="show_quick_launch">Show _Quick Launch</s:String>
     <s:String x:Key="select_location">_Select location...</s:String>
     <s:String x:Key="quick_launch_folder">Quick Launch - Choose a folder</s:String>
+    <s:String x:Key="quick_launch_position">Quick Launch _position:</s:String>
+    <s:String x:Key="quick_launch_position_tip">An own row needs at least two rows (or a width of two on vertical taskbars): choosing it adds a row, and going back to one row moves the Quick Launch to the start of the taskbar.</s:String>
+    <x:Array x:Key="quick_launch_position_values" Type="s:String">
+        <s:String>Start of the taskbar</s:String>
+        <s:String>End of the taskbar</s:String>
+        <s:String>Own row, screen edge</s:String>
+        <s:String>Own row, screen center</s:String>
+    </x:Array>
     <s:String x:Key="show_badges">Show _badges</s:String>
     <s:String x:Key="show_window_previews">Show _window previews (thumbnails)</s:String>
     <s:String x:Key="use_software_rendering">_Use software rendering</s:String>

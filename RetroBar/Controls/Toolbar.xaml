@@ -32,14 +32,28 @@
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Background="Transparent">
-                        <WrapPanel.Orientation>
-                            <MultiBinding Converter="{StaticResource iconsOrientation}">
-                                <Binding Path="Orientation"
-                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
-                                <Binding Path="Rows"
-                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
-                            </MultiBinding>
-                        </WrapPanel.Orientation>
+                        <WrapPanel.Style>
+                            <Style TargetType="WrapPanel">
+                                <Setter Property="Orientation">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource iconsOrientation}">
+                                            <Binding Path="Orientation"
+                                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                                            <Binding Path="Rows"
+                                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <!-- In its own row the toolbar is one row high: lay the icons out in a line -->
+                                    <DataTrigger Binding="{Binding Path=SingleRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:Toolbar}}"
+                                                 Value="True">
+                                        <Setter Property="Orientation"
+                                                Value="Horizontal" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
                     </WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>

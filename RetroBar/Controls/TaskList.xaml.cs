@@ -249,7 +249,7 @@ namespace RetroBar.Controls
             }
 
             double height = ActualHeight;
-            int rows = Host.Rows;
+            int rows = Host.TaskRows;
 
             int taskCount = TasksList.Items.Count;
             TasksList.AlternationCount = taskCount; // keep in sync for correct AlternationIndex

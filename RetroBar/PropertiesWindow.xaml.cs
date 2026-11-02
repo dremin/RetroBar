@@ -434,6 +434,37 @@ namespace RetroBar
             }
         }
 
+        private void CboQuickLaunchPosition_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboQuickLaunchPosition.SelectedItem == null)
+            {
+                cboQuickLaunchPosition.SelectedValue = cboQuickLaunchPosition.Items[(int)Settings.Instance.QuickLaunchPosition];
+                return;
+            }
+
+            if (e.AddedItems.Count == 0 || e.RemovedItems.Count == 0)
+            {
+                // Initial load, not a user choice
+                return;
+            }
+
+            // An own row needs a second row (or a second width unit on vertical taskbars): add it, so the constraint is visible
+            if ((QuickLaunchPositionOption)cboQuickLaunchPosition.SelectedIndex is QuickLaunchPositionOption.OwnRowScreenEdge or QuickLaunchPositionOption.OwnRowScreenCenter)
+            {
+                if (Settings.Instance.Edge is AppBarEdge.Top or AppBarEdge.Bottom)
+                {
+                    if (Settings.Instance.RowCount < 2)
+                    {
+                        Settings.Instance.RowCount = 2;
+                    }
+                }
+                else if (Settings.Instance.TaskbarWidth < 2)
+                {
+                    Settings.Instance.TaskbarWidth = 2;
+                }
+            }
+        }
+
         private void CboRowCount_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboRowCount.SelectedItem == null)

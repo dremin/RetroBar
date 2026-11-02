@@ -36,6 +36,14 @@
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>
     <s:String x:Key="select_location">Cam_bia cartella...</s:String>
     <s:String x:Key="quick_launch_folder">Avvio veloce - Selezione cartella</s:String>
+    <s:String x:Key="quick_launch_position">_Posizione di Avvio veloce:</s:String>
+    <s:String x:Key="quick_launch_position_tip">Una riga propria richiede almeno due righe (o larghezza due sulle barre verticali): sceglierla aggiunge una riga, e tornare a una riga riporta Avvio veloce all'inizio della barra.</s:String>
+    <x:Array x:Key="quick_launch_position_values" Type="s:String">
+        <s:String>Inizio della barra</s:String>
+        <s:String>Fine della barra</s:String>
+        <s:String>Riga propria, verso il bordo</s:String>
+        <s:String>Riga propria, verso il centro</s:String>
+    </x:Array>
     <s:String x:Key="show_badges">Mostra badge di notifica</s:String>
     <s:String x:Key="show_window_previews">Mostra anteprime delle finestre (miniature)</s:String>
     <s:String x:Key="use_software_rendering">_Usa rendering software</s:String>

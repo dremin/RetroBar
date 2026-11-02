@@ -311,6 +311,17 @@
                                         Content="{DynamicResource select_location}"
                                         Click="SetQuickLaunchLocation_OnClick" />
                             </DockPanel>
+                            <DockPanel>
+                                <Label VerticalAlignment="Center"
+                                       Target="{Binding ElementName=cboQuickLaunchPosition}">
+                                    <AccessText Text="{DynamicResource quick_launch_position}"
+                                                ToolTip="{DynamicResource quick_launch_position_tip}" />
+                                </Label>
+                                <ComboBox x:Name="cboQuickLaunchPosition"
+                                          ItemsSource="{DynamicResource quick_launch_position_values}"
+                                          SelectedIndex="{Binding Source={x:Static Settings:Settings.Instance}, Path=QuickLaunchPosition, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}}"
+                                          SelectionChanged="CboQuickLaunchPosition_SelectionChanged" />
+                            </DockPanel>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource taskbar_scale}">

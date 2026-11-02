@@ -41,6 +41,15 @@ namespace RetroBar.Controls
 
         private static DependencyProperty FolderProperty = DependencyProperty.Register(nameof(Folder), typeof(ShellFolder), typeof(Toolbar));
 
+        // True when the toolbar has a row of its own: its icons then stay on one line.
+        public static DependencyProperty SingleRowProperty = DependencyProperty.Register(nameof(SingleRow), typeof(bool), typeof(Toolbar), new PropertyMetadata(false));
+
+        public bool SingleRow
+        {
+            get => (bool)GetValue(SingleRowProperty);
+            set => SetValue(SingleRowProperty, value);
+        }
+
         public static DependencyProperty HostProperty = DependencyProperty.Register(nameof(Host), typeof(Taskbar), typeof(Toolbar), new PropertyMetadata(HostChangedCallback));
 
         public Taskbar Host

@@ -33,6 +33,26 @@ namespace RetroBar
             set => Settings.Instance.RowCount = value;
         }
 
+        // Rows available to the task buttons: one less when the Quick Launch has its own row.
+        public int TaskRows => IsQuickLaunchOwnRow && Orientation == Orientation.Horizontal ? Math.Max(1, Rows - 1) : Rows;
+
+        // The Quick Launch gets its own row (or column) only if it is shown and there is room for it.
+        private bool IsQuickLaunchOwnRow
+        {
+            get
+            {
+                QuickLaunchPositionOption position = Settings.Instance.QuickLaunchPosition;
+
+                if (!Settings.Instance.ShowQuickLaunch ||
+                    (position != QuickLaunchPositionOption.OwnRowScreenEdge && position != QuickLaunchPositionOption.OwnRowScreenCenter))
+                {
+                    return false;
+                }
+
+                return Orientation == Orientation.Horizontal ? Rows > 1 : Settings.Instance.TaskbarWidth > 1;
+            }
+        }
+
         private bool _startMenuOpen;
         private LowLevelMouseHook _mouseDragHook;
         private Point? _mouseDragStart = null;
@@ -73,6 +93,8 @@ namespace RetroBar
             {
                 QuickLaunchToolbar.Visibility = Visibility.Visible;
             }
+
+            PlaceQuickLaunch();
 
             if (Settings.Instance.ShowDesktopButton)
             {
@@ -153,6 +175,12 @@ namespace RetroBar
                 {
                     QuickLaunchToolbar.Visibility = Visibility.Collapsed;
                 }
+
+                PlaceQuickLaunch();
+            }
+            else if (e.PropertyName == nameof(Settings.QuickLaunchPosition))
+            {
+                PlaceQuickLaunch();
             }
             else if (e.PropertyName == nameof(Settings.Edge))
             {
@@ -231,6 +259,18 @@ namespace RetroBar
             else if (e.PropertyName == nameof(Settings.AllowBlurBehind))
             {
                 SetBlur(AllowsBlur());
+            }
+
+            switch (e.PropertyName)
+            {
+                case nameof(Settings.Edge):
+                case nameof(Settings.RowCount):
+                case nameof(Settings.TaskbarWidth):
+                case nameof(Settings.TaskbarScale):
+                case nameof(Settings.Theme):
+                    // Room for an own Quick Launch row, or its size, may have changed
+                    PlaceQuickLaunch();
+                    break;
             }
         }
 
@@ -356,6 +396,10 @@ namespace RetroBar
             if (e.PropertyName == nameof(DpiScale))
             {
                 OnPropertyChanged(nameof(IsScaled));
+            }
+            else if (e.PropertyName == nameof(Orientation) || e.PropertyName == nameof(AppBarEdge))
+            {
+                PlaceQuickLaunch();
             }
         }
 
@@ -545,6 +589,100 @@ namespace RetroBar
             {
                 SetTrayHost();
             }
+        }
+
+        // Docks the Quick Launch next to the Start button, at the end of the taskbar,
+        // or in its own row (column on vertical taskbars) beside the task buttons.
+        private void PlaceQuickLaunch()
+        {
+            bool horizontal = Orientation == Orientation.Horizontal;
+            QuickLaunchPositionOption position = Settings.Instance.QuickLaunchPosition;
+            bool ownRow = IsQuickLaunchOwnRow;
+            Panel target;
+            Dock dock;
+
+            if (ownRow)
+            {
+                Dock edge = AppBarEdge switch
+                {
+                    AppBarEdge.Top => Dock.Top,
+                    AppBarEdge.Left => Dock.Left,
+                    AppBarEdge.Right => Dock.Right,
+                    _ => Dock.Bottom
+                };
+
+                // In right-to-left layouts WPF mirrors Left and Right inside the window
+                if (FlowDirection == FlowDirection.RightToLeft && !horizontal)
+                {
+                    edge = edge == Dock.Left ? Dock.Right : Dock.Left;
+                }
+
+                dock = position == QuickLaunchPositionOption.OwnRowScreenEdge ? edge : edge switch
+                {
+                    Dock.Top => Dock.Bottom,
+                    Dock.Bottom => Dock.Top,
+                    Dock.Left => Dock.Right,
+                    _ => Dock.Left
+                };
+                target = TaskArea;
+            }
+            else
+            {
+                bool atEnd = position == QuickLaunchPositionOption.EndOfTaskbar;
+                dock = horizontal ? (atEnd ? Dock.Right : Dock.Left) : (atEnd ? Dock.Bottom : Dock.Top);
+                target = TaskbarDockPanel;
+            }
+
+            // Move the toolbar only when needed: moving it reloads its folder.
+            if (QuickLaunchToolbar.Parent != target || !IsQuickLaunchAtExpectedIndex(target, position))
+            {
+                (QuickLaunchToolbar.Parent as Panel)?.Children.Remove(QuickLaunchToolbar);
+
+                int index;
+                if (target == TaskArea)
+                {
+                    index = 0;
+                }
+                else if (position == QuickLaunchPositionOption.EndOfTaskbar && !ownRow)
+                {
+                    // Last of the trailing items, so it sits next to the notification area
+                    index = TaskbarDockPanel.Children.IndexOf(TaskArea);
+                }
+                else
+                {
+                    index = TaskbarDockPanel.Children.IndexOf(StartButton) + 1;
+                }
+
+                target.Children.Insert(index, QuickLaunchToolbar);
+            }
+
+            DockPanel.SetDock(QuickLaunchToolbar, dock);
+
+            // An own row is exactly one row high (one width unit wide on vertical taskbars)
+            QuickLaunchToolbar.Height = ownRow && horizontal ? DesiredRowHeight : double.NaN;
+            QuickLaunchToolbar.Width = ownRow && !horizontal ? DesiredRowHeight : double.NaN;
+            QuickLaunchToolbar.SingleRow = ownRow && horizontal;
+            // Icons that do not fit in the row are hidden
+            QuickLaunchToolbar.ClipToBounds = ownRow;
+
+            OnPropertyChanged(nameof(TaskRows));
+        }
+
+        private bool IsQuickLaunchAtExpectedIndex(Panel target, QuickLaunchPositionOption position)
+        {
+            int index = target.Children.IndexOf(QuickLaunchToolbar);
+
+            if (target == TaskArea)
+            {
+                return index == 0;
+            }
+
+            if (position == QuickLaunchPositionOption.EndOfTaskbar && !IsQuickLaunchOwnRow)
+            {
+                return index == TaskbarDockPanel.Children.IndexOf(TaskArea) - 1;
+            }
+
+            return index == TaskbarDockPanel.Children.IndexOf(StartButton) + 1;
         }
 
         private void UpdateStartButton()
