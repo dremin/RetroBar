@@ -309,18 +309,18 @@ namespace RetroBar
             return hMonitor == Screen.HMonitor;
         }
 
-        private bool IsAnyWindowMaximizedOnThisScreen()
+         private bool IsAnyWindowMaximizedOnThisScreen()
+       {
+         foreach (ApplicationWindow window in _shellManager.Tasks.GroupedWindows)
         {
-            foreach (ApplicationWindow window in _shellManager.TasksService.Windows)
-            {
-                if (window.ShowStyle == NativeMethods.WindowShowStyle.ShowMaximized && ShowsTask(window))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+        if (window.ShowStyle == NativeMethods.WindowShowStyle.ShowMaximized && ShowsTask(window))
+        {
+            return true;
         }
+    }
+
+    return false;
+}
 
         private void MaximizedWindowTimer_Tick(object sender, EventArgs e)
         {
