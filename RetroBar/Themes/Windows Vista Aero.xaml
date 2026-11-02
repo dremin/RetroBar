@@ -1473,7 +1473,7 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="6,1,10,2" />
+                Value="8,1,10,2" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1534,13 +1534,13 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
-                Value="0,1,4,1" />
+                Value="0,1,2,1" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="1,1,2,1" />
+                            Value="1,1,1,1" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
@@ -1550,7 +1550,7 @@
            x:Key="NotifyIconItems"
            BasedOn="{StaticResource NotifyIconItems}">
         <Setter Property="Margin"
-                Value="0,1" />
+                Value="0,7" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1973,7 +1973,7 @@
         <Setter Property="Background"
                 Value="{DynamicResource TrayToggleBackground}" />
         <Setter Property="Margin"
-                Value="0,0,3,0" />
+                Value="0,0,0,0" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
         <Setter Property="Template">
