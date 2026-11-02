@@ -30,6 +30,7 @@ namespace RetroBar
         private readonly StartMenuMonitor _startMenuMonitor;
         private readonly Updater _updater;
         private readonly HotkeyManager _hotkeyManager;
+        private NetworkNotifyIcon _networkNotifyIcon;
 
         public App()
         {
@@ -59,6 +60,12 @@ namespace RetroBar
 
             _dictionaryManager.SetLanguageFromSettings();
             loadTheme();
+
+            if (NetworkNotifyIcon.IsNeeded)
+            {
+                _networkNotifyIcon = new NetworkNotifyIcon(_shellManager.NotificationArea);
+            }
+
             _windowManager = new WindowManager(_dictionaryManager, _explorerMonitor, _shellManager, _startMenuMonitor, _updater, _hotkeyManager);
         }
 
@@ -141,6 +148,7 @@ namespace RetroBar
 
             _explorerMonitor.Dispose();
             _windowManager.Dispose();
+            _networkNotifyIcon?.Dispose();
             _dictionaryManager.Dispose();
             _shellManager.Dispose();
             _startMenuMonitor.Dispose();

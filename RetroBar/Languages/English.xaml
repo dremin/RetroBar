@@ -150,6 +150,12 @@
     <s:String x:Key="show_desktop">_Show Desktop</s:String>
     <s:String x:Key="peek_at_desktop">_Peek at desktop</s:String>
 
+    <s:String x:Key="network_internet_access">Internet access</s:String>
+    <s:String x:Key="network_no_internet_access">No internet access</s:String>
+    <s:String x:Key="network_not_connected">Not connected</s:String>
+    <s:String x:Key="network_settings">_Open Network &amp; Internet settings</s:String>
+    <s:String x:Key="network_connections">Network _Connections</s:String>
+
     <s:String x:Key="restore">_Restore</s:String>
     <s:String x:Key="move">_Move</s:String>
     <s:String x:Key="size">_Size</s:String>
