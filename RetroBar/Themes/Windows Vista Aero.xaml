@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
@@ -6,7 +6,7 @@
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarWidth">80</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
-    <system:Boolean x:Key="AlternatesAppearanceWhenMaximized">True</system:Boolean>
+	<system:Boolean x:Key="AlternatesAppearanceWhenMaximized">True</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
     <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
@@ -503,7 +503,6 @@
                                         Value="-2,0,-2,0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                                       <!-- Placed after Orientation so it takes precedence in both orientations -->
                         <DataTrigger Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="True">
                             <DataTrigger.Setters>
@@ -511,7 +510,7 @@
                                         Property="Background"
                                         Value="{DynamicResource TaskbarMaximizedBackground}" />
                             </DataTrigger.Setters>
-                        </DataTrigger>        
+                        </DataTrigger>	
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -1473,7 +1472,7 @@
            x:Key="Clock"
            BasedOn="{StaticResource Clock}">
         <Setter Property="Margin"
-                Value="8,1,10,2" />
+                Value="6,1,10,2" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1534,13 +1533,13 @@
            x:Key="NotifyIcon"
            BasedOn="{StaticResource NotifyIcon}">
         <Setter Property="Margin"
-                Value="0,1,2,1" />
+                Value="0,1,4,1" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin"
-                            Value="1,1,1,1" />
+                            Value="1,1,2,1" />
                 </DataTrigger.Setters>
             </DataTrigger>
         </Style.Triggers>
@@ -1550,7 +1549,7 @@
            x:Key="NotifyIconItems"
            BasedOn="{StaticResource NotifyIconItems}">
         <Setter Property="Margin"
-                Value="0,7" />
+                Value="0,1" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          Value="Vertical">
@@ -1973,7 +1972,7 @@
         <Setter Property="Background"
                 Value="{DynamicResource TrayToggleBackground}" />
         <Setter Property="Margin"
-                Value="0,0,0,0" />
+                Value="0,0,3,0" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
         <Setter Property="Template">
