@@ -36,6 +36,7 @@
     <s:String x:Key="show_quick_launch">Mostra A_vvio veloce</s:String>
     <s:String x:Key="select_location">Cam_bia cartella...</s:String>
     <s:String x:Key="quick_launch_folder">Avvio veloce - Selezione cartella</s:String>
+    <s:String x:Key="quick_launch_fill_rows_first">Riempi Avvio veloce per _righe (da sinistra a destra)</s:String>
     <s:String x:Key="show_badges">Mostra badge di notifica</s:String>
     <s:String x:Key="show_window_previews">Mostra anteprime delle finestre (miniature)</s:String>
     <s:String x:Key="use_software_rendering">_Usa rendering software</s:String>
