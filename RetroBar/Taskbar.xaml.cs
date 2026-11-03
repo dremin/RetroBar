@@ -15,7 +15,6 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Application = System.Windows.Application;
 
-
 namespace RetroBar
 {
     /// <summary>
@@ -125,6 +124,7 @@ namespace RetroBar
         private void TasksService_WindowActivated(object sender, ManagedShell.WindowsTasks.WindowEventArgs e)
         {
             // If full-screen is suppressed, and a full-screen window is activated, it's time to un-suppress.
+            
             if (!_fullScreenSuppressed)
             {
                 return;
