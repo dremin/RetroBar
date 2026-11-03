@@ -415,7 +415,6 @@ namespace RetroBar
                 Opacity = 1;
                 OnPropertyChanged(nameof(Opacity));
             }
-
             if (!isHiding)
             {
                 StartButton?.UpdateFloatingStartVisible(true);
@@ -431,7 +430,6 @@ namespace RetroBar
                 Opacity = 0.01;
                 OnPropertyChanged(nameof(Opacity));
             }
-
             if (isHiding)
             {
                 StartButton?.UpdateFloatingStartVisible(false);
