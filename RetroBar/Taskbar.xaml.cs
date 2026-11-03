@@ -125,7 +125,6 @@ namespace RetroBar
         private void TasksService_WindowActivated(object sender, ManagedShell.WindowsTasks.WindowEventArgs e)
         {
             // If full-screen is suppressed, and a full-screen window is activated, it's time to un-suppress.
-
             if (!_fullScreenSuppressed)
             {
                 return;
@@ -146,6 +145,7 @@ namespace RetroBar
                     return;
                 }
             }
+        }
 
         private void StartMenuMonitor_StartMenuVisibilityChanged(object sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
@@ -157,9 +157,7 @@ namespace RetroBar
             _fullScreenSuppressed = true;
             OnFullScreenLeave();
         }
-            base.OnFullScreenLeave();
-        }
-
+        
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.Theme))
@@ -322,8 +320,6 @@ namespace RetroBar
 
             return false;
         }
-    return false;
-}
 
         private void MaximizedWindowTimer_Tick(object sender, EventArgs e)
         {
