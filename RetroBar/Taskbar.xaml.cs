@@ -157,7 +157,7 @@ namespace RetroBar
             _fullScreenSuppressed = true;
             OnFullScreenLeave();
         }
-        
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.Theme))
