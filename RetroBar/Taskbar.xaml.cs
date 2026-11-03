@@ -142,11 +142,10 @@ namespace RetroBar
             {
                 if (_fullScreenHelper.FullScreenApps[i].hWnd == e.Window.Handle)
                 {
-                    base.OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
+                    OnFullScreenEnter(_fullScreenHelper.FullScreenApps[i]);
                     return;
                 }
             }
-        }
 
         private void StartMenuMonitor_StartMenuVisibilityChanged(object sender, StartMenuMonitor.StartMenuMonitorEventArgs e)
         {
@@ -156,6 +155,8 @@ namespace RetroBar
             }
 
             _fullScreenSuppressed = true;
+            OnFullScreenLeave();
+        }
             base.OnFullScreenLeave();
         }
 
@@ -309,16 +310,18 @@ namespace RetroBar
             return hMonitor == Screen.HMonitor;
         }
 
-         private bool IsAnyWindowMaximizedOnThisScreen()
-       {
-         foreach (ApplicationWindow window in _shellManager.Tasks.GroupedWindows)
+        private bool IsAnyWindowMaximizedOnThisScreen()
         {
-        if (window.ShowStyle == NativeMethods.WindowShowStyle.ShowMaximized && ShowsTask(window))
-        {
-            return true;
-        }
-    }
+            foreach (ApplicationWindow window in _shellManager.Tasks.GroupedWindows)
+            {
+                if (window.ShowStyle == NativeMethods.WindowShowStyle.ShowMaximized && ShowsTask(window))
+                {
+                    return true;
+                }
+            }
 
+            return false;
+        }
     return false;
 }
 
@@ -336,7 +339,7 @@ namespace RetroBar
             SetBlur(AllowsBlur());
             UpdateTrayPosition();
         }
-
+            
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             base.WndProc(hwnd, msg, wParam, lParam, ref handled);
