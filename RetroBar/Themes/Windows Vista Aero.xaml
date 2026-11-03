@@ -525,7 +525,6 @@
                                         Value="-2,0,-2,0" />
                             </DataTrigger.Setters>
                       </DataTrigger>
-                  </ControlTemplate.Triggers>
                         <!-- Placed after Orientation so these take precedence in both orientations -->
                         <DataTrigger Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="True">
