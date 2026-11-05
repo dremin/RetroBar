@@ -269,12 +269,24 @@ namespace RetroBar
             {
                 SetBlur(AllowsBlur());
             }
+                        else if (e.PropertyName == nameof(Settings.AllowAlternateMaximizedAppearance))
+            {
+                if (AlternatesAppearanceWhenMaximized())
+                {
+                    _maximizedWindowTimer.Start();
+                }
+                else
+                {
+                    _maximizedWindowTimer.Stop();
+                    HasMaximizedWindow = false;
+                }
+            }
         }
 
         private bool AlternatesAppearanceWhenMaximized()
         {
-            // Themes opt in by defining this resource
-            return Application.Current.TryFindResource("AlternatesAppearanceWhenMaximized") is bool b && b;
+            return Settings.Instance.AllowAlternateMaximizedAppearance &&
+                   Application.Current.TryFindResource("AlternatesAppearanceWhenMaximized") is bool b && b;
         }
 
         public bool ShowsTask(ApplicationWindow window)
