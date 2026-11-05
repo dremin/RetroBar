@@ -73,10 +73,10 @@
         <GradientStop Color="#18191B"
                       Offset="1.0" />
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="TaskbarMaximizedTopBorder" Color="#474747" />
-    <SolidColorBrush x:Key="TaskbarMaximizedTopInnerBorder" Color="#9e9e9e" />
-    <SolidColorBrush x:Key="TaskbarMaximizedBottomInnerBorder" Color="#000000" />
-    <SolidColorBrush x:Key="TaskbarMaximizedBottomBorder" Color="#000000" />
+    <SolidColorBrush x:Key="TaskbarMaximizedTopBorder" Color="#545454" />
+    <SolidColorBrush x:Key="TaskbarMaximizedTopInnerBorder" Color="#B4B5B5" />
+    <SolidColorBrush x:Key="TaskbarMaximizedBottomInnerBorder" Color="#17191A" />
+    <SolidColorBrush x:Key="TaskbarMaximizedBottomBorder" Color="#131415" />
     <SolidColorBrush x:Key="TaskbarWindowBackground" Color="Transparent" />
     <SolidColorBrush x:Key="TaskbarTopBorder" Color="#e5474747" />
     <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#e59e9e9e" />
