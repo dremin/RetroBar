@@ -69,6 +69,7 @@
         <s:String>Otvara centar za obaveštenja</s:String>
     </x:Array>
     <s:String x:Key="auto_hide_transparent">Sakrij _liniju trake zadataka kada je automatski sakrivena</s:String>
+    <s:String x:Key="allow_alternate_maximized_appearance">Omogući alternativni izgled kada je prozor uvećan</s:String>
     <s:String x:Key="version">Verzija {0}</s:String>
     <s:String x:Key="visit_on_github">Poseti RetroBar na GitHub-u</s:String>
     <s:String x:Key="taskbar_scale">Razmera trake zadataka</s:String>
