@@ -33,10 +33,6 @@ namespace RetroBar
             get => (bool)GetValue(HasMaximizedWindowProperty);
             private set => SetValue(HasMaximizedWindowProperty, value);
         }        
-        
-        public bool IsFullscreenWindowMaximized
-
-        public bool IsLocked => Settings.Instance.LockTaskbar;
 
         public bool IsScaled => DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
 
