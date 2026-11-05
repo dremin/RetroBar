@@ -526,7 +526,7 @@
                             </DataTrigger.Setters>
                       </DataTrigger>
                         <!-- Placed after Orientation so these take precedence in both orientations -->
-                        <DataTrigger Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                        <DataTrigger Binding="{Binding Path=HasMaximizedWindow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                      Value="True">
                             <DataTrigger.Setters>
                                 <Setter TargetName="TaskbarTopBorder"
@@ -548,7 +548,7 @@
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=IsFullscreenWindowMaximized, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                <Condition Binding="{Binding Path=HasMaximizedWindow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="True" />
                                 <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                                            Value="Vertical" />
