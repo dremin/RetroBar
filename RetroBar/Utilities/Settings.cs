@@ -488,9 +488,7 @@ namespace RetroBar.Utilities
             get => _allowBlurBehind;
             set => Set(ref _allowBlurBehind, value);
         }
-        #endregion
-
-        #region allowAlternateMaximizedAppearance 
+        
         private bool _allowAlternateMaximizedAppearance = true;
         public bool AllowAlternateMaximizedAppearance
         {
