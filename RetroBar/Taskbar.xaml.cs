@@ -24,20 +24,17 @@ namespace RetroBar
     {
         private DispatcherTimer _maximizedWindowTimer;
 
-        public static readonly DependencyProperty IsFullscreenWindowMaximizedProperty =
-            DependencyProperty.Register("IsFullscreenWindowMaximized", typeof(bool), typeof(Taskbar),
+        public static readonly DependencyProperty HasMaximizedWindowProperty =
+            DependencyProperty.Register("HasMaximizedWindow", typeof(bool), typeof(Taskbar),
                 new PropertyMetadata(false));
 
-        /// <summary>
-        /// True when any window on this taskbar's screen is currently maximized.
-        /// Themes can bind/trigger on this (e.g. via RelativeSource FindAncestor AncestorType=Window)
-        /// to change their own appearance, the same way they already do for Orientation.
-        /// </summary>
-        public bool IsFullscreenWindowMaximized
+        public bool HasMaximizedWindow
         {
-            get => (bool)GetValue(IsFullscreenWindowMaximizedProperty);
-            private set => SetValue(IsFullscreenWindowMaximizedProperty, value);
-        }
+            get => (bool)GetValue(HasMaximizedWindowProperty);
+            private set => SetValue(HasMaximizedWindowProperty, value);
+        }        
+        
+        public bool IsFullscreenWindowMaximized
 
         public bool IsLocked => Settings.Instance.LockTaskbar;
 
@@ -182,7 +179,7 @@ namespace RetroBar
                 else
                 {
                     _maximizedWindowTimer.Stop();
-                    IsFullscreenWindowMaximized = false;
+                    HasMaximizedWindow = false;
                 }
             }
             else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
@@ -323,7 +320,7 @@ namespace RetroBar
 
         private void MaximizedWindowTimer_Tick(object sender, EventArgs e)
         {
-            IsFullscreenWindowMaximized = IsAnyWindowMaximizedOnThisScreen();
+            HasMaximizedWindow = IsAnyWindowMaximizedOnThisScreen();
         }
 
         #region AppBarWindow overrides
