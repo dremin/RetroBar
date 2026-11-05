@@ -1,8 +1,9 @@
-﻿using ManagedShell;
+using ManagedShell;
 using ManagedShell.AppBar;
 using ManagedShell.Common.Helpers;
 using ManagedShell.Common.Logging;
 using ManagedShell.Interop;
+using ManagedShell.WindowsTasks;
 using ManagedShell.WindowsTray;
 using RetroBar.Utilities;
 using System;
@@ -11,6 +12,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Application = System.Windows.Application;
 
 namespace RetroBar
@@ -20,8 +22,18 @@ namespace RetroBar
     /// </summary>
     public partial class Taskbar : AppBarWindow
     {
-        public bool IsLocked => Settings.Instance.LockTaskbar;
+        private DispatcherTimer _maximizedWindowTimer;
 
+        public static readonly DependencyProperty HasMaximizedWindowProperty =
+            DependencyProperty.Register("HasMaximizedWindow", typeof(bool), typeof(Taskbar),
+                new PropertyMetadata(false));
+
+        public bool HasMaximizedWindow
+        {
+            get => (bool)GetValue(HasMaximizedWindowProperty);
+            private set => SetValue(HasMaximizedWindowProperty, value);
+        }
+        public bool IsLocked => Settings.Instance.LockTaskbar;
         public bool IsScaled => DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
 
         private double _unlockedMargin;
@@ -58,9 +70,24 @@ namespace RetroBar
             this.hotkeyManager = hotkeyManager;
 
             InitializeComponent();
-            DataContext = _shellManager;
-            StartButton.StartMenuMonitor = startMenuMonitor;
 
+            _maximizedWindowTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(100)
+            };
+
+            _maximizedWindowTimer.Tick += MaximizedWindowTimer_Tick;
+
+            // Only themes that opt in via AlternatesAppearanceWhenMaximized need the polling.
+            if (AlternatesAppearanceWhenMaximized())
+            {
+                _maximizedWindowTimer.Start();
+            }
+
+            DataContext = _shellManager;
+            
+            StartButton.StartMenuMonitor = startMenuMonitor;
+            
             RecalculateSize(false);
 
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
@@ -142,6 +169,16 @@ namespace RetroBar
                 SetBlur(AllowsBlur());
                 PeekDuringAutoHide();
                 RecalculateSize();
+
+                if (AlternatesAppearanceWhenMaximized())
+                {
+                    _maximizedWindowTimer.Start();
+                }
+                else
+                {
+                    _maximizedWindowTimer.Stop();
+                    HasMaximizedWindow = false;
+                }
             }
             else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
             {
@@ -232,6 +269,68 @@ namespace RetroBar
             {
                 SetBlur(AllowsBlur());
             }
+                        else if (e.PropertyName == nameof(Settings.AllowAlternateMaximizedAppearance))
+            {
+                if (AlternatesAppearanceWhenMaximized())
+                {
+                    _maximizedWindowTimer.Start();
+                }
+                else
+                {
+                    _maximizedWindowTimer.Stop();
+                    HasMaximizedWindow = false;
+                }
+            }
+        }
+
+        private bool AlternatesAppearanceWhenMaximized()
+        {
+            return Settings.Instance.AllowAlternateMaximizedAppearance &&
+                   Application.Current.TryFindResource("AlternatesAppearanceWhenMaximized") is bool b && b;
+        }
+
+        public bool ShowsTask(ApplicationWindow window)
+        {
+            if (!window.ShowInTaskbar)
+            {
+                return false;
+            }
+
+            if (!Settings.Instance.ShowMultiMon || Settings.Instance.MultiMonMode == MultiMonOption.AllTaskbars)
+            {
+                return true;
+            }
+
+            if (Settings.Instance.MultiMonMode == MultiMonOption.SameAsWindowAndPrimary && Screen.Primary)
+            {
+                return true;
+            }
+
+            IntPtr hMonitor = window.HMonitor;
+            if (Screen.Primary && !windowManager.IsValidHMonitor(hMonitor))
+            {
+                return true;
+            }
+
+            return hMonitor == Screen.HMonitor;
+        }
+
+        private bool IsAnyWindowMaximizedOnThisScreen()
+        {
+            foreach (ApplicationWindow window in _shellManager.Tasks.GroupedWindows)
+            {
+                if (window.ShowStyle == NativeMethods.WindowShowStyle.ShowMaximized && ShowsTask(window))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void MaximizedWindowTimer_Tick(object sender, EventArgs e)
+        {
+            HasMaximizedWindow = IsAnyWindowMaximizedOnThisScreen();
         }
 
         #region AppBarWindow overrides
@@ -243,7 +342,7 @@ namespace RetroBar
             SetBlur(AllowsBlur());
             UpdateTrayPosition();
         }
-        
+            
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             base.WndProc(hwnd, msg, wParam, lParam, ref handled);
@@ -267,6 +366,13 @@ namespace RetroBar
 
         protected override void CustomClosing()
         {
+            if (_maximizedWindowTimer != null)
+            {
+                _maximizedWindowTimer.Stop();
+                _maximizedWindowTimer.Tick -= MaximizedWindowTimer_Tick;
+                _maximizedWindowTimer = null;
+            }
+
             if (AllowClose)
             {
                 QuickLaunchToolbar.Visibility = Visibility.Collapsed;
@@ -336,7 +442,7 @@ namespace RetroBar
                 StartButton?.UpdateFloatingStartVisible(false);
             }
         }
-
+        
         protected override void OnFullScreenEnter(FullScreenApp app)
         {
             base.OnFullScreenEnter(app);
