@@ -68,6 +68,7 @@
         <s:String>Odpri center za obvestila</s:String>
     </x:Array>
     <s:String x:Key="auto_hide_transparent">Skrij vrstico opravilne vrstice, ko je skrita z avtomatskim skritjem</s:String>
+    <s:String x:Key="allow_alternate_maximized_appearance">Omogoči drugačen videz pri povečanem oknu</s:String>
     <s:String x:Key="version">Različica {0}</s:String>
     <s:String x:Key="visit_on_github">Obiščite RetroBar na GitHubu</s:String>
     <s:String x:Key="taskbar_scale">Lestvica opravilne vrstice</s:String>
