@@ -32,7 +32,7 @@ namespace RetroBar
         {
             get => (bool)GetValue(HasMaximizedWindowProperty);
             private set => SetValue(HasMaximizedWindowProperty, value);
-        }        
+        }
 
         public bool IsScaled => DpiScale > 1 || Settings.Instance.TaskbarScale > 1;
 
@@ -85,7 +85,9 @@ namespace RetroBar
             }
 
             DataContext = _shellManager;
+            
             StartButton.StartMenuMonitor = startMenuMonitor;
+            
             RecalculateSize(false);
 
             AllowsTransparency = mode == AppBarMode.AutoHide || (Application.Current.FindResource("AllowsTransparency") as bool? ?? false);
@@ -117,7 +119,7 @@ namespace RetroBar
         private void TasksService_WindowActivated(object sender, ManagedShell.WindowsTasks.WindowEventArgs e)
         {
             // If full-screen is suppressed, and a full-screen window is activated, it's time to un-suppress.
-            
+
             if (!_fullScreenSuppressed)
             {
                 return;
