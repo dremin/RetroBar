@@ -488,7 +488,9 @@ namespace RetroBar.Utilities
             get => _allowBlurBehind;
             set => Set(ref _allowBlurBehind, value);
         }
-        
+        #endregion
+
+        #region allowAlternateMaximizedAppearance 
         private bool _allowAlternateMaximizedAppearance = true;
         public bool AllowAlternateMaximizedAppearance
         {
@@ -496,7 +498,7 @@ namespace RetroBar.Utilities
           set => Set(ref _allowAlternateMaximizedAppearance, value);
         }
         #endregion
-
+        
         #region Old Properties
         public bool? MiddleMouseToClose
         {
