@@ -55,26 +55,26 @@
         <s:String>Always</s:String>
         <s:String>Never</s:String>
     </x:Array>
-    <s:String x:Key="middle_mouse_task_action">_Middle-click action:</s:String>
+    <s:String x:Key="middle_mouse_task_action">M_iddle-click action:</s:String>
     <x:Array x:Key="middle_mouse_task_action_values" Type="s:String">
         <s:String>Do nothing</s:String>
         <s:String>Open a new instance</s:String>
         <s:String>Close the task</s:String>
     </x:Array>
-    <s:String x:Key="clock_click_action">_Clock click action:</s:String>
+    <s:String x:Key="clock_click_action">Clock click _action:</s:String>
     <x:Array x:Key="clock_click_action_values" Type="s:String">
         <s:String>Do nothing</s:String>
         <s:String>Open Aero calendar</s:String>
         <s:String>Open Modern calendar</s:String>
         <s:String>Open Notification Center</s:String>
     </x:Array>
-    <s:String x:Key="task_wheel_action">_Mouse wheel action:</s:String>
+    <s:String x:Key="task_wheel_action">M_ouse wheel action:</s:String>
     <x:Array x:Key="task_wheel_action_values" Type="s:String">
         <s:String>Do nothing</s:String>
         <s:String>Minimize/restore window</s:String>
     </x:Array>
     <s:String x:Key="auto_hide_transparent">Hide _taskbar line when hidden with auto-hide</s:String>
-    <s:String x:Key="allow_alternate_maximized_appearance">Allow alternate appearance with maximized window</s:String>
+    <s:String x:Key="allow_alternate_maximized_appearance">A_llow alternate appearance with maximized window</s:String>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">Visit RetroBar on GitHub</s:String>
     <s:String x:Key="taskbar_scale">Taskbar scale</s:String>
@@ -84,11 +84,11 @@
     <s:String x:Key="debug_logging">Enable _debug logging</s:String>
     <s:String x:Key="check_for_updates">Check for u_pdates</s:String>
     <s:String x:Key="show_exit_menu_item">Show E_xit option in right-click menu</s:String>
-    <s:String x:Key="show_end_task_button">Show End _task option in right-click menu</s:String>
+    <s:String x:Key="show_end_task_button">Show End task option in _right-click menu</s:String>
     <s:String x:Key="slide_taskbar_buttons">Slid_e taskbar buttons</s:String>
     <s:String x:Key="show_clock_seconds">S_how seconds in the clock</s:String>
     <s:String x:Key="open_custom_themes_folder">Open custom themes folder</s:String>
-    <s:String x:Key="win_num_hotkeys_action">Win+[0-9] _hotkeys action:</s:String>
+    <s:String x:Key="win_num_hotkeys_action">_Win+[0-9] hotkeys action:</s:String>
     <x:Array x:Key="win_num_hotkeys_action_values" Type="s:String">
         <s:String>Windows default</s:String>
         <s:String>Switch tasks</s:String>

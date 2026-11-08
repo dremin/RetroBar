@@ -269,7 +269,7 @@ namespace RetroBar
             {
                 SetBlur(AllowsBlur());
             }
-                        else if (e.PropertyName == nameof(Settings.AllowAlternateMaximizedAppearance))
+            else if (e.PropertyName == nameof(Settings.AllowAlternateMaximizedAppearance))
             {
                 if (AlternatesAppearanceWhenMaximized())
                 {
