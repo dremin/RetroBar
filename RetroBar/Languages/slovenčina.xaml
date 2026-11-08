@@ -41,6 +41,7 @@
         <s:String>Tom istom paneli úloh ako okno</s:String>
         <s:String>Tom istom paneli úloh a hlavnom paneli úloh</s:String>
     </x:Array>
+    <s:String x:Key="allow_alternate_maximized_appearance">Povoliť alternatívny vzhľad pri maximalizovanom okien</s:String>
     <s:String x:Key="version">Verzia {0}</s:String>
     <s:String x:Key="visit_on_github">Navštíviť RetroBar na GitHub</s:String>
     <s:String x:Key="taskbar_scale">Škála panela úloh</s:String>

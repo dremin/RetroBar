@@ -6,6 +6,7 @@
     <system:Double x:Key="TaskbarRowHeight">30</system:Double>
     <system:Double x:Key="TaskbarWidth">80</system:Double>
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
+    <system:Boolean x:Key="AlternatesAppearanceWhenMaximized">True</system:Boolean>
     <system:Boolean x:Key="UseFloatingStartButton">True</system:Boolean>
     <Thickness x:Key="TaskButtonMargin" Right="2" />
     <FontWeight x:Key="SetTimeMenuItemWeight">Normal</FontWeight>
@@ -23,6 +24,25 @@
         <GradientStop Color="#a2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskbarMaximizedBackground"
+                         MappingMode="Absolute"
+                         StartPoint="0,0"
+                         EndPoint="0,26">
+        <GradientStop Color="#8B8C8C"
+                      Offset="0.0" />
+        <GradientStop Color="#828383"
+                      Offset="0.15" />
+        <GradientStop Color="#4D4F4F"
+                      Offset="0.45" />
+        <GradientStop Color="#464648"
+                      Offset="0.50" />
+        <GradientStop Color="#1B1D1F"
+                      Offset="0.50" />
+        <GradientStop Color="#181A1B"
+                      Offset="0.80" />
+        <GradientStop Color="#18191B"
+                      Offset="1.0" />
+    </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
@@ -35,6 +55,28 @@
         <GradientStop Color="#a2000000"
                       Offset="1.0" />
     </LinearGradientBrush>
+        <LinearGradientBrush x:Key="TaskbarMaximizedVerticalBackground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <GradientStop Color="#8B8C8C"
+                      Offset="0.0" />
+        <GradientStop Color="#828383"
+                      Offset="0.075" />
+        <GradientStop Color="#4D4F4F"
+                      Offset="0.225" />
+        <GradientStop Color="#464648"
+                      Offset="0.25" />
+        <GradientStop Color="#1B1D1F"
+                      Offset="0.25" />
+        <GradientStop Color="#181A1B"
+                      Offset="0.70" />
+        <GradientStop Color="#18191B"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TaskbarMaximizedTopBorder" Color="#545454" />
+    <SolidColorBrush x:Key="TaskbarMaximizedTopInnerBorder" Color="#B4B5B5" />
+    <SolidColorBrush x:Key="TaskbarMaximizedBottomInnerBorder" Color="#17191A" />
+    <SolidColorBrush x:Key="TaskbarMaximizedBottomBorder" Color="#131415" />
     <SolidColorBrush x:Key="TaskbarWindowBackground" Color="Transparent" />
     <SolidColorBrush x:Key="TaskbarTopBorder" Color="#e5474747" />
     <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#e59e9e9e" />
@@ -482,8 +524,42 @@
                                         Property="Margin"
                                         Value="-2,0,-2,0" />
                             </DataTrigger.Setters>
+                      </DataTrigger>
+                        <!-- Placed after Orientation so these take precedence in both orientations -->
+                        <DataTrigger Binding="{Binding Path=HasMaximizedWindow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                     Value="True">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarTopBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarMaximizedTopBorder}" />
+                                <Setter TargetName="TaskbarTopInnerBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarMaximizedTopInnerBorder}" />
+                                <Setter TargetName="TaskbarBottomBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarMaximizedBottomBorder}" />
+                                <Setter TargetName="TaskbarBottomInnerBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource TaskbarMaximizedBottomInnerBorder}" />
+                                <Setter TargetName="TaskbarBottomInnerBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TaskbarMaximizedBackground}" />
+                            </DataTrigger.Setters>
                         </DataTrigger>
-                    </ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=HasMaximizedWindow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                           Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarBottomInnerBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource TaskbarMaximizedVerticalBackground}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers> 
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -514,7 +590,7 @@
                                         Value="0,0,0,6" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                    </ControlTemplate.Triggers>
+                  </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

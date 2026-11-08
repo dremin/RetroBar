@@ -513,6 +513,10 @@
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowBlurBehind, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_blur_behind}" />
                             </CheckBox>
+                            <CheckBox x:Name="cbAllowAlternateMaximizedAppearance"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowAlternateMaximizedAppearance, UpdateSourceTrigger=PropertyChanged}">
+                                <Label Content="{DynamicResource allow_alternate_maximized_appearance}" />
+                            </CheckBox>
                             <CheckBox x:Name="cbAllowFontSmoothingMenu"
                                       IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=AllowFontSmoothingMenu, UpdateSourceTrigger=PropertyChanged}">
                                 <Label Content="{DynamicResource allow_font_smoothing_menu}" />
