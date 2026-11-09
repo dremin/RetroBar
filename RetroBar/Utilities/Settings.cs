@@ -340,6 +340,14 @@ namespace RetroBar.Utilities
             set => Set(ref _quickLaunchOrder, value);
         }
 
+        // With more than one row, fill the Quick Launch row by row (left to right) instead of column by column.
+        private bool _quickLaunchFillRowsFirst = false;
+        public bool QuickLaunchFillRowsFirst
+        {
+            get => _quickLaunchFillRowsFirst;
+            set => Set(ref _quickLaunchFillRowsFirst, value);
+        }
+
         private bool _showTaskThumbnails = false;
         public bool ShowTaskThumbnails
         {
