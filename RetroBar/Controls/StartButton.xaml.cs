@@ -319,6 +319,11 @@ namespace RetroBar.Controls
             Opacity = 0;
         }
 
+        public bool HasFloatingStart()
+        {
+            return floatingStartButton != null;
+        }
+
         #endregion
     }
 }

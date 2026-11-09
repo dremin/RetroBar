@@ -602,6 +602,11 @@ namespace RetroBar
             {
                 OnPropertyChanged(nameof(AllowAutoHide));
             }
+
+            if (isOpen && Topmost && StartButton?.HasFloatingStart() == true)
+            {
+                WindowHelper.ShowWindowTopMost(Handle);
+            }
         }
 
         public void SetTrayHost()
