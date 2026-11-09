@@ -433,7 +433,7 @@ namespace RetroBar
                 Opacity = 0.01;
                 OnPropertyChanged(nameof(Opacity));
             }
-            if (isHiding)
+            if (isHiding && AllowAutoHide)
             {
                 StartButton?.UpdateFloatingStartVisible(false);
             }
