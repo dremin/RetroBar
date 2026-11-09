@@ -343,7 +343,7 @@
             <TabItem Header="{DynamicResource notification_area}">
                 <StackPanel Orientation="Vertical"
                             Margin="10"
-                            Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
+                            MinHeight="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
                     <Border Style="{StaticResource PreviewBorder}">
                         <ContentControl x:Name="NotificationAreaPreviewControl"
                                         IsHitTestVisible="False"
@@ -494,7 +494,7 @@
             </TabItem>
             <TabItem Header="{DynamicResource advanced_tab}">
                 <DockPanel Margin="10"
-                           Height="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
+                           MinHeight="{Binding ElementName=FirstTabContent, Path=ActualHeight}">
                     <GroupBox Header="{DynamicResource general_heading}" DockPanel.Dock="Top">
                         <StackPanel Orientation="Vertical">
                             <CheckBox x:Name="cbUseSoftwareRendering"
