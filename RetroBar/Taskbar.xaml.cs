@@ -169,16 +169,7 @@ namespace RetroBar
                 SetBlur(AllowsBlur());
                 PeekDuringAutoHide();
                 RecalculateSize();
-
-                if (AlternatesAppearanceWhenMaximized())
-                {
-                    _maximizedWindowTimer.Start();
-                }
-                else
-                {
-                    _maximizedWindowTimer.Stop();
-                    HasMaximizedWindow = false;
-                }
+                UpdateMaximizedWindowTimer();
             }
             else if (e.PropertyName == nameof(Settings.ShowQuickLaunch))
             {
@@ -271,15 +262,20 @@ namespace RetroBar
             }
             else if (e.PropertyName == nameof(Settings.AllowAlternateMaximizedAppearance))
             {
-                if (AlternatesAppearanceWhenMaximized())
-                {
-                    _maximizedWindowTimer.Start();
-                }
-                else
-                {
-                    _maximizedWindowTimer.Stop();
-                    HasMaximizedWindow = false;
-                }
+                UpdateMaximizedWindowTimer();
+            }
+        }
+
+        private void UpdateMaximizedWindowTimer()
+        {
+            if (AlternatesAppearanceWhenMaximized())
+            {
+                _maximizedWindowTimer?.Start();
+            }
+            else
+            {
+                _maximizedWindowTimer?.Stop();
+                HasMaximizedWindow = false;
             }
         }
 
