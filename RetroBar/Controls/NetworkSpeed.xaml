@@ -1,0 +1,17 @@
+<UserControl x:Class="RetroBar.Controls.NetworkSpeed"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="Control_Loaded" Unloaded="Control_Unloaded"
+             VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid Margin="6,0" FlowDirection="LeftToRight">
+        <!-- Reserve the widest normal rate so task buttons do not move every second. -->
+        <TextBlock Style="{DynamicResource Clock}" Margin="0" Visibility="Hidden"
+                   Text="Download: 999.9 MB/s" />
+        <StackPanel>
+        <TextBlock x:Name="DownloadText" Style="{DynamicResource Clock}" Margin="0"
+                   TextAlignment="Left" Text="Download: 0 B/s" />
+        <TextBlock x:Name="UploadText" Style="{DynamicResource Clock}" Margin="0"
+                   TextAlignment="Left" Text="Upload: 0 B/s" />
+        </StackPanel>
+    </Grid>
+</UserControl>
