@@ -172,10 +172,10 @@ namespace RetroBar.Utilities
             IntPtr hTaskbar = _taskbarHwndActivated;
             if (hTaskbar == IntPtr.Zero)
             {
-                if (!_isVisible && _windowManager?.GetPrimaryTaskbar() is Taskbar primaryTaskbar)
+                if (!_isVisible && hMonitorByClass(className) is IntPtr hMonitor && _windowManager?.GetMonitorTaskbar(hMonitor) is Taskbar monitorTaskbar)
                 {
-                    // Only do this if the menu is currently opening, otherwise we would move an already-open menu to the primary monitor
-                    hTaskbar = primaryTaskbar.Handle;
+                    // Only bother doing this if the menu is currently opening
+                    hTaskbar = monitorTaskbar.Handle;
                 }
                 else
                 {
@@ -315,14 +315,20 @@ namespace RetroBar.Utilities
 
         internal void ShowStartMenu(IntPtr taskbarHwnd)
         {
+            IntPtr openShellHwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero);
             _taskbarHwndActivated = taskbarHwnd;
 
             if (!EnvironmentHelper.IsWindows10OrBetter ||
-                FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) != IntPtr.Zero ||
+                openShellHwnd != IntPtr.Zero ||
                 FindWindowEx(IntPtr.Zero, IntPtr.Zero, "DV2ControlHost", IntPtr.Zero) != IntPtr.Zero)
             {
                 // Always use the Windows key when IImmersiveLauncher or IImmersiveMonitor is unavailable
                 // Also use the Windows key when Open Shell Menu or StartIsBack is running, because we cannot otherwise invoke it
+                if (openShellHwnd != IntPtr.Zero && _windowManager?.GetPrimaryTaskbar() is Taskbar primaryTaskbar)
+                {
+                    // Open Shell Menu does not properly handle receiving a non-primary taskbar rect, so give it the primary
+                    primaryTaskbar.SetTrayHost();
+                }
                 ShellHelper.ShowStartMenu();
                 return;
             }

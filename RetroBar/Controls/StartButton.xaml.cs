@@ -86,11 +86,7 @@ namespace RetroBar.Controls
 
         private void OpenStartMenu()
         {
-            if (Host?.Screen.Primary == true || NativeMethods.FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) == IntPtr.Zero)
-            {
-                // Open Shell Menu does not properly handle receiving a non-primary taskbar rect
-                Host?.SetTrayHost();
-            }
+            Host?.SetTrayHost();
             Host?.SetStartMenuOpen(true);
             pendingOpenTimer.Start();
             if (Host != null && StartMenuMonitor != null && Settings.Instance.ShowMultiMon && Settings.Instance.ShowStartButtonMultiMon)
