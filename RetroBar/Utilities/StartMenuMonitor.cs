@@ -15,6 +15,7 @@ namespace RetroBar.Utilities
     public class StartMenuMonitor : IDisposable
     {
         private AppVisibilityHelper _appVisibilityHelper;
+        private WindowManager _windowManager;
         private DispatcherTimer _poller;
         private bool _isVisible;
         private IntPtr _taskbarHwndActivated;
@@ -65,7 +66,7 @@ namespace RetroBar.Utilities
             {
                 // Open Shell Menu
                 newIsVisible = true;
-                relocateStartMenuByClass("OpenShell.CMenuContainer");
+                relocateStartMenuByClass("OpenShell.CMenuContainer", "OpenShell.CUserWindow");
                 startHmonitor = hMonitorOpenShellMenu();
             }
 
@@ -166,11 +167,20 @@ namespace RetroBar.Utilities
             return MonitorFromWindow(hStartMenu, MONITOR_DEFAULTTONEAREST);
         }
 
-        private void relocateStartMenuByClass(string className)
+        private void relocateStartMenuByClass(string className, string ownedClassName)
         {
-            if (_taskbarHwndActivated == IntPtr.Zero)
+            IntPtr hTaskbar = _taskbarHwndActivated;
+            if (hTaskbar == IntPtr.Zero)
             {
-                return;
+                if (!_isVisible && hMonitorByClass(className) is IntPtr hMonitor && _windowManager?.GetMonitorTaskbar(hMonitor) is Taskbar monitorTaskbar)
+                {
+                    // Only bother doing this if the menu is currently opening
+                    hTaskbar = monitorTaskbar.Handle;
+                }
+                else
+                {
+                    return;
+                }
             }
 
             // Get current window rects
@@ -181,7 +191,7 @@ namespace RetroBar.Utilities
             }
             FlowDirection flowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
             GetWindowRect(hStartMenu, out ManagedShell.Interop.NativeMethods.Rect startMenuRect);
-            GetWindowRect(_taskbarHwndActivated, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
+            GetWindowRect(hTaskbar, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
 
             int x = 0, y = 0;
             switch (Settings.Instance.Edge)
@@ -224,13 +234,25 @@ namespace RetroBar.Utilities
                     break;
             }
 
-            if (y == startMenuRect.Top && x == startMenuRect.Left)
+            if (y != startMenuRect.Top || x != startMenuRect.Left)
             {
-                // Start menu is already in the correct position
-                return;
+                SetWindowPos(hStartMenu, IntPtr.Zero, x, y, 0, 0, (int)(SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOZORDER));
             }
 
-            SetWindowPos(hStartMenu, IntPtr.Zero, x, y, 0, 0, (int)(SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOZORDER));
+            // The menu may have an owned window (such as a user picture) which needs to be moved by the same amount as the menu
+            if (string.IsNullOrEmpty(ownedClassName))
+            {
+                return;
+            }
+            IntPtr ownedHwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, ownedClassName, IntPtr.Zero);
+            if (ownedHwnd != IntPtr.Zero)
+            {
+                ManagedShell.Interop.NativeMethods.Rect ownedRect;
+                GetWindowRect(ownedHwnd, out ownedRect);
+                int offsetX = x - startMenuRect.Left;
+                int offsetY = y - startMenuRect.Top;
+                SetWindowPos(ownedHwnd, IntPtr.Zero, ownedRect.Left + offsetX, ownedRect.Top + offsetY, 0, 0, (int)(SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOZORDER));
+            }
         }
 
         private IImmersiveMonitor GetImmersiveMonitor(ManagedShell.UWPInterop.Interfaces.IServiceProvider shell, IntPtr hWnd)
@@ -293,14 +315,20 @@ namespace RetroBar.Utilities
 
         internal void ShowStartMenu(IntPtr taskbarHwnd)
         {
+            IntPtr openShellHwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero);
             _taskbarHwndActivated = taskbarHwnd;
 
             if (!EnvironmentHelper.IsWindows10OrBetter ||
-                FindWindowEx(IntPtr.Zero, IntPtr.Zero, "OpenShell.COwnerWindow", IntPtr.Zero) != IntPtr.Zero ||
+                openShellHwnd != IntPtr.Zero ||
                 FindWindowEx(IntPtr.Zero, IntPtr.Zero, "DV2ControlHost", IntPtr.Zero) != IntPtr.Zero)
             {
                 // Always use the Windows key when IImmersiveLauncher or IImmersiveMonitor is unavailable
                 // Also use the Windows key when Open Shell Menu or StartIsBack is running, because we cannot otherwise invoke it
+                if (openShellHwnd != IntPtr.Zero && _windowManager?.GetPrimaryTaskbar() is Taskbar primaryTaskbar)
+                {
+                    // Open Shell Menu does not properly handle receiving a non-primary taskbar rect, so give it the primary
+                    primaryTaskbar.SetTrayHost();
+                }
                 ShellHelper.ShowStartMenu();
                 return;
             }
@@ -337,6 +365,11 @@ namespace RetroBar.Utilities
             }
 
             ShellHelper.ShowStartMenu();
+        }
+
+        public void SetWindowManager(WindowManager windowManager)
+        {
+            _windowManager = windowManager;
         }
 
         public void Dispose()

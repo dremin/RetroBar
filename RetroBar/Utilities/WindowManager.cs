@@ -120,6 +120,32 @@ namespace RetroBar.Utilities
             return false;
         }
 
+        public Taskbar GetMonitorTaskbar(IntPtr hMonitor)
+        {
+            foreach (var taskbar in _taskbars)
+            {
+                if (taskbar.Screen.HMonitor == hMonitor)
+                {
+                    return taskbar;
+                }
+            }
+
+            return null;
+        }
+
+        public Taskbar GetPrimaryTaskbar()
+        {
+            foreach (var taskbar in _taskbars)
+            {
+                if (taskbar.Screen.Primary)
+                {
+                    return taskbar;
+                }
+            }
+
+            return null;
+        }
+
         private void closeTaskbars()
         {
             ShellLogger.Debug($"WindowManager: Closing all taskbars");
