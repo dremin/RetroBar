@@ -613,13 +613,7 @@ namespace RetroBar
             _shellManager.NotificationArea.SetTrayHostSizeData(new TrayHostSizeData
             {
                 edge = (NativeMethods.ABEdge)AppBarEdge,
-                rc = new NativeMethods.Rect
-                {
-                    Top = (int)(Top * DpiScale),
-                    Left = (int)(Left * DpiScale),
-                    Bottom = (int)((Top + Height) * DpiScale),
-                    Right = (int)((Left + Width) * DpiScale)
-                }
+                rc = WindowRect
             });
         }
 
