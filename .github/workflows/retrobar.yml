@@ -15,6 +15,8 @@ jobs:
       matrix:
         publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [x64, net10.0-windows], [x86, net10.0-windows], [ARM64, net10.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [x64-portable, net10.0-windows], [x86-portable, net10.0-windows], [ARM64-portable, net10.0-windows] ]
     runs-on: windows-2025
+    outputs:
+      version: ${{ steps.nbgv.outputs.AssemblyFileVersion }}
 
     steps:
     - name: Checkout
@@ -23,6 +25,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install nbgv
+      id: nbgv
       uses: dotnet/nbgv@v0.5.2
 
     - name: Publish app
@@ -98,6 +101,14 @@ jobs:
         path: RetroBar/bin/Release/
         if-no-files-found: error
 
+    - name: Generate padded string used by installer
+      #if: github.ref_type == 'tag'
+      id: padVersion
+      shell: pwsh
+      run: |
+        $versionPadded = "${{ needs.build.outputs.version }}".PadRight(50)
+        "versionPadded=$versionPadded" >> $env:GITHUB_OUTPUT
+
     - name: Sign with SignPath
       #if: github.ref_type == 'tag'
       uses: signpath/github-action-submit-signing-request@v3
@@ -110,12 +121,14 @@ jobs:
         github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
         wait-for-completion: true
         output-artifact-directory: signed-files
+        parameters: |
+          version: ${{ needs.build.outputs.version }}
+          versionPadded: ${{ steps.padVersion.outputs.versionPadded }}
 
     - name: Replace originals with signed files
       #if: github.ref_type == 'tag'
       shell: pwsh
-      run: |
-        Copy-Item "signed-files\*" "RetroBar\bin\Release\" -Recurse -Force
+      run: Copy-Item "signed-files\*" "RetroBar\bin\Release\" -Recurse -Force
 
     - name: Compile Inno Setup installer
       run: ISCC.exe "${{ env.installer }}"
@@ -140,12 +153,13 @@ jobs:
         github-artifact-id: ${{ steps.unsigned-installer.outputs.artifact-id }}
         wait-for-completion: true
         output-artifact-directory: signed-installer
+        parameters: |
+          versionPadded: ${{ steps.padVersion.outputs.versionPadded }}
 
     - name: Replace installer with signed file
       #if: github.ref_type == 'tag'
       shell: pwsh
-      run: |
-        Copy-Item "signed-installer\RetroBarInstaller.exe" "bin\RetroBarInstaller.exe" -Force
+      run: Copy-Item "signed-installer\RetroBarInstaller.exe" "bin\RetroBarInstaller.exe" -Force
 
     - name: Upload installer
       uses: actions/upload-artifact@v7
