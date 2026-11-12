@@ -114,7 +114,7 @@ jobs:
         name: Unsigned installer assets
 
     - name: Compile Inno Setup installer
-      run: ISCC.exe "${{ env.installer }}" "/sSignPath=powershell.exe -NoProfile -ExecutionPolicy Bypass -File ${{ github.workspace }}\signpath.ps1 $p"
+      run: ISCC.exe "${{ env.installer }}" "/sSignPath=powershell.exe -NoProfile -ExecutionPolicy Bypass -File ${{ github.workspace }}\signpath.ps1 $f"
       env:
         SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
         SIGNPATH_ORGANIZATION_ID: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
