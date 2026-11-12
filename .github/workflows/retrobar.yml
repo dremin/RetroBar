@@ -101,14 +101,6 @@ jobs:
         path: RetroBar/bin/Release/
         if-no-files-found: error
 
-    - name: Generate padded string used by installer
-      #if: github.ref_type == 'tag'
-      id: padVersion
-      shell: pwsh
-      run: |
-        $versionPadded = "${{ needs.build.outputs.version }}".PadRight(50)
-        "versionPadded=$versionPadded" >> $env:GITHUB_OUTPUT
-
     - name: Sign with SignPath
       #if: github.ref_type == 'tag'
       uses: signpath/github-action-submit-signing-request@v3
@@ -123,7 +115,6 @@ jobs:
         output-artifact-directory: signed-files
         parameters: |
           version: "${{ needs.build.outputs.version }}"
-          versionPadded: "${{ steps.padVersion.outputs.versionPadded }}"
 
     - name: Replace originals with signed files
       #if: github.ref_type == 'tag'
@@ -153,8 +144,6 @@ jobs:
         github-artifact-id: ${{ steps.unsigned-installer.outputs.artifact-id }}
         wait-for-completion: true
         output-artifact-directory: signed-installer
-        parameters: |
-          versionPadded: "${{ steps.padVersion.outputs.versionPadded }}"
 
     - name: Replace installer with signed file
       #if: github.ref_type == 'tag'
