@@ -120,11 +120,41 @@ jobs:
     - name: Compile Inno Setup installer
       run: ISCC.exe "${{ env.installer }}"
 
+    - name: Upload installer for signing
+      id: unsigned-installer
+      uses: actions/upload-artifact@v7
+      with:
+        name: Unsigned installer
+        path: bin\RetroBarInstaller.exe
+        archive: false
+
+    - name: Sign installer with SignPath
+      uses: signpath/github-action-submit-signing-request@v3
+      with:
+        api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+        organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+        project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+        signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+        github-artifact-id: ${{ steps.unsigned-installer.outputs.artifact-id }}
+        wait-for-completion: true
+        output-artifact-directory: signed-installer
+
+    - name: Replace installer with signed file
+      shell: pwsh
+      run: |
+        Copy-Item "signed-installer\RetroBarInstaller.exe" "bin\RetroBarInstaller.exe" -Force
+
+    - name: Delete artifact used for signing
+      uses: geekyeggo/delete-artifact@v6
+      with:
+        name: Unsigned installer
+
     - name: Upload installer
       uses: actions/upload-artifact@v7
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
+        archive: false
         
   zip-portable:
     name: ZIP Portable
