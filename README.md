@@ -118,7 +118,7 @@ You may need to adjust some Open-Shell Menu settings for the best compatibility 
 
 RetroBar does not collect, store, or share any personal information or user data.
 
-The application makes a request to [a publicly hosted GitHub Pages endpoint](https://dremin.github.io/updates/retrobar.json) to retrieve the latest available version number. This information is used exclusively to check for application updates, which can be disabled by the user. No personal information is intentionally transmitted by the application.
+The application makes a request to [a publicly hosted GitHub Pages endpoint](https://dremin.github.io/updates/retrobar.json) to retrieve the latest available version number. This information is used exclusively to check for application updates, which can be disabled by the user.
 
 ## Code signing policy
 
