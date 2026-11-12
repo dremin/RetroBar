@@ -3,6 +3,7 @@ name: RetroBar
 on:
   push:
     branches: [ master ]
+    tags: [ v* ]
   pull_request:
     branches: [ master ]
 
@@ -14,6 +15,8 @@ jobs:
       matrix:
         publishprofile: [ [x64, net6.0-windows], [x86, net6.0-windows], [x64, net10.0-windows], [x86, net10.0-windows], [ARM64, net10.0-windows], [x64-portable, net6.0-windows], [x86-portable, net6.0-windows], [x64-portable, net10.0-windows], [x86-portable, net10.0-windows], [ARM64-portable, net10.0-windows] ]
     runs-on: windows-2025
+    outputs:
+      version: ${{ steps.nbgv.outputs.AssemblyFileVersion }}
 
     steps:
     - name: Checkout
@@ -22,6 +25,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install nbgv
+      id: nbgv
       uses: dotnet/nbgv@v0.5.2
 
     - name: Publish app
@@ -83,14 +87,83 @@ jobs:
         name: RetroBar 32-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
+    - name: Compile Inno Setup uninstaller
+      #if: github.ref_type == 'tag'
+      continue-on-error: true
+      run: ISCC.exe "${{ env.installer }}"
+
+    - name: Create artifact for signing
+      #if: github.ref_type == 'tag'
+      id: unsigned
+      uses: actions/upload-artifact@v7
+      with:
+        name: Unsigned installer assets
+        path: RetroBar/bin/Release/
+        if-no-files-found: error
+
+    - name: Sign with SignPath
+      #if: github.ref_type == 'tag'
+      uses: signpath/github-action-submit-signing-request@v3
+      with:
+        api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+        organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+        project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+        signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+        artifact-configuration-slug: ${{ vars.SIGNPATH_ARTIFACT_CONFIG_SLUG }}
+        github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
+        wait-for-completion: true
+        output-artifact-directory: signed-files
+        parameters: |
+          version: "${{ needs.build.outputs.version }}"
+
+    - name: Replace originals with signed files
+      #if: github.ref_type == 'tag'
+      shell: pwsh
+      run: Copy-Item "signed-files\*" "RetroBar\bin\Release\" -Recurse -Force
+
     - name: Compile Inno Setup installer
       run: ISCC.exe "${{ env.installer }}"
+
+    - name: Upload installer for signing
+      #if: github.ref_type == 'tag'
+      id: unsigned-installer
+      uses: actions/upload-artifact@v7
+      with:
+        name: Unsigned installer
+        path: bin\RetroBarInstaller.exe
+
+    - name: Sign installer with SignPath
+      #if: github.ref_type == 'tag'
+      uses: signpath/github-action-submit-signing-request@v3
+      with:
+        api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+        organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+        project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+        signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+        artifact-configuration-slug: ${{ vars.SIGNPATH_INSTALLER_ARTIFACT_CONFIG_SLUG }}
+        github-artifact-id: ${{ steps.unsigned-installer.outputs.artifact-id }}
+        wait-for-completion: true
+        output-artifact-directory: signed-installer
+
+    - name: Replace installer with signed file
+      #if: github.ref_type == 'tag'
+      shell: pwsh
+      run: Copy-Item "signed-installer\RetroBarInstaller.exe" "bin\RetroBarInstaller.exe" -Force
 
     - name: Upload installer
       uses: actions/upload-artifact@v7
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
+
+    - name: Delete intermediate artifacts
+      uses: geekyeggo/delete-artifact@v6
+      with:
+        name: |
+          RetroBar ARM*
+          RetroBar 32*
+          RetroBar 64*
+          Unsigned*
         
   zip-portable:
     name: ZIP Portable
@@ -132,6 +205,11 @@ jobs:
       with:
         name: RetroBar Portable 32-bit Win7-8
         path: RetroBar\portable\Win7-8\32-bit
+        
+    - name: Delete intermediate artifacts
+      uses: geekyeggo/delete-artifact@v6
+      with:
+        name: RetroBar Portable*
 
     - name: Upload ZIP
       uses: actions/upload-artifact@v7
