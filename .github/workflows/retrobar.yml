@@ -98,6 +98,7 @@ jobs:
         organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
         project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
         signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+        artifact-configuration-slug: ${{ vars.SIGNPATH_ARTIFACT_CONFIG_SLUG }}
         github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
         wait-for-completion: true
         output-artifact-directory: signed-files
