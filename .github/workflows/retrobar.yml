@@ -112,11 +112,6 @@ jobs:
       run: |
         Copy-Item "signed-files\*" "RetroBar\bin\Release\" -Recurse -Force
 
-    - name: Delete artifact used for signing
-      uses: geekyeggo/delete-artifact@v6
-      with:
-        name: Unsigned installer assets
-
     - name: Compile Inno Setup installer
       run: ISCC.exe "${{ env.installer }}"
 
@@ -137,6 +132,7 @@ jobs:
         signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
         github-artifact-id: ${{ steps.unsigned-installer.outputs.artifact-id }}
         wait-for-completion: true
+        skip-decompress: true
         output-artifact-directory: signed-installer
 
     - name: Replace installer with signed file
@@ -144,17 +140,21 @@ jobs:
       run: |
         Copy-Item "signed-installer\RetroBarInstaller.exe" "bin\RetroBarInstaller.exe" -Force
 
-    - name: Delete artifact used for signing
-      uses: geekyeggo/delete-artifact@v6
-      with:
-        name: Unsigned installer
-
     - name: Upload installer
       uses: actions/upload-artifact@v7
       with:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
         archive: false
+
+    - name: Delete intermediate artifacts
+      uses: geekyeggo/delete-artifact@v6
+      with:
+        name: |
+          RetroBar ARM*
+          RetroBar 32*
+          RetroBar 64*
+          Unsigned*
         
   zip-portable:
     name: ZIP Portable
@@ -196,6 +196,11 @@ jobs:
       with:
         name: RetroBar Portable 32-bit Win7-8
         path: RetroBar\portable\Win7-8\32-bit
+        
+    - name: Delete intermediate artifacts
+      uses: geekyeggo/delete-artifact@v6
+      with:
+        name: RetroBar Portable*
 
     - name: Upload ZIP
       uses: actions/upload-artifact@v7
