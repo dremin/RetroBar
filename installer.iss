@@ -55,6 +55,7 @@ OutputDir=bin
 Compression=lzma2
 SolidCompression=yes
 SignedUninstaller=yes
+SignedUninstallerDir={#ReleasePathBase}
 WizardStyle=modern
 LicenseFile=DistLicense.txt
 WizardImageFile=compiler:WizClassicImage.bmp
