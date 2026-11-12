@@ -54,7 +54,6 @@ OutputBaseFilename=RetroBarInstaller
 OutputDir=bin
 Compression=lzma2
 SolidCompression=yes
-SignTool=SignPath $f
 SignedUninstaller=yes
 WizardStyle=modern
 LicenseFile=DistLicense.txt

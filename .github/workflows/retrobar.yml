@@ -83,6 +83,10 @@ jobs:
         name: RetroBar 32-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
+    - name: Compile Inno Setup uninstaller
+      continue-on-error: true
+      run: ISCC.exe "${{ env.installer }}"
+
     - name: Create artifact for signing
       id: unsigned
       uses: actions/upload-artifact@v7
@@ -114,12 +118,7 @@ jobs:
         name: Unsigned installer assets
 
     - name: Compile Inno Setup installer
-      run: ISCC.exe "${{ env.installer }}" "/sSignPath=powershell.exe -NoProfile -ExecutionPolicy Bypass -File ""${{ github.workspace }}\signpath.ps1"" $p"
-      env:
-        SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
-        SIGNPATH_ORGANIZATION_ID: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
-        SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
-        SIGNPATH_SIGNING_POLICY_SLUG: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+      run: ISCC.exe "${{ env.installer }}"
 
     - name: Upload installer
       uses: actions/upload-artifact@v7
