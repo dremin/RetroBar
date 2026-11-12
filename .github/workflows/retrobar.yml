@@ -83,8 +83,42 @@ jobs:
         name: RetroBar 32-bit Win7-8
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
+    - name: Create artifact for signing
+      id: unsigned
+      uses: actions/upload-artifact@v7
+      with:
+        name: Unsigned installer assets
+        path: RetroBar/bin/Release/
+        if-no-files-found: error
+
+    - name: Sign with SignPath
+      uses: signpath/github-action-submit-signing-request@v3
+      with:
+        api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+        organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+        project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+        signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+        github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
+        wait-for-completion: true
+        output-artifact-directory: signed-files
+
+    - name: Replace originals with signed files
+      shell: pwsh
+      run: |
+        Copy-Item "signed-files\*" "RetroBar\bin\Release\" -Recurse -Force
+
+    - name: Delete artifact used for signing
+      uses: geekyeggo/delete-artifact@v6
+      with:
+        name: Unsigned installer assets
+
     - name: Compile Inno Setup installer
-      run: ISCC.exe "${{ env.installer }}"
+      run: ISCC.exe "${{ env.installer }}" "/sSignPath=powershell.exe -NoProfile -ExecutionPolicy Bypass -File ${{ github.workspace }}\signpath.ps1 $p"
+      env:
+        SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
+        SIGNPATH_ORGANIZATION_ID: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+        SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+        SIGNPATH_SIGNING_POLICY_SLUG: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
 
     - name: Upload installer
       uses: actions/upload-artifact@v7
