@@ -119,7 +119,6 @@ jobs:
       id: unsigned-installer
       uses: actions/upload-artifact@v7
       with:
-        name: Unsigned installer
         path: bin\RetroBarInstaller.exe
         archive: false
 
@@ -146,6 +145,7 @@ jobs:
         name: RetroBar Installer
         path: bin\RetroBarInstaller.exe
         archive: false
+        overwrite: true
 
     - name: Delete intermediate artifacts
       uses: geekyeggo/delete-artifact@v6
