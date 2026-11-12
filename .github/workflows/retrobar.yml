@@ -122,8 +122,8 @@ jobs:
         wait-for-completion: true
         output-artifact-directory: signed-files
         parameters: |
-          version: ${{ needs.build.outputs.version }}
-          versionPadded: ${{ steps.padVersion.outputs.versionPadded }}
+          version: "${{ needs.build.outputs.version }}"
+          versionPadded: "${{ steps.padVersion.outputs.versionPadded }}"
 
     - name: Replace originals with signed files
       #if: github.ref_type == 'tag'
@@ -154,7 +154,7 @@ jobs:
         wait-for-completion: true
         output-artifact-directory: signed-installer
         parameters: |
-          versionPadded: ${{ steps.padVersion.outputs.versionPadded }}
+          versionPadded: "${{ steps.padVersion.outputs.versionPadded }}"
 
     - name: Replace installer with signed file
       #if: github.ref_type == 'tag'
