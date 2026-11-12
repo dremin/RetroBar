@@ -3,6 +3,7 @@ name: RetroBar
 on:
   push:
     branches: [ master ]
+    tags: [ v* ]
   pull_request:
     branches: [ master ]
 
@@ -84,10 +85,12 @@ jobs:
         path: RetroBar\bin\Release\net6.0-windows\publish-x86\
 
     - name: Compile Inno Setup uninstaller
+      #if: github.ref_type == 'tag'
       continue-on-error: true
       run: ISCC.exe "${{ env.installer }}"
 
     - name: Create artifact for signing
+      #if: github.ref_type == 'tag'
       id: unsigned
       uses: actions/upload-artifact@v7
       with:
@@ -96,6 +99,7 @@ jobs:
         if-no-files-found: error
 
     - name: Sign with SignPath
+      #if: github.ref_type == 'tag'
       uses: signpath/github-action-submit-signing-request@v3
       with:
         api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
@@ -108,6 +112,7 @@ jobs:
         output-artifact-directory: signed-files
 
     - name: Replace originals with signed files
+      #if: github.ref_type == 'tag'
       shell: pwsh
       run: |
         Copy-Item "signed-files\*" "RetroBar\bin\Release\" -Recurse -Force
@@ -116,6 +121,7 @@ jobs:
       run: ISCC.exe "${{ env.installer }}"
 
     - name: Upload installer for signing
+      #if: github.ref_type == 'tag'
       id: unsigned-installer
       uses: actions/upload-artifact@v7
       with:
@@ -123,6 +129,7 @@ jobs:
         path: bin\RetroBarInstaller.exe
 
     - name: Sign installer with SignPath
+      #if: github.ref_type == 'tag'
       uses: signpath/github-action-submit-signing-request@v3
       with:
         api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
@@ -135,6 +142,7 @@ jobs:
         output-artifact-directory: signed-installer
 
     - name: Replace installer with signed file
+      #if: github.ref_type == 'tag'
       shell: pwsh
       run: |
         Copy-Item "signed-installer\RetroBarInstaller.exe" "bin\RetroBarInstaller.exe" -Force
