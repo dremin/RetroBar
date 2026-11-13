@@ -49,6 +49,7 @@
         <s:String>Gleiche Taskleiste wie Fenster</s:String>
         <s:String>Gleiche Taskleiste wie Fenster und primäre Taskleiste</s:String>
     </x:Array>
+	<s:String x:Key="invert_grayscale_colors">Graustufen _umkehren:</s:String>
     <x:Array x:Key="invert_grayscale_colors_values" Type="s:String">
         <s:String>Je nach Thema</s:String>
         <s:String>Immer</s:String>
@@ -67,7 +68,13 @@
         <s:String>Modernen Kalender öffnen</s:String>
         <s:String>Benachrichtigungszentrum öffnen</s:String>
     </x:Array>
+    <s:String x:Key="task_wheel_action">Funkti_on des Mausrads:</s:String>
+    <x:Array x:Key="task_wheel_action_values" Type="s:String">
+        <s:String>Keine Aktion</s:String>
+        <s:String>Fenster minimieren/wiederherstellen</s:String>
+    </x:Array>
     <s:String x:Key="auto_hide_transparent">Linie der _Taskleistenausblenden, wenn Automatisch ausblenden aktiviert ist</s:String>
+	<s:String x:Key="allow_alternate_maximized_appearance">Alternatives Erscheinungsbild bei maximiertem Fenster zu_lassen</s:String>
     <s:String x:Key="version">Version {0}</s:String>
     <s:String x:Key="visit_on_github">RetroBar auf GitHub besuchen</s:String>
     <s:String x:Key="taskbar_scale">Skalierung der Taskleiste</s:String>
@@ -91,6 +98,13 @@
     <s:String x:Key="hotkey_warning_text">RetroBar wird die Tastenkürzel der Windows-Taskleiste überschreiben. Selbst wenn RetroBar geschlossen wird, werden diese nicht wiederhergestellt, bevor Sie sich nicht von Windows abgemeldet und wieder angemeldet haben.</s:String>
     <s:String x:Key="allow_blur_behind">_Unschärfe hinter der transparenten Taskleiste zulassen</s:String>
     <s:String x:Key="ok_dialog">OK</s:String>
+
+    <s:String x:Key="clock_format_help">Verfügbare Formatierungsoptionen anzeigen</s:String>
+    <s:String x:Key="clock_format_warning">Hinweis: Die benutzerdefinierte Uhrzeitformatierung funktioniert möglicherweise nicht wie erwartet, wenn das von Ihnen ausgewählte Design ein eigenes Format festlegt.</s:String>
+    <s:String x:Key="override_clock_format">Benutzerdefiniertes Uhrzeit_format:</s:String>
+    <s:String x:Key="override_ampm_designators">Benutzerdefinierte B_ezeichner:</s:String>
+    <s:String x:Key="am_designator">AM:</s:String>
+    <s:String x:Key="pm_designator">PM:</s:String>
 
     <s:String x:Key="customize_notifications">Infobereich anpassen</s:String>
     <s:String x:Key="customize_notifications_info">RetroBar zeigt Symbole für aktive und dringende Benachrichtigungen an und blendet inaktive aus. Sie können dieses Verhalten für Elemente in der folgenden Liste ändern.</s:String>
@@ -126,7 +140,8 @@
     <s:String x:Key="show_taskman">_Task-Manager</s:String>
     <s:String x:Key="tray_properties">E_igenschaften</s:String>
     <s:String x:Key="update_available">Update verfügbar...</s:String>
-    <s:String x:Key="exit_retrobar">RetroBar schließen</s:String>
+    <s:String x:Key="exit_retrobar">RetroBar schli_eßen</s:String>
+	<s:String x:Key="restart_retrobar">RetroBar neu sta_rten</s:String>
     <s:String x:Key="customize_notifications_menu">Infobereich _anpassen...</s:String>
     <s:String x:Key="lock_taskbar_menu">Taskleiste _fixieren</s:String>
 
