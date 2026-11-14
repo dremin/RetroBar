@@ -15,13 +15,13 @@
                          MappingMode="Absolute"
                          StartPoint="0,0"
                          EndPoint="0,26">
-        <GradientStop Color="#cc939393"
+        <GradientStop Color="#cc8c8c8c"
                       Offset="0.0" />
-        <GradientStop Color="#b5454545"
+        <GradientStop Color="#b54a4a4a"
                       Offset="0.5" />
-        <GradientStop Color="#97000000"
+        <GradientStop Color="#96000000"
                       Offset="0.5" />
-        <GradientStop Color="#a2000000"
+        <GradientStop Color="#a1000000"
                       Offset="1.0" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="TaskbarMaximizedBackground"
@@ -46,13 +46,13 @@
     <LinearGradientBrush x:Key="TaskbarVerticalBackground"
                          StartPoint="0,0"
                          EndPoint="1,0">
-        <GradientStop Color="#cc939393"
+        <GradientStop Color="#cc8c8c8c"
                       Offset="0.0" />
-        <GradientStop Color="#b5454545"
+        <GradientStop Color="#b54a4a4a"
                       Offset="0.25" />
-        <GradientStop Color="#97000000"
+        <GradientStop Color="#96000000"
                       Offset="0.25" />
-        <GradientStop Color="#a2000000"
+        <GradientStop Color="#a1000000"
                       Offset="1.0" />
     </LinearGradientBrush>
         <LinearGradientBrush x:Key="TaskbarMaximizedVerticalBackground"
@@ -78,14 +78,14 @@
     <SolidColorBrush x:Key="TaskbarMaximizedBottomInnerBorder" Color="#17191A" />
     <SolidColorBrush x:Key="TaskbarMaximizedBottomBorder" Color="#131415" />
     <SolidColorBrush x:Key="TaskbarWindowBackground" Color="Transparent" />
-    <SolidColorBrush x:Key="TaskbarTopBorder" Color="#e5474747" />
-    <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#e59e9e9e" />
-    <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#c2000000" />
-    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#f7000000" />
-    <SolidColorBrush x:Key="TaskbarVerticalTopBorder" Color="#e5474747" />
-    <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#e59e9e9e" />
-    <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#c2000000" />
-    <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#f7000000" />
+    <SolidColorBrush x:Key="TaskbarTopBorder" Color="#d6545454" />
+    <SolidColorBrush x:Key="TaskbarTopInnerBorder" Color="#d9b5b5b5" />
+    <SolidColorBrush x:Key="TaskbarBottomInnerBorder" Color="#a3000000" />
+    <SolidColorBrush x:Key="TaskbarBottomBorder" Color="#f2000000" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopBorder" Color="#d6545454" />
+    <SolidColorBrush x:Key="TaskbarVerticalTopInnerBorder" Color="#d9b5b5b5" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomInnerBorder" Color="#a3000000" />
+    <SolidColorBrush x:Key="TaskbarVerticalBottomBorder" Color="#f2000000" />
 
     <SolidColorBrush x:Key="TrayToggleOuterBorder" Color="#20ffffff" />
     <SolidColorBrush x:Key="TrayToggleBorder" Color="#99000000" />
