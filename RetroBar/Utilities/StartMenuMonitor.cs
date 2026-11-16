@@ -193,7 +193,6 @@ namespace RetroBar.Utilities
                 }
             }
 
-            // Get current window rects
             IntPtr hStartMenu = _hStartMenu;
             if (hStartMenu == IntPtr.Zero)
             {
@@ -202,8 +201,10 @@ namespace RetroBar.Utilities
                 {
                     return;
                 }
+                // Remember this hStartMenu in case an additional window opens too with the same class
                 _hStartMenu = hStartMenu;
             }
+            // Get current window rects
             FlowDirection flowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
             GetWindowRect(hStartMenu, out ManagedShell.Interop.NativeMethods.Rect startMenuRect);
             GetWindowRect(hTaskbar, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
