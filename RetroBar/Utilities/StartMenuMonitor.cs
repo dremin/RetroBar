@@ -4,6 +4,7 @@ using ManagedShell.Common.Logging;
 using ManagedShell.Common.SupportingClasses;
 using ManagedShell.UWPInterop;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
@@ -19,6 +20,7 @@ namespace RetroBar.Utilities
         private DispatcherTimer _poller;
         private bool _isVisible;
         private IntPtr _taskbarHwndActivated;
+        private IntPtr _hStartMenu;
 
         public event EventHandler<StartMenuMonitorEventArgs> StartMenuVisibilityChanged;
 
@@ -97,6 +99,10 @@ namespace RetroBar.Utilities
                 // if the menu is opened again not by the start button.
                 _taskbarHwndActivated = IntPtr.Zero;
             }
+            if (!_isVisible && _hStartMenu != IntPtr.Zero)
+            {
+                _hStartMenu = IntPtr.Zero;
+            }
         }
 
         private bool isModernStartMenuOpen()
@@ -124,12 +130,16 @@ namespace RetroBar.Utilities
         {
             IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
 
-            if (hStartMenu == IntPtr.Zero)
+            while (hStartMenu != IntPtr.Zero)
             {
-                return false;
+                if (IsWindowVisible(hStartMenu))
+                {
+                    return true;
+                }
+                hStartMenu = FindWindowEx(IntPtr.Zero, hStartMenu, className, IntPtr.Zero);
             }
 
-            return IsWindowVisible(hStartMenu);
+            return false;
         }
 
         private IntPtr hMonitorModernStartMenu()
@@ -183,12 +193,18 @@ namespace RetroBar.Utilities
                 }
             }
 
-            // Get current window rects
-            IntPtr hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+            IntPtr hStartMenu = _hStartMenu;
             if (hStartMenu == IntPtr.Zero)
             {
-                return;
+                hStartMenu = FindWindowEx(IntPtr.Zero, IntPtr.Zero, className, IntPtr.Zero);
+                if (hStartMenu == IntPtr.Zero)
+                {
+                    return;
+                }
+                // Remember this hStartMenu in case an additional window opens too with the same class
+                _hStartMenu = hStartMenu;
             }
+            // Get current window rects
             FlowDirection flowDirection = Application.Current.FindResource("flow_direction") as FlowDirection? ?? FlowDirection.LeftToRight;
             GetWindowRect(hStartMenu, out ManagedShell.Interop.NativeMethods.Rect startMenuRect);
             GetWindowRect(hTaskbar, out ManagedShell.Interop.NativeMethods.Rect taskbarRect);
