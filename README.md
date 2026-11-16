@@ -7,6 +7,18 @@ Pining for simpler times? RetroBar teleports you back in time by replacing your 
 
 RetroBar is based on the [ManagedShell](https://github.com/cairoshell/ManagedShell) library for great compatibility and performance.
 
+## Features in this fork
+
+This [RetroBar fork](https://github.com/sstewart207/RetroBar) adds:
+
+- **Restored network tray icon on Windows 11 24H2 and newer.** Shows Wi-Fi signal strength, Ethernet connectivity, and disconnected or limited connectivity states, with access to the network flyout and settings.
+- **Live upload and download speeds.** Clearly labeled rates sit immediately left of the notification tray and update about once per second, with readable B/s, KB/s, MB/s, GB/s, and TB/s units.
+- **Matching taskbar styling.** Speed indicators use the current theme's clock font and text color, follow taskbar scaling, and reserve space so changing values do not shift task buttons.
+- **Traffic counted once.** Rates count connected physical adapters and exclude virtual adapters, VPN tunnels, and filter interfaces to avoid counting the same traffic twice. Hover over the indicators to see which adapters are included.
+- **Graceful connection changes.** Adapter changes, disconnections, counter resets, and resume from sleep reset the sampling baseline to avoid misleading spikes.
+
+Rates use bytes per second (1 KB = 1,000 bytes) and include local network traffic. See [network speed details and validation](NETWORK-SPEED.md) for implementation notes, testing, and restore instructions.
+
 ## Requirements
 - Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
   - Fresh installs of Windows 7 may require additional Windows updates. See [#1319](https://github.com/dremin/RetroBar/issues/1319) for details.

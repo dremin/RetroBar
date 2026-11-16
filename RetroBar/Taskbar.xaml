@@ -119,6 +119,14 @@
                     <controls:Clock VerticalAlignment="Center" />
                 </StackPanel>
             </GroupBox>
+            <controls:NetworkSpeed>
+                <DockPanel.Dock>
+                    <Binding Converter="{StaticResource dockOrientationConverter}"
+                             ConverterParameter="trailing"
+                             Path="Orientation"
+                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" />
+                </DockPanel.Dock>
+            </controls:NetworkSpeed>
             <controls:InputLanguage VerticalAlignment="Stretch"
                                     HorizontalAlignment="Stretch"
                                     Host="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
