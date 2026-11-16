@@ -30,7 +30,8 @@
 #define Major
 #define Minor
 #define Revision
-#define RetroBarVersion GetVersionComponents(ReleasePath10 + "\publish-x64\" + RetroBarExeName, Major, Minor, Revision, null), Str(Major) + "." + Str(Minor) + "." + Str(Revision)
+#define Build
+#define RetroBarVersion GetVersionComponents(ReleasePath10 + "\publish-x64\" + RetroBarExeName, Major, Minor, Revision, Build), Str(Major) + "." + Str(Minor) + "." + Str(Revision) + "." + Str(Build)
 #define VersionURL "https://dremin.github.io/updates/retrobar.json"
 
 [Setup]
@@ -38,6 +39,7 @@ AppId={{574527FE-00A4-4F85-92AD-B4B8B4077D73}
 AppMutex={#RetroBarName}
 AppName={#RetroBarName}
 AppVersion={#RetroBarVersion}
+VersionInfoVersion={#RetroBarVersion}
 AppVerName={#RetroBarName} {#RetroBarVersion}
 AppPublisher={#RetroBarPublisher}
 AppPublisherURL={#RetroBarURL}
@@ -54,6 +56,8 @@ OutputBaseFilename=RetroBarInstaller
 OutputDir=bin
 Compression=lzma2
 SolidCompression=yes
+SignedUninstaller=yes
+SignedUninstallerDir={#ReleasePathBase}
 WizardStyle=modern
 LicenseFile=DistLicense.txt
 WizardImageFile=compiler:WizClassicImage.bmp
