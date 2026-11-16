@@ -99,7 +99,7 @@ namespace RetroBar.Utilities
                 // if the menu is opened again not by the start button.
                 _taskbarHwndActivated = IntPtr.Zero;
             }
-            if (!_isVisible)
+            if (!_isVisible && _hStartMenu != IntPtr.Zero)
             {
                 _hStartMenu = IntPtr.Zero;
             }
