@@ -468,6 +468,13 @@ namespace RetroBar.Utilities
             set => Set(ref _slideTaskbarButtons, value);
         }
 
+        private bool _useClassicVolumeFlyout = true;
+        public bool UseClassicVolumeFlyout
+        {
+            get => _useClassicVolumeFlyout;
+            set => Set(ref _useClassicVolumeFlyout, value);
+        }
+
         private bool _showClockSeconds = false;
         public bool ShowClockSeconds
         {
