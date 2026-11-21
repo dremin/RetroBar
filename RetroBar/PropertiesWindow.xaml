@@ -311,6 +311,11 @@
                                         Content="{DynamicResource select_location}"
                                         Click="SetQuickLaunchLocation_OnClick" />
                             </DockPanel>
+                            <CheckBox x:Name="cbQuickLaunchFillRowsFirst"
+                                      IsChecked="{Binding Source={x:Static Settings:Settings.Instance}, Path=QuickLaunchFillRowsFirst, UpdateSourceTrigger=PropertyChanged}"
+                                      Visibility="{Binding Source={x:Static Settings:Settings.Instance}, Path=Edge, Converter={StaticResource edgeOrientationVisibilityConverter}, ConverterParameter='horizontal'}">
+                                <Label Content="{DynamicResource quick_launch_fill_rows_first}" />
+                            </CheckBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="{DynamicResource taskbar_scale}">
