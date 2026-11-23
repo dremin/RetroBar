@@ -7,6 +7,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <system:Boolean x:Key="InvertSystemNotifyIcons">True</system:Boolean>
+    <SolidColorBrush x:Key="TaskGroupCountForeground" Color="#41400A" />
 
     <LinearGradientBrush x:Key="TaskbarBackground"
                          StartPoint="0,0"
