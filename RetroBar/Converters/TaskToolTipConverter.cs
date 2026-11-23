@@ -23,14 +23,20 @@ namespace RetroBar.Converters
                 taskCount = coll.Count;
             }
 
+            bool isUwp = values.Length > 4 && values[4] is bool b && b;
+
             if (taskCount > 1)
             {
                 string programName = title;
-                if (!string.IsNullOrWhiteSpace(winFileDescription))
+                if (isUwp)
+                {
+                    programName = title;
+                }
+                else if (!isUwp && !string.IsNullOrWhiteSpace(winFileDescription))
                 {
                     programName = winFileDescription;
                 }
-                else if (!string.IsNullOrWhiteSpace(winFileName))
+                else if (!isUwp && !string.IsNullOrWhiteSpace(winFileName))
                 {
                     try
                     {

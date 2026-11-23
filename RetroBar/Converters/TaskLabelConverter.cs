@@ -33,14 +33,22 @@ namespace RetroBar.Converters
                 }
             }
 
+            bool isUwp = values.Length > 6 && values[6] is bool b && b;
+
             string displayTitle = title;
             if (taskCount > 1)
             {
-                if (!string.IsNullOrWhiteSpace(winFileDescription))
+                if (isUwp)
+                {
+                    // UWP apps naturally localize their Window Title (e.g. "Calculadora").
+                    // Using StoreAppHelper's PRI extraction often defaults to English.
+                    displayTitle = title;
+                }
+                else if (!isUwp && !string.IsNullOrWhiteSpace(winFileDescription))
                 {
                     displayTitle = winFileDescription;
                 }
-                else if (!string.IsNullOrWhiteSpace(winFileName))
+                else if (!isUwp && !string.IsNullOrWhiteSpace(winFileName))
                 {
                     try
                     {

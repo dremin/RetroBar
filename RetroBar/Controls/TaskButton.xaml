@@ -62,6 +62,8 @@
                             <Binding Path="ProgressValue" />
                             <Binding Path="ProgressState" />
                             <Binding Path="Tasks.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType=controls:TaskButton}" FallbackValue="0" TargetNullValue="0" />
+                            <Binding Path="IsUWP" />
+                            <Binding Path="AppUserModelID" />
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
@@ -208,6 +210,8 @@
                             <Binding Path="WinFileDescription" />
                             <Binding Path="WinFileName" />
                             <Binding Path="PlacementTarget.Tag.Tasks" RelativeSource="{RelativeSource FindAncestor, AncestorType=ToolTip}" />
+                            <Binding Path="IsUWP" />
+                            <Binding Path="AppUserModelID" />
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
