@@ -221,7 +221,7 @@ namespace RetroBar.Controls
         {
             bool useFloatingStartButton = Application.Current.FindResource("UseFloatingStartButton") as bool? ?? false;
 
-            if (!useFloatingStartButton || Visibility != Visibility.Visible) return;
+            if (!useFloatingStartButton || Visibility != Visibility.Visible || PresentationSource.FromVisual(Start) == null) return;
 
             if (floatingStartButton == null)
             {
@@ -277,7 +277,7 @@ namespace RetroBar.Controls
         public void UpdateFloatingStartCoordinates()
         {
             // Can't get our coordinates if we aren't visible.
-            if (!IsVisible || floatingStartButton == null) return;
+            if (!IsVisible || floatingStartButton == null || PresentationSource.FromVisual(Start) == null) return;
 
             floatingStartButton.SetPosition(getButtonRect());
         }
