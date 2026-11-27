@@ -430,7 +430,7 @@ namespace RetroBar
 
             if (isHiding && Settings.Instance.AutoHideTransparent && AllowsTransparency && AllowAutoHide)
             {
-                Opacity = 0.01;
+                Opacity = 0.004;
                 OnPropertyChanged(nameof(Opacity));
             }
             if (isHiding && AllowAutoHide)
